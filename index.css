@@ -1,0 +1,12 @@
+section {
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 300px;
+	padding: 10px;
+}
+
+p.sectionHeader {
+	font-size: 20pt;
+	font-weight: bold;
+	text-align: center;
+}
