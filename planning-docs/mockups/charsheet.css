@@ -1,7 +1,11 @@
+p,th,td {
+	font-family: 'Metamorphous', cursive;
+}
+
 section {
 	border: 1px solid black;
 	border-radius: 5px;
-	width: 300px;
+	width: 350px;
 	padding: 10px;
 	margin: 10px;
 	text-align: center;
@@ -18,23 +22,35 @@ div.field > * {
 }
 
 p.sectionHeader {
-	font-size: 20pt;
+	font-size: 18pt;
 	font-weight: bold;
 	margin: 0;
+	margin-bottom: 5px;
 }
 
 p.fieldLabel {
-	font-size: 16pt;
+	font-size: 14pt;
 	font-style: italic;
 }
 
 table#stressTable {
 	width: 100%;
 }
-table#stressTable th {
-	text-align: right;
+table#stressTable th.horizHeader {
+	text-align: left;
+}
+table#stressTable th.vertHeader {
+	text-align: center;
+}
+th p.subtext {
+	font-size: 80%;
+	margin: 0;
+	font-weight: normal;
 }
 
+/*
+ * Configure custom checkboxes for stress boxes
+ */
 input[type="checkbox"].stressBox {
 	display: none;
 }

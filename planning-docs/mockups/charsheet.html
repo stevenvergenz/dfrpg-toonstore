@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
 	<head>
+		<title>Andrew Lifeson - White Council Footsoldier</title>
+		<link href='http://fonts.googleapis.com/css?family=Metamorphous' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="charsheet.css"/>
 	</head>
 	<body>
@@ -26,11 +28,22 @@
 		</section>
 
 		<section id="stress">
-			<p class="sectionHeader">Stress &amp; Consequences</p>
+			<p class="sectionHeader">Stress</p>
 
 			<table id="stressTable">
 				<tr>
-					<th>Physical</th>
+					<th class="vertHeader">&nbsp;</th>
+					<th class="vertHeader">1</th>
+					<th class="vertHeader">2</th>
+					<th class="vertHeader">3</th>
+					<th class="vertHeader">4</th>
+					<th class="vertHeader">5</th>
+					<th class="vertHeader">6</th>
+					<th class="vertHeader">7</th>
+					<th class="vertHeader">8</th>
+				</tr>
+				<tr>
+					<th class="horizHeader">Physical<p class="subtext">(Endurance)</p></th>
 					<td><input id="p1" class="stressBox" type="checkbox"/><label for="p1"></label></td>
 					<td><input id="p2" class="stressBox" type="checkbox"/><label for="p2"></label></td>
 					<td><input id="p3" class="stressBox" type="checkbox"/><label for="p3"></label></td>
@@ -41,7 +54,7 @@
 					<td><input id="p8" class="stressBox" type="checkbox" disabled=disabled /><label for="p8"></label></td>
 				</tr>
 				<tr>
-					<th>Mental</th>
+					<th class="horizHeader">Mental<p class="subtext">(Conviction)</p></th>
 					<td><input id="m1" class="stressBox" type="checkbox"/><label for="m1"></label></td>
 					<td><input id="m2" class="stressBox" type="checkbox"/><label for="m2"></label></td>
 					<td><input id="m3" class="stressBox" type="checkbox"/><label for="m3"></label></td>
@@ -52,7 +65,7 @@
 					<td><input id="m8" class="stressBox" type="checkbox" disabled=disabled /><label for="m8"></label></td>
 				</tr>
 				<tr>
-					<th>Social</th>
+					<th class="horizHeader">Social<p class="subtext">(Presence)</p></th>
 					<td><input id="s1" class="stressBox" type="checkbox"/><label for="s1"></label></td>
 					<td><input id="s2" class="stressBox" type="checkbox"/><label for="s2"></label></td>
 					<td><input id="s3" class="stressBox" type="checkbox"/><label for="s3"></label></td>
@@ -63,7 +76,7 @@
 					<td><input id="s8" class="stressBox" type="checkbox" disabled=disabled /><label for="s8"></label></td>
 				</tr>
 				<tr>
-					<th>Hunger</th>
+					<th class="horizHeader">Hunger<p class="subtext">(Discipline)</p></th>
 					<td><input id="h1" class="stressBox" type="checkbox" disabled=disabled /><label for="h1"></label></td>
 					<td><input id="h2" class="stressBox" type="checkbox" disabled=disabled /><label for="h2"></label></td>
 					<td><input id="h3" class="stressBox" type="checkbox" disabled=disabled /><label for="h3"></label></td>
@@ -74,7 +87,7 @@
 					<td><input id="h8" class="stressBox" type="checkbox" disabled=disabled /><label for="h8"></label></td>
 				</tr>
 				<tr>
-					<th>Resource</th>
+					<th class="horizHeader">Resource</th>
 					<td><input id="r1" class="stressBox" type="checkbox"/><label for="r1"></label></td>
 					<td><input id="r2" class="stressBox" type="checkbox"/><label for="r2"></label></td>
 					<td><input id="r3" class="stressBox" type="checkbox" disabled=disabled /><label for="r3"></label></td>
@@ -84,9 +97,12 @@
 					<td><input id="r7" class="stressBox" type="checkbox" disabled=disabled /><label for="r7"></label></td>
 					<td><input id="r8" class="stressBox" type="checkbox" disabled=disabled /><label for="r8"></label></td>
 				</tr>
-			
 			</table>
-
+			
+		</section>
+		
+		<section id="consequences">
+		
 		</section>
 
 	</body>
