@@ -29,19 +29,25 @@ p.sectionHeader {
 }
 
 p.fieldLabel {
-	font-size: 14pt;
-	font-style: italic;
+	/*font-size: 14pt;
+	font-style: italic;*/
+	font-weight: bold;
 }
 
+
+/*
+ * Configure stress table
+ */
 table#stressTable {
 	width: 100%;
 }
-table#stressTable th.horizHeader {
-	text-align: left;
-}
-table#stressTable th.vertHeader {
+table#stressTable thead {
 	text-align: center;
 }
+table#stressTable tbody {
+	text-align: left;
+}
+
 th p.subtext {
 	font-size: 80%;
 	margin: 0;
@@ -70,4 +76,13 @@ input[type="checkbox"].stressBox:checked + label {
 }
 input[type="checkbox"][disabled="disabled"].stressBox + label {
 	background-position: -40px 0px;
+}
+
+
+table#conseqTable {
+	width: 100%;
+	font-size: 80%;
+}
+table#conseqTable th:first-of-type,td:first-of-type {
+	text-align: left;
 }
