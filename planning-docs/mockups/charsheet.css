@@ -34,3 +34,24 @@ table#stressTable {
 table#stressTable th {
 	text-align: right;
 }
+
+input[type="checkbox"].stressBox {
+	display: none;
+}
+
+input[type="checkbox"].stressBox + label {
+	vertical-align: middle;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	background-image: url(checks.png);
+}
+
+input[type="checkbox"].stressBox:checked + label {
+	background-position: -20px 0px;
+}
+input[type="checkbox"][disabled="disabled"].stressBox + label {
+	background-position: -40px 0px;
+}
