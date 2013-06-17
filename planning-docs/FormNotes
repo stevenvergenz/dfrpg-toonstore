@@ -1,0 +1,36 @@
+Model: User
+username   varchar(50)
+password 	varchar(50)
+
+Model: CharacterSheet
+User			ForeignKey
+SheetID		Int UNIQUE
+SheetName		String
+URLFriendlySlug	String
+Sheet_JSON
+
+About the JSON...
+
+Aspects
+We assume that Dresden uses 7 aspects.  Other FATE games can use this Sheet with minimal alterations, so we should accomodate for those that use more (or less) Aspects.  Maybe an [Add Aspect Field] button that generates a new JSON field. Not sure if we should distinguish between the High Concept, Trouble and other Aspects.
+
+Skills
+Form should take value 'Skill cap', then generate a dictionary based on the limit. Then, provide fields to match up with the skill cap. Ex. Skill cap of Superb (+5), results in 5 fields in the skills section. [Form validation checks for number of column seperated values to make sure the Pyramid is honored?]
+
+Stunts and Powers
+Stunts and Powers are effectively the same. They each have 
+⦁	Refresh Cost
+⦁	Catchy Name
+⦁	Description of Effect
+As with Aspects, there should be a button on the form that adds a JSON form field that enables the user to enter more information dynamically. I would assume validation removes empty form fields, but I thought I would mention it.
+
+Stress
+Like Stunts and Powers, the different types of stress share certain features.
+⦁	Type, a charcter string. In our game it's: Physical, Mental, Social, Resources, Hunger. Might be different in other games
+⦁	Value, the number of stress boxes
+⦁	Armor Value, which may be variable (Armor: 2 vs Physical or Armor: 1 vs Tabloid Journalism)
+Adding additional fields dynamically is starting to sound like something we should do everywhere. Rich Vampires literally have 5 stress tracks. What if he wanted to be a Paladin to a blood god? He'd need a Devotion track too.
+
+
+Consequences
+Relatively simple, they have the type (as Stress) and rating (Mild, Moderate, Severe). The additional consequences will be Milds, but we may want to allow users to add larger consequences.
