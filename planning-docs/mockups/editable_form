@@ -31,8 +31,10 @@
 					}
 					return false; 
 				});
-				// Point of this function is to iterate through the StressData,
-				// and create new +
+				// The goal is to have this iterate through a for loop, 
+				// which occurs a number of times equal to the number of tracks. 
+				// In each iteration, it reads the data from the fields, 
+				// inserting the values as appropriate.
 				$('#update_stress').click(function() {
 					stress_data = $('.stress');
 					stress_table = $("#stressTable");
