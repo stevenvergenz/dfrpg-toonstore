@@ -1,4 +1,4 @@
-# Data storage ideas
+## Data storage ideas
 
 SQL database
 
@@ -12,7 +12,7 @@ table Characters:
 	data char(2000)
 	
 
-# Security ideas
+## Security ideas
 
 Hash algorithm:
 
