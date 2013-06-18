@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+  <head>
+		<link href='http://fonts.googleapis.com/css?family=Metamorphous' rel='stylesheet' type='text/css'>
+		<link rel="stylesheet" type="text/css" href="charsheet.css"/>
+		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+		<script language="javascript">
+			$(document).ready(function(){
+				$('#add_aspect').click(function() {
+					var p = $(this).closest('p'),
+					i = $('.aspect').length + 1
+					$(p).before('<p class="aspect"> <label for="aspect_' + i + '"> Aspect ' + i + ':</label><input type="text" id="aspect_' + i + '"/></p>');    
+					if(i > 6){
+						$(this).remove();
+					}
+					return false; 
+				});
+				$('#add_stress').click(function() {
+					var p = $(this).closest('p'),
+					
+					i = $('.stress').length + 1
+					$(p).before(
+					'<p class="stress"> <label for="stress_' + i + '"> Type: </label><input type="text" id="stress_' + i + '" /></p> \
+					<p> <label for="stress_skill_' + i + '">Skill: </label><input type="text" id="stress_skill_' + i + '" /></p> \
+					<p> <label for="stress_val_' + i + '">Value: </label><input type="text" id="stress_val_' + i + '" /></p> \
+					<p> <label for="stress_tough_' + i + '">Toughness: </label><input type="text" id="stress_tough_' + i + '" /></p> \
+					<p> <label for="stress_armor_' + i + '">Armor: </label><input type="text" id="stress_armor_' + i + '" /></p>');
+					
+					if(i > 6){
+						$(this).remove();
+					}
+					return false; 
+				});
+				// Point of this function is to iterate through the StressData,
+				// and create new +
+				$('#update_stress').click(function() {
+					stress_data = $('.stress');
+					stress_table = $("#stressTable");
+					
+					for(i = 1; i < stress_data.length; i++){
+						//Do awesome stuff
+					}
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<p> <label> Character Name: <input type="text" id="char_name" /> </label> </p>
+		
+		<section id="aspects">
+			<p class="sectionHeader">Aspects</p>		
+			<p class="fieldLabel">High Concept:</p> <input type="text" id="highconcept" /></p>
+			<p class="fieldLabel">Trouble:</p> <input type="text" id="trouble" /></p>		
+			<p class="fieldLabel">Aspects:</p>
+			<div id="aspectList">
+				<p class="aspect"> <label for="aspect_1">Aspect 1:</label><input type="text" id="aspect_1" /></p>
+			</div>
+			<p> <a href="#" id="add_aspect"> Add another Aspect </a></p>
+		</section>
+		
+
+		<section id="stress_entry">
+			<p class="sectionHeader">Stress Entry</p>
+			<div id="stressList">
+				<p class="stress"> <label for="stress_1"> Type: </label><input type="text" id="stress_1" /></p>
+				<p> <label for="stress_skill_1">Skill:</label><input type="text" id="stress_skill_1" /></p>
+				<p> <label for="stress_val_1">Value:</label><input type="text" id="stress_val_1" /></p>
+				<p> <label for="stress_tough_1">Toughness:</label><input type="text" id="stress_tough_1" /></p>
+				<p> <label for="stress_armor_1">Armor:</label><input type="text" id="stress_armor_1" /></p>
+			</div>
+			<br />
+			<p> <a href="#" id="add_stress"> Add another Stress Track </a></p>
+			<p> <a href="#" id="update_stress">Update Stress Table </a></p>
+	
+		</section>
+		<section id="stress_table">
+			<p class="sectionHeader">Stress</p>
+
+			<table id="stressTable">
+				<thead>
+					<tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
+				</thead>
+				<tbody id="stress_track_body">
+					<tr id="track_1">
+						<th>
+						<div id="track_1_type">Type</div>
+						<p id="track_1_skill" class="subtext">(Skill)</p>
+						</th>
+						<td><input id="1_s1" class="stressBox" type="checkbox"/><label for="1_s1"></label></td>
+						<td><input id="1_s2" class="stressBox" type="checkbox"/><label for="1_s2"></label></td>
+						<td><input id="1_s3" class="stressBox" type="checkbox"/><label for="1_s3"></label></td>
+						<td><input id="1_s4" class="stressBox" type="checkbox"/><label for="1_s4"></label></td>
+						<td><input id="1_s5" class="stressBox" type="checkbox" disabled=disabled /><label for="1_s5"></label></td>
+						<td><input id="1_s6" class="stressBox" type="checkbox" disabled=disabled /><label for="1_s6"></label></td>
+						<td><input id="1_s7" class="stressBox" type="checkbox" disabled=disabled /><label for="1_s7"></label></td>
+						<td><input id="1_s8" class="stressBox" type="checkbox" disabled=disabled /><label for="1_s8"></label></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+		
+		<section id="consequences">
+			<p class="sectionHeader">Consequences</p>
+
+			<table id="conseqTable">
+				<thead>
+					<tr>
+						<th>Type</th>
+						<th>P/M/S</th>
+						<th>Stress</th>
+						<th>Used?</th>
+						<th>Aspect</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>Mild</td>
+						<td>Any</td>
+						<td>-2</td>
+						<td><input type="checkbox"/></td>
+						<td><p></p></td>
+					</tr>
+					<tr>
+						<td>Mild</td>
+						<td>P</td>
+						<td>-2</td>
+						<td><input type="checkbox"/></td>
+						<td><p></p></td>
+					</tr>
+					<tr>
+						<td>Mild</td>
+						<td>M</td>
+						<td>-2</td>
+						<td><input type="checkbox"/></td>
+						<td><p></p></td>
+					</tr>
+					<tr>
+						<td>Moderate</td>
+						<td>Any</td>
+						<td>-4</td>
+						<td><input type="checkbox"/></td>
+						<td><p></p></td>
+					</tr>
+					<tr>
+						<td>Severe</td>
+						<td>Any</td>
+						<td>-6</td>
+						<td><input type="checkbox"/></td>
+						<td><p></p></td>
+					</tr>
+					<tr>
+						<td>Extreme</td>
+						<td>Any</td>
+						<td>-8</td>
+						<td><input type="checkbox"/></td>
+						<td><p>Replace permanent</p></td>
+					</tr>
+				</tbody>
+			</table>
+		</section>
+
+	</body>
+
+</html>
