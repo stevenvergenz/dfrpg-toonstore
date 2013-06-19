@@ -1,6 +1,7 @@
 /*
  * Stores global functions and handlers that are always useful
  */
+var libpath = require('path');
 
 var logLevels = {
 	'fatal': 0,
@@ -66,9 +67,13 @@ function _404(response)
 	response.end('404 Not Found');
 }
 
+function cleanPath(path){
+	return '.'+libpath.sep+libpath.normalize(path);
+}
+
 // export everything for external modules
 exports.error = error;
 exports.log = log;
 exports._404 = _404;
 exports.logLevels = logLevels;
-
+exports.cleanPath = cleanPath;

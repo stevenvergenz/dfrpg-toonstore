@@ -1,8 +1,8 @@
-var http = require('http'),
-fs = require('fs'),
-libpath = require('path'),
-mime = require('mime'),
-global = require('./global.js');
+var http = require('http');
+var fs = require('fs');
+var libpath = require('path');
+var mime = require('mime');
+var global = require('./global.js');
 
 function startServer()
 {
@@ -12,7 +12,8 @@ function startServer()
 		var path = 'public' + request.url;
 		if( request.url == '/' )
 			path += 'index.html';
-	
+		path = libpath.normalize(path);
+
 		// serve files from the public/ dir
 		if( fs.existsSync(path) ){
 			global.log('Serving file:', path);
