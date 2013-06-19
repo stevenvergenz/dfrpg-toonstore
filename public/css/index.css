@@ -1,4 +1,7 @@
-form input {
+form input[type="text"] {
+	color: #888;
+}
+form input[type="password"] {
 	color: #888;
 }
 
