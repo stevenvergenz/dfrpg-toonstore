@@ -1,9 +1,41 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Testing</title>
+		<title>ToonStore - Live DFRPG Character Sheets</title>
+		<script>
+			function inputFocus(i){
+				if( i.value == i.defaultValue ){
+					i.value = "";
+					i.style.color = "#000";
+				}
+			}
+
+			function inputBlur(i){
+				if( i.value == "" ){
+					i.value = i.defaultValue;
+					i.style.color = "#888";
+				}
+			}
+
+		</script>
 	</head>
 	<body>
-		Hello world!
+		<h1>Welcome to ToonStore!</h1>
+		<p>
+		Welcome to ToonStore, a place where you can build, view, edit, and share your DFRPG character sheets.
+		We've put special effort into making these sheets usable at the table on your phone or laptop, so you
+		don't have to sync your paper sheets to the internet after every session.
+		</p>
+		<p>
+		Enjoy!
+		</p>
+
+		<div id="login">
+			<form action="/login" method="post">
+				<input type="text" value="username" onfocus="inputFocus(this)" onblur="inputBlur(this)" />
+				<input type="password" value="password" onfocus="inputFocus(this)" onblur="inputBlur(this)" />
+				<input type="submit" value="Log In"/>
+			</form>
+		</div>
 	</body>
 </html>
