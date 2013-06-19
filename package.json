@@ -1,0 +1,9 @@
+{
+	"name": "toonstore",
+	"description": "Store Dresden Files RPG characters on the cloud",
+	"author": "Steven Vergenz, Michael Calvo",
+	"dependencies": {
+		"mime": "1.2.x"
+	},
+	"engine": "node >= 0.10.0"
+}
