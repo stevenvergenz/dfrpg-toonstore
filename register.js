@@ -1,11 +1,14 @@
 var fs = require('fs');
 var libpath = require('path');
+var liburl = require('url');
 var global = require('./global.js');
 
 function handleRequest(request, response)
 {
+	var url = liburl.parse(request.url, true);
+
 	// root /register page
-	if( /^\/register\/?$/.test(request.url) ){
+	if( url.pathname == '/register' ){
 		var path = libpath.normalize('public/register.html');
 
 		global.log('Serving registration file:', path);
@@ -13,6 +16,11 @@ function handleRequest(request, response)
 			response.writeHead(200, {'Content-Type': 'text/html'});
 			response.end(data);
 		});
+	}
+
+	// username testing
+	else if( url.pathname == '/register/verify' ){
+		console.log(request);
 	}
 }
 

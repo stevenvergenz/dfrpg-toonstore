@@ -2,6 +2,7 @@ var https = require('https');
 var fs = require('fs');
 var libpath = require('path');
 var mime = require('mime');
+var liburl = require('url');
 
 var global = require('./global.js');
 var register = require('./register.js');
@@ -16,14 +17,16 @@ function startServer()
 
 	var server = https.createServer(options, function(request,response)
 	{
+		var url = liburl.parse(request.url, true);
+
 		// convert url to fs path
-		var path = 'public' + request.url;
-		if( request.url == '/' )
+		var path = 'public' + url.pathname;
+		if( url.pathname == '/' )
 			path += 'index.html';
 		path = libpath.normalize(path);
 
 		// serve registration requests
-		if( /^\/register\/?/.test( request.url ) ){
+		if( /^\/register/.test( url.pathname ) ){
 			register.handleRequest(request,response);
 		}
 
