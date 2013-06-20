@@ -5,9 +5,10 @@ var libpath = require('path');
 
 var config = {
 	'database': {
+		'host': 'localhost',
 		'user': 'toonstore',
-		'pass': 'KhazdanWillNeverDie',
-		'db': 'toonstore'
+		'password': 'KhazdanWillNeverDie',
+		'database': 'toonstore'
 	},
 	'ssl_info': {
 		'key': libpath.normalize('keys/agent2-key.pem'),
