@@ -2,7 +2,10 @@ var https = require('https');
 var fs = require('fs');
 var libpath = require('path');
 var mime = require('mime');
+
 var global = require('./global.js');
+var register = require('./register.js');
+
 
 function startServer()
 {
@@ -19,8 +22,13 @@ function startServer()
 			path += 'index.html';
 		path = libpath.normalize(path);
 
-		// serve files from the public/ dir
-		if( fs.existsSync(path) && fs.statSync(path).isFile() ){
+		// serve registration requests
+		if( /^\/register\/?/.test( request.url ) ){
+			register.handleRequest(request,response);
+		}
+
+		// serve files from the public dir
+		else if( fs.existsSync(path) && fs.statSync(path).isFile() ){
 			global.log('Serving file:', path);
 			fs.readFile(path, function(err,data){
 				response.writeHead(200, {'Content-Type': mime.lookup(path)});

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Register - ToonStore</title>
+		<link rel="stylesheet" type="text/css" href="css/register.css"/>
+	</head>
+	<body>
+		<h1>Create a user with ToonStore</h1>
+		<p>Before you can create characters, you will have to register.</p>
+		<p>(* indicates required fields)</p>
+		
+		<form action="/register" method="post">
+			<table>
+				<tr>
+					<td><label for="username">*Username:</label></td>
+					<td><input type="text" name="username" id="username"/></td>
+				</tr>
+				<tr>
+					<td><label for="email">*Email:</label></td>
+					<td><input type="text" name="email" id="email"/></td>
+				</tr>
+				<tr>
+					<td><label for="password">*Password:</label></td>
+					<td><input type="password" name="password" id="password"/></td>
+				</tr>
+				<tr>
+					<td><label for="confirm">*Password (confirm):</label></td>
+					<td><input type="password" name="confirm" id="confirm"/></td>
+				</tr>
+				<tr><td>&nbsp;</td><td>
+					<input type="submit" value="Submit"/>
+				</td></tr>
+			</table>
+	
+		</form>
+
+	</body>
+</html>
