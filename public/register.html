@@ -3,29 +3,83 @@
 	<head>
 		<title>Register - ToonStore</title>
 		<link rel="stylesheet" type="text/css" href="css/register.css"/>
+		<script src="js/jquery-1.10.1.js"></script>
+		<script>
+
+			function validateForm()
+			{
+				var userValid = $('#username').val() != '' && $('#username').val() != null;
+				if( !userValid ){
+					$('#userError').html('Username is invalid!');
+					$('#username').addClass('error');
+				}
+				else {
+					$('#userError').empty();
+					$('#username').removeClass('error');
+
+				}
+
+				var emailValid = /^[\w\d_\.\+-]+@[\w\d-_\.]+?\.\w{2,4}/.test($('#email').val());
+				if( !emailValid ){
+					$('#emailError').html('Email is invalid!');
+					$('#email').addClass('error');
+				}
+				else {
+					$('#emailError').empty();
+					$('#email').removeClass('error');
+				}
+
+				var passwordValid = /^[\S]{5,}$/.test($('#password').val());
+				if( !passwordValid ){
+					$('#passwordError').html('Password must be at least 5 characters and not contain spaces');
+					$('#password').addClass('error');
+				}
+				else {
+					$('#passwordError').empty();
+					$('#password').removeClass('error');
+				}
+
+				var confirmValid = $('#confirm').val() == $('#password').val();
+				if( !confirmValid ){
+					$('#confirmError').html('Passwords do not match!');
+					$('#confirm').addClass('error');
+				}
+				else {
+					$('#confirmError').empty();
+					$('#confirm').removeClass('error');
+				}
+			
+				return userValid && emailValid && passwordValid && confirmValid;	
+			}
+
+		</script>
 	</head>
 	<body>
 		<h1>Create a user with ToonStore</h1>
 		<p>Before you can create characters, you will have to register.</p>
 		<p>(* indicates required fields)</p>
 		
-		<form action="/register" method="post">
+		<form action="/register" method="post" onsubmit="return validateForm();">
 			<table>
 				<tr>
 					<td><label for="username">*Username:</label></td>
 					<td><input type="text" name="username" id="username"/></td>
+					<td><p id='userError'/></td>
 				</tr>
 				<tr>
 					<td><label for="email">*Email:</label></td>
 					<td><input type="text" name="email" id="email"/></td>
+					<td><p id='emailError'/></td>
 				</tr>
 				<tr>
 					<td><label for="password">*Password:</label></td>
 					<td><input type="password" name="password" id="password"/></td>
+					<td><p id='passwordError'/></td>
 				</tr>
 				<tr>
 					<td><label for="confirm">*Password (confirm):</label></td>
 					<td><input type="password" name="confirm" id="confirm"/></td>
+					<td><p id='confirmError'/></td>
 				</tr>
 				<tr><td>&nbsp;</td><td>
 					<input type="submit" value="Submit"/>
