@@ -20,7 +20,7 @@ function startServer()
 		path = libpath.normalize(path);
 
 		// serve files from the public/ dir
-		if( fs.existsSync(path) ){
+		if( fs.existsSync(path) && fs.statSync(path).isFile() ){
 			global.log('Serving file:', path);
 			fs.readFile(path, function(err,data){
 				response.writeHead(200, {'Content-Type': mime.lookup(path)});
