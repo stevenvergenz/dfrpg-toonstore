@@ -3,6 +3,19 @@
  */
 var libpath = require('path');
 
+var config = {
+	'database': {
+		'user': 'toonstore',
+		'pass': 'KhazdanWillNeverDie',
+		'db': 'toonstore'
+	},
+	'ssl_info': {
+		'key': libpath.normalize('keys/agent2-key.pem'),
+		'cert': libpath.normalize('keys/agent2-cert.pem')
+	}
+};
+
+
 var logLevels = {
 	'fatal': 0,
 	'error': 1,
@@ -77,3 +90,4 @@ exports.log = log;
 exports._404 = _404;
 exports.logLevels = logLevels;
 exports.cleanPath = cleanPath;
+exports.config = config;
