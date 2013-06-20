@@ -1,4 +1,4 @@
-var http = require('http');
+var https = require('https');
 var fs = require('fs');
 var libpath = require('path');
 var mime = require('mime');
@@ -6,7 +6,12 @@ var global = require('./global.js');
 
 function startServer()
 {
-	var server = http.createServer(function(request,response)
+	var options = {
+		key: fs.readFileSync( global.config.ssl_info.key ),
+		cert: fs.readFileSync( global.config.ssl_info.cert )
+	};
+
+	var server = https.createServer(options, function(request,response)
 	{
 		// convert url to fs path
 		var path = 'public' + request.url;
