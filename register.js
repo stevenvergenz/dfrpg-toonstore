@@ -2,6 +2,7 @@ var fs = require('fs');
 var libpath = require('path');
 var liburl = require('url');
 var mysql = require('mysql');
+var crypto = require('crypto');
 
 var global = require('./global.js');
 
@@ -33,23 +34,32 @@ function handleRequest(request, response)
 		request.on('end', function()
 		{
 			body = parseData(body);
-			global.log('Registering user:', JSON.stringify(body));
+
+			// salt and hash the password
+			body.salt = crypto.randomBytes(32);
+			body.password = crypto.pbkdf2Sync(body.password, body.salt, 1000, 32);
+			body.salt = body.salt.toString('hex');
+			body.password = body.password.toString('hex');
+			global.log('Registering user:', body);
 
 			// connect to the db
 			var connection = mysql.createConnection( global.config.database );
-			console.log( connection.escape(body) );
-			connection.query('INSERT INTO Users SET registered = DEFAULT, last_login = DEFAULT, ?;', body, function(err, rows, fields){
-				if( err ){
-					global.log('Registration error:', err);
-					response.writeHead(500);
-					response.end();
+			connection.query(
+				'INSERT INTO Users SET registered = DEFAULT, last_login = DEFAULT, username = ?, email = ?, salt = UNHEX(?), password = UNHEX(?);', 
+				[body.username,body.email,body.salt,body.password],
+				function(err, rows, fields){
+					if( err ){
+						global.log('Registration error:', err);
+						response.writeHead(500);
+						response.end();
+					}
+					else {
+						global.log('Registration successful');
+						response.writeHead(200);
+						response.end();
+					}
 				}
-				else {
-					global.log('Registration successful');
-					response.writeHead(200);
-					response.end();
-				}
-			});
+			);
 
 		});
 	}
