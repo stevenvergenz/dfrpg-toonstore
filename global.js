@@ -81,6 +81,22 @@ function _404(response)
 	response.end('404 Not Found');
 }
 
+function redirect(url, response)
+{
+	response.writeHead(200, {"Content-Type": "text/html"});
+	response.write(
+	"<html>" +
+		"<head>" +
+		"	<title>Virtual World Framework</title>" +
+		"	<meta http-equiv=\"REFRESH\" content=\"0;url="+url+"\">" +
+		"</head>" +
+		"<body>" +
+		"</body>" +
+	"</html>");
+	response.end();
+	return;	
+}
+
 function cleanPath(path){
 	return '.'+libpath.sep+libpath.normalize(path);
 }
@@ -92,3 +108,4 @@ exports._404 = _404;
 exports.logLevels = logLevels;
 exports.cleanPath = cleanPath;
 exports.config = config;
+exports.redirect = redirect;

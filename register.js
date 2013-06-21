@@ -55,8 +55,7 @@ function handleRequest(request, response)
 					}
 					else {
 						global.log('Registration successful');
-						response.writeHead(200);
-						response.end();
+						global.redirect('/post-register.html', response);
 					}
 				}
 			);
