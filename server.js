@@ -6,6 +6,7 @@ var liburl = require('url');
 
 var global = require('./global.js');
 var register = require('./register.js');
+var login = require('./login.js');
 
 
 function startServer()
@@ -28,6 +29,11 @@ function startServer()
 		// serve registration requests
 		if( /^\/register/.test( url.pathname ) ){
 			register.handleRequest(request,response);
+		}
+
+		// serve login requests
+		else if( /^\/login/.test( url.pathname ) ){
+			login.handleRequest(request,response);
 		}
 
 		// serve files from the public dir

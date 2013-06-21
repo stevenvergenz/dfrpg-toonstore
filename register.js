@@ -33,7 +33,7 @@ function handleRequest(request, response)
 
 		request.on('end', function()
 		{
-			body = parseData(body);
+			body = global.parsePostData(body);
 
 			// salt and hash the password
 			body.salt = crypto.randomBytes(32);
@@ -83,17 +83,6 @@ function handleRequest(request, response)
 			}
 		});
 	}
-}
-
-function parseData(post)
-{
-	var retData = {};
-	var args = post.split('&');
-	for( var i in args ){
-		var kvp = args[i].split('=');
-		retData[kvp[0]] = kvp[1];
-	}
-	return retData;
 }
 
 exports.handleRequest = handleRequest;

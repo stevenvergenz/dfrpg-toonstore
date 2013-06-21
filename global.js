@@ -101,6 +101,18 @@ function cleanPath(path){
 	return '.'+libpath.sep+libpath.normalize(path);
 }
 
+function parsePostData(post)
+{
+	var retData = {};
+	var args = post.split('&');
+	for( var i in args ){
+		var kvp = args[i].split('=');
+		retData[kvp[0]] = kvp[1];
+	}
+	return retData;
+}
+
+
 // export everything for external modules
 exports.error = error;
 exports.log = log;
@@ -109,3 +121,5 @@ exports.logLevels = logLevels;
 exports.cleanPath = cleanPath;
 exports.config = config;
 exports.redirect = redirect;
+exports.parsePostData = parsePostData;
+
