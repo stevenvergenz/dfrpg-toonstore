@@ -45,7 +45,7 @@ function handleRequest(request, response)
 			// connect to the db
 			var connection = mysql.createConnection( global.config.database );
 			connection.query(
-				'INSERT INTO Users SET registered = DEFAULT, last_login = DEFAULT, username = ?, email = ?, salt = UNHEX(?), password = UNHEX(?);', 
+				'INSERT INTO Users SET username = ?, email = ?, salt = UNHEX(?), password = UNHEX(?), registered = DEFAULT, last_login = DEFAULT;', 
 				[body.username,body.email,body.salt,body.password],
 				function(err, rows, fields){
 					if( err ){
@@ -60,7 +60,6 @@ function handleRequest(request, response)
 					}
 				}
 			);
-
 		});
 	}
 
