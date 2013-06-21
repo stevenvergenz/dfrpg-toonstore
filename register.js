@@ -11,13 +11,46 @@ function handleRequest(request, response)
 	var url = liburl.parse(request.url, true);
 
 	// root /register page
-	if( url.pathname == '/register' ){
+	if( url.pathname == '/register' && request.method == 'GET' )
+	{
 		var path = libpath.normalize('public/register.html');
 
 		global.log('Serving registration file:', path);
 		fs.readFile( path, function(err,data){
 			response.writeHead(200, {'Content-Type': 'text/html'});
 			response.end(data);
+		});
+	}
+
+	// registration request
+	else if( url.pathname == '/register' && request.method == 'POST' )
+	{
+		var body = '';
+		request.on('data', function(chunk){
+			body += chunk;
+		});
+
+		request.on('end', function()
+		{
+			body = parseData(body);
+			global.log('Registering user:', JSON.stringify(body));
+
+			// connect to the db
+			var connection = mysql.createConnection( global.config.database );
+			console.log( connection.escape(body) );
+			connection.query('INSERT INTO Users SET registered = DEFAULT, last_login = DEFAULT, ?;', body, function(err, rows, fields){
+				if( err ){
+					global.log('Registration error:', err);
+					response.writeHead(500);
+					response.end();
+				}
+				else {
+					global.log('Registration successful');
+					response.writeHead(200);
+					response.end();
+				}
+			});
+
 		});
 	}
 
@@ -42,6 +75,17 @@ function handleRequest(request, response)
 			}
 		});
 	}
+}
+
+function parseData(post)
+{
+	var retData = {};
+	var args = post.split('&');
+	for( var i in args ){
+		var kvp = args[i].split('=');
+		retData[kvp[0]] = kvp[1];
+	}
+	return retData;
 }
 
 exports.handleRequest = handleRequest;

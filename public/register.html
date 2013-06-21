@@ -7,10 +7,11 @@
 		<script>
 
 			// validate the contents of the form before submitting it
+			var usernameAvailable = true;
 			function validateForm()
 			{
 				// validate user
-				var userValid = /[A-Za-z0-9_-]+/.test($('#username').val());
+				var userValid = /[A-Za-z0-9_-]+/.test($('#username').val()) && usernameAvailable;
 				if( !userValid ){
 					$('#userError').html('Username is invalid!');
 					$('#username').addClass('error');
@@ -65,8 +66,10 @@
 					$.get('/register/verify?a='+encodeURIComponent(elem.value), function(data)
 					{
 						if( data.found ){
+							usernameAvailable = false;
 							$('#userError').addClass('error').html('Username is already taken');
 						} else {
+							usernameAvailable = true;
 							$('#userError').removeClass('error').html('Username is available');
 						}
 					});
@@ -90,22 +93,22 @@
 				<tr>
 					<td><label for="username">*Username:</label></td>
 					<td><input type="text" name="username" id="username" onkeypress="checkUsername(this);"/></td>
-					<td><p id='userError'/></td>
+					<td><p class="errorMessage" id='userError'/></td>
 				</tr>
 				<tr>
 					<td><label for="email">*Email:</label></td>
 					<td><input type="text" name="email" id="email"/></td>
-					<td><p id='emailError'/></td>
+					<td><p class="errorMessage" id='emailError'/></td>
 				</tr>
 				<tr>
 					<td><label for="password">*Password:</label></td>
 					<td><input type="password" name="password" id="password"/></td>
-					<td><p id='passwordError'/></td>
+					<td><p class="errorMessage" id='passwordError'/></td>
 				</tr>
 				<tr>
 					<td><label for="confirm">*Password (confirm):</label></td>
-					<td><input type="password" name="confirm" id="confirm"/></td>
-					<td><p id='confirmError'/></td>
+					<td><input type="password" id="confirm"/></td>
+					<td><p class="errorMessage" id='confirmError'/></td>
 				</tr>
 				<tr><td>&nbsp;</td><td>
 					<input type="submit" value="Submit"/>

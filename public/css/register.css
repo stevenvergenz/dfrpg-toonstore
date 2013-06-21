@@ -5,3 +5,6 @@ td > label {
 input.error {
 	background-color: #f88;
 }
+p.errorMessage {
+	margin: 0px;
+}
