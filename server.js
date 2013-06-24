@@ -46,8 +46,8 @@ function startServer()
 		}
 	});
 
-	server.listen(3001);
-	global.log('Server running at http://localhost:3001/');
+	server.listen(global.config.port);
+	global.log('Server running at http://localhost:'+global.config.port+'/');
 }
 
 exports.startServer = startServer;
