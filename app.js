@@ -8,21 +8,26 @@ var global = require('./global.js');
 var register = require('./register.js');
 var login = require('./login.js');
 
-
+// create the express application
 var app = express();
 app.use(express.bodyParser());
+app.use(express.cookieParser());
+app.use(express.session({secret: global.config.cookie_secret});
 
+// the global logger middleware
 app.use( function(req,res,next){
 	global.log(req.method, req.url);
 	next();
 });
 
+// route the registration pages
 app.get('/register', register.registrationPage);
 app.post('/register', register.register);
 app.get('/register/verify', register.checkUsername);
 
 //app.get('/login', login.handleRequest);
 
+// catch-all: serve static file or 404
 app.use(function(req,res)
 {
 	var url = liburl.parse(req.url, true);
@@ -47,11 +52,11 @@ app.use(function(req,res)
 
 });
 
-
+// start the server
 var options = {
 	key: fs.readFileSync( global.config.ssl_info.key ),
 	cert: fs.readFileSync( global.config.ssl_info.cert )
 };
-https.createServer(options, app).listen(3001);
-global.log('Server running at http://localhost:3001/');
+https.createServer(options, app).listen(global.config.port);
+global.log('Server running at http://localhost:'+global.config.port+'/');
 

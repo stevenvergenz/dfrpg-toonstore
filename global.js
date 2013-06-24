@@ -14,7 +14,8 @@ var config = {
 		'key': libpath.normalize('keys/agent2-key.pem'),
 		'cert': libpath.normalize('keys/agent2-cert.pem')
 	},
-	port: 3001
+	'port': 3001,
+	'cookie_secret': 'I return from whence I came...'
 };
 
 
