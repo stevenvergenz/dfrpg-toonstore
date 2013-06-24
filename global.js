@@ -13,7 +13,8 @@ var config = {
 	'ssl_info': {
 		'key': libpath.normalize('keys/agent2-key.pem'),
 		'cert': libpath.normalize('keys/agent2-cert.pem')
-	}
+	},
+	port: 3001
 };
 
 
@@ -75,51 +76,9 @@ function log()
 	}
 }
 
-function _404(response)
-{
-	response.writeHead(404, {'Content-Type': 'text/plain'});
-	response.end('404 Not Found');
-}
-
-function redirect(url, response)
-{
-	response.writeHead(200, {"Content-Type": "text/html"});
-	response.write(
-	"<html>" +
-		"<head>" +
-		"	<title>Virtual World Framework</title>" +
-		"	<meta http-equiv=\"REFRESH\" content=\"0;url="+url+"\">" +
-		"</head>" +
-		"<body>" +
-		"</body>" +
-	"</html>");
-	response.end();
-	return;	
-}
-
-function cleanPath(path){
-	return '.'+libpath.sep+libpath.normalize(path);
-}
-
-function parsePostData(post)
-{
-	var retData = {};
-	var args = post.split('&');
-	for( var i in args ){
-		var kvp = args[i].split('=');
-		retData[kvp[0]] = kvp[1];
-	}
-	return retData;
-}
-
-
 // export everything for external modules
 exports.error = error;
 exports.log = log;
-exports._404 = _404;
 exports.logLevels = logLevels;
-exports.cleanPath = cleanPath;
 exports.config = config;
-exports.redirect = redirect;
-exports.parsePostData = parsePostData;
 
