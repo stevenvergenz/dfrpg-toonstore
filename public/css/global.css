@@ -10,3 +10,18 @@ p.inline-link {
 	display: inline-block;
 	margin-right: 20px;
 }
+
+#userbar {
+	width: 100%;
+	position: fixed;
+	top: 0px;
+	left: 0px;
+	height: 20px;
+	background-color: #ccc;
+}
+
+#userbar *{
+	float: right;
+	display: inline-block;
+	margin: 0px 10px;
+}

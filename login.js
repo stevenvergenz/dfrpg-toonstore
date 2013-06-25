@@ -11,7 +11,6 @@ function loginPage(req,res)
 {
 	global.log('Serving login page');
 	res.render('login');
-	//res.sendfile( libpath.normalize('./public/login.html') );
 }
 
 function processLogin(req,res)
@@ -47,6 +46,12 @@ function processLogin(req,res)
 			}
 		}
 	);
+}
+
+function processLogout(req,res)
+{
+	delete req.session.user;
+	res.redirect('/');
 }
 
 exports.loginPage = loginPage;

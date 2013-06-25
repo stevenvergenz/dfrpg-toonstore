@@ -13,10 +13,8 @@ function userPage(req,res,next)
 		function(err,rows,fields){
 			if( !err && rows.length != 0 )
 			{
-				console.log(rows);
-
-				var pageFields = {'user': rows[0].username, 'chars': []};
-
+				var pageFields = {'logged_user': req.session.user, 'user': rows[0].username, 'chars': []};
+				console.log(pageFields);
 				for( var i in rows ){
 					if( rows[i].name != null && rows[i].canonical_name != null ){
 						pageFields.chars.push( 
@@ -24,9 +22,7 @@ function userPage(req,res,next)
 						);
 					}
 				}
-				console.log(pageFields);
 				res.render('userpage', pageFields);
-				//res.sendfile( libpath.normalize('./public/user.html') );
 			}
 			else {
 				next();
