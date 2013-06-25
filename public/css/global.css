@@ -1,0 +1,12 @@
+p.error {
+	color: #f00;
+}
+
+form input.vacant {
+	color: #888;
+}
+
+p.inline-link {
+	display: inline-block;
+	margin-right: 20px;
+}
