@@ -7,7 +7,7 @@ function userPage(req,res,next)
 {
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'SELECT Users.username, Characters.name, Characters.canonical_name '+
+		'SELECT Users.username, Characters.name, Characters.canonical_name, Characters.concept '+
 		'FROM Users LEFT JOIN Characters ON Users.username = Characters.owner '+
 		'WHERE Users.username = ?;', [req.params.user],
 //	connection.query('SELECT COUNT(username) AS count FROM Users WHERE username=?;', [req.params.user],
@@ -21,7 +21,7 @@ function userPage(req,res,next)
 				for( var i in rows ){
 					if( rows[i].name != null && rows[i].canonical_name != null ){
 						pageFields.chars.push( 
-							{'name': rows[i].name, 'canon_name': rows[i].canonical_name}
+							{'name': rows[i].name, 'canon_name': rows[i].canonical_name, 'concept': rows[i].concept}
 						);
 					}
 				}

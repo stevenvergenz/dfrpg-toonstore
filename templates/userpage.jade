@@ -12,6 +12,6 @@ html
 			ul#charList
 				each char in chars
 					li
-						a(href='/#{user}/#{char.canon_name}') #{char.name}
+						a(href='/#{user}/#{char.canon_name}') #{char.name} - #{char.concept}
 		else
 			p This user lacks character (badum-ching!)
