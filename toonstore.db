@@ -27,6 +27,7 @@ CREATE TABLE `Characters` (
   `name` char(40) NOT NULL,
   `owner` char(40) NOT NULL,
   `info` text,
+  `concept` char(40) DEFAULT NULL,
   PRIMARY KEY (`canonical_name`),
   KEY `owner` (`owner`),
   CONSTRAINT `Characters_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `Users` (`username`) ON DELETE CASCADE
@@ -39,6 +40,7 @@ CREATE TABLE `Characters` (
 
 LOCK TABLES `Characters` WRITE;
 /*!40000 ALTER TABLE `Characters` DISABLE KEYS */;
+INSERT INTO `Characters` VALUES ('dresden','Harry Dresden','vergenzs',NULL,'Wizard P.I.');
 /*!40000 ALTER TABLE `Characters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -93,6 +95,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+INSERT INTO `Users` VALUES ('vergenzs','vergenzs@gmail.com',NULL,NULL,'P©2É­÷ô¢þ Ïñ“	^á¡?úˆ\'D\Z#Œø','«>QÇé“*®^È?æãÓÆ†˜ÙËGmÔ«½\'Î¬u_³');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -105,4 +108,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-20  9:08:37
+-- Dump completed on 2013-06-25 11:09:26
