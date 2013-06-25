@@ -28,7 +28,7 @@ CREATE TABLE `Characters` (
   `owner` char(40) NOT NULL,
   `info` text,
   `concept` char(40) DEFAULT NULL,
-  PRIMARY KEY (`canonical_name`),
+  PRIMARY KEY (`canonical_name`,`owner`),
   KEY `owner` (`owner`),
   CONSTRAINT `Characters_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `Users` (`username`) ON DELETE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -85,7 +85,8 @@ CREATE TABLE `Users` (
   `last_login` date DEFAULT NULL,
   `password` binary(32) DEFAULT NULL,
   `salt` binary(32) DEFAULT NULL,
-  PRIMARY KEY (`username`)
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -108,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-25 11:09:26
+-- Dump completed on 2013-06-25 13:25:00
