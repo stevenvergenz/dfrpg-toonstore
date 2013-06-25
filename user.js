@@ -13,8 +13,9 @@ function userPage(req,res,next)
 		function(err,rows,fields){
 			if( !err && rows.length != 0 )
 			{
+				global.log('Serving user page for', rows[0].username);
+
 				var pageFields = {'logged_user': req.session.user, 'user': rows[0].username, 'chars': []};
-				console.log(pageFields);
 				for( var i in rows ){
 					if( rows[i].name != null && rows[i].canonical_name != null ){
 						pageFields.chars.push( 
@@ -39,6 +40,7 @@ function characterPage(req,res,next)
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( !err && rows[0].count == 1 ){
+				global.log('Serving character page for', req.url);
 				res.sendfile( libpath.normalize('public/charsheet.html') );
 			}
 			else {

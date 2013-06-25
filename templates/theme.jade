@@ -8,9 +8,11 @@ html
 			script(src='/js/jquery-1.10.1.js')
 			
 	body
-		if logged_user
-			#userbar
+		#userbar
+			if logged_user
 				a(href='/logout') Log out
 				p #{logged_user}
+			else
+				a(href='/login') Log in
 
 		block content

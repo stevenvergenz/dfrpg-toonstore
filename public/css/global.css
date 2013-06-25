@@ -12,16 +12,13 @@ p.inline-link {
 }
 
 #userbar {
-	width: 100%;
-	position: fixed;
-	top: 0px;
-	left: 0px;
-	height: 20px;
+	width: 400px;
+	height: 30px;
 	background-color: #ccc;
+	vertical-align: middle;
 }
 
 #userbar *{
-	float: right;
-	display: inline-block;
+	display: inline;
 	margin: 0px 10px;
 }

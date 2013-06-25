@@ -50,10 +50,12 @@ function processLogin(req,res)
 
 function processLogout(req,res)
 {
+	global.log('Logging out user', req.session.user);
 	delete req.session.user;
 	res.redirect('/');
 }
 
 exports.loginPage = loginPage;
 exports.processLogin = processLogin;
+exports.processLogout = processLogout;
 
