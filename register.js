@@ -32,7 +32,7 @@ function register(req,res)
 		function(err, rows, fields){
 			if( err ){
 				global.error('Registration error:', err, global.logLevels.error);
-				res.status(500).end();
+				res.send(500);
 			}
 			else {
 				global.log('Registration successful');
