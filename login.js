@@ -20,7 +20,6 @@ function processLogin(req,res)
 	var connection = mysql.createConnection( global.config.database );
 	connection.query('SELECT username, HEX(password) AS password, HEX(salt) AS salt FROM Users WHERE email = ?;', [req.body.email],
 		function(err,rows,fields){
-			console.log(rows);
 			if( err ){
 				global.error('MySQL error:', err);
 				res.redirect('/login');
