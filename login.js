@@ -39,7 +39,6 @@ function processLogin(req,res)
 			}
 			else {
 				global.log('Login error: incorrect password');
-				global.log(inputPass.toString('hex'));
 				res.redirect('/login');
 			}
 		}
