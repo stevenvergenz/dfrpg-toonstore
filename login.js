@@ -10,7 +10,8 @@ var global = require('./global.js');
 function loginPage(req,res)
 {
 	global.log('Serving login page');
-	res.sendfile( libpath.normalize('./public/login.html') );
+	res.render('login');
+	//res.sendfile( libpath.normalize('./public/login.html') );
 }
 
 function processLogin(req,res)
@@ -22,12 +23,12 @@ function processLogin(req,res)
 		function(err,rows,fields){
 			if( err ){
 				global.error('MySQL error:', err);
-				res.redirect('/login');
+				res.render('login', {message: err});
 				return;
 			}
 			else if( rows.length == 0 ){
 				global.error('Login error: no such email');
-				res.redirect('/login');
+				res.render('login', {message: 'Invalid email or password'});
 				return;
 			}
 
@@ -41,7 +42,7 @@ function processLogin(req,res)
 			}
 			else {
 				global.log('Login error: incorrect password');
-				res.redirect('/login');
+				res.render('login', {message: 'Invalid email or password'});
 			}
 		}
 	);

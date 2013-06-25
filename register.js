@@ -22,7 +22,7 @@ function register(req,res)
 	body.password = crypto.pbkdf2Sync(body.password, body.salt, 1000, 32);
 	body.salt = body.salt.toString('hex');
 	body.password = body.password.toString('hex');
-	global.log('Registering user:', body);
+	global.log('Registering user:', body.username);
 
 	// connect to the db
 	var connection = mysql.createConnection( global.config.database );

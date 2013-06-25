@@ -9,17 +9,16 @@ var global = require('./global.js');
 var register = require('./register.js');
 var login = require('./login.js');
 
+
 // create the express application
 var app = express();
 app.use(express.bodyParser());
 app.use(express.cookieParser());
 app.use(express.session({secret: global.config.cookie_secret}));
+app.set('views', 'templates');
+app.set('view engine', 'jade');
 
 // the global logger middleware
-/*app.use( function(req,res,next){
-	global.log(req.method, req.url);
-	next();
-});*/
 app.use(express.logger());
 
 // route the registration pages
@@ -41,7 +40,7 @@ app.get('/:user', function(req,res,next)
 				res.sendfile( libpath.normalize('./public/user.html') );
 			}
 			else {
-				res.send(404, 'No such user');
+				next();
 			}
 		}
 	);

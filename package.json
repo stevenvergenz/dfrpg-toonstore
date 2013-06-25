@@ -8,7 +8,8 @@
 	},
 	"dependencies": {
 		"mysql": "2.0.x",
-		"express": "3.2.x"
+		"express": "3.2.x",
+		"jade": "0.31.x"
 	},
 	"engine": "node >= 0.10.0"
 }
