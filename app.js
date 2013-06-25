@@ -8,6 +8,7 @@ var global = require('./global.js');
 var register = require('./register.js');
 var login = require('./login.js');
 var user = require('./user.js');
+var newtoon = require('./newtoon.js');
 
 
 // create the express application
@@ -34,6 +35,10 @@ app.get('/logout', login.processLogout);
 // route the user pages
 app.get('/:user', user.userPage);
 app.get('/:user/:char', user.characterPage);
+
+// route the character management pages
+app.get('/newtoon', newtoon.newCharacterPage);
+app.post('/newtoon', newtoon.newCharacterRequest);
 
 // catch-all: serve static file or 404
 app.use(function(req,res)

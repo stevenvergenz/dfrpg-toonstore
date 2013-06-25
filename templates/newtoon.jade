@@ -1,0 +1,24 @@
+extends theme
+
+block title
+	title New Character - ToonStore
+
+block append includes
+	script(src='/js/formFocus.js')
+	script.
+		$(document).ready(function(){
+			registerInputs();
+		});
+
+block content
+
+	h1 New Character
+
+	p Fill in the information below, and a blank character sheet will be generated for you.
+	p NOTE: Though you can name your character anything you want, the short name must be unique among your characters.
+
+	form(action='/newtoon', method='post')
+		input#name.vacant(type='text', name='name', value='Character name')
+		input#canon_name.vacant(type='text', name='canon_name', value='short_name')
+		input#concept.vacant(type='text', name='concept', value='High concept')
+		input(type='submit' name='submit')
