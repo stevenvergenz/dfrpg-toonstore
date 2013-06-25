@@ -46,7 +46,13 @@ function register(req,res)
 function checkUsername(req,res)
 {
 	var user = req.query.a;
-	
+
+	// test for reserve words
+	if( ['forget', 'register', 'login', 'logout', 'newtoon', 'killtoon'].contains(user) ){
+		res.json(200, {found: true});
+		return;
+	}
+
 	// connect to the db
 	var connection = mysql.createConnection( global.config.database );
 	connection.query('SELECT COUNT(username) AS userCount FROM Users WHERE username = ?', [user], function(err, rows, fields)
