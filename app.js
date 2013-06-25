@@ -32,6 +32,7 @@ app.post('/login', login.processLogin);
 
 // route the user pages
 app.get('/:user', user.userPage);
+app.get('/:user/:char', user.characterPage);
 
 // catch-all: serve static file or 404
 app.use(function(req,res)

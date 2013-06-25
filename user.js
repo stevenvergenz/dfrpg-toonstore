@@ -10,7 +10,6 @@ function userPage(req,res,next)
 		'SELECT Users.username, Characters.name, Characters.canonical_name, Characters.concept '+
 		'FROM Users LEFT JOIN Characters ON Users.username = Characters.owner '+
 		'WHERE Users.username = ?;', [req.params.user],
-//	connection.query('SELECT COUNT(username) AS count FROM Users WHERE username=?;', [req.params.user],
 		function(err,rows,fields){
 			if( !err && rows.length != 0 )
 			{
@@ -36,5 +35,23 @@ function userPage(req,res,next)
 	);
 }
 
+function characterPage(req,res,next)
+{
+	var connection = mysql.createConnection( global.config.database );
+	connection.query(
+		'SELECT COUNT(canonical_name) AS count FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		[req.params.user, req.params.char],
+		function(err,rows,fields){
+			if( !err && rows[0].count == 1 ){
+				res.sendfile( libpath.normalize('public/charsheet.html') );
+			}
+			else {
+				next();
+			}
+		}
+	);
+}
+
 exports.userPage = userPage;
+exports.characterPage = characterPage;
 
