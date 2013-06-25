@@ -19,6 +19,8 @@ html
 		form(action='/login', method='post')
 			input#email.vacant(type="text", name="email", value="email")
 			input#password.vacant(type="password", name="password", value="password")
+			if redir
+				input(type="hidden", name="redir", value='#{redir}')
 			input(type="submit", value="Submit")
 
 		p.inline-link

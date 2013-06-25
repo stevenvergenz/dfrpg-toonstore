@@ -10,9 +10,9 @@ html
 	body
 		#userbar
 			if logged_user
-				a(href='/logout') Log out
-				p #{logged_user}
+				a(href='/logout?redir=#{page}') Log out
+				a(href='/#{logged_user}') #{logged_user}
 			else
-				a(href='/login') Log in
+				a(href='/login?redir=#{page}') Log in
 
 		block content

@@ -9,8 +9,8 @@ var global = require('./global.js');
 
 function loginPage(req,res)
 {
-	global.log('Serving login page');
-	res.render('login');
+	global.log('Serving login page, redir to', req.query.redir);
+	res.render('login', {'redir': req.query.redir});
 }
 
 function processLogin(req,res)
@@ -38,7 +38,10 @@ function processLogin(req,res)
 				global.log('Login successful');
 				connection.query('UPDATE Users SET last_login = NOW() WHERE username = ?;', [rows[0].username]);
 				req.session.user = rows[0].username;
-				res.redirect('/'+rows[0].username);
+				if( req.body.redir )
+					res.redirect(req.body.redir);
+				else
+					res.redirect('/'+rows[0].username);
 			}
 			else {
 				global.log('Login error: incorrect password');
@@ -52,7 +55,10 @@ function processLogout(req,res)
 {
 	global.log('Logging out user', req.session.user);
 	delete req.session.user;
-	res.redirect('/');
+	if( req.query.redir )
+		res.redirect(req.query.redir);
+	else
+		res.redirect('/');
 }
 
 exports.loginPage = loginPage;

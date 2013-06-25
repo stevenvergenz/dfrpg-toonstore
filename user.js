@@ -14,8 +14,8 @@ function userPage(req,res,next)
 			if( !err && rows.length != 0 )
 			{
 				global.log('Serving user page for', rows[0].username);
-
-				var pageFields = {'logged_user': req.session.user, 'user': rows[0].username, 'chars': []};
+				console.log(req.url);
+				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'user': rows[0].username, 'chars': []};
 				for( var i in rows ){
 					if( rows[i].name != null && rows[i].canonical_name != null ){
 						pageFields.chars.push( 
