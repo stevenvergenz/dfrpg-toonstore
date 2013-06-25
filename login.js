@@ -37,6 +37,7 @@ function processLogin(req,res)
 
 			if( inputPass.toString('hex').toUpperCase() == rows[0].password ){
 				global.log('Login successful');
+				connection.query('UPDATE Users SET last_login = NOW() WHERE username = ?;', [rows[0].username]);
 				req.session.user = rows[0].username;
 				res.redirect('/'+rows[0].username);
 			}

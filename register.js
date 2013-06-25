@@ -27,7 +27,7 @@ function register(req,res)
 	// connect to the db
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'INSERT INTO Users SET username = ?, email = ?, salt = UNHEX(?), password = UNHEX(?), registered = DEFAULT, last_login = DEFAULT;', 
+		'INSERT INTO Users SET username = ?, email = ?, salt = UNHEX(?), password = UNHEX(?), registered = NOW(), last_login = DEFAULT;', 
 		[body.username,body.email,body.salt,body.password],
 		function(err, rows, fields){
 			if( err ){
