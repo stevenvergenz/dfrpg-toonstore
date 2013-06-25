@@ -23,10 +23,12 @@ function processLogin(req,res)
 			if( err ){
 				global.error('MySQL error:', err);
 				res.redirect('/login');
+				return;
 			}
 			else if( rows.length == 0 ){
 				global.error('Login error: no such email');
 				res.redirect('/login');
+				return;
 			}
 
 			// salt/hash the input password

@@ -16,10 +16,11 @@ app.use(express.cookieParser());
 app.use(express.session({secret: global.config.cookie_secret}));
 
 // the global logger middleware
-app.use( function(req,res,next){
+/*app.use( function(req,res,next){
 	global.log(req.method, req.url);
 	next();
-});
+});*/
+app.use(express.logger());
 
 // route the registration pages
 app.get('/register', register.registrationPage);
