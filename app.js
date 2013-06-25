@@ -3,11 +3,11 @@ var fs = require('fs');
 var libpath = require('path');
 var liburl = require('url');
 var express = require('express');
-var mysql = require('mysql');
 
 var global = require('./global.js');
 var register = require('./register.js');
 var login = require('./login.js');
+var user = require('./user.js');
 
 
 // create the express application
@@ -31,20 +31,7 @@ app.get('/login', login.loginPage);
 app.post('/login', login.processLogin);
 
 // route the user pages
-app.get('/:user', function(req,res,next)
-{
-	var connection = mysql.createConnection( global.config.database );
-	connection.query('SELECT COUNT(username) AS count FROM Users WHERE username=?;', [req.params.user],
-		function(err,rows,fields){
-			if( !err && rows[0].count != 0 ){
-				res.sendfile( libpath.normalize('./public/user.html') );
-			}
-			else {
-				next();
-			}
-		}
-	);
-});
+app.get('/:user', user.userPage);
 
 // catch-all: serve static file or 404
 app.use(function(req,res)
