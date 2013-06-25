@@ -12,7 +12,7 @@ var login = require('./login.js');
 var app = express();
 app.use(express.bodyParser());
 app.use(express.cookieParser());
-app.use(express.session({secret: global.config.cookie_secret});
+app.use(express.session({secret: global.config.cookie_secret}));
 
 // the global logger middleware
 app.use( function(req,res,next){
@@ -25,7 +25,9 @@ app.get('/register', register.registrationPage);
 app.post('/register', register.register);
 app.get('/register/verify', register.checkUsername);
 
-//app.get('/login', login.handleRequest);
+// route the login pages
+app.get('/login', login.loginPage);
+app.post('/login', login.processLogin);
 
 // catch-all: serve static file or 404
 app.use(function(req,res)
