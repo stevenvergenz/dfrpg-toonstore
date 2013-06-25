@@ -27,6 +27,8 @@ CREATE TABLE `Characters` (
   `name` char(40) NOT NULL,
   `owner` char(40) NOT NULL,
   `info` text,
+  `concept` char(40) DEFAULT NULL,
+  `created_on` date DEFAULT NULL,
   PRIMARY KEY (`canonical_name`,`owner`),
   KEY `owner` (`owner`),
   CONSTRAINT `Characters_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `Users` (`username`) ON DELETE CASCADE
@@ -39,6 +41,7 @@ CREATE TABLE `Characters` (
 
 LOCK TABLES `Characters` WRITE;
 /*!40000 ALTER TABLE `Characters` DISABLE KEYS */;
+INSERT INTO `Characters` VALUES ('dresden','Harry Dresden','vergenzs',NULL,'Wizard P.I.','2013-06-25');
 /*!40000 ALTER TABLE `Characters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -83,7 +86,8 @@ CREATE TABLE `Users` (
   `last_login` date DEFAULT NULL,
   `password` binary(32) DEFAULT NULL,
   `salt` binary(32) DEFAULT NULL,
-  PRIMARY KEY (`username`)
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -93,6 +97,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
+INSERT INTO `Users` VALUES ('vergenzs','vergenzs@gmail.com',NULL,NULL,'P©2É­÷ô¢þ Ïñ“	^á¡?úˆ\'D\Z#Œø','«>QÇé“*®^È?æãÓÆ†˜ÙËGmÔ«½\'Î¬u_³');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -105,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-24  9:50:52
+-- Dump completed on 2013-06-25 13:33:28

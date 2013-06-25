@@ -2,22 +2,13 @@
 <html>
 	<head>
 		<title>ToonStore - Live DFRPG Character Sheets</title>
-		<link rel="stylesheet" type="text/css" href="css/index.css"/>
+		<link rel="stylesheet" type="text/css" href="/css/global.css"/>
+		<script type="text/javascript" src="/js/jquery-1.10.1.js"></script>
+		<script type="text/javascript" src="/js/formFocus.js"></script>
 		<script>
-			function inputFocus(i){
-				if( i.value == i.defaultValue ){
-					i.value = "";
-					i.style.color = "#000";
-				}
-			}
-
-			function inputBlur(i){
-				if( i.value == "" ){
-					i.value = i.defaultValue;
-					i.style.color = "#888";
-				}
-			}
-
+			$(document).ready( function(){
+				registerInputs();
+			});
 		</script>
 	</head>
 	<body>
@@ -33,12 +24,12 @@
 
 		<div id="login">
 			<form action="/login" method="post">
-				<input name="user" type="text" value="username" onfocus="inputFocus(this)" onblur="inputBlur(this)" />
-				<input name="pass" type="password" value="password" onfocus="inputFocus(this)" onblur="inputBlur(this)" />
+				<input class="vacant" name="email" type="text" value="email"/>
+				<input class="vacant" name="password" type="password" value="password"/>
 				<input type="submit" value="Log In"/>
 			</form>
-			<p class="link"><a href="/forgot">Forgot password?</a></p>
-			<p class="link"><a href="/register">Register</a></p>
+			<p class="inline-link"><a href="/forgot">Forgot password?</a></p>
+			<p class="inline-link"><a href="/register">Register</a></p>
 		</div>
 	</body>
 </html>

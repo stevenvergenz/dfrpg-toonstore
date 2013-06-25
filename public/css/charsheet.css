@@ -1,0 +1,88 @@
+p,th,td {
+	font-family: 'Metamorphous', cursive;
+}
+
+section {
+	border: 1px solid black;
+	border-radius: 5px;
+	width: 350px;
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+}
+
+div.field {
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+div.field > * {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+p.sectionHeader {
+	font-size: 18pt;
+	font-weight: bold;
+	margin: 0;
+	margin-bottom: 5px;
+}
+
+p.fieldLabel {
+	/*font-size: 14pt;
+	font-style: italic;*/
+	font-weight: bold;
+}
+
+
+/*
+ * Configure stress table
+ */
+table#stressTable {
+	width: 100%;
+}
+table#stressTable thead {
+	text-align: center;
+}
+table#stressTable tbody {
+	text-align: left;
+}
+
+th p.subtext {
+	font-size: 80%;
+	margin: 0;
+	font-weight: normal;
+}
+
+/*
+ * Configure custom checkboxes for stress boxes
+ */
+input[type="checkbox"].stressBox {
+	display: none;
+}
+
+input[type="checkbox"].stressBox + label {
+	vertical-align: middle;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: 0px 0px;
+	background-image: url(../img/checks.png);
+}
+
+input[type="checkbox"].stressBox:checked + label {
+	background-position: -20px 0px;
+}
+input[type="checkbox"][disabled="disabled"].stressBox + label {
+	background-position: -40px 0px;
+}
+
+
+table#conseqTable {
+	width: 100%;
+	font-size: 10pt;
+}
+table#conseqTable th:first-of-type,td:first-of-type {
+	text-align: left;
+}
