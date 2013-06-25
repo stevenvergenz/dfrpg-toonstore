@@ -14,7 +14,7 @@ html
 		h1 Login
 		p You will have to log in before creating characters.
 
-		p.error= message
+		p.error #{message}
 
 		form(action='/login', method='post')
 			input#email.vacant(type="text", name="email", value="email")
@@ -25,3 +25,4 @@ html
 			a(href='/forgot') Forgot password?
 		p.inline-link
 			a(href='/register') Register
+
