@@ -1,0 +1,10 @@
+td > label {
+	display: block;
+	text-align: right;
+}
+input.error {
+	background-color: #f88;
+}
+p.errorMessage {
+	margin: 0px;
+}

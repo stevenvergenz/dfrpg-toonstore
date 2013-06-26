@@ -1,0 +1,19 @@
+Table Users:
+	username char(40) PRIMARY_KEY,
+	email char(40),
+	registered date,
+	last_login date,
+	password int(32) // hashed and salted string (see notes.md)
+
+table Characters:
+	uniqueName char(40),
+	name char(40),
+	owner char(40) FOREIGN KEY ON DELETE CASCADE,
+	info text
+
+// tokens only valid for 48 hours
+table Tokens:
+	token binary(16) PRIMARY KEY,
+	requested date,
+	username char(40) FOREIGN KEY,
+	type enum('forget','activate')

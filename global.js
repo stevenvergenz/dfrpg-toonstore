@@ -3,6 +3,22 @@
  */
 var libpath = require('path');
 
+var config = {
+	'database': {
+		'host': 'localhost',
+		'user': 'toonstore',
+		'password': 'KhazdanWillNeverDie',
+		'database': 'toonstore'
+	},
+	'ssl_info': {
+		'key': libpath.normalize('keys/agent2-key.pem'),
+		'cert': libpath.normalize('keys/agent2-cert.pem')
+	},
+	'port': 3001,
+	'cookie_secret': 'I return from whence I came...'
+};
+
+
 var logLevels = {
 	'fatal': 0,
 	'error': 1,
@@ -61,19 +77,9 @@ function log()
 	}
 }
 
-function _404(response)
-{
-	response.writeHead(404, {'Content-Type': 'text/plain'});
-	response.end('404 Not Found');
-}
-
-function cleanPath(path){
-	return '.'+libpath.sep+libpath.normalize(path);
-}
-
 // export everything for external modules
 exports.error = error;
 exports.log = log;
-exports._404 = _404;
 exports.logLevels = logLevels;
-exports.cleanPath = cleanPath;
+exports.config = config;
+
