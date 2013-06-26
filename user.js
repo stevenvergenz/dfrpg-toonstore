@@ -41,8 +41,9 @@ function characterPage(req,res,next)
 		function(err,rows,fields){
 			if( !err && rows.length == 1 ){
 				global.log('Serving character page for', req.url);
-				res.json(200, JSON.parse(rows[0].info));
-				//res.sendfile( libpath.normalize('public/charsheet.html') );
+				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'user': rows[0].username, 'chars': []};
+				pageFields.toon = JSON.parse(rows[0].info);
+				res.render('charsheet', pageFields);
 			}
 			else {
 				next();
