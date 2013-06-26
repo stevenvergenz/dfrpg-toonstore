@@ -41,7 +41,7 @@ CREATE TABLE `Characters` (
 
 LOCK TABLES `Characters` WRITE;
 /*!40000 ALTER TABLE `Characters` DISABLE KEYS */;
-INSERT INTO `Characters` VALUES ('dresden','Harry Dresden','vergenzs',NULL,'Wizard P.I.','2013-06-25');
+INSERT INTO `Characters` VALUES ('dresden','Harry Dresden','tester',NULL,'Wizard P.I.','2013-06-26');
 /*!40000 ALTER TABLE `Characters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +97,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES ('vergenzs','vergenzs@gmail.com',NULL,NULL,'P©2…≠˜Ù¢˛ œÒì	^·°?˙ùà\'D\Z#å¯','´>Q«Èì*Æ^»?Ê„”∆ÜòŸÀGm‘´Ω\'Œ¨u_≥');
+INSERT INTO `Users` VALUES ('tester','tester@example.com','2013-06-26','2013-06-26','≥?‹#ùô◊‹ﬂéR=ÑX/âÈOÍÍ€ﬂ‘ûÊK’','„.wæt,5\rJlY( áWQê~∫˘1mÍÕ\rÍ«');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-25 13:33:28
+-- Dump completed on 2013-06-26  9:58:50
