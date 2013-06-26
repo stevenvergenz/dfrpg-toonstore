@@ -36,12 +36,13 @@ function characterPage(req,res,next)
 {
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'SELECT COUNT(canonical_name) AS count FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		'SELECT info FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
-			if( !err && rows[0].count == 1 ){
+			if( !err && rows.length == 1 ){
 				global.log('Serving character page for', req.url);
-				res.sendfile( libpath.normalize('public/charsheet.html') );
+				res.json(200, JSON.parse(rows[0].info));
+				//res.sendfile( libpath.normalize('public/charsheet.html') );
 			}
 			else {
 				next();

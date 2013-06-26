@@ -1,140 +1,128 @@
 {
-	general: {
-		name: "Andrew Lifeson",
-		player: "Steven Vergenz"
-	},
+	"name": "Andrew Lifeson",
+	"player": "Steven Vergenz",
 
-	aspects: {
-		high_concept: {
-			name: "White Council Footsoldier",
-			description: ""
-		},
-		trouble: {
-			name: "Still On The Battlefield",
-			description: ""
-		},
-		aspects: [
-			{
-				name: "I Am From A Gutter Too",
-				description: ""
-			},{
-				name: "Warden's Honor",
-				description: ""
-			},{
-				name: "No Kill Like Overkill",
-				description: ""
-			},{
-				name: "Crazy Enough To Work",
-				description: ""
-			},{
-				name: "Conviction Is Both Sword And Shield",
-				description: ""
-			}
-		]
-	},
+	"aspects": {
 
-	stress: {
-		"Physical (Endurance)": 4,
-		"Mental (Conviction)": 4,
-		"Social (Presence)": 2,
-		"Sweater (Block 5)": 2
-	},
+		"high_concept": {
+			"name": "White Council Footsoldier",
+			"description": ""},
 
-	consequences: [
-		{
-			type: "Mild",
-			mode: "Any",
-			used: false,
-			aspect: ""
-		},{
-			type: "Mild",
-			mode: "P",
-			used: false,
-			aspect: ""
-		},{
-			type: "Mild",
-			mode: "M",
-			used: false,
-			aspect: ""
-		},{
-			type: "Moderate",
-			mode: "Any",
-			used: false,
-			aspect: ""
-		},{
-			type: "Severe",
-			mode: "Any",
-			used: false,
-			aspect: ""
-		},{
-			type: "Extreme",
-			mode: "Any",
-			used: false,
-			aspect: "Replace permanent"
-		}
-	],
+		"trouble": {
+			"name": "Still On The Battlefield",
+			"description": ""},
+
+		"aspects": [{
+
+			"name": "I Am From A Gutter Too",
+			"description": ""},{
+
+			"name": "Warden's Honor",
+			"description": ""},{
+
+			"name": "No Kill Like Overkill",
+			"description": ""},{
+
+			"name": "Crazy Enough To Work",
+			"description": ""},{
+
+			"name": "Conviction Is Both Sword And Shield",
+			"description": ""}]},
+
+	"stress": [{
+
+		"name": "Physical",
+		"skill": "Endurance",
+		"strength": 4,
+		"used": [2],
+		"armor": [{
+			"vs": "Physical",
+			"strength": 2}]},{
+
+		"name": "Mental",
+		"skill": "Conviction",
+		"strength": 4,
+		"used": [0,1]},{
+
+		"name": "Social",
+		"skill": "Presence",
+		"strength": 2,
+		"used": []}],
+
+	"consequences": [{
+
+		"type": "Mild",
+		"mode": "Any",
+		"used": false,
+		"aspect": ""},{
+
+		"type": "Mild",
+		"mode": "P",
+		"used": false,
+		"aspect": ""},{
+
+		"type": "Mild",
+		"mode": "M",
+		"used": false,
+		"aspect": ""},{
+
+		"type": "Moderate",
+		"mode": "Any",
+		"used": false,
+		"aspect": ""},{
+
+		"type": "Severe",
+		"mode": "Any",
+		"used": false,
+		"aspect": ""},{
+
+		"type": "Extreme",
+		"mode": "Any",
+		"used": false,
+		"aspect": "Replace permanent"}],
 	
-	totals: {
-		power_level: 12,
-		skill_cap: 5,
-		skills_spent: 42,
-		skills_available: 0,
-		base_refresh: 12,
-		adjusted_refresh: 2,
-		fate_points: 3
+	"totals": {
+		"power_level": 12,
+		"skill_cap": 5,
+		"skills_spent": 42,
+		"skills_available": 0,
+		"base_refresh": 12,
+		"adjusted_refresh": 2,
+		"fate_points": 3
 	},
 
-	skills: {
-		5: ["Conviction", "Endurance"],
-		4: ["Discipline", "Lore", "Athletics"],
-		3: ["Contacts", "Weapons", "Intimidation"],
-		2: ["Might", "Survival", "Alertness"],
-		1: ["Presence", "Empathy", "Fists", "Resources", "Investigation"]
-	},
+	"skills": {
+		"5": ["Conviction", "Endurance"],
+		"4": ["Discipline", "Lore", "Athletics"],
+		"3": ["Contacts", "Weapons", "Intimidation"],
+		"2": ["Might", "Survival", "Alertness"],
+		"1": ["Presence", "Empathy", "Fists", "Resources", "Investigation"]},
 
-	powers: [
-		{
-			cost: -4,
-			name: "Evocation + Refinement",
-			description: [
-				"Spirit, Air, Water",
-				"Spec: +2 power to spirit evocation",
-				"Spec: +1 control to air evocation",
-				"Focus item: Crystal belt buckle",
-				"- +1 control to offensive spirit magic",
-				"Focus item: Hawk skin gloves",
-				"- +1 power to defensive air magic"
-			]
-		},{
-			cost: -3,
-			name: "Thaumaturgy",
-			description: [
-				"Spec: +1 control to spectromancy"
-			]
-		},{
-			cost: -1,
-			name: "The Sight",
-			description: []
-		},{
-			cost: 0,
-			name: "Soulgaze",
-			description: []
-		},{
-			cost: 0,
-			name: "Wizard's Constitution",
-			description: []
-		},{
-			cost: -1,
-			name: "Switchblade master",
-			description: [
-				"+1 to attacks with short blades"
-			]
-		},{
-			cost: -1,
-			name: "Controlled outburst",
-			description: [
-				"Zone attacks avoid allies"
-			]
-		}
-	]
-}
+	"powers": [{
+		"cost": -4,
+		"name": "Evocation + Refinement",
+		"description": "Elements: Spirit, Air, Water\nSpec: +2 power to spirit evocation\nSpec: +1 control to air evocation\nFocus item: Crystal belt buckle\n- +1 control to offensive spirit magic\nFocus item: Hawk skin gloves\n- +1 power to defensive air magic"},{
+
+		"cost": -3,
+		"name": "Thaumaturgy",
+		"description": "Spec: +1 control to spectromancy"},{
+
+		"cost": -1,
+		"name": "The Sight",
+		"description": ""},{
+
+		"cost": 0,
+		"name": "Soulgaze",
+		"description": ""},{
+
+		"cost": 0,
+		"name": "Wizard's Constitution",
+		"description": ""},{
+
+		"cost": -1,
+		"name": "Switchblade master",
+		"description": "+1 to attacks with short blades"},{
+
+		"cost": -1,
+		"name": "Controlled outburst",
+		"description": "Zone attacks avoid allies"}]}
