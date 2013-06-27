@@ -5,7 +5,7 @@ block title
 
 block includes
 	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous')
-	link(rel='stylesheet', type='text/css', href='/css/charsheet-template.css')
+	link(rel='stylesheet', type='text/css', href='/css/charsheet.css')
 
 block content
 
@@ -55,3 +55,32 @@ block content
 									input.stressBox(id=track.name+i, type='checkbox', disabled='disabled')
 
 								label(for=track.name+i)
+
+	section#consequences
+		p.sectionHeader Consequences
+
+		table#conseqTable
+			thead
+				tr
+					th Type
+					th P/M/S
+					th Stress
+					th Used?
+					th Aspect
+			tbody
+				for conseq in toon.consequences
+					tr
+						td= conseq.type
+						td= conseq.mode
+
+						if conseq.type == 'Mild'
+							td -2
+						if conseq.type == 'Moderate'
+							td -4
+						if conseq.type == 'Severe'
+							td -6
+						if conseq.type == 'Extreme'
+							td -8
+
+						td: input(type='checkbox', checked=conseq.used)
+						td: p= conseq.aspect
