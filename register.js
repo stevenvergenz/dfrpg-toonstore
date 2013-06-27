@@ -48,7 +48,7 @@ function checkUsername(req,res)
 	var user = req.query.a;
 
 	// test for reserve words
-	if( ['forget', 'register', 'login', 'logout', 'newtoon', 'killtoon'].contains(user) ){
+	if( ['forget', 'register', 'login', 'logout', 'newtoon', 'killtoon'].indexOf(user) != -1 ){
 		res.json(200, {found: true});
 		return;
 	}
