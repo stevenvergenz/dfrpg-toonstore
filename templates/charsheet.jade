@@ -9,98 +9,129 @@ block includes
 
 block content
 
-	section#general
-		p.sectionHeader= toon.name
-		p= '('+toon.player+')'
+	.column
 
-	section#aspects
-		p.sectionHeader Aspects
+		section#general
+			p.sectionHeader= toon.name
+			p= '('+toon.player+')'
 
-		.field
-			p.fieldLabel High Concept:
-			p= toon.aspects.high_concept.name
+		section#aspects
+			p.sectionHeader Aspects
 
-		.field
-			p.fieldLabel Trouble:
-			p= toon.aspects.trouble.name
+			.field
+				p.fieldLabel High Concept:
+				p= toon.aspects.high_concept.name
 
-		.field
-			p.fieldLabel Aspects:
-			for a in toon.aspects.aspects
-				p= a.name
+			.field
+				p.fieldLabel Trouble:
+				p= toon.aspects.trouble.name
 
-	section#stress
-		p.sectionHeader Stress
+			.field
+				p.fieldLabel Other Aspects:
+				for a in toon.aspects.aspects
+					p= a.name
 
-		table#stressTable
-			thead: tr
-				th &nbsp;
-				for num in [1,2,3,4,5,6,7,8]
-					th= num
+		section#stress
+			p.sectionHeader Stress
 
-			tbody
+			table#stressTable
+				thead: tr
+					th &nbsp;
+					for num in [1,2,3,4,5,6,7,8]
+						th= num
 
-				for track in toon.stress
-					tr(id=track.name)
-						th= track.name
-							p.subtext= '('+track.skill+')'
-						for i in [1,2,3,4,5,6,7,8]
-							td
-								if i <= track.strength
-									if track.used.indexOf(i) != -1
-										input.stressBox(id=track.name+i, type='checkbox', checked='checked')
+				tbody
+
+					for track in toon.stress
+						tr(id=track.name)
+							th= track.name
+								p.subtext= '('+track.skill+')'
+							for i in [1,2,3,4,5,6,7,8]
+								td
+									if i <= track.strength
+										if track.used.indexOf(i) != -1
+											input.stressBox(id=track.name+i, type='checkbox', checked='checked')
+										else
+											input.stressBox(id=track.name+i, type='checkbox')
 									else
-										input.stressBox(id=track.name+i, type='checkbox')
-								else
-									input.stressBox(id=track.name+i, type='checkbox', disabled='disabled')
+										input.stressBox(id=track.name+i, type='checkbox', disabled='disabled')
 
-								label(for=track.name+i)
+									label(for=track.name+i)
 
-	section#consequences
-		p.sectionHeader Consequences
+		section#consequences
+			p.sectionHeader Consequences
 
-		table#conseqTable
-			thead
-				tr
-					th Type
-					th P/M/S
-					th Stress
-					th Used?
-					th Aspect
-			tbody
-				for conseq in toon.consequences
+			table#conseqTable
+				thead
 					tr
-						td= conseq.type
-						td= conseq.mode
+						th Type
+						th P/M/S
+						th Stress
+						th Used?
+						th Aspect
+				tbody
+					for conseq in toon.consequences
+						tr
+							td= conseq.type
+							td= conseq.mode
 
-						if conseq.type == 'Mild'
-							td -2
-						if conseq.type == 'Moderate'
-							td -4
-						if conseq.type == 'Severe'
-							td -6
-						if conseq.type == 'Extreme'
-							td -8
+							if conseq.type == 'Mild'
+								td -2
+							if conseq.type == 'Moderate'
+								td -4
+							if conseq.type == 'Severe'
+								td -6
+							if conseq.type == 'Extreme'
+								td -8
 
-						td: input(type='checkbox', checked=conseq.used)
-						td: p= conseq.aspect
+							td: input(type='checkbox', checked=conseq.used)
+							td= conseq.aspect
 
-	section#skills
-		p.sectionHeader Skills
+	.column
 
-		table#skillTable
-			tr
-				th Superb (+5)
-				td: p= toon.skills[5].sort().join(', ')
-			tr
-				th Great (+4)
-				td: p= toon.skills[4].sort().join(', ')
-			tr
-				th Good (+3)
-				td: p= toon.skills[3].sort().join(', ')
-			tr
-				th Fair (+2)
-				td: p= toon.skills[2].sort().join(', ')
-			tr
-				th Average (+1)
-				td: p= toon.skills[1].sort().join(', ')
+		section#skills
+			p.sectionHeader Skills
+
+			table#skillTable
+				tr
+					th Superb (+5)
+					td: p= toon.skills[5].sort().join(', ')
+				tr
+					th Great (+4)
+					td: p= toon.skills[4].sort().join(', ')
+				tr
+					th Good (+3)
+					td: p= toon.skills[3].sort().join(', ')
+				tr
+					th Fair (+2)
+					td: p= toon.skills[2].sort().join(', ')
+				tr
+					th Average (+1)
+					td: p= toon.skills[1].sort().join(', ')
+
+		section#powers
+			p.sectionHeader Stunts & Powers
+
+			table#powerTable
+				thead: tr
+					th Cost
+					th Ability
+
+				tbody
+
+					for power in toon.powers
+						tr
+							td.mainRow= power.cost
+							td.mainRow= power.name
+
+						if power.description
+							tr
+								td &nbsp;
+								td: p
+									for line in power.description.split('\n')
+										= line
+										br
+
+					tr
+						td.mainRow= toon.totals.adjusted_refresh - toon.totals.base_refresh
+						td.mainRow Total

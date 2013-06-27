@@ -2,12 +2,16 @@ p,th,td {
 	font-family: 'Metamorphous', cursive;
 }
 
+.column {
+	float: left;
+}
+
 section {
 	border: 1px solid black;
 	border-radius: 5px;
 	width: 350px;
 	padding: 10px;
-	margin: 10px;
+	margin: 10px 5px;
 	text-align: center;
 }
 
@@ -34,6 +38,9 @@ p.fieldLabel {
 	font-weight: bold;
 }
 
+table p {
+	margin: 0px;
+}
 
 /*
  * Configure stress table
@@ -50,7 +57,6 @@ table#stressTable tbody {
 
 th p.subtext {
 	font-size: 80%;
-	margin: 0;
 	font-weight: normal;
 }
 
@@ -98,6 +104,25 @@ table#skillTable th {
 	vertical-align: top;
 }
 
-table#skillTable td p {
-	margin: 0px;
+table#powerTable {
+	text-align: left;
+}
+table#powerTable thead th {
+	padding-bottom: 0px;
+}
+table#powerTable p {
+	font-size: 80%;
+}
+table#powerTable .mainRow {
+	padding-top: 10px;
+}
+table#powerTable .mainRow:first-child {
+	text-align: right;
+	padding-right: 10px;
+}
+/*table#powerTable > tbody tr:last-child {
+	border-top: solid black 1px;
+}*/
+table#powerTable tbody tr:last-child td:first-child {
+	border-top: solid black 1px;
 }
