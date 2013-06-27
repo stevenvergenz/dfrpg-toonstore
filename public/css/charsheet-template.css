@@ -86,3 +86,7 @@ table#conseqTable {
 table#conseqTable th:first-of-type,td:first-of-type {
 	text-align: left;
 }
+
+table#skillTable th,td {
+	font-size: 10pt;
+}

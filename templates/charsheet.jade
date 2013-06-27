@@ -5,7 +5,7 @@ block title
 
 block includes
 	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous')
-	link(rel='stylesheet', type='text/css', href='/css/charsheet.css')
+	link(rel='stylesheet', type='text/css', href='/css/charsheet-template.css')
 
 block content
 
@@ -84,3 +84,23 @@ block content
 
 						td: input(type='checkbox', checked=conseq.used)
 						td: p= conseq.aspect
+
+	section#skills
+		p.sectionHeader Skills
+
+		table#skillTable
+			tr
+				th Superb (+5)
+				td: p= toon.skills[5]
+			tr
+				th Great (+4)
+				td: p= toon.skills[4]
+			tr
+				th Good (+3)
+				td: p= toon.skills[3]
+			tr
+				th Fair (+2)
+				td: p= toon.skills[2]
+			tr
+				th Average (+1)
+				td: p= toon.skills[1]
