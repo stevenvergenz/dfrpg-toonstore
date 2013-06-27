@@ -37,7 +37,7 @@ block content
 			table#stressTable
 				thead: tr
 					th &nbsp;
-					for num in [1,2,3,4,5,6,7,8]
+					-for(var num=1; num<9; num++)
 						th= num
 
 				tbody
@@ -46,7 +46,7 @@ block content
 						tr(id=track.name)
 							th= track.name
 								p.subtext= '('+track.skill+')'
-							for i in [1,2,3,4,5,6,7,8]
+							-for(var i=1; i<9; i++)
 								td
 									if i <= track.strength || (i > track.strength+1 && i < track.strength+track.toughness)
 										if track.used.indexOf(i) != -1
@@ -80,6 +80,7 @@ block content
 						th Used?
 						th Aspect
 				tbody
+					- var row = 1;
 					for conseq in toon.consequences
 						tr
 							td= conseq.type
@@ -94,8 +95,11 @@ block content
 							if conseq.type == 'Extreme'
 								td -8
 
-							td: input(type='checkbox', checked=conseq.used)
+							td
+								input.stressBox(id='consequence'+row, type='checkbox', checked=conseq.used)
+								label(for='consequence'+row)
 							td= conseq.aspect
+							- row += 1;
 
 	.column
 
