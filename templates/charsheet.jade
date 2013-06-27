@@ -5,7 +5,7 @@ block title
 
 block includes
 	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous')
-	link(rel='stylesheet', type='text/css', href='/css/charsheet-template.css')
+	link(rel='stylesheet', type='text/css', href='/css/charsheet.css')
 
 block content
 
@@ -91,16 +91,16 @@ block content
 		table#skillTable
 			tr
 				th Superb (+5)
-				td: p= toon.skills[5]
+				td: p= toon.skills[5].sort().join(', ')
 			tr
 				th Great (+4)
-				td: p= toon.skills[4]
+				td: p= toon.skills[4].sort().join(', ')
 			tr
 				th Good (+3)
-				td: p= toon.skills[3]
+				td: p= toon.skills[3].sort().join(', ')
 			tr
 				th Fair (+2)
-				td: p= toon.skills[2]
+				td: p= toon.skills[2].sort().join(', ')
 			tr
 				th Average (+1)
-				td: p= toon.skills[1]
+				td: p= toon.skills[1].sort().join(', ')

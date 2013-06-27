@@ -58,8 +58,8 @@
 
 		"type": "Mild",
 		"mode": "P",
-		"used": false,
-		"aspect": ""},{
+		"used": true,
+		"aspect": "Spun about"},{
 
 		"type": "Mild",
 		"mode": "M",

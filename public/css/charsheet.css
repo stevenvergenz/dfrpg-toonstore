@@ -86,3 +86,18 @@ table#conseqTable {
 table#conseqTable th:first-of-type,td:first-of-type {
 	text-align: left;
 }
+
+table#skillTable td,th {
+	padding-top: 5px;
+	padding-bottom: 5px;
+}
+
+table#skillTable th {
+	width: 125px;
+	text-align: left;
+	vertical-align: top;
+}
+
+table#skillTable td p {
+	margin: 0px;
+}
