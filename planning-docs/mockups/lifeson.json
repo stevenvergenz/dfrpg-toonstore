@@ -82,11 +82,11 @@
 		"aspect": "Replace permanent"}],
 	
 	"totals": {
-		"power_level": 12,
-		"skill_cap": 5,
-		"skills_spent": 42,
-		"skills_available": 0,
+		"power_level": "Submerged",
 		"base_refresh": 12,
+		"skill_cap": 5,
+		"skills_total": 42,
+		"skills_available": 0,
 		"adjusted_refresh": 2,
 		"fate_points": 3
 	},

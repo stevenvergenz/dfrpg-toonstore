@@ -17,11 +17,36 @@ function newCharacterPage(req,res)
 
 function newCharacterRequest(req,res)
 {
+	// create blank character JSON object
+	var toon = {
+		'name': req.body.name,
+		'player': req.session.name,
+		'aspects': {
+			'high_concept': {'name': req.body.concept,'description': ''},
+			'trouble': {'name': '', 'description': ''},
+			'aspects': []},
+		'stress': [{
+			'name': 'Physical','skill': 'Endurance','strength': 2,'used': [],'armor': []},{
+			'name': 'Mental','skill': 'Conviction','strength': 2,'used': [],'armor': []},{
+			'name': 'Social','skill': 'Presence','strength': 2,'used': [],'armor': []}],
+		'consequences': [{
+			'type': 'Mild','mode': 'Any','used': false,'aspect': ''},{
+			'type': 'Moderate','mode': 'Any','used': false,'aspect': ''},{
+			'type': 'Severe','mode': 'Any','used': false,'aspect': ''},{
+			'type': 'Extreme','mode': 'Any','used': false,'aspect': 'Replace permanent'}],
+		'totals': {
+			'power_level': 'Submerged','base_refresh': 12,'skill_cap': 5,'skills_total': 42,
+			'skills_spent': 0,'adjusted_refresh': 12,'fate_points': 0},
+		'skills': {
+			'5': [],'4': [],'3': [],'2': [],'1': []},
+		'powers': []
+	};
+
 	global.log('Attempting character creation');
 	var connection = mysql.createConnection( global.config.database );
 	connection.query('INSERT INTO Characters SET created_on=NOW(), ?;',
-		{'canonical_name': req.body.canon_name, 'name': req.body.name,
-			'owner': req.session.user, 'concept': req.body.concept},
+		{'canonical_name': req.body.canon_name, 'name': req.body.name, 'owner': req.session.user,
+			'concept': req.body.concept, 'info': JSON.stringify(toon)},
 		function(err,rows,fields)
 		{
 			if( err ){

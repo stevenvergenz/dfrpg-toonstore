@@ -42,12 +42,19 @@ table p {
 	margin: 0px;
 }
 
+section#general p:last-child {
+	margin-top: 2px;
+	margin-bottom: 2px;
+}
+
+table {
+	width: 100%;
+}
+
 /*
  * Configure stress table
  */
-table#stressTable {
-	width: 100%;
-}
+
 table#stressTable thead {
 	text-align: center;
 }
