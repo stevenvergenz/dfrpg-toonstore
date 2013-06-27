@@ -5,7 +5,7 @@ block title
 
 block includes
 	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous')
-	link(rel='stylesheet', type='text/css', href='/css/charsheet.css')
+	link(rel='stylesheet', type='text/css', href='/css/charsheet-template.css')
 
 block content
 
@@ -44,6 +44,14 @@ block content
 					tr(id=track.name)
 						th= track.name
 							p.subtext= '('+track.skill+')'
-						td
-							label: input.stressBox(type='checkbox')
-							
+						for i in [1,2,3,4,5,6,7,8]
+							td
+								if i <= track.strength
+									if track.used.indexOf(i) != -1
+										input.stressBox(id=track.name+i, type='checkbox', checked='checked')
+									else
+										input.stressBox(id=track.name+i, type='checkbox')
+								else
+									input.stressBox(id=track.name+i, type='checkbox', disabled='disabled')
+
+								label(for=track.name+i)
