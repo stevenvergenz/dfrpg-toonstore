@@ -37,7 +37,7 @@ block content
 			table#stressTable
 				thead: tr
 					th &nbsp;
-					for num in [1,' ',2,' ',3,' ',4,' ',5,' ',6,' ',7,' ',8,' ']
+					for num in [1,2,3,4,5,6,7,8]
 						th= num
 
 				tbody
@@ -48,26 +48,25 @@ block content
 								p.subtext= '('+track.skill+')'
 							for i in [1,2,3,4,5,6,7,8]
 								td
-									if i <= track.strength+track.toughness
+									if i <= track.strength || (i > track.strength+1 && i < track.strength+track.toughness)
 										if track.used.indexOf(i) != -1
 											input.stressBox(id=track.name+i, type='checkbox', checked='checked')
 										else
 											input.stressBox(id=track.name+i, type='checkbox')
+									else if track.toughness != 0 && i == track.strength+1 
+										if track.used.indexOf(i) != -1
+											input.stressBox.leftParen(id=track.name+i, type='checkbox', checked='checked')
+										else
+											input.stressBox.leftParen(id=track.name+i, type='checkbox')
+									else if track.toughness != 0 && i == track.strength+track.toughness
+										if track.used.indexOf(i) != -1
+											input.stressBox.rightParen(id=track.name+i, type='checkbox', checked='checked')
+										else
+											input.stressBox.rightParen(id=track.name+i, type='checkbox')
 									else
 										input.stressBox(id=track.name+i, type='checkbox', disabled='disabled')
 
 									label(for=track.name+i)
-
-								if track.toughness != 0
-									if i == track.strength
-										td (
-									else if i == track.strength+track.toughness
-										td )
-									else
-										td &nbsp;
-								else
-									td &nbsp;
-										
 
 		section#consequences
 			p.sectionHeader Consequences
