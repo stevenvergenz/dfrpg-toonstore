@@ -1,6 +1,6 @@
 {
 	"name": "Andrew Lifeson",
-	"player": "Steven Vergenz",
+	"player": "tester",
 
 	"aspects": {
 
@@ -101,7 +101,7 @@
 	"powers": [{
 		"cost": -4,
 		"name": "Evocation + Refinement",
-		"description": "Elements: Spirit, Air, Water\nSpec: +2 power to spirit evocation\nSpec: +1 control to air evocation\nFocus item: Crystal belt buckle\n- +1 control to offensive spirit magic\nFocus item: Hawk skin gloves\n- +1 power to defensive air magic"},{
+		"description": "Elements: Spirit, Air, Water\nSpec: +2 power to spirit evocation\nSpec: +1 control to air evocation\nFocus item: Crystal belt buckle\n* +1 control to offensive spirit magic\nFocus item: Hawk skin gloves\n* +1 power to defensive air magic"},{
 
 		"cost": -3,
 		"name": "Thaumaturgy",

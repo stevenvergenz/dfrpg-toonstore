@@ -20,7 +20,7 @@ function newCharacterRequest(req,res)
 	// create blank character JSON object
 	var toon = {
 		'name': req.body.name,
-		'player': req.session.name,
+		'player': req.session.user,
 		'aspects': {
 			'high_concept': {'name': req.body.concept,'description': ''},
 			'trouble': {'name': '', 'description': ''},
