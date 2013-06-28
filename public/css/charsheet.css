@@ -51,6 +51,10 @@ table {
 	width: 100%;
 }
 
+img.editIcon {
+	margin: 5px;
+}
+
 /*
  * Configure stress table
  */

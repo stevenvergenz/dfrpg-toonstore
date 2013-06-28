@@ -35,6 +35,7 @@ app.get('/logout', login.processLogout);
 // route the user pages
 app.get('/:user', user.userPage);
 app.get('/:user/:char', user.characterPage);
+app.get('/:user/:char/json', user.characterJson);
 
 // route the character management pages
 app.get('/newtoon', newtoon.newCharacterPage);
