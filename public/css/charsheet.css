@@ -81,10 +81,10 @@ img#star {
 
 #borderOcclude {
 	background-color: white;
-	left: -14px;
-	bottom: -15px;
-	width: 100px;
-	height: 100px;
+	left: -2px;
+	bottom: -2px;
+	width: 89px;
+	height: 88px;
 	z-index: 1;
 }
 

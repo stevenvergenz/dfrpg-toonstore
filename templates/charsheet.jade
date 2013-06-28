@@ -9,191 +9,190 @@ block append includes
 
 block content
 
-	.column
+	#column1.column
+	#column2.column
+	#column3.column
 
-		section#general
-			p.sectionHeader= toon.name
-			p= '('+toon.player+')'
+	section#general
+		p.sectionHeader= toon.name
+		p= '('+toon.player+')'
 
-		section#aspects
-			p.sectionHeader Aspects
+	section#aspects
+		p.sectionHeader Aspects
 
-			.field
-				p.fieldLabel High Concept:
-				p= toon.aspects.high_concept.name
+		.field
+			p.fieldLabel High Concept:
+			p= toon.aspects.high_concept.name
 
-			.field
-				p.fieldLabel Trouble:
-				p= toon.aspects.trouble.name
+		.field
+			p.fieldLabel Trouble:
+			p= toon.aspects.trouble.name
 
-			.field
-				p.fieldLabel Other Aspects:
-				for a in toon.aspects.aspects
-					p= a.name
+		.field
+			p.fieldLabel Other Aspects:
+			for a in toon.aspects.aspects
+				p= a.name
 
-		section#totals
+	section#stress
+		p.sectionHeader Stress
 
-			img#star(src='/img/pentacle.png')
-			#borderOcclude
+		table#stressTable
+			thead: tr
+				th &nbsp;
+				-for(var num=1; num<9; num++)
+					th= num
 
-			p#powerLevel Power Level:
-				br
-				| #{toon.totals.power_level}
-			p#skillCap Skill Cap:
-				br
-				| #{toon.totals.skill_cap}
+			tbody
 
-			p#skillsSpent.bubble= toon.totals.skills_total-toon.totals.skills_available
-			p.label Skill Points Spent
-			p#skillsAvailable.bubble= toon.totals.skills_available
-			p.label Available
-
-			p#baseRefresh.bubble.doubleBubble= toon.totals.base_refresh
-			p.label Base Refresh Level
-			p#adjustedRefresh.bubble.doubleBubble= toon.totals.adjusted_refresh
-			p.label Adjusted Refresh
-			p#fatePoints.bubble.doubleBubble= toon.totals.fate_points
-			p.label Fate Points
-
-	.column
-
-		section#stress
-			p.sectionHeader Stress
-
-			table#stressTable
-				thead: tr
-					th &nbsp;
-					-for(var num=1; num<9; num++)
-						th= num
-
-				tbody
-
-					for track in toon.stress
-						tr(id=track.name)
-							th= track.name
-								p.subtext= '('+track.skill+')'
-							-for(var i=1; i<9; i++)
-								td
-									if i <= track.strength || (i > track.strength+1 && i < track.strength+track.toughness)
-										if track.used.indexOf(i) != -1
-											input.stressBox(id=track.name+i, type='checkbox', checked='checked')
-										else
-											input.stressBox(id=track.name+i, type='checkbox')
-									else if track.toughness != 0 && i == track.strength+1 
-										if track.used.indexOf(i) != -1
-											input.stressBox.leftParen(id=track.name+i, type='checkbox', checked='checked')
-										else
-											input.stressBox.leftParen(id=track.name+i, type='checkbox')
-									else if track.toughness != 0 && i == track.strength+track.toughness
-										if track.used.indexOf(i) != -1
-											input.stressBox.rightParen(id=track.name+i, type='checkbox', checked='checked')
-										else
-											input.stressBox.rightParen(id=track.name+i, type='checkbox')
+				for track in toon.stress
+					tr(id=track.name)
+						th= track.name
+							p.subtext= '('+track.skill+')'
+						-for(var i=1; i<9; i++)
+							td
+								if i <= track.strength || (i > track.strength+1 && i < track.strength+track.toughness)
+									if track.used.indexOf(i) != -1
+										input.stressBox(id=track.name+i, type='checkbox', checked='checked')
 									else
-										input.stressBox(id=track.name+i, type='checkbox', disabled='disabled')
+										input.stressBox(id=track.name+i, type='checkbox')
+								else if track.toughness != 0 && i == track.strength+1 
+									if track.used.indexOf(i) != -1
+										input.stressBox.leftParen(id=track.name+i, type='checkbox', checked='checked')
+									else
+										input.stressBox.leftParen(id=track.name+i, type='checkbox')
+								else if track.toughness != 0 && i == track.strength+track.toughness
+									if track.used.indexOf(i) != -1
+										input.stressBox.rightParen(id=track.name+i, type='checkbox', checked='checked')
+									else
+										input.stressBox.rightParen(id=track.name+i, type='checkbox')
+								else
+									input.stressBox(id=track.name+i, type='checkbox', disabled='disabled')
+
+								if logged_user == user
+									label(for=track.name+i)
+								else
+									label
+
+					for armor in track.armor
+						tr(id=track.name+'-'+armor.vs)
+							th: p.subtext= 'Vs. '+armor.vs
+							-for(var i=1; i<=armor.strength; i++)
+								td
+									if armor.used.indexOf(i) != -1
+										input.stressBox(id=track.name+'-'+armor.vs+i, type='checkbox', checked='checked')
+									else
+										input.stressBox(id=track.name+'-'+armor.vs+i, type='checkbox')
 
 									if logged_user == user
-										label(for=track.name+i)
+										label(for=track.name+'-'+armor.vs+i)
 									else
 										label
 
-						for armor in track.armor
-							tr(id=track.name+'-'+armor.vs)
-								th: p.subtext= 'Vs. '+armor.vs
-								-for(var i=1; i<=armor.strength; i++)
-									td
-										if armor.used.indexOf(i) != -1
-											input.stressBox(id=track.name+'-'+armor.vs+i, type='checkbox', checked='checked')
-										else
-											input.stressBox(id=track.name+'-'+armor.vs+i, type='checkbox')
+							
+	section#consequences
+		p.sectionHeader Consequences
 
-										if logged_user == user
-											label(for=track.name+'-'+armor.vs+i)
-										else
-											label
-
-								
-		section#consequences
-			p.sectionHeader Consequences
-
-			table#conseqTable
-				thead
+		table#conseqTable
+			thead
+				tr
+					th Type
+					th P/M/S
+					th Stress
+					th Used?
+					th Aspect
+			tbody
+				- var row = 1;
+				for conseq in toon.consequences
 					tr
-						th Type
-						th P/M/S
-						th Stress
-						th Used?
-						th Aspect
-				tbody
-					- var row = 1;
-					for conseq in toon.consequences
-						tr
-							td= conseq.type
-							td= conseq.mode
+						td= conseq.type
+						td= conseq.mode
 
-							if conseq.type == 'Mild'
-								td -2
-							if conseq.type == 'Moderate'
-								td -4
-							if conseq.type == 'Severe'
-								td -6
-							if conseq.type == 'Extreme'
-								td -8
+						if conseq.type == 'Mild'
+							td -2
+						if conseq.type == 'Moderate'
+							td -4
+						if conseq.type == 'Severe'
+							td -6
+						if conseq.type == 'Extreme'
+							td -8
 
-							td
-								input.stressBox(id='consequence'+row, type='checkbox', checked=conseq.used)
-								if logged_user == user
-									label(for='consequence'+row)
-								else
-									label
-							td= conseq.aspect
-							- row += 1;
+						td
+							input.stressBox(id='consequence'+row, type='checkbox', checked=conseq.used)
+							if logged_user == user
+								label(for='consequence'+row)
+							else
+								label
+						td= conseq.aspect
+						- row += 1;
 
-	.column
+	section#totals
 
-		section#skills
-			p.sectionHeader Skills
+		img#star(src='/img/pentacle.png')
+		#borderOcclude
 
-			table#skillTable
-				tr
-					th Superb (+5)
-					td: p= toon.skills[5].sort().join(', ')
-				tr
-					th Great (+4)
-					td: p= toon.skills[4].sort().join(', ')
-				tr
-					th Good (+3)
-					td: p= toon.skills[3].sort().join(', ')
-				tr
-					th Fair (+2)
-					td: p= toon.skills[2].sort().join(', ')
-				tr
-					th Average (+1)
-					td: p= toon.skills[1].sort().join(', ')
+		p#powerLevel Power Level:
+			br
+			| #{toon.totals.power_level}
+		p#skillCap Skill Cap:
+			br
+			| #{toon.totals.skill_cap}
 
-		section#powers
-			p.sectionHeader Stunts & Powers
+		p#skillsSpent.bubble= toon.totals.skills_total-toon.totals.skills_available
+		p.label Skill Points Spent
+		p#skillsAvailable.bubble= toon.totals.skills_available
+		p.label Available
 
-			table#powerTable
-				thead: tr
-					th Cost
-					th Ability
+		p#baseRefresh.bubble.doubleBubble= toon.totals.base_refresh
+		p.label Base Refresh Level
+		p#adjustedRefresh.bubble.doubleBubble= toon.totals.adjusted_refresh
+		p.label Adjusted Refresh
+		p#fatePoints.bubble.doubleBubble= toon.totals.fate_points
+		p.label Fate Points
 
-				tbody
 
-					for power in toon.powers
-						tr
-							td.mainRow= power.cost
-							td.mainRow= power.name
+	section#skills
+		p.sectionHeader Skills
 
-						if power.description
-							tr
-								td &nbsp;
-								td: p
-									for line in power.description.split('\n')
-										= line
-										br
+		table#skillTable
+			tr
+				th Superb (+5)
+				td: p= toon.skills[5].sort().join(', ')
+			tr
+				th Great (+4)
+				td: p= toon.skills[4].sort().join(', ')
+			tr
+				th Good (+3)
+				td: p= toon.skills[3].sort().join(', ')
+			tr
+				th Fair (+2)
+				td: p= toon.skills[2].sort().join(', ')
+			tr
+				th Average (+1)
+				td: p= toon.skills[1].sort().join(', ')
 
+	section#powers
+		p.sectionHeader Stunts & Powers
+
+		table#powerTable
+			thead: tr
+				th Cost
+				th Ability
+
+			tbody
+
+				for power in toon.powers
 					tr
+						td.mainRow= power.cost
+						td.mainRow= power.name
+
+					if power.description
+						tr
+							td &nbsp;
+							td: p
+								for line in power.description.split('\n')
+									= line
+									br
+
+				tr
 						td.mainRow= toon.totals.adjusted_refresh - toon.totals.base_refresh
 						td.mainRow Total Refresh Adjustment
