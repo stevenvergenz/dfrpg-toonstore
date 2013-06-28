@@ -66,7 +66,10 @@ block content
 									else
 										input.stressBox(id=track.name+i, type='checkbox', disabled='disabled')
 
-									label(for=track.name+i)
+									if logged_user == user
+										label(for=track.name+i)
+									else
+										label
 
 						for armor in track.armor
 							tr(id=track.name+'-'+armor.vs)
@@ -78,7 +81,10 @@ block content
 										else
 											input.stressBox(id=track.name+'-'+armor.vs+i, type='checkbox')
 
-										label(for=track.name+'-'+armor.vs+i)
+										if logged_user == user
+											label(for=track.name+'-'+armor.vs+i)
+										else
+											label
 
 								
 		section#consequences
@@ -110,7 +116,10 @@ block content
 
 							td
 								input.stressBox(id='consequence'+row, type='checkbox', checked=conseq.used)
-								label(for='consequence'+row)
+								if logged_user == user
+									label(for='consequence'+row)
+								else
+									label
 							td= conseq.aspect
 							- row += 1;
 

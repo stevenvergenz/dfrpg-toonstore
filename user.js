@@ -37,12 +37,12 @@ function characterPage(req,res,next)
 {
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'SELECT info FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		'SELECT owner, info FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( !err && rows.length == 1 ){
 				global.log('Serving character page for', req.url);
-				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'user': rows[0].username};
+				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'user': rows[0].owner};
 				pageFields.toon = JSON.parse(rows[0].info);
 				res.render('charsheet', pageFields);
 			}
