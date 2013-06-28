@@ -55,20 +55,122 @@ img.editIcon {
 	margin: 5px;
 }
 
-/*
- * Configure stress table
- */
-
-table#stressTable thead {
-	text-align: center;
-}
-table#stressTable tbody {
-	text-align: left;
-}
-
 th p.subtext {
 	font-size: 80%;
 	font-weight: normal;
+}
+
+/*
+ * Style the totals box more or less manually
+ */
+section#totals {
+	position: relative;
+	height: 250px;
+}
+section#totals * {
+	position: absolute;
+}
+
+img#star {
+	width: 180px;
+	height: 180px;
+	left: -3px;
+	bottom: -3px;
+	z-index: 2;
+}
+
+#borderOcclude {
+	background-color: white;
+	left: -14px;
+	bottom: -15px;
+	width: 100px;
+	height: 100px;
+	z-index: 1;
+}
+
+section#totals p {
+	display: inline;
+	margin: 0px;
+}
+
+p.bubble {
+	width: 40px;
+	height: 40px;
+	border: solid black 1px;
+	border-radius: 50%;
+	line-height: 40px;
+	text-align: center;
+}
+p.doubleBubble {
+	border: double black 3px;
+}
+
+/*section#totals div.bubble > p {
+	margin: auto;
+	line-height: 40px;
+	text-align: center;
+}*/
+
+p#powerLevel {
+	top: 10px;
+	left: 10px;
+	width: 170px;
+	text-align: center;
+}
+
+p#skillCap {
+	top: 10px;
+	left: 170px;
+	width: 170px;
+	text-align: center;
+}
+
+p#skillsSpent + p.label {
+	top: 63px;
+	left: 10px;
+}
+
+p#skillsSpent {
+	top: 53px;
+	left: 172px;
+}
+
+p#skillsAvailable + p.label{
+	top: 63px;
+	left: 232px;
+}
+p#skillsAvailable {
+	top: 53px;
+	left: 316px;
+}
+
+p#baseRefresh {
+	top: 104px;
+	left: 159px;
+}
+p#baseRefresh + p.label {
+	top: 105px;
+	left: 208px;
+	width: 125px;
+}
+
+p#adjustedRefresh {
+	top: 159px;
+	left: 174px;
+}
+p#adjustedRefresh + p.label {
+	top: 161px;
+	left: 220px;
+	width: 90px;
+}
+
+p#fatePoints {
+	top: 213px;
+	left: 161px;
+}
+p#fatePoints + p.label {
+	top: 228px;
+	left: 215px;
 }
 
 /*
@@ -112,10 +214,18 @@ input.stressBox.rightParen:checked + label {
 /*
  * Fine-tune sizes on various tables
  */
+table#stressTable thead {
+	text-align: center;
+}
+
+table#stressTable tbody {
+	text-align: left;
+}
+
 table#conseqTable {
-	width: 100%;
 	font-size: 10pt;
 }
+
 table#conseqTable th:first-of-type,td:first-of-type {
 	text-align: left;
 }

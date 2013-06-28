@@ -31,6 +31,32 @@ block content
 				for a in toon.aspects.aspects
 					p= a.name
 
+		section#totals
+
+			img#star(src='/img/pentacle.png')
+			#borderOcclude
+
+			p#powerLevel Power Level:
+				br
+				| #{toon.totals.power_level}
+			p#skillCap Skill Cap:
+				br
+				| #{toon.totals.skill_cap}
+
+			p#skillsSpent.bubble= toon.totals.skills_total-toon.totals.skills_available
+			p.label Skill Points Spent
+			p#skillsAvailable.bubble= toon.totals.skills_available
+			p.label Available
+
+			p#baseRefresh.bubble.doubleBubble= toon.totals.base_refresh
+			p.label Base Refresh Level
+			p#adjustedRefresh.bubble.doubleBubble= toon.totals.adjusted_refresh
+			p.label Adjusted Refresh
+			p#fatePoints.bubble.doubleBubble= toon.totals.fate_points
+			p.label Fate Points
+
+	.column
+
 		section#stress
 			p.sectionHeader Stress
 
