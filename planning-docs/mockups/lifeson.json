@@ -37,20 +37,23 @@
 		"toughness": 0,
 		"used": [2],
 		"armor": [{
-			"vs": "Physical",
-			"strength": 2}]},{
+			"vs": "bullets",
+			"strength": 2,
+			"used": [1]}]},{
 
 		"name": "Mental",
 		"skill": "Conviction",
 		"strength": 4,
 		"toughness": 2,
-		"used": [1,2]},{
+		"used": [1,2],
+		"armor": []},{
 
 		"name": "Social",
 		"skill": "Presence",
 		"strength": 2,
 		"toughness": 0,
-		"used": []}],
+		"used": [],
+		"armor": []}],
 
 	"consequences": [{
 

@@ -28,6 +28,7 @@ function userPage(req,res,next)
 			else {
 				next();
 			}
+			connection.end();
 		}
 	);
 }
@@ -48,6 +49,7 @@ function characterPage(req,res,next)
 			else {
 				next();
 			}
+			connection.end();
 		}
 	);
 }

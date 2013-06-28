@@ -23,11 +23,13 @@ function processLogin(req,res)
 			if( err ){
 				global.error('MySQL error:', err);
 				res.render('login', {message: err});
+				connection.end();
 				return;
 			}
 			else if( rows.length == 0 ){
 				global.error('Login error: no such email');
 				res.render('login', {message: 'Invalid email or password'});
+				connection.end();
 				return;
 			}
 
@@ -47,6 +49,7 @@ function processLogin(req,res)
 				global.log('Login error: incorrect password');
 				res.render('login', {message: 'Invalid email or password'});
 			}
+			connection.end();
 		}
 	);
 }

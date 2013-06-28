@@ -60,6 +60,7 @@ function newCharacterRequest(req,res)
 				var url = '/'+req.session.user+'/'+req.body.canon_name;
 				res.redirect(url);
 			}
+			connection.end();
 		}
 	);
 }

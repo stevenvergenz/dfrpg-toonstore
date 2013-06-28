@@ -68,6 +68,17 @@ block content
 
 									label(for=track.name+i)
 
+						for armor in track.armor
+							tr(id=track.name+'-'+armor.vs)
+								th: p.subtext= 'Vs. '+armor.vs
+								-for(var i=1; i<=armor.strength; i++)
+									td
+										if armor.used.indexOf(i) != -1
+											input.stressBox(id=track.name+'-'+armor.vs+i, type='checkbox', checked='checked')
+										else
+											input.stressBox(id=track.name+'-'+armor.vs+i, type='checkbox')
+										label(for=track.name+'-'+armor.vs+i)
+								
 		section#consequences
 			p.sectionHeader Consequences
 

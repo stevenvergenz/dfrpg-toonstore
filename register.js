@@ -38,6 +38,7 @@ function register(req,res)
 				global.log('Registration successful');
 				res.redirect('/post-register.html');
 			}
+			connection.end();
 		}
 	);
 }
@@ -65,6 +66,7 @@ function checkUsername(req,res)
 			var userFound = rows[0]["userCount"] == 1;
 			res.json(200, {found: userFound});
 		}
+		connection.end();
 	});
 }
 
