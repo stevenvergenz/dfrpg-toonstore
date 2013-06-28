@@ -36,7 +36,7 @@ function newCharacterRequest(req,res)
 			'type': 'Extreme','mode': 'Any','used': false,'aspect': 'Replace permanent'}],
 		'totals': {
 			'power_level': 'Submerged','base_refresh': 12,'skill_cap': 5,'skills_total': 42,
-			'skills_spent': 0,'adjusted_refresh': 12,'fate_points': 0},
+			'skills_available': 42,'adjusted_refresh': 12,'fate_points': 0},
 		'skills': {
 			'5': [],'4': [],'3': [],'2': [],'1': []},
 		'powers': []
