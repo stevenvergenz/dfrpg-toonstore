@@ -33,48 +33,4 @@ function userPage(req,res,next)
 	);
 }
 
-function characterPage(req,res,next)
-{
-	var connection = mysql.createConnection( global.config.database );
-	connection.query(
-		'SELECT owner, info FROM Characters WHERE owner = ? AND canonical_name = ?;',
-		[req.params.user, req.params.char],
-		function(err,rows,fields){
-			if( !err && rows.length == 1 ){
-				global.log('Serving character page for', req.url);
-				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'user': rows[0].owner};
-				pageFields.toon = JSON.parse(rows[0].info);
-				res.render('charsheet', pageFields);
-			}
-			else {
-				next();
-			}
-			connection.end();
-		}
-	);
-}
-
-function characterJson(req,res,next)
-{
-	var connection = mysql.createConnection( global.config.database );
-	connection.query(
-		'SELECT info FROM Characters WHERE owner = ? AND canonical_name = ?;',
-		[req.params.user, req.params.char],
-		function(err,rows,fields){
-			if( !err && rows.length == 1 ){
-				global.log('Serving character JSON for', req.url);
-				//pageFields.toon = JSON.parse(rows[0].info);
-				//res.render('charsheet', pageFields);
-				res.json(200, JSON.parse(rows[0].info));
-			}
-			else {
-				next();
-			}
-			connection.end();
-		}
-	);
-}
-
 exports.userPage = userPage;
-exports.characterPage = characterPage;
-exports.characterJson = characterJson;

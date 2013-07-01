@@ -9,6 +9,7 @@ var register = require('./register.js');
 var login = require('./login.js');
 var user = require('./user.js');
 var newtoon = require('./newtoon.js');
+var character = require('./character.js');
 
 
 // create the express application
@@ -34,12 +35,13 @@ app.get('/logout', login.processLogout);
 
 // route the user pages
 app.get('/:user', user.userPage);
-app.get('/:user/:char', user.characterPage);
-app.get('/:user/:char/json', user.characterJson);
 
 // route the character management pages
 app.get('/newtoon', newtoon.newCharacterPage);
 app.post('/newtoon', newtoon.newCharacterRequest);
+app.get('/:user/:char', character.servePage);
+app.get('/:user/:char/json', character.serveJson);
+app.post('/:user/:char/json', character.pushJson);
 
 // catch-all: serve static file or 404
 app.use(function(req,res)
