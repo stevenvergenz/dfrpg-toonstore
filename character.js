@@ -6,13 +6,13 @@ function servePage(req,res,next)
 {
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'SELECT owner, info FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		'SELECT name FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( !err && rows.length == 1 ){
 				global.log('Serving character page for', req.url);
-				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'user': rows[0].owner};
-				pageFields.toon = JSON.parse(rows[0].info);
+				var pageFields = {'page': req.url, 'logged_user': req.session.user};
+				pageFields.toonName = rows[0].name;
 				res.render('charsheet', pageFields);
 			}
 			else {

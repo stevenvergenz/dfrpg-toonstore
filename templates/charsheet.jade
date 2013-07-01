@@ -1,11 +1,15 @@
 extends theme
 
 block title
-	title= toon.name + ' - ToonStore'
+	title= toonName + ' - ToonStore'
 
 block append includes
 	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous')
 	link(rel='stylesheet', type='text/css', href='/css/charsheet.css')
+	script(src='/js/knockout-2.2.1.js')
+	script(src='/js/charsheet.js')
+	script.
+		$(document).ready( initialize );
 
 block content
 
@@ -14,25 +18,29 @@ block content
 	#column3.column
 
 	section#general
-		p.sectionHeader= toon.name
-		p= '('+toon.player+')'
+		p.sectionHeader(data-bind='text: name')
+		p (
+			span(data-bind='text: player')
+			)
 
-	section#aspects
+	section#aspects(data-bind='with: aspects')
 		p.sectionHeader Aspects
 
 		.field
 			p.fieldLabel High Concept:
-			p= toon.aspects.high_concept.name
+			p(data-bind='text: high_concept.name')
 
 		.field
 			p.fieldLabel Trouble:
-			p= toon.aspects.trouble.name
+			p(data-bind='text: trouble.name')
 
 		.field
 			p.fieldLabel Other Aspects:
-			for a in toon.aspects.aspects
-				p= a.name
+			// ko foreach: aspects
+			p(data-bind='text: name')
+			// /ko
 
+//-
 	section#stress
 		p.sectionHeader Stress
 
