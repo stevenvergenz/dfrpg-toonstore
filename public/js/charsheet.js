@@ -92,6 +92,38 @@ function SheetViewModel(data)
 		this.consequences.push(conseq);
 	}
 
+	// initialize skills data
+	this.skills = {
+		"6": ko.observableArray(data.skills[6]),
+		"5": ko.observableArray(data.skills[5]),
+		"4": ko.observableArray(data.skills[4]),
+		"3": ko.observableArray(data.skills[3]),
+		"2": ko.observableArray(data.skills[2]),
+		"1": ko.observableArray(data.skills[1])
+	};
+
+	// initialize powers data
+	this.powers = ko.observableArray();
+	for( var i in data.powers ){
+		var oldPower = data.powers[i];
+		var power = {
+			'cost': ko.observable(oldPower.cost),
+			'name': ko.observable(oldPower.name),
+			'description': ko.observable(oldPower.description)
+		};
+		power.clean_description = ko.computed(function(){
+			return this.description().split('\n');
+		}, power);
+		this.powers.push(power);
+	}
+	this.powers.total = ko.computed(function(){
+		var sum = 0;
+		for( var i in this.powers() ){
+			sum += this.powers()[i].cost();
+		}
+		return sum;
+	}, this);
+
 	// initialize totals data
 	this.totals = {
 		'power_level': ko.observable(data.totals.power_level),
@@ -112,22 +144,24 @@ function SheetViewModel(data)
 	this.totals.skills_spent = ko.computed(function(){
 		return this.skills_total() - this.skills_available();
 	}, this.totals);
+
+
+	this.skills.skill_sets = ko.computed(function(){
+		var sets = [];
+		for( var i=this.totals.skill_cap(); i>0; i-- ){
+			sets.push({
+				'level_text': this.totals.skill_text(i),
+				'skills': this.skills[i]
+			});
+		}
+		return sets;
+		
+	}, this);
 }
 
 function processCharacterData(data,textStatus,jqXHR)
 {
 	/*
-	data.skills.skill_sets = ko.computed(function(){
-		var sets = [];
-		for( var i=data.totals.skill_cap; i>0; i-- ){
-			sets.push({
-				'level_text': data.totals.skill_text(i),
-				'skills': data.skills[i]
-			});
-		}
-		return sets;
-	});
-
 	for( var i in data.powers ){
 		var power = data.powers[i];
 		power.clean_description = ko.computed(function(){

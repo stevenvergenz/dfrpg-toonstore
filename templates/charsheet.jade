@@ -134,7 +134,6 @@ block content
 		p#fatePoints.bubble.doubleBubble(data-bind='text: fate_points')
 		p.label Fate Points
 
-//-
 	section#skills
 		p.sectionHeader Skills
 
@@ -143,7 +142,6 @@ block content
 				tr
 					th(data-bind='text: level_text')
 					td: p(data-bind='text: skills.sort().join(", ")')
-
 
 	section#powers
 		p.sectionHeader Stunts & Powers
@@ -162,6 +160,6 @@ block content
 					td: p(data-bind='foreach: clean_description')
 						span(data-bind='text: $data')
 						br
-				tr(data-bind='if: $index() == $root.powers.length-1')
+				tr(data-bind='if: $index() == $root.powers().length-1')
 					td.mainRow(style='border-top: solid black 1px;', data-bind='text: $root.powers.total')
 					td.mainRow Total Refresh Adjustment
