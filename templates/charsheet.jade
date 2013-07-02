@@ -81,55 +81,9 @@ block content
 							label
 					// /ko
 				// /ko
-					
-//-
-				for track in toon.stress
-					tr(id=track.name)
-						th= track.name
-							p.subtext= '('+track.skill+')'
-						-for(var i=1; i<9; i++)
-							td
-								if i <= track.strength || (i > track.strength+1 && i < track.strength+track.toughness)
-									if track.used.indexOf(i) != -1
-										input.stressBox(id=track.name+i, type='checkbox', checked='checked')
-									else
-										input.stressBox(id=track.name+i, type='checkbox')
-								else if track.toughness != 0 && i == track.strength+1 
-									if track.used.indexOf(i) != -1
-										input.stressBox.leftParen(id=track.name+i, type='checkbox', checked='checked')
-									else
-										input.stressBox.leftParen(id=track.name+i, type='checkbox')
-								else if track.toughness != 0 && i == track.strength+track.toughness
-									if track.used.indexOf(i) != -1
-										input.stressBox.rightParen(id=track.name+i, type='checkbox', checked='checked')
-									else
-										input.stressBox.rightParen(id=track.name+i, type='checkbox')
-								else
-									input.stressBox(id=track.name+i, type='checkbox', disabled='disabled')
 
-								if logged_user == user
-									label(for=track.name+i)
-								else
-									label
-
-					for armor in track.armor
-						tr(id=track.name+'-'+armor.vs)
-							th: p.subtext= 'Vs. '+armor.vs
-							-for(var i=1; i<=armor.strength; i++)
-								td
-									if armor.used.indexOf(i) != -1
-										input.stressBox(id=track.name+'-'+armor.vs+i, type='checkbox', checked='checked')
-									else
-										input.stressBox(id=track.name+'-'+armor.vs+i, type='checkbox')
-
-									if logged_user == user
-										label(for=track.name+'-'+armor.vs+i)
-									else
-										label
-
-							
 	section#consequences
-		p.sectionHeader Consequences
+		p.sectionHeader Consequences				
 
 		table#conseqTable
 			thead
@@ -139,56 +93,49 @@ block content
 					th Stress
 					th Used?
 					th Aspect
-			tbody
-				- var row = 1;
-				for conseq in toon.consequences
-					tr
-						td= conseq.type
-						td= conseq.mode
 
-						if conseq.type == 'Mild'
-							td -2
-						if conseq.type == 'Moderate'
-							td -4
-						if conseq.type == 'Severe'
-							td -6
-						if conseq.type == 'Extreme'
-							td -8
+			tbody(data-bind='foreach: consequences')
+				tr
+					td(data-bind='text: type')
+					td(data-bind='text: mode')
+					td(data-bind='text: strength')
+					td
+						input.stressBox(type='checkbox', data-bind='attr: {id: "conseq"+$index()}, checked: used')
+						if logged_user == owner
+							label(data-bind='attr: {for: "conseq"+$index()}')
+						else
+							label
+					td(data-bind='text: aspect')
 
-						td
-							input.stressBox(id='consequence'+row, type='checkbox', checked=conseq.used)
-							if logged_user == user
-								label(for='consequence'+row)
-							else
-								label
-						td= conseq.aspect
-						- row += 1;
 
-	section#totals
+	section#totals(data-bind='with: totals')
 
 		img#star(src='/img/pentacle.png')
 		#borderOcclude
 
 		p#powerLevel Power Level:
 			br
-			| #{toon.totals.power_level}
+			// ko text: power_level
+			// /ko
+
 		p#skillCap Skill Cap:
 			br
-			| #{toon.totals.skill_cap}
+			// ko text: skill_cap_text
+			// /ko
 
-		p#skillsSpent.bubble= toon.totals.skills_total-toon.totals.skills_available
+		p#skillsSpent.bubble(data-bind='text: skills_spent') 
 		p.label Skill Points Spent
-		p#skillsAvailable.bubble= toon.totals.skills_available
+		p#skillsAvailable.bubble(data-bind='text: skills_available')
 		p.label Available
 
-		p#baseRefresh.bubble.doubleBubble= toon.totals.base_refresh
+		p#baseRefresh.bubble.doubleBubble(data-bind='text: base_refresh')
 		p.label Base Refresh Level
-		p#adjustedRefresh.bubble.doubleBubble= toon.totals.adjusted_refresh
+		p#adjustedRefresh.bubble.doubleBubble(data-bind='text: adjusted_refresh')
 		p.label Adjusted Refresh
-		p#fatePoints.bubble.doubleBubble= toon.totals.fate_points
+		p#fatePoints.bubble.doubleBubble(data-bind='text: fate_points')
 		p.label Fate Points
 
-
+//-
 	section#skills
 		p.sectionHeader Skills
 
