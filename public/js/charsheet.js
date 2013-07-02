@@ -4,19 +4,38 @@ function initialize()
 	function processCharacterData(data,textStatus,jqXHR)
 	{
 		for( var i in data.stress ){
-			data.stress[i].boxes = ko.computed(function(){
+			var track = data.stress[i];
+			track.boxes = ko.computed(function(){
 				var boxes = [];
 				for( var j=1; j<=8; j++ ){
-					var box = data.stress[i];
+					var icon = 'stressBox';
+					if( track.toughness > 0 && j == track.strength+1 )
+						icon += ' leftParen';
+					if( track.toughness > 0 && j == track.strength+track.toughness )
+						icon += ' rightParen';
+					
 					boxes.push({
-						'checked': box.used.indexOf(j) != -1,
-						'enabled': j <= box.strength + box.toughness,
-						'left-paren': box.toughness > 0 && j == box.strength+1 ? 'left-paren' : 'normal',
-						'right-paren': box.toughness > 0 && j == box.strength+box.toughness ? 'right-paren' : 'normal'
+						'index': j,
+						'checked': track.used.indexOf(j) != -1,
+						'disabled': j <= track.strength + track.toughness ? undefined : 'disabled',
+						'icon': icon
 					});
 				}
 				return boxes;
 			});
+			for( var j in track.armor ){
+				var armor = track.armor[j];
+				armor.boxes = ko.computed(function(){
+					var boxes = [];
+					for( var k=1; k<=armor.strength; k++ ){
+						boxes.push({
+							'index': k,
+							'checked': armor.used.indexOf(k) != -1
+						});
+					}
+					return boxes;
+				});
+			}
 		}
 		ko.applyBindings(data);
 	}

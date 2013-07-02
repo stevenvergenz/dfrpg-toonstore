@@ -11,7 +11,7 @@ function servePage(req,res,next)
 		function(err,rows,fields){
 			if( !err && rows.length == 1 ){
 				global.log('Serving character page for', req.url);
-				var pageFields = {'page': req.url, 'logged_user': req.session.user};
+				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'owner': req.params.user};
 				pageFields.toonName = rows[0].name;
 				res.render('charsheet', pageFields);
 			}

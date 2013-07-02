@@ -211,6 +211,13 @@ input.stressBox.rightParen:checked + label {
 	background-position: -26px -40px;
 }
 
+input.stressBox.leftParen.rightParen + label {
+	background-position: 0px -60px;
+}
+input.stressBox.leftParen.rightParen:checked + label {
+	background-position: -26px -60px;
+}
+
 /*
  * Fine-tune sizes on various tables
  */
