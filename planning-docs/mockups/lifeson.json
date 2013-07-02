@@ -71,32 +71,32 @@
 
 	"consequences": [{
 
-		"type": "Mild",
+		"severity": "Mild",
 		"mode": "Any",
 		"used": false,
 		"aspect": ""},{
 
-		"type": "Mild",
+		"severity": "Mild",
 		"mode": "P",
 		"used": true,
 		"aspect": "Spun about"},{
 
-		"type": "Mild",
+		"severity": "Mild",
 		"mode": "M",
 		"used": false,
 		"aspect": ""},{
 
-		"type": "Moderate",
+		"severity": "Moderate",
 		"mode": "Any",
 		"used": false,
 		"aspect": ""},{
 
-		"type": "Severe",
+		"severity": "Severe",
 		"mode": "Any",
 		"used": false,
 		"aspect": ""},{
 
-		"type": "Extreme",
+		"severity": "Extreme",
 		"mode": "Any",
 		"used": false,
 		"aspect": "Replace permanent"}],

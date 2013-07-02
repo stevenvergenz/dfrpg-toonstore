@@ -30,10 +30,10 @@ function newCharacterRequest(req,res)
 			'name': 'Mental','skill': 'Conviction','toughness': 0,'boxes': [{'used': false},{'used':false}],'armor': []},{
 			'name': 'Social','skill': 'Presence','toughness': 0,'boxes': [{'used': false},{'used':false}],'armor': []}],
 		'consequences': [{
-			'type': 'Mild','mode': 'Any','used': false,'aspect': ''},{
-			'type': 'Moderate','mode': 'Any','used': false,'aspect': ''},{
-			'type': 'Severe','mode': 'Any','used': false,'aspect': ''},{
-			'type': 'Extreme','mode': 'Any','used': false,'aspect': 'Replace permanent'}],
+			'severity': 'Mild','mode': 'Any','used': false,'aspect': ''},{
+			'severity': 'Moderate','mode': 'Any','used': false,'aspect': ''},{
+			'severity': 'Severe','mode': 'Any','used': false,'aspect': ''},{
+			'severity': 'Extreme','mode': 'Any','used': false,'aspect': 'Replace permanent'}],
 		'totals': {
 			'power_level': 'Submerged','base_refresh': 12,'skill_cap': 5,'skills_total': 42,
 			'skills_available': 42,'adjusted_refresh': 12,'fate_points': 0},
