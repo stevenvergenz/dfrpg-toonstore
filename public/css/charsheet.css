@@ -55,7 +55,7 @@ img.editIcon {
 	margin: 5px;
 }
 
-th p.subtext {
+th span.subtitle {
 	font-size: 80%;
 	font-weight: normal;
 }

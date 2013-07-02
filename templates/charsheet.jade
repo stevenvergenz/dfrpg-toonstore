@@ -40,18 +40,32 @@ block content
 			p(data-bind='text: name')
 			// /ko
 
-//-
+
 	section#stress
 		p.sectionHeader Stress
 
 		table#stressTable
 			thead: tr
 				th &nbsp;
-				-for(var num=1; num<9; num++)
-					th= num
+				for i in [1,2,3,4,5,6,7,8]
+					th= i
 
-			tbody
+			tbody(data-bind='foreach: stress')
 
+				tr
+					
+					th
+						span(data-bind='text: name')
+						br
+						span(class='subtitle', data-bind='text: "("+skill+")"')
+
+					// ko foreach: boxes
+					td
+						input(class='stressBox', type='checkbox', data-bind='attr: {disabled: !enabled ? "disabled" : "not"}, checked: checked')
+						label
+					// /ko
+					
+//-
 				for track in toon.stress
 					tr(id=track.name)
 						th= track.name
