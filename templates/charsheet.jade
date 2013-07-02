@@ -135,26 +135,16 @@ block content
 		p#fatePoints.bubble.doubleBubble(data-bind='text: fate_points')
 		p.label Fate Points
 
-//-
+
 	section#skills
 		p.sectionHeader Skills
 
 		table#skillTable
-			tr
-				th Superb (+5)
-				td: p= toon.skills[5].sort().join(', ')
-			tr
-				th Great (+4)
-				td: p= toon.skills[4].sort().join(', ')
-			tr
-				th Good (+3)
-				td: p= toon.skills[3].sort().join(', ')
-			tr
-				th Fair (+2)
-				td: p= toon.skills[2].sort().join(', ')
-			tr
-				th Average (+1)
-				td: p= toon.skills[1].sort().join(', ')
+			tbody(data-bind='foreach: skills.skill_sets')
+				tr
+					th(data-bind='text: level_text')
+					td: p(data-bind='text: skills.sort().join(", ")')
+
 
 	section#powers
 		p.sectionHeader Stunts & Powers
@@ -164,21 +154,15 @@ block content
 				th Cost
 				th Ability
 
-			tbody
-
-				for power in toon.powers
-					tr
-						td.mainRow= power.cost
-						td.mainRow= power.name
-
-					if power.description
-						tr
-							td &nbsp;
-							td: p
-								for line in power.description.split('\n')
-									= line
-									br
-
+			tbody(data-bind='foreach: powers')
 				tr
-						td.mainRow= toon.totals.adjusted_refresh - toon.totals.base_refresh
-						td.mainRow Total Refresh Adjustment
+					td.mainRow(data-bind='text: cost')
+					td.mainRow(data-bind='text: name')
+				tr(data-bind='if: description')
+					td &nbsp;
+					td: p(data-bind='foreach: clean_description')
+						span(data-bind='text: $data')
+						br
+				tr(data-bind='if: $index() == $root.powers.length-1')
+					td.mainRow(style='border-top: solid black 1px;', data-bind='text: $root.powers.total')
+					td.mainRow Total Refresh Adjustment

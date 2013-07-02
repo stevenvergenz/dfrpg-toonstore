@@ -60,14 +60,42 @@ function initialize()
 			}, conseq);
 		}
 
-		data.totals.skill_cap_text = ko.computed(function(){
+		data.totals.skill_text = function(val){
 			var ladder = ['Mediocre (+0)', 'Average (+1)', 'Fair (+2)', 'Good (+3)', 'Great (+4)', 'Superb (+5)', 'Fantastic (+6)', 'Epic (+7)', 'Legendary (+8)'];
-			return ladder[this.skill_cap];
+			return ladder[val];
+		};
+		data.totals.skill_cap_text = ko.computed(function(){
+			return data.totals.skill_text( this.skill_cap );
 		}, data.totals);
 
 		data.totals.skills_spent = ko.computed(function(){
 			return this.skills_total - this.skills_available;
 		}, data.totals);
+
+		data.skills.skill_sets = ko.computed(function(){
+			var sets = [];
+			for( var i=data.totals.skill_cap; i>0; i-- ){
+				sets.push({
+					'level_text': data.totals.skill_text(i),
+					'skills': data.skills[i]
+				});
+			}
+			return sets;
+		});
+
+		for( var i in data.powers ){
+			var power = data.powers[i];
+			power.clean_description = ko.computed(function(){
+				return this.description.split('\n');
+			}, power);
+		}
+		data.powers.total = ko.computed(function(){
+			var sum = 0;
+			for( var i in data.powers ){
+				sum += data.powers[i].cost;
+			}
+			return sum;
+		});
 
 		// apply modified json document to page
 		ko.applyBindings(data);
