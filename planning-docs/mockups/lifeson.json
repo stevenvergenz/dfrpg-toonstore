@@ -33,26 +33,40 @@
 
 		"name": "Physical",
 		"skill": "Endurance",
-		"strength": 4,
 		"toughness": 0,
-		"used": [2],
+		"boxes": [
+			{"used": false},
+			{"used": true},
+			{"used": false},
+			{"used": false}
+		],
 		"armor": [{
 			"vs": "bullets",
-			"strength": 2,
-			"used": [1]}]},{
+			"boxes": [
+				{"used": true},
+				{"used": false}]}]
+		},{
 
 		"name": "Mental",
 		"skill": "Conviction",
-		"strength": 4,
 		"toughness": 2,
-		"used": [1,2],
+		"boxes": [
+			{"used": false},
+			{"used": true},
+			{"used": false},
+			{"used": false},
+			{"used": false},
+			{"used": false}
+		],
 		"armor": []},{
 
 		"name": "Social",
 		"skill": "Presence",
-		"strength": 2,
 		"toughness": 0,
-		"used": [],
+		"boxes": [
+			{"used": false},
+			{"used": true}
+		],
 		"armor": []}],
 
 	"consequences": [{

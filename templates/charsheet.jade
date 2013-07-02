@@ -12,6 +12,53 @@ block append includes
 		$(document).ready( initialize );
 
 block content
+	section#stress
+		p.sectionHeader Stress
+
+		table#stressTable
+			thead: tr
+				th &nbsp;
+				for i in [1,2,3,4,5,6,7,8]
+					th= i
+
+			tbody(data-bind='foreach: stress')
+
+				tr
+					th
+						span(data-bind='text: name')
+						br
+						span(class='subtitle', data-bind='text: "("+skill()+")"')
+
+					// ko foreach: [0,1,2,3,4,5,6,7]
+					td
+						// ko if: $parent.boxes()[$data] != undefined
+						input(type='checkbox', data-bind='attr: {id: $parent.name()+"-"+$data}, css: $parent.boxes()[$data].icon, checked: $parent.boxes()[$data].used')
+						// /ko
+						// ko ifnot: $parent.boxes()[$data] != undefined
+						input.stressBox(type='checkbox', disabled='disabled', data-bind='attr: {id: $parent.name()+"-"+$data}')
+						// /ko
+						if logged_user == owner
+							label(data-bind='attr: {for: $parent.name()+"-"+$data}')
+						else
+							label
+					// /ko
+
+				// ko foreach: armor
+				tr
+					th
+						span.subtitle(data-bind='text: "Vs. "+vs')
+					// ko foreach: boxes
+					td
+						input.stressBox(type='checkbox', data-bind='attr: {id: $parent.name+"-"+$index()}, checked: used')
+						if logged_user == owner
+							label(data-bind='attr: {for: $parent.name+"-"+$index()}')
+						else
+							label
+					// /ko
+				// /ko
+
+
+//-block content
 
 	#column1.column
 	#column2.column
@@ -59,7 +106,7 @@ block content
 						br
 						span(class='subtitle', data-bind='text: "("+skill+")"')
 
-					// ko foreach: boxes
+					// ko foreach: boxes()
 					td
 						input(type='checkbox', data-bind='attr: {disabled: disabled, id: $parent.name+"-"+index}, css: icon, checked: checked')
 						if logged_user == owner

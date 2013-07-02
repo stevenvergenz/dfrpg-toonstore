@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.31, for debian-linux-gnu (x86_64)
+-- MySQL dump 10.13  Distrib 5.1.69, for redhat-linux-gnu (x86_64)
 --
 -- Host: localhost    Database: toonstore
 -- ------------------------------------------------------
--- Server version	5.5.31-0ubuntu0.13.04.1
+-- Server version	5.1.69
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -41,7 +41,7 @@ CREATE TABLE `Characters` (
 
 LOCK TABLES `Characters` WRITE;
 /*!40000 ALTER TABLE `Characters` DISABLE KEYS */;
-INSERT INTO `Characters` VALUES ('lifeson','Andrew Lifeson','tester','{\"name\":\"Andrew Lifeson\",\"player\":\"tester\",\"aspects\":{\"high_concept\":{\"name\":\"White Council Footsoldier\",\"description\":\"\"},\"trouble\":{\"name\":\"Still On The Battlefield\",\"description\":\"\"},\"aspects\":[{\"name\":\"I Am From A Gutter Too\",\"description\":\"\"},{\"name\":\"Warden\'s Honor\",\"description\":\"\"},{\"name\":\"No Kill Like Overkill\",\"description\":\"\"},{\"name\":\"Crazy Enough To Work\",\"description\":\"\"},{\"name\":\"Conviction Is Both Sword And Shield\",\"description\":\"\"}]},\"stress\":[{\"name\":\"Physical\",\"skill\":\"Endurance\",\"strength\":4,\"toughness\":0,\"used\":[2],\"armor\":[{\"vs\":\"bullets\",\"strength\":2,\"used\":[1]}]},{\"name\":\"Mental\",\"skill\":\"Conviction\",\"strength\":4,\"toughness\":2,\"used\":[1,2],\"armor\":[]},{\"name\":\"Social\",\"skill\":\"Presence\",\"strength\":2,\"toughness\":0,\"used\":[],\"armor\":[]}],\"consequences\":[{\"type\":\"Mild\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"\"},{\"type\":\"Mild\",\"mode\":\"P\",\"used\":true,\"aspect\":\"Spun about\"},{\"type\":\"Mild\",\"mode\":\"M\",\"used\":false,\"aspect\":\"\"},{\"type\":\"Moderate\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"\"},{\"type\":\"Severe\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"\"},{\"type\":\"Extreme\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"Replace permanent\"}],\"totals\":{\"power_level\":\"Submerged\",\"base_refresh\":12,\"skill_cap\":5,\"skills_total\":42,\"skills_available\":0,\"adjusted_refresh\":2,\"fate_points\":3},\"skills\":{\"1\":[\"Presence\",\"Empathy\",\"Fists\",\"Resources\",\"Investigation\"],\"2\":[\"Might\",\"Survival\",\"Alertness\"],\"3\":[\"Contacts\",\"Weapons\",\"Intimidation\"],\"4\":[\"Discipline\",\"Lore\",\"Athletics\"],\"5\":[\"Conviction\",\"Endurance\"]},\"powers\":[{\"cost\":-4,\"name\":\"Evocation + Refinement\",\"description\":\"Elements: Spirit, Air, Water\\nSpec: +2 power to spirit evocation\\nSpec: +1 control to air evocation\\nFocus item: Crystal belt buckle\\n* +1 control to offensive spirit magic\\nFocus item: Hawk skin gloves\\n* +1 power to defensive air magic\"},{\"cost\":-3,\"name\":\"Thaumaturgy\",\"description\":\"Spec: +1 control to spectromancy\"},{\"cost\":-1,\"name\":\"The Sight\",\"description\":\"\"},{\"cost\":0,\"name\":\"Soulgaze\",\"description\":\"\"},{\"cost\":0,\"name\":\"Wizard\'s Constitution\",\"description\":\"\"},{\"cost\":-1,\"name\":\"Switchblade master\",\"description\":\"+1 to attacks with short blades\"},{\"cost\":-1,\"name\":\"Controlled outburst\",\"description\":\"Zone attacks avoid allies\"}]}','White Council Footsoldier','2013-06-27');
+INSERT INTO `Characters` VALUES ('lifeson','Andrew Lifeson','tester','{\"name\":\"Andrew Lifeson\",\"player\":\"tester\",\"aspects\":{\"high_concept\":{\"name\":\"White Council Footsoldier\",\"description\":\"\"},\"trouble\":{\"name\":\"Still On The Battlefield\",\"description\":\"\"},\"aspects\":[{\"name\":\"I Am From A Gutter Too\",\"description\":\"\"},{\"name\":\"Warden\'s Honor\",\"description\":\"\"},{\"name\":\"No Kill Like Overkill\",\"description\":\"\"},{\"name\":\"Crazy Enough To Work\",\"description\":\"\"},{\"name\":\"Conviction Is Both Sword And Shield\",\"description\":\"\"}]},\"stress\":[{\"name\":\"Physical\",\"skill\":\"Endurance\",\"toughness\":0,\"boxes\":[{\"used\":false},{\"used\":true},{\"used\":false},{\"used\":false}],\"armor\":[{\"vs\":\"bullets\",\"boxes\":[{\"used\":true},{\"used\":false}]}]},{\"name\":\"Mental\",\"skill\":\"Conviction\",\"toughness\":2,\"boxes\":[{\"used\":false},{\"used\":true},{\"used\":false},{\"used\":false},{\"used\":false},{\"used\":false}],\"armor\":[]},{\"name\":\"Social\",\"skill\":\"Presence\",\"toughness\":0,\"boxes\":[{\"used\":false},{\"used\":true}],\"armor\":[]}],\"consequences\":[{\"type\":\"Mild\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"\"},{\"type\":\"Mild\",\"mode\":\"P\",\"used\":true,\"aspect\":\"Spun about\"},{\"type\":\"Mild\",\"mode\":\"M\",\"used\":false,\"aspect\":\"\"},{\"type\":\"Moderate\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"\"},{\"type\":\"Severe\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"\"},{\"type\":\"Extreme\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"Replace permanent\"}],\"totals\":{\"power_level\":\"Submerged\",\"base_refresh\":12,\"skill_cap\":5,\"skills_total\":42,\"skills_available\":0,\"adjusted_refresh\":2,\"fate_points\":3},\"skills\":{\"1\":[\"Presence\",\"Empathy\",\"Fists\",\"Resources\",\"Investigation\"],\"2\":[\"Might\",\"Survival\",\"Alertness\"],\"3\":[\"Contacts\",\"Weapons\",\"Intimidation\"],\"4\":[\"Discipline\",\"Lore\",\"Athletics\"],\"5\":[\"Conviction\",\"Endurance\"]},\"powers\":[{\"cost\":-4,\"name\":\"Evocation + Refinement\",\"description\":\"Elements: Spirit, Air, Water\\nSpec: +2 power to spirit evocation\\nSpec: +1 control to air evocation\\nFocus item: Crystal belt buckle\\n* +1 control to offensive spirit magic\\nFocus item: Hawk skin gloves\\n* +1 power to defensive air magic\"},{\"cost\":-3,\"name\":\"Thaumaturgy\",\"description\":\"Spec: +1 control to spectromancy\"},{\"cost\":-1,\"name\":\"The Sight\",\"description\":\"\"},{\"cost\":0,\"name\":\"Soulgaze\",\"description\":\"\"},{\"cost\":0,\"name\":\"Wizard\'s Constitution\",\"description\":\"\"},{\"cost\":-1,\"name\":\"Switchblade master\",\"description\":\"+1 to attacks with short blades\"},{\"cost\":-1,\"name\":\"Controlled outburst\",\"description\":\"Zone attacks avoid allies\"}]}','White Council Footsoldier','2013-06-27');
 /*!40000 ALTER TABLE `Characters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -97,7 +97,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES ('tester','tester@example.com','2013-06-27','2013-06-27','`g<`Ù∆Rì”ÖÌƒvìÁDﬁÄÔ>ëÃºÑ=?~ì','bﬁÊOtªP‚À÷íwÃÎ’	ñÔRXp T4Q•⁄¨');
+INSERT INTO `Users` VALUES ('tester','tester@example.com','2013-06-27','2013-07-02','`g<`Ù∆Rì”ÖÌƒvìÁDﬁÄÔ>ëÃºÑ=?~ì','bﬁÊOtªP‚À÷íwÃÎ’	ñÔRXp T4Q•⁄¨');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +110,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-06-27 20:38:53
+-- Dump completed on 2013-07-02 17:24:21
