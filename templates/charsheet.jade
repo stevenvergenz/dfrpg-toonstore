@@ -13,6 +13,8 @@ block append includes
 
 block content
 
+	input#save(type='button', value='Save', onclick='pushToServer()')
+
 	section#general
 		p.sectionHeader(data-bind='text: name')
 		p (
@@ -157,9 +159,7 @@ block content
 					td.mainRow(data-bind='text: name')
 				tr(data-bind='if: description')
 					td &nbsp;
-					td: p(data-bind='foreach: clean_description')
-						span(data-bind='text: $data')
-						br
+					td: p(data-bind='html: description')
 				tr(data-bind='if: $index() == $root.powers().length-1')
 					td.mainRow(style='border-top: solid black 1px;', data-bind='text: $root.powers.total')
 					td.mainRow Total Refresh Adjustment

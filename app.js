@@ -14,7 +14,14 @@ var character = require('./character.js');
 
 // create the express application
 var app = express();
-app.use(express.bodyParser());
+var parser = express.bodyParser();
+app.use(function(req,res,next){
+	if( /\/\w+\/\w+\/json/.test(req.url) && req.method == 'POST' ){
+		console.log('Bypassing bodyParser');
+		return next();
+	}
+	parser(req,res,next);
+});
 app.use(express.cookieParser());
 app.use(express.session({secret: global.config.cookie_secret}));
 app.set('views', 'templates');

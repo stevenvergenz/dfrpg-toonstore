@@ -112,7 +112,7 @@ function SheetViewModel(data)
 			'description': ko.observable(oldPower.description)
 		};
 		power.clean_description = ko.computed(function(){
-			return this.description().split('\n');
+			return this.description().split('<br>');
 		}, power);
 		this.powers.push(power);
 	}
@@ -161,21 +161,6 @@ function SheetViewModel(data)
 
 function processCharacterData(data,textStatus,jqXHR)
 {
-	/*
-	for( var i in data.powers ){
-		var power = data.powers[i];
-		power.clean_description = ko.computed(function(){
-			return this.description.split('\n');
-		}, power);
-	}
-	data.powers.total = ko.computed(function(){
-		var sum = 0;
-		for( var i in data.powers ){
-			sum += data.powers[i].cost;
-		}
-		return sum;
-	});*/
-
 	// apply modified json document to page
 	model = data;
 	viewModel = new SheetViewModel(data);
@@ -187,4 +172,11 @@ function initialize(){
 	$.getJSON( window.location.pathname + '/json', processCharacterData );
 }
 
+function pushToServer(){
+	var data = ko.toJSON(viewModel);
+	//console.log(data);
+	$.post( window.location.pathname + '/json', data, function(data,textStatus,xhr){
+		console.log('Success');
+	});
+}
 
