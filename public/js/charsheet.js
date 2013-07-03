@@ -60,14 +60,12 @@ function SheetViewModel(data)
 		// construct armor boxes
 		for( var j=0; j<track.armor.length; j++ ){
 			var armor = {
-				'vs': track.armor[j].vs,
-				'boxes': ko.observableArray()
+				'vs': ko.observable(track.armor[j].vs),
+				'strength': ko.observable(track.armor[j].strength)
 			};
-			for( var k=0; k<track.armor[j].boxes.length; k++ ){
-				armor.boxes.push({
-					'used': ko.observable(track.armor[j].boxes[k].used)
-				});
-			}
+			armor.text = ko.computed(function(){
+				return 'Armor: '+armor.strength()+' vs. '+armor.vs();
+			}, armor);
 			viewTrack.armor.push(armor);
 		}
 

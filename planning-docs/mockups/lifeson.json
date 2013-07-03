@@ -41,15 +41,23 @@
 			{"used": false}
 		],
 		"armor": [{
-			"vs": "bullets",
-			"boxes": [
-				{"used": true},
-				{"used": false}]}]
+			"vs": "blunt objects",
+			"strength": 2}]
+		},{
+
+		"name": "Physical",
+		"skill": "Loyalty Cardigan",
+		"toughness": 0,
+		"armor": [],
+		"boxes": [
+			{"used": false},
+			{"used": false}]
 		},{
 
 		"name": "Mental",
 		"skill": "Conviction",
 		"toughness": 2,
+		"armor": [],
 		"boxes": [
 			{"used": false},
 			{"used": true},
@@ -63,6 +71,7 @@
 		"name": "Social",
 		"skill": "Presence",
 		"toughness": 0,
+		"armor": [],
 		"boxes": [
 			{"used": false},
 			{"used": true}

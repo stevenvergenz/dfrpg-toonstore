@@ -71,16 +71,7 @@ block content
 
 				// ko foreach: armor
 				tr
-					th
-						span.subtitle(data-bind='text: "Vs. "+vs')
-					// ko foreach: boxes
-					td
-						input.stressBox(type='checkbox', data-bind='attr: {id: $parent.name+"-"+$index()}, checked: used')
-						if logged_user == owner
-							label(data-bind='attr: {for: $parent.name+"-"+$index()}')
-						else
-							label
-					// /ko
+					td(colspan=9, data-bind='text: text')
 				// /ko
 
 	section#consequences
