@@ -15,11 +15,30 @@ block content
 
 	input#save(type='button', value='Save', onclick='pushToServer()')
 
+	if logged_user == owner
+		.editor
+			.field
+				label Character name:
+					input(type='text', value='Charcter Name', data-bind='value: name')
+			.field
+				label Player name:
+					input(type='text', value='Player Name', data-bind='value: player')
+
 	section#general
 		p.sectionHeader(data-bind='text: name')
 		p (
 			span(data-bind='text: player')
 			)
+
+	if logged_user == owner
+
+		.editor(data-bind='with: aspects')
+			.field
+				label High Concept:
+					input(type='text', value='High Concept', data-bind='value: high_concept.name')
+			.field
+				label Trouble:
+					input(type='text', value='Trouble', data-bind='value: trouble.name')
 
 	section#aspects(data-bind='with: aspects')
 		p.sectionHeader Aspects

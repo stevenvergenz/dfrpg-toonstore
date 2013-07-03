@@ -6,6 +6,10 @@ p,th,td {
 	float: left;
 }
 
+.editor {
+	float: right;
+}
+
 section {
 	border: 1px solid black;
 	border-radius: 5px;
