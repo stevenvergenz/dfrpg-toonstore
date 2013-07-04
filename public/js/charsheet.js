@@ -1,6 +1,7 @@
 var model;
 var viewModel;
 
+
 function SheetViewModel(data)
 {
 	// initialize general data
@@ -40,6 +41,32 @@ function SheetViewModel(data)
 			'boxes': ko.observableArray(),
 			'armor': ko.observableArray()
 		};
+		viewTrack.strength = ko.computed({
+			'read': function(){
+				return this.boxes().length;
+			},
+			'write': function(str){
+				var diff = str - this.boxes().length;
+				if( diff > 0 ){
+					for( var i=0; i<diff; i++ ){
+						this.boxes.push({
+							'used': ko.observable(false),
+							'icon': ko.computed(function(){
+								var icon = 'stressBox';
+								if( track.toughness != 0 && j == track.boxes.length-track.toughness )
+									icon += ' leftParen';
+								if( track.toughness != 0 && j == track.boxes.length-1 )
+									icon += ' rightParen';
+								return icon;
+							}, viewTrack)
+						});
+					}
+				}
+				else if( diff < 0 ){
+					
+				}
+			}}, viewTrack
+		);
 
 		// construct stress boxes
 		for( var j=0; j<track.boxes.length; j++ ){
@@ -178,3 +205,12 @@ function pushToServer(){
 	});
 }
 
+function removeAspect(index){
+	console.log('Removing aspect at ', index);
+	viewModel.aspects.aspects.splice(index,1);
+}
+
+function addAspect(){
+	console.log('Adding aspect');
+	viewModel.aspects.aspects.push( {name: ko.observable(), description: ko.observable()} );
+}

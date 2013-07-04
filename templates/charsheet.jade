@@ -39,6 +39,15 @@ block content
 			.field
 				label Trouble:
 					input(type='text', value='Trouble', data-bind='value: trouble.name')
+			.field
+				p Other Aspects:
+				div(data-bind='foreach: aspects')
+					input(type='text', data-bind='value: name')
+					a(href='javascript:;', data-bind='attr: {onclick: "removeAspect("+$index()+")"}') Remove
+					br
+				div
+				a(href='javascript:;', data-bind='attr: {onclick: "addAspect()"}') Add
+				
 
 	section#aspects(data-bind='with: aspects')
 		p.sectionHeader Aspects
@@ -56,6 +65,22 @@ block content
 			// ko foreach: aspects
 			p(data-bind='text: name')
 			// /ko
+
+
+	if logged_user == owner
+		.editor
+
+			table
+				thead
+					th Type
+					th Skill
+					th Boxes
+					th Toughness
+				tbody(data-bind='foreach: stress')
+					td: input(type='text', data-bind='value: name')
+					td: input(type='text', data-bind='value: skill')
+					td: input(type='number', min='1', max='8', data-bind='value: strength')
+					td: input(type='number', min='0', data-bind='value: toughness, attr: {max: strength}')
 
 	section#stress
 		p.sectionHeader Stress
@@ -77,13 +102,13 @@ block content
 					// ko foreach: [0,1,2,3,4,5,6,7]
 					td
 						// ko if: $parent.boxes()[$data] != undefined
-						input(type='checkbox', data-bind='attr: {id: $parent.name()+"-"+$data}, css: $parent.boxes()[$data].icon, checked: $parent.boxes()[$data].used')
+						input(type='checkbox', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}, css: $parent.boxes()[$data].icon, checked: $parent.boxes()[$data].used')
 						// /ko
 						// ko ifnot: $parent.boxes()[$data] != undefined
-						input.stressBox(type='checkbox', disabled='disabled', data-bind='attr: {id: $parent.name()+"-"+$data}')
+						input.stressBox(type='checkbox', disabled='disabled', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}')
 						// /ko
 						if logged_user == owner
-							label(data-bind='attr: {for: $parent.name()+"-"+$data}')
+							label(data-bind='attr: {for: $parent.name()+"-"+$parent.skill()+"-"+$data}')
 						else
 							label
 					// /ko
