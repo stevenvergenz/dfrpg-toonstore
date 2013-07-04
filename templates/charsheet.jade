@@ -7,13 +7,15 @@ block append includes
 	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous')
 	link(rel='stylesheet', type='text/css', href='/css/charsheet.css')
 	script(src='/js/knockout-2.2.1.js')
+	script(src='/js/viewmodel.js')
 	script(src='/js/charsheet.js')
 	script.
 		$(document).ready( initialize );
 
 block content
 
-	input#save(type='button', value='Save', onclick='pushToServer()')
+	if logged_user == owner
+		input#save(type='button', value='Save', onclick='pushToServer()')
 
 	if logged_user == owner
 		.editor
@@ -81,6 +83,9 @@ block content
 					td: input(type='text', data-bind='value: skill')
 					td: input(type='number', min='1', max='8', data-bind='value: strength')
 					td: input(type='number', min='0', data-bind='value: toughness, attr: {max: strength}')
+					td: a(href='javascript:;', data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}') Remove
+
+			a(href='javascript:;', onclick='addStressTrack()') Add
 
 	section#stress
 		p.sectionHeader Stress
