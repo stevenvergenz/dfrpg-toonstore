@@ -1,6 +1,21 @@
 var model;
 var viewModel;
 
+function StressBox(index, used, track)
+{
+	this.index = index;
+	this.used = ko.observable(used);
+	this.icon = ko.computed(function(){
+		var icon = 'stressBox';
+		console.log('Recalc: index', this.index, 'toughness', track.toughness(), 'length', track.boxes().length);
+		if( track.toughness() != 0 && this.index == track.boxes().length-track.toughness() )
+			icon += ' leftParen';
+		if( track.toughness() != 0 && this.index == track.boxes().length-1 )
+			icon += ' rightParen';
+		return icon;
+	}, this, {deferEvaluation: true});
+	
+}
 
 function SheetViewModel(data)
 {
@@ -49,39 +64,20 @@ function SheetViewModel(data)
 				var diff = str - this.boxes().length;
 				if( diff > 0 ){
 					for( var i=0; i<diff; i++ ){
-						this.boxes.push({
-							'used': ko.observable(false),
-							'icon': ko.computed(function(){
-								var icon = 'stressBox';
-								if( track.toughness != 0 && j == track.boxes.length-track.toughness )
-									icon += ' leftParen';
-								if( track.toughness != 0 && j == track.boxes.length-1 )
-									icon += ' rightParen';
-								return icon;
-							}, viewTrack)
-						});
+						this.boxes.push( new StressBox( this.boxes().length, false, this) );
 					}
 				}
 				else if( diff < 0 ){
-					
+					for( var i=diff; i<0; i++ ){
+						this.boxes.pop();
+					}
 				}
 			}}, viewTrack
 		);
 
 		// construct stress boxes
 		for( var j=0; j<track.boxes.length; j++ ){
-			var box = {
-				'used': ko.observable(track.boxes[j].used),
-				'icon': ko.computed(function(){
-					var icon = 'stressBox';
-					if( track.toughness != 0 && j == track.boxes.length-track.toughness )
-						icon += ' leftParen';
-					if( track.toughness != 0 && j == track.boxes.length-1 )
-						icon += ' rightParen';
-					return icon;
-				}, viewTrack)
-			}
-			viewTrack.boxes.push(box);
+			viewTrack.boxes.push( new StressBox(j, track.boxes[j].used, viewTrack) );
 		}
 
 		// construct armor boxes
