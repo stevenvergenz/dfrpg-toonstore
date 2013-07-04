@@ -72,7 +72,7 @@ block content
 	if logged_user == owner
 		.editor
 
-			table
+			table#stressEditTable
 				thead
 					th Type
 					th Skill
@@ -91,7 +91,7 @@ block content
 					tr(data-bind='foreach: armor')
 						td(colspan='4')
 							span Armor: 
-							input(type='number', min='0', data-bind='value: strength')
+							input(type='number', min='0', style='width: 50px;', data-bind='value: strength')
 							span vs.
 							input(type='text', data-bind='value: vs')
 						td: a(href='javascript:;', data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}') Remove

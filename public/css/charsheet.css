@@ -225,6 +225,10 @@ input.stressBox.leftParen.rightParen:checked + label {
 /*
  * Fine-tune sizes on various tables
  */
+table#stressEditTable input[type="text"] {
+	width: 80px;
+}
+
 table#stressTable thead {
 	text-align: center;
 }
