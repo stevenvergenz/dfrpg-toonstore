@@ -51,3 +51,17 @@ function addStressTrack(){
 		'armor': []
 	}) );
 }
+
+function addArmorTo(index){
+	console.log('Adding armor to track', index);
+	viewModel.stress()[index].armor.push( new StressArmor({
+		'vs': 'source',
+		'strength': 0
+	}) );
+}
+
+function removeArmorFrom(track,armor){
+	console.log('Removing armor', armor, 'from track', track);
+	viewModel.stress()[track].armor.splice(armor,1);
+}
+

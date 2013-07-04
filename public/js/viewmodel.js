@@ -13,50 +13,51 @@ function StressBox(index, used, track)
 	
 }
 
+function StressArmor(armor){
+	this.vs = ko.observable(armor.vs);
+	this.strength = ko.observable(armor.strength);
+	this.text = ko.computed(function(){
+		return 'Armor: '+this.strength()+' vs. '+this.vs();
+	}, this);
+}
+
 function StressTrack(track)
 {
-		// construct a single stress track
-		this.name = ko.observable(track.name);
-		this.skill = ko.observable(track.skill);
-		this.toughness = ko.observable(track.toughness);
-		this.boxes = ko.observableArray();
-		this.armor = ko.observableArray();
+	// construct a single stress track
+	this.name = ko.observable(track.name);
+	this.skill = ko.observable(track.skill);
+	this.toughness = ko.observable(track.toughness);
+	this.boxes = ko.observableArray();
+	this.armor = ko.observableArray();
 
-		this.strength = ko.computed({
-			'read': function(){
-				return this.boxes().length;
-			},
-			'write': function(str){
-				var diff = str - this.boxes().length;
-				if( diff > 0 ){
-					for( var i=0; i<diff; i++ ){
-						this.boxes.push( new StressBox( this.boxes().length, false, this) );
-					}
+	this.strength = ko.computed({
+		'read': function(){
+			return this.boxes().length;
+		},
+		'write': function(str){
+			var diff = str - this.boxes().length;
+			if( diff > 0 ){
+				for( var i=0; i<diff; i++ ){
+					this.boxes.push( new StressBox( this.boxes().length, false, this) );
 				}
-				else if( diff < 0 ){
-					for( var i=diff; i<0; i++ ){
-						this.boxes.pop();
-					}
+			}
+			else if( diff < 0 ){
+				for( var i=diff; i<0; i++ ){
+					this.boxes.pop();
 				}
-			}}, this
-		);
+			}
+		}}, this
+	);
 
-		// construct stress boxes
-		for( var j=0; j<track.boxes.length; j++ ){
-			this.boxes.push( new StressBox(j, track.boxes[j].used, this) );
-		}
+	// construct stress boxes
+	for( var j=0; j<track.boxes.length; j++ ){
+		this.boxes.push( new StressBox(j, track.boxes[j].used, this) );
+	}
 
-		// construct armor boxes
-		for( var j=0; j<track.armor.length; j++ ){
-			var armor = {
-				'vs': ko.observable(track.armor[j].vs),
-				'strength': ko.observable(track.armor[j].strength)
-			};
-			armor.text = ko.computed(function(){
-				return 'Armor: '+armor.strength()+' vs. '+armor.vs();
-			}, armor);
-			this.armor.push(armor);
-		}
+	// construct armor boxes
+	for( var j=0; j<track.armor.length; j++ ){
+		this.armor.push( new StressArmor(track.armor[j]) );
+	}
 }
 
 

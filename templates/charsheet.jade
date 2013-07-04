@@ -78,14 +78,28 @@ block content
 					th Skill
 					th Boxes
 					th Toughness
-				tbody(data-bind='foreach: stress')
-					td: input(type='text', data-bind='value: name')
-					td: input(type='text', data-bind='value: skill')
-					td: input(type='number', min='1', max='8', data-bind='value: strength')
-					td: input(type='number', min='0', data-bind='value: toughness, attr: {max: strength}')
-					td: a(href='javascript:;', data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}') Remove
 
-			a(href='javascript:;', onclick='addStressTrack()') Add
+				tbody(data-bind='foreach: stress')
+
+					tr
+						td: input(type='text', data-bind='value: name')
+						td: input(type='text', data-bind='value: skill')
+						td: input(type='number', min='1', max='8', data-bind='value: strength')
+						td: input(type='number', min='0', data-bind='value: toughness, attr: {max: strength}')
+						td: a(href='javascript:;', data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}') Remove
+
+					tr(data-bind='foreach: armor')
+						td(colspan='4')
+							span Armor: 
+							input(type='number', min='0', data-bind='value: strength')
+							span vs.
+							input(type='text', data-bind='value: vs')
+						td: a(href='javascript:;', data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}') Remove
+
+					tr: td(colspan='5')
+						a(href='javascript:;', data-bind='attr: {onclick: "addArmorTo("+$index()+")"}') Add armor
+
+			p: a(href='javascript:;', onclick='addStressTrack()') Add stress track
 
 	section#stress
 		p.sectionHeader Stress
