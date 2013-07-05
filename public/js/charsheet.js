@@ -65,3 +65,38 @@ function removeArmorFrom(track,armor){
 	viewModel.stress()[track].armor.splice(armor,1);
 }
 
+function removeConsequenceAt(index){
+	console.log('Removing consequence at', index);
+	viewModel.consequences.splice(index,1);
+}
+
+function addConsequence(){
+	console.log('Adding consequence');
+	viewModel.consequences.push( new Consequence({
+		'severity': 'Mild',
+		'mode': 'Any',
+		'used': false,
+		'aspect': ''
+	}));
+}
+
+function updateConseqAspect(conseq){
+	var index = conseq.id.substr(-1,1);
+	console.log(conseq.checked);
+	if( conseq.checked ){
+		console.log('Display input box');
+		$( $('.conseqAspectDisplay')[index] ).hide();
+		$( $('.conseqAspectEdit')[index] ).show().focus();
+	}
+	else {
+		viewModel.consequences()[index].aspect( '' );
+	}
+}
+
+function finishConseqUpdate(evt, index){
+	if( evt.charCode == 13 ){
+		console.log('Hiding field');
+		$(evt.target).hide();
+		$( $('.conseqAspectDisplay')[index] ).show();
+	}
+}

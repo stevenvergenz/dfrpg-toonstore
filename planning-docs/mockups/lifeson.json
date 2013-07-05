@@ -86,12 +86,12 @@
 		"aspect": ""},{
 
 		"severity": "Mild",
-		"mode": "P",
+		"mode": "Physical",
 		"used": true,
 		"aspect": "Spun about"},{
 
 		"severity": "Mild",
-		"mode": "M",
+		"mode": "Mental",
 		"used": false,
 		"aspect": ""},{
 

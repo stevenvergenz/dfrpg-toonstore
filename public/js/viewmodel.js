@@ -60,7 +60,16 @@ function StressTrack(track)
 	}
 }
 
-
+function Consequence(oldConseq){
+	this.severity = ko.observable(oldConseq.severity);
+	this.mode = ko.observable(oldConseq.mode);
+	this.used = ko.observable(oldConseq.used);
+	this.aspect = ko.observable(oldConseq.aspect);
+	this.magnitude = ko.computed(function(){
+		var map = {'Mild': -2, 'Moderate': -4, 'Severe': -6, 'Extreme': -8};
+		return map[this.severity()];
+	}, this);
+}
 
 function SheetViewModel(data)
 {
@@ -94,23 +103,43 @@ function SheetViewModel(data)
 		this.stress.push( new StressTrack(data.stress[i]) );
 	}
 
+	this.stress_types = ko.computed(function(){
+		var types = ['Any'];
+		for( var i in this.stress() ){
+			if( types.indexOf(this.stress()[i].name()) == -1 ){
+				types.push( this.stress()[i].name() );
+			}
+		}
+		return types;
+	}, this);
+
 	// initialize consequence data
 	this.consequences = ko.observableArray();
 	for( var i in data.consequences ){
-		var oldConseq = data.consequences[i];
-		var conseq = {
-			'severity': ko.observable(oldConseq.severity),
-			'mode': ko.observable(oldConseq.mode),
-			'used': ko.observable(oldConseq.used),
-			'aspect': ko.observable(oldConseq.aspect)
-		};
-		conseq.magnitude = ko.computed(function(){
-			var map = {'Mild': -2, 'Moderate': -4, 'Severe': -6, 'Extreme': -8};
-			return map[this.severity()];
-		}, conseq);
-		
-		this.consequences.push(conseq);
+		this.consequences.push( new Consequence(data.consequences[i]) );
 	}
+	this.sorted_consequences = ko.computed(function(){
+		return this.consequences().sort(function(left,right){
+			var severity = ['Mild', 'Moderate', 'Severe', 'Extreme'];
+			if( severity.indexOf(left.severity()) < severity.indexOf(right.severity()) ){
+				return -1;
+			}
+			else if( severity.indexOf(left.severity()) > severity.indexOf(right.severity()) ){
+				return 1;
+			}
+			else {
+				if( left.mode() < right.mode() ){
+					return -1;
+				}
+				else if( left.mode() > right.mode() ){
+					return 1;
+				}
+				else {
+					return 0;
+				}
+			}
+		});
+	}, this);
 
 	// initialize skills data
 	this.skills = {

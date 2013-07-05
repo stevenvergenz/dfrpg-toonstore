@@ -86,18 +86,16 @@ block content
 						td: input(type='text', data-bind='value: skill')
 						td: input(type='number', min='1', max='8', data-bind='value: strength')
 						td: input(type='number', min='0', data-bind='value: toughness, attr: {max: strength}')
+						td: a(href='javascript:;', data-bind='attr: {onclick: "addArmorTo("+$index()+")"}') Add armor
 						td: a(href='javascript:;', data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}') Remove
 
 					tr(data-bind='foreach: armor')
-						td(colspan='4')
+						td(colspan='5')
 							span Armor: 
 							input(type='number', min='0', style='width: 50px;', data-bind='value: strength')
 							span vs.
 							input(type='text', data-bind='value: vs')
 						td: a(href='javascript:;', data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}') Remove
-
-					tr: td(colspan='5')
-						a(href='javascript:;', data-bind='attr: {onclick: "addArmorTo("+$index()+")"}') Add armor
 
 			p: a(href='javascript:;', onclick='addStressTrack()') Add stress track
 
@@ -137,6 +135,26 @@ block content
 					td(colspan=9, data-bind='text: text')
 				// /ko
 
+	if logged_user == owner
+		.editor
+			table
+				thead
+					tr
+						th Type
+						th Track
+				tbody(data-bind='foreach: sorted_consequences')
+					tr
+						td
+							select(data-bind='value: severity')
+								option(value='Mild') Mild
+								option(value='Moderate') Moderate
+								option(value='Severe') Severe
+								option(value='Extreme') Extreme
+						td
+							select(data-bind='options: $root.stress_types, value: mode')
+						td: a(href='javascript:;', data-bind='attr: {onclick: "removeConsequenceAt("+$index()+")"}') Remove
+			a(href='javascript:;', onclick='addConsequence()') Add consequence
+
 	section#consequences
 		p.sectionHeader Consequences				
 
@@ -149,18 +167,23 @@ block content
 					th Used?
 					th Aspect
 
-			tbody(data-bind='foreach: consequences')
+			tbody(data-bind='foreach: sorted_consequences')
 				tr
 					td(data-bind='text: severity')
 					td(data-bind='text: mode')
 					td(data-bind='text: magnitude')
 					td
-						input.stressBox(type='checkbox', data-bind='attr: {id: "conseq"+$index()}, checked: used')
+						input.stressBox(type='checkbox', onchange='updateConseqAspect(this)', data-bind='attr: {id: "conseq"+$index()}, checked: used')
 						if logged_user == owner
 							label(data-bind='attr: {for: "conseq"+$index()}')
 						else
 							label
-					td(data-bind='text: aspect')
+					td
+						if logged_user == owner
+							span.conseqAspectDisplay(data-bind='text: aspect')
+							input.conseqAspectEdit(type='text', style='display: none; width: 100px;', data-bind='attr: {onkeypress: "finishConseqUpdate(event,"+$index()+")"}, value: aspect')
+						else
+							span(data-bind='text: aspect')
 
 
 	section#totals(data-bind='with: totals')
