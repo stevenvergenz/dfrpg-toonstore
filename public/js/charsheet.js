@@ -100,3 +100,19 @@ function finishConseqUpdate(evt, index){
 		$( $('.conseqAspectDisplay')[index] ).show();
 	}
 }
+
+function moveSkillTo(field, level, diff){
+	var newLevel = level+diff;
+	var i = viewModel.skills.lists[level]().indexOf(field);
+	if( newLevel >= 0 && newLevel <= viewModel.totals.skill_cap() ){
+		//console.log('Move', field, 'to', level+diff);
+		var skill = viewModel.skills.lists[level].splice(i,1);
+		viewModel.skills.lists[newLevel].push(field);
+	}
+}
+
+function addSkill(){
+	var skill = $('#newSkill').val();
+	viewModel.skills.lists[0].push(skill);
+}
+

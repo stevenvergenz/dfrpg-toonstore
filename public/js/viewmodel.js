@@ -143,12 +143,17 @@ function SheetViewModel(data)
 
 	// initialize skills data
 	this.skills = {
-		"6": ko.observableArray(data.skills[6] ? data.skills[6] : []),
-		"5": ko.observableArray(data.skills[5] ? data.skills[5] : []),
-		"4": ko.observableArray(data.skills[4] ? data.skills[4] : []),
-		"3": ko.observableArray(data.skills[3] ? data.skills[3] : []),
-		"2": ko.observableArray(data.skills[2] ? data.skills[2] : []),
-		"1": ko.observableArray(data.skills[1] ? data.skills[1] : []),
+		'lists': [
+			ko.observableArray(data.skills[0] ? data.skills[0] : []),
+			ko.observableArray(data.skills[1] ? data.skills[1] : []),
+			ko.observableArray(data.skills[2] ? data.skills[2] : []),
+			ko.observableArray(data.skills[3] ? data.skills[3] : []),
+			ko.observableArray(data.skills[4] ? data.skills[4] : []),
+			ko.observableArray(data.skills[5] ? data.skills[5] : []),
+			ko.observableArray(data.skills[6] ? data.skills[6] : []),
+			ko.observableArray(data.skills[7] ? data.skills[7] : []),
+			ko.observableArray(data.skills[8] ? data.skills[8] : []),
+		]
 	};
 
 	// initialize powers data
@@ -174,6 +179,7 @@ function SheetViewModel(data)
 		'skills_total': ko.observable(data.totals.skills_total),
 		'fate_points': ko.observable(data.totals.fate_points)
 	};
+
 	this.totals.refresh_adjustment = ko.computed(function(){
 		var sum = 0;
 		for( var i in this.powers() ){
@@ -181,22 +187,22 @@ function SheetViewModel(data)
 		}
 		return sum;
 	}, this);
+
 	this.totals.skill_text = function(val){
 		var ladder = ['Mediocre (+0)', 'Average (+1)', 'Fair (+2)', 'Good (+3)', 'Great (+4)', 'Superb (+5)', 'Fantastic (+6)', 'Epic (+7)', 'Legendary (+8)'];
 		return ladder[val];
 	};
+
 	this.totals.skill_cap_text = ko.computed(function(){
 		return this.skill_text(this.skill_cap());
 	}, this.totals);
+
 	this.totals.skills_spent = ko.computed(function(){
 		var sum = 0;
-		for( var i=1; i<=6; i++ ){
-			console.log(this.skills[i]());
-			sum += i * this.skills[i]().length;
+		for( var i in this.skills.lists ){
+			sum += i * this.skills.lists[i]().length;
 		}
-		console.log('Total', sum);
 		return sum;
-		//return this.skills_total() - this.skills_available();
 	}, this);
 
 	this.totals.skills_available = ko.computed(function(){
@@ -204,19 +210,29 @@ function SheetViewModel(data)
 	}, this.totals);
 
 	this.totals.adjusted_refresh = ko.computed(function(){
-		return this.base_refresh() + this.refresh_adjustment();
+		return parseInt(this.base_refresh()) + this.refresh_adjustment();
 	}, this.totals);
+
+	this.skills.edit_view = ko.computed(function(){
+		var sets = [];
+		for( var i=this.totals.skill_cap(); i>=0; i-- ){
+			sets.push({
+				'index': i,
+				'skills': this.skills.lists[i]
+			});
+		}
+		return sets;
+	}, this);
 
 	this.skills.skill_sets = ko.computed(function(){
 		var sets = [];
 		for( var i=this.totals.skill_cap(); i>0; i-- ){
 			sets.push({
 				'level_text': this.totals.skill_text(i),
-				'skills': this.skills[i]
+				'skills': this.skills.lists[i]()
 			});
 		}
 		return sets;
-		
 	}, this);
 }
 

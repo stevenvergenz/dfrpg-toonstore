@@ -185,6 +185,22 @@ block content
 						else
 							span(data-bind='text: aspect')
 
+	if logged_user == owner
+		.editor(data-bind='with: totals')
+
+			label Skill Cap
+				input(type='number', min=1, max=8, data-bind='value: skill_cap')
+			br
+			label Total Skill Points
+				input(type='number', min=1, data-bind='value: skills_total')
+			br
+			label Base Refresh
+				input(type='number', min=1, data-bind='value: base_refresh')
+			br
+			label Fate Points
+				input(type='number', min=0, data-bind='value: fate_points')
+			br
+
 
 	section#totals(data-bind='with: totals')
 
@@ -212,6 +228,24 @@ block content
 		p.label Adjusted Refresh
 		p#fatePoints.bubble.doubleBubble(data-bind='text: fate_points')
 		p.label Fate Points
+
+
+	if logged_user == owner
+		.editor
+
+			table
+				tbody(data-bind='foreach: skills.edit_view')
+					tr
+						th(data-bind='text: index')
+						// ko foreach: skills
+						td
+							span(data-bind='text: $data')
+							a(href='javascript:;', data-bind='attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+1+")"}') ↑
+							a(href='javascript:;', data-bind='attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+-1+")"}') ↓
+						// /ko
+
+			input#newSkill(type='text')
+			a(href='javascript:;', onclick='addSkill()') Add skill
 
 	section#skills
 		p.sectionHeader Skills
