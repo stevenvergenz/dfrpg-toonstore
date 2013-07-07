@@ -143,12 +143,12 @@ function SheetViewModel(data)
 
 	// initialize skills data
 	this.skills = {
-		"6": ko.observableArray(data.skills[6]),
-		"5": ko.observableArray(data.skills[5]),
-		"4": ko.observableArray(data.skills[4]),
-		"3": ko.observableArray(data.skills[3]),
-		"2": ko.observableArray(data.skills[2]),
-		"1": ko.observableArray(data.skills[1])
+		"6": ko.observableArray(data.skills[6] ? data.skills[6] : []),
+		"5": ko.observableArray(data.skills[5] ? data.skills[5] : []),
+		"4": ko.observableArray(data.skills[4] ? data.skills[4] : []),
+		"3": ko.observableArray(data.skills[3] ? data.skills[3] : []),
+		"2": ko.observableArray(data.skills[2] ? data.skills[2] : []),
+		"1": ko.observableArray(data.skills[1] ? data.skills[1] : []),
 	};
 
 	// initialize powers data
@@ -165,13 +165,6 @@ function SheetViewModel(data)
 		}, power);
 		this.powers.push(power);
 	}
-	this.powers.total = ko.computed(function(){
-		var sum = 0;
-		for( var i in this.powers() ){
-			sum += this.powers()[i].cost();
-		}
-		return sum;
-	}, this);
 
 	// initialize totals data
 	this.totals = {
@@ -179,10 +172,15 @@ function SheetViewModel(data)
 		'base_refresh': ko.observable(data.totals.base_refresh),
 		'skill_cap': ko.observable(data.totals.skill_cap),
 		'skills_total': ko.observable(data.totals.skills_total),
-		'skills_available': ko.observable(data.totals.skills_available),
-		'adjusted_refresh': ko.observable(data.totals.adjusted_refresh),
 		'fate_points': ko.observable(data.totals.fate_points)
 	};
+	this.totals.refresh_adjustment = ko.computed(function(){
+		var sum = 0;
+		for( var i in this.powers() ){
+			sum += this.powers()[i].cost();
+		}
+		return sum;
+	}, this);
 	this.totals.skill_text = function(val){
 		var ladder = ['Mediocre (+0)', 'Average (+1)', 'Fair (+2)', 'Good (+3)', 'Great (+4)', 'Superb (+5)', 'Fantastic (+6)', 'Epic (+7)', 'Legendary (+8)'];
 		return ladder[val];
@@ -191,9 +189,23 @@ function SheetViewModel(data)
 		return this.skill_text(this.skill_cap());
 	}, this.totals);
 	this.totals.skills_spent = ko.computed(function(){
-		return this.skills_total() - this.skills_available();
+		var sum = 0;
+		for( var i=1; i<=6; i++ ){
+			console.log(this.skills[i]());
+			sum += i * this.skills[i]().length;
+		}
+		console.log('Total', sum);
+		return sum;
+		//return this.skills_total() - this.skills_available();
+	}, this);
+
+	this.totals.skills_available = ko.computed(function(){
+		return this.skills_total() - this.skills_spent();
 	}, this.totals);
 
+	this.totals.adjusted_refresh = ko.computed(function(){
+		return this.base_refresh() + this.refresh_adjustment();
+	}, this.totals);
 
 	this.skills.skill_sets = ko.computed(function(){
 		var sets = [];
