@@ -108,7 +108,24 @@ function moveSkillTo(field, level, diff){
 		//console.log('Move', field, 'to', level+diff);
 		var skill = viewModel.skills.lists[level].splice(i,1);
 		viewModel.skills.lists[newLevel].push(field);
+		viewModel.skills.lists[newLevel].sort();
 	}
+	if( validateSkills() ){
+		$('#validSkillLadder').html('Valid');
+	}
+	else {
+		$('#validSkillLadder').html('INVALID')
+	}
+		
+}
+
+function validateSkills(){
+	var valid = true;
+	for( var i=1; i<viewModel.totals.skill_cap(); i++ ){
+		var skills = viewModel.skills.lists;
+		valid &= skills[i]().length >= skills[i+1]().length;
+	}
+	return valid;
 }
 
 function addSkill(){

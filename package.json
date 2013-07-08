@@ -1,5 +1,6 @@
 {
 	"name": "toonstore",
+	"version": "0.1.0",
 	"description": "Store Dresden Files RPG characters on the cloud",
 	"author": "Steven Vergenz, Michael Calvo",
 	"repository": {
@@ -11,5 +12,5 @@
 		"express": "3.2.x",
 		"jade": "0.31.x"
 	},
-	"engine": "node >= 0.10.0"
+	"engine": "node >= 0.10.3"
 }

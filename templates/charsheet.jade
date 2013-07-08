@@ -230,31 +230,27 @@ block content
 		p.label Fate Points
 
 
-	if logged_user == owner
-		.editor
-
-			table
-				tbody(data-bind='foreach: skills.edit_view')
-					tr
-						th(data-bind='text: index')
-						// ko foreach: skills
-						td
-							span(data-bind='text: $data')
-							a(href='javascript:;', data-bind='attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+1+")"}') ↑
-							a(href='javascript:;', data-bind='attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+-1+")"}') ↓
-						// /ko
-
-			input#newSkill(type='text')
-			a(href='javascript:;', onclick='addSkill()') Add skill
-
 	section#skills
 		p.sectionHeader Skills
+			if logged_user == owner
+				input(type='image', src='/img/edit32.png', style='margin-left: 10px; width: 20px; height: 20px;',
+					onclick='viewModel.skills.editing( !viewModel.skills.editing() )')
 
 		table#skillTable
 			tbody(data-bind='foreach: skills.skill_sets')
-				tr
+				tr(data-bind='if: $root.skills.editing() || index != 0')
 					th(data-bind='text: level_text')
-					td: p(data-bind='text: skills.sort().join(", ")')
+					td: p(data-bind='foreach: skills')
+						span(data-bind='visible: $index() != 0') , 
+						span(data-bind='text: $data')
+						if logged_user == owner
+							a(href='javascript:;', data-bind='visible: $root.skills.editing() && $parent.index < $root.totals.skill_cap(), attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+1+")"}') ↑
+							a(href='javascript:;', data-bind='visible: $root.skills.editing() && $parent.index > 0, attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+-1+")"}') ↓
+						
+		div(data-bind='if: skills.editing()')
+			input#newSkill(type='text')
+			input(type='button', value='Add skill', onclick='addSkill()')
+			p#validSkillLadder Valid
 
 	section#powers
 		p.sectionHeader Stunts & Powers
