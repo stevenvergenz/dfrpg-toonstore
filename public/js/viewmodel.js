@@ -71,6 +71,10 @@ function Consequence(oldConseq){
 	}, this);
 }
 
+function escapeHtml(str){
+	return $('<pre>').text(str).html();
+}
+
 function SheetViewModel(data)
 {
 	// initialize general data
@@ -166,11 +170,17 @@ function SheetViewModel(data)
 			'name': ko.observable(oldPower.name),
 			'description': ko.observable(oldPower.description)
 		};
-		power.clean_description = ko.computed(function(){
-			return this.description().split('<br>');
+		power.clean_description = ko.computed({
+			'read': function(){
+				return this.description().replace(/<br>/g, '\n');
+			},
+			'write': function(value){
+				this.description( escapeHtml(value).replace(/\n/g, '<br>') );
+			}
 		}, power);
 		this.powers.push(power);
 	}
+	this.powers.editing = ko.observable(false);
 
 	// initialize totals data
 	this.totals = {
@@ -184,7 +194,7 @@ function SheetViewModel(data)
 	this.totals.refresh_adjustment = ko.computed(function(){
 		var sum = 0;
 		for( var i in this.powers() ){
-			sum += this.powers()[i].cost();
+			sum += parseInt(this.powers()[i].cost());
 		}
 		return sum;
 	}, this);

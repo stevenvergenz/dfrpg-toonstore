@@ -233,7 +233,7 @@ block content
 	section#skills
 		p.sectionHeader Skills
 			if logged_user == owner
-				input(type='image', src='/img/edit32.png', style='margin-left: 10px; width: 20px; height: 20px;',
+				input.editButton(type='image', src='/img/edit32.png',
 					onclick='viewModel.skills.editing( !viewModel.skills.editing() )')
 
 		table#skillTable
@@ -243,9 +243,8 @@ block content
 					td: p(data-bind='foreach: skills')
 						span(data-bind='visible: $index() != 0') , 
 						span(data-bind='text: $data')
-						if logged_user == owner
-							a(href='javascript:;', data-bind='visible: $root.skills.editing() && $parent.index < $root.totals.skill_cap(), attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+1+")"}') ↑
-							a(href='javascript:;', data-bind='visible: $root.skills.editing() && $parent.index > 0, attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+-1+")"}') ↓
+						a(href='javascript:;', data-bind='visible: $root.skills.editing() && $parent.index < $root.totals.skill_cap(), attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+1+")"}') ↑
+						a(href='javascript:;', data-bind='visible: $root.skills.editing() && $parent.index > 0, attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+-1+")"}') ↓
 						
 		div(data-bind='if: skills.editing()')
 			input#newSkill(type='text')
@@ -254,6 +253,9 @@ block content
 
 	section#powers
 		p.sectionHeader Stunts & Powers
+			if logged_user == owner
+				input.editButton(type='image', src='/img/edit32.png',
+					onclick='viewModel.powers.editing( !viewModel.powers.editing() )')
 
 		table#powerTable
 			thead: tr
@@ -261,12 +263,22 @@ block content
 				th Ability
 
 			tbody(data-bind='foreach: powers')
-				tr
+				tr(data-bind='ifnot: $root.powers.editing')
 					td.mainRow(data-bind='text: cost')
 					td.mainRow(data-bind='text: name')
-				tr(data-bind='if: description')
+				tr(data-bind='if: $root.powers.editing')
+					td.mainRow: input(type='number', min='-8', max='8', data-bind='value: cost')
+					td.mainRow: input(type='text', data-bind='value: name')
+				tr(data-bind='if: description() && !$root.powers.editing()')
 					td &nbsp;
 					td: p(data-bind='html: description')
+				tr(data-bind='if: $root.powers.editing')
+					td: a(href='javascript:;', data-bind='attr: {onclick: "removePower("+$index()+")"}') Remove
+					td: textarea(data-bind='value: clean_description')
 				tr(data-bind='if: $index() == $root.powers().length-1')
 					td.mainRow(style='border-top: solid black 1px;', data-bind='text: $root.totals.refresh_adjustment')
 					td.mainRow Total Refresh Adjustment
+
+		a(href='javascript:;', onclick='addPower()', data-bind='visible: powers.editing') Add power
+
+

@@ -133,3 +133,14 @@ function addSkill(){
 	viewModel.skills.lists[0].push(skill);
 }
 
+function removePower(i){
+	viewModel.powers.splice(i,1);
+}
+
+function addPower(){
+	viewModel.powers.push({
+		'cost': ko.observable(0),
+		'name': ko.observable('New power'),
+		'description': ko.observable('A short description')
+	});
+}

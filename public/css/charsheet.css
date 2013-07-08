@@ -55,13 +55,23 @@ table {
 	width: 100%;
 }
 
-img.editIcon {
-	margin: 5px;
+input.editButton {
+	margin-left: 10px;
+	width: 20px;
+	height: 20px;
 }
 
 th span.subtitle {
 	font-size: 80%;
 	font-weight: normal;
+}
+
+#powers textarea, #powers input[type='text'] {
+	width: 100%;
+}
+
+#powers textarea {
+	height: 70px;
 }
 
 /*
@@ -268,7 +278,7 @@ table#powerTable p {
 	font-size: 80%;
 }
 table#powerTable .mainRow {
-	padding-top: 10px;
+	padding-top: 5px;
 }
 
 table#powerTable .mainRow:first-child {
