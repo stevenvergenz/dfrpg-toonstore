@@ -71,6 +71,20 @@ function Consequence(oldConseq){
 	}, this);
 }
 
+function Power(data){
+	this.cost = ko.observable(data.cost);
+	this.name = ko.observable(data.name);
+	this.description = ko.observable(data.description);
+	this.clean_description = ko.computed({
+		'read': function(){
+			return this.description().replace(/<br>/g, '\n');
+		},
+		'write': function(value){
+			this.description( escapeHtml(value).replace(/\n/g, '<br>') );
+		}
+	}, this);
+}
+
 function escapeHtml(str){
 	return $('<pre>').text(str).html();
 }
@@ -164,21 +178,7 @@ function SheetViewModel(data)
 	// initialize powers data
 	this.powers = ko.observableArray();
 	for( var i in data.powers ){
-		var oldPower = data.powers[i];
-		var power = {
-			'cost': ko.observable(oldPower.cost),
-			'name': ko.observable(oldPower.name),
-			'description': ko.observable(oldPower.description)
-		};
-		power.clean_description = ko.computed({
-			'read': function(){
-				return this.description().replace(/<br>/g, '\n');
-			},
-			'write': function(value){
-				this.description( escapeHtml(value).replace(/\n/g, '<br>') );
-			}
-		}, power);
-		this.powers.push(power);
+		this.powers.push( new Power(data.powers[i]) );
 	}
 	this.powers.editing = ko.observable(false);
 

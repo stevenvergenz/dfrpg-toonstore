@@ -262,7 +262,9 @@ block content
 				th Cost
 				th Ability
 
-			tbody(data-bind='foreach: powers')
+			tbody
+
+				// ko foreach: powers
 				tr(data-bind='ifnot: $root.powers.editing')
 					td.mainRow(data-bind='text: cost')
 					td.mainRow(data-bind='text: name')
@@ -275,7 +277,10 @@ block content
 				tr(data-bind='if: $root.powers.editing')
 					td: a(href='javascript:;', data-bind='attr: {onclick: "removePower("+$index()+")"}') Remove
 					td: textarea(data-bind='value: clean_description')
-				tr(data-bind='if: $index() == $root.powers().length-1')
+
+				// /ko
+
+				tr
 					td.mainRow(style='border-top: solid black 1px;', data-bind='text: $root.totals.refresh_adjustment')
 					td.mainRow Total Refresh Adjustment
 

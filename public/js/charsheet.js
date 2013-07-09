@@ -138,9 +138,9 @@ function removePower(i){
 }
 
 function addPower(){
-	viewModel.powers.push({
-		'cost': ko.observable(0),
-		'name': ko.observable('New power'),
-		'description': ko.observable('A short description')
-	});
+	viewModel.powers.push( new Power({
+		'cost': 0,
+		'name': 'New power',
+		'description': 'A short description'
+	}) );
 }
