@@ -94,6 +94,7 @@ function SheetViewModel(data)
 	// initialize general data
 	this.name = ko.observable(data.name);
 	this.player = ko.observable(data.player);
+	this.generalEditing = ko.observable(false);
 
 	// initialize aspect data
 	this.aspects = {
@@ -105,7 +106,8 @@ function SheetViewModel(data)
 			'name': ko.observable(data.aspects.trouble.name),
 			'description': ko.observable(data.aspects.trouble.description)
 		},
-		'aspects': ko.observableArray()
+		'aspects': ko.observableArray(),
+		'editing': ko.observable(false)
 	};
 	for( var i in data.aspects.aspects ){
 		var aspect = data.aspects.aspects[i];

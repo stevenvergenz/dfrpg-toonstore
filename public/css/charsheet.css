@@ -74,6 +74,10 @@ th span.subtitle {
 	height: 70px;
 }
 
+#aspects input[type='text'] {
+	width: 70%;
+}
+
 /*
  * Style the totals box more or less manually
  */

@@ -17,57 +17,44 @@ block content
 	if logged_user == owner
 		input#save(type='button', value='Save', onclick='pushToServer()')
 
-	if logged_user == owner
-		.editor
-			.field
-				label Character name:
-					input(type='text', value='Charcter Name', data-bind='value: name')
-			.field
-				label Player name:
-					input(type='text', value='Player Name', data-bind='value: player')
-
 	section#general
-		p.sectionHeader(data-bind='text: name')
-		p (
-			span(data-bind='text: player')
-			)
+		p.sectionHeader
+			span(data-bind='visible: !generalEditing(), text: name')
+			input(type='text', data-bind='visible: generalEditing, value: name')
+			if logged_user == owner
+				input.editButton(type='image', src='/img/edit32.png',
+					onclick='viewModel.generalEditing( !viewModel.generalEditing() )')
+		p
+			span(data-bind='visible: !generalEditing(), text: "("+player()+")"')
+			input(type='text', data-bind='visible: generalEditing, value: player')
 
-	if logged_user == owner
-
-		.editor(data-bind='with: aspects')
-			.field
-				label High Concept:
-					input(type='text', value='High Concept', data-bind='value: high_concept.name')
-			.field
-				label Trouble:
-					input(type='text', value='Trouble', data-bind='value: trouble.name')
-			.field
-				p Other Aspects:
-				div(data-bind='foreach: aspects')
-					input(type='text', data-bind='value: name')
-					a(href='javascript:;', data-bind='attr: {onclick: "removeAspect("+$index()+")"}') Remove
-					br
-				div
-				a(href='javascript:;', data-bind='attr: {onclick: "addAspect()"}') Add
-				
 
 	section#aspects(data-bind='with: aspects')
 		p.sectionHeader Aspects
+			if logged_user == owner
+				input.editButton(type='image', src='/img/edit32.png',
+					onclick='viewModel.aspects.editing( !viewModel.aspects.editing() )')
 
 		.field
 			p.fieldLabel High Concept:
-			p(data-bind='text: high_concept.name')
+			p(data-bind='visible: !editing(), text: high_concept.name')
+			input(type='text', data-bind='visible: editing, value: high_concept.name')
 
 		.field
 			p.fieldLabel Trouble:
-			p(data-bind='text: trouble.name')
+			p(data-bind='visible: !editing(), text: trouble.name')
+			input(type='text', data-bind='visible: editing, value: trouble.name')
 
 		.field
 			p.fieldLabel Other Aspects:
 			// ko foreach: aspects
-			p(data-bind='text: name')
+			p(data-bind='visible: !$parent.editing(), text: name')
+			div(data-bind='if: $parent.editing')
+				input(type='text', data-bind='visible: $parent.editing, value: name')
+				a(href='javascript:;', data-bind='attr: {onclick: "removeAspect("+$index()+")"}') Remove
 			// /ko
 
+		a(href='javascript:;', data-bind='visible: editing, attr: {onclick: "addAspect()"}') Add
 
 	if logged_user == owner
 		.editor
