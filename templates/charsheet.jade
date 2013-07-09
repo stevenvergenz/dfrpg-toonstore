@@ -122,28 +122,12 @@ block content
 					td(colspan=9, data-bind='text: text')
 				// /ko
 
-	if logged_user == owner
-		.editor
-			table
-				thead
-					tr
-						th Type
-						th Track
-				tbody(data-bind='foreach: sorted_consequences')
-					tr
-						td
-							select(data-bind='value: severity')
-								option(value='Mild') Mild
-								option(value='Moderate') Moderate
-								option(value='Severe') Severe
-								option(value='Extreme') Extreme
-						td
-							select(data-bind='options: $root.stress_types, value: mode')
-						td: a(href='javascript:;', data-bind='attr: {onclick: "removeConsequenceAt("+$index()+")"}') Remove
-			a(href='javascript:;', onclick='addConsequence()') Add consequence
 
 	section#consequences
 		p.sectionHeader Consequences				
+			if logged_user == owner
+				input.editButton(type='image', src='/img/edit32.png',
+					onclick='viewModel.consequences.editing( !viewModel.consequences.editing() )')
 
 		table#conseqTable
 			thead
@@ -156,8 +140,18 @@ block content
 
 			tbody(data-bind='foreach: sorted_consequences')
 				tr
-					td(data-bind='text: severity')
-					td(data-bind='text: mode')
+					td
+						span(data-bind='visible: !$root.consequences.editing(), text: severity')
+						select(data-bind='visible: $root.consequences.editing, value: severity')
+							option(value='Mild') Mild
+							option(value='Moderate') Moderate
+							option(value='Severe') Severe
+							option(value='Extreme') Extreme
+
+					td
+						span(data-bind='visible: !$root.consequences.editing(), text: mode')
+						select(data-bind='visible: $root.consequences.editing, options: $root.stress_types, value: mode')
+
 					td(data-bind='text: magnitude')
 					td
 						input.stressBox(type='checkbox', onchange='updateConseqAspect(this)', data-bind='attr: {id: "conseq"+$index()}, checked: used')
@@ -171,6 +165,12 @@ block content
 							input.conseqAspectEdit(type='text', style='display: none; width: 100px;', data-bind='attr: {onkeypress: "finishConseqUpdate(event,"+$index()+")"}, value: aspect')
 						else
 							span(data-bind='text: aspect')
+
+				tr
+					td: a(href='javascript:;', data-bind='visible: $root.consequences.editing, attr: {onclick: "removeConsequenceAt("+$index()+")"}') Remove
+
+		a(href='javascript:;', onclick='addConsequence()', data-bind='visible: $root.consequences.editing') Add consequence
+
 
 	if logged_user == owner
 		.editor(data-bind='with: totals')

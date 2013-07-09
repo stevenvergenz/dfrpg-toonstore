@@ -135,6 +135,7 @@ function SheetViewModel(data)
 
 	// initialize consequence data
 	this.consequences = ko.observableArray();
+	this.consequences.editing = ko.observable(false);
 	for( var i in data.consequences ){
 		this.consequences.push( new Consequence(data.consequences[i]) );
 	}
