@@ -1,4 +1,4 @@
-p,th,td {
+p,th,td,label {
 	font-family: 'Metamorphous', cursive;
 }
 
@@ -162,16 +162,6 @@ p#skillsAvailable {
 	left: 316px;
 }
 
-p#baseRefresh {
-	top: 104px;
-	left: 159px;
-}
-p#baseRefresh + p.label {
-	top: 105px;
-	left: 208px;
-	width: 125px;
-}
-
 p#adjustedRefresh {
 	top: 159px;
 	left: 174px;
@@ -180,15 +170,6 @@ p#adjustedRefresh + p.label {
 	top: 161px;
 	left: 220px;
 	width: 90px;
-}
-
-p#fatePoints {
-	top: 213px;
-	left: 161px;
-}
-p#fatePoints + p.label {
-	top: 228px;
-	left: 215px;
 }
 
 /*

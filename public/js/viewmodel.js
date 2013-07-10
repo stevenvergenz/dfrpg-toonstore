@@ -187,12 +187,27 @@ function SheetViewModel(data)
 
 	// initialize totals data
 	this.totals = {
-		'power_level': ko.observable(data.totals.power_level),
 		'base_refresh': ko.observable(data.totals.base_refresh),
 		'skill_cap': ko.observable(data.totals.skill_cap),
 		'skills_total': ko.observable(data.totals.skills_total),
-		'fate_points': ko.observable(data.totals.fate_points)
+		'fate_points': ko.observable(data.totals.fate_points),
+		'editing': ko.observable(false)
 	};
+
+	this.totals.power_level = ko.computed(function(){
+		if( this.base_refresh() < 7 ){
+			return 'Feet in the Water';
+		}
+		else if( this.base_refresh() < 8 ){
+			return 'Up to Your Waist';
+		}
+		else if( this.base_refresh() < 10 ){
+			return 'Chest-Deep';
+		}
+		else {
+			return 'Submerged';
+		}
+	}, this.totals);
 
 	this.totals.refresh_adjustment = ko.computed(function(){
 		var sum = 0;
