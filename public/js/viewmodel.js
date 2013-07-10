@@ -122,6 +122,7 @@ function SheetViewModel(data)
 	for( var i in data.stress ){
 		this.stress.push( new StressTrack(data.stress[i]) );
 	}
+	this.stress.editing = ko.observable(false);
 
 	this.stress_types = ko.computed(function(){
 		var types = ['Any'];

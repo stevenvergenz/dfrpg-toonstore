@@ -12,6 +12,8 @@ block append includes
 	script.
 		$(document).ready( initialize );
 
+	meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+
 block content
 
 	if logged_user == owner
@@ -59,53 +61,35 @@ block content
 		input.iconButton(type='image', src='/img/glyphicons/glyphicons_190_circle_plus.png',
 			onclick='addAspect()', data-bind='visible: editing')
 
-	if logged_user == owner
-		.editor
-
-			table#stressEditTable
-				thead
-					th Type
-					th Skill
-					th Boxes
-					th Toughness
-
-				tbody(data-bind='foreach: stress')
-
-					tr
-						td: input(type='text', data-bind='value: name')
-						td: input(type='text', data-bind='value: skill')
-						td: input(type='number', min='1', max='8', data-bind='value: strength')
-						td: input(type='number', min='0', data-bind='value: toughness, attr: {max: strength}')
-						td: a(href='javascript:;', data-bind='attr: {onclick: "addArmorTo("+$index()+")"}') Add armor
-						td: a(href='javascript:;', data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}') Remove
-
-					tr(data-bind='foreach: armor')
-						td(colspan='5')
-							span Armor: 
-							input(type='number', min='0', style='width: 50px;', data-bind='value: strength')
-							span vs.
-							input(type='text', data-bind='value: vs')
-						td: a(href='javascript:;', data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}') Remove
-
-			p: a(href='javascript:;', onclick='addStressTrack()') Add stress track
 
 	section#stress
 		p.sectionHeader Stress
+			if logged_user == owner
+				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
+					onclick='viewModel.stress.editing( !viewModel.stress.editing() )')
 
 		table#stressTable
-			thead: tr
-				th &nbsp;
-				for i in [1,2,3,4,5,6,7,8]
-					th= i
+			thead
+				tr(data-bind='ifnot: $root.stress.editing')
+					th &nbsp;
+					for i in [1,2,3,4,5,6,7,8]
+						th= i
+				tr(data-bind='if: $root.stress.editing')
+					th Name/Skill
+					th Boxes
+					th Tough
 
 			tbody(data-bind='foreach: stress')
 
 				tr
 					th
-						span(data-bind='text: name')
+						span(data-bind='visible: !$root.stress.editing(), text: name')
+						input(type='text', style='width: 100px;', data-bind='visible: $root.stress.editing, value: name')
 						br
-						span(class='subtitle', data-bind='text: "("+skill()+")"')
+						span(class='subtitle', data-bind='visible: !$root.stress.editing(), text: "("+skill()+")"')
+						input(type='text', style='width: 100px;', data-bind='visible: $root.stress.editing, value: skill')
 
+					// ko ifnot: $root.stress.editing
 					// ko foreach: [0,1,2,3,4,5,6,7]
 					td
 						// ko if: $parent.boxes()[$data] != undefined
@@ -119,15 +103,37 @@ block content
 						else
 							label
 					// /ko
+					// /ko
+
+					// ko if: $root.stress.editing
+					td: input(type='number', style='width: 95%;', min='1', max='8', data-bind='value: strength')
+					td: input(type='number', style='width: 95%;', min='0', data-bind='value: toughness, attr: {max: strength}')
+					td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_270_shield.png',
+						data-bind='attr: {onclick: "addArmorTo("+$index()+")"}')
+					td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
+						data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}')
+					// /ko
 
 				// ko foreach: armor
-				tr
+				tr(data-bind='if: $root.stress.editing')
+					td(colspan=4)
+						span Armor: 
+						input(type='number', min='0', style='width: 50px;', data-bind='value: strength')
+						span  vs. 
+						input(type='text', style='width: 100px;', data-bind='value: vs')
+					td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
+						data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}')
+
+				tr(data-bind='ifnot: $root.stress.editing')
 					td(colspan=9, data-bind='text: text')
 				// /ko
 
+		input.iconButton(type='image', data-bind='visible: $root.stress.editing',
+			src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addStressTrack()')
+
 
 	section#consequences
-		p.sectionHeader Consequences				
+		p.sectionHeader Consequences
 			if logged_user == owner
 				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
 					onclick='viewModel.consequences.editing( !viewModel.consequences.editing() )')
