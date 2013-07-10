@@ -20,12 +20,15 @@ block content
 		input#save(type='button', value='Save', onclick='pushToServer()')
 
 	section#general
+
+		if logged_user == owner
+			input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
+				style='position: absolute; left: 345px;',
+				onclick='viewModel.generalEditing( !viewModel.generalEditing() )')
+
 		p.sectionHeader
 			span(data-bind='visible: !generalEditing(), text: name')
 			input(type='text', data-bind='visible: generalEditing, value: name')
-			if logged_user == owner
-				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
-					onclick='viewModel.generalEditing( !viewModel.generalEditing() )')
 		p
 			span(data-bind='visible: !generalEditing(), text: "("+player()+")"')
 			input(type='text', data-bind='visible: generalEditing, value: player')
@@ -143,7 +146,7 @@ block content
 				tr
 					th Type
 					th P/M/S
-					th Stress
+					th(data-bind='visible: !$root.consequences.editing()') Stress
 					th Used?
 					th Aspect
 
@@ -161,7 +164,7 @@ block content
 						span(data-bind='visible: !$root.consequences.editing(), text: mode')
 						select(data-bind='visible: $root.consequences.editing, options: $root.stress_types, value: mode')
 
-					td(data-bind='text: magnitude')
+					td(data-bind='visible: !$root.consequences.editing(), text: magnitude')
 					td
 						input.stressBox(type='checkbox', onchange='updateConseqAspect(this)', data-bind='attr: {id: "conseq"+$index()}, checked: used')
 						if logged_user == owner
@@ -175,10 +178,11 @@ block content
 						else
 							span(data-bind='text: aspect')
 
-				tr
-					td: a(href='javascript:;', data-bind='visible: $root.consequences.editing, attr: {onclick: "removeConsequenceAt("+$index()+")"}') Remove
+					td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
+						data-bind='visible: $root.consequences.editing, attr: {onclick: "removeConsequenceAt("+$index()+")"}')
 
-		a(href='javascript:;', onclick='addConsequence()', data-bind='visible: $root.consequences.editing') Add consequence
+		input.iconButton(type='image', data-bind='visible: $root.consequences.editing',
+			src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addConsequence()')
 
 	section#totals(data-bind='with: totals')
 
@@ -266,7 +270,8 @@ block content
 					td &nbsp;
 					td: p(data-bind='html: description')
 				tr(data-bind='if: $root.powers.editing')
-					td: a(href='javascript:;', data-bind='attr: {onclick: "removePower("+$index()+")"}') Remove
+					td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
+						data-bind='attr: {onclick: "removePower("+$index()+")"}')
 					td: textarea(data-bind='value: clean_description')
 
 				// /ko
@@ -275,6 +280,6 @@ block content
 					td.mainRow(style='border-top: solid black 1px;', data-bind='text: $root.totals.refresh_adjustment')
 					td.mainRow Total Refresh Adjustment
 
-		a(href='javascript:;', onclick='addPower()', data-bind='visible: powers.editing') Add power
-
+		input.iconButton(type='image', data-bind='visible: powers.editing',
+			src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addPower()')
 
