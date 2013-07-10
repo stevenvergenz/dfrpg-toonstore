@@ -22,7 +22,7 @@ block content
 			span(data-bind='visible: !generalEditing(), text: name')
 			input(type='text', data-bind='visible: generalEditing, value: name')
 			if logged_user == owner
-				input.editButton(type='image', src='/img/edit32.png',
+				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
 					onclick='viewModel.generalEditing( !viewModel.generalEditing() )')
 		p
 			span(data-bind='visible: !generalEditing(), text: "("+player()+")"')
@@ -32,7 +32,7 @@ block content
 	section#aspects(data-bind='with: aspects')
 		p.sectionHeader Aspects
 			if logged_user == owner
-				input.editButton(type='image', src='/img/edit32.png',
+				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
 					onclick='viewModel.aspects.editing( !viewModel.aspects.editing() )')
 
 		.field
@@ -51,10 +51,13 @@ block content
 			p(data-bind='visible: !$parent.editing(), text: name')
 			div(data-bind='if: $parent.editing')
 				input(type='text', data-bind='visible: $parent.editing, value: name')
-				a(href='javascript:;', data-bind='attr: {onclick: "removeAspect("+$index()+")"}') Remove
+				input.iconButton(type='image', style='width: 15px; height: 15px;',
+					src='/img/glyphicons/glyphicons_192_circle_remove.png',
+					data-bind='attr: {onclick: "removeAspect("+$index()+")"}')
 			// /ko
 
-		a(href='javascript:;', data-bind='visible: editing, attr: {onclick: "addAspect()"}') Add
+		input.iconButton(type='image', src='/img/glyphicons/glyphicons_190_circle_plus.png',
+			onclick='addAspect()', data-bind='visible: editing')
 
 	if logged_user == owner
 		.editor
@@ -126,7 +129,7 @@ block content
 	section#consequences
 		p.sectionHeader Consequences				
 			if logged_user == owner
-				input.editButton(type='image', src='/img/edit32.png',
+				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
 					onclick='viewModel.consequences.editing( !viewModel.consequences.editing() )')
 
 		table#conseqTable
@@ -174,7 +177,7 @@ block content
 	section#totals(data-bind='with: totals')
 
 		if logged_user == owner
-			input.editButton(type='image', src='/img/edit32.png', style='left: 330px',
+			input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
 				onclick='viewModel.totals.editing( !viewModel.totals.editing() )')
 		
 		img#star(src='/img/pentacle.png')
@@ -215,7 +218,7 @@ block content
 	section#skills
 		p.sectionHeader Skills
 			if logged_user == owner
-				input.editButton(type='image', src='/img/edit32.png',
+				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
 					onclick='viewModel.skills.editing( !viewModel.skills.editing() )')
 
 		table#skillTable
@@ -236,7 +239,7 @@ block content
 	section#powers
 		p.sectionHeader Stunts & Powers
 			if logged_user == owner
-				input.editButton(type='image', src='/img/edit32.png',
+				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
 					onclick='viewModel.powers.editing( !viewModel.powers.editing() )')
 
 		table#powerTable
