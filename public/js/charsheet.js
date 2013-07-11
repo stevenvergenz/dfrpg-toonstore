@@ -1,18 +1,20 @@
 var model;
 var viewModel;
 
+function initialize()
+{
+	// retrieve the character sheet data
+	$.getJSON( window.location.pathname + '/json', processCharacterData );
+}
 
 function processCharacterData(data,textStatus,jqXHR)
 {
 	// apply modified json document to page
 	model = data;
 	viewModel = new SheetViewModel(data);
+	viewModel.skills.editing.subscribe(setSkillDraggable);
 	ko.applyBindings(viewModel);
-}
-
-function initialize(){
-	// retrieve the character sheet data
-	$.getJSON( window.location.pathname + '/json', processCharacterData );
+	viewModel.skills.editing(false);
 }
 
 function pushToServer(){
@@ -128,9 +130,15 @@ function validateSkills(){
 	return valid;
 }
 
-function addSkill(){
+function addSkill(evt){
 	var skill = $('#newSkill').val();
 	viewModel.skills.lists[0].push(skill);
+	$('#newSkill').val('');
+	$('.draggableSkill').draggable({revert:true, disabled: !viewModel.skills.editing()});
+}
+
+function setSkillDraggable(state){
+	$('.draggableSkill').draggable({revert:true, disabled: !state});
 }
 
 function removePower(i){
