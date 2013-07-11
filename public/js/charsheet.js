@@ -12,9 +12,24 @@ function processCharacterData(data,textStatus,jqXHR)
 	// apply modified json document to page
 	model = data;
 	viewModel = new SheetViewModel(data);
-	viewModel.skills.editing.subscribe(setSkillDraggable);
+	viewModel.skills.editing.subscribe(function(state){
+		$('.draggableSkill').draggable({revert:true, disabled: !state});
+	});
+	viewModel.totals.skill_cap.subscribe(function(){
+		$('.droppableSkill').droppable({ hoverClass: 'dropHoverRow',
+			drop: function(evt,ui){
+				// get the skill text
+				var skill = ui.draggable.find('span').text();
+				// remove from dragged elem
+				ko.contextFor(ui.draggable.find('span')[0]).$parent.skills.remove(skill);
+				// add to dropped elem
+				ko.dataFor(evt.target).skills.push(skill);
+			}
+		});
+	});
 	ko.applyBindings(viewModel);
-	viewModel.skills.editing(false);
+	viewModel.skills.editing.valueHasMutated();
+	viewModel.totals.skill_cap.valueHasMutated();
 }
 
 function pushToServer(){
@@ -135,10 +150,6 @@ function addSkill(evt){
 	viewModel.skills.lists[0].push(skill);
 	$('#newSkill').val('');
 	$('.draggableSkill').draggable({revert:true, disabled: !viewModel.skills.editing()});
-}
-
-function setSkillDraggable(state){
-	$('.draggableSkill').draggable({revert:true, disabled: !state});
 }
 
 function removePower(i){

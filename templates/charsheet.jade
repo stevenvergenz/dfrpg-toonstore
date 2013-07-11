@@ -235,7 +235,7 @@ block content
 
 		table#skillTable
 			tbody(data-bind='foreach: skills.skill_sets')
-				tr.droppable(data-bind='if: $root.skills.editing() || index != 0')
+				tr.droppableSkill(data-bind='if: $root.skills.editing() || index != 0')
 					th(data-bind='text: level_text')
 					td: p(data-bind='foreach: skills')
 						span(data-bind='visible: $index() != 0') , 

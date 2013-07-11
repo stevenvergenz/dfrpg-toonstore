@@ -220,6 +220,11 @@ input.stressBox.leftParen.rightParen:checked + label {
 /*
  * Fine-tune sizes on various tables
  */
+
+tr.dropHoverRow {
+	background-color: #eef;
+}
+
 table#stressEditTable input[type="text"] {
 	width: 80px;
 }
