@@ -8,6 +8,7 @@ block append includes
 	link(rel='stylesheet', type='text/css', href='/css/charsheet.css')
 	link(rel='stylesheet', type='text/css', href='/css/jquery-ui-1.10.3.custom.css')
 	script(src='/js/jquery-ui-1.10.3.custom.js')
+	script(src='/js/jquery.ui.touch-punch.min.js')
 	script(src='/js/knockout-2.2.1.js')
 	script(src='/js/viewmodel.js')
 	script(src='/js/charsheet.js')
@@ -232,6 +233,11 @@ block content
 			if logged_user == owner
 				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
 					onclick='viewModel.skills.editing( !viewModel.skills.editing() )')
+
+		p(data-bind='visible: $root.skills.editing')
+			| Drag skills to rearrange
+			br
+			| Drop on +0 to remove
 
 		table#skillTable
 			tbody(data-bind='foreach: skills.sets')

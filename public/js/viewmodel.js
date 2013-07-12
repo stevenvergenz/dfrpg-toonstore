@@ -29,11 +29,13 @@ ko.bindingHandlers.droppable = {
 		$(element).droppable({ hoverClass: 'dropHoverRow', disabled: !editing,
 			drop: function(evt,ui){
 				var skill = ui.draggable.find('span').text();
-				var draggedList = ko.contextFor(ui.draggable.find('span')[0]).$parent.skills;
-				var droppedList = ko.dataFor(evt.target).skills;
+				var draggedList = ko.contextFor(ui.draggable.find('span')[0]).$parent;
+				var droppedList = ko.dataFor(evt.target);
 				if( draggedList != droppedList ){
-					draggedList.remove(skill);
-					droppedList.push(skill);
+					draggedList.skills.remove(skill);
+					if( droppedList.index != 0 ){
+						droppedList.skills.push(skill);
+					}
 					validateSkills();
 				}
 			}
