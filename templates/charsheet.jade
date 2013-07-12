@@ -235,14 +235,13 @@ block content
 
 		table#skillTable
 			tbody(data-bind='foreach: skills.sets')
-				tr.droppableSkill(data-bind='if: $root.skills.editing() || index != 0')
+				tr(data-bind='if: $root.skills.editing() || index != 0, droppable: $root.skills.editing')
 					th(data-bind='text: level_text')
 					td: p(data-bind='foreach: skills')
 						span(data-bind='visible: $index() != 0') , 
-						span.draggableSkill(style='white-space: nowrap;')
+						span(style='white-space: nowrap;', data-bind='draggable: $root.skills.editing')
 							span(data-bind='text: $data')
 							img(data-bind='visible: $root.skills.editing', src='/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
-						// attr: {onclick: "moveSkillTo(\'"+$data+"\', "+$parent.index+","+1+")"}') ↑
 						
 		div(data-bind='if: skills.editing()')
 			form(onsubmit='addSkill(); return false;')

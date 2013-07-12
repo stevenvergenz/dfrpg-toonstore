@@ -12,6 +12,39 @@ ko.extenders.sort = function(target,dir)
 	return target;
 };
 
+ko.bindingHandlers.draggable = {
+	init: function(element, valueAccessor){
+		var editing = ko.utils.unwrapObservable(valueAccessor());
+		$(element).draggable({revert:true, disabled: !editing});
+	},
+	update: function(element,valueAccessor){
+		var editing = ko.utils.unwrapObservable(valueAccessor());
+		$(element).draggable('option', 'disabled', !editing);
+	}
+};
+
+ko.bindingHandlers.droppable = {
+	init: function(element, valueAccessor){
+		var editing = ko.utils.unwrapObservable(valueAccessor());
+		$(element).droppable({ hoverClass: 'dropHoverRow', disabled: !editing,
+			drop: function(evt,ui){
+				var skill = ui.draggable.find('span').text();
+				var draggedList = ko.contextFor(ui.draggable.find('span')[0]).$parent.skills;
+				var droppedList = ko.dataFor(evt.target).skills;
+				if( draggedList != droppedList ){
+					draggedList.remove(skill);
+					droppedList.push(skill);
+					validateSkills();
+				}
+			}
+		});
+	},
+	update: function(element, valueAccessor){
+		var editing = ko.utils.unwrapObservable(valueAccessor());
+		$(element).droppable('option', 'disabled', !editing);
+	}
+};
+
 function StressBox(index, used, track)
 {
 	this.index = index;
