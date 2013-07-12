@@ -234,7 +234,7 @@ block content
 					onclick='viewModel.skills.editing( !viewModel.skills.editing() )')
 
 		table#skillTable
-			tbody(data-bind='foreach: skills.skill_sets')
+			tbody(data-bind='foreach: skills.sets')
 				tr.droppableSkill(data-bind='if: $root.skills.editing() || index != 0')
 					th(data-bind='text: level_text')
 					td: p(data-bind='foreach: skills')
