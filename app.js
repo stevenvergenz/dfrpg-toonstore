@@ -44,8 +44,8 @@ app.get('/logout', login.processLogout);
 app.get('/:user', user.userPage);
 
 // route the character management pages
-app.get('/newtoon', newtoon.newCharacterPage);
-app.post('/newtoon', newtoon.newCharacterRequest);
+app.get('/newtoon', character.newCharacterPage);
+app.post('/newtoon', character.newCharacterRequest);
 app.get('/:user/:char', character.servePage);
 app.get('/:user/:char/json', character.serveJson);
 app.post('/:user/:char/json', character.pushJson);
