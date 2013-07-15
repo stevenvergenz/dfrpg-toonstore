@@ -26,7 +26,7 @@ h2 {
 
 a:link, a:visited {
 	text-decoration: none;
-	color: cyan;
+	color: blue;
 }
 a:hover, a:active {
 	text-decoration: underline;
@@ -43,33 +43,48 @@ a:hover, a:active {
 	color: white;
 	width: 100%;
 	padding: 15px 0;
-	display: -webkit-inline-flex;
+	/*display: -webkit-inline-flex;
 	-webkit-align-items: center;
 	-webkit-flex-direction: row;
-	-webkit-justify-content: flex-begin;
+	-webkit-justify-content: flex-begin;*/
 	font-family: 'Denk One', sans-serif;
 
 	border-bottom: solid grey 1px;
 }
+.navbar .leftitems {
+	float: left;
+	display: -webkit-inline-flex;
+	webkit-flex-direction: row;
+}
+.navbar .rightitems {
+	float: right;
+	display: -webkit-inline-flex;
+	webkit-flex-direction: row-reverse;
+}
+
 .navbar .navitem {
 	padding-left: 12px;
 	padding-right: 12px;
 	height: 20px;
-}
-.navitem.reverse {
-	-webkit-align-self: flex-end;
 }
 .navitem a:link, .navitem a:visited {
 	color: inherit;
 }
 
 .content {
-	padding-left: 15px;
-	padding-right: 15px;
+	padding-left: 20px;
+	padding-right: 20px;
 }
 
 .content-block {
 	max-width: 1000px;
+}
+
+.normalbox {
+	background-color: white;
+	color: black;
+	border-radius: 5px;
+	padding: 10px; 
 }
 
 .title {

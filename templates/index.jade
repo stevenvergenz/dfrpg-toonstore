@@ -15,10 +15,14 @@ html
 		.wrapper
 
 			.navbar
-				.navitem: a(href='/') ToonStore
-				.navitem Contact Us
-				.navitem.reverse: a(href='/register') Register
-				.navitem.reverse: a(href='/login') Log In
+				.leftitems
+					.navitem: a(href='/') ToonStore
+					.navitem Forum
+					.navitem About
+					.navitem Contact Us
+				.rightitems
+					.navitem: a(href='/register') Sign Up
+					.navitem: a(href='/login') Log In
 
 			.content
 				block content
@@ -28,10 +32,11 @@ html
 							h1 ToonStore
 							h2 +2 to organization rolls
 
-					.content-block
+					.content-block.normalbox
 						p Greetings, roleplayer!
 						p.
-							Everyone has run into this scenario: you and your partymates are going through character creation, and your
+							Everyone has run into this scenario: you and your partymates are going through character creation, filling out
+							your character sheet, and your
 							DM asks for a copy of your character sheet. You have a brief moment of confusion. Do you scan it and email it?
 							Do you transcribe it? Just email the aspects?
 						p.
