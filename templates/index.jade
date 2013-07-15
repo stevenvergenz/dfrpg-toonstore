@@ -14,15 +14,16 @@ html
 	body
 		.wrapper
 
-			.navbar
-				.leftitems
-					.navitem: a(href='/') ToonStore
-					.navitem Forum
-					.navitem About
-					.navitem Contact Us
-				.rightitems
-					.navitem: a(href='/register') Sign Up
-					.navitem: a(href='/login') Log In
+			block header
+				.navbar
+					.leftitems
+						.navitem: a(href='/') ToonStore
+						.navitem Forum
+						.navitem About
+						.navitem Contact Us
+					.rightitems
+						.navitem: a(href='/register') Sign Up
+						.navitem: a(href='/login') Log In
 
 			.content
 				block content
@@ -36,15 +37,19 @@ html
 						p Greetings, roleplayer!
 						p.
 							Everyone has run into this scenario: you and your partymates are going through character creation, filling out
-							your character sheet, and your
-							DM asks for a copy of your character sheet. You have a brief moment of confusion. Do you scan it and email it?
-							Do you transcribe it? Just email the aspects?
+							your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion.
+							Do you scan it and email it? Do you transcribe it? Just email the aspects?
 						p.
 							Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But
 							without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.
 						p.
-							This is where ToonStore comes in. We store your character data in the cloud, so you never lose it and can
-							easily share it. Just view the online character sheet and make your edits right in the browser. We're
-							mobile-friendly too, so you don't have to haul your 10 pound laptop around either.
-						p.
-							Interested? <a href='/register'>Sign up</a> for free today!
+							This is where ToonStore comes in. We store your Dresden Files RPG or other FATE-based character data in the cloud,
+							so you never lose it and can easily share it. Just view the online character sheet and make your edits right in
+							the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.
+						p
+							| Interested? 
+							a(href='/register') Sign up
+							|  for free today, and get rolling!
+
+			block footer
+				.footer This is the footer

@@ -98,6 +98,18 @@ a:hover, a:active {
 	margin: 10px;
 }
 
+.footer {
+	margin-top: 15px;
+	margin-bottom: 15px;
+	padding: 15px 0;
+	border-top: solid grey 1px;
+	width: 100%;
+	bottom: 100%;
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+	-webkit-justify-content: center;
+}
+
 /*
  * Other colors:
  * #19202c
