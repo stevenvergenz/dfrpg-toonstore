@@ -1,5 +1,23 @@
-doctype html
-html
+extends index.jade
+
+block title
+	title Login - ToonStore
+
+block content
+
+	.content-block.titledbox
+		div Log in
+		div
+			form(action='/login', method='post')
+				label E-mail
+					input#email(type="text", name="email", value="email")
+				label Password
+					input#password(type="password", name="password", value="password")
+				
+
+
+//doctype html
+//html
 	head
 		title Login - ToonStore
 		link(rel='stylesheet', type='text/css', href='/css/global.css')

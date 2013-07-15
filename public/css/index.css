@@ -72,12 +72,14 @@ a:hover, a:active {
 }
 
 .content {
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 5px;
+	padding-right: 5px;
+	min-height: 700px;
 }
 
 .content-block {
 	max-width: 1000px;
+	margin: 15px;
 }
 
 .normalbox {
@@ -85,6 +87,14 @@ a:hover, a:active {
 	color: black;
 	border-radius: 5px;
 	padding: 10px; 
+}
+
+.titledbox {
+	border-radius: 5px;
+	padding: 10px;
+	border: solid grey 1px;
+	background-color: white;
+	color: black;
 }
 
 .title {
