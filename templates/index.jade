@@ -1,0 +1,45 @@
+doctype html
+html
+	head
+		block title
+			title Toonstore - Live DFRPG Character Hosting
+		block styles
+			link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Denk+One|Pathway+Gothic+One|Armata')
+			link(rel='stylesheet', type='text/css', href='/css/index.css')
+
+		block includes
+			script(src='/js/jquery-1.10.1.js')
+			
+
+	body
+		.wrapper
+
+			.navbar
+				.navitem: a(href='/') ToonStore
+				.navitem Contact Us
+				.navitem.reverse: a(href='/register') Register
+				.navitem.reverse: a(href='/login') Log In
+
+			.content
+				block content
+
+					.content-block
+						.title
+							h1 ToonStore
+							h2 +2 to organization rolls
+
+					.content-block
+						p Greetings, roleplayer!
+						p.
+							Everyone has run into this scenario: you and your partymates are going through character creation, and your
+							DM asks for a copy of your character sheet. You have a brief moment of confusion. Do you scan it and email it?
+							Do you transcribe it? Just email the aspects?
+						p.
+							Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But
+							without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.
+						p.
+							This is where ToonStore comes in. We store your character data in the cloud, so you never lose it and can
+							easily share it. Just view the online character sheet and make your edits right in the browser. We're
+							mobile-friendly too, so you don't have to haul your 10 pound laptop around either.
+						p.
+							Interested? <a href='/register'>Sign up</a> for free today!

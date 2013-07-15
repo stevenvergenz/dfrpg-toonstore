@@ -1,0 +1,93 @@
+html {
+	height: 100%;
+}
+
+body {
+	display: -webkit-flex;
+	-webkit-justify-content: center;
+
+	margin: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #000000;
+	color: #ffffff;
+
+	font-family: 'Armata', sans-serif;
+}
+
+h1 {
+	font-family: 'Denk One', sans-serif;
+}
+
+h2 {
+	font-family: 'Pathway Gothic One', sans-serif;
+	font-weight: normal;
+}
+
+a:link, a:visited {
+	text-decoration: none;
+	color: cyan;
+}
+a:hover, a:active {
+	text-decoration: underline;
+}
+
+.wrapper {
+	background-color: #1e1e31;
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	-webkit-align-items: center;
+}
+
+.navbar {
+	color: white;
+	width: 100%;
+	padding: 15px 0;
+	display: -webkit-inline-flex;
+	-webkit-align-items: center;
+	-webkit-flex-direction: row;
+	-webkit-justify-content: flex-begin;
+	font-family: 'Denk One', sans-serif;
+
+	border-bottom: solid grey 1px;
+}
+.navbar .navitem {
+	padding-left: 12px;
+	padding-right: 12px;
+	height: 20px;
+}
+.navitem.reverse {
+	-webkit-align-self: flex-end;
+}
+.navitem a:link, .navitem a:visited {
+	color: inherit;
+}
+
+.content {
+	padding-left: 15px;
+	padding-right: 15px;
+}
+
+.content-block {
+	max-width: 1000px;
+}
+
+.title {
+	display: -webkit-flex;
+	-webkit-align-items: center;
+	-webkit-flex-direction: column;
+	font-size: 2.0em;
+	padding: 18px;
+}
+.title > * {
+	margin: 10px;
+}
+
+/*
+ * Other colors:
+ * #19202c
+ * #192233
+ * #394966
+ * #3e4c66
+ * #10192a
+ */

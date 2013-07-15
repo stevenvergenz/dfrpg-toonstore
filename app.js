@@ -8,7 +8,6 @@ var global = require('./global.js');
 var register = require('./register.js');
 var login = require('./login.js');
 var user = require('./user.js');
-var newtoon = require('./newtoon.js');
 var character = require('./character.js');
 
 
@@ -49,6 +48,10 @@ app.post('/newtoon', character.newCharacterRequest);
 app.get('/:user/:char', character.servePage);
 app.get('/:user/:char/json', character.serveJson);
 app.post('/:user/:char/json', character.pushJson);
+
+app.get('/', function(req,res){
+	res.render('index');
+});
 
 // catch-all: serve static file or 404
 app.use(function(req,res)
