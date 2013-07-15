@@ -99,6 +99,7 @@ a:hover, a:active {
 }
 
 .footer {
+	font-family: 'Denk One', sans-serif;
 	margin-top: 15px;
 	margin-bottom: 15px;
 	padding: 15px 0;
@@ -106,8 +107,14 @@ a:hover, a:active {
 	width: 100%;
 	display: -webkit-flex;
 	-webkit-flex-direction: row;
-	-webkit-justify-content: center;
+	-webkit-justify-content: flex-begin;
 }
+.footer > * {
+	padding: 0 12px;
+}
+
+.footer a:link, .footer a:visited {
+	color: inherit;
 
 /*
  * Other colors:
