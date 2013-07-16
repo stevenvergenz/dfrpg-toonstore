@@ -54,29 +54,22 @@ p.error, input.error {
 	color: white;
 	width: 100%;
 	padding: 15px 0;
-	/*display: -webkit-inline-flex;
+	display: -webkit-inline-flex;
 	-webkit-align-items: center;
 	-webkit-flex-direction: row;
-	-webkit-justify-content: flex-begin;*/
+	-webkit-justify-content: space-between;
 	font-family: 'Denk One', sans-serif;
 
 	border-bottom: solid grey 1px;
 }
-.navbar .leftitems {
-	float: left;
+.navbar .itemgroup {
 	display: -webkit-inline-flex;
-	webkit-flex-direction: row;
-}
-.navbar .rightitems {
-	float: right;
-	display: -webkit-inline-flex;
-	webkit-flex-direction: row-reverse;
+	-webkit-flex-direction: row;
 }
 
 .navbar .navitem {
 	padding-left: 12px;
 	padding-right: 12px;
-	height: 20px;
 }
 .navitem a:link, .navitem a:visited {
 	color: inherit;
@@ -122,6 +115,8 @@ p.error, input.error {
 }
 
 #login-box, #register-box {
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
 	width: 360px;
 }
 
