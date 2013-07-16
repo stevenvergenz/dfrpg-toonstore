@@ -70,6 +70,7 @@ p.error, input.error {
 .navbar .navitem {
 	padding-left: 12px;
 	padding-right: 12px;
+	text-align: center;
 }
 .navitem a:link, .navitem a:visited {
 	color: inherit;
@@ -117,7 +118,7 @@ p.error, input.error {
 #login-box, #register-box {
 	display: -webkit-flex;
 	-webkit-flex-direction: column;
-	width: 360px;
+	max-width: 360px;
 }
 
 #login-box .inner, #register-box .inner {
