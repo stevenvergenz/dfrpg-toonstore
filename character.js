@@ -11,9 +11,7 @@ function servePage(req,res,next)
 		function(err,rows,fields){
 			if( !err && rows.length == 1 ){
 				global.log('Serving character page for', req.url);
-				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'owner': req.params.user};
-				pageFields.toonName = rows[0].name;
-				res.render('charsheet', pageFields);
+				global.renderPage('charsheet')(req,res);
 			}
 			else {
 				next();
@@ -89,8 +87,7 @@ function newCharacterPage(req,res)
 {
 	if( req.session.user ){
 		global.log('Serving new character page');
-		var params = {page: req.url, logged_user: req.session.user};
-		res.render('newtoon', params);
+		global.renderPage('newtoon')(req,res);
 	}
 	else {
 		res.redirect('/login?redir=/newtoon');
@@ -117,8 +114,7 @@ function newCharacterRequest(req,res)
 			'severity': 'Severe','mode': 'Any','used': false,'aspect': ''},{
 			'severity': 'Extreme','mode': 'Any','used': false,'aspect': 'Replace permanent'}],
 		'totals': {
-			'power_level': 'Submerged','base_refresh': 10,'skill_cap': 5,'skills_total': 35,
-			'skills_available': 35,'adjusted_refresh': 10,'fate_points': 0},
+			'power_level': 'Submerged','base_refresh': 10,'skill_cap': 5,'skills_total': 35,'fate_points': 0},
 		'skills': {
 			'5': [],'4': [],'3': [],'2': [],'1': []},
 		'powers': []
@@ -133,9 +129,7 @@ function newCharacterRequest(req,res)
 		{
 			if( err ){
 				global.error('MySQL error:', err);
-				var params = {page: req.url, logged_user: req.session.user, 
-					message: 'You are already using that short name'};
-				res.render('newtoon', params);
+				res.render('newtoon', {message: 'You are already using that short name'})(req,res);
 			}
 			else {
 				global.log('Creation successful');

@@ -11,10 +11,10 @@ block content
 			span 's page
 
 	.content-block: .normalbox
-		if chars.length > 0
+		if toons.length > 0
 			p Characters:
 			ul#charList
-				each char in chars
+				each char in toons
 					li: a(href='/#{owner}/#{char.canon_name}')= char.name +' - '+ char.concept
 		else
 			p This user lacks character (badum-ching!)

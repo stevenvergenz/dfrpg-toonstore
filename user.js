@@ -15,15 +15,15 @@ function userPage(req,res,next)
 			{
 				global.log('Serving user page for', rows[0].username);
 
-				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'owner': rows[0].username, 'chars': []};
+				var toons = [];
 				for( var i in rows ){
 					if( rows[i].name != null && rows[i].canonical_name != null ){
-						pageFields.chars.push( 
+						toons.push( 
 							{'name': rows[i].name, 'canon_name': rows[i].canonical_name, 'concept': rows[i].concept}
 						);
 					}
 				}
-				res.render('userpage', pageFields);
+				global.renderPage('userpage', {toons: toons})(req,res);
 			}
 			else {
 				next();

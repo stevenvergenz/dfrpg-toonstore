@@ -30,13 +30,13 @@ app.set('view engine', 'jade');
 app.use(express.logger());
 
 // route the registration pages
-app.get('/register', register.registrationPage);
-app.get('/post-register', register.registrationPage);
+app.get('/register', global.renderPage('register'));
+app.get('/post-register', global.renderPage('register'));
 app.post('/register', register.register);
 app.get('/register/verify', register.checkUsername);
 
 // route the login pages
-app.get('/login', login.loginPage);
+app.get('/login', global.renderPage('login'));
 app.post('/login', login.processLogin);
 app.get('/logout', login.processLogout);
 
@@ -50,9 +50,7 @@ app.get('/:user/:char', character.servePage);
 app.get('/:user/:char/json', character.serveJson);
 app.post('/:user/:char/json', character.pushJson);
 
-app.get('/', function(req,res){
-	res.render('index', {logged_user: req.session.user, page: req.url});
-});
+app.get('/', global.renderPage('index'));
 
 // catch-all: serve static file or 404
 app.use(function(req,res)

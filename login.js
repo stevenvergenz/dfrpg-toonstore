@@ -7,12 +7,6 @@ var crypto = require('crypto');
 var global = require('./global.js');
 
 
-function loginPage(req,res)
-{
-	global.log('Serving login page, redir to', req.query.redir);
-	res.render('login', {'redir': req.query.redir});
-}
-
 function processLogin(req,res)
 {
 	global.log('Attempting login:', req.body.email);
@@ -22,13 +16,13 @@ function processLogin(req,res)
 		function(err,rows,fields){
 			if( err ){
 				global.error('MySQL error:', err);
-				res.render('login', {message: err});
+				global.renderPage('login', {message: err})(req,res);
 				connection.end();
 				return;
 			}
 			else if( rows.length == 0 ){
 				global.error('Login error: no such email');
-				res.render('login', {message: 'Invalid email or password'});
+				global.renderPage('login', {message: 'Invalid email or password'})(req,res);
 				connection.end();
 				return;
 			}
@@ -47,7 +41,7 @@ function processLogin(req,res)
 			}
 			else {
 				global.log('Login error: incorrect password');
-				res.render('login', {message: 'Invalid email or password'});
+				global.renderPage('login', {message: 'Invalid email or password'})(req,res);
 			}
 			connection.end();
 		}
@@ -64,7 +58,6 @@ function processLogout(req,res)
 		res.redirect('/');
 }
 
-exports.loginPage = loginPage;
 exports.processLogin = processLogin;
 exports.processLogout = processLogout;
 

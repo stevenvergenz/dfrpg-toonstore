@@ -77,9 +77,35 @@ function log()
 	}
 }
 
+function renderPage(template, options)
+{
+	var middleware = function(req,res,next)
+	{
+		// global template fields
+		var pageFields = {
+			'page': req.url,
+			'query': req.query,
+			'logged_user': req.session.user,
+			'owner': req.params.user,
+			'toon': req.params.char
+		};
+
+		// argument options
+		for( var i in options ){
+			pageFields[i] = options[i];
+		}
+
+		log('Rendering template "', template, '" with options', pageFields);
+		return res.render(template, pageFields);
+	};
+
+	return middleware;
+}
+
 // export everything for external modules
 exports.error = error;
 exports.log = log;
 exports.logLevels = logLevels;
 exports.config = config;
+exports.renderPage = renderPage;
 

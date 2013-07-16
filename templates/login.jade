@@ -15,8 +15,8 @@ block content
 				input#email(type="email", name="email")
 				label(for='password') Password
 				input#password(type="password", name="password")
-				if redir
-					input(type='hidden', name='redir', value=redir)
+				if query.redir
+					input(type='hidden', name='redir', value=query.redir)
 				.flexrow
 					input(type='submit', value='Log In')
 					a(href='/forgot-pass') Forgot password?
