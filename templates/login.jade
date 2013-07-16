@@ -21,34 +21,3 @@ block content
 					input(type='submit', value='Sign In')
 					a(href='/forgot-pass') Forgot password?
 
-
-//doctype html
-//html
-	head
-		title Login - ToonStore
-		link(rel='stylesheet', type='text/css', href='/css/global.css')
-		script(src='/js/jquery-1.10.1.js')
-		script(src='/js/formFocus.js')
-		script.
-			$(document).ready(function(){
-				registerInputs();
-			});
-
-	body
-		h1 Login
-		p You will have to log in before creating characters.
-
-		p.error #{message}
-
-		form(action='/login', method='post')
-			input#email.vacant(type="text", name="email", value="email")
-			input#password.vacant(type="password", name="password", value="password")
-			if redir
-				input(type="hidden", name="redir", value='#{redir}')
-			input(type="submit", value="Submit")
-
-		p.inline-link
-			a(href='/forgot') Forgot password?
-		p.inline-link
-			a(href='/register') Register
-
