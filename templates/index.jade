@@ -23,8 +23,12 @@ html
 						.navitem About
 						.navitem Contact Us
 					.itemgroup
-						.navitem: a(href='/register') Sign Up
-						.navitem: a(href='/login') Log In
+						if logged_user
+							.navitem: a(href='/'+logged_user)= logged_user
+							.navitem: a(href='/logout') Log Out
+						else
+							.navitem: a(href='/register') Sign Up
+							.navitem: a(href='/login') Log In
 
 			.content
 				block content

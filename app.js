@@ -31,6 +31,7 @@ app.use(express.logger());
 
 // route the registration pages
 app.get('/register', register.registrationPage);
+app.get('/post-register', register.registrationPage);
 app.post('/register', register.register);
 app.get('/register/verify', register.checkUsername);
 
@@ -50,7 +51,7 @@ app.get('/:user/:char/json', character.serveJson);
 app.post('/:user/:char/json', character.pushJson);
 
 app.get('/', function(req,res){
-	res.render('index');
+	res.render('index', {logged_user: req.session.user});
 });
 
 // catch-all: serve static file or 404

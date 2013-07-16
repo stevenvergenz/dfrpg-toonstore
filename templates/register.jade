@@ -5,28 +5,46 @@ block title
 
 block append includes
 	script(src='/js/register.js')
+	if page == '/post-register'
+		script.
+			$(document).ready(function(){
+				function redirect(){
+					window.location.replace('/login');
+				}
+				setTimeout( redirect, 5000 );
+			});
 
 block content
 
-	.content-block: #register-box.titledbox
-		.title: span Sign up
-		.inner
-			form(action='/register', method='post')
+	if page == '/register'
 
-				label(for='email') E-mail address
-				input#email(type='email', name='email')
-				p.caption#emailMessage We promise not to share your email with anyone.
+		.content-block: #register-box.titledbox
+			.title: span Sign up
+			.inner
+				form(action='/register', method='post')
 
-				label(for='username') Username (also URL)
-				input#username(type='text', name='username', onkeyup='checkUsername(this);')
-				p.caption#userMessage Username is available.
+					label(for='email') E-mail address
+					input#email(type='email', name='email')
+					p.caption#emailMessage We promise not to share your email with anyone.
 
-				label(for='password') Password
-				input#password(type='password', name='password', onkeyup='checkPassword();')
-				p.caption#passwordMessage Must be at least 5 characters long and contain no spaces.
+					label(for='username') Username (also URL)
+					input#username(type='text', name='username', onkeyup='checkUsername(this);')
+					p.caption#userMessage Username is available.
 
-				label(for='confirm') Confirm password
-				input#confirm(type='password', onkeyup='checkPassword();')
-				p.caption#confirmMessage Passwords match.
+					label(for='password') Password
+					input#password(type='password', name='password', onkeyup='checkPassword();')
+					p.caption#passwordMessage Must be at least 5 characters long and contain no spaces.
 
-				input(type='submit') Submit
+					label(for='confirm') Confirm password
+					input#confirm(type='password', onkeyup='checkPassword();')
+					p.caption#confirmMessage Passwords match.
+
+					input(type='submit') Submit
+
+	else if page == '/post-register'
+
+		.content-block: .titledbox
+			.title Registration successful!
+			.inner
+				p You have successfully registered. You will be redirected to the login page in 5 seconds.
+

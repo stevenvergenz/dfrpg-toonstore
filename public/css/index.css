@@ -160,12 +160,12 @@ p.error, input.error {
 }
 .banner > * {
 	margin: 10px;
+	text-align: center;
 }
 
 .footer {
 	font-family: 'Denk One', sans-serif;
 	margin-top: 15px;
-	margin-bottom: 15px;
 	padding: 15px 0;
 	border-top: solid grey 1px;
 	width: 100%;

@@ -38,7 +38,7 @@ function register(req,res)
 			}
 			else {
 				global.log('Registration successful');
-				res.redirect('/post-register.html');
+				res.redirect('/post-register');
 			}
 			connection.end();
 		}
