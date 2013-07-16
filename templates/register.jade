@@ -1,0 +1,32 @@
+extends index
+
+block title
+	title Register - ToonStore
+
+block append includes
+	script(src='/js/register.js')
+
+block content
+
+	.content-block: #register-box.titledbox
+		.title: span Sign up
+		.inner
+			form(action='/register', method='post')
+
+				label(for='email') E-mail address
+				input#email(type='email', name='email')
+				p.caption#emailMessage We promise not to share your email with anyone.
+
+				label(for='username') Username (also URL)
+				input#username(type='text', name='username', onkeyup='checkUsername(this);')
+				p.caption#userMessage Username is available.
+
+				label(for='password') Password
+				input#password(type='password', name='password', onkeyup='checkPassword();')
+				p.caption#passwordMessage Must be at least 5 characters long and contain no spaces.
+
+				label(for='confirm') Confirm password
+				input#confirm(type='password', onkeyup='checkPassword();')
+				p.caption#confirmMessage Passwords match.
+
+				input(type='submit') Submit

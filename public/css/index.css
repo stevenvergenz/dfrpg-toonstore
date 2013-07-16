@@ -32,6 +32,15 @@ a:hover, a:active {
 	text-decoration: underline;
 }
 
+p.caption {
+	font-size: 0.7em;
+	color: #555;
+}
+
+p.error, input.error {
+	color: red;
+}
+
 .wrapper {
 	background-color: #1e1e31;
 	background-image: linear-gradient(#1e1e40, #0f0f20);
@@ -112,24 +121,30 @@ a:hover, a:active {
 	margin: 20px;
 }
 
-#login-box {
+#login-box, #register-box {
 	width: 360px;
 }
-#login-box .inner {
+
+#login-box .inner, #register-box .inner {
 	display: -webkit-flex;
 	-webkit-flex-direction: column;
 }
 
-#login-box label, #login-box input:not([type=submit]):not([type=file]) {
+.inner form > * {
+	display: block;
+}
+
+/*#login-box label, #login-box input:not([type=submit]):not([type=file]) {
+	margin: 10px 0;
+}*/
+
+.titledbox input[type=email], .titledbox input[type=password], .titledbox input[type=text] {
+	width: 98%;
+	height: 20px;
 	margin: 10px 0;
 }
 
-#login-box input[type=email], #login-box input[type=password] {
-	width: 98%;
-	height: 20px;
-}
-
-#login-box input[type=submit] {
+.titledbox input[type=submit] {
 	padding: 7px 10px;
 }
 

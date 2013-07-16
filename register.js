@@ -8,9 +8,11 @@ var global = require('./global.js');
 
 function registrationPage(req, res)
 {
-	var path = libpath.normalize('public/register.html');
+	/*var path = libpath.normalize('public/register.html');
 	global.log('Serving registration file:', path);
-	res.sendfile( path );
+	res.sendfile( path );*/
+	var pageFields = {page: req.url, logged_user: req.session.user};
+	res.render('register', pageFields);
 }
 
 function register(req,res)

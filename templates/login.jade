@@ -8,15 +8,15 @@ block content
 	.content-block: p.error= message
 
 	.content-block: #login-box.titledbox
-		div.title: span Log in
-		div.inner
+		.title: span Log in
+		.inner
 			form(action='/login', method='post')
 				label(for='email') E-mail
 				input#email(type="email", name="email")
 				label(for='password') Password
 				input#password(type="password", name="password")
 				if redir
-					input(type='hidden', name='redir', value='#{redir}')
+					input(type='hidden', name='redir', value=redir)
 				.flexrow
 					input(type='submit', value='Sign In')
 					a(href='/forgot-pass') Forgot password?
