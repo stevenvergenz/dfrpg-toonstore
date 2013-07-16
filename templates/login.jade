@@ -5,9 +5,11 @@ block title
 
 block content
 
+	.content-block: p.error= message
+
 	.content-block: .titledbox
-		h2 Log in
-		div
+		div.title: span Log in
+		div.inner
 			form(action='/login', method='post')
 				label E-mail
 					input#email(type="email", name="email")

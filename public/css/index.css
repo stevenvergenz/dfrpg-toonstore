@@ -92,26 +92,38 @@ a:hover, a:active {
 
 .titledbox {
 	border-radius: 5px;
-	padding: 15px;
 	border: solid grey 1px;
 	background-color: white;
 	color: black;
 	margin: 10px auto;
 	width: 300px;
-}
-.titledbox label, .titledbox input:not([type=submit]):not([type=file]) {
-	display: block;
-	margin: 5px;
+	overflow: hidden;
 }
 
-.title {
+.titledbox .title {
+	background-color: #313150;
+	background-image: linear-gradient(#313150, #000000);
+	color: white;
+	padding: 10px;
+	font-weight: bold;
+}
+
+.titledbox .inner {
+	margin: 15px;
+}
+
+.titledbox label, .titledbox input:not([type=submit]):not([type=file]) {
+	display: block;
+}
+
+.banner {
 	display: -webkit-flex;
 	-webkit-align-items: center;
 	-webkit-flex-direction: column;
 	font-size: 2.0em;
 	padding: 18px;
 }
-.title > * {
+.banner > * {
 	margin: 10px;
 }
 
