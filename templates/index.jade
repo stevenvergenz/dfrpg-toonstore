@@ -28,7 +28,10 @@ html
 							.navitem: a(href='/logout') Log Out
 						else
 							.navitem: a(href='/register') Sign Up
-							.navitem: a(href='/login') Log In
+							if page != '/'
+								.navitem: a(href='/login?redir='+page) Log In
+							else
+								.navitem: a(href='/login') Log In
 
 			.content
 				block content

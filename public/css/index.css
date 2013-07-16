@@ -24,9 +24,12 @@ h2 {
 	font-weight: normal;
 }
 
+a {
+	color: inherit;
+}
+
 a:link, a:visited {
 	text-decoration: none;
-	color: blue;
 }
 a:hover, a:active {
 	text-decoration: underline;
@@ -72,9 +75,6 @@ p.error, input.error {
 	padding-right: 12px;
 	text-align: center;
 }
-.navitem a:link, .navitem a:visited {
-	color: inherit;
-}
 
 .content {
 	display: -webkit-flex;
@@ -92,6 +92,10 @@ p.error, input.error {
 	color: black;
 	border-radius: 5px;
 	padding: 10px; 
+}
+.normalbox a:link, .normalbox a:visited,
+.titledbox a:link, .titledbox a:visited {
+	color: blue;
 }
 
 .titledbox {

@@ -15,7 +15,7 @@ function userPage(req,res,next)
 			{
 				global.log('Serving user page for', rows[0].username);
 
-				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'user': rows[0].username, 'chars': []};
+				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'owner': rows[0].username, 'chars': []};
 				for( var i in rows ){
 					if( rows[i].name != null && rows[i].canonical_name != null ){
 						pageFields.chars.push( 

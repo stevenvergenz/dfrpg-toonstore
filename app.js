@@ -51,7 +51,7 @@ app.get('/:user/:char/json', character.serveJson);
 app.post('/:user/:char/json', character.pushJson);
 
 app.get('/', function(req,res){
-	res.render('index', {logged_user: req.session.user});
+	res.render('index', {logged_user: req.session.user, page: req.url});
 });
 
 // catch-all: serve static file or 404
