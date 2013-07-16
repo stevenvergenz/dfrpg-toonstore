@@ -5,15 +5,17 @@ block title
 
 block content
 
-	.content-block.titledbox
-		div Log in
+	.content-block: .titledbox
+		h2 Log in
 		div
 			form(action='/login', method='post')
 				label E-mail
-					input#email(type="text", name="email", value="email")
+					input#email(type="email", name="email")
 				label Password
-					input#password(type="password", name="password", value="password")
-				
+					input#password(type="password", name="password")
+				if redir
+					input(type='hidden', name='redir', value='#{redir}')
+				input(type='submit', value='Sign In')
 
 
 //doctype html
