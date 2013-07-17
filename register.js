@@ -9,6 +9,10 @@ var global = require('./global.js');
 function register(req,res)
 {
 	var body = req.body;
+	if( ['forget', 'register', 'login', 'logout', 'newtoon', 'killtoon'].indexOf(body.username) != -1 ){
+		global.error('Registration error: cannot register reserved word');
+		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}});
+	}
 
 	// salt and hash the password
 	body.salt = crypto.randomBytes(32);
@@ -25,7 +29,7 @@ function register(req,res)
 		function(err, rows, fields){
 			if( err ){
 				global.error('Registration error:', err, global.logLevels.error);
-				res.send(500);
+				global.renderPage('register', {message: {type:'error', content:err}});
 			}
 			else {
 				global.log('Registration successful');

@@ -5,7 +5,13 @@ block title
 
 block append includes
 	script(src='/js/register.js')
-	if page == '/post-register'
+	if page == '/register'
+		script.
+			$(document).ready(function(){
+				$('#passLength').text(passLength);
+			});
+
+	else if page == '/post-register'
 		script.
 			$(document).ready(function(){
 				function redirect(){
@@ -21,25 +27,29 @@ block content
 		.content-block: #register-box.titledbox
 			.title: span Sign up
 			.inner
-				form(action='/register', method='post')
+				form(action='/register', method='post', onsubmit='return validate();')
 
 					label(for='email') E-mail address
-					input#email(type='email', name='email')
+					input#email(type='email', name='email', required)
 					p.caption#emailMessage We promise not to share your email with anyone.
 
 					label(for='username') Username (also URL)
-					input#username(type='text', name='username', onkeyup='checkUsername(this);')
-					p.caption#userMessage Username is available.
+					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
+					p.caption#userMessage No special characters except for _ and -
 
 					label(for='password') Password
-					input#password(type='password', name='password', onkeyup='checkPassword();')
-					p.caption#passwordMessage Must be at least 5 characters long and contain no spaces.
+					input#password(type='password', name='password', required, onkeyup='checkPassword();')
+					p.caption#passwordMessage Must be at least 
+						span#passLength
+						|  characters long. Uppercase, numbers, and special characters recommended.
 
 					label(for='confirm') Confirm password
-					input#confirm(type='password', onkeyup='checkPassword();')
+					input#confirm(type='password', required, onkeyup='checkPassword();')
 					p.caption#confirmMessage Passwords match.
 
-					input(type='submit') Submit
+					.flexrow
+						input(type='submit') Submit
+						p.caption#submitMessage
 
 	else if page == '/post-register'
 

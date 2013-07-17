@@ -16,13 +16,13 @@ function processLogin(req,res)
 		function(err,rows,fields){
 			if( err ){
 				global.error('MySQL error:', err);
-				global.renderPage('login', {message: err})(req,res);
+				global.renderPage('login', {message: {type: 'error', content:err}})(req,res);
 				connection.end();
 				return;
 			}
 			else if( rows.length == 0 ){
 				global.error('Login error: no such email');
-				global.renderPage('login', {message: 'Invalid email or password'})(req,res);
+				global.renderPage('login', {message: {type: 'error', content:'Invalid email or password'}})(req,res);
 				connection.end();
 				return;
 			}
@@ -41,7 +41,7 @@ function processLogin(req,res)
 			}
 			else {
 				global.log('Login error: incorrect password');
-				global.renderPage('login', {message: 'Invalid email or password'})(req,res);
+				global.renderPage('login', {message: {type: 'error', content:'Invalid email or password'}})(req,res);
 			}
 			connection.end();
 		}

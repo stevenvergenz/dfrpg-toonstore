@@ -40,6 +40,29 @@ p.caption {
 	color: #555;
 }
 
+div.error, div.warning, div.info {
+	margin: 0;
+	text-align: center;
+	border-radius: 5px;
+	border: solid grey 1px;
+	color: black;
+}
+
+div.error {
+	border-color: red;
+	background-color: pink;
+}
+
+div.warning {
+	border-color: gold;
+	background-color: beige;
+}
+
+div.info {
+	border-color: blue;
+	background-color: lightcyan;
+}
+
 p.error, input.error {
 	color: red;
 }
@@ -130,7 +153,7 @@ p.error, input.error {
 	-webkit-flex-direction: column;
 }
 
-.inner form > * {
+.titledbox .inner form input {
 	display: block;
 }
 
@@ -148,7 +171,7 @@ p.error, input.error {
 	padding: 7px 10px;
 }
 
-#login-box .flexrow {
+.flexrow {
 	width: 98%;
 	display: -webkit-inline-flex;
 	-webkit-align-items: center;

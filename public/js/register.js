@@ -1,9 +1,11 @@
 // validate the contents of the form before submitting it
-var userAvailable = true;
+var passLength = 3;
+var passGood = false;
 function checkPassword()
 {
 	// validate password
-	var passwordValid = /^[\S]{5,}$/.test($('#password').val());
+	var passTest = new RegExp('^.{'+passLength+',}$');
+	var passwordValid = passTest.test($('#password').val());
 	if( !passwordValid ){
 		$('#passwordMessage').addClass('error');
 		$('#password').addClass('error');
@@ -23,8 +25,11 @@ function checkPassword()
 		$('#confirmMessage').removeClass('error').text('Passwords match.');
 		$('#confirm').removeClass('error');
 	}
+
+	passGood = passwordValid && confirmValid;
 }
 
+var userGood = false;
 var checkNameTimeout = null;
 function checkUsername(elem)
 {
@@ -33,12 +38,12 @@ function checkUsername(elem)
 		$.get('/register/verify?a='+encodeURIComponent(elem.value), function(data)
 		{
 			if( data.found ){
-				userAvailable = false;
+				userGood = false;
 				$('#username').addClass('error');
 				$('#userMessage').addClass('error').text('Username is already taken.');
 			}
 			else {
-				userAvailable = true;
+				userGood = true;
 				$('#username').removeClass('error');
 				$('#userMessage').removeClass('error').text('Username is available.');
 			}
@@ -50,13 +55,27 @@ function checkUsername(elem)
 		clearTimeout(checkNameTimeout);
 
 	if( !userValid ){
+		userGood = false;
 		$('#username').addClass('error');
 		$('#userMessage').addClass('error').text('Username is invalid!');
 	}
 	// wait a second before checking the username
 	else {
-		checkNameTimeout = setTimeout(callback, 200);
+		checkNameTimeout = setTimeout(callback, 700);
 	}
 }
 
+function validate()
+{
+	var valid = userGood && passGood;
+
+	if( !valid ){
+		$('#submitMessage').text('Fix the problems above before submitting');
+	}
+	else {
+		$('#submitMessage').clear();
+	}
+
+	return valid;
+}
 
