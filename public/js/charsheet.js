@@ -1,6 +1,11 @@
 var model;
 var viewModel;
 
+function initialize()
+{
+	// retrieve the character sheet data
+	$.getJSON( window.location.pathname + '/json', processCharacterData );
+}
 
 function processCharacterData(data,textStatus,jqXHR)
 {
@@ -8,11 +13,6 @@ function processCharacterData(data,textStatus,jqXHR)
 	model = data;
 	viewModel = new SheetViewModel(data);
 	ko.applyBindings(viewModel);
-}
-
-function initialize(){
-	// retrieve the character sheet data
-	$.getJSON( window.location.pathname + '/json', processCharacterData );
 }
 
 function pushToServer(){
@@ -101,36 +101,24 @@ function finishConseqUpdate(evt, index){
 	}
 }
 
-function moveSkillTo(field, level, diff){
-	var newLevel = level+diff;
-	var i = viewModel.skills.lists[level]().indexOf(field);
-	if( newLevel >= 0 && newLevel <= viewModel.totals.skill_cap() ){
-		//console.log('Move', field, 'to', level+diff);
-		var skill = viewModel.skills.lists[level].splice(i,1);
-		viewModel.skills.lists[newLevel].push(field);
-		viewModel.skills.lists[newLevel].sort();
-	}
-	if( validateSkills() ){
-		$('#validSkillLadder').html('Valid');
-	}
-	else {
-		$('#validSkillLadder').html('INVALID')
-	}
-		
-}
-
 function validateSkills(){
 	var valid = true;
 	for( var i=1; i<viewModel.totals.skill_cap(); i++ ){
 		var skills = viewModel.skills.lists;
 		valid &= skills[i]().length >= skills[i+1]().length;
 	}
-	return valid;
+	if( valid ){
+		$('#validSkillLadder').html('Valid');
+	}
+	else {
+		$('#validSkillLadder').html('INVALID')
+	}
 }
 
-function addSkill(){
+function addSkill(evt){
 	var skill = $('#newSkill').val();
 	viewModel.skills.lists[0].push(skill);
+	$('#newSkill').val('');
 }
 
 function removePower(i){

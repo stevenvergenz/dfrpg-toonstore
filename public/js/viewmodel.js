@@ -1,3 +1,52 @@
+ko.extenders.sort = function(target,dir)
+{
+	function sortFn(a,b){
+		var result = a > b ? 1 : -1;
+		return dir === 'desc' ? -result : result;
+	};
+	target.subscribe(function(val){
+		if(val){
+			val.sort(sortFn);
+		}
+	});
+	return target;
+};
+
+ko.bindingHandlers.draggable = {
+	init: function(element, valueAccessor){
+		var editing = ko.utils.unwrapObservable(valueAccessor());
+		$(element).draggable({revert:true, disabled: !editing});
+	},
+	update: function(element,valueAccessor){
+		var editing = ko.utils.unwrapObservable(valueAccessor());
+		$(element).draggable('option', 'disabled', !editing);
+	}
+};
+
+ko.bindingHandlers.droppable = {
+	init: function(element, valueAccessor){
+		var editing = ko.utils.unwrapObservable(valueAccessor());
+		$(element).droppable({ hoverClass: 'dropHoverRow', disabled: !editing,
+			drop: function(evt,ui){
+				var skill = ui.draggable.find('span').text();
+				var draggedList = ko.contextFor(ui.draggable.find('span')[0]).$parent;
+				var droppedList = ko.dataFor(evt.target);
+				if( draggedList != droppedList ){
+					draggedList.skills.remove(skill);
+					if( droppedList.index != 0 ){
+						droppedList.skills.push(skill);
+					}
+					validateSkills();
+				}
+			}
+		});
+	},
+	update: function(element, valueAccessor){
+		var editing = ko.utils.unwrapObservable(valueAccessor());
+		$(element).droppable('option', 'disabled', !editing);
+	}
+};
+
 function StressBox(index, used, track)
 {
 	this.index = index;
@@ -166,15 +215,15 @@ function SheetViewModel(data)
 	// initialize skills data
 	this.skills = {
 		'lists': [
-			ko.observableArray(data.skills[0] ? data.skills[0] : []),
-			ko.observableArray(data.skills[1] ? data.skills[1] : []),
-			ko.observableArray(data.skills[2] ? data.skills[2] : []),
-			ko.observableArray(data.skills[3] ? data.skills[3] : []),
-			ko.observableArray(data.skills[4] ? data.skills[4] : []),
-			ko.observableArray(data.skills[5] ? data.skills[5] : []),
-			ko.observableArray(data.skills[6] ? data.skills[6] : []),
-			ko.observableArray(data.skills[7] ? data.skills[7] : []),
-			ko.observableArray(data.skills[8] ? data.skills[8] : []),
+			ko.observableArray(data.skills[0] ? data.skills[0] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills[1] ? data.skills[1] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills[2] ? data.skills[2] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills[3] ? data.skills[3] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills[4] ? data.skills[4] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills[5] ? data.skills[5] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills[6] ? data.skills[6] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills[7] ? data.skills[7] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills[8] ? data.skills[8] : []).extend({sort:'asc'})
 		],
 		'editing': ko.observable(false)
 	};
@@ -243,7 +292,7 @@ function SheetViewModel(data)
 		return parseInt(this.base_refresh()) + this.refresh_adjustment();
 	}, this.totals);
 
-	this.skills.skill_sets = ko.computed(function(){
+	this.skills.sets = ko.computed(function(){
 		var sets = [];
 		for( var i=this.totals.skill_cap(); i>=0; i-- ){
 			sets.push({
