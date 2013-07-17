@@ -129,7 +129,7 @@ function newCharacterRequest(req,res)
 		{
 			if( err ){
 				global.error('MySQL error:', err);
-				res.render('newtoon', {message: 'You are already using that short name'})(req,res);
+				global.renderPage('newtoon', {message: {type: 'error', content:'You are already using that short name'}})(req,res);
 			}
 			else {
 				global.log('Creation successful');

@@ -128,6 +128,10 @@ p.error, input.error {
 	color: black;
 	margin: 10px auto;
 	overflow: hidden;
+
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	max-width: 360px;
 }
 
 .titledbox .title {
@@ -142,11 +146,11 @@ p.error, input.error {
 	margin: 20px;
 }
 
-#login-box, #register-box {
+/*#login-box, #register-box {
 	display: -webkit-flex;
 	-webkit-flex-direction: column;
 	max-width: 360px;
-}
+}*/
 
 #login-box .inner, #register-box .inner {
 	display: -webkit-flex;
