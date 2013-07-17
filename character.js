@@ -11,7 +11,7 @@ function servePage(req,res,next)
 		function(err,rows,fields){
 			if( !err && rows.length == 1 ){
 				global.log('Serving character page for', req.url);
-				global.renderPage('charsheet')(req,res);
+				global.renderPage('charsheet', {toonName: rows[0].name})(req,res);
 			}
 			else {
 				next();
