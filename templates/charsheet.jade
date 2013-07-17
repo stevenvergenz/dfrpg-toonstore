@@ -1,12 +1,14 @@
-extends theme
+extends index
 
 block title
 	title= toonName + ' - ToonStore'
 
-block append includes
+block append styles
 	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous')
 	link(rel='stylesheet', type='text/css', href='/css/charsheet.css')
 	link(rel='stylesheet', type='text/css', href='/css/jquery-ui-1.10.3.custom.css')
+
+block append includes
 	script(src='/js/jquery-ui-1.10.3.custom.js')
 	script(src='/js/jquery.ui.touch-punch.min.js')
 	script(src='/js/knockout-2.2.1.js')
@@ -15,280 +17,286 @@ block append includes
 	script.
 		$(document).ready( initialize );
 
-	meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
-
 block content
 
 	if logged_user == owner
-		input#save(type='button', value='Save', onclick='pushToServer()')
+		.sheet-panel-group: .sheet-panel: input#save(type='button', value='Save', onclick='pushToServer()')
 
-	section#general
+	.sheet-panel-group
 
-		if logged_user == owner
-			input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
-				style='position: absolute; left: 345px;',
-				onclick='viewModel.generalEditing( !viewModel.generalEditing() )')
+		#general.sheet-panel
 
-		p.sectionHeader
-			span(data-bind='visible: !generalEditing(), text: name')
-			input(type='text', data-bind='visible: generalEditing, value: name')
-		p
-			span(data-bind='visible: !generalEditing(), text: "("+player()+")"')
-			input(type='text', data-bind='visible: generalEditing, value: player')
-
-
-	section#aspects(data-bind='with: aspects')
-		p.sectionHeader Aspects
 			if logged_user == owner
 				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
-					onclick='viewModel.aspects.editing( !viewModel.aspects.editing() )')
+					style='float: left;',
+					onclick='viewModel.generalEditing( !viewModel.generalEditing() )')
 
-		.field
-			p.fieldLabel High Concept:
-			p(data-bind='visible: !editing(), text: high_concept.name')
-			input(type='text', data-bind='visible: editing, value: high_concept.name')
+			p.sectionHeader
+				span(data-bind='visible: !generalEditing(), text: name')
+				input(type='text', data-bind='visible: generalEditing, value: name')
+			p
+				span(data-bind='visible: !generalEditing(), text: "("+player()+")"')
+				input(type='text', data-bind='visible: generalEditing, value: player')
 
-		.field
-			p.fieldLabel Trouble:
-			p(data-bind='visible: !editing(), text: trouble.name')
-			input(type='text', data-bind='visible: editing, value: trouble.name')
+	.sheet-panel-group
 
-		.field
-			p.fieldLabel Other Aspects:
-			// ko foreach: aspects
-			p(data-bind='visible: !$parent.editing(), text: name')
-			div(data-bind='if: $parent.editing')
-				input(type='text', data-bind='visible: $parent.editing, value: name')
-				input.iconButton(type='image', style='width: 15px; height: 15px;',
-					src='/img/glyphicons/glyphicons_192_circle_remove.png',
-					data-bind='attr: {onclick: "removeAspect("+$index()+")"}')
-			// /ko
+		#aspects.sheet-panel(data-bind='with: aspects')
+			p.sectionHeader Aspects
+				if logged_user == owner
+					input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
+						onclick='viewModel.aspects.editing( !viewModel.aspects.editing() )')
 
-		input.iconButton(type='image', src='/img/glyphicons/glyphicons_190_circle_plus.png',
-			onclick='addAspect()', data-bind='visible: editing')
+			.field
+				p.fieldLabel High Concept:
+				p(data-bind='visible: !editing(), text: high_concept.name')
+				input(type='text', data-bind='visible: editing, value: high_concept.name')
 
+			.field
+				p.fieldLabel Trouble:
+				p(data-bind='visible: !editing(), text: trouble.name')
+				input(type='text', data-bind='visible: editing, value: trouble.name')
 
-	section#stress
-		p.sectionHeader Stress
-			if logged_user == owner
-				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
-					onclick='viewModel.stress.editing( !viewModel.stress.editing() )')
-
-		table#stressTable
-			thead
-				tr(data-bind='ifnot: $root.stress.editing')
-					th &nbsp;
-					for i in [1,2,3,4,5,6,7,8]
-						th= i
-				tr(data-bind='if: $root.stress.editing')
-					th Name/Skill
-					th Boxes
-					th Tough
-
-			tbody(data-bind='foreach: stress')
-
-				tr
-					th
-						span(data-bind='visible: !$root.stress.editing(), text: name')
-						input(type='text', style='width: 100px;', data-bind='visible: $root.stress.editing, value: name')
-						br
-						span(class='subtitle', data-bind='visible: !$root.stress.editing(), text: "("+skill()+")"')
-						input(type='text', style='width: 100px;', data-bind='visible: $root.stress.editing, value: skill')
-
-					// ko ifnot: $root.stress.editing
-					// ko foreach: [0,1,2,3,4,5,6,7]
-					td
-						// ko if: $parent.boxes()[$data] != undefined
-						input(type='checkbox', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}, css: $parent.boxes()[$data].icon, checked: $parent.boxes()[$data].used')
-						// /ko
-						// ko ifnot: $parent.boxes()[$data] != undefined
-						input.stressBox(type='checkbox', disabled='disabled', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}')
-						// /ko
-						if logged_user == owner
-							label(data-bind='attr: {for: $parent.name()+"-"+$parent.skill()+"-"+$data}')
-						else
-							label
-					// /ko
-					// /ko
-
-					// ko if: $root.stress.editing
-					td: input(type='number', style='width: 95%;', min='1', max='8', data-bind='value: strength')
-					td: input(type='number', style='width: 95%;', min='0', data-bind='value: toughness, attr: {max: strength}')
-					td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_270_shield.png',
-						data-bind='attr: {onclick: "addArmorTo("+$index()+")"}')
-					td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
-						data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}')
-					// /ko
-
-				// ko foreach: armor
-				tr(data-bind='if: $root.stress.editing')
-					td(colspan=4)
-						span Armor: 
-						input(type='number', min='0', style='width: 50px;', data-bind='value: strength')
-						span  vs. 
-						input(type='text', style='width: 100px;', data-bind='value: vs')
-					td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
-						data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}')
-
-				tr(data-bind='ifnot: $root.stress.editing')
-					td(colspan=9, data-bind='text: text')
+			.field
+				p.fieldLabel Other Aspects:
+				// ko foreach: aspects
+				p(data-bind='visible: !$parent.editing(), text: name')
+				div(data-bind='if: $parent.editing')
+					input(type='text', data-bind='visible: $parent.editing, value: name')
+					input.iconButton(type='image', style='width: 15px; height: 15px;',
+						src='/img/glyphicons/glyphicons_192_circle_remove.png',
+						data-bind='attr: {onclick: "removeAspect("+$index()+")"}')
 				// /ko
 
-		input.iconButton(type='image', data-bind='visible: $root.stress.editing',
-			src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addStressTrack()')
+			input.iconButton(type='image', src='/img/glyphicons/glyphicons_190_circle_plus.png',
+				onclick='addAspect()', data-bind='visible: editing')
 
+	.sheet-panel-group
 
-	section#consequences
-		p.sectionHeader Consequences
-			if logged_user == owner
-				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
-					onclick='viewModel.consequences.editing( !viewModel.consequences.editing() )')
+		#skills.sheet-panel
 
-		table#conseqTable
-			thead
-				tr
-					th Type
-					th P/M/S
-					th(data-bind='visible: !$root.consequences.editing()') Stress
-					th Used?
-					th Aspect
+			p.sectionHeader Skills
+				if logged_user == owner
+					input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
+						onclick='viewModel.skills.editing( !viewModel.skills.editing() )')
 
-			tbody(data-bind='foreach: sorted_consequences')
-				tr
-					td
-						span(data-bind='visible: !$root.consequences.editing(), text: severity')
-						select(data-bind='visible: $root.consequences.editing, value: severity')
-							option(value='Mild') Mild
-							option(value='Moderate') Moderate
-							option(value='Severe') Severe
-							option(value='Extreme') Extreme
+			p(data-bind='visible: $root.skills.editing')
+				| Drag skills to rearrange
+				br
+				| Drop on +0 to remove
 
-					td
-						span(data-bind='visible: !$root.consequences.editing(), text: mode')
-						select(data-bind='visible: $root.consequences.editing, options: $root.stress_types, value: mode')
-
-					td(data-bind='visible: !$root.consequences.editing(), text: magnitude')
-					td
-						input.stressBox(type='checkbox', onchange='updateConseqAspect(this)', data-bind='attr: {id: "conseq"+$index()}, checked: used')
-						if logged_user == owner
-							label(data-bind='attr: {for: "conseq"+$index()}')
-						else
-							label
-					td
-						if logged_user == owner
-							span.conseqAspectDisplay(data-bind='text: aspect')
-							input.conseqAspectEdit(type='text', style='display: none; width: 100px;', data-bind='attr: {onkeypress: "finishConseqUpdate(event,"+$index()+")"}, value: aspect')
-						else
-							span(data-bind='text: aspect')
-
-					td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
-						data-bind='visible: $root.consequences.editing, attr: {onclick: "removeConsequenceAt("+$index()+")"}')
-
-		input.iconButton(type='image', data-bind='visible: $root.consequences.editing',
-			src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addConsequence()')
-
-	section#totals(data-bind='with: totals')
-
-		if logged_user == owner
-			input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
-				onclick='viewModel.totals.editing( !viewModel.totals.editing() )')
-		
-		img#star(src='/img/pentacle.png')
-		#borderOcclude
-
-		p#powerLevel(data-bind='visible: !editing()')
-			span(style='left: 30px;') Power Level:
-			br
-			span(style='left: 33px;', data-bind='text: power_level')
-		label(data-bind='if: editing', style='left: 45px;') Skill Points
-			br
-			input(type='number', style='width: 50px; left: 22px;', data-bind='value: skills_total')
-
-		p#skillCap
-			span(style='width: 100%; left: 0px;') Skill Cap:
-			br
-			span(style='width: 100%; left: 0px;', data-bind='visible: !editing(), text: skill_cap_text')
-			input(type='number', min=1, max=8, style='left: 58px;', data-bind='visible: editing, value: skill_cap')
-			// text: skill_cap_text
-			//
-		label(data-bind='if: editing', style='left: 100px;')
-
-		p#skillsSpent.bubble(data-bind='text: skills_spent') 
-		p.label Skill Points Spent
-		p#skillsAvailable.bubble(data-bind='text: skills_available')
-		p.label Available
-
-		p#baseRefresh.bubble.doubleBubble(style='top: 104px; left: 159px;', data-bind='visible: !editing(), text: base_refresh')
-		input(type='number', min=0, style='top: 112px; left: 166px; width: 40px;', data-bind='visible: editing, value: base_refresh')
-		p.label(style='left: 208px; top: 105px; width: 125px;') Base Refresh Level
-		p#adjustedRefresh.bubble.doubleBubble(data-bind='text: adjusted_refresh')
-		p.label Adjusted Refresh
-		p#fatePoints.bubble.doubleBubble(style='top: 213px; left: 161px;', data-bind='visible: !editing(), text: fate_points')
-		input(type='number', min=0, style='top: 224px; left: 164px; width: 40px;', data-bind='visible: editing, value: fate_points')
-		p.label(style='top: 228px; left: 215px;') Fate Points
-
-
-	section#skills
-		p.sectionHeader Skills
-			if logged_user == owner
-				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
-					onclick='viewModel.skills.editing( !viewModel.skills.editing() )')
-
-		p(data-bind='visible: $root.skills.editing')
-			| Drag skills to rearrange
-			br
-			| Drop on +0 to remove
-
-		table#skillTable
-			tbody(data-bind='foreach: skills.sets')
-				tr(data-bind='if: $root.skills.editing() || index != 0, droppable: $root.skills.editing')
-					th(data-bind='text: level_text')
-					td: p(data-bind='foreach: skills')
-						span(data-bind='visible: $index() != 0') , 
-						span(style='white-space: nowrap;', data-bind='draggable: $root.skills.editing')
-							span(data-bind='text: $data')
-							img(data-bind='visible: $root.skills.editing', src='/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
+			table#skillTable
+				tbody(data-bind='foreach: skills.sets')
+					tr(data-bind='if: $root.skills.editing() || index != 0, droppable: $root.skills.editing')
+						th(data-bind='text: level_text')
+						td: p(data-bind='foreach: skills')
+							span(data-bind='visible: $index() != 0') , 
+							span(style='white-space: nowrap;', data-bind='draggable: $root.skills.editing')
+								span(data-bind='text: $data')
+								img(data-bind='visible: $root.skills.editing', src='/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
 						
-		div(data-bind='if: skills.editing()')
-			form(onsubmit='addSkill(); return false;')
-				input#newSkill(type='text')
-				input(type='submit', value='Add skill')
-			p#validSkillLadder Valid
+			div(data-bind='if: skills.editing()')
+				form(onsubmit='addSkill(); return false;')
+					input#newSkill(type='text')
+					input(type='submit', value='Add skill')
+				p#validSkillLadder Valid
 
-	section#powers
-		p.sectionHeader Stunts & Powers
+	.sheet-panel-group
+
+		#stress.sheet-panel
+			p.sectionHeader Stress
+				if logged_user == owner
+					input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
+						onclick='viewModel.stress.editing( !viewModel.stress.editing() )')
+
+			table#stressTable
+				thead
+					tr(data-bind='ifnot: $root.stress.editing')
+						th &nbsp;
+						for i in [1,2,3,4,5,6,7,8]
+							th= i
+					tr(data-bind='if: $root.stress.editing')
+						th Name/Skill
+						th Boxes
+						th Tough
+
+				tbody(data-bind='foreach: stress')
+
+					tr
+						th
+							span(data-bind='visible: !$root.stress.editing(), text: name')
+							input(type='text', style='width: 100px;', data-bind='visible: $root.stress.editing, value: name')
+							br
+							span(class='subtitle', data-bind='visible: !$root.stress.editing(), text: "("+skill()+")"')
+							input(type='text', style='width: 100px;', data-bind='visible: $root.stress.editing, value: skill')
+
+						// ko ifnot: $root.stress.editing
+						// ko foreach: [0,1,2,3,4,5,6,7]
+						td
+							// ko if: $parent.boxes()[$data] != undefined
+							input(type='checkbox', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}, css: $parent.boxes()[$data].icon, checked: $parent.boxes()[$data].used')
+							// /ko
+							// ko ifnot: $parent.boxes()[$data] != undefined
+							input.stressBox(type='checkbox', disabled='disabled', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}')
+							// /ko
+							if logged_user == owner
+								label(data-bind='attr: {for: $parent.name()+"-"+$parent.skill()+"-"+$data}')
+							else
+								label
+						// /ko
+						// /ko
+
+						// ko if: $root.stress.editing
+						td: input(type='number', style='width: 95%;', min='1', max='8', data-bind='value: strength')
+						td: input(type='number', style='width: 95%;', min='0', data-bind='value: toughness, attr: {max: strength}')
+						td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_270_shield.png',
+							data-bind='attr: {onclick: "addArmorTo("+$index()+")"}')
+						td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
+							data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}')
+						// /ko
+
+					// ko foreach: armor
+					tr(data-bind='if: $root.stress.editing')
+						td(colspan=4)
+							span Armor: 
+							input(type='number', min='0', style='width: 50px;', data-bind='value: strength')
+							span  vs. 
+							input(type='text', style='width: 100px;', data-bind='value: vs')
+						td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
+							data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}')
+
+					tr(data-bind='ifnot: $root.stress.editing')
+						td(colspan=9, data-bind='text: text')
+					// /ko
+
+			input.iconButton(type='image', data-bind='visible: $root.stress.editing',
+				src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addStressTrack()')
+
+	.sheet-panel-group
+
+		#consequences.sheet-panel
+			p.sectionHeader Consequences
+				if logged_user == owner
+					input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
+						onclick='viewModel.consequences.editing( !viewModel.consequences.editing() )')
+
+			table#conseqTable
+				thead
+					tr
+						th Type
+						th P/M/S
+						th(data-bind='visible: !$root.consequences.editing()') Stress
+						th Used?
+						th Aspect
+
+				tbody(data-bind='foreach: sorted_consequences')
+					tr
+						td
+							span(data-bind='visible: !$root.consequences.editing(), text: severity')
+							select(data-bind='visible: $root.consequences.editing, value: severity')
+								option(value='Mild') Mild
+								option(value='Moderate') Moderate
+								option(value='Severe') Severe
+								option(value='Extreme') Extreme
+
+						td
+							span(data-bind='visible: !$root.consequences.editing(), text: mode')
+							select(data-bind='visible: $root.consequences.editing, options: $root.stress_types, value: mode')
+
+						td(data-bind='visible: !$root.consequences.editing(), text: magnitude')
+						td
+							input.stressBox(type='checkbox', onchange='updateConseqAspect(this)', data-bind='attr: {id: "conseq"+$index()}, checked: used')
+							if logged_user == owner
+								label(data-bind='attr: {for: "conseq"+$index()}')
+							else
+								label
+						td
+							if logged_user == owner
+								span.conseqAspectDisplay(data-bind='text: aspect')
+								input.conseqAspectEdit(type='text', style='display: none; width: 100px;', data-bind='attr: {onkeypress: "finishConseqUpdate(event,"+$index()+")"}, value: aspect')
+							else
+								span(data-bind='text: aspect')
+
+						td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
+							data-bind='visible: $root.consequences.editing, attr: {onclick: "removeConsequenceAt("+$index()+")"}')
+
+			input.iconButton(type='image', data-bind='visible: $root.consequences.editing',
+				src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addConsequence()')
+
+	.sheet-panel-group
+		#totals.sheet-panel(data-bind='with: totals')
+
 			if logged_user == owner
-				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
-					onclick='viewModel.powers.editing( !viewModel.powers.editing() )')
+				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
+					onclick='viewModel.totals.editing( !viewModel.totals.editing() )')
+		
+			img#star(src='/img/pentacle.png')
+			//#borderOcclude
 
-		table#powerTable
-			thead: tr
-				th Cost
-				th Ability
+			p#powerLevel(data-bind='visible: !editing()')
+				span(style='left: 30px;') Power Level:
+				br
+				span(style='left: 33px;', data-bind='text: power_level')
+			label(data-bind='if: editing', style='left: 45px;') Skill Points
+				br
+				input(type='number', style='width: 50px; left: 22px;', data-bind='value: skills_total')
 
-			tbody
+			p#skillCap
+				span(style='width: 100%; left: 0px;') Skill Cap:
+				br
+				span(style='width: 100%; left: 0px;', data-bind='visible: !editing(), text: skill_cap_text')
+				input(type='number', min=1, max=8, style='left: 58px;', data-bind='visible: editing, value: skill_cap')
+				// text: skill_cap_text
+			label(data-bind='if: editing', style='left: 100px;')
 
-				// ko foreach: powers
-				tr(data-bind='ifnot: $root.powers.editing')
-					td.mainRow(data-bind='text: cost')
-					td.mainRow(data-bind='text: name')
-				tr(data-bind='if: $root.powers.editing')
-					td.mainRow: input(type='number', min='-8', max='8', data-bind='value: cost')
-					td.mainRow: input(type='text', data-bind='value: name')
-				tr(data-bind='if: description() && !$root.powers.editing()')
-					td &nbsp;
-					td: p(data-bind='html: description')
-				tr(data-bind='if: $root.powers.editing')
-					td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
-						data-bind='attr: {onclick: "removePower("+$index()+")"}')
-					td: textarea(data-bind='value: clean_description')
+			p#skillsSpent.bubble(data-bind='text: skills_spent') 
+			p.label Skill Points Spent
+			p#skillsAvailable.bubble(data-bind='text: skills_available')
+			p.label Available
 
-				// /ko
+			p#baseRefresh.bubble.doubleBubble(style='top: 104px; left: 159px;', data-bind='visible: !editing(), text: base_refresh')
+			input(type='number', min=0, style='top: 112px; left: 166px; width: 40px;', data-bind='visible: editing, value: base_refresh')
+			p.label(style='left: 208px; top: 105px; width: 125px;') Base Refresh Level
+			p#adjustedRefresh.bubble.doubleBubble(data-bind='text: adjusted_refresh')
+			p.label Adjusted Refresh
+			p#fatePoints.bubble.doubleBubble(style='top: 213px; left: 161px;', data-bind='visible: !editing(), text: fate_points')
+			input(type='number', min=0, style='top: 224px; left: 164px; width: 40px;', data-bind='visible: editing, value: fate_points')
+			p.label(style='top: 228px; left: 215px;') Fate Points
 
-				tr
-					td.mainRow(style='border-top: solid black 1px;', data-bind='text: $root.totals.refresh_adjustment')
-					td.mainRow Total Refresh Adjustment
+	.sheet-panel-group
+		#powers.sheet-panel
+			p.sectionHeader Stunts & Powers
+				if logged_user == owner
+					input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
+						onclick='viewModel.powers.editing( !viewModel.powers.editing() )')
 
-		input.iconButton(type='image', data-bind='visible: powers.editing',
-			src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addPower()')
+			table#powerTable
+				thead: tr
+					th Cost
+					th Ability
+
+				tbody
+
+					// ko foreach: powers
+					tr(data-bind='ifnot: $root.powers.editing')
+						td.mainRow(data-bind='text: cost')
+						td.mainRow(data-bind='text: name')
+					tr(data-bind='if: $root.powers.editing')
+						td.mainRow: input(type='number', min='-8', max='8', data-bind='value: cost')
+						td.mainRow: input(type='text', data-bind='value: name')
+					tr(data-bind='if: description() && !$root.powers.editing()')
+						td &nbsp;
+						td: p(data-bind='html: description')
+					tr(data-bind='if: $root.powers.editing')
+						td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
+							data-bind='attr: {onclick: "removePower("+$index()+")"}')
+						td: textarea(data-bind='value: clean_description')
+
+					// /ko
+
+					tr
+						td.mainRow(style='border-top: solid black 1px;', data-bind='text: $root.totals.refresh_adjustment')
+						td.mainRow Total Refresh Adjustment
+
+			input.iconButton(type='image', data-bind='visible: powers.editing',
+				src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addPower()')
 

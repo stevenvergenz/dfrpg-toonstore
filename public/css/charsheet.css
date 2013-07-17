@@ -2,21 +2,24 @@ p,th,td,label {
 	font-family: 'Metamorphous', cursive;
 }
 
-.column {
-	float: left;
+div.sheet-panel-group {
+	display: -webkit-flex;
+	width: 100%;
+	-webkit-flex-direction: row;
+	-webkit-justify-content: center;
+	-webkit-flex-wrap: wrap;
 }
 
-.editor {
-	float: right;
-}
-
-section {
-	border: 1px solid black;
+div.sheet-panel {
+	border: 1px solid grey;
 	border-radius: 5px;
-	width: 350px;
 	padding: 10px;
-	margin: 10px 5px;
 	text-align: center;
+	margin: 5px;
+	-webkit-flex-basis: 350px;
+
+	background-color: white;
+	color: black;
 }
 
 div.field {
@@ -81,11 +84,11 @@ th span.subtitle {
 /*
  * Style the totals box more or less manually
  */
-section#totals {
+#totals {
 	position: relative;
 	height: 250px;
 }
-section#totals * {
+#totals * {
 	position: absolute;
 }
 
