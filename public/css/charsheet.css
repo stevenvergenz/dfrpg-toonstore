@@ -1,4 +1,4 @@
-p,th,td,label {
+p,th,td,label,span {
 	font-family: 'Metamorphous', cursive;
 }
 
@@ -15,11 +15,16 @@ div.sheet-panel {
 	border-radius: 5px;
 	padding: 10px;
 	text-align: center;
-	margin: 5px;
+	margin: 5px 0;
 	-webkit-flex-basis: 350px;
 
 	background-color: white;
 	color: black;
+	overflow: hidden;
+}
+
+div.wide-panel {
+	-webkit-flex-basis: 720px;
 }
 
 div.field {
@@ -64,7 +69,7 @@ input.iconButton {
 	height: 20px;
 }
 
-th span.subtitle {
+span.subtitle {
 	font-size: 80%;
 	font-weight: normal;
 }
@@ -185,11 +190,13 @@ input[type="checkbox"].stressBox {
 input[type="checkbox"].stressBox + label {
 	vertical-align: middle;
 	display: inline-block;
-	width: 26px;
+	width: 20px;
 	height: 20px;
 	background-repeat: no-repeat;
 	background-position: 0px 0px;
 	background-image: url(../img/checkbox.png);
+	background-origin: padding-box;
+	padding: 0 3px;
 }
 
 input[type="checkbox"].stressBox:checked + label {
@@ -228,23 +235,43 @@ tr.dropHoverRow {
 	background-color: #eef;
 }
 
-table#stressEditTable input[type="text"] {
-	width: 80px;
+div#stressBlock {
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	width: 100%;
 }
 
-table#stressTable thead {
-	text-align: center;
+#stressBlock .track {
+	display: -webkit-flex;
+	-webkit-flex-flow: row nowrap;
+	-webkit-justify-content: space-between;
+	-webkit-align-items: center;
 }
 
-table#stressTable tbody {
+#stressBlock .rowHeader {
+	width: 100px;
+	font-weight: bold;
 	text-align: left;
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	margin: 3px 0;
+}
+
+#stressBlock .colHeader {
+	font-weight: bold;
+	text-align: center;
+	-webkit-flex-grow: 1;
+}
+
+#stressBlock .cell {
+	-webkit-flex-grow: 1;
 }
 
 table#conseqTable {
 	font-size: 10pt;
 }
 
-table#conseqTable th:first-of-type,td:first-of-type {
+table#conseqTable th:first-of-type, table#conseqTable td:first-of-type {
 	text-align: left;
 }
 

@@ -19,12 +19,12 @@ block append includes
 
 block content
 
-	if logged_user == owner
-		.sheet-panel-group: .sheet-panel: input#save(type='button', value='Save', onclick='pushToServer()')
 
 	.sheet-panel-group
+		if logged_user == owner
+			.sheet-panel: input#save(type='button', value='Save', onclick='pushToServer()')
 
-		#general.sheet-panel
+		#general.sheet-panel.wide-panel
 
 			if logged_user == owner
 				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
@@ -38,7 +38,6 @@ block content
 				span(data-bind='visible: !generalEditing(), text: "("+player()+")"')
 				input(type='text', data-bind='visible: generalEditing, value: player')
 
-	.sheet-panel-group
 
 		#aspects.sheet-panel(data-bind='with: aspects')
 			p.sectionHeader Aspects
@@ -70,7 +69,6 @@ block content
 			input.iconButton(type='image', src='/img/glyphicons/glyphicons_190_circle_plus.png',
 				onclick='addAspect()', data-bind='visible: editing')
 
-	.sheet-panel-group
 
 		#skills.sheet-panel
 
@@ -100,7 +98,6 @@ block content
 					input(type='submit', value='Add skill')
 				p#validSkillLadder Valid
 
-	.sheet-panel-group
 
 		#stress.sheet-panel
 			p.sectionHeader Stress
@@ -108,7 +105,46 @@ block content
 					input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
 						onclick='viewModel.stress.editing( !viewModel.stress.editing() )')
 
-			table#stressTable
+
+			div#stressBlock
+				div.track
+					div.rowHeader
+					for i in [1,2,3,4,5,6,7,8]
+						div.colHeader
+							span= i
+
+				// ko foreach: stress
+				div.track
+					div.rowHeader
+						span(data-bind='text: name')
+						span.subtitle(data-bind='text: "("+skill()+")"')
+					div.cell
+						input#1.stressBox(type='checkbox', checked)
+						label(for='1')
+					div.cell
+						input#2.stressBox(type='checkbox', checked)
+						label(for='2')
+					div.cell
+						input#3.stressBox(type='checkbox')
+						label(for='3')
+					div.cell
+						input#4.stressBox(type='checkbox')
+						label(for='4')
+					div.cell
+						input#5.stressBox.leftParen(type='checkbox')
+						label(for='5')
+					div.cell
+						input#6.stressBox.rightParen(type='checkbox')
+						label(for='6')
+					div.cell
+						input#7.stressBox(type='checkbox', disabled='disabled')
+						label(for='7')
+					div.cell
+						input#8.stressBox(type='checkbox', disabled='disabled')
+						label(for='8')
+				// /ko
+
+			//-table#stressTable
 				thead
 					tr(data-bind='ifnot: $root.stress.editing')
 						th &nbsp;
@@ -126,7 +162,7 @@ block content
 							span(data-bind='visible: !$root.stress.editing(), text: name')
 							input(type='text', style='width: 100px;', data-bind='visible: $root.stress.editing, value: name')
 							br
-							span(class='subtitle', data-bind='visible: !$root.stress.editing(), text: "("+skill()+")"')
+							span(class='subtitle', data-bind='visible: !$root.stress.editing(), text: "("+skill().substr()+")"')
 							input(type='text', style='width: 100px;', data-bind='visible: $root.stress.editing, value: skill')
 
 						// ko ifnot: $root.stress.editing
@@ -171,7 +207,6 @@ block content
 			input.iconButton(type='image', data-bind='visible: $root.stress.editing',
 				src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addStressTrack()')
 
-	.sheet-panel-group
 
 		#consequences.sheet-panel
 			p.sectionHeader Consequences
@@ -222,7 +257,6 @@ block content
 			input.iconButton(type='image', data-bind='visible: $root.consequences.editing',
 				src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addConsequence()')
 
-	.sheet-panel-group
 		#totals.sheet-panel(data-bind='with: totals')
 
 			if logged_user == owner
@@ -262,7 +296,6 @@ block content
 			input(type='number', min=0, style='top: 224px; left: 164px; width: 40px;', data-bind='visible: editing, value: fate_points')
 			p.label(style='top: 228px; left: 215px;') Fate Points
 
-	.sheet-panel-group
 		#powers.sheet-panel
 			p.sectionHeader Stunts & Powers
 				if logged_user == owner
