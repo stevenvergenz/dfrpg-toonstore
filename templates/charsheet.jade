@@ -38,7 +38,7 @@ block content
 				span(data-bind='visible: !generalEditing(), text: "("+player()+")"')
 				input(type='text', data-bind='visible: generalEditing, value: player')
 
-
+	.sheet-panel-group
 		#aspects.sheet-panel(data-bind='with: aspects')
 			p.sectionHeader Aspects
 				if logged_user == owner
@@ -98,6 +98,7 @@ block content
 					input(type='submit', value='Add skill')
 				p#validSkillLadder Valid
 
+	.sheet-panel-group
 
 		#stress.sheet-panel
 			p.sectionHeader Stress
@@ -106,34 +107,36 @@ block content
 						onclick='viewModel.stress.editing( !viewModel.stress.editing() )')
 
 
-			div#stressBlock(data-bind='ifnot: $root.stress.editing')
-				div.track
-					div.rowHeader
-					for i in [1,2,3,4,5,6,7,8]
-						div.colHeader
-							span= i
+			#stressBlock(data-bind='ifnot: $root.stress.editing')
+				.track
+					.rowHeader
+					.boxes
+						for i in [1,2,3,4,5,6,7,8]
+							.colHeader
+								span= i
 
 				// ko foreach: stress
-				div.track
-					div.rowHeader
+				.track
+					.rowHeader
 						span(data-bind='text: name')
 						span.subtitle(data-bind='text: "("+skill()+")"')
-					// ko foreach: [0,1,2,3,4,5,6,7]
-					div.cell
-						// ko if: $parent.boxes()[$data] != undefined
-						input(type='checkbox', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}, css: $parent.boxes()[$data].icon, checked: $parent.boxes()[$data].used')
+					.boxes
+						// ko foreach: [0,1,2,3,4,5,6,7]
+						.box
+							// ko if: $parent.boxes()[$data] != undefined
+							input(type='checkbox', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}, css: $parent.boxes()[$data].icon, checked: $parent.boxes()[$data].used')
+							// /ko
+							// ko ifnot: $parent.boxes()[$data] != undefined
+							input.stressBox(type='checkbox', disabled='disabled', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}')
+							// /ko
+							if logged_user == owner
+								label(data-bind='attr: {for: $parent.name()+"-"+$parent.skill()+"-"+$data}')
+							else
+								label
 						// /ko
-						// ko ifnot: $parent.boxes()[$data] != undefined
-						input.stressBox(type='checkbox', disabled='disabled', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}')
-						// /ko
-						if logged_user == owner
-							label(data-bind='attr: {for: $parent.name()+"-"+$parent.skill()+"-"+$data}')
-						else
-							label
-					// /ko
 
 				// ko foreach: armor
-				div.track(data-bind='text: text')
+				.track(data-bind='text: text')
 				// /ko
 
 				// /ko
@@ -234,6 +237,8 @@ block content
 
 			input.iconButton(type='image', data-bind='visible: $root.consequences.editing',
 				src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addConsequence()')
+
+	.sheet-panel-group
 
 		#totals.sheet-panel(data-bind='with: totals')
 

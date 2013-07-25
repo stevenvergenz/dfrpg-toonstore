@@ -15,7 +15,7 @@ div.sheet-panel {
 	border-radius: 5px;
 	padding: 10px;
 	text-align: center;
-	margin: 5px 0;
+	margin: 5px;
 	-webkit-flex-basis: 350px;
 
 	background-color: white;
@@ -24,7 +24,7 @@ div.sheet-panel {
 }
 
 div.wide-panel {
-	-webkit-flex-basis: 720px;
+	-webkit-flex-basis: 730px;
 }
 
 div.field {
@@ -243,9 +243,10 @@ div#stressBlock {
 
 #stressBlock .track {
 	display: -webkit-flex;
-	-webkit-flex-flow: row nowrap;
+	-webkit-flex-flow: row wrap;
 	-webkit-justify-content: space-between;
 	-webkit-align-items: center;
+	margin: 3px 0;
 }
 
 #stressBlock .rowHeader {
@@ -253,18 +254,26 @@ div#stressBlock {
 	font-weight: bold;
 	text-align: left;
 	display: -webkit-flex;
-	-webkit-flex-direction: column;
-	margin: 3px 0;
+	-webkit-flex-flow: row wrap;
 }
 
 #stressBlock .colHeader {
 	font-weight: bold;
 	text-align: center;
-	-webkit-flex-grow: 1;
+	width: 22px;
 }
 
-#stressBlock .cell {
+#stressBlock .boxes {
+	display: -webkit-flex;
+	-webkit-flex-flow: row nowrap;
 	-webkit-flex-grow: 1;
+	-webkit-justify-content: space-around;
+	padding: 0 2px;
+}
+
+#stressBlock .box {
+	-webkit-flex-shrink: 0;
+	margin: 0 -2px;
 }
 
 table#conseqTable {
