@@ -287,6 +287,7 @@ table#conseqTable th:first-of-type, table#conseqTable td:first-of-type {
 table#skillTable td, table#skillTable th {
 	padding-top: 5px;
 	padding-bottom: 5px;
+	text-align: left;
 }
 
 table#skillTable th {
@@ -303,9 +304,6 @@ table#powerTable thead th {
 	padding-bottom: 0px;
 }
 
-table#powerTable p {
-	font-size: 80%;
-}
 table#powerTable .mainRow {
 	padding-top: 5px;
 }
@@ -315,3 +313,8 @@ table#powerTable .mainRow:first-child {
 	padding-right: 10px;
 }
 
+p.descriptionLine {
+	font-size: 80%;
+	padding-left: 10px;
+	text-indent: -10px;
+}

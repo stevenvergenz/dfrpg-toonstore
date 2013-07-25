@@ -123,13 +123,36 @@ function Consequence(oldConseq){
 function Power(data){
 	this.cost = ko.observable(data.cost);
 	this.name = ko.observable(data.name);
-	this.description = ko.observable(data.description);
-	this.clean_description = ko.computed({
+
+	this.description = ko.observableArray();
+	for( var i in data.description ){
+		this.description.push( ko.observable(data.description[i]) );
+	}
+
+	this.full_description = ko.computed({
 		'read': function(){
-			return this.description().replace(/<br>/g, '\n');
+			var text = '';
+			for( var i in this.description() ){
+				text += this.description()[i]() + '\n';
+			}
+			return text;
 		},
 		'write': function(value){
-			this.description( escapeHtml(value).replace(/\n/g, '<br>') );
+			var lines = value.split('\n');
+			var descLine = 0;
+			for( var inputLine=0; inputLine<lines.length; inputLine++ )
+			{
+				if( lines[inputLine] != '' ){
+					if( descLine < this.description().length ){
+						this.description()[descLine]( lines[inputLine] );
+					}
+					else {
+						this.description.push( ko.observable( lines[inputLine] ) );
+					}
+					descLine++;
+				}
+			}
+			this.description.splice(descLine, this.description().length-descLine);
 		}
 	}, this);
 }

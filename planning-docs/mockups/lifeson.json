@@ -128,28 +128,36 @@
 	"powers": [{
 		"cost": -4,
 		"name": "Evocation + Refinement",
-		"description": "Elements: Spirit, Air, Water<br>Spec: +2 power to spirit evocation<br>Spec: +1 control to air evocation<br>Focus item: Crystal belt buckle<br>* +1 control to offensive spirit magic<br>Focus item: Hawk skin gloves<br>* +1 power to defensive air magic"},{
+		"description": [
+			"Elements: Spirit, Air, Water",
+			"Spec: +2 power to spirit evocation",
+			"Spec: +1 control to air evocation",
+			"Focus item: Crystal belt buckle",
+			"* +1 control to offensive spirit magic",
+			"Focus item: Hawk skin gloves",
+			"* +1 power to defensive air magic"
+		]},{
 
 		"cost": -3,
 		"name": "Thaumaturgy",
-		"description": "Spec: +1 control to spectromancy"},{
+		"description": ["Spec: +1 control to spectromancy"]},{
 
 		"cost": -1,
 		"name": "The Sight",
-		"description": ""},{
+		"description": []},{
 
 		"cost": 0,
 		"name": "Soulgaze",
-		"description": ""},{
+		"description": []},{
 
 		"cost": 0,
 		"name": "Wizard's Constitution",
-		"description": ""},{
+		"description": []},{
 
 		"cost": -1,
 		"name": "Switchblade master",
-		"description": "+1 to attacks with short blades"},{
+		"description": ["+1 to attacks with short blades"]},{
 
 		"cost": -1,
 		"name": "Controlled outburst",
-		"description": "Zone attacks avoid allies"}]}
+		"description": ["Zone attacks avoid allies"]}]}

@@ -299,13 +299,14 @@ block content
 					tr(data-bind='if: $root.powers.editing')
 						td.mainRow: input(type='number', min='-8', max='8', data-bind='value: cost')
 						td.mainRow: input(type='text', data-bind='value: name')
-					tr(data-bind='if: description() && !$root.powers.editing()')
+					tr(data-bind='if: description().length > 0 && !$root.powers.editing()')
 						td &nbsp;
-						td: p(data-bind='html: description')
+						td(data-bind='foreach: description')
+							p.descriptionLine(data-bind='text: $data')
 					tr(data-bind='if: $root.powers.editing')
 						td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
 							data-bind='attr: {onclick: "removePower("+$index()+")"}')
-						td: textarea(data-bind='value: clean_description')
+						td: textarea(data-bind='value: full_description')
 
 					// /ko
 

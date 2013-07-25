@@ -129,6 +129,6 @@ function addPower(){
 	viewModel.powers.push( new Power({
 		'cost': 0,
 		'name': 'New power',
-		'description': 'A short description'
+		'description': ['A short description']
 	}) );
 }
