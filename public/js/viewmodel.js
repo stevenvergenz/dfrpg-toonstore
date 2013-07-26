@@ -238,15 +238,15 @@ function SheetViewModel(data)
 	// initialize skills data
 	this.skills = {
 		'lists': [
-			ko.observableArray(data.skills[0] ? data.skills[0] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills[1] ? data.skills[1] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills[2] ? data.skills[2] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills[3] ? data.skills[3] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills[4] ? data.skills[4] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills[5] ? data.skills[5] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills[6] ? data.skills[6] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills[7] ? data.skills[7] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills[8] ? data.skills[8] : []).extend({sort:'asc'})
+			ko.observableArray(data.skills.lists[0] ? data.skills.lists[0] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[1] ? data.skills.lists[1] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[2] ? data.skills.lists[2] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[3] ? data.skills.lists[3] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[4] ? data.skills.lists[4] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[5] ? data.skills.lists[5] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[6] ? data.skills.lists[6] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[7] ? data.skills.lists[7] : []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[8] ? data.skills.lists[8] : []).extend({sort:'asc'})
 		],
 		'editing': ko.observable(false)
 	};
