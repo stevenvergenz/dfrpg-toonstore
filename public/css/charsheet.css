@@ -33,8 +33,7 @@ div.field {
 }
 
 div.field > * {
-	margin-top: 2px;
-	margin-bottom: 2px;
+	margin: 5px 0;
 }
 
 p.sectionHeader {
@@ -123,8 +122,8 @@ span.subtitle {
 
 .bubble {
 	display: inline-block;
-	width: 40px !important;
-	height: 40px !important;
+	width: 40px;
+	height: 40px;
 	border: solid black 1px;
 	border-radius: 50%;
 	line-height: 40px;
