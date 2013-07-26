@@ -117,8 +117,10 @@ function validateSkills(){
 
 function addSkill(evt){
 	var skill = $('#newSkill').val();
-	viewModel.skills.lists[0].push(skill);
-	$('#newSkill').val('');
+	if( /^\S+$/.test(skill) ){
+		viewModel.skills.lists[0].push(skill);
+		$('#newSkill').val('');
+	}
 }
 
 function removePower(i){
