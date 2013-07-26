@@ -25,20 +25,19 @@ block content
 			.sheet-panel: input#save(type='button', value='Save', onclick='pushToServer()')
 
 		#general.sheet-panel.wide-panel
-
-			if logged_user == owner
-				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
-					style='float: left;',
-					onclick='viewModel.generalEditing( !viewModel.generalEditing() )')
-
+			
 			p.sectionHeader
 				span(data-bind='visible: !generalEditing(), text: name')
 				input(type='text', data-bind='visible: generalEditing, value: name')
-			p
+				if logged_user == owner
+					input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
+						onclick='viewModel.generalEditing( !viewModel.generalEditing() )')
+			div
 				span(data-bind='visible: !generalEditing(), text: "("+player()+")"')
 				input(type='text', data-bind='visible: generalEditing, value: player')
 
 	.sheet-panel-group
+
 		#aspects.sheet-panel(data-bind='with: aspects')
 			p.sectionHeader Aspects
 				if logged_user == owner
@@ -244,40 +243,49 @@ block content
 
 			if logged_user == owner
 				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
+					style='position: absolute; right: 8px;',
 					onclick='viewModel.totals.editing( !viewModel.totals.editing() )')
 		
-			img#star(src='/img/pentacle.png')
-			//#borderOcclude
+			img#star(src='/img/pentacle.svg')
 
-			p#powerLevel(data-bind='visible: !editing()')
-				span(style='left: 30px;') Power Level:
-				br
-				span(style='left: 33px;', data-bind='text: power_level')
-			label(data-bind='if: editing', style='left: 45px;') Skill Points
-				br
-				input(type='number', style='width: 50px; left: 22px;', data-bind='value: skills_total')
+			#top-container.container
+				#powerLevelContainer
+					#powerLevel(data-bind='visible: !editing()')
+						span Power Level:
+						br
+						span(data-bind='text: power_level')
+					label(data-bind='if: editing') Skill Points:
+						br
+						input(type='number', data-bind='value: skills_total')
 
-			p#skillCap
-				span(style='width: 100%; left: 0px;') Skill Cap:
-				br
-				span(style='width: 100%; left: 0px;', data-bind='visible: !editing(), text: skill_cap_text')
-				input(type='number', min=1, max=8, style='left: 58px;', data-bind='visible: editing, value: skill_cap')
-				// text: skill_cap_text
-			label(data-bind='if: editing', style='left: 100px;')
+				#skillCapContainer
+					#skillCap
+						span Skill Cap:
+						br
+						span(data-bind='visible: !editing(), text: skill_cap_text')
+						input(type='number', min=1, max=8, data-bind='visible: editing, value: skill_cap')
+					label(data-bind='if: editing')
 
-			p#skillsSpent.bubble(data-bind='text: skills_spent') 
-			p.label Skill Points Spent
-			p#skillsAvailable.bubble(data-bind='text: skills_available')
-			p.label Available
+			#mid-container.container
+				#spent-container
+					span#skillsSpent.bubble(data-bind='text: skills_spent') 
+					span Skill Points Spent
+				#available-container
+					span#skillsAvailable.bubble(data-bind='text: skills_available')
+					span Available
 
-			p#baseRefresh.bubble.doubleBubble(style='top: 104px; left: 159px;', data-bind='visible: !editing(), text: base_refresh')
-			input(type='number', min=0, style='top: 112px; left: 166px; width: 40px;', data-bind='visible: editing, value: base_refresh')
-			p.label(style='left: 208px; top: 105px; width: 125px;') Base Refresh Level
-			p#adjustedRefresh.bubble.doubleBubble(data-bind='text: adjusted_refresh')
-			p.label Adjusted Refresh
-			p#fatePoints.bubble.doubleBubble(style='top: 213px; left: 161px;', data-bind='visible: !editing(), text: fate_points')
-			input(type='number', min=0, style='top: 224px; left: 164px; width: 40px;', data-bind='visible: editing, value: fate_points')
-			p.label(style='top: 228px; left: 215px;') Fate Points
+			#bottom-container.container
+				.row
+					span#baseRefresh.bubble.doubleBubble(data-bind='visible: !editing(), text: base_refresh')
+					input.bubble.doubleBubble(type='number', min=0, data-bind='visible: editing, value: base_refresh')
+					span Base Refresh Level
+				.row
+					span#adjustedRefresh.bubble.doubleBubble(data-bind='text: adjusted_refresh')
+					span Adjusted Refresh
+				.row
+					span#fatePoints.bubble.doubleBubble(data-bind='visible: !editing(), text: fate_points')
+					input.bubble.doubleBubble(type='number', min=0, data-bind='visible: editing, value: fate_points')
+					span Fate Points
 
 		#powers.sheet-panel
 			p.sectionHeader Stunts & Powers

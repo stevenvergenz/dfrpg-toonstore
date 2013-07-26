@@ -87,98 +87,55 @@ span.subtitle {
 }
 
 /*
- * Style the totals box more or less manually
+ * Style the totals box
  */
+
 #totals {
 	position: relative;
-	height: 250px;
 }
-#totals * {
+
+#totals img#star {
+	width: 270px;
+	height: 270px;
 	position: absolute;
-}
-
-img#star {
-	width: 180px;
-	height: 180px;
-	left: -3px;
 	bottom: -3px;
-	z-index: 2;
+	left: -3px;
+	opacity: 0.3;
 }
 
-#borderOcclude {
-	background-color: white;
-	left: -2px;
-	bottom: -2px;
-	width: 89px;
-	height: 88px;
-	z-index: 1;
-}
-
-section#totals p {
-	display: inline;
-	margin: 0px;
-}
-
-p.bubble {
+#totals input[type=number] {
 	width: 40px;
-	height: 40px;
+	height: 20px;
+}
+
+#totals .container {
+	display: -webkit-flex;
+	-webkit-flex-flow: row wrap;
+	-webkit-justify-content: space-around;
+	-webkit-align-items: flex-start;
+	margin: 10px 0;
+}
+
+#totals #bottom-container {
+	-webkit-flex-direction: column;
+	-webkit-align-items: center;
+}
+
+.bubble {
+	display: inline-block;
+	width: 40px !important;
+	height: 40px !important;
 	border: solid black 1px;
 	border-radius: 50%;
 	line-height: 40px;
 	text-align: center;
+	margin-right: 5px;
+	-webkit-flex-shrink: 0;
 }
-p.doubleBubble {
+.doubleBubble {
 	border: double black 3px;
 }
 
-/*section#totals div.bubble > p {
-	margin: auto;
-	line-height: 40px;
-	text-align: center;
-}*/
-
-p#powerLevel {
-	top: 10px;
-	left: 10px;
-	width: 170px;
-	text-align: center;
-}
-
-p#skillCap {
-	top: 10px;
-	left: 170px;
-	width: 170px;
-	text-align: center;
-}
-
-p#skillsSpent + p.label {
-	top: 63px;
-	left: 10px;
-}
-
-p#skillsSpent {
-	top: 53px;
-	left: 172px;
-}
-
-p#skillsAvailable + p.label{
-	top: 63px;
-	left: 232px;
-}
-p#skillsAvailable {
-	top: 53px;
-	left: 316px;
-}
-
-p#adjustedRefresh {
-	top: 159px;
-	left: 174px;
-}
-p#adjustedRefresh + p.label {
-	top: 161px;
-	left: 220px;
-	width: 90px;
-}
 
 /*
  * Configure custom checkboxes for stress boxes
