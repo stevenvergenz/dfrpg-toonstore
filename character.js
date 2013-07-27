@@ -116,7 +116,8 @@ function newCharacterRequest(req,res)
 		'totals': {
 			'power_level': 'Submerged','base_refresh': 10,'skill_cap': 5,'skills_total': 35,'fate_points': 0},
 		'skills': {
-			'5': [],'4': [],'3': [],'2': [],'1': []},
+			'lists': []
+		},
 		'powers': []
 	};
 

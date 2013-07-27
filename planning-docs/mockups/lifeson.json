@@ -119,11 +119,15 @@
 	},
 
 	"skills": {
-		"5": ["Conviction", "Endurance"],
-		"4": ["Discipline", "Lore", "Athletics"],
-		"3": ["Contacts", "Weapons", "Intimidation"],
-		"2": ["Might", "Survival", "Alertness"],
-		"1": ["Presence", "Empathy", "Fists", "Resources", "Investigation"]},
+		"lists": [
+			[],
+			["Presence", "Empathy", "Fists", "Resources", "Investigation"],
+			["Might", "Survival", "Alertness"],
+			["Contacts", "Weapons", "Intimidation"],
+			["Discipline", "Lore", "Athletics"],
+			["Conviction", "Endurance"]
+		]
+	},
 
 	"powers": [{
 		"cost": -4,
