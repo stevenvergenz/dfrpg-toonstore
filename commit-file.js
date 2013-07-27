@@ -9,7 +9,7 @@ var filename = process.argv[2];
 var file = JSON.parse(fs.readFileSync(filename));
 
 var connection = mysql.createConnection( global.config.database );
-connection.query('UPDATE Characters SET info = ? WHERE canonical_name = "lifeson";', [JSON.stringify(file)],
+connection.query('UPDATE Characters SET info = ? WHERE canonical_name = "lifeson" AND owner = "tester";', [JSON.stringify(file)],
 	function(err,rows,fields){
 		if(err){
 			console.log(err);
