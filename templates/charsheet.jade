@@ -140,6 +140,36 @@ block content
 
 				// /ko
 
+			#stressEditBlock(data-bind='if: $root.stress.editing')
+				// ko foreach: stress
+				.track
+					.section
+						input(type='text', data-bind='value: name')
+						input(type='text', data-bind='value: skill')
+					.section
+						label Strength
+						input(type='number', data-bind='value: strength')
+					.section
+						label Tough
+						input(type='number', data-bind='value: toughness')
+					.button-section
+						input.iconButton(type='image', src='/img/glyphicons/glyphicons_270_shield.png',
+							data-bind='attr: {onclick: "addArmorTo("+$index()+")"}')
+						input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
+							data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}')
+
+				// ko foreach: armor
+				.track
+					span Armor:
+					input(type='number', data-bind='value: strength')
+					span  vs. 
+					input(type='text', data-bind='value: vs')
+					input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
+						data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}')
+				// /ko
+
+				// /ko
+
 			//-table#stressTable
 				thead
 					tr(data-bind='ifnot: $root.stress.editing')

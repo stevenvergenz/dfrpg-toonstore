@@ -236,6 +236,36 @@ div#stressBlock {
 	margin: 0 -2px;
 }
 
+#stressEditBlock span, #stressEditBlock label {
+	font-size: 10pt;
+}
+
+#stressEditBlock .track {
+	display: -webkit-flex;
+	-webkit-flex-flow: row nowrap;
+	-webkit-justify-content: space-between;
+	-webkit-align-items: center;
+	margin: 3px 0;
+}
+
+#stressEditBlock .section {
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	-webkit-align-items: center;
+}
+
+#stressEditBlock .button-section {
+	width: 30px;
+}
+
+#stressEditBlock input[type=text] {
+	width: 90px;
+}
+
+#stressEditBlock input[type=number] {
+	width: 50px;
+}
+
 table#conseqTable {
 	font-size: 10pt;
 }
