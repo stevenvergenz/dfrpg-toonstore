@@ -93,13 +93,16 @@ span.subtitle {
 	position: relative;
 }
 
-#totals img#star {
+#totals #star {
 	width: 270px;
 	height: 270px;
 	position: absolute;
 	bottom: -3px;
 	left: -3px;
 	opacity: 0.3;
+	background-image: url(/img/pentacle.svg);
+	background-size: 100%;
+	z-index: 1;
 }
 
 #totals input[type=number] {
@@ -113,6 +116,7 @@ span.subtitle {
 	-webkit-justify-content: space-around;
 	-webkit-align-items: flex-start;
 	margin: 10px 0;
+	z-index: 2;
 }
 
 #totals #bottom-container {
@@ -122,8 +126,8 @@ span.subtitle {
 
 .bubble {
 	display: inline-block;
-	width: 40px;
-	height: 40px;
+	width: 40px !important;
+	height: 40px !important;
 	border: solid black 1px;
 	border-radius: 50%;
 	line-height: 40px;

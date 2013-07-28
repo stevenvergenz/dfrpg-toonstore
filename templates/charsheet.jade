@@ -245,8 +245,8 @@ block content
 				input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
 					style='position: absolute; right: 8px;',
 					onclick='viewModel.totals.editing( !viewModel.totals.editing() )')
-		
-			img#star(src='/img/pentacle.svg')
+
+			#star
 
 			#top-container.container
 				#powerLevelContainer
@@ -286,7 +286,7 @@ block content
 					span#fatePoints.bubble.doubleBubble(data-bind='visible: !editing(), text: fate_points')
 					input.bubble.doubleBubble(type='number', min=0, data-bind='visible: editing, value: fate_points')
 					span Fate Points
-
+		
 		#powers.sheet-panel
 			p.sectionHeader Stunts & Powers
 				if logged_user == owner
