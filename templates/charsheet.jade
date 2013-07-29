@@ -24,7 +24,7 @@ block content
 		if logged_user == owner
 			.sheet-panel: input#save(type='button', value='Save', onclick='pushToServer()')
 
-		#general.sheet-panel.wide-panel
+		#general.sheet-panel
 			
 			p.sectionHeader
 				span(data-bind='visible: !generalEditing(), text: name')
@@ -170,50 +170,6 @@ block content
 
 				// /ko
 
-			//-table#stressTable
-				thead
-					tr(data-bind='ifnot: $root.stress.editing')
-						th &nbsp;
-						for i in [1,2,3,4,5,6,7,8]
-							th= i
-					tr(data-bind='if: $root.stress.editing')
-						th Name/Skill
-						th Boxes
-						th Tough
-
-				tbody(data-bind='foreach: stress')
-
-					tr
-						th
-							span(data-bind='visible: !$root.stress.editing(), text: name')
-							input(type='text', style='width: 100px;', data-bind='visible: $root.stress.editing, value: name')
-							br
-							span(class='subtitle', data-bind='visible: !$root.stress.editing(), text: "("+skill().substr()+")"')
-							input(type='text', style='width: 100px;', data-bind='visible: $root.stress.editing, value: skill')
-
-						// ko if: $root.stress.editing
-						td: input(type='number', style='width: 95%;', min='1', max='8', data-bind='value: strength')
-						td: input(type='number', style='width: 95%;', min='0', data-bind='value: toughness, attr: {max: strength}')
-						td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_270_shield.png',
-							data-bind='attr: {onclick: "addArmorTo("+$index()+")"}')
-						td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
-							data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}')
-						// /ko
-
-					// ko foreach: armor
-					tr(data-bind='if: $root.stress.editing')
-						td(colspan=4)
-							span Armor: 
-							input(type='number', min='0', style='width: 50px;', data-bind='value: strength')
-							span  vs. 
-							input(type='text', style='width: 100px;', data-bind='value: vs')
-						td: input.iconButton(type='image', src='/img/glyphicons/glyphicons_192_circle_remove.png',
-							data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}')
-
-					tr(data-bind='ifnot: $root.stress.editing')
-						td(colspan=9, data-bind='text: text')
-					// /ko
-
 			input.iconButton(type='image', data-bind='visible: $root.stress.editing',
 				src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addStressTrack()')
 
@@ -276,7 +232,7 @@ block content
 					style='position: absolute; right: 8px;',
 					onclick='viewModel.totals.editing( !viewModel.totals.editing() )')
 
-			#star
+			img#star(src='/img/pentacle.svg')
 
 			#top-container.container
 				#powerLevelContainer
