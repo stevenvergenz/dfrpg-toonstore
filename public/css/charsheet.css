@@ -102,7 +102,7 @@ span.subtitle {
 	opacity: 0.3;
 	background-image: url(/img/pentacle.svg);
 	background-size: 100%;
-	z-index: 1;
+	pointer-events: none;
 }
 
 #totals input[type=number] {
@@ -116,7 +116,6 @@ span.subtitle {
 	-webkit-justify-content: space-around;
 	-webkit-align-items: flex-start;
 	margin: 10px 0;
-	z-index: 2;
 }
 
 #totals #bottom-container {
