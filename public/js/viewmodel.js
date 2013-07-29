@@ -36,7 +36,6 @@ ko.bindingHandlers.droppable = {
 					if( droppedList.index != 0 ){
 						droppedList.skills.push(skill);
 					}
-					validateSkills();
 				}
 			}
 		});
@@ -325,6 +324,15 @@ function SheetViewModel(data)
 			});
 		}
 		return sets;
+	}, this);
+
+	this.skills.valid = ko.computed( function(){
+		var valid = true;
+		for( var i=1; i<this.totals.skill_cap(); i++ ){
+			var skills = this.skills.lists;
+			valid &= skills[i]().length >= skills[i+1]().length;
+		}
+		return (valid ? 'Valid' : 'INVALID') + ', '+this.totals.skills_available()+' available';
 	}, this);
 }
 

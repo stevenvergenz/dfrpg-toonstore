@@ -95,7 +95,7 @@ block content
 				form(onsubmit='addSkill(); return false;')
 					input#newSkill(type='text')
 					input(type='submit', value='Add skill')
-				p#validSkillLadder Valid
+				p#validSkillLadder(data-bind='text: skills.valid')
 
 	.sheet-panel-group
 

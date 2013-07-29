@@ -101,20 +101,6 @@ function finishConseqUpdate(evt, index){
 	}
 }
 
-function validateSkills(){
-	var valid = true;
-	for( var i=1; i<viewModel.totals.skill_cap(); i++ ){
-		var skills = viewModel.skills.lists;
-		valid &= skills[i]().length >= skills[i+1]().length;
-	}
-	if( valid ){
-		$('#validSkillLadder').html('Valid');
-	}
-	else {
-		$('#validSkillLadder').html('INVALID')
-	}
-}
-
 function addSkill(evt){
 	var skill = $('#newSkill').val();
 	if( /^\S+$/.test(skill) ){
