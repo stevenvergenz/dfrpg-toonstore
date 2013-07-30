@@ -159,7 +159,8 @@ p.error, input.error {
 	padding: 10px; 
 }
 .normalbox a:link, .normalbox a:visited,
-.titledbox a:link, .titledbox a:visited {
+.titledbox a:link, .titledbox a:visited,
+.sheet-panel a:link, .sheet-panel a:visited {
 	color: blue;
 }
 

@@ -46,6 +46,15 @@ ko.bindingHandlers.droppable = {
 	}
 };
 
+ko.bindingHandlers.accordion = {
+	init: function(element, valueAccessor){
+		$(element).accordion({collapsible: true, active: false, heightStyle: 'content', icons: false});
+	},
+	update: function(element, valueAccessor){
+		
+	}
+};
+
 function StressBox(index, used, track)
 {
 	this.index = index;

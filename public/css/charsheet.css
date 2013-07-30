@@ -185,6 +185,11 @@ span.subtitle {
 	height: 200px;
 }
 
+#notes #primer {
+	text-align: left;
+	white-space: pre-wrap;
+}
+
 #notes .inner {
 	text-align: left;
 	font-family: 'Armata', sans-serif;
