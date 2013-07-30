@@ -30,7 +30,7 @@ html
 							.navitem: a(href='/logout') Log Out
 						else
 							.navitem: a(href='/register') Sign Up
-							if page != '/'
+							if ['/','/register','/login'].indexOf(page) == -1
 								.navitem: a(href='/login?redir='+page) Log In
 							else
 								.navitem: a(href='/login') Log In
