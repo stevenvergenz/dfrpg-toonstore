@@ -28,13 +28,15 @@ View/edit/share Dresden Files character sheets online
 
 ### Configure server
 
-Set the port in global.js.
+1. Open global.js in your text editor of choice.
+2. Set the server's listen port where indicated.
+3. Set the server's cookie secret where indicated.
 
 
 ## Running
 
     $ node app.js
-	$ firefox https://localhost:3001/
+	$ chrome https://localhost:3001/
 	
 There is a test user in the database template. The logins are:
 
