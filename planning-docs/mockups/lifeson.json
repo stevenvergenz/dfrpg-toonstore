@@ -164,4 +164,8 @@
 
 		"cost": -1,
 		"name": "Controlled outburst",
-		"description": ["Zone attacks avoid allies"]}]}
+		"description": ["Zone attacks avoid allies"]}],
+
+	"notes": {
+		"text": "## Adventure log\n\nDropped into Laos jungle, asked to recover kidnapped diplomats from the Vietcong. They are holed up in a Buddhist monastery at the top of the mountain.\n\nStarted hiking up the mountain.\n\nCong outpost. Killed scouts, but alerted others.\n\nThen everyone died.\n\n_fin_"}
+}

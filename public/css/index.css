@@ -21,11 +21,11 @@ body {
 	font-family: 'Armata', sans-serif;
 }
 
-h1 {
+.banner h1 {
 	font-family: 'Denk One', sans-serif;
 }
 
-h2 {
+.banner h2 {
 	font-family: 'Pathway Gothic One', sans-serif;
 	font-weight: normal;
 }
@@ -160,7 +160,8 @@ p.error, input.error {
 	padding: 10px; 
 }
 .normalbox a:link, .normalbox a:visited,
-.titledbox a:link, .titledbox a:visited {
+.titledbox a:link, .titledbox a:visited,
+.sheet-panel a:link, .sheet-panel a:visited {
 	color: blue;
 }
 
