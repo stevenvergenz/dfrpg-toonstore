@@ -8,7 +8,7 @@ body {
 	display: -moz-flex;
 	-moz-justify-content: center;
 	display: -ms-flexbox;
-	-ms-justify-content: center;
+	-ms-flex-pack: center;
 	display: flex;
 	justify-content: center;
 
@@ -86,7 +86,8 @@ p.error, input.error {
 	-moz-align-items: center;
 	display: -ms-flexbox;
 	-ms-flex-direction: column;
-	-ms-align-items: center;
+	-ms-flex-align: center;
+	-ms-flex: 0 1 950px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
@@ -107,10 +108,10 @@ p.error, input.error {
 	-moz-flex-direction: row;
 	-moz-align-items: center;
 	-moz-justify-content: space-between;
-	display: -ms-inline-flex;
+	display: -ms-inline-flexbox;
 	-ms-flex-direction: row;
-	-ms-align-items: center;
-	-ms-justify-content: space-between;
+	-ms-flex-align: center;
+	-ms-flex-pack: justify;
 	display: inline-flex;
 	flex-direction: row;
 	align-items: center;
@@ -122,7 +123,7 @@ p.error, input.error {
 	-webkit-flex-direction: row;
 	display: -moz-inline-flex;
 	-moz-flex-direction: row;
-	display: -ms-inline-flex;
+	display: -ms-inline-flexbox;
 	-ms-flex-direction: row;
 	display: inline-flex;
 	flex-direction: row;
@@ -237,9 +238,9 @@ p.error, input.error {
 	display: -moz-inline-flex;
 	-moz-align-items: center;
 	-moz-justify-content: space-between;
-	display: -ms-inline-flex;
-	-ms-align-items: center;
-	-ms-justify-content: space-between;
+	display: -ms-inline-flexbox;
+	-ms-flex-align: center;
+	-ms-flex-pack: justify;
 	display: inline-flex;
 	align-items: center;
 	justify-content: space-between;
@@ -253,7 +254,7 @@ p.error, input.error {
 	-moz-align-items: center;
 	-moz-flex-direction: column;
 	display: -ms-flexbox;
-	-ms-align-items: center;
+	-ms-flex-align: center;
 	-ms-flex-direction: column;
 	display: flex;
 	align-items: center;
@@ -281,7 +282,7 @@ p.error, input.error {
 	-moz-justify-content: flex-begin;
 	display: -ms-flexbox;
 	-ms-flex-direction: row;
-	-ms-justify-content: flex-begin;
+	-ms-flex-pack: flex-begin;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-begin;

@@ -14,7 +14,7 @@ div.sheet-panel-group {
 	-moz-flex-wrap: wrap;
 	display: -ms-flexbox;
 	-ms-flex-direction: row;
-	-ms-justify-content: center;
+	-ms-flex-pack: center;
 	-ms-flex-wrap: wrap;
 	display: flex;
 	flex-direction: row;
@@ -31,7 +31,7 @@ div.sheet-panel {
 	
 	-webkit-flex-basis: 350px;
 	-moz-flex-basis: 350px;
-	-ms-flex-basis: 350px;
+	-ms-flex: 0 1 350px;
 	flex-basis: 350px;
 
 	background-color: white;
@@ -42,7 +42,7 @@ div.sheet-panel {
 div.wide-panel {
 	-webkit-flex-basis: 730px;
 	-moz-flex-basis: 730px;
-	-ms-flex-basis: 730px;
+	-ms-flex: 0 1 730px;
 	flex-basis: 730px;
 }
 
@@ -138,8 +138,8 @@ span.subtitle {
 	-moz-align-items: flex-start;
 	display: -ms-flexbox;
 	-ms-flex-flow: row wrap;
-	-ms-justify-content: space-around;
-	-ms-align-items: flex-start;
+	-ms-flex-pack: distribute;
+	-ms-flex-align: flex-start;
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: space-around;
@@ -153,7 +153,7 @@ span.subtitle {
 	-moz-flex-direction: column;
 	-moz-align-items: center;
 	-ms-flex-direction: column;
-	-ms-align-items: center;
+	-ms-flex-align: center;
 	flex-direction: column;
 	align-items: center;
 }
@@ -169,7 +169,7 @@ span.subtitle {
 	margin-right: 5px;
 	-webkit-flex-shrink: 0;
 	-moz-flex-shrink: 0;
-	-ms-flex-shrink: 0;
+	-ms-flex: 0 0;
 	flex-shrink: 0;
 }
 .doubleBubble {
@@ -255,8 +255,8 @@ div#stressBlock {
 	-moz-align-items: center;
 	display: -ms-flexbox;
 	-ms-flex-flow: row wrap;
-	-ms-justify-content: space-between;
-	-ms-align-items: center;
+	-ms-flex-pack: justify;
+	-ms-flex-align: center;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: wrap;
@@ -274,7 +274,7 @@ div#stressBlock {
 	display: -moz-flex;
 	-moz-flex-direction: column;
 	display: -ms-flexbox;
-	-ms-flex-flow: row wrap;
+	-ms-flex-flow: column wrap;
 	display: flex;
 	flex-direction: column;
 	flex-wrap: wrap;
@@ -297,8 +297,8 @@ div#stressBlock {
 	-moz-justify-content: space-around;
 	display: -ms-flexbox;
 	-ms-flex-flow: row nowrap;
-	-ms-flex-grow: 1;
-	-ms-justify-content: space-around;
+	-ms-flex: 1 1;
+	-ms-flex-pack: distribute;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -310,7 +310,7 @@ div#stressBlock {
 #stressBlock .box {
 	-webkit-flex-shrink: 0;
 	-moz-flex-shrink: 0;
-	-ms-flex-shrink: 0;
+	-ms-flex: 0 0 26px;
 	flex-shrink: 0;
 	margin: 0 -2px;
 }
@@ -330,8 +330,8 @@ div#stressBlock {
 	-moz-align-items: center;
 	display: -ms-flexbox;
 	-ms-flex-flow: row nowrap;
-	-ms-justify-content: space-between;
-	-ms-align-items: center;
+	-ms-flex-pack: justify;
+	-ms-flex-align: center;
 	display: flex;
 	flex-direction: row;
 	flex-wrap: nowrap;
@@ -349,7 +349,7 @@ div#stressBlock {
 	-moz-align-items: center;
 	display: -ms-flexbox;
 	-ms-flex-direction: column;
-	-ms-align-items: center;
+	-ms-flex-align: center;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
