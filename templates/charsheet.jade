@@ -12,6 +12,7 @@ block append includes
 	script(src='/js/jquery-ui-1.10.3.custom.js')
 	script(src='/js/jquery.ui.touch-punch.min.js')
 	script(src='/js/knockout-2.2.1.js')
+	script(src='/js/markdown.js')
 	script(src='/js/viewmodel.js')
 	script(src='/js/charsheet.js')
 	script.
@@ -311,3 +312,14 @@ block content
 			input.iconButton(type='image', data-bind='visible: powers.editing',
 				src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addPower()')
 
+	.sheet-panel-group
+
+		#notes.sheet-panel(data-bind='if: $root.notes, visible: $root.notes')
+
+			p.sectionHeader Notes
+				if logged_user == owner
+					input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
+						onclick='viewModel.notes.editing( !viewModel.notes.editing() )')
+
+			textarea#editor(data-bind='visible: $root.notes.editing, value: $root.notes.text')
+			.inner(data-bind='html: $root.notes.html')

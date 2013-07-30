@@ -334,5 +334,15 @@ function SheetViewModel(data)
 		}
 		return (valid ? 'Valid' : 'INVALID') + ', '+this.totals.skills_available()+' available';
 	}, this);
+
+	if( data.notes ){
+		this.notes = {
+			'text': ko.observable(data.notes.text),
+			'editing': ko.observable(false)
+		};
+		this.notes.html = ko.computed(function(){
+			return markdown.toHTML(this.text());
+		}, this.notes);
+	}
 }
 

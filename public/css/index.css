@@ -21,11 +21,11 @@ body {
 	font-family: 'Armata', sans-serif;
 }
 
-h1 {
+.banner h1 {
 	font-family: 'Denk One', sans-serif;
 }
 
-h2 {
+.banner h2 {
 	font-family: 'Pathway Gothic One', sans-serif;
 	font-weight: normal;
 }

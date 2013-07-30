@@ -1,4 +1,4 @@
-p,th,td,label,span {
+.content {
 	font-family: 'Metamorphous', cursive;
 }
 
@@ -176,6 +176,19 @@ span.subtitle {
 	border: double black 3px;
 }
 
+#notes {
+	min-height: 200px;
+}
+
+#notes #editor {
+	width: 98%;
+	height: 200px;
+}
+
+#notes .inner {
+	text-align: left;
+	font-family: 'Armata', sans-serif;
+}
 
 /*
  * Configure custom checkboxes for stress boxes
