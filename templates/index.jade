@@ -10,8 +10,22 @@ html
 			link(rel='stylesheet', type='text/css', href='/css/index.css')
 
 		block includes
+			script(src='https://login.persona.org/include.js')
 			script(src='/js/jquery-1.10.1.js')
 			script(src='/js/ie-fail.js')
+			script.
+				$(document).ready(function()
+				{
+					navigator.id.watch({
+						'loggedInUser': null,
+						'onlogin': function(assertion){
+							console.log('Attempting login');
+						},
+						'onlogout': function(){
+							console.log('Attempting logout');
+						}
+					});
+				});
 			
 
 	body
@@ -27,9 +41,11 @@ html
 					.itemgroup
 						if logged_user
 							.navitem: a(href='/'+logged_user)= logged_user
-							.navitem: a(href='/logout') Log Out
+							.navitem: a(href='javascript:;', onclick='navigator.id.logout()') Log Out
 						else
 							.navitem: a(href='/register') Sign Up
+							.navitem: a(href='javascript:;', onclick='navigator.id.request()') Log In
+						//-
 							if ['/','/register','/login'].indexOf(page) == -1
 								.navitem: a(href='/login?redir='+page) Log In
 							else

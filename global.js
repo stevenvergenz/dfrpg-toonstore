@@ -15,7 +15,8 @@ var config = {
 		'cert': libpath.normalize('keys/agent2-cert.pem')
 	},
 	'port': 3001,
-	'cookie_secret': 'I return from whence I came...'
+	'cookie_secret': 'I return from whence I came...',
+	'persona_audience': 'https://localhost:3001'
 };
 
 

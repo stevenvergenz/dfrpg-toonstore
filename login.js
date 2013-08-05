@@ -3,6 +3,7 @@ var mysql = require('mysql');
 var liburl = require('url');
 var fs = require('fs');
 var crypto = require('crypto');
+var https = require('https');
 
 var global = require('./global.js');
 
@@ -48,6 +49,26 @@ function processLogin(req,res)
 	);
 }
 
+function processPersonaLogin(req,res)
+{
+	var options = {
+		'host': 'verifier.login.persona.org',
+		'path': '/verify',
+		'method': 'POST'
+	};
+	var verifyReq = https.request(options, function(res)
+	{
+		var body = '';
+		res.on('data', function(chunk){
+			body += chunk;
+		});
+		res.on('end', function(){
+			
+		});
+	});
+}
+
+
 function processLogout(req,res)
 {
 	global.log('Logging out user', req.session.user);
@@ -58,6 +79,7 @@ function processLogout(req,res)
 		res.redirect('/');
 }
 
-exports.processLogin = processLogin;
+
+exports.processLogin = processPersonaLogin;
 exports.processLogout = processLogout;
 
