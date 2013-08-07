@@ -4,6 +4,7 @@ var liburl = require('url');
 var fs = require('fs');
 var crypto = require('crypto');
 var https = require('https');
+var querystring = require('querystring');
 
 var global = require('./global.js');
 
@@ -51,21 +52,56 @@ function processLogin(req,res)
 
 function processPersonaLogin(req,res)
 {
+	global.log('Login attempt');
+	
 	var options = {
 		'host': 'verifier.login.persona.org',
 		'path': '/verify',
 		'method': 'POST'
 	};
-	var verifyReq = https.request(options, function(res)
+
+	var verifyReq = https.request(options, function(vres)
 	{
 		var body = '';
-		res.on('data', function(chunk){
+		vres.on('data', function(chunk){
 			body += chunk;
 		});
-		res.on('end', function(){
-			
+		vres.on('end', function()
+		{
+			try {
+				var verifyResp = JSON.parse(body);
+			}
+			catch(e){
+				global.log('Verifier response is non-JSON');
+				res.send('Bad response from verifier', 403);
+			}
+
+			if( verifyResp && verifyResp.status == 'okay' ){
+				global.log('Email verified: ', verifyResp.email);
+				logInVerifiedEmail(req,res, verifyResp.email);
+			}
+			else {
+				global.log('Failed to validate email: ', verifyResp.reason);
+				res.send(verifyResp.reason, 403);
+			}
 		});
 	});
+
+	var data = querystring.stringify({
+		'assertion': req.body.email,
+		'audience': global.config.persona_audience
+	});
+	verifyReq.setHeader('Content-Type', 'application/x-www-form-urlencoded');
+	verifyReq.setHeader('Content-Length', data.length);
+	verifyReq.write(data);
+	verifyReq.end();
+}
+
+function logInVerifiedEmail(req,res,email)
+{
+	// save email to session
+	req.session.user_email = email;
+	res.send(200);
 }
 
 
@@ -73,6 +109,7 @@ function processLogout(req,res)
 {
 	global.log('Logging out user', req.session.user);
 	delete req.session.user;
+	delete req.session.user_email;
 	if( req.query.redir )
 		res.redirect(req.query.redir);
 	else

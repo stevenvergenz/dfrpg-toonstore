@@ -38,7 +38,7 @@ app.get('/register/verify', register.checkUsername);
 // route the login pages
 app.get('/login', global.renderPage('login'));
 app.post('/login', login.processLogin);
-app.get('/logout', login.processLogout);
+app.all('/logout', login.processLogout);
 
 // route the user pages
 app.get('/:user', user.userPage);

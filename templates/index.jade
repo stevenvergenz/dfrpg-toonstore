@@ -13,20 +13,9 @@ html
 			script(src='https://login.persona.org/include.js')
 			script(src='/js/jquery-1.10.1.js')
 			script(src='/js/ie-fail.js')
-			script.
-				$(document).ready(function()
-				{
-					navigator.id.watch({
-						'loggedInUser': null,
-						'onlogin': function(assertion){
-							console.log('Attempting login');
-						},
-						'onlogout': function(){
-							console.log('Attempting logout');
-						}
-					});
-				});
-			
+
+			script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email}) + ';'
+			script(src='/js/persona.js')
 
 	body
 		.wrapper
@@ -39,7 +28,7 @@ html
 						.navitem About
 						.navitem Contact Us
 					.itemgroup
-						if logged_user
+						if logged_user_email
 							.navitem: a(href='/'+logged_user)= logged_user
 							.navitem: a(href='javascript:;', onclick='navigator.id.logout()') Log Out
 						else
