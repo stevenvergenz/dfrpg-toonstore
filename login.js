@@ -60,6 +60,7 @@ function processPersonaLogin(req,res)
 		'method': 'POST'
 	};
 
+	// set up the verification AJAX request
 	var verifyReq = https.request(options, function(vres)
 	{
 		var body = '';
@@ -81,12 +82,13 @@ function processPersonaLogin(req,res)
 				logInVerifiedEmail(req,res, verifyResp.email);
 			}
 			else {
-				global.log('Failed to validate email: ', verifyResp.reason);
+				global.log('Failed to verify email: ', verifyResp.reason);
 				res.send(verifyResp.reason, 403);
 			}
 		});
 	});
 
+	// actually make the verification request
 	var data = querystring.stringify({
 		'assertion': req.body.email,
 		'audience': global.config.persona_audience
@@ -101,7 +103,29 @@ function logInVerifiedEmail(req,res,email)
 {
 	// save email to session
 	req.session.user_email = email;
-	res.send(200);
+
+	// look up corresponding username
+	var connection = mysql.createConnection( global.config.database );
+	connection.query('SELECT username FROM Users WHERE email = ?;', [email],
+		function(err,rows,fields){
+			if( err ){
+				global.error('MySQL error:', err);
+				res.json(500, {status: 'error', type: 'message', content: {type: 'error', content:err}} );
+			}
+			else if( rows.length == 0 ){
+				global.error('Login error: no such email');
+				res.json(307, {status: 'error', type: 'redirect', content: '/register'});
+			}
+			else {
+				global.log('Login successful');
+				req.session.user = rows[0].username;
+				res.json(200, {status: 'OK', username: rows[0].username} );
+			}
+
+			connection.end();
+			return;
+		}
+	);
 }
 
 

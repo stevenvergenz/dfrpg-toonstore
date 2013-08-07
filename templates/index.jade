@@ -32,8 +32,8 @@ html
 							.navitem: a(href='/'+logged_user)= logged_user
 							.navitem: a(href='javascript:;', onclick='navigator.id.logout()') Log Out
 						else
-							.navitem: a(href='/register') Sign Up
-							.navitem: a(href='javascript:;', onclick='navigator.id.request()') Log In
+							//.navitem: a(href='/register') Sign Up
+							.navitem: input(type='image', src='/img/persona_signin.png', onclick='navigator.id.request()') Log In
 						//-
 							if ['/','/register','/login'].indexOf(page) == -1
 								.navitem: a(href='/login?redir='+page) Log In
