@@ -134,10 +134,7 @@ function processLogout(req,res)
 	global.log('Logging out user', req.session.user);
 	delete req.session.user;
 	delete req.session.user_email;
-	if( req.query.redir )
-		res.redirect(req.query.redir);
-	else
-		res.redirect('/');
+	res.send(200);
 }
 
 

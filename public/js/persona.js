@@ -47,7 +47,7 @@ $(document).ready(function()
 			$.ajax({
 				type: 'POST',
 				url: '/logout',
-				success: function(res,status,xhr){ window.location.reload(); },
+				success: function(res,status,xhr){ window.location.replace('/'); },
 				error: function(xhr,status,err){
 					console.log('Failed to request logout');
 				}

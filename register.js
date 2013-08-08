@@ -1,7 +1,7 @@
 var fs = require('fs');
 var libpath = require('path');
 var mysql = require('mysql');
-var crypto = require('crypto');
+//var crypto = require('crypto');
 
 var global = require('./global.js');
 
@@ -14,18 +14,13 @@ function register(req,res)
 		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}});
 	}
 
-	// salt and hash the password
-	body.salt = crypto.randomBytes(32);
-	body.password = crypto.pbkdf2Sync(body.password, body.salt, 1000, 32);
-	body.salt = body.salt.toString('hex');
-	body.password = body.password.toString('hex');
 	global.log('Registering user:', body.username);
 
 	// connect to the db
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'INSERT INTO Users SET username = ?, email = ?, salt = UNHEX(?), password = UNHEX(?), registered = NOW(), last_login = DEFAULT;', 
-		[body.username,body.email,body.salt,body.password],
+		'INSERT INTO Users SET username = ?, email = ?, registered = NOW(), last_login = DEFAULT;', 
+		[body.username,req.session.user_email],
 		function(err, rows, fields){
 			if( err ){
 				global.error('Registration error:', err, global.logLevels.error);
@@ -33,6 +28,7 @@ function register(req,res)
 			}
 			else {
 				global.log('Registration successful');
+				req.session.user = body.username;
 				res.redirect('/post-register');
 			}
 			connection.end();
