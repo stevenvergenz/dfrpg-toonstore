@@ -1,8 +1,8 @@
--- MySQL dump 10.13  Distrib 5.5.32, for Linux (x86_64)
+-- MySQL dump 10.14  Distrib 5.5.31-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: toonstore
 -- ------------------------------------------------------
--- Server version	5.5.32
+-- Server version	5.5.31-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -46,33 +46,6 @@ INSERT INTO `Characters` VALUES ('lifeson','Andrew Lifeson','tester','{\"name\":
 UNLOCK TABLES;
 
 --
--- Table structure for table `Tokens`
---
-
-DROP TABLE IF EXISTS `Tokens`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!40101 SET character_set_client = utf8 */;
-CREATE TABLE `Tokens` (
-  `token` binary(16) NOT NULL,
-  `requested` date DEFAULT NULL,
-  `username` char(40) NOT NULL,
-  `type` enum('forget','activate') DEFAULT NULL,
-  PRIMARY KEY (`token`),
-  KEY `username` (`username`),
-  CONSTRAINT `Tokens_ibfk_1` FOREIGN KEY (`username`) REFERENCES `Users` (`username`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `Tokens`
---
-
-LOCK TABLES `Tokens` WRITE;
-/*!40000 ALTER TABLE `Tokens` DISABLE KEYS */;
-/*!40000 ALTER TABLE `Tokens` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `Users`
 --
 
@@ -84,8 +57,6 @@ CREATE TABLE `Users` (
   `email` char(40) NOT NULL,
   `registered` date DEFAULT NULL,
   `last_login` date DEFAULT NULL,
-  `password` binary(32) DEFAULT NULL,
-  `salt` binary(32) DEFAULT NULL,
   PRIMARY KEY (`username`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -97,7 +68,7 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES ('tester','tester@example.com','2013-06-27','2013-07-30','`g<`Ù∆Rì”ÖÌƒvìÁDﬁÄÔ>ëÃºÑ=?~ì','bﬁÊOtªP‚À÷íwÃÎ’	ñÔRXp T4Q•⁄¨');
+INSERT INTO `Users` VALUES ('tester','tester@example.com','2013-06-27','2013-08-05');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -110,4 +81,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2013-07-30 14:56:42
+-- Dump completed on 2013-08-13 12:53:47
