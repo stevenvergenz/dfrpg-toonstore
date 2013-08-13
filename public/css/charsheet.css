@@ -1,13 +1,25 @@
-p,th,td,label,span {
+.content {
 	font-family: 'Metamorphous', cursive;
 }
 
 div.sheet-panel-group {
-	display: -webkit-flex;
 	width: 100%;
+	display: -webkit-flex;
 	-webkit-flex-direction: row;
 	-webkit-justify-content: center;
 	-webkit-flex-wrap: wrap;
+	display: -moz-flex;
+	-moz-flex-direction: row;
+	-moz-justify-content: center;
+	-moz-flex-wrap: wrap;
+	display: -ms-flexbox;
+	-ms-flex-direction: row;
+	-ms-flex-pack: center;
+	-ms-flex-wrap: wrap;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
 }
 
 div.sheet-panel {
@@ -16,7 +28,11 @@ div.sheet-panel {
 	padding: 10px;
 	text-align: center;
 	margin: 5px;
+	
 	-webkit-flex-basis: 350px;
+	-moz-flex-basis: 350px;
+	-ms-flex: 0 1 350px;
+	flex-basis: 350px;
 
 	background-color: white;
 	color: black;
@@ -25,6 +41,9 @@ div.sheet-panel {
 
 div.wide-panel {
 	-webkit-flex-basis: 730px;
+	-moz-flex-basis: 730px;
+	-ms-flex: 0 1 730px;
+	flex-basis: 730px;
 }
 
 div.field {
@@ -113,12 +132,30 @@ span.subtitle {
 	-webkit-flex-flow: row wrap;
 	-webkit-justify-content: space-around;
 	-webkit-align-items: flex-start;
+	display: -moz-flex;
+	-moz-flex-flow: row wrap;
+	-moz-justify-content: space-around;
+	-moz-align-items: flex-start;
+	display: -ms-flexbox;
+	-ms-flex-flow: row wrap;
+	-ms-flex-pack: distribute;
+	-ms-flex-align: flex-start;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: space-around;
+	align-items: flex-start;
 	margin: 10px 0;
 }
 
 #totals #bottom-container {
 	-webkit-flex-direction: column;
 	-webkit-align-items: center;
+	-moz-flex-direction: column;
+	-moz-align-items: center;
+	-ms-flex-direction: column;
+	-ms-flex-align: center;
+	flex-direction: column;
+	align-items: center;
 }
 
 .bubble {
@@ -131,11 +168,32 @@ span.subtitle {
 	text-align: center;
 	margin-right: 5px;
 	-webkit-flex-shrink: 0;
+	-moz-flex-shrink: 0;
+	-ms-flex: 0 0;
+	flex-shrink: 0;
 }
 .doubleBubble {
 	border: double black 3px;
 }
 
+#notes {
+	min-height: 200px;
+}
+
+#notes #editor {
+	width: 98%;
+	height: 200px;
+}
+
+#notes #primer {
+	text-align: left;
+	white-space: pre-wrap;
+}
+
+#notes .inner {
+	text-align: left;
+	font-family: 'Armata', sans-serif;
+}
 
 /*
  * Configure custom checkboxes for stress boxes
@@ -195,6 +253,12 @@ tr.dropHoverRow {
 div#stressBlock {
 	display: -webkit-flex;
 	-webkit-flex-direction: column;
+	display: -moz-flex;
+	-moz-flex-direction: column;
+	display: -ms-flexbox;
+	-ms-flex-direction: column;
+	display: flex;
+	flex-direction: column;
 	width: 100%;
 }
 
@@ -203,6 +267,19 @@ div#stressBlock {
 	-webkit-flex-flow: row wrap;
 	-webkit-justify-content: space-between;
 	-webkit-align-items: center;
+	display: -moz-flex;
+	-moz-flex-flow: row wrap;
+	-moz-justify-content: space-between;
+	-moz-align-items: center;
+	display: -ms-flexbox;
+	-ms-flex-flow: row wrap;
+	-ms-flex-pack: justify;
+	-ms-flex-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	align-items: center;
 	margin: 3px 0;
 }
 
@@ -212,6 +289,13 @@ div#stressBlock {
 	text-align: left;
 	display: -webkit-flex;
 	-webkit-flex-flow: row wrap;
+	display: -moz-flex;
+	-moz-flex-direction: column;
+	display: -ms-flexbox;
+	-ms-flex-flow: column wrap;
+	display: flex;
+	flex-direction: column;
+	flex-wrap: wrap;
 }
 
 #stressBlock .colHeader {
@@ -225,11 +309,27 @@ div#stressBlock {
 	-webkit-flex-flow: row nowrap;
 	-webkit-flex-grow: 1;
 	-webkit-justify-content: space-around;
+	display: -moz-flex;
+	-moz-flex-flow: row nowrap;
+	-moz-flex-grow: 1;
+	-moz-justify-content: space-around;
+	display: -ms-flexbox;
+	-ms-flex-flow: row nowrap;
+	-ms-flex: 1 1;
+	-ms-flex-pack: distribute;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	flex-grow: 1;
+	justify-content: space-around;
 	padding: 0 2px;
 }
 
 #stressBlock .box {
 	-webkit-flex-shrink: 0;
+	-moz-flex-shrink: 0;
+	-ms-flex: 0 0 26px;
+	flex-shrink: 0;
 	margin: 0 -2px;
 }
 
@@ -242,6 +342,19 @@ div#stressBlock {
 	-webkit-flex-flow: row nowrap;
 	-webkit-justify-content: space-between;
 	-webkit-align-items: center;
+	display: -moz-flex;
+	-moz-flex-flow: row nowrap;
+	-moz-justify-content: space-between;
+	-moz-align-items: center;
+	display: -ms-flexbox;
+	-ms-flex-flow: row nowrap;
+	-ms-flex-pack: justify;
+	-ms-flex-align: center;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: nowrap;
+	justify-content: space-between;
+	align-items: center;
 	margin: 3px 0;
 }
 
@@ -249,6 +362,15 @@ div#stressBlock {
 	display: -webkit-flex;
 	-webkit-flex-direction: column;
 	-webkit-align-items: center;
+	display: -moz-flex;
+	-moz-flex-direction: column;
+	-moz-align-items: center;
+	display: -ms-flexbox;
+	-ms-flex-direction: column;
+	-ms-flex-align: center;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
 }
 
 #stressEditBlock .button-section {

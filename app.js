@@ -27,7 +27,7 @@ app.set('views', 'templates');
 app.set('view engine', 'jade');
 
 // the global logger middleware
-app.use(express.logger());
+//app.use(express.logger());
 
 // route the registration pages
 app.get('/register', global.renderPage('register'));
@@ -36,9 +36,8 @@ app.post('/register', register.register);
 app.get('/register/verify', register.checkUsername);
 
 // route the login pages
-app.get('/login', global.renderPage('login'));
 app.post('/login', login.processLogin);
-app.get('/logout', login.processLogout);
+app.post('/logout', login.processLogout);
 
 // route the user pages
 app.get('/:user', user.userPage);

@@ -12,6 +12,7 @@ block append includes
 	script(src='/js/jquery-ui-1.10.3.custom.js')
 	script(src='/js/jquery.ui.touch-punch.min.js')
 	script(src='/js/knockout-2.2.1.js')
+	script(src='/js/markdown.js')
 	script(src='/js/viewmodel.js')
 	script(src='/js/charsheet.js')
 	script.
@@ -311,3 +312,35 @@ block content
 			input.iconButton(type='image', data-bind='visible: powers.editing',
 				src='/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addPower()')
 
+	.sheet-panel-group
+
+		#notes.sheet-panel(data-bind='if: $root.notes, visible: $root.notes')
+
+			p.sectionHeader Notes
+				if logged_user == owner
+					input.iconButton(type='image', src='/img/glyphicons/glyphicons_150_edit.png',
+						onclick='viewModel.notes.editing( !viewModel.notes.editing() )')
+
+			div(data-bind='visible: $root.notes.editing')
+				p Text is styled with Markdown. Click out of the text box to update preview.
+				.accordion(data-bind='accordion: true')
+					a(href='javascript:;') A Brief Primer
+					pre#primer
+						| This is a header
+						| ----------------
+						| 
+						| ## So is this
+						| 
+						| Paragraphs are separated by a blank line.
+						| 
+						| You can also **bold** and *italics*.
+						| 
+						| 1. Numeric lists start with a number.
+						| 2. See? Easy!
+						| 3. Subitems are indented 4 spaces
+						|     * But this one is an unordered list
+						|     * Another list item
+
+				textarea#editor(data-bind='value: $root.notes.text')
+
+			.inner(data-bind='html: $root.notes.html')

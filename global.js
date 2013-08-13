@@ -15,7 +15,8 @@ var config = {
 		'cert': libpath.normalize('keys/agent2-cert.pem')
 	},
 	'port': 3001,
-	'cookie_secret': 'I return from whence I came...'
+	'cookie_secret': 'I return from whence I came...',
+	'persona_audience': 'https://localhost:3001'
 };
 
 
@@ -85,7 +86,8 @@ function renderPage(template, options)
 		var pageFields = {
 			'page': req.url,
 			'query': req.query,
-			'logged_user': req.session.user,
+			'logged_user': req.session.user ? req.session.user : null,
+			'logged_user_email': req.session.user_email ? req.session.user_email : null,
 			'owner': req.params.user,
 			'toon': req.params.char
 		};

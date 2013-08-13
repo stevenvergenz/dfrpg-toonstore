@@ -1,33 +1,3 @@
-// validate the contents of the form before submitting it
-var passLength = 3;
-var passGood = false;
-function checkPassword()
-{
-	// validate password
-	var passTest = new RegExp('^.{'+passLength+',}$');
-	var passwordValid = passTest.test($('#password').val());
-	if( !passwordValid ){
-		$('#passwordMessage').addClass('error');
-		$('#password').addClass('error');
-	}
-	else {
-		$('#passwordMessage').removeClass('error');
-		$('#password').removeClass('error');
-	}
-
-	// confirm password
-	var confirmValid = $('#confirm').val() == $('#password').val();
-	if( !confirmValid ){
-		$('#confirmMessage').addClass('error').text('Passwords do not match!');
-		$('#confirm').addClass('error');
-	}
-	else {
-		$('#confirmMessage').removeClass('error').text('Passwords match.');
-		$('#confirm').removeClass('error');
-	}
-
-	passGood = passwordValid && confirmValid;
-}
 
 var userGood = false;
 var checkNameTimeout = null;
@@ -67,7 +37,7 @@ function checkUsername(elem)
 
 function validate()
 {
-	var valid = userGood && passGood;
+	var valid = userGood;
 
 	if( !valid ){
 		$('#submitMessage').text('Fix the problems above before submitting');

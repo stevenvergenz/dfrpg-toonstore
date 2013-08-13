@@ -46,6 +46,15 @@ ko.bindingHandlers.droppable = {
 	}
 };
 
+ko.bindingHandlers.accordion = {
+	init: function(element, valueAccessor){
+		$(element).accordion({collapsible: true, active: false, heightStyle: 'content', icons: false});
+	},
+	update: function(element, valueAccessor){
+		
+	}
+};
+
 function StressBox(index, used, track)
 {
 	this.index = index;
@@ -334,5 +343,15 @@ function SheetViewModel(data)
 		}
 		return (valid ? 'Valid' : 'INVALID') + ', '+this.totals.skills_available()+' available';
 	}, this);
+
+	if( data.notes ){
+		this.notes = {
+			'text': ko.observable(data.notes.text),
+			'editing': ko.observable(false)
+		};
+		this.notes.html = ko.computed(function(){
+			return markdown.toHTML(this.text());
+		}, this.notes);
+	}
 }
 
