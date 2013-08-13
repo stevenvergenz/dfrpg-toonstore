@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+	<head>
 		<link href='http://fonts.googleapis.com/css?family=Metamorphous' rel='stylesheet' type='text/css'>
 		<link rel="stylesheet" type="text/css" href="charsheet.css"/>
 		<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
@@ -16,32 +16,33 @@
 					return false; 
 				});
 				$('#add_stress').click(function() {
-					var p = $(this).closest('p'),
-					
-					i = $('.stress').length + 1
-					$(p).before(
-					'<p class="stress"> <label for="stress_' + i + '"> Type: </label><input type="text" id="stress_' + i + '" /></p> \
-					<p> <label for="stress_skill_' + i + '">Skill: </label><input type="text" id="stress_skill_' + i + '" /></p> \
-					<p> <label for="stress_val_' + i + '">Value: </label><input type="text" id="stress_val_' + i + '" /></p> \
-					<p> <label for="stress_tough_' + i + '">Toughness: </label><input type="text" id="stress_tough_' + i + '" /></p> \
-					<p> <label for="stress_armor_' + i + '">Armor: </label><input type="text" id="stress_armor_' + i + '" /></p>');
-					
-					if(i > 6){
+					i = $('.stressTrack').length + 1
+					$('#stressTable > tbody:last').append(
+						'<tr class="stressTrack"> \
+						<th><p id="' + i + '_sname">STRESS</p><p id="' + i + '_sskill" class="subtext">(SKILL)</p></th>\
+						<td><input id="' + i + '_s1" class="stressBox" type="checkbox"/><label for="' + i + '_s1"></label></td>\
+						<td><input id="' + i + '_s2" class="stressBox" type="checkbox"/><label for="' + i + '_s2"></label></td>\
+						<td><input id="' + i + '_s3" class="stressBox" type="checkbox"/><label for="' + i + '_s3"></label></td>\
+						<td><input id="' + i + '_s4" class="stressBox" type="checkbox"/><label for="' + i + '_s4"></label></td>\
+						<td><input id="' + i + '_s5" class="stressBox" type="checkbox" disabled=disabled /><label for="' + i + '_s5"></label></td>\
+						<td><input id="' + i + '_s6" class="stressBox" type="checkbox" disabled=disabled /><label for="' + i + '_s6"></label></td>\
+						<td><input id="' + i + '_s7" class="stressBox" type="checkbox" disabled=disabled /><label for="' + i + '_s7"></label></td>\
+						<td><input id="' + i + '_s8" class="stressBox" type="checkbox" disabled=disabled /><label for="' + i + '_s8"></label></td>\
+						<td><a href="#" class="update_stress" id="' + i + '">[U]</a></td>\
+						<td>[X]</td>\
+						</tr>'
+					);
+					if(i > 5){
 						$(this).remove();
 					}
 					return false; 
 				});
-				// The goal is to have this iterate through a for loop, 
-				// which occurs a number of times equal to the number of tracks. 
-				// In each iteration, it reads the data from the fields, 
-				// inserting the values as appropriate.
+				// Point of this function is to iterate through the StressData,
+				// and create new +
 				$('#update_stress').click(function() {
-					stress_data = $('.stress');
-					stress_table = $("#stressTable");
-					
-					for(i = 1; i < stress_data.length; i++){
-						//Do awesome stuff
-					}
+					debugger;
+					//Modal form that presents:
+					//Stress Name, Skill, Length, Toughness, Armor
 				});
 				
 			});
@@ -60,35 +61,17 @@
 			</div>
 			<p> <a href="#" id="add_aspect"> Add another Aspect </a></p>
 		</section>
-		
 
-		<section id="stress_entry">
-			<p class="sectionHeader">Stress Entry</p>
-			<div id="stressList">
-				<p class="stress"> <label for="stress_1"> Type: </label><input type="text" id="stress_1" /></p>
-				<p> <label for="stress_skill_1">Skill:</label><input type="text" id="stress_skill_1" /></p>
-				<p> <label for="stress_val_1">Value:</label><input type="text" id="stress_val_1" /></p>
-				<p> <label for="stress_tough_1">Toughness:</label><input type="text" id="stress_tough_1" /></p>
-				<p> <label for="stress_armor_1">Armor:</label><input type="text" id="stress_armor_1" /></p>
-			</div>
-			<br />
-			<p> <a href="#" id="add_stress"> Add another Stress Track </a></p>
-			<p> <a href="#" id="update_stress">Update Stress Table </a></p>
-	
-		</section>
-		<section id="stress_table">
+		<section id="stress">
 			<p class="sectionHeader">Stress</p>
 
 			<table id="stressTable">
 				<thead>
-					<tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th></tr>
+					<tr><th>&nbsp;</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th><th>6</th><th>7</th><th>8</th><th></th><th></th></tr>
 				</thead>
-				<tbody id="stress_track_body">
-					<tr id="track_1">
-						<th>
-						<div id="track_1_type">Type</div>
-						<p id="track_1_skill" class="subtext">(Skill)</p>
-						</th>
+				<tbody>
+					<tr class="stressTrack">
+						<th><p id="1_sname">Physical</p><p id="1_sskill" class="subtext">(Endurance)</p></th>
 						<td><input id="1_s1" class="stressBox" type="checkbox"/><label for="1_s1"></label></td>
 						<td><input id="1_s2" class="stressBox" type="checkbox"/><label for="1_s2"></label></td>
 						<td><input id="1_s3" class="stressBox" type="checkbox"/><label for="1_s3"></label></td>
@@ -97,11 +80,14 @@
 						<td><input id="1_s6" class="stressBox" type="checkbox" disabled=disabled /><label for="1_s6"></label></td>
 						<td><input id="1_s7" class="stressBox" type="checkbox" disabled=disabled /><label for="1_s7"></label></td>
 						<td><input id="1_s8" class="stressBox" type="checkbox" disabled=disabled /><label for="1_s8"></label></td>
+						<td><a href="#" class="update_stress" id="1">[U]</a></td>
+						<td>[X]</td>
 					</tr>
 				</tbody>
 			</table>
+			<p> <a href="#" id="add_stress"> Add another Stress Track </a></p>
 		</section>
-		
+
 		<section id="consequences">
 			<p class="sectionHeader">Consequences</p>
 
@@ -117,47 +103,48 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>Mild</td>
-						<td>Any</td>
-						<td>-2</td>
-						<td><input type="checkbox"/></td>
-						<td><p></p></td>
+						<td id="con_1_rating">Mild</td>
+						<td id="con_1_type">Any</td>
+						<td id="con_1_value">-2</td>
+						<td><input type="checkbox" id="con_1_used"/></td>
+						<td><input type="text" id="con_1_desc" /></td>
 					</tr>
 					<tr>
-						<td>Mild</td>
-						<td>P</td>
-						<td>-2</td>
-						<td><input type="checkbox"/></td>
-						<td><p></p></td>
+						<td id="con_2_rating">Mild</td>
+						<td id="con_2_type">P</td>
+						<td id="con_2_value">-2</td>
+						<td><input type="checkbox" id="con_2_used"/></td>
+						<td><input type="text" id="con_2_desc" /></td>
 					</tr>
 					<tr>
-						<td>Mild</td>
-						<td>M</td>
-						<td>-2</td>
-						<td><input type="checkbox"/></td>
-						<td><p></p></td>
+						<td id="con_3_rating">Mild</td>
+						<td id="con_3_type">M</td>
+						<td id="con_3_value">-2</td>
+						<td><input type="checkbox" id="con_3_used"/></td>
+						<td><input type="text" id="con_3_desc" /></td>
 					</tr>
 					<tr>
-						<td>Moderate</td>
-						<td>Any</td>
-						<td>-4</td>
-						<td><input type="checkbox"/></td>
-						<td><p></p></td>
+						<td id="con_4_rating">Moderate</td>
+						<td id="con_4_type">Any</td>
+						<td id="con_4_value">-4</td>
+						<td><input type="checkbox" id="con_4_used"/></td>
+						<td><input type="text" id="con_4_desc" /></td>
 					</tr>
 					<tr>
-						<td>Severe</td>
-						<td>Any</td>
-						<td>-6</td>
-						<td><input type="checkbox"/></td>
-						<td><p></p></td>
+						<td id="con_5_rating">Severe</td>
+						<td id="con_5_type">Any</td>
+						<td id="con_5_value">-6</td>
+						<td><input type="checkbox" id="con_5_used"/></td>
+						<td><input type="text" id="con_5_desc" /></td>
 					</tr>
 					<tr>
-						<td>Extreme</td>
-						<td>Any</td>
-						<td>-8</td>
-						<td><input type="checkbox"/></td>
-						<td><p>Replace permanent</p></td>
+						<td id="con_6_rating">Extreme</td>
+						<td id="con_6_type">Any</td>
+						<td id="con_6_value">-8</td>
+						<td><input type="checkbox" id="con_6_used"/></td>
+						<td>Replace Permanent</td>
 					</tr>
+
 				</tbody>
 			</table>
 		</section>

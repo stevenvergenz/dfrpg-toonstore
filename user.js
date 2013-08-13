@@ -15,41 +15,22 @@ function userPage(req,res,next)
 			{
 				global.log('Serving user page for', rows[0].username);
 
-				var pageFields = {'page': req.url, 'logged_user': req.session.user, 'user': rows[0].username, 'chars': []};
+				var toons = [];
 				for( var i in rows ){
 					if( rows[i].name != null && rows[i].canonical_name != null ){
-						pageFields.chars.push( 
+						toons.push( 
 							{'name': rows[i].name, 'canon_name': rows[i].canonical_name, 'concept': rows[i].concept}
 						);
 					}
 				}
-				res.render('userpage', pageFields);
+				global.renderPage('userpage', {toons: toons})(req,res);
 			}
 			else {
 				next();
 			}
-		}
-	);
-}
-
-function characterPage(req,res,next)
-{
-	var connection = mysql.createConnection( global.config.database );
-	connection.query(
-		'SELECT COUNT(canonical_name) AS count FROM Characters WHERE owner = ? AND canonical_name = ?;',
-		[req.params.user, req.params.char],
-		function(err,rows,fields){
-			if( !err && rows[0].count == 1 ){
-				global.log('Serving character page for', req.url);
-				res.sendfile( libpath.normalize('public/charsheet.html') );
-			}
-			else {
-				next();
-			}
+			connection.end();
 		}
 	);
 }
 
 exports.userPage = userPage;
-exports.characterPage = characterPage;
-

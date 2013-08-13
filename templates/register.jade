@@ -1,0 +1,42 @@
+extends index
+
+block title
+	title Register - ToonStore
+
+block append includes
+	script(src='/js/register.js')
+
+	if page == '/post-register'
+		script.
+			$(document).ready(function(){
+				function redirect(){
+					window.location.replace('/'+userInfo.username);
+				}
+				setTimeout( redirect, 5000 );
+			});
+
+block content
+
+	if page == '/register'
+
+		.content-block: #register-box.titledbox
+			.title: span Sign up
+			.inner
+				p Since this is the first time you've logged in, you must pick a username.
+				form(action='/register', method='post', onsubmit='return validate();')
+
+					label(for='username') Username (also your permalink)
+					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
+					p.caption#userMessage No spaces or special characters except for _ and -
+
+					.flexrow
+						input(type='submit') Submit
+						p.caption#submitMessage
+
+	else if page == '/post-register'
+
+		.content-block: .titledbox
+			.title Registration successful!
+			.inner
+				p You have completed registration. You will be redirected to your profile page in 5 seconds.
+

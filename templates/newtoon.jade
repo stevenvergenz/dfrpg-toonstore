@@ -1,34 +1,26 @@
-extends theme
+extends index
 
 block title
 	title New Character - ToonStore
 
-block append includes
-	script(src='/js/formFocus.js')
-	script.
-		$(document).ready(function(){
-			registerInputs();
-		});
-
 block content
 
-	h1 New Character
+	.content-block: .titledbox
+		.title New character
 
-	p Fill in the information below, and a blank character sheet will be generated for you.
-	p NOTE: Though you can name your character anything you want, the short name must be unique among your characters.
+		.inner
+			form(action='/newtoon', method='post')
 
-	p#message.error= message
+				label(for='name') Full name
+				input#name(type='text', name='name')
+				p.caption The character's name. Can be changed later.
 
-	form(action='/newtoon', method='post'): table
-		tr
-			th: label(for='name') *Name:
-			td: input#name(type='text', name='name')
-		tr
-			th: label(for='canon_name') *Short name:
-			td: input#canon_name(type='text', name='canon_name')
-		tr
-			th: label(for='concept') High concept:
-			td: input#concept(type='text', name='concept')
-		tr
-			td: &nbsp;
-			td: input(type='submit', name='submit')
+				label(for='canon_name') Short name (also URL)
+				input#canon_name(type='text', name='canon_name')
+				p.caption Something short, identifiable, and unique amongst your characters. Last names usually suffice. This cannot be changed.
+
+				label(for='concept') High concept
+				input#concept(type='text', name='concept')
+				p.caption The character's defining concept. Can be changed later.
+
+				input(type='submit', name='submit')

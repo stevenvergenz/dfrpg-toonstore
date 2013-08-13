@@ -1,0 +1,71 @@
+doctype html
+html
+	head
+		meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+		block title
+			title Toonstore - Live DFRPG Character Hosting
+		block styles
+			link(rel='icon', type='image/png', href='/img/pentacle-simple.png')
+			link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Denk+One|Pathway+Gothic+One|Armata')
+			link(rel='stylesheet', type='text/css', href='/css/index.css')
+
+		block includes
+			script(src='https://login.persona.org/include.js')
+			script(src='/js/jquery-1.10.1.js')
+			script(src='/js/ie-fail.js')
+
+			script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email}) + ';'
+			script(src='/js/persona.js')
+
+	body
+		.wrapper
+
+			block header
+				.navbar
+					.itemgroup
+						.navitem: a(href='/') Toon&#8203;Store
+						.navitem Forum
+						.navitem About
+						.navitem Contact Us
+					.itemgroup
+						if logged_user_email
+							.navitem: a(href='/'+logged_user)= logged_user
+							.navitem: a(href='javascript:;', onclick='navigator.id.logout()') Log Out
+						else
+							.navitem: input(type='image', src='/img/persona_signin.png', onclick='navigator.id.request()') Log In
+
+			.content
+
+				if message
+					.content-block
+						#page-message(class=message.type)
+							p= message.content
+					
+				block content
+
+					.content-block
+						.banner
+							h1 ToonStore
+							h2 +2 to organization rolls
+
+					.content-block: .normalbox
+						p Greetings, roleplayer!
+						p.
+							Everyone has run into this scenario: you and your partymates are going through character creation, filling out
+							your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion.
+							Do you scan it and email it? Do you transcribe it? Just email the aspects?
+						p.
+							Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But
+							without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.
+						p.
+							This is where ToonStore comes in. We store your Dresden Files RPG or other FATE-based character data in the cloud,
+							so you never lose it and can easily share it. Just view the online character sheet and make your edits right in
+							the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.
+
+						p Interested? <a href='javascript:;' onclick='navigator.id.request()'>Log in</a> with your <a href='https://login.persona.org/'>Persona</a> account today, and get rolling!
+
+			block footer
+				.footer
+					span &copy; 2013 Derogatory Studios
+					span Terms of Use
+					span Privacy Policy

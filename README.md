@@ -4,8 +4,8 @@ View/edit/share Dresden Files character sheets online
 
 ## Dependencies
 
-Node.js v0.10 or greater
-Various npm packages
+* Node.js v0.10 or greater
+* Various npm packages (just run 'npm install')
 
 
 ## Installation
@@ -22,15 +22,24 @@ Various npm packages
 
 ### Configure database
 
-1. Create a MySQL user and database for ToonStore, and add the credentials to global.js.
-2. Import the sample database dump 'toonstore.sql'
+1. Create a MySQL user and database for ToonStore
+2. Add the MySQL credentials to global.js.
+3. Import the sample database dump 'toonstore.sql'
 
 ### Configure server
 
-Set the port in global.js.
+1. Open global.js in your text editor of choice.
+2. Set the server's listen port where indicated.
+3. Set the server's cookie secret where indicated.
+4. Set the public-facing URL for login verification.
 
 
 ## Running
 
     $ node app.js
+	$ chrome https://localhost:3001/
+	
+There is a test user in the database template. Though you can no longer log into the account, you can view the sample character sheet
+by viewing https://example.com/tester/lifeson.
 
+NOTE: Server only runs in HTTPS mode for now, so don't forget to put that into your browser when testing it.

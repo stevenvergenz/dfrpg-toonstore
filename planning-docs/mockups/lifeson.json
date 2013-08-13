@@ -1,140 +1,171 @@
 {
-	general: {
-		name: "Andrew Lifeson",
-		player: "Steven Vergenz"
+	"name": "Andrew Lifeson",
+	"player": "tester",
+
+	"aspects": {
+
+		"high_concept": {
+			"name": "White Council Footsoldier",
+			"description": ""},
+
+		"trouble": {
+			"name": "Still On The Battlefield",
+			"description": ""},
+
+		"aspects": [{
+
+			"name": "I Am From A Gutter Too",
+			"description": ""},{
+
+			"name": "Warden's Honor",
+			"description": ""},{
+
+			"name": "No Kill Like Overkill",
+			"description": ""},{
+
+			"name": "Crazy Enough To Work",
+			"description": ""},{
+
+			"name": "Conviction Is Both Sword And Shield",
+			"description": ""}]},
+
+	"stress": [{
+
+		"name": "Physical",
+		"skill": "Endurance",
+		"toughness": 0,
+		"boxes": [
+			{"used": false},
+			{"used": true},
+			{"used": false},
+			{"used": false}
+		],
+		"armor": [{
+			"vs": "blunt objects",
+			"strength": 2}]
+		},{
+
+		"name": "Physical",
+		"skill": "Loyalty Cardigan",
+		"toughness": 0,
+		"armor": [],
+		"boxes": [
+			{"used": false},
+			{"used": false}]
+		},{
+
+		"name": "Mental",
+		"skill": "Conviction",
+		"toughness": 2,
+		"armor": [],
+		"boxes": [
+			{"used": false},
+			{"used": true},
+			{"used": false},
+			{"used": false},
+			{"used": false},
+			{"used": false}
+		],
+		"armor": []},{
+
+		"name": "Social",
+		"skill": "Presence",
+		"toughness": 0,
+		"armor": [],
+		"boxes": [
+			{"used": false},
+			{"used": true}
+		],
+		"armor": []}],
+
+	"consequences": [{
+
+		"severity": "Mild",
+		"mode": "Any",
+		"used": false,
+		"aspect": ""},{
+
+		"severity": "Mild",
+		"mode": "Physical",
+		"used": true,
+		"aspect": "Spun about"},{
+
+		"severity": "Mild",
+		"mode": "Mental",
+		"used": false,
+		"aspect": ""},{
+
+		"severity": "Moderate",
+		"mode": "Any",
+		"used": false,
+		"aspect": ""},{
+
+		"severity": "Severe",
+		"mode": "Any",
+		"used": false,
+		"aspect": ""},{
+
+		"severity": "Extreme",
+		"mode": "Any",
+		"used": false,
+		"aspect": "Replace permanent"}],
+	
+	"totals": {
+		"power_level": "Submerged",
+		"base_refresh": 12,
+		"skill_cap": 5,
+		"skills_total": 42,
+		"fate_points": 3
 	},
 
-	aspects: {
-		high_concept: {
-			name: "White Council Footsoldier",
-			description: ""
-		},
-		trouble: {
-			name: "Still On The Battlefield",
-			description: ""
-		},
-		aspects: [
-			{
-				name: "I Am From A Gutter Too",
-				description: ""
-			},{
-				name: "Warden's Honor",
-				description: ""
-			},{
-				name: "No Kill Like Overkill",
-				description: ""
-			},{
-				name: "Crazy Enough To Work",
-				description: ""
-			},{
-				name: "Conviction Is Both Sword And Shield",
-				description: ""
-			}
+	"skills": {
+		"lists": [
+			[],
+			["Presence", "Empathy", "Fists", "Resources", "Investigation"],
+			["Might", "Survival", "Alertness"],
+			["Contacts", "Weapons", "Intimidation"],
+			["Discipline", "Lore", "Athletics"],
+			["Conviction", "Endurance"]
 		]
 	},
 
-	stress: {
-		"Physical (Endurance)": 4,
-		"Mental (Conviction)": 4,
-		"Social (Presence)": 2,
-		"Sweater (Block 5)": 2
-	},
+	"powers": [{
+		"cost": -4,
+		"name": "Evocation + Refinement",
+		"description": [
+			"Elements: Spirit, Air, Water",
+			"Spec: +2 power to spirit evocation",
+			"Spec: +1 control to air evocation",
+			"Focus item: Crystal belt buckle",
+			"* +1 control to offensive spirit magic",
+			"Focus item: Hawk skin gloves",
+			"* +1 power to defensive air magic"
+		]},{
 
-	consequences: [
-		{
-			type: "Mild",
-			mode: "Any",
-			used: false,
-			aspect: ""
-		},{
-			type: "Mild",
-			mode: "P",
-			used: false,
-			aspect: ""
-		},{
-			type: "Mild",
-			mode: "M",
-			used: false,
-			aspect: ""
-		},{
-			type: "Moderate",
-			mode: "Any",
-			used: false,
-			aspect: ""
-		},{
-			type: "Severe",
-			mode: "Any",
-			used: false,
-			aspect: ""
-		},{
-			type: "Extreme",
-			mode: "Any",
-			used: false,
-			aspect: "Replace permanent"
-		}
-	],
-	
-	totals: {
-		power_level: 12,
-		skill_cap: 5,
-		skills_spent: 42,
-		skills_available: 0,
-		base_refresh: 12,
-		adjusted_refresh: 2,
-		fate_points: 3
-	},
+		"cost": -3,
+		"name": "Thaumaturgy",
+		"description": ["Spec: +1 control to spectromancy"]},{
 
-	skills: {
-		5: ["Conviction", "Endurance"],
-		4: ["Discipline", "Lore", "Athletics"],
-		3: ["Contacts", "Weapons", "Intimidation"],
-		2: ["Might", "Survival", "Alertness"],
-		1: ["Presence", "Empathy", "Fists", "Resources", "Investigation"]
-	},
+		"cost": -1,
+		"name": "The Sight",
+		"description": []},{
 
-	powers: [
-		{
-			cost: -4,
-			name: "Evocation + Refinement",
-			description: [
-				"Spirit, Air, Water",
-				"Spec: +2 power to spirit evocation",
-				"Spec: +1 control to air evocation",
-				"Focus item: Crystal belt buckle",
-				"- +1 control to offensive spirit magic",
-				"Focus item: Hawk skin gloves",
-				"- +1 power to defensive air magic"
-			]
-		},{
-			cost: -3,
-			name: "Thaumaturgy",
-			description: [
-				"Spec: +1 control to spectromancy"
-			]
-		},{
-			cost: -1,
-			name: "The Sight",
-			description: []
-		},{
-			cost: 0,
-			name: "Soulgaze",
-			description: []
-		},{
-			cost: 0,
-			name: "Wizard's Constitution",
-			description: []
-		},{
-			cost: -1,
-			name: "Switchblade master",
-			description: [
-				"+1 to attacks with short blades"
-			]
-		},{
-			cost: -1,
-			name: "Controlled outburst",
-			description: [
-				"Zone attacks avoid allies"
-			]
-		}
-	]
+		"cost": 0,
+		"name": "Soulgaze",
+		"description": []},{
+
+		"cost": 0,
+		"name": "Wizard's Constitution",
+		"description": []},{
+
+		"cost": -1,
+		"name": "Switchblade master",
+		"description": ["+1 to attacks with short blades"]},{
+
+		"cost": -1,
+		"name": "Controlled outburst",
+		"description": ["Zone attacks avoid allies"]}],
+
+	"notes": {
+		"text": "## Adventure log\n\nDropped into Laos jungle, asked to recover kidnapped diplomats from the Vietcong. They are holed up in a Buddhist monastery at the top of the mountain.\n\nStarted hiking up the mountain.\n\nCong outpost. Killed scouts, but alerted others.\n\nThen everyone died.\n\n_fin_"}
 }

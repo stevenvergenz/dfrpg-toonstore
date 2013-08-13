@@ -1,22 +1,23 @@
-extends theme
+extends index
 
 block title
-	title #{user} - ToonStore
+	title= owner + ' - ToonStore'
 
 block content
-	h1 #{user}'s page
 
-	if chars.length > 0
+	.content-block
+		h1
+			span= owner
+			span 's page
 
-		p Characters:
-		ul#charList
-			each char in chars
-				li
-					a(href='/#{user}/#{char.canon_name}') #{char.name} - #{char.concept}
-	else
-		p This user lacks character (badum-ching!)
+	.content-block: .normalbox
+		if toons.length > 0
+			p Characters:
+			ul#charList
+				each char in toons
+					li: a(href='/#{owner}/#{char.canon_name}')= char.name +' - '+ char.concept
+		else
+			p This user lacks character (badum-ching!)
 
-	if logged_user == user
-
-		p
-			a(href='/newtoon') Create a new character
+		if logged_user == owner
+			p: a(href='/newtoon') Create a new character

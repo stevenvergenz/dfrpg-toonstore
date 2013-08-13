@@ -15,7 +15,8 @@ var config = {
 		'cert': libpath.normalize('keys/agent2-cert.pem')
 	},
 	'port': 3001,
-	'cookie_secret': 'I return from whence I came...'
+	'cookie_secret': 'I return from whence I came...',
+	'persona_audience': 'https://localhost:3001'
 };
 
 
@@ -77,9 +78,36 @@ function log()
 	}
 }
 
+function renderPage(template, options)
+{
+	var middleware = function(req,res,next)
+	{
+		// global template fields
+		var pageFields = {
+			'page': req.url,
+			'query': req.query,
+			'logged_user': req.session.user ? req.session.user : null,
+			'logged_user_email': req.session.user_email ? req.session.user_email : null,
+			'owner': req.params.user,
+			'toon': req.params.char
+		};
+
+		// argument options
+		for( var i in options ){
+			pageFields[i] = options[i];
+		}
+
+		log('Rendering template "', template, '" with options', pageFields);
+		return res.render(template, pageFields);
+	};
+
+	return middleware;
+}
+
 // export everything for external modules
 exports.error = error;
 exports.log = log;
 exports.logLevels = logLevels;
 exports.config = config;
+exports.renderPage = renderPage;
 
