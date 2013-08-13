@@ -10,13 +10,9 @@ var config = {
 		'password': 'KhazdanWillNeverDie',
 		'database': 'toonstore'
 	},
-	'ssl_info': {
-		'key': libpath.normalize('keys/agent2-key.pem'),
-		'cert': libpath.normalize('keys/agent2-cert.pem')
-	},
 	'port': 3001,
 	'cookie_secret': 'I return from whence I came...',
-	'persona_audience': 'https://localhost:3001'
+	'persona_audience': 'http://localhost:3001'
 };
 
 

@@ -1,4 +1,4 @@
-var https = require('https');
+var http = require('http');
 var fs = require('fs');
 var libpath = require('path');
 var liburl = require('url');
@@ -81,6 +81,6 @@ var options = {
 	key: fs.readFileSync( global.config.ssl_info.key ),
 	cert: fs.readFileSync( global.config.ssl_info.cert )
 };
-https.createServer(options, app).listen(global.config.port);
+http.createServer(app).listen(global.config.port);
 global.log('Server running at http://localhost:'+global.config.port+'/');
 

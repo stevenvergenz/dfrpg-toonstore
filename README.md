@@ -16,10 +16,6 @@ View/edit/share Dresden Files character sheets online
 
 ## Configuration
 
-### Regenerate self-signed SSL certificate
-
-	$ openssl req -x509 -nodes -newkey rsa:2048 -keyout keys/agent2-key.pem -out keys/agent2-cert.pem
-
 ### Configure database
 
 1. Create a MySQL user and database for ToonStore
@@ -42,4 +38,3 @@ View/edit/share Dresden Files character sheets online
 There is a test user in the database template. Though you can no longer log into the account, you can view the sample character sheet
 by viewing https://example.com/tester/lifeson.
 
-NOTE: Server only runs in HTTPS mode for now, so don't forget to put that into your browser when testing it.
