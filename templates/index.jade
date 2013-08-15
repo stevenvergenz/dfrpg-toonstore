@@ -18,9 +18,15 @@ html
 			script(src='/js/persona.js')
 
 	body
+		if page == '/'
+			a(style="z-index: 1;", href="https://github.com/stevenvergenz/dfrpg-toonstore")
+				img(style="position: absolute; top: 0; left: 0; border: 0; z-index: 1;",
+					src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png",
+					alt="Fork me on GitHub")
 		.wrapper
 
 			block header
+
 				.navbar
 					.itemgroup
 						.navitem: a(href='/') Toon&#8203;Store
