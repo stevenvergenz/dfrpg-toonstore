@@ -3,24 +3,40 @@ extends index
 block title
 	title New Character - ToonStore
 
+block append includes
+
+	script.
+		function validate(){
+			var valid = /^[A-Za-z0-9_-]+$/.test( $('#canon_name').val() );
+			if( !valid ){
+				if( $('div.error').length == 0 )
+					$('<div class="content-block"><div class="error"><p>That short name is invalid.</p></div></div>').prependTo( $('.content') );
+				else
+					$('div.error>p').text('That short name is invalid');
+			}
+			return valid;
+		}
+
 block content
 
 	.content-block: .titledbox
 		.title New character
 
 		.inner
-			form(action='/newtoon', method='post')
+			form(action='/newtoon', method='post', onsubmit="return validate();")
 
 				label(for='name') Full name
-				input#name(type='text', name='name')
+				input#name(type='text', name='name', required, placeholder='John Doe')
 				p.caption The character's name. Can be changed later.
 
-				label(for='canon_name') Short name (also URL)
-				input#canon_name(type='text', name='canon_name')
-				p.caption Something short, identifiable, and unique amongst your characters. Last names usually suffice. This cannot be changed.
+				label(for='canon_name') Short name (also permalink)
+				input#canon_name(type='text', name='canon_name', required, placeholder='doe')
+				p.caption Something short, identifiable, and unique amongst your characters. Last names usually suffice.
+				p.caption Only A-Z, a-z, 0-9, -, and _ are allowed.
+				p.caption This is PERMANENT.
 
 				label(for='concept') High concept
-				input#concept(type='text', name='concept')
+				input#concept(type='text', name='concept', required, placeholder='Man of Mystery')
 				p.caption The character's defining concept. Can be changed later.
 
 				input(type='submit', name='submit')
