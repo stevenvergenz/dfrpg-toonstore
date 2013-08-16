@@ -49,6 +49,9 @@ app.get('/:user/:char', character.servePage);
 app.get('/:user/:char/json', character.serveJson);
 app.post('/:user/:char/json', character.pushJson);
 
+// route the extra pages
+app.get('/site/about', global.renderPage('about'));
+app.get('/site/contact', global.renderPage('contact'));
 app.get('/', global.renderPage('index'));
 
 // catch-all: serve static file or 404
