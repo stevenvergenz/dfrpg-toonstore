@@ -67,7 +67,7 @@ function _pushJson(req,res,next)
 
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'UPDATE Characters SET info = ?, name = ?, concept = ? WHERE owner = ? AND canonical_name = ?;',
+		'UPDATE Characters SET info = ?, name = ?, concept = ?, last_update = NOW() WHERE owner = ? AND canonical_name = ?;',
 		[JSON.stringify(req.body), req.body.name, req.body.aspects.high_concept.name, req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( !err ){
@@ -123,7 +123,7 @@ function newCharacterRequest(req,res)
 
 	global.log('Attempting character creation');
 	var connection = mysql.createConnection( global.config.database );
-	connection.query('INSERT INTO Characters SET created_on=NOW(), ?;',
+	connection.query('INSERT INTO Characters SET created_on=NOW(), last_updated=NOW(), ?;',
 		{'canonical_name': req.body.canon_name, 'name': req.body.name, 'owner': req.session.user,
 			'concept': req.body.concept, 'info': JSON.stringify(toon)},
 		function(err,rows,fields)
