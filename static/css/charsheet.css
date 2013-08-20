@@ -393,6 +393,23 @@ table#conseqTable th:first-of-type, table#conseqTable td:first-of-type {
 	text-align: left;
 }
 
+#conseqBlock {
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+	-webkit-justify-content: space-between;
+	font-size: 10pt;
+}
+
+#conseqBlock .column {
+	display: -webkit-flex;
+	-webkit-flex-direction: column;
+}
+
+#conseqBlock .colHeader {
+	font-weight: bold;
+	text-align: center;
+}
+
 table#skillTable td, table#skillTable th {
 	padding-top: 5px;
 	padding-bottom: 5px;

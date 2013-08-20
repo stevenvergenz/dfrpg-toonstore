@@ -190,7 +190,7 @@ block content
 						th Used?
 						th Aspect
 
-				tbody(data-bind='foreach: sorted_consequences')
+				tbody(data-bind='foreach: consequences')
 					tr
 						td
 							span(data-bind='visible: !$root.consequences.editing(), text: severity')
@@ -220,6 +220,21 @@ block content
 
 						td: input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
 							data-bind='visible: $root.consequences.editing, attr: {onclick: "removeConsequenceAt("+$index()+")"}')
+
+			//-#conseqBlock
+				.column
+					.colHeader Type
+					// ko foreach: consequences.columns[0]
+					div(data-bind='text: $data')
+					// /ko
+				.column
+					.colHeader P/M/S
+				.column
+					.colHeader Stress
+				.column
+					.colHeader Used?
+				.column
+					.colHeader Aspect
 
 			input.iconButton(type='image', data-bind='visible: $root.consequences.editing',
 				src='/static/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addConsequence()')
