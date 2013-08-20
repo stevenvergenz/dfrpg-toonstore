@@ -51,29 +51,13 @@ app.post('/:user/:char/json', character.pushJson);
 
 app.get('/', global.renderPage('index'));
 
+app.use('/static', express.static(__dirname+'/static'));
+
 // catch-all: serve static file or 404
 app.use(function(req,res)
 {
-	var url = liburl.parse(req.url, true);
-
-	// convert url to fs path
-	var path = 'public' + url.pathname;
-	if( url.pathname == '/' )
-		path += 'index.html';
-	path = libpath.normalize(path);
-
-	// serve files from the public dir
-	if( fs.existsSync(path) && fs.statSync(path).isFile() ){
-		global.log('Serving', path);
-		res.sendfile(path);
-	}
-	
-	// return 404
-	else {
-		global.error('File not found:', path, global.logLevels.warning);
-		res.send(404, '404 Not Found');
-	}
-
+	global.error('File not found:', req.url, global.logLevels.warning);
+	res.send(404, '404 Not Found');
 });
 
 // start the server
