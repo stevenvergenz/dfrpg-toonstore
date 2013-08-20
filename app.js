@@ -27,7 +27,7 @@ app.set('views', 'templates');
 app.set('view engine', 'jade');
 
 // the global logger middleware
-//app.use(express.logger());
+app.use(express.logger());
 
 // route the registration pages
 app.get('/register', global.renderPage('register'));
@@ -51,13 +51,14 @@ app.post('/:user/:char/json', character.pushJson);
 
 app.get('/', global.renderPage('index'));
 
-app.use('/static', express.static(__dirname+'/static'));
+app.use('/static', express.static(__dirname+'/static', {maxAge: 24*60*60}));
 
 // catch-all: serve static file or 404
 app.use(function(req,res)
 {
 	global.error('File not found:', req.url, global.logLevels.warning);
-	res.send(404, '404 Not Found');
+	global.renderPage('404', {code: 404})(req,res);
+	//res.send(404);
 });
 
 // start the server

@@ -87,14 +87,25 @@ function renderPage(template, options)
 			'owner': req.params.user,
 			'toon': req.params.char
 		};
+		var statusCode = options && options.code ? options.code : 200;
 
 		// argument options
 		for( var i in options ){
-			pageFields[i] = options[i];
+			if( i != 'code' )
+				pageFields[i] = options[i];
 		}
 
 		log('Rendering template "', template, '" with options', pageFields);
-		return res.render(template, pageFields);
+		return res.render(template, pageFields, function(err,html){
+			if( !err ){
+				res.writeHead(statusCode);
+				res.write(html);
+				res.end();
+			}
+			else {
+				res.end(String(err));
+			}
+		});
 	};
 
 	return middleware;
