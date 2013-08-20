@@ -9,7 +9,10 @@ function servePage(req,res,next)
 		'SELECT name FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
-			if( !err && rows.length == 1 ){
+			if( err ){
+				global.error( err, global.logLevels.warning );
+			}
+			else if( rows.length == 1 ){
 				global.log('Serving character page for', req.url);
 				global.renderPage('charsheet', {toonName: rows[0].name})(req,res);
 			}
@@ -28,7 +31,10 @@ function serveJson(req,res,next)
 		'SELECT info FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
-			if( !err && rows.length == 1 ){
+			if( err ){
+				global.error( err, global.logLevels.warning );
+			}
+			else if( rows.length == 1 ){
 				global.log('Serving character JSON for', req.url);
 				res.json(200, JSON.parse(rows[0].info));
 			}
@@ -75,7 +81,7 @@ function _pushJson(req,res,next)
 				res.send(200);
 			}
 			else {
-				global.log('MySQL error:', err);
+				global.error('MySQL error:', err, global.logLevels.error);
 				next();
 			}
 			connection.end();
