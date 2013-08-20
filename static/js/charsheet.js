@@ -72,12 +72,14 @@ function removeConsequenceAt(index){
 
 function addConsequence(){
 	console.log('Adding consequence');
-	viewModel.consequences.push( new Consequence({
+	var conseq = new Consequence({
 		'severity': 'Mild',
 		'mode': 'Any',
 		'used': false,
 		'aspect': ''
-	}));
+	});
+	conseq.registerWith(viewModel.consequences);
+	viewModel.consequences.push( conseq );
 }
 
 function updateConseqAspect(conseq){

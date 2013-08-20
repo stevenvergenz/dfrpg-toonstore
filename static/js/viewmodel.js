@@ -5,7 +5,6 @@ ko.extenders.sort = function(target,dir)
 		return dir === 'desc' ? -result : result;
 	};
 	function conseqSortFn(left,right){
-		console.log('Sorting by consequence');
 		var severity = ['Mild', 'Moderate', 'Severe', 'Extreme'];
 		if( severity.indexOf(left.severity()) < severity.indexOf(right.severity()) ){
 			return -1;
@@ -151,6 +150,14 @@ function Consequence(oldConseq){
 		var map = {'Mild': -2, 'Moderate': -4, 'Severe': -6, 'Extreme': -8};
 		return map[this.severity()];
 	}, this);
+	this.registerWith = function(container){
+		this.severity.subscribe(function(){
+			container.valueHasMutated();
+		});
+		this.mode.subscribe(function(){
+			container.valueHasMutated();
+		});
+	};
 }
 
 function Power(data){
@@ -244,12 +251,7 @@ function SheetViewModel(data)
 	this.consequences.editing = ko.observable(false);
 	for( var i in data.consequences ){
 		var conseq = new Consequence(data.consequences[i]);
-		conseq.severity.subscribe(function(){
-			this.consequences.valueHasMutated();
-		}, this);
-		conseq.mode.subscribe(function(){
-			this.consequences.valueHasMutated();
-		}, this);
+		conseq.registerWith(this.consequences);
 		this.consequences.push( conseq );
 	}
 
