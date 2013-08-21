@@ -225,8 +225,14 @@ block content
 				//hr(style='width: 100%;', data-bind='visible: $index() > 0')
 				.row(data-bind='css: {"top-divider": $index() > 0}')
 					.vertgroup
-						.header(data-bind='text: severity() + " ("+magnitude()+")"')
-						.subtitle(data-bind='text: mode() + " Type"')
+						.header(data-bind='visible: !$root.consequences.editing(), text: severity() + " ("+magnitude()+")"')
+						.subtitle(data-bind='visible: !$root.consequences.editing(), text: mode() + " Type"')
+						select(data-bind='visible: $root.consequences.editing, value: severity')
+							option(value='Mild') Mild (-2)
+							option(value='Moderate') Moderate (-4)
+							option(value='Severe') Severe (-6)
+							option(value='Extreme') Extreme (-8)
+						select(data-bind='visible: $root.consequences.editing, options: $root.stress_types, value: mode')
 
 					//-input.stressBox(type='checkbox', onchange='updateConseqAspect(this)', data-bind='attr: {id: "conseq"+$index()}, checked: used')
 						if logged_user == owner
