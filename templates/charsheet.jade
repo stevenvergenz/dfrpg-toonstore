@@ -181,7 +181,7 @@ block content
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
 						onclick='viewModel.consequences.editing( !viewModel.consequences.editing() )')
 
-			table#conseqTable
+			//-table#conseqTable
 				thead
 					tr
 						th Type
@@ -221,20 +221,20 @@ block content
 						td: input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
 							data-bind='visible: $root.consequences.editing, attr: {onclick: "removeConsequenceAt("+$index()+")"}')
 
-			//-#conseqBlock
-				.column
-					.colHeader Type
-					// ko foreach: consequences.columns[0]
-					div(data-bind='text: $data')
-					// /ko
-				.column
-					.colHeader P/M/S
-				.column
-					.colHeader Stress
-				.column
-					.colHeader Used?
-				.column
-					.colHeader Aspect
+			#conseqBlock(data-bind='foreach: consequences')
+				//hr(style='width: 100%;', data-bind='visible: $index() > 0')
+				.row(data-bind='css: {"top-divider": $index() > 0}')
+					.vertgroup
+						.header(data-bind='text: severity() + " ("+magnitude()+")"')
+						.subtitle(data-bind='text: mode() + " Type"')
+
+					//-input.stressBox(type='checkbox', onchange='updateConseqAspect(this)', data-bind='attr: {id: "conseq"+$index()}, checked: used')
+						if logged_user == owner
+							label(data-bind='attr: {for: "conseq"+$index()}')
+						else
+							label
+					.aspect(data-bind='text: aspect() == "" ? "Unused" : aspect(), css: {grey: aspect() == ""}')
+					
 
 			input.iconButton(type='image', data-bind='visible: $root.consequences.editing',
 				src='/static/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addConsequence()')

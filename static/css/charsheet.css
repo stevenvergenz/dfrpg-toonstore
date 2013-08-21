@@ -395,19 +395,48 @@ table#conseqTable th:first-of-type, table#conseqTable td:first-of-type {
 
 #conseqBlock {
 	display: -webkit-flex;
+	-webkit-flex-direction: column;
+	-webkit-justify-content: space-between;
+	-webkit-align-items: center;
+}
+
+#conseqBlock .row {
+	display: -webkit-flex;
 	-webkit-flex-direction: row;
 	-webkit-justify-content: space-between;
-	font-size: 10pt;
+	-webkit-align-items: center;
+	
+	padding: 5px inherit;
+	width: 90%;
 }
 
-#conseqBlock .column {
+#conseqBlock .top-divider {
+	border-top: solid lightgrey 1px;
+}
+
+#conseqBlock .vertgroup {
 	display: -webkit-flex;
 	-webkit-flex-direction: column;
+	-webkit-align-items: flex-start;
+	text-align: left;
+	max-width: 50%;
 }
 
-#conseqBlock .colHeader {
+#conseqBlock .aspect {
+	text-align: right;
+	max-width: 50%;
+}
+
+#conseqBlock .grey {
+	color: lightgrey;
+}
+
+#conseqBlock .header {
 	font-weight: bold;
-	text-align: center;
+}
+
+#conseqBlock .subtitle {
+	font-size: 80%;
 }
 
 table#skillTable td, table#skillTable th {
