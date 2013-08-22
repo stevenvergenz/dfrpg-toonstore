@@ -73,7 +73,7 @@ function _pushJson(req,res,next)
 
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'UPDATE Characters SET info = ?, name = ?, concept = ?, last_update = NOW() WHERE owner = ? AND canonical_name = ?;',
+		'UPDATE Characters SET info = ?, name = ?, concept = ?, last_updated = NOW() WHERE owner = ? AND canonical_name = ?;',
 		[JSON.stringify(req.body), req.body.name, req.body.aspects.high_concept.name, req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( !err ){
