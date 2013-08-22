@@ -1,5 +1,5 @@
 
-var userGood = false;
+var userGood = true;
 var checkNameTimeout = null;
 function checkUsername(elem)
 {
