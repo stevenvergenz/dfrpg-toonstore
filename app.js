@@ -1,4 +1,4 @@
-var https = require('https');
+var http = require('http');
 var fs = require('fs');
 var libpath = require('path');
 var liburl = require('url');
@@ -27,7 +27,7 @@ app.set('views', 'templates');
 app.set('view engine', 'jade');
 
 // the global logger middleware
-//app.use(express.logger());
+app.use(express.logger());
 
 // route the registration pages
 app.get('/register', global.renderPage('register'));
@@ -40,47 +40,28 @@ app.post('/login', login.processLogin);
 app.post('/logout', login.processLogout);
 
 // route the user pages
-app.get('/:user', user.userPage);
+app.get('/:user([A-Za-z0-9_-]+)', user.userPage);
 
 // route the character management pages
 app.get('/newtoon', character.newCharacterPage);
 app.post('/newtoon', character.newCharacterRequest);
-app.get('/:user/:char', character.servePage);
-app.get('/:user/:char/json', character.serveJson);
-app.post('/:user/:char/json', character.pushJson);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', character.servePage);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.serveJson);
+app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson);
 
 app.get('/', global.renderPage('index'));
+
+app.use('/static', express.static(__dirname+'/static', {maxAge: 24*60*60}));
 
 // catch-all: serve static file or 404
 app.use(function(req,res)
 {
-	var url = liburl.parse(req.url, true);
-
-	// convert url to fs path
-	var path = 'public' + url.pathname;
-	if( url.pathname == '/' )
-		path += 'index.html';
-	path = libpath.normalize(path);
-
-	// serve files from the public dir
-	if( fs.existsSync(path) && fs.statSync(path).isFile() ){
-		global.log('Serving', path);
-		res.sendfile(path);
-	}
-	
-	// return 404
-	else {
-		global.error('File not found:', path, global.logLevels.warning);
-		res.send(404, '404 Not Found');
-	}
-
+	global.error('File not found:', req.url, global.logLevels.warning);
+	global.renderPage('404', {code: 404})(req,res);
+	//res.send(404);
 });
 
 // start the server
-var options = {
-	key: fs.readFileSync( global.config.ssl_info.key ),
-	cert: fs.readFileSync( global.config.ssl_info.cert )
-};
-https.createServer(options, app).listen(global.config.port);
+http.createServer(app).listen(global.config.port);
 global.log('Server running at http://localhost:'+global.config.port+'/');
 

@@ -9,9 +9,12 @@ function userPage(req,res,next)
 	connection.query(
 		'SELECT Users.username, Characters.name, Characters.canonical_name, Characters.concept '+
 		'FROM Users LEFT JOIN Characters ON Users.username = Characters.owner '+
-		'WHERE Users.username = ? ORDER BY Characters.created_on;', [req.params.user],
+		'WHERE Users.username = ? ORDER BY Characters.last_updated DESC;', [req.params.user],
 		function(err,rows,fields){
-			if( !err && rows.length != 0 )
+			if( err ){
+				global.error( err, global.logLevels.warning );
+			}
+			else if( rows.length != 0 )
 			{
 				global.log('Serving user page for', rows[0].username);
 

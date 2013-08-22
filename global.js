@@ -10,13 +10,9 @@ var config = {
 		'password': 'KhazdanWillNeverDie',
 		'database': 'toonstore'
 	},
-	'ssl_info': {
-		'key': libpath.normalize('keys/agent2-key.pem'),
-		'cert': libpath.normalize('keys/agent2-cert.pem')
-	},
 	'port': 3001,
 	'cookie_secret': 'I return from whence I came...',
-	'persona_audience': 'https://localhost:3001'
+	'persona_audience': 'http://localhost:3001'
 };
 
 
@@ -86,19 +82,30 @@ function renderPage(template, options)
 		var pageFields = {
 			'page': req.url,
 			'query': req.query,
-			'logged_user': req.session.user ? req.session.user : null,
-			'logged_user_email': req.session.user_email ? req.session.user_email : null,
-			'owner': req.params.user,
-			'toon': req.params.char
+			'logged_user': req.session && req.session.user ? req.session.user : null,
+			'logged_user_email': req.session && req.session.user_email ? req.session.user_email : null,
+			'owner': req.params && req.params.user ? req.params.user : null,
+			'toon': req.params && req.params.char ? req.params.char : null
 		};
+		var statusCode = options && options.code ? options.code : 200;
 
 		// argument options
 		for( var i in options ){
-			pageFields[i] = options[i];
+			if( i != 'code' )
+				pageFields[i] = options[i];
 		}
 
 		log('Rendering template "', template, '" with options', pageFields);
-		return res.render(template, pageFields);
+		return res.render(template, pageFields, function(err,html){
+			if( !err ){
+				res.writeHead(statusCode);
+				res.write(html);
+				res.end();
+			}
+			else {
+				res.end(String(err));
+			}
+		});
 	};
 
 	return middleware;
