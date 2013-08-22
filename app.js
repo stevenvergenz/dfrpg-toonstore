@@ -40,14 +40,14 @@ app.post('/login', login.processLogin);
 app.post('/logout', login.processLogout);
 
 // route the user pages
-app.get('/:user', user.userPage);
+app.get('/:user([A-Za-z0-9_-]+)', user.userPage);
 
 // route the character management pages
 app.get('/newtoon', character.newCharacterPage);
 app.post('/newtoon', character.newCharacterRequest);
-app.get('/:user/:char', character.servePage);
-app.get('/:user/:char/json', character.serveJson);
-app.post('/:user/:char/json', character.pushJson);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', character.servePage);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.serveJson);
+app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson);
 
 app.get('/', global.renderPage('index'));
 
