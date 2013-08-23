@@ -158,6 +158,7 @@ function Consequence(oldConseq){
 			container.valueHasMutated();
 		});
 	};
+	this.editing = ko.observable(false);
 }
 
 function Power(data){

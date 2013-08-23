@@ -239,7 +239,11 @@ block content
 							label(data-bind='attr: {for: "conseq"+$index()}')
 						else
 							label
-					.aspect(data-bind='text: aspect() == "" ? "Unused" : aspect(), css: {grey: aspect() == ""}')
+					.aspect
+						span(data-bind='visible: !editing(), text: aspect() == "" ? "Unused" : aspect(), css: {grey: aspect() == ""}', onclick='focusIn(this)')
+						input(type='text', data-bind='visible: editing, value: aspect', onblur='focusOut(this)', onkeyup='checkReturn(this,event)', style='width: 100%;')
+
+						//input(type='image', data-bind='visible: $root.consequences.editing', src='/static/img/glyphicons/glyphicons_207_remove_2.png')
 					
 
 			input.iconButton(type='image', data-bind='visible: $root.consequences.editing',

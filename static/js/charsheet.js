@@ -82,7 +82,7 @@ function addConsequence(){
 	viewModel.consequences.push( conseq );
 }
 
-function updateConseqAspect(conseq){
+/*function updateConseqAspect(conseq){
 	var index = conseq.id.substr(-1,1);
 	console.log(conseq.checked);
 	if( conseq.checked ){
@@ -101,6 +101,20 @@ function finishConseqUpdate(evt, index){
 		$(evt.target).hide();
 		$( $('.conseqAspectDisplay')[index] ).show();
 	}
+}*/
+
+function checkReturn(obj,evt){
+	if( evt.keyCode == 13 )
+		$(obj).blur();
+}
+
+function focusIn(obj){
+	ko.dataFor(obj).editing(true);
+	$(obj).next().focus().select();
+}
+
+function focusOut(obj){
+	ko.dataFor(obj).editing(false);
 }
 
 function addSkill(evt){
