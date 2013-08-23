@@ -65,9 +65,9 @@ function removeArmorFrom(track,armor){
 	viewModel.stress()[track].armor.splice(armor,1);
 }
 
-function removeConsequenceAt(index){
-	console.log('Removing consequence at', index);
-	viewModel.consequences.splice(index,1);
+function removeConsequence(data){
+	console.log('Removing consequence', data);
+	viewModel.consequences.remove(data);
 }
 
 function addConsequence(){

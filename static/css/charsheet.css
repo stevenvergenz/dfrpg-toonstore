@@ -419,12 +419,23 @@ table#conseqTable th:first-of-type, table#conseqTable td:first-of-type {
 	-webkit-flex-direction: column;
 	-webkit-align-items: flex-start;
 	text-align: left;
+}
+
+#conseqBlock .horizgroup {
 	max-width: 50%;
+	display: -webkit-flex;
+	-webkit-align-items: center;
 }
 
 #conseqBlock .aspect {
 	text-align: right;
 	max-width: 50%;
+}
+
+#conseqBlock .removeButton {
+	margin-right: 5px;
+	width: 15px;
+	height: 15px;
 }
 
 #conseqBlock .grey {

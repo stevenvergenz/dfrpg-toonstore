@@ -181,58 +181,20 @@ block content
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
 						onclick='viewModel.consequences.editing( !viewModel.consequences.editing() )')
 
-			//-table#conseqTable
-				thead
-					tr
-						th Type
-						th P/M/S
-						th(data-bind='visible: !$root.consequences.editing()') Stress
-						th Used?
-						th Aspect
-
-				tbody(data-bind='foreach: consequences')
-					tr
-						td
-							span(data-bind='visible: !$root.consequences.editing(), text: severity')
-							select(data-bind='visible: $root.consequences.editing, value: severity')
-								option(value='Mild') Mild
-								option(value='Moderate') Moderate
-								option(value='Severe') Severe
-								option(value='Extreme') Extreme
-
-						td
-							span(data-bind='visible: !$root.consequences.editing(), text: mode')
-							select(data-bind='visible: $root.consequences.editing, options: $root.stress_types, value: mode')
-
-						td(data-bind='visible: !$root.consequences.editing(), text: magnitude')
-						td
-							input.stressBox(type='checkbox', onchange='updateConseqAspect(this)', data-bind='attr: {id: "conseq"+$index()}, checked: used')
-							if logged_user == owner
-								label(data-bind='attr: {for: "conseq"+$index()}')
-							else
-								label
-						td
-							if logged_user == owner
-								span.conseqAspectDisplay(data-bind='text: aspect')
-								input.conseqAspectEdit(type='text', style='display: none; width: 100px;', data-bind='attr: {onkeypress: "finishConseqUpdate(event,"+$index()+")"}, value: aspect')
-							else
-								span(data-bind='text: aspect')
-
-						td: input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
-							data-bind='visible: $root.consequences.editing, attr: {onclick: "removeConsequenceAt("+$index()+")"}')
-
 			#conseqBlock(data-bind='foreach: consequences')
 				//hr(style='width: 100%;', data-bind='visible: $index() > 0')
 				.row(data-bind='css: {"top-divider": $index() > 0}')
-					.vertgroup
-						.header(data-bind='visible: !$root.consequences.editing(), text: severity() + " ("+magnitude()+")"')
-						.subtitle(data-bind='visible: !$root.consequences.editing(), text: mode() + " Type"')
-						select(data-bind='visible: $root.consequences.editing, value: severity')
-							option(value='Mild') Mild (-2)
-							option(value='Moderate') Moderate (-4)
-							option(value='Severe') Severe (-6)
-							option(value='Extreme') Extreme (-8)
-						select(data-bind='visible: $root.consequences.editing, options: $root.stress_types, value: mode')
+					.horizgroup
+						input.removeButton(type='image', data-bind='visible: $root.consequences.editing, event: {click: removeConsequence}', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+						.vertgroup
+							.header(data-bind='visible: !$root.consequences.editing(), text: severity() + " ("+magnitude()+")"')
+							.subtitle(data-bind='visible: !$root.consequences.editing(), text: mode() + " Type"')
+							select(data-bind='visible: $root.consequences.editing, value: severity')
+								option(value='Mild') Mild (-2)
+								option(value='Moderate') Moderate (-4)
+								option(value='Severe') Severe (-6)
+								option(value='Extreme') Extreme (-8)
+							select(data-bind='visible: $root.consequences.editing, options: $root.stress_types, value: mode')
 
 					//-input.stressBox(type='checkbox', onchange='updateConseqAspect(this)', data-bind='attr: {id: "conseq"+$index()}, checked: used')
 						if logged_user == owner
@@ -243,7 +205,6 @@ block content
 						span(data-bind='visible: !editing(), text: aspect() == "" ? "Unused" : aspect(), css: {grey: aspect() == ""}', onclick='focusIn(this)')
 						input(type='text', data-bind='visible: editing, value: aspect', onblur='focusOut(this)', onkeyup='checkReturn(this,event)', style='width: 100%;')
 
-						//input(type='image', data-bind='visible: $root.consequences.editing', src='/static/img/glyphicons/glyphicons_207_remove_2.png')
 					
 
 			input.iconButton(type='image', data-bind='visible: $root.consequences.editing',
