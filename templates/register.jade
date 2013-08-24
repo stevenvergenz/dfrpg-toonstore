@@ -4,7 +4,7 @@ block title
 	title Register - ToonStore
 
 block append includes
-	script(src='/js/register.js')
+	script(src='/static/js/register.js')
 
 	if page == '/post-register'
 		script.
@@ -30,7 +30,7 @@ block content
 					p.caption#userMessage No spaces or special characters except for _ and -
 
 					.flexrow
-						input(type='submit') Submit
+						input(type='submit', value='Submit')
 						p.caption#submitMessage
 
 	else if page == '/post-register'

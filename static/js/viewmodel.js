@@ -4,9 +4,33 @@ ko.extenders.sort = function(target,dir)
 		var result = a > b ? 1 : -1;
 		return dir === 'desc' ? -result : result;
 	};
+	function conseqSortFn(left,right){
+		var severity = ['Mild', 'Moderate', 'Severe', 'Extreme'];
+		if( severity.indexOf(left.severity()) < severity.indexOf(right.severity()) ){
+			return -1;
+		}
+		else if( severity.indexOf(left.severity()) > severity.indexOf(right.severity()) ){
+			return 1;
+		}
+		else {
+			if( left.mode() < right.mode() ){
+				return -1;
+			}
+			else if( left.mode() > right.mode() ){
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		}
+	};
+
 	target.subscribe(function(val){
 		if(val){
-			val.sort(sortFn);
+			if( dir == 'consequence' )
+				val.sort(conseqSortFn);
+			else
+				val.sort(sortFn);
 		}
 	});
 	return target;
@@ -126,6 +150,15 @@ function Consequence(oldConseq){
 		var map = {'Mild': -2, 'Moderate': -4, 'Severe': -6, 'Extreme': -8};
 		return map[this.severity()];
 	}, this);
+	this.registerWith = function(container){
+		this.severity.subscribe(function(){
+			container.valueHasMutated();
+		});
+		this.mode.subscribe(function(){
+			container.valueHasMutated();
+		});
+	};
+	this.editing = ko.observable(false);
 }
 
 function Power(data){
@@ -215,33 +248,23 @@ function SheetViewModel(data)
 	}, this);
 
 	// initialize consequence data
-	this.consequences = ko.observableArray();
+	this.consequences = ko.observableArray().extend({sort: 'consequence'});;
 	this.consequences.editing = ko.observable(false);
 	for( var i in data.consequences ){
-		this.consequences.push( new Consequence(data.consequences[i]) );
+		var conseq = new Consequence(data.consequences[i]);
+		conseq.registerWith(this.consequences);
+		this.consequences.push( conseq );
 	}
-	this.sorted_consequences = ko.computed(function(){
-		return this.consequences().sort(function(left,right){
-			var severity = ['Mild', 'Moderate', 'Severe', 'Extreme'];
-			if( severity.indexOf(left.severity()) < severity.indexOf(right.severity()) ){
-				return -1;
+
+	/*this.consequences.columns = [
+		ko.computed(function(){
+			var l = [];
+			for( var i in this.consequences() ){
+				l.push( this.consequences()[i].severity );
 			}
-			else if( severity.indexOf(left.severity()) > severity.indexOf(right.severity()) ){
-				return 1;
-			}
-			else {
-				if( left.mode() < right.mode() ){
-					return -1;
-				}
-				else if( left.mode() > right.mode() ){
-					return 1;
-				}
-				else {
-					return 0;
-				}
-			}
-		});
-	}, this);
+			return l;
+		}, this)
+	];*/
 
 	// initialize skills data
 	this.skills = {

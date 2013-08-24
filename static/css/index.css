@@ -278,16 +278,16 @@ p.error, input.error {
 	width: 100%;
 	display: -webkit-flex;
 	-webkit-flex-direction: row;
-	-webkit-justify-content: flex-begin;
+	-webkit-justify-content: flex-start;
 	display: -moz-flex;
 	-moz-flex-direction: row;
-	-moz-justify-content: flex-begin;
+	-moz-justify-content: flex-start;
 	display: -ms-flexbox;
 	-ms-flex-direction: row;
-	-ms-flex-pack: flex-begin;
+	-ms-flex-pack: flex-start;
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-begin;
+	justify-content: flex-start;
 }
 .footer > * {
 	padding: 0 12px;

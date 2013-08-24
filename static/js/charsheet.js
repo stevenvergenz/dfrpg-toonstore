@@ -65,22 +65,24 @@ function removeArmorFrom(track,armor){
 	viewModel.stress()[track].armor.splice(armor,1);
 }
 
-function removeConsequenceAt(index){
-	console.log('Removing consequence at', index);
-	viewModel.consequences.splice(index,1);
+function removeConsequence(data){
+	console.log('Removing consequence', data);
+	viewModel.consequences.remove(data);
 }
 
 function addConsequence(){
 	console.log('Adding consequence');
-	viewModel.consequences.push( new Consequence({
+	var conseq = new Consequence({
 		'severity': 'Mild',
 		'mode': 'Any',
 		'used': false,
 		'aspect': ''
-	}));
+	});
+	conseq.registerWith(viewModel.consequences);
+	viewModel.consequences.push( conseq );
 }
 
-function updateConseqAspect(conseq){
+/*function updateConseqAspect(conseq){
 	var index = conseq.id.substr(-1,1);
 	console.log(conseq.checked);
 	if( conseq.checked ){
@@ -99,6 +101,20 @@ function finishConseqUpdate(evt, index){
 		$(evt.target).hide();
 		$( $('.conseqAspectDisplay')[index] ).show();
 	}
+}*/
+
+function checkReturn(obj,evt){
+	if( evt.keyCode == 13 )
+		$(obj).blur();
+}
+
+function focusIn(obj){
+	ko.dataFor(obj).editing(true);
+	$(obj).next().focus().select();
+}
+
+function focusOut(obj){
+	ko.dataFor(obj).editing(false);
 }
 
 function addSkill(evt){

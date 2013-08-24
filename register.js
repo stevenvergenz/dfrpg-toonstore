@@ -12,8 +12,13 @@ function register(req,res)
 	if( ['register', 'newtoon', 'killtoon', 'site'].indexOf(body.username) != -1 ){
 		global.error('Registration error: cannot register reserved word');
 		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}});
+		return;
 	}
-
+	else if( !/^[A-Za-z_-]+$/.test(body.username) ){
+		global.error('Registration error: cannot register invalid username');
+		global.renderPage('register', {message: {type:'warning', content:'That username is invalid, choose another.'}});
+		return;
+	}
 	global.log('Registering user:', body.username);
 
 	// connect to the db
