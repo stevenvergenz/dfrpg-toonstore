@@ -52,6 +52,8 @@ app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson
 // route the extra pages
 app.get('/site/about', global.renderPage('about'));
 app.get('/site/contact', global.renderPage('contact'));
+app.get('/site/terms', global.renderPage('terms'));
+app.get('/site/privacy', global.renderPage('privacy'));
 app.get('/', global.renderPage('index'));
 
 app.use('/static', express.static(__dirname+'/static', {maxAge: 24*60*60}));
