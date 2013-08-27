@@ -33,7 +33,7 @@ View/edit/share Dresden Files character sheets online
 ## Running
 
     $ node app.js
-	$ chrome https://localhost:3001/
+	$ chrome http://localhost:3001/
 	
 There is a test user in the database template. Though you can no longer log into the account, you can view the sample character sheet
 by viewing https://example.com/tester/lifeson.
