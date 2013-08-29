@@ -5,6 +5,7 @@ function prependMessageTo( obj, message )
 	$(obj).prepend( messageBlock );
 }
 
+var overrideUserRedirect = false;
 
 $(document).ready(function()
 {
@@ -17,18 +18,21 @@ $(document).ready(function()
 				url: '/login',
 				data: {'email': assertion},
 				success: function(res,status,xhr){
-					window.location.replace('/'+res.username);
+					if( !overrideUserRedirect )
+						window.location.replace('/'+res.username);
+					else
+						window.location.reload();
 				},
 				error: function(xhr,status,err){
 					console.log('Problem logging in');
 					if( xhr.status == 403 ){
 						prependMessageTo( $('.content'), {'type': 'error', 'content': 'Could not verify user credentials'} );
-						navigator.id.logout();
+						setTimeout(function(){navigator.id.logout();},3000);
 					}
 					else if( xhr.status == 500 ){
 						var response = JSON.parse(xhr.responseText);
 						prependMessageTo( $('.content'), response.content );
-						navigator.id.logout();
+						setTimeout(function(){navigator.id.logout();},3000);
 					}
 					else if( xhr.status == 307 ){
 						var response = JSON.parse(xhr.responseText);
@@ -36,7 +40,7 @@ $(document).ready(function()
 					}
 					else {
 						prependMessageTo( $('.content'), {'type': 'error', 'content': 'Unidentified error logging in'} );
-						navigator.id.logout();
+						setTimeout(function(){navigator.id.logout();},3000);
 					}
 				}
 			});
@@ -47,7 +51,12 @@ $(document).ready(function()
 			$.ajax({
 				type: 'POST',
 				url: '/logout',
-				success: function(res,status,xhr){ window.location.replace('/'); },
+				success: function(res,status,xhr){
+					if( !overrideUserRedirect )
+						window.location.replace('/');
+					else
+						window.location.reload();
+				},
 				error: function(xhr,status,err){
 					console.log('Failed to request logout');
 				}
