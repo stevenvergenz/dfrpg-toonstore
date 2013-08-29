@@ -29,6 +29,12 @@ block content
 					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
 					p.caption#userMessage No spaces or special characters except for _ and -
 
+					table: tr
+						td: input#agreement(type='checkbox', name='agreement', required)
+						td: label(for='agreement').
+							I have read and agree with the <a href='/site/terms'>Terms of Use</a> 
+							and the <a href='/site/privacy'>Privacy Policy</a>.
+
 					.flexrow
 						input(type='submit', value='Submit')
 						p.caption#submitMessage
