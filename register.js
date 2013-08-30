@@ -11,12 +11,17 @@ function register(req,res)
 	var body = req.body;
 	if( ['register', 'post-register', 'newtoon', 'killtoon', 'site'].indexOf(body.username) != -1 ){
 		global.error('Registration error: cannot register reserved word');
-		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}});
+		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}})(req,res);
 		return;
 	}
 	else if( !/^[A-Za-z_-]+$/.test(body.username) ){
 		global.error('Registration error: cannot register invalid username');
-		global.renderPage('register', {message: {type:'warning', content:'That username is invalid, choose another.'}});
+		global.renderPage('register', {message: {type:'warning', content:'That username is invalid, choose another.'}})(req,res);
+		return;
+	}
+	else if( !req.session.user_email ){
+		global.error('Registration error: did not log in first');
+		global.renderPage('register', {message: {type:'warning', content:'You must sign in before attempting to choose a username.'}})(req,res);
 		return;
 	}
 	global.log('Registering user:', body.username);
@@ -29,7 +34,7 @@ function register(req,res)
 		function(err, rows, fields){
 			if( err ){
 				global.error('Registration error:', err, global.logLevels.error);
-				global.renderPage('register', {message: {type:'error', content:err}});
+				global.renderPage('register', {message: {type:'error', content:err}})(req,res);
 			}
 			else {
 				global.log('Registration successful');

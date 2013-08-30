@@ -49,7 +49,7 @@ function serveJson(req,res,next)
 function pushJson(req,res,next)
 {
 	// don't update if incorrect user is logged in
-	if( req.session.user != req.params.user ){
+	if( !(req.session && req.session.user && req.session.user == req.params.user) ){
 		res.send(401);
 		return;
 	}
