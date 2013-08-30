@@ -50,7 +50,7 @@ function pushJson(req,res,next)
 {
 	// don't update if incorrect user is logged in
 	if( req.session.user != req.params.user ){
-		res.send(403, '403 forbidden');
+		res.send(401);
 		return;
 	}
 
@@ -96,12 +96,23 @@ function newCharacterPage(req,res)
 		global.renderPage('newtoon')(req,res);
 	}
 	else {
-		res.redirect('/login?redir=/newtoon');
+		res.send(401);
 	}
 }
 
 function newCharacterRequest(req,res)
 {
+	if( !req.session || !req.session.user ){
+		global.error('Anonymous character creation attempted!', global.logLevels.error);
+		global.renderPage('newtoon', {message: {type: 'error', content:'You must be logged in to create a character'}})(req,res);
+		return;
+	}
+	else if( !(req.body && req.body.name && req.body.concept && req.body.canon_name) ){
+		global.error('Incomplete character creation attempted', global.logLevels.error);
+		global.renderPage('newtoon', {message: {type: 'error', content:'You must fill out all fields'}})(req,res);
+		return;
+	}
+	
 	// create blank character JSON object
 	var toon = {
 		'name': req.body.name,

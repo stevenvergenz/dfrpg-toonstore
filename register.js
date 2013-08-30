@@ -9,7 +9,7 @@ var global = require('./global.js');
 function register(req,res)
 {
 	var body = req.body;
-	if( ['register', 'newtoon', 'killtoon', 'site'].indexOf(body.username) != -1 ){
+	if( ['register', 'post-register', 'newtoon', 'killtoon', 'site'].indexOf(body.username) != -1 ){
 		global.error('Registration error: cannot register reserved word');
 		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}});
 		return;
@@ -47,7 +47,7 @@ function checkUsername(req,res)
 	var user = req.query.a;
 
 	// test for reserve words
-	if( ['register', 'newtoon', 'killtoon', 'site'].indexOf(user) != -1 ){
+	if( ['register', 'post-register', 'newtoon', 'killtoon', 'site'].indexOf(user) != -1 ){
 		res.json(200, {found: true});
 		return;
 	}
