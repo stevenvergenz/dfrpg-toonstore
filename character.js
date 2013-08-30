@@ -159,10 +159,45 @@ function newCharacterRequest(req,res)
 	);
 }
 
+function deleteCharacterRequest(req,res)
+{
+	// check if a user is logged in and passed the correct data
+	if( !(req.session && req.session.username) ){
+		res.send(401);
+		return;
+	}
+	else if( !(req.body && req.body.charname) ){
+		res.send(400);
+		return;
+	}
+
+	global.log('Attempting character deletion:',req.body.charname);
+	var connection = mysql.createConnection(global.config.database);
+	connection.query('DELETE FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		[req.session.user, req.body.charname],
+		function(err,info)
+		{
+			if(err){
+				global.error('MySQL error:', err);
+				res.send(500);
+			}
+			else if(info.affectedRows == 0){
+				global.log('No such character to delete');
+				res.send(304)
+			}
+			else {
+				global.log('Character deleted');
+				res.send(200);
+			}
+			connection.end();
+		}
+	);
+}
+
 
 exports.servePage = servePage;
 exports.serveJson = serveJson;
 exports.pushJson = pushJson;
 exports.newCharacterPage = newCharacterPage;
 exports.newCharacterRequest = newCharacterRequest;
-
+exports.deleteCharacterRequest = deleteCharacterRequest;
