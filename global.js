@@ -98,6 +98,7 @@ function renderPage(template, options)
 		log('Rendering template "', template, '" with options', pageFields);
 		return res.render(template, pageFields, function(err,html){
 			if( !err ){
+				res.setHeader('Content-Type', 'text/html; charset=UTF-8');
 				res.writeHead(statusCode);
 				res.write(html);
 				res.end();
