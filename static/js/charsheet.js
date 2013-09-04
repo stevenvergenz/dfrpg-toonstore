@@ -1,17 +1,27 @@
 var model;
+var pageLoaded;
 var viewModel;
 
-function initialize()
-{
-	// retrieve the character sheet data
-	$.getJSON( window.location.pathname + '/json', processCharacterData );
-}
+// retrieve the character sheet data
+$.getJSON( window.location.pathname + '/json', function(data){
+	model = data;
+	console.log('Data ready');
+	if( pageLoaded )
+		processCharacterData();
+});
 
-function processCharacterData(data,textStatus,jqXHR)
+$(document).ready(function(){
+	pageLoaded = true;
+	console.log('Page ready');
+	if( model )
+		processCharacterData();
+});
+
+function processCharacterData()
 {
 	// apply modified json document to page
-	model = data;
-	viewModel = new SheetViewModel(data);
+	console.log('Knocking out document');
+	viewModel = new SheetViewModel(model);
 	ko.applyBindings(viewModel);
 }
 
