@@ -26,8 +26,8 @@ block content
 
 		.inner: form(action='/killtoon', method='post', onsubmit='return validate();')
 
-			p In the box below, type the following:
-			label#confirm(for='confirm')= toon.name+", "+toon.hc+", is dead."
+			p In the box below, type the following exactly as it appears:
+			label#confirm(for='confirm', style='background-color: #ffe5e5')= toon.name+", "+toon.hc+", is dead."
 			input#confirm(name='confirm', type='text')
 			input(type='hidden', name='charname', value=toon.canon)
 			input(type='submit', value='Delete character')
