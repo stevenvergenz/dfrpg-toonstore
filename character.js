@@ -177,7 +177,9 @@ function deleteCharacterPage(req,res)
 			}
 			else if( rows.length == 0 ){
 				global.error('No such character: '+req.query.id);
-				global.renderPage('killtoon', {message: {type: 'error', content: 'Character id does not exist, cannot be deleted.'}})(req,res);
+				//global.renderPage('killtoon', {message: {type: 'error', content: 'Character id does not exist, cannot be deleted.'}})(req,res);
+				req.session.latent_message = 'Character id does not exist, cannot be deleted.';
+				res.redirect('/'+req.session.user);
 			}
 			else {
 				global.renderPage('killtoon', {toon: {canon: req.query.id, name: rows[0].name, hc: rows[0].concept}})(req,res);
