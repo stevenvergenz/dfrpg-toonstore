@@ -159,10 +159,38 @@ function newCharacterRequest(req,res)
 	);
 }
 
+function deleteCharacterPage(req,res)
+{
+	if( !(req.session && req.session.user) ){
+		res.send(403);
+		return;
+	}
+
+	var connection = mysql.createConnection(global.config.database);
+	connection.query('SELECT name, concept FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		[req.session.user, req.query.id],
+		function(err,rows,fields)
+		{
+			if( err ){
+				global.error('MySQL error: ', err);
+				global.renderPage('killtoon', {message: {type: 'error', content: err}})(req,res);
+			}
+			else if( rows.length == 0 ){
+				global.error('No such character: '+req.query.id);
+				global.renderPage('killtoon', {message: {type: 'error', content: 'Character id does not exist, cannot be deleted.'}})(req,res);
+			}
+			else {
+				global.renderPage('killtoon', {toon: {canon: req.query.id, name: rows[0].name, hc: rows[0].concept}})(req,res);
+			}
+			connection.end();	
+		}
+	);
+}
+
 function deleteCharacterRequest(req,res)
 {
 	// check if a user is logged in and passed the correct data
-	if( !(req.session && req.session.username) ){
+	if( !(req.session && req.session.user) ){
 		res.send(401);
 		return;
 	}
@@ -179,15 +207,16 @@ function deleteCharacterRequest(req,res)
 		{
 			if(err){
 				global.error('MySQL error:', err);
-				res.send(500);
+				global.renderPage('killtoon', {code: 500, message: {type: 'error', content: err}})(req,res);
 			}
 			else if(info.affectedRows == 0){
 				global.log('No such character to delete');
-				res.send(304)
+				global.renderPage('killtoon', {code: 403, message: {type: 'error', content: 'Character id does not exist, cannot be deleted.'}})(req,res);
 			}
 			else {
 				global.log('Character deleted');
-				res.send(200);
+				req.session.latent_message = 'Character "'+req.body.charname+'" successfully deleted.';
+				res.redirect('/'+req.session.user);
 			}
 			connection.end();
 		}
@@ -201,3 +230,5 @@ exports.pushJson = pushJson;
 exports.newCharacterPage = newCharacterPage;
 exports.newCharacterRequest = newCharacterRequest;
 exports.deleteCharacterRequest = deleteCharacterRequest;
+exports.deleteCharacterPage = deleteCharacterPage;
+

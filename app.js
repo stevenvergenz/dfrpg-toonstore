@@ -48,7 +48,9 @@ app.post('/newtoon', character.newCharacterRequest);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', character.servePage);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.serveJson);
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson);
+
 app.post('/killtoon', character.deleteCharacterRequest);
+app.get('/killtoon', character.deleteCharacterPage);
 
 // route the extra pages
 app.get('/site/about', global.renderPage('about'));

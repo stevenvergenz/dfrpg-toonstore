@@ -1,0 +1,33 @@
+extends index
+
+block title
+	title Delete Character | Online Dresden Files RPG Character Hosting | ToonStore.net
+
+block append includes
+
+	script.
+		function validate(){
+			if( $('label#confirm').text() != $('input#confirm').val() ){
+				if( $('div.error').length == 0 )
+					$('<div class="content-block"><div class="error"><p>You must enter the confirmation text to delete the character.</p></div></div>').prependTo( $('.content') );
+				else
+					$('div.error>p').text('You must ender the confirmation text to delete the character.');
+				return false;
+			}
+			else {
+				return true;
+			}
+		}
+
+block content
+
+	.content-block: .titledbox
+		.title Delete Character
+
+		.inner: form(action='/killtoon', method='post', onsubmit='return validate();')
+
+			p In the box below, type the following:
+			label#confirm(for='confirm')= toon.name+", "+toon.hc+", is dead."
+			input#confirm(name='confirm', type='text')
+			input(type='hidden', name='charname', value=toon.canon)
+			input(type='submit', value='Delete character')
