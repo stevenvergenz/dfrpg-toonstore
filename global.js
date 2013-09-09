@@ -95,6 +95,12 @@ function renderPage(template, options)
 				pageFields[i] = options[i];
 		}
 
+		// latent message
+		if( req.session && req.session.latent_message ){
+			pageFields.message = {type: 'info', content: req.session.latent_message};
+			delete req.session.latent_message;
+		}
+
 		log('Rendering template "', template, '" with options', pageFields);
 		return res.render(template, pageFields, function(err,html){
 			if( !err ){

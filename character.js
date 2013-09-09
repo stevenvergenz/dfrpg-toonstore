@@ -159,10 +159,78 @@ function newCharacterRequest(req,res)
 	);
 }
 
+function deleteCharacterPage(req,res)
+{
+	if( !(req.session && req.session.user) ){
+		res.send(403);
+		return;
+	}
+
+	var connection = mysql.createConnection(global.config.database);
+	connection.query('SELECT name, concept FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		[req.session.user, req.query.id],
+		function(err,rows,fields)
+		{
+			if( err ){
+				global.error('MySQL error: ', err);
+				global.renderPage('killtoon', {message: {type: 'error', content: err}})(req,res);
+			}
+			else if( rows.length == 0 ){
+				global.error('No such character: '+req.query.id);
+				//global.renderPage('killtoon', {message: {type: 'error', content: 'Character id does not exist, cannot be deleted.'}})(req,res);
+				req.session.latent_message = 'Character id does not exist, cannot be deleted.';
+				res.redirect('/'+req.session.user);
+			}
+			else {
+				global.renderPage('killtoon', {toon: {canon: req.query.id, name: rows[0].name, hc: rows[0].concept}})(req,res);
+			}
+			connection.end();	
+		}
+	);
+}
+
+function deleteCharacterRequest(req,res)
+{
+	// check if a user is logged in and passed the correct data
+	if( !(req.session && req.session.user) ){
+		res.send(401);
+		return;
+	}
+	else if( !(req.body && req.body.charname) ){
+		res.send(400);
+		return;
+	}
+
+	global.log('Attempting character deletion:',req.body.charname);
+	var connection = mysql.createConnection(global.config.database);
+	connection.query('DELETE FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		[req.session.user, req.body.charname],
+		function(err,info)
+		{
+			if(err){
+				global.error('MySQL error:', err);
+				global.renderPage('killtoon', {code: 500, message: {type: 'error', content: err}})(req,res);
+			}
+			else if(info.affectedRows == 0){
+				global.log('No such character to delete');
+				global.renderPage('killtoon', {code: 403, message: {type: 'error', content: 'Character id does not exist, cannot be deleted.'}})(req,res);
+			}
+			else {
+				global.log('Character deleted');
+				req.session.latent_message = 'Character "'+req.body.charname+'" successfully deleted.';
+				res.redirect('/'+req.session.user);
+			}
+			connection.end();
+		}
+	);
+}
+
 
 exports.servePage = servePage;
 exports.serveJson = serveJson;
 exports.pushJson = pushJson;
 exports.newCharacterPage = newCharacterPage;
 exports.newCharacterRequest = newCharacterRequest;
+exports.deleteCharacterRequest = deleteCharacterRequest;
+exports.deleteCharacterPage = deleteCharacterPage;
 

@@ -15,7 +15,13 @@ block content
 			p Characters:
 			ul#charList
 				each char in toons
-					li: a(href='/#{owner}/#{char.canon_name}')= char.name +' - '+ char.concept
+					li
+						a(href='/#{owner}/#{char.canon_name}')= char.name +' - '+ char.concept
+						| &nbsp; 
+						span(style='font-size: 80%;')
+							| (
+							a(href='/killtoon?id=#{char.canon_name}') Delete
+							| )
 		else
 			p This user lacks character (badum-ching!)
 
