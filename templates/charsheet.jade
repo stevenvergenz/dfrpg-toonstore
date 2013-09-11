@@ -17,13 +17,41 @@ block append includes
 	script(src='/static/js/charsheet.js')
 	script.
 		overrideUserRedirect = true;
+		$(document).ready(function(){
+			$('.navbar > ul.navmenu').menu();
+		});
+
+block append header
+
+	if logged_user == owner
+		#charnav.navbar
+			ul.navmenu
+				li
+					a Panels
+					ul
+						li
+							a Add panels
+							ul
+								li: a Notes
+								li: a Inventory
+								li: a Spellcaster/Rotes
+								li: a Spellcaster/Calculator
+						li: a(href='#aspects') Aspects
+						li: a(href='#skills') Skills
+						li: a(href='#stress') Stress
+						li: a(href='#conseq') Consequences
+						li: a(href='#totals') Totals
+						li: a(href='#powers') Stunts & Powers
+
+			.navitem: a(href='javascript:;', onclick='pushToServer()') Save
 
 block content
 
 
 	.sheet-panel-group
-		if logged_user == owner
-			.sheet-panel: input#save(type='button', value='Save', onclick='pushToServer()')
+		//-if logged_user == owner
+			.sheet-panel
+				input#save(type='button', value='Save', onclick='pushToServer()')
 
 		#general.sheet-panel
 			
@@ -40,6 +68,7 @@ block content
 	.sheet-panel-group
 
 		#aspects.sheet-panel(data-bind='with: aspects')
+			a#aspects
 			p.sectionHeader Aspects
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
@@ -71,7 +100,7 @@ block content
 
 
 		#skills.sheet-panel
-
+			a#skills
 			p.sectionHeader Skills
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
@@ -101,6 +130,7 @@ block content
 	.sheet-panel-group
 
 		#stress.sheet-panel
+			a#stress
 			p.sectionHeader Stress
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
@@ -176,6 +206,7 @@ block content
 
 
 		#consequences.sheet-panel
+			a#conseq
 			p.sectionHeader Consequences
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
@@ -213,7 +244,7 @@ block content
 	.sheet-panel-group
 
 		#totals.sheet-panel(data-bind='with: totals')
-
+			a#totals
 			if logged_user == owner
 				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
 					style='position: absolute; right: 8px;',
@@ -261,6 +292,7 @@ block content
 					span Fate Points
 		
 		#powers.sheet-panel
+			a#powers
 			p.sectionHeader Stunts & Powers
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',

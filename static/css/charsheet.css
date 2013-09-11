@@ -2,6 +2,24 @@
 	font-family: 'Metamorphous', cursive;
 }
 
+ul.navmenu {
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+#charnav.navbar {
+	padding: 10px 0;
+	background-color: #4a4a72;
+}
+/*.ui-icon-carat-1-e {
+	background-image: url('/static/img/glyphicons/glyphicons_223_chevron-right.png');
+}*/
+
+.ui-menu .ui-menu {
+	border: solid grey 1px;
+	background-color: #41568a;
+}
+
 div.sheet-panel-group {
 	width: 100%;
 	display: -webkit-flex;
