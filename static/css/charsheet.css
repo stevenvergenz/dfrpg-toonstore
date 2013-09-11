@@ -11,9 +11,28 @@ ul.navmenu {
 	padding: 10px 0;
 	background-color: #4a4a72;
 }
-/*.ui-icon-carat-1-e {
-	background-image: url('/static/img/glyphicons/glyphicons_223_chevron-right.png');
-}*/
+
+span.subarrow {
+	background-image: url('/static/css/ui-darkness/images/ui-icons_ffffff_256x240.png');
+	background-position: -32px 0px;
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	float: right;
+	top: .2em;
+	left: .2em;
+	display: block;
+	margin: 4px;
+}
+span.mainarrow {
+	background-position: -64px 0px;
+}
+
+.ui-menu .ui-menu-item:hover {
+	border-radius: 5px;
+	background-color: #022;
+}
 
 .ui-menu .ui-menu {
 	border: solid grey 1px;

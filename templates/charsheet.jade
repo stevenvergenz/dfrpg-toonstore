@@ -23,27 +23,29 @@ block append includes
 
 block append header
 
-	if logged_user == owner
-		#charnav.navbar
-			ul.navmenu
-				li
-					a Panels
-					ul
-						li
-							a Add panels
-							ul
-								li: a Notes
-								li: a Inventory
-								li: a Spellcaster/Rotes
-								li: a Spellcaster/Calculator
-						li: a(href='#aspects') Aspects
-						li: a(href='#skills') Skills
-						li: a(href='#stress') Stress
-						li: a(href='#conseq') Consequences
-						li: a(href='#totals') Totals
-						li: a(href='#powers') Stunts & Powers
+	//if logged_user == owner
+	#charnav.navbar
+		ul.navmenu
+			li
+				a Panels
+					span.subarrow
+				ul
+					li
+						a Optional Panels
+							span.subarrow
+						ul
+							li: a Notes
+							li: a Inventory
+							li: a Spellcaster/Rotes
+							li: a Spellcaster/Calculator
+					li: a(href='#aspects') Aspects
+					li: a(href='#skills') Skills
+					li: a(href='#stress') Stress
+					li: a(href='#conseq') Consequences
+					li: a(href='#totals') Totals
+					li: a(href='#powers') Stunts & Powers
 
-			.navitem: a(href='javascript:;', onclick='pushToServer()') Save
+		.navitem: a(href='javascript:;', onclick='pushToServer()') Save
 
 block content
 
