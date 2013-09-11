@@ -39,6 +39,10 @@ span.mainarrow {
 	background-color: #41568a;
 }
 
+.navmenu input[type=checkbox], .navmenu input[type=checkbox] + a {
+	display: inline;
+}
+
 div.sheet-panel-group {
 	width: 100%;
 	display: -webkit-flex;

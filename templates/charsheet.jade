@@ -18,7 +18,7 @@ block append includes
 	script.
 		overrideUserRedirect = true;
 		$(document).ready(function(){
-			$('.navbar > ul.navmenu').menu();
+			$('.navbar > ul.navmenu').menu({position: {collision: 'flipfit'}});
 		});
 
 block append header
@@ -34,10 +34,18 @@ block append header
 						a Optional Panels
 							span.subarrow
 						ul
-							li: a Notes
-							li: a Inventory
-							li: a Spellcaster/Rotes
-							li: a Spellcaster/Calculator
+							li
+								input(type='checkbox')
+								a(href='#notes') Notes
+							li
+								input(type='checkbox')
+								a(href='#invent') Inventory
+							li
+								input(type='checkbox')
+								a(href='#rotes') Spellcaster/Rotes
+							li
+								input(type='checkbox')
+								a(href='#spellcalc') Spellcaster/Calculator
 					li: a(href='#aspects') Aspects
 					li: a(href='#skills') Skills
 					li: a(href='#stress') Stress
