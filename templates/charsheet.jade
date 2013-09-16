@@ -35,7 +35,7 @@ block append header
 							span.subarrow
 						ul
 							li
-								input(type='checkbox')
+								input(type='checkbox', data-bind='checked: $root.notes.enabled')
 								a(href='#notes') Notes
 							li
 								input(type='checkbox')
@@ -342,8 +342,8 @@ block content
 
 	.sheet-panel-group
 
-		#notes.sheet-panel(data-bind='if: $root.notes, visible: $root.notes')
-
+		#notes.sheet-panel(data-bind='if: $root.notes.enabled, visible: $root.notes.enabled')
+			a#notes
 			p.sectionHeader Notes
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
