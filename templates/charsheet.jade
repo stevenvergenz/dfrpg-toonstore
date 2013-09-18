@@ -38,14 +38,8 @@ block append header
 								input(type='checkbox', data-bind='checked: $root.notes.enabled')
 								a(href='#notes') Notes
 							li
-								input(type='checkbox')
-								a(href='#invent') Inventory
-							li
-								input(type='checkbox')
-								a(href='#rotes') Spellcaster/Rotes
-							li
-								input(type='checkbox')
-								a(href='#spellcalc') Spellcaster/Calculator
+								input(type='checkbox', data-bind='checked: $root.casting.enabled')
+								a(href='#spellcasting') Spellcasting
 					li: a(href='#aspects') Aspects
 					li: a(href='#skills') Skills
 					li: a(href='#stress') Stress
@@ -339,6 +333,56 @@ block content
 
 			input.iconButton(type='image', data-bind='visible: powers.editing',
 				src='/static/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addPower()')
+
+	.sheet-panel-group(data-bind='if: $root.casting.enabled, visible: $root.casting.enabled')
+		a#spellcasting
+
+		#rotes.sheet-panel
+			p.sectionHeader(style='margin-bottom: 10px;') Rote Spells
+				if logged_user == owner
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
+						onclick='viewModel.casting.editingRotes( !viewModel.casting.editingRotes() )')
+
+			#rote-list-container(data-bind='foreach: casting.rotes', style='text-align: left')
+				.rote-container
+					div(data-bind='ifnot: $root.casting.editingRotes, visible: !$root.casting.editingRotes()')
+						span(style='font-size: 14pt; font-style: italic;', data-bind='text: name')
+						ul(style='margin-top: 3px;')
+							li(data-bind='text: power()+" Shift "+element()+" "+effect()')
+							li(data-bind='text: description, visible: description()!=""')
+
+					div(data-bind='if: $root.casting.editingRotes, visible: $root.casting.editingRotes')
+						input(style='width: 250px; height: 20px;', data-bind='value: name')
+						ul(style='margin-top: 3px;')
+							li
+								input(type='number', min=0, max=8, data-bind='value: power')
+								| Shift
+								select(data-bind='value: element')
+									option Water
+									option Earth
+									option Fire
+									option Air
+									option Spirit
+
+								select(data-bind='value: effect')
+									option Attack
+									option Block
+									option Maneuver
+									option Counterspell
+
+							li
+								textarea(style='width: 200px; height: 50px;', data-bind='value: description', placeholder='Enter a rote description')
+
+			input.iconButton(type='image', data-bind='visible: casting.editingRotes, event: {click: casting.rotes.add}',
+				src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+
+		#calc.sheet-panel
+			p.sectionHeader Spell Workspace
+				if logged_user == owner
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
+						onclick='viewModel.casting.workspace.editing( !viewModel.casting.workspace.editing() )')
+
+	
 
 	.sheet-panel-group
 

@@ -79,6 +79,18 @@ ko.bindingHandlers.accordion = {
 	}
 };
 
+function Rote(data)
+{
+	if( !data )
+		data = {};
+
+	this.name = ko.observable(data.name ? data.name : 'Spell');
+	this.element = ko.observable(data.element ? data.element : 'Spirit');
+	this.effect = ko.observable(data.effect ? data.effect : 'Attack');
+	this.power = ko.observable(data.power ? data.power : 0);
+	this.description = ko.observable(data.description ? data.description : '');
+}
+
 function StressBox(index, used, track)
 {
 	this.index = index;
@@ -375,10 +387,28 @@ function SheetViewModel(data)
 	this.notes = {
 		'text': ko.observable(data.notes ? data.notes.text : ''),
 		'editing': ko.observable(false),
-		'enabled': ko.observable(!!data.notes)
+		'enabled': ko.observable(data.notes ? data.notes.enabled : false)
 	};
 	this.notes.html = ko.computed(function(){
 		return markdown.toHTML(this.text());
 	}, this.notes);
+
+
+	this.casting = {
+		'enabled': ko.observable(data.casting ? data.casting.enabled : false),
+		'editingRotes': ko.observable(false),
+		'editingWorkspace': ko.observable(false),
+		'rotes': ko.observableArray()
+	};
+
+	for( var i in data.casting.rotes ){
+		this.casting.rotes.push( new Rote(data.casting.rotes[i]) );
+	}
+
+	this.casting.rotes.add = function(model, event, data){
+		var rote = new Rote(data);
+		this.casting.rotes.push(rote);
+		console.log('Rote added');
+	}.bind(this);
 }
 
