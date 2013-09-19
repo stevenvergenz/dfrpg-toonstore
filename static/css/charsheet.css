@@ -101,6 +101,7 @@ p.sectionHeader {
 	font-weight: bold;
 	margin: 0;
 	margin-bottom: 5px;
+	text-align: center;
 }
 
 p.fieldLabel {
@@ -524,4 +525,35 @@ p.descriptionLine {
 	font-size: 80%;
 	padding-left: 10px;
 	text-indent: -10px;
+}
+
+span.spellmod {
+	background-color: #2a2a5a;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 3px;
+	margin: 1px;
+}
+
+span.spellmod.inactive {
+	background-color: white;
+	color: black;
+	border: solid black 1px;
+}
+
+.subheader {
+	font-size: 14pt;
+	font-style: italic;
+}
+
+#calc, #rotes {
+	text-align: left;
+}
+
+#calc .rule-row {
+	display: -webkit-flex;
+	-webkit-flex-direction: row;
+	-webkit-align-items: center;
+	-webkit-justify-content: space-between;
 }

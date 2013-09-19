@@ -323,7 +323,7 @@ block content
 					tr(data-bind='if: $root.powers.editing')
 						td: input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
 							data-bind='attr: {onclick: "removePower("+$index()+")"}')
-						td: textarea(data-bind='value: full_description')
+						td: textarea(data-bind='value: full_description', placeholder='Enter a power description')
 
 					// /ko
 
@@ -346,8 +346,11 @@ block content
 			#rote-list-container(data-bind='foreach: casting.rotes', style='text-align: left')
 				.rote-container
 					div(data-bind='ifnot: $root.casting.editingRotes, visible: !$root.casting.editingRotes()')
-						span(style='font-size: 14pt; font-style: italic;', data-bind='text: name')
+						span.subheader(data-bind='text: name')
 						ul(style='margin-top: 3px;')
+							li(data-bind='visible: mods().length > 0, foreach: mods')
+								span.spellmod(data-bind='text: $data.replace(/ /g, "\xA0")')
+								wbr
 							li(data-bind='text: power()+" Shift "+element()+" "+effect()')
 							li(data-bind='text: description, visible: description()!=""')
 
@@ -380,9 +383,33 @@ block content
 			p.sectionHeader Spell Workspace
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
-						onclick='viewModel.casting.workspace.editing( !viewModel.casting.workspace.editing() )')
+						onclick='viewModel.casting.editingWorkspace( !viewModel.casting.editingWorkspace() )')
 
-	
+			p(style='text-align: left;')
+				span.subheader Mods: 
+				// ko foreach: casting.mods
+				span.spellmod(data-bind='text: $data.replace(/ /g, "\xA0"), css: {inactive: $root.casting.activeMods.indexOf($data) == -1}')
+				wbr
+				// /ko
+
+			span.subheader(style='text-align: left;') Rules:
+			// ko foreach: casting.rules
+			.rule-row
+				div(data-bind='foreach: conditions', style='-webkit-flex-grow: 1;')
+					span.spellmod(data-bind='text: $data.replace(/ /g, "\xA0")')
+					wbr
+				img(src='/static/img/glyphicons/glyphicons_211_right_arrow.png')
+				div(style='width: 115px; text-align: right;')
+					// ko if: $root.casting.editingWorkspace
+					input(type='number', min=0, data-bind='value: value', style='width: 30px;')
+					select(data-bind='value: bonusType')
+						option Power
+						option Control
+					// /ko
+					// ko ifnot: $root.casting.editingWorkspace
+					span(data-bind='text: "+"+value()+" "+bonusType()')
+					// /ko
+			// /ko
 
 	.sheet-panel-group
 

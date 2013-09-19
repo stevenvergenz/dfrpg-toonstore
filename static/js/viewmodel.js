@@ -89,6 +89,17 @@ function Rote(data)
 	this.effect = ko.observable(data.effect ? data.effect : 'Attack');
 	this.power = ko.observable(data.power ? data.power : 0);
 	this.description = ko.observable(data.description ? data.description : '');
+	this.mods = ko.observableArray(data.mods ? data.mods : []);
+}
+
+function BonusRule(data)
+{
+	if( !data )
+		data = {};
+
+	this.conditions = ko.observableArray(data.conditions ? data.conditions : []);
+	this.value = ko.observable(data.value ? data.value : 0);
+	this.bonusType = ko.observable(data.bonusType ? data.bonusType : 'Control');
 }
 
 function StressBox(index, used, track)
@@ -384,6 +395,7 @@ function SheetViewModel(data)
 	 * Optional panels
 	 **********************************/
 
+	// construct/populate notes box
 	this.notes = {
 		'text': ko.observable(data.notes ? data.notes.text : ''),
 		'editing': ko.observable(false),
@@ -394,21 +406,84 @@ function SheetViewModel(data)
 	}, this.notes);
 
 
+	// construct casting model
 	this.casting = {
 		'enabled': ko.observable(data.casting ? data.casting.enabled : false),
 		'editingRotes': ko.observable(false),
 		'editingWorkspace': ko.observable(false),
-		'rotes': ko.observableArray()
+		'rotes': ko.observableArray(),
+		'rules': ko.observableArray(),
+		'activeMods': ko.observableArray()
 	};
-
-	for( var i in data.casting.rotes ){
-		this.casting.rotes.push( new Rote(data.casting.rotes[i]) );
-	}
 
 	this.casting.rotes.add = function(model, event, data){
 		var rote = new Rote(data);
+		rote.mods.push(rote.element());
 		this.casting.rotes.push(rote);
 		console.log('Rote added');
 	}.bind(this);
+
+	this.casting.mods = ko.computed(function()
+	{
+		var mods = [];
+
+		// pull all mods from rotes
+		for( var i in this.rotes() ){
+			for( var j in this.rotes()[i].mods() ){
+				if( mods.indexOf( this.rotes()[i].mods()[j] ) == -1 ){
+					mods.push( this.rotes()[i].mods()[j] );
+				}
+			}
+		}
+
+		// pull mods from rules
+		for( var i in this.rules() ){
+			for( var j in this.rules()[i].conditions() ){
+				if( mods.indexOf( this.rules()[i].conditions()[j] ) == -1 ){
+					mods.push( this.rules()[i].conditions()[j] );
+				}
+			}
+		}
+		
+		// sort and return
+		mods.sort();
+		return mods;
+
+	}, this.casting);
+
+	/*this.casting.modList = ko.computed(function()
+	{
+		var mods = [];
+		for( var i in this.mods() ){
+			var name = this.mods()[i];
+			var mod = {'name': name};
+			mod.active = ko.computed({
+				'read': function(){
+					console.log('Checking activity of', name, this.activeMods.indexOf(name));
+					return this.activeMods.indexOf(name) != -1;
+				},
+				'write': function(newval){
+					if( newval == false && this.activeMods.indexOf(name) != -1 )
+						this.activeMods.remove(name);
+					else if( newval == true && this.activeMods.indexOf(name) == -1 )
+						this.activeMods.push(name);
+				},
+				'owner': this
+			});
+			mods.push(mod);
+		}
+		return mods;
+	}, this.casting);*/
+
+	// populate casting
+	for( var i in data.casting.rotes ){
+		this.casting.rotes.push( new Rote(data.casting.rotes[i]) );
+	}
+	for( var i in data.casting.rules ){
+		this.casting.rules.push( new BonusRule(data.casting.rules[i]) );
+	}
+	for( var i in data.casting.activeMods ){
+		this.casting.activeMods.push( data.casting.activeMods[i] );
+	}
 }
 
