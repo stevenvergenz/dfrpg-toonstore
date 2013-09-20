@@ -542,14 +542,27 @@ span.spellmod.inactive {
 	border: solid black 1px;
 }
 
+label.spellmod {
+	background-color: #2a2a5a;
+	color: white;
+	padding-left: 2px;
+	padding-right: 2px;
+	border-radius: 3px;
+	margin: 1px;
+}
+
+label.spellmod > input[type='checkbox'] {
+	display: none;
+}
+
 .subheader {
 	font-size: 14pt;
 	font-style: italic;
 }
 
-#calc, #rotes {
+/*#calc, #rotes {
 	text-align: left;
-}
+}*/
 
 #calc .rule-row {
 	display: -webkit-flex;

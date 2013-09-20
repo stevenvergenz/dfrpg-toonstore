@@ -388,9 +388,13 @@ block content
 			p(style='text-align: left;')
 				span.subheader Mods: 
 				// ko foreach: casting.mods
-				span.spellmod(data-bind='text: $data.replace(/ /g, "\xA0"), css: {inactive: $root.casting.activeMods.indexOf($data) == -1}')
+				//span.spellmod(data-bind='text: $data.replace(/ /g, "\xA0"), css: {inactive: $root.casting.activeMods.indexOf($data) == -1}')
+				label.spellmod
+					span(data-bind='text: $data.replace(/ /g, "\xA0")')
+					input(type='checkbox')
 				wbr
 				// /ko
+
 
 			span.subheader(style='text-align: left;') Rules:
 			// ko foreach: casting.rules
@@ -410,6 +414,9 @@ block content
 					span(data-bind='text: "+"+value()+" "+bonusType()')
 					// /ko
 			// /ko
+			input.iconButton(type='image', data-bind='visible: casting.editingWorkspace, event: {click: casting.rules.add}',
+				src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+
 
 	.sheet-panel-group
 

@@ -423,6 +423,12 @@ function SheetViewModel(data)
 		console.log('Rote added');
 	}.bind(this);
 
+	this.casting.rules.add = function(model, event, data){
+		var rule = new BonusRule(data);
+		this.casting.rules.push(rule);
+		console.log('Rule added');
+	}.bind(this);
+
 	this.casting.mods = ko.computed(function()
 	{
 		var mods = [];
@@ -476,14 +482,16 @@ function SheetViewModel(data)
 	}, this.casting);*/
 
 	// populate casting
-	for( var i in data.casting.rotes ){
-		this.casting.rotes.push( new Rote(data.casting.rotes[i]) );
-	}
-	for( var i in data.casting.rules ){
-		this.casting.rules.push( new BonusRule(data.casting.rules[i]) );
-	}
-	for( var i in data.casting.activeMods ){
-		this.casting.activeMods.push( data.casting.activeMods[i] );
+	if( data.casting ){
+		for( var i in data.casting.rotes ){
+			this.casting.rotes.push( new Rote(data.casting.rotes[i]) );
+		}
+		for( var i in data.casting.rules ){
+			this.casting.rules.push( new BonusRule(data.casting.rules[i]) );
+		}
+		for( var i in data.casting.activeMods ){
+			this.casting.activeMods.push( data.casting.activeMods[i] );
+		}
 	}
 }
 
