@@ -4,14 +4,15 @@ html {
 
 body {
 	display: -webkit-box;
-	-webkit-box-pack: center;
 	display: -moz-flex;
-	-moz-justify-content: center;
 	display: -ms-flexbox;
-	-ms-flex-pack: center;
 	display: -webkit-flex;
-	-webkit-justify-content: center;
 	display: flex;
+
+	-webkit-box-pack: center;
+	-moz-justify-content: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
 	justify-content: center;
 
 	margin: 0;
@@ -82,21 +83,24 @@ p.error, input.error {
 	z-index: 1;
 
 	display: -webkit-box;
-	-webkit-box-orient: vertical; 
-	-webkit-box-align: center;
 	display: -moz-flex;
-	-moz-flex-direction: column;
-	-moz-align-items: center;
 	display: -ms-flexbox;
-	-ms-flex-direction: column;
-	-ms-flex-align: center;
-	-ms-flex: 0 1 950px;
 	display: -webkit-flex;
-	-webkit-flex-direction: column;
-	-webkit-align-items: center;
 	display: flex;
+
+	-webkit-box-orient: vertical; 
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-webkit-flex-direction: column;
 	flex-direction: column;
+
+	-webkit-box-align: center;
+	-moz-align-items: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
 	align-items: center;
+
+	-ms-flex: 0 1 950px;
 }
 
 .navbar {
@@ -107,37 +111,41 @@ p.error, input.error {
 	border-bottom: solid grey 1px;
 
 	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
 	-webkit-box-orient: horizontal;
-	-webkit-box-align: center;
-	-webkit-box-pack: center;
-	display: -moz-inline-flex;
 	-moz-flex-direction: row;
-	-moz-align-items: center;
-	-moz-justify-content: space-between;
-	display: -ms-inline-flexbox;
 	-ms-flex-direction: row;
-	-ms-flex-align: center;
-	-ms-flex-pack: justify;
-	display: -webkit-inline-flex;
 	-webkit-flex-direction: row;
-	-webkit-align-items: center;
-	-webkit-justify-content: space-between;
-	display: inline-flex;
 	flex-direction: row;
+
+	-webkit-box-align: center;
+	-moz-align-items: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
 	align-items: center;
+
+	-webkit-box-pack: justify;
+	-moz-justify-content: space-between;
+	-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
 	justify-content: space-between;
 }
 
 .navbar .itemgroup {
 	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
 	-webkit-box-orient: horizontal;
-	display: -moz-inline-flex;
 	-moz-flex-direction: row;
-	display: -ms-inline-flexbox;
 	-ms-flex-direction: row;
-	display: -webkit-inline-flex;
 	-webkit-flex-direction: row;
-	display: inline-flex;
 	flex-direction: row;
 }
 
@@ -149,14 +157,15 @@ p.error, input.error {
 
 .content {
 	display: -webkit-box;
-	-webkit-box-orient: vertical;
 	display: -moz-flex;
-	-moz-flex-direction: column;
 	display: -ms-flexbox;
-	-ms-flex-direction: column;
 	display: -webkit-flex;
-	-webkit-flex-direction: column;
 	display: flex;
+
+	-webkit-box-orient: vertical;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-webkit-flex-direction: column;
 	flex-direction: column;
 
 	width: 95%;
@@ -186,18 +195,19 @@ p.error, input.error {
 	color: black;
 	margin: 10px auto;
 	overflow: hidden;
+	max-width: 360px;
 	
 	display: -webkit-box;
-	-webkit-box-orient: vertical;
 	display: -moz-flex;
-	-moz-flex-direction: column;
 	display: -ms-flexbox;
-	-ms-flex-direction: column;
 	display: -webkit-flex;
-	-webkit-flex-direction: column;
 	display: flex;
+
+	-webkit-box-orient: vertical;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-webkit-flex-direction: column;
 	flex-direction: column;
-	max-width: 360px;
 }
 
 .titledbox .title {
@@ -220,14 +230,15 @@ p.error, input.error {
 
 #login-box .inner, #register-box .inner {
 	display: -webkit-box;
-	-webkit-box-orient: vertical;
 	display: -moz-flex;
-	-moz-flex-direction: column;
 	display: -ms-flexbox;
-	-ms-flex-direction: column;
 	display: -webkit-flex;
-	-webkit-flex-direction: column;
 	display: flex;
+
+	-webkit-box-orient: vertical;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-webkit-flex-direction: column;
 	flex-direction: column;
 }
 
@@ -251,38 +262,43 @@ p.error, input.error {
 
 .flexrow {
 	width: 98%;
+
 	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
 	-webkit-box-align: center;
-	-webkit-box-pack: center;
-	display: -moz-inline-flex;
 	-moz-align-items: center;
-	-moz-justify-content: space-between;
-	display: -ms-inline-flexbox;
 	-ms-flex-align: center;
-	-ms-flex-pack: justify;
-	display: -webkit-inline-flex;
 	-webkit-align-items: center;
-	-webkit-justify-content: space-between;
-	display: inline-flex;
 	align-items: center;
+
+	-webkit-box-pack: justify;
+	-moz-justify-content: space-between;
+	-ms-flex-pack: justify;
+	-webkit-justify-content: space-between;
 	justify-content: space-between;
 }
 
 .banner {
 	display: -webkit-box;
-	-webkit-box-align: center;
-	-webkit-box-orient: vertical;
 	display: -moz-flex;
-	-moz-align-items: center;
-	-moz-flex-direction: column;
 	display: -ms-flexbox;
-	-ms-flex-align: center;
-	-ms-flex-direction: column;
 	display: -webkit-flex;
-	-webkit-align-items: center;
-	-webkit-flex-direction: column;
 	display: flex;
+
+	-webkit-box-align: center;
+	-moz-align-items: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
 	align-items: center;
+
+	-webkit-box-orient: vertical;
+	-moz-flex-direction: column;
+	-ms-flex-direction: column;
+	-webkit-flex-direction: column;
 	flex-direction: column;
 
 	font-size: 2.0em;
@@ -299,22 +315,30 @@ p.error, input.error {
 	padding: 15px 0;
 	border-top: solid grey 1px;
 	width: 100%;
+
 	display: -webkit-box;
-	-webkit-box-orient: horizontal;
-	-webkit-box-align: center;
-	-webkit-box-pack: center;
 	display: -moz-flex;
-	-moz-flex-direction: row;
-	-moz-justify-content: flex-start;
 	display: -ms-flexbox;
-	-ms-flex-direction: row;
-	-ms-flex-pack: flex-start;
 	display: -webkit-flex;
-	-webkit-flex-direction: row;
-	-webkit-justify-content: flex-start;
 	display: flex;
+
+	-webkit-box-orient: horizontal;
+	-moz-flex-direction: row;
+	-ms-flex-direction: row;
+	-webkit-flex-direction: row;
 	flex-direction: row;
-	justify-content: flex-start;
+
+	-webkit-box-align: center;
+	-moz-align-items: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+
+	-webkit-box-pack: center;
+	-moz-justify-content: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
 }
 .footer > * {
 	padding: 0 12px;
