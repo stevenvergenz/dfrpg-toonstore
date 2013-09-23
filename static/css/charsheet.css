@@ -361,7 +361,7 @@ div#stressBlock {
 	-webkit-justify-content: space-around;
 	justify-content: space-around;
 
-	-webkit-flex: 1;
+	/*-webkit-flex: 1;*/
 	-moz-flex-grow: 1;
 	-ms-flex: 1 1;
 	-webkit-flex-grow: 1;
