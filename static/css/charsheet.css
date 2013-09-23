@@ -36,15 +36,15 @@ div.sheet-panel {
 	padding: 10px;
 	text-align: center;
 	margin: 5px;
-	
+	background-color: white;
+	color: black;
+	overflow: hidden;
+
 	-moz-flex-basis: 350px;
 	-ms-flex: 0 1 350px;
 	-webkit-flex-basis: 350px;
 	flex-basis: 350px;
-
-	background-color: white;
-	color: black;
-	overflow: hidden;
+	max-width: 350px;
 }
 
 div.field {
