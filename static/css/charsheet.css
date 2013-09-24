@@ -45,6 +45,7 @@ div.sheet-panel {
 	-webkit-flex-basis: 350px;
 	flex-basis: 350px;
 	max-width: 350px;
+	width: 350px;
 }
 
 div.field {
