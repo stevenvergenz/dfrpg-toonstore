@@ -318,23 +318,23 @@ div#stressBlock {
 	font-weight: bold;
 	text-align: left;
 
-	display: -webkit-box;
+/*	display: -webkit-box;
 	display: -moz-flex;
 	display: -ms-flexbox;
 	display: -webkit-flex;
 	display: flex;
 
-	/*-webkit-box-lines: multiple;
+	-webkit-box-lines: multiple;
 	-moz-flex-wrap: wrap;
 	-ms-flex-wrap: wrap;
 	-webkit-flex-wrap: wrap;
-	flex-wrap: wrap;*/
+	flex-wrap: wrap;
 
 	-webkit-box-orient: vertical;
 	-moz-flex-direction: column;
 	-ms-flex-direction: column;
 	-webkit-flex-direction: column;
-	flex-direction: column;
+	flex-direction: column;*/
 }
 
 #stressBlock .colHeader {
