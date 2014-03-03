@@ -37,13 +37,16 @@ block append header
 							li
 								input(type='checkbox', data-bind='checked: $root.notes.enabled')
 								a(href='#notes') Notes
-							li
+							//li
+								input(type='checkbox', data-bind='checked: $root.shapeshifter.enabled')
+								a(href='#shapeshifter') Shapeshifter
+							//li
 								input(type='checkbox')
 								a(href='#invent') Inventory
-							li
+							//li
 								input(type='checkbox')
 								a(href='#rotes') Spellcaster/Rotes
-							li
+							//li
 								input(type='checkbox')
 								a(href='#spellcalc') Spellcaster/Calculator
 					li: a(href='#aspects') Aspects
@@ -57,11 +60,7 @@ block append header
 
 block content
 
-
 	.sheet-panel-group
-		//-if logged_user == owner
-			.sheet-panel
-				input#save(type='button', value='Save', onclick='pushToServer()')
 
 		#general.sheet-panel
 			
@@ -75,7 +74,8 @@ block content
 				span(data-bind='visible: !generalEditing(), text: "("+player()+")"')
 				input(type='text', data-bind='visible: generalEditing, value: player')
 
-	.sheet-panel-group
+			div#avatar
+				img
 
 		#aspects.sheet-panel(data-bind='with: aspects')
 			a#aspects
@@ -112,9 +112,14 @@ block content
 		#skills.sheet-panel
 			a#skills
 			p.sectionHeader Skills
+				span  (
+					input#shifter(type='checkbox')
+					label(for='shifter')
+					| )
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
 						onclick='viewModel.skills.editing( !viewModel.skills.editing() )')
+
 
 			p(data-bind='visible: $root.skills.editing')
 				| Drag skills to rearrange
@@ -137,8 +142,54 @@ block content
 					input(type='submit', value='Add skill')
 				p#validSkillLadder(data-bind='text: skills.valid')
 
-	.sheet-panel-group
+		#totals.sheet-panel(data-bind='with: totals')
+			a#totals
+			if logged_user == owner
+				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
+					style='position: absolute; right: 8px;',
+					onclick='viewModel.totals.editing( !viewModel.totals.editing() )')
 
+			img#star(src='/static/img/pentacle.svg')
+
+			#top-container.container
+				#powerLevelContainer
+					#powerLevel(data-bind='visible: !editing()')
+						span Power Level:
+						br
+						span(data-bind='text: power_level')
+					label(data-bind='if: editing') Skill Points:
+						br
+						input(type='number', data-bind='value: skills_total')
+
+				#skillCapContainer
+					#skillCap
+						span Skill Cap:
+						br
+						span(data-bind='visible: !editing(), text: skill_cap_text')
+						input(type='number', min=1, max=8, data-bind='visible: editing, value: skill_cap')
+					label(data-bind='if: editing')
+
+			#mid-container.container
+				#spent-container
+					span#skillsSpent.bubble(data-bind='text: skills_spent') 
+					span Skill Points Spent
+				#available-container
+					span#skillsAvailable.bubble(data-bind='text: skills_available')
+					span Available
+
+			#bottom-container.container
+				.row
+					span#baseRefresh.bubble.doubleBubble(data-bind='visible: !editing(), text: base_refresh')
+					input.bubble.doubleBubble(type='number', min=0, data-bind='visible: editing, value: base_refresh')
+					span Base Refresh Level
+				.row
+					span#adjustedRefresh.bubble.doubleBubble(data-bind='text: adjusted_refresh')
+					span Adjusted Refresh
+				.row
+					span#fatePoints.bubble.doubleBubble(data-bind='visible: !editing(), text: fate_points')
+					input.bubble.doubleBubble(type='number', min=0, data-bind='visible: editing, value: fate_points')
+					span Fate Points
+	
 		#stress.sheet-panel
 			a#stress
 			p.sectionHeader Stress
@@ -251,56 +302,8 @@ block content
 			input.iconButton(type='image', data-bind='visible: $root.consequences.editing',
 				src='/static/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addConsequence()')
 
-	.sheet-panel-group
 
-		#totals.sheet-panel(data-bind='with: totals')
-			a#totals
-			if logged_user == owner
-				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
-					style='position: absolute; right: 8px;',
-					onclick='viewModel.totals.editing( !viewModel.totals.editing() )')
-
-			img#star(src='/static/img/pentacle.svg')
-
-			#top-container.container
-				#powerLevelContainer
-					#powerLevel(data-bind='visible: !editing()')
-						span Power Level:
-						br
-						span(data-bind='text: power_level')
-					label(data-bind='if: editing') Skill Points:
-						br
-						input(type='number', data-bind='value: skills_total')
-
-				#skillCapContainer
-					#skillCap
-						span Skill Cap:
-						br
-						span(data-bind='visible: !editing(), text: skill_cap_text')
-						input(type='number', min=1, max=8, data-bind='visible: editing, value: skill_cap')
-					label(data-bind='if: editing')
-
-			#mid-container.container
-				#spent-container
-					span#skillsSpent.bubble(data-bind='text: skills_spent') 
-					span Skill Points Spent
-				#available-container
-					span#skillsAvailable.bubble(data-bind='text: skills_available')
-					span Available
-
-			#bottom-container.container
-				.row
-					span#baseRefresh.bubble.doubleBubble(data-bind='visible: !editing(), text: base_refresh')
-					input.bubble.doubleBubble(type='number', min=0, data-bind='visible: editing, value: base_refresh')
-					span Base Refresh Level
-				.row
-					span#adjustedRefresh.bubble.doubleBubble(data-bind='text: adjusted_refresh')
-					span Adjusted Refresh
-				.row
-					span#fatePoints.bubble.doubleBubble(data-bind='visible: !editing(), text: fate_points')
-					input.bubble.doubleBubble(type='number', min=0, data-bind='visible: editing, value: fate_points')
-					span Fate Points
-		
+	
 		#powers.sheet-panel
 			a#powers
 			p.sectionHeader Stunts & Powers
@@ -340,7 +343,6 @@ block content
 			input.iconButton(type='image', data-bind='visible: powers.editing',
 				src='/static/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addPower()')
 
-	.sheet-panel-group
 
 		#notes.sheet-panel(data-bind='if: $root.notes.enabled, visible: $root.notes.enabled')
 			a#notes

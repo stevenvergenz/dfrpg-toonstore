@@ -70,10 +70,11 @@ div.sheet-panel {
 	text-align: center;
 	margin: 5px;
 	
-	-webkit-flex-basis: 350px;
+/*	-webkit-flex-basis: 350px;
 	-moz-flex-basis: 350px;
 	-ms-flex: 0 1 350px;
-	flex-basis: 350px;
+	flex-basis: 350px;*/
+	width: 350px;
 
 	background-color: white;
 	color: black;
@@ -143,6 +144,21 @@ span.subtitle {
 
 #aspects input[type='text'] {
 	width: 70%;
+}
+
+
+#skills input#shifter {
+	display:none;
+}
+#skills input#shifter + label {
+	display: inline-block;
+	width: 70px;
+	height: 25px;
+	margin: 0 -1px -3px 0;
+	background-image: url('/static/img/shifter_human.svg');
+}
+#skills input#shifter:checked + label {
+	background-image: url('/static/img/shifter_animal.svg');
 }
 
 /*
