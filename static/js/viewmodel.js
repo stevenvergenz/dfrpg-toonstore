@@ -267,18 +267,34 @@ function SheetViewModel(data)
 	];*/
 
 	// initialize skills data
+	if( !data.skills.shifted_lists )
+		data.skills.shifted_lists = [];
+
 	this.skills = {
 		'lists': [
-			ko.observableArray(data.skills.lists[0] ? data.skills.lists[0] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills.lists[1] ? data.skills.lists[1] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills.lists[2] ? data.skills.lists[2] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills.lists[3] ? data.skills.lists[3] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills.lists[4] ? data.skills.lists[4] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills.lists[5] ? data.skills.lists[5] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills.lists[6] ? data.skills.lists[6] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills.lists[7] ? data.skills.lists[7] : []).extend({sort:'asc'}),
-			ko.observableArray(data.skills.lists[8] ? data.skills.lists[8] : []).extend({sort:'asc'})
+			ko.observableArray(data.skills.lists[0] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[1] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[2] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[3] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[4] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[5] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[6] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[7] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.lists[8] || []).extend({sort:'asc'})
 		],
+		'shifted_lists': [
+			ko.observableArray(data.skills.shifted_lists[0] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.shifted_lists[1] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.shifted_lists[2] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.shifted_lists[3] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.shifted_lists[4] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.shifted_lists[5] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.shifted_lists[6] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.shifted_lists[7] || []).extend({sort:'asc'}),
+			ko.observableArray(data.skills.shifted_lists[8] || []).extend({sort:'asc'})
+		],
+		'is_shifter': ko.observable(data.skills.is_shifter || false),
+		'shifted': ko.observable(false),
 		'editing': ko.observable(false)
 	};
 
@@ -332,8 +348,9 @@ function SheetViewModel(data)
 
 	this.totals.skills_spent = ko.computed(function(){
 		var sum = 0;
-		for( var i in this.skills.lists ){
-			sum += i * this.skills.lists[i]().length;
+		var lists = this.skills.shifted() ? this.skills.shifted_lists : this.skills.lists;
+		for( var i in lists ){
+			sum += i * lists[i]().length;
 		}
 		return sum;
 	}, this);
@@ -349,11 +366,16 @@ function SheetViewModel(data)
 	this.skills.sets = ko.computed(function(){
 		var sets = [];
 		for( var i=this.totals.skill_cap(); i>=0; i-- ){
-			sets.push({
+			var set = {
 				'index': i,
-				'level_text': this.totals.skill_text(i),
-				'skills': this.skills.lists[i]
-			});
+				'level_text': this.totals.skill_text(i)
+			};
+			if( this.skills.shifted() )
+				set.skills = this.skills.shifted_lists[i];
+			else
+				set.skills = this.skills.lists[i];
+
+			sets.push(set);
 		}
 		return sets;
 	}, this);
@@ -361,7 +383,7 @@ function SheetViewModel(data)
 	this.skills.valid = ko.computed( function(){
 		var valid = true;
 		for( var i=1; i<this.totals.skill_cap(); i++ ){
-			var skills = this.skills.lists;
+			var skills = this.skills.shifted() ? this.skills.shifted_lists : this.skills.lists;
 			valid &= skills[i]().length >= skills[i+1]().length;
 		}
 		return (valid ? 'Valid' : 'INVALID') + ', '+this.totals.skills_available()+' available';

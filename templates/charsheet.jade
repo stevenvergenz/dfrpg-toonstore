@@ -37,9 +37,9 @@ block append header
 							li
 								input(type='checkbox', data-bind='checked: $root.notes.enabled')
 								a(href='#notes') Notes
-							//li
-								input(type='checkbox', data-bind='checked: $root.shapeshifter.enabled')
-								a(href='#shapeshifter') Shapeshifter
+							li
+								input(type='checkbox', data-bind='checked: $root.skills.is_shifter')
+								a(href='#skills') Shapeshifter
 							//li
 								input(type='checkbox')
 								a(href='#invent') Inventory
@@ -112,8 +112,8 @@ block content
 		#skills.sheet-panel
 			a#skills
 			p.sectionHeader Skills
-				span  (
-					input#shifter(type='checkbox')
+				span(data-bind='visible: $root.skills.is_shifter')  (
+					input#shifter(type='checkbox', data-bind='checked: $root.skills.shifted')
 					label(for='shifter')
 					| )
 				if logged_user == owner
