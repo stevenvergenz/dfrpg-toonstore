@@ -1,5 +1,7 @@
 var mysql = require('mysql');
 var libpath = require('path');
+var crypto = require('crypto');
+var gm = require('gm');
 var global = require('./global.js');
 
 function servePage(req,res,next)
@@ -252,13 +254,20 @@ function serveAvatar(req,res,next)
 
 function saveAvatar(req,res,next)
 {
-	if( !(req.session && req.session.user) ){
+	/*if( !(req.session && req.session.user) ){
 		res.send(401);
 		return;
-	}
+	}*/
 
 	// generate filename
-	
+	var buf = crypto.pseudoRandomBytes(8);
+	var id = buf.toString('hex');
+	console.log(id);
+
+	var img = gm(req.body);
+	res.send(200);
+	return;
+
 	// save path to db
 	var connection = mysql.createConnection(global.config.database);
 	connection.query('UPDATE Characters SET avatar = ? WHERE owner = ? AND canonical_name = ?;',
@@ -293,3 +302,4 @@ exports.deleteCharacterRequest = deleteCharacterRequest;
 exports.deleteCharacterPage = deleteCharacterPage;
 
 exports.serveAvatar = serveAvatar;
+exports.saveAvatar = saveAvatar;
