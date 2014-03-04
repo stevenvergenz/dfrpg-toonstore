@@ -11,6 +11,7 @@ function servePage(req,res,next)
 		function(err,rows,fields){
 			if( err ){
 				global.error( err, global.logLevels.warning );
+				res.send(500);
 			}
 			else if( rows.length == 1 ){
 				global.log('Serving character page for', req.url);
@@ -33,6 +34,7 @@ function serveJson(req,res,next)
 		function(err,rows,fields){
 			if( err ){
 				global.error( err, global.logLevels.warning );
+				res.send(500);
 			}
 			else if( rows.length == 1 ){
 				global.log('Serving character JSON for', req.url);
@@ -82,7 +84,7 @@ function _pushJson(req,res,next)
 			}
 			else {
 				global.error('MySQL error:', err, global.logLevels.error);
-				next();
+				res.send(500);
 			}
 			connection.end();
 		}
@@ -162,7 +164,7 @@ function newCharacterRequest(req,res)
 function deleteCharacterPage(req,res)
 {
 	if( !(req.session && req.session.user) ){
-		res.send(403);
+		res.send(401);
 		return;
 	}
 
@@ -225,12 +227,69 @@ function deleteCharacterRequest(req,res)
 	);
 }
 
+function serveAvatar(req,res,next)
+{
+	var connection = mysql.createConnection(global.config.database);
+	console.log(req.params.user, req.params.char);
+	connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		[req.params.user, req.params.char],
+		function(err,info)
+		{
+			if(err){
+				global.error('MySQL error:', err);
+				next();
+			}
+			else if(info.affectedRows == 0){
+				next();
+			}
+			else {
+				res.sendfile( libpath.resolve(__dirname, 'uploads', info.avatar) );
+			}
+			connection.end();
+		}
+	);
+}
+
+function saveAvatar(req,res,next)
+{
+	if( !(req.session && req.session.user) ){
+		res.send(401);
+		return;
+	}
+
+	// generate filename
+	
+	// save path to db
+	var connection = mysql.createConnection(global.config.database);
+	connection.query('UPDATE Characters SET avatar = ? WHERE owner = ? AND canonical_name = ?;',
+		[req.session.user, req.params.char],
+		function(err,info)
+		{
+			if(err){
+				global.error('MySQL error:', err);
+				res.send(500);
+			}
+			else if(info.affectedRows == 0){
+				res.send(404);
+			}
+			else {
+				// imagemagick voodoo
+				// write to file
+				res.send(200);
+			}
+			connection.end();
+		}
+	);
+}
 
 exports.servePage = servePage;
 exports.serveJson = serveJson;
 exports.pushJson = pushJson;
+
 exports.newCharacterPage = newCharacterPage;
 exports.newCharacterRequest = newCharacterRequest;
+
 exports.deleteCharacterRequest = deleteCharacterRequest;
 exports.deleteCharacterPage = deleteCharacterPage;
 
+exports.serveAvatar = serveAvatar;
