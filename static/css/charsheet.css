@@ -110,6 +110,12 @@ p.fieldLabel {
 	font-weight: bold;
 }
 
+div#avatar {
+	background-color: lightgrey;
+	height: 200px;
+	margin: 5px;
+}
+
 table p {
 	margin: 0px;
 }

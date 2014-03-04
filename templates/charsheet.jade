@@ -23,40 +23,40 @@ block append includes
 
 block append header
 
-	//if logged_user == owner
-	#charnav.navbar
-		ul.navmenu
-			li
-				a Panels
-					span.subarrow
-				ul
-					li
-						a Optional Panels
-							span.subarrow
-						ul
-							li
-								input(type='checkbox', data-bind='checked: $root.notes.enabled')
-								a(href='#notes') Notes
-							li
-								input(type='checkbox', data-bind='checked: $root.skills.is_shifter')
-								a(href='#skills') Shapeshifter
-							//li
-								input(type='checkbox')
-								a(href='#invent') Inventory
-							//li
-								input(type='checkbox')
-								a(href='#rotes') Spellcaster/Rotes
-							//li
-								input(type='checkbox')
-								a(href='#spellcalc') Spellcaster/Calculator
-					li: a(href='#aspects') Aspects
-					li: a(href='#skills') Skills
-					li: a(href='#stress') Stress
-					li: a(href='#conseq') Consequences
-					li: a(href='#totals') Totals
-					li: a(href='#powers') Stunts & Powers
+	if logged_user == owner
+		#charnav.navbar
+			ul.navmenu
+				li
+					a Panels
+						span.subarrow
+					ul
+						li
+							a Optional Panels
+								span.subarrow
+							ul
+								li
+									input(type='checkbox', data-bind='checked: $root.notes.enabled')
+									a(href='#notes') Notes
+								li
+									input(type='checkbox', data-bind='checked: $root.skills.is_shifter')
+									a(href='#skills') Shapeshifter
+								//li
+									input(type='checkbox')
+									a(href='#invent') Inventory
+								//li
+									input(type='checkbox')
+									a(href='#rotes') Spellcaster/Rotes
+								//li
+									input(type='checkbox')
+									a(href='#spellcalc') Spellcaster/Calculator
+						li: a(href='#aspects') Aspects
+						li: a(href='#skills') Skills
+						li: a(href='#stress') Stress
+						li: a(href='#conseq') Consequences
+						li: a(href='#totals') Totals
+						li: a(href='#powers') Stunts & Powers
 
-		.navitem: a(href='javascript:;', onclick='pushToServer()') Save
+			.navitem: a(href='javascript:;', onclick='pushToServer()') Save
 
 block content
 
@@ -76,6 +76,8 @@ block content
 
 			div#avatar
 				img
+			
+				input(type='file', data-bind='visible: generalEditing')
 
 		#aspects.sheet-panel(data-bind='with: aspects')
 			a#aspects
