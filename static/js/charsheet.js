@@ -3,7 +3,7 @@ var pageLoaded;
 var viewModel;
 
 // retrieve the character sheet data
-$.getJSON( window.location.pathname + '/json', function(data){
+$.getJSON( 'json', function(data){
 	model = data;
 	console.log('Data ready');
 	if( pageLoaded )
@@ -29,7 +29,7 @@ function pushToServer(){
 	var data = ko.toJSON(viewModel);
 	//console.log(data);
 	$.ajax({
-		'url': window.location.pathname + '/json',
+		'url': 'json',
 		'type': 'POST',
 		'data': data,
 		'contentType': 'application/json',
@@ -37,6 +37,29 @@ function pushToServer(){
 			console.log('Success');
 		},
 	});
+}
+
+function handleAvatarUpload()
+{
+	var formData = new FormData($('form')[0]);
+	$.ajax({
+		'url': 'avatar',
+		'type': 'POST',
+		'contentType': false,
+		'processData': false,
+		'cache': false,
+
+		'data': formData,
+		'success': function(data,status,xhr){
+			console.log(data);
+			$('#avatar > #imgContainer > img')[0].src = 'avatar';
+		},
+		'error': function(xhr,status,err){
+			console.log(err, status);
+		}
+	});
+
+
 }
 
 function removeAspect(index){

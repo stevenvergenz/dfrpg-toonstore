@@ -75,9 +75,11 @@ block content
 				input(type='text', data-bind='visible: generalEditing, value: player')
 
 			div#avatar
-				img
-			
-				input(type='file', data-bind='visible: generalEditing')
+				form(data-bind='visible: generalEditing', enctype='multipart/form-data')
+					input(name='avatar', type='file', accept='image/*', onchange='handleAvatarUpload()')
+				div#imgContainer
+					img(src='avatar', onerror='if(this.src!="/static/img/no-avatar.png")this.src="/static/img/no-avatar.png"')
+		
 
 		#aspects.sheet-panel(data-bind='with: aspects')
 			a#aspects

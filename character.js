@@ -143,7 +143,7 @@ function newCharacterRequest(req,res)
 			}
 			else {
 				global.log('Creation successful');
-				var url = '/'+req.session.user+'/'+req.body.canon_name;
+				var url = '/'+req.session.user+'/'+req.body.canon_name+'/';
 				res.redirect(url);
 			}
 			connection.end();
@@ -220,7 +220,6 @@ function deleteCharacterRequest(req,res)
 function serveAvatar(req,res,next)
 {
 	var connection = mysql.createConnection(global.config.database);
-	console.log(req.params.user, req.params.char);
 	connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,info)
@@ -229,12 +228,11 @@ function serveAvatar(req,res,next)
 				global.error('MySQL error:', err);
 				next();
 			}
-			else if(info.affectedRows == 0){
+			else if(info.length == 0 || !info[0].avatar){
 				global.log('Avatar not found');
-				next();
+				res.send(404);
 			}
 			else {
-				global.log('Replying with avatar');
 				res.sendfile( libpath.resolve(__dirname, 'uploads', info[0].avatar) );
 			}
 			connection.end();
