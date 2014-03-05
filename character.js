@@ -247,7 +247,20 @@ function saveAvatar(req,res,next)
 		return;
 	}
 
-	// get just the filename
+	// scale down to what will fit in the avatar box
+	var newFile = req.files.avatar.path;
+	gm(newFile).size(function(err,size){
+		if(!err){
+			var factor = size.width>size.height ? 350/size.width : 196/size.height;
+			gm(newFile)
+				.resize( size.width*factor, size.height*factor )
+				.write(newFile, function(err){
+					if(err) global.error(err);
+				});
+		}
+		else global.log(err);
+	});
+
 	var connection = mysql.createConnection(global.config.database);
 
 	function saveNewAvatar(err,info)
@@ -272,6 +285,7 @@ function saveAvatar(req,res,next)
 		if(err){
 			global.error('MySQL error:', err);
 			res.send(500);
+			connection.end();
 			return;
 		}
 		else if(info.length == 1 && info[0].avatar){
