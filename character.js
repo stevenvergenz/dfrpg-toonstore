@@ -1,5 +1,6 @@
 var mysql = require('mysql');
 var libpath = require('path');
+var fs = require('fs');
 var crypto = require('crypto');
 var gm = require('gm');
 var global = require('./global.js');
@@ -229,10 +230,12 @@ function serveAvatar(req,res,next)
 				next();
 			}
 			else if(info.affectedRows == 0){
+				global.log('Avatar not found');
 				next();
 			}
 			else {
-				res.sendfile( libpath.resolve(__dirname, 'uploads', info.avatar) );
+				global.log('Replying with avatar');
+				res.sendfile( libpath.resolve(__dirname, 'uploads', info[0].avatar) );
 			}
 			connection.end();
 		}
@@ -241,24 +244,18 @@ function serveAvatar(req,res,next)
 
 function saveAvatar(req,res,next)
 {
-	/*if( !(req.session && req.session.user) ){
+	if( !(req.session && req.session.user) ){
 		res.send(401);
 		return;
-	}*/
+	}
 
-	// generate filename
-	var buf = crypto.pseudoRandomBytes(8);
-	var id = buf.toString('hex');
-	console.log(id);
-
-	var img = gm(req.body);
-	res.send(200);
-	return;
+	// get just the filename
+	var filename = libpath.basename(req.files.avatar.path);
 
 	// save path to db
 	var connection = mysql.createConnection(global.config.database);
 	connection.query('UPDATE Characters SET avatar = ? WHERE owner = ? AND canonical_name = ?;',
-		[req.session.user, req.params.char],
+		[filename, req.session.user, req.params.char],
 		function(err,info)
 		{
 			if(err){
@@ -266,11 +263,11 @@ function saveAvatar(req,res,next)
 				res.send(500);
 			}
 			else if(info.affectedRows == 0){
+				global.log('Avatar not found');
 				res.send(404);
 			}
 			else {
-				// imagemagick voodoo
-				// write to file
+				global.log('Avatar saved');
 				res.send(200);
 			}
 			connection.end();

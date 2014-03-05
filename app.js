@@ -15,7 +15,7 @@ var character = require('./character.js');
 var app = express();
 app.use(express.bodyParser({
 	keepExtensions: true,
-	uploadDir: liburl.resolve(__dirname, 'uploads')
+	uploadDir: libpath.resolve(__dirname,'uploads')
 }));
 
 
@@ -60,7 +60,7 @@ app.get('/site/terms', global.renderPage('terms'));
 app.get('/site/privacy', global.renderPage('privacy'));
 app.get('/', global.renderPage('index'));
 
-app.use('/static', express.static(__dirname+'/static', {maxAge: 24*60*60}));
+app.use('/static', express.static( libpath.resolve(__dirname,'static'), {maxAge: 24*60*60}));
 
 // catch-all: serve static file or 404
 app.use(function(req,res)

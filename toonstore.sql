@@ -1,8 +1,8 @@
--- MySQL dump 10.14  Distrib 5.5.33a-MariaDB, for Linux (x86_64)
+-- MySQL dump 10.14  Distrib 5.5.35-MariaDB, for Linux (x86_64)
 --
 -- Host: localhost    Database: toonstore
 -- ------------------------------------------------------
--- Server version	5.5.33a-MariaDB
+-- Server version	5.5.35-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -30,7 +30,7 @@ CREATE TABLE `Characters` (
   `concept` char(40) DEFAULT NULL,
   `created_on` date DEFAULT NULL,
   `last_updated` date DEFAULT NULL,
-  `avatar` char(20) DEFAULT NULL,
+  `avatar` char(40) DEFAULT NULL,
   PRIMARY KEY (`canonical_name`,`owner`),
   KEY `owner` (`owner`),
   CONSTRAINT `Characters_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `Users` (`username`) ON DELETE CASCADE
@@ -83,4 +83,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-03 21:18:33
+-- Dump completed on 2014-03-05 11:20:13
