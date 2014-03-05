@@ -51,7 +51,6 @@ function handleAvatarUpload()
 
 		'data': formData,
 		'success': function(data,status,xhr){
-			console.log(data);
 			$('#avatar > #imgContainer > img')[0].src = 'avatar';
 		},
 		'error': function(xhr,status,err){

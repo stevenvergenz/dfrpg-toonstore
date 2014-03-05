@@ -248,29 +248,48 @@ function saveAvatar(req,res,next)
 	}
 
 	// get just the filename
-	var filename = libpath.basename(req.files.avatar.path);
-
-	// save path to db
 	var connection = mysql.createConnection(global.config.database);
-	connection.query('UPDATE Characters SET avatar = ? WHERE owner = ? AND canonical_name = ?;',
-		[filename, req.session.user, req.params.char],
-		function(err,info)
-		{
-			if(err){
-				global.error('MySQL error:', err);
-				res.send(500);
-			}
-			else if(info.affectedRows == 0){
-				global.log('Avatar not found');
-				res.send(404);
-			}
-			else {
-				global.log('Avatar saved');
-				res.send(200);
-			}
-			connection.end();
+
+	function saveNewAvatar(err,info)
+	{
+		if(err){
+			global.error('MySQL error:', err);
+			res.send(500);
 		}
+		else if(info.affectedRows == 0){
+			global.log('Avatar not found');
+			res.send(404);
+		}
+		else {
+			global.log('Avatar saved');
+			res.send(200);
+		}
+		connection.end();
+	}
+
+	function getCurrentAvatar(err,info)
+	{
+		if(err){
+			global.error('MySQL error:', err);
+			res.send(500);
+			return;
+		}
+		else if(info.length == 1 && info[0].avatar){
+			fs.unlink( libpath.resolve(__dirname, 'uploads', info[0].avatar) );
+		}
+
+		var filename = libpath.basename(req.files.avatar.path);
+		connection.query('UPDATE Characters SET avatar = ? WHERE owner = ? AND canonical_name = ?;',
+			[filename, req.session.user, req.params.char],
+			saveNewAvatar
+		);
+	}
+
+	connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		[req.session.user, req.params.char],
+		getCurrentAvatar
 	);
+
 }
 
 exports.servePage = servePage;
