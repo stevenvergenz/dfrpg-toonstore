@@ -28,8 +28,14 @@ function processCharacterData()
 function pushToServer(){
 	var data = ko.toJSON(viewModel);
 	//console.log(data);
-	$.post( window.location.pathname + '/json', data, function(data,textStatus,xhr){
-		console.log('Success');
+	$.ajax({
+		'url': window.location.pathname + '/json',
+		'type': 'POST',
+		'data': data,
+		'contentType': 'application/json',
+		'success': function(data,textStatus,xhr){
+			console.log('Success');
+		},
 	});
 }
 

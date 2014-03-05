@@ -58,19 +58,6 @@ function pushJson(req,res,next)
 		return;
 	}
 
-	// gather the data
-	var data = '';
-	req.on('data', function(chunk){
-		data += chunk;
-	});
-	req.on('end', function(){
-		req.body = JSON.parse(data);
-		_pushJson(req,res,next);
-	});
-}
-
-function _pushJson(req,res,next)
-{
 	global.log('Attempting to update character sheet of', req.params.char);
 	//console.log( JSON.stringify(req.body.stress[0], null, 2) );
 	//res.send(200);

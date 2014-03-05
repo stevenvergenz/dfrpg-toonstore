@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html><head>
+	<script src="http://code.jquery.com/jquery-2.1.0.js"></script>
+	<script>
+
+		function handleUpload(file)
+		{	
+			var reader = new FileReader();
+			reader.onload = function(evt)
+			{
+				var match = /^data:(\w+\/\w+);base64,([A-Za-z0-9+\/=]+)$/.exec(evt.target.result);
+				console.log(match);
+				$.ajax({
+					'url': 'http://localhost:3001/tester/lifeson/avatar',
+					'type': 'POST',
+					'contentType': match[1],
+					'data': match[2],
+					'success': function(data,status,xhr)
+					{
+						console.log(data);
+					},
+					'error': function(xhr,status,err)
+					{
+						console.log(err, status);
+					}
+				});
+			};
+			reader.readAsDataURL(file);
+
+		}
+
+	</script>
+
+</head>
+<body>
+
+	<input type="file" name="testfile" accept="image/*" onchange="handleUpload(this.files[0])"></input>
+
+</body></html>
