@@ -1,5 +1,8 @@
 var mysql = require('mysql');
 var libpath = require('path');
+var fs = require('fs');
+var crypto = require('crypto');
+var gm = require('gm');
 var global = require('./global.js');
 
 function servePage(req,res,next)
@@ -11,6 +14,7 @@ function servePage(req,res,next)
 		function(err,rows,fields){
 			if( err ){
 				global.error( err, global.logLevels.warning );
+				res.send(500);
 			}
 			else if( rows.length == 1 ){
 				global.log('Serving character page for', req.url);
@@ -33,6 +37,7 @@ function serveJson(req,res,next)
 		function(err,rows,fields){
 			if( err ){
 				global.error( err, global.logLevels.warning );
+				res.send(500);
 			}
 			else if( rows.length == 1 ){
 				global.log('Serving character JSON for', req.url);
@@ -54,19 +59,6 @@ function pushJson(req,res,next)
 		return;
 	}
 
-	// gather the data
-	var data = '';
-	req.on('data', function(chunk){
-		data += chunk;
-	});
-	req.on('end', function(){
-		req.body = JSON.parse(data);
-		_pushJson(req,res,next);
-	});
-}
-
-function _pushJson(req,res,next)
-{
 	global.log('Attempting to update character sheet of', req.params.char);
 	//console.log( JSON.stringify(req.body.stress[0], null, 2) );
 	//res.send(200);
@@ -82,7 +74,7 @@ function _pushJson(req,res,next)
 			}
 			else {
 				global.error('MySQL error:', err, global.logLevels.error);
-				next();
+				res.send(500);
 			}
 			connection.end();
 		}
@@ -151,7 +143,7 @@ function newCharacterRequest(req,res)
 			}
 			else {
 				global.log('Creation successful');
-				var url = '/'+req.session.user+'/'+req.body.canon_name;
+				var url = '/'+req.session.user+'/'+req.body.canon_name+'/';
 				res.redirect(url);
 			}
 			connection.end();
@@ -162,7 +154,7 @@ function newCharacterRequest(req,res)
 function deleteCharacterPage(req,res)
 {
 	if( !(req.session && req.session.user) ){
-		res.send(403);
+		res.send(401);
 		return;
 	}
 
@@ -225,12 +217,104 @@ function deleteCharacterRequest(req,res)
 	);
 }
 
+function serveAvatar(req,res,next)
+{
+	var connection = mysql.createConnection(global.config.database);
+	connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		[req.params.user, req.params.char],
+		function(err,info)
+		{
+			if(err){
+				global.error('MySQL error:', err);
+				next();
+			}
+			else if(info.length == 0 || !info[0].avatar){
+				global.log('Avatar not found');
+				res.send(404);
+			}
+			else {
+				res.sendfile( libpath.resolve(__dirname, 'uploads', info[0].avatar) );
+			}
+			connection.end();
+		}
+	);
+}
+
+function saveAvatar(req,res,next)
+{
+	if( !(req.session && req.session.user) ){
+		res.send(401);
+		return;
+	}
+
+	// scale down to what will fit in the avatar box
+	var newFile = req.files.avatar.path;
+	gm(newFile).size(function(err,size){
+		if(!err){
+			var factor = size.width>size.height ? 350/size.width : 196/size.height;
+			gm(newFile)
+				.resize( size.width*factor, size.height*factor )
+				.write(newFile, function(err){
+					if(err) global.error(err);
+				});
+		}
+		else global.log(err);
+	});
+
+	var connection = mysql.createConnection(global.config.database);
+
+	function saveNewAvatar(err,info)
+	{
+		if(err){
+			global.error('MySQL error:', err);
+			res.send(500);
+		}
+		else if(info.affectedRows == 0){
+			global.log('Avatar not found');
+			res.send(404);
+		}
+		else {
+			global.log('Avatar saved');
+			res.send(200);
+		}
+		connection.end();
+	}
+
+	function getCurrentAvatar(err,info)
+	{
+		if(err){
+			global.error('MySQL error:', err);
+			res.send(500);
+			connection.end();
+			return;
+		}
+		else if(info.length == 1 && info[0].avatar){
+			fs.unlink( libpath.resolve(__dirname, 'uploads', info[0].avatar) );
+		}
+
+		var filename = libpath.basename(req.files.avatar.path);
+		connection.query('UPDATE Characters SET avatar = ? WHERE owner = ? AND canonical_name = ?;',
+			[filename, req.session.user, req.params.char],
+			saveNewAvatar
+		);
+	}
+
+	connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		[req.session.user, req.params.char],
+		getCurrentAvatar
+	);
+
+}
 
 exports.servePage = servePage;
 exports.serveJson = serveJson;
 exports.pushJson = pushJson;
+
 exports.newCharacterPage = newCharacterPage;
 exports.newCharacterRequest = newCharacterRequest;
+
 exports.deleteCharacterRequest = deleteCharacterRequest;
 exports.deleteCharacterPage = deleteCharacterPage;
 
+exports.serveAvatar = serveAvatar;
+exports.saveAvatar = saveAvatar;

@@ -2,6 +2,47 @@
 	font-family: 'Metamorphous', cursive;
 }
 
+ul.navmenu {
+	padding-left: 12px;
+	padding-right: 12px;
+}
+
+#charnav.navbar {
+	padding: 10px 0;
+	background-color: #4a4a72;
+}
+
+span.subarrow {
+	background-image: url('/static/css/ui-darkness/images/ui-icons_ffffff_256x240.png');
+	background-position: -32px 0px;
+	background-repeat: no-repeat;
+	width: 16px;
+	height: 16px;
+	overflow: hidden;
+	float: right;
+	top: .2em;
+	left: .2em;
+	display: block;
+	margin: 4px;
+}
+span.mainarrow {
+	background-position: -64px 0px;
+}
+
+.ui-menu .ui-menu-item:hover {
+	border-radius: 5px;
+	background-color: #022;
+}
+
+.ui-menu .ui-menu {
+	border: solid grey 1px;
+	background-color: #41568a;
+}
+
+.navmenu input[type=checkbox], .navmenu input[type=checkbox] + a {
+	display: inline;
+}
+
 div.sheet-panel-group {
 	width: 100%;
 
@@ -36,6 +77,13 @@ div.sheet-panel {
 	padding: 10px;
 	text-align: center;
 	margin: 5px;
+	
+/*	-webkit-flex-basis: 350px;
+	-moz-flex-basis: 350px;
+	-ms-flex: 0 1 350px;
+	flex-basis: 350px;*/
+	width: 350px;
+
 	background-color: white;
 	color: black;
 	overflow: hidden;
@@ -68,6 +116,30 @@ p.fieldLabel {
 	/*font-size: 14pt;
 	font-style: italic;*/
 	font-weight: bold;
+}
+
+div#avatar {
+	height: 200px;
+	margin-top: 10px;
+}
+
+#avatar > #imgContainer {
+	width: 100%;
+	height: 100%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	overflow: hidden;
+}
+
+#avatar > #imgContainer > img {
+	max-width: 100%;
+	max-height: 100%
+}
+
+#avatar > form {
+	position: absolute;
+	background-color: lightgrey;
 }
 
 table p {
@@ -104,6 +176,26 @@ span.subtitle {
 
 #aspects input[type='text'] {
 	width: 70%;
+}
+
+
+#skills input#shifter {
+	display:none;
+}
+#skills input#shifter + label {
+	display: inline-block;
+	width: 70px;
+	height: 25px;
+	margin: 0 -1px -3px 0;
+	background-image: url('/static/img/shifter_human.svg');
+	cursor: pointer;
+}
+#skills input#shifter:checked + label {
+	background-image: url('/static/img/shifter_animal.svg');
+}
+
+.ui-draggable {
+	cursor: move;
 }
 
 /*

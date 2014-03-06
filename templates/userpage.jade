@@ -16,7 +16,7 @@ block content
 			ul#charList
 				each char in toons
 					li
-						a(href='/#{owner}/#{char.canon_name}')= char.name +' - '+ char.concept
+						a(href='/#{owner}/#{char.canon_name}/')= char.name +' - '+ char.concept
 						| &nbsp; 
 						span(style='font-size: 80%;')
 							| (

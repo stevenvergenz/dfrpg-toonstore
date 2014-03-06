@@ -3,7 +3,7 @@ var pageLoaded;
 var viewModel;
 
 // retrieve the character sheet data
-$.getJSON( window.location.pathname + '/json', function(data){
+$.getJSON( 'json', function(data){
 	model = data;
 	console.log('Data ready');
 	if( pageLoaded )
@@ -28,9 +28,37 @@ function processCharacterData()
 function pushToServer(){
 	var data = ko.toJSON(viewModel);
 	//console.log(data);
-	$.post( window.location.pathname + '/json', data, function(data,textStatus,xhr){
-		console.log('Success');
+	$.ajax({
+		'url': 'json',
+		'type': 'POST',
+		'data': data,
+		'contentType': 'application/json',
+		'success': function(data,textStatus,xhr){
+			console.log('Success');
+		},
 	});
+}
+
+function handleAvatarUpload()
+{
+	var formData = new FormData($('form')[0]);
+	$.ajax({
+		'url': 'avatar',
+		'type': 'POST',
+		'contentType': false,
+		'processData': false,
+		'cache': false,
+
+		'data': formData,
+		'success': function(data,status,xhr){
+			$('#avatar > #imgContainer > img')[0].src = 'avatar';
+		},
+		'error': function(xhr,status,err){
+			console.log(err, status);
+		}
+	});
+
+
 }
 
 function removeAspect(index){
@@ -130,7 +158,10 @@ function focusOut(obj){
 function addSkill(evt){
 	var skill = $('#newSkill').val();
 	if( /^\S+$/.test(skill) ){
-		viewModel.skills.lists[0].push(skill);
+		if( viewModel.skills.shifted() )
+			viewModel.skills.shifted_lists[0].push(skill);
+		else
+			viewModel.skills.lists[0].push(skill);
 		$('#newSkill').val('');
 	}
 }
