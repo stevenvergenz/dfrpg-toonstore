@@ -180,9 +180,14 @@ span.subtitle {
 	height: 25px;
 	margin: 0 -1px -3px 0;
 	background-image: url('/static/img/shifter_human.svg');
+	cursor: pointer;
 }
 #skills input#shifter:checked + label {
 	background-image: url('/static/img/shifter_animal.svg');
+}
+
+.ui-draggable {
+	cursor: move;
 }
 
 /*
