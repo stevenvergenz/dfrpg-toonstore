@@ -300,7 +300,11 @@ block content
 						else
 							label
 					.aspect
-						span(data-bind='visible: !editing(), text: aspect() == "" ? "Unused" : aspect(), css: {grey: aspect() == ""}', onclick='focusIn(this)')
+						if logged_user == owner
+							span(data-bind='visible: !editing(), text: aspect() == "" ? "Unused" : aspect(), css: {grey: aspect() == ""}', onclick='focusIn(this)')
+						else
+							span(data-bind='visible: !editing(), text: aspect() == "" ? "Unused" : aspect(), css: {grey: aspect() == ""}')
+							
 						input(type='text', data-bind='visible: editing, value: aspect', onblur='focusOut(this)', onkeyup='checkReturn(this,event)', style='width: 100%;')
 
 					
