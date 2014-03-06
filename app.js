@@ -43,11 +43,14 @@ app.get('/:user([A-Za-z0-9_-]+)', user.userPage);
 // route the character management pages
 app.get('/newtoon', character.newCharacterPage);
 app.post('/newtoon', character.newCharacterRequest);
-app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', character.servePage);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/', character.servePage);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.serveJson);
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', character.serveAvatar);
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', character.saveAvatar);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', function(req,res,next){
+	res.redirect(req.url + '/');
+});
 
 
 app.post('/killtoon', character.deleteCharacterRequest);
