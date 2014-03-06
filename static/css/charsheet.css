@@ -479,6 +479,17 @@ table#conseqTable th:first-of-type, table#conseqTable td:first-of-type {
 	-webkit-flex-direction: column;
 	-webkit-justify-content: space-between;
 	-webkit-align-items: center;
+	display: -moz-flex;
+	-moz-flex-direction: column;
+	-moz-justify-content: space-between;
+	-moz-align-items: center;
+	display: -ms-flexbox;
+	-ms-flex-direction: column;
+	-ms-flex-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
 }
 
 #conseqBlock .row {
@@ -486,8 +497,21 @@ table#conseqTable th:first-of-type, table#conseqTable td:first-of-type {
 	-webkit-flex-direction: row;
 	-webkit-justify-content: space-between;
 	-webkit-align-items: center;
-	
-	padding: 5px inherit;
+
+	display: -moz-flex;
+	-moz-flex-direction: row;
+	-moz-justify-content: space-between;
+	-moz-align-items: center;
+	display: -ms-flexbox;
+	-ms-flex-direction: row;
+	-ms-flex-align: center;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+
+	padding-top: 5px;
+	padding-bottom: 5px;
 	width: 90%;
 }
 
