@@ -157,7 +157,7 @@ function focusOut(obj){
 
 function addSkill(evt){
 	var skill = $('#newSkill').val();
-	if( /^\S+$/.test(skill) ){
+	if( /\S/.test(skill) ){
 		if( viewModel.skills.shifted() )
 			viewModel.skills.shifted_lists[0].push(skill);
 		else

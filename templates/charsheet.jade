@@ -113,6 +113,8 @@ block content
 				onclick='addAspect()', data-bind='visible: editing')
 
 
+	.sheet-panel-group
+
 		#skills.sheet-panel
 			a#skills
 			p.sectionHeader Skills
@@ -136,7 +138,7 @@ block content
 						th(data-bind='text: level_text')
 						td: p(data-bind='foreach: skills')
 							span(data-bind='visible: $index() != 0') , 
-							span(style='white-space: nowrap;', data-bind='draggable: $root.skills.editing')
+							span(data-bind='draggable: $root.skills.editing')
 								span(data-bind='text: $data')
 								img(data-bind='visible: $root.skills.editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
 						
@@ -194,6 +196,8 @@ block content
 					input.bubble.doubleBubble(type='number', min=0, data-bind='visible: editing, value: fate_points')
 					span Fate Points
 	
+	.sheet-panel-group
+
 		#stress.sheet-panel
 			a#stress
 			p.sectionHeader Stress
@@ -313,6 +317,8 @@ block content
 
 
 	
+	.sheet-panel-group
+
 		#powers.sheet-panel
 			a#powers
 			p.sectionHeader Stunts & Powers
