@@ -48,8 +48,13 @@ app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.serveJson
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', character.serveAvatar);
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', character.saveAvatar);
+
+// redirect if character sheet doesn't have trailing slash
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', function(req,res,next){
-	res.redirect(req.url + '/');
+	if( req.params.user != 'site' )
+		res.redirect(req.url + '/');
+	else
+		next();
 });
 
 
