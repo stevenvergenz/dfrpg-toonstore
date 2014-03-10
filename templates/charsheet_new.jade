@@ -1,0 +1,82 @@
+extends index
+
+block title
+	title= toonName + ' | Online Dresden Files RPG Character Hosting | ToonStore.net'
+
+block append styles
+	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous')
+	link(rel='stylesheet', type='text/css', href='/static/css/charsheet.css')
+	link(rel='stylesheet', type='text/css', href='/static/css/jquery-ui-1.10.3.custom.css')
+
+block append includes
+	script(src='/static/js/jquery-ui-1.10.3.custom.js')
+	script(src='/static/js/jquery.ui.touch-punch.min.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
+	script(src='/static/js/char-controllers.js')
+	script(src='/static/js/markdown.js')
+	script.
+		overrideUserRedirect = true;
+		$(document).ready(function(){
+			$('.navbar > ul.navmenu').menu({position: {collision: 'flipfit'}});
+		});
+
+block append header
+
+	if logged_user == owner
+		#charnav.navbar
+			ul.navmenu
+				li
+					a Panels
+						span.subarrow
+					ul
+						li
+							a Optional Panels
+								span.subarrow
+							ul
+								li
+									input(type='checkbox', data-bind='checked: $root.notes.enabled')
+									a(href='#notes') Notes
+								li
+									input(type='checkbox', data-bind='checked: $root.skills.is_shifter')
+									a(href='#skills') Shapeshifter
+								//li
+									input(type='checkbox')
+									a(href='#invent') Inventory
+								//li
+									input(type='checkbox')
+									a(href='#rotes') Spellcaster/Rotes
+								//li
+									input(type='checkbox')
+									a(href='#spellcalc') Spellcaster/Calculator
+						li: a(href='#aspects') Aspects
+						li: a(href='#skills') Skills
+						li: a(href='#stress') Stress
+						li: a(href='#conseq') Consequences
+						li: a(href='#totals') Totals
+						li: a(href='#powers') Stunts & Powers
+
+			.navitem: a(href='javascript:;', onclick='pushToServer()') Save
+
+block content
+
+	div(ng-app="charsheet")
+
+		.sheet-panel-group
+
+			#general.sheet-panel(ng-controller="GeneralCtrl")
+				p.sectionHeader
+					span {{name}}
+					input(type='text')
+					if logged_user == owner
+						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png')
+				div
+					span
+					input(type='text')
+
+				div#avatar
+					form(enctype='multipart/form-data')
+						input(name='avatar', type='file', accept='image/*', onchange='handleAvatarUpload()')
+					div#imgContainer
+						img(src='avatar', onerror='if(this.src!="/static/img/no-avatar.png")this.src="/static/img/no-avatar.png"')
+	

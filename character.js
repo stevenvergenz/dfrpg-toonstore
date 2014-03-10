@@ -17,8 +17,14 @@ function servePage(req,res,next)
 				res.send(500);
 			}
 			else if( rows.length == 1 ){
-				global.log('Serving character page for', req.url);
-				global.renderPage('charsheet', {toonName: rows[0].name})(req,res);
+				if( req.url.indexOf('angular') > -1 ){
+					global.log('Serving angular character page for', req.url);
+					global.renderPage('charsheet_new', {toonName: rows[0].name})(req,res);
+				}
+				else {
+					global.log('Serving character page for', req.url);
+					global.renderPage('charsheet', {toonName: rows[0].name})(req,res);
+				}
 			}
 			else {
 				next();
