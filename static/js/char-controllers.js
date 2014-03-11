@@ -4,20 +4,21 @@
 
 var app = angular.module('charsheet', ['ngResource']);
 
-app.factory('Data', ['$resource',
-	function($resource){
-		return $resource('json', {}, {cache: true});
-	}
-]);
+app.service('rootModel', ['$rootScope', '$resource', function($rootScope, $resource){
+	this._resource = $resource('json', {}, {cache:true});
 
-app.controller('GeneralCtrl', ['$scope', 'Data', function($scope,Data)
-{
-	$scope.data = Data.get();
-	$scope.save = function(){
-		Data.save();
-	};
+	this.aspects;
+	this.data = this._resource.get({}, function(value,headers){
+		this.aspects = value.aspects;
+	});
+}]);
 
-	//$scope.data = Data.get();
-	//$scope.data = {'name': data.name, 'player': data.player};
-	//$scope.data = Data;
+app.controller('GeneralCtrl', ['$scope', 'rootModel', function($scope, rootModel){
+	$scope.data = rootModel.data;
+	$scope.editing = false;
+}]);
+
+app.controller('AspectCtrl', ['$scope', 'rootModel', function($scope, rootModel){
+	$scope.data = rootModel.data;
+	$scope.editing = false;
 }]);
