@@ -66,13 +66,15 @@ block content
 
 			#general.sheet-panel(ng-controller="GeneralCtrl")
 				p.sectionHeader
-					span {{name}}
-					input(type='text')
+					span {{data.name}}
+					input(type='text', ng-model="data.name")
 					if logged_user == owner
 						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png')
 				div
-					span
-					input(type='text')
+					span ({{data.player}})
+					input(type='text', ng-model="data.player")
+				
+				input(type='button', value="Save", ng-click="save()")
 
 				div#avatar
 					form(enctype='multipart/form-data')

@@ -4,10 +4,20 @@
 
 var app = angular.module('charsheet', ['ngResource']);
 
-app.factory('Data', ['$resource', function($resource){
-	return $resource('json');
-}]);
+app.factory('Data', ['$resource',
+	function($resource){
+		return $resource('json', {}, {cache: true});
+	}
+]);
 
-function GeneralCtrl($scope, Data){
-	$scope.data = {'name': Data.name, 'player': Data.player};
-}
+app.controller('GeneralCtrl', ['$scope', 'Data', function($scope,Data)
+{
+	$scope.data = Data.get();
+	$scope.save = function(){
+		Data.save();
+	};
+
+	//$scope.data = Data.get();
+	//$scope.data = {'name': data.name, 'player': data.player};
+	//$scope.data = Data;
+}]);
