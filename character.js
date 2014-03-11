@@ -76,7 +76,7 @@ function pushJson(req,res,next)
 		function(err,rows,fields){
 			if( !err ){
 				global.log('Success');
-				res.send(200);
+				res.json(req.body);
 			}
 			else {
 				global.error('MySQL error:', err, global.logLevels.error);
