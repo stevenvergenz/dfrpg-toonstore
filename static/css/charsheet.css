@@ -112,7 +112,7 @@ p.sectionHeader {
 	margin-bottom: 5px;
 }
 
-p.fieldLabel {
+.fieldLabel {
 	/*font-size: 14pt;
 	font-style: italic;*/
 	font-weight: bold;

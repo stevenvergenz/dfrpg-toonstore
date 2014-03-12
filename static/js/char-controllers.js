@@ -4,14 +4,14 @@
 
 var app = angular.module('charsheet', ['ngResource']);
 
+/*
+ * Retrieve the JSON data from server
+ */
 app.service('rootModel', ['$rootScope', '$resource', function($rootScope, $resource)
 {
 	this._resource = $resource('json', {}, {cache:true});
 
-	this.aspects;
-	this.data = this._resource.get({}, function(value,headers){
-		this.aspects = value.aspects;
-	});
+	this.data = this._resource.get();
 }]);
 
 app.filter('reverse', function(){
@@ -21,13 +21,23 @@ app.filter('reverse', function(){
 });
 
 
-app.controller('GeneralCtrl', ['$scope', 'rootModel', function($scope, rootModel)
+
+/**********************************************
+ * Panel Controllers
+ **********************************************/
+
+// handle general panel
+
+function GeneralCtrl($scope, rootModel)
 {
 	$scope.data = rootModel.data;
 	$scope.editing = false;
-}]);
+}
 
-app.controller('AspectCtrl', ['$scope', 'rootModel', function($scope, rootModel)
+
+// handle aspects
+
+function AspectCtrl($scope, rootModel)
 {
 	$scope.data = rootModel.data;
 	$scope.editing = false;
@@ -41,9 +51,32 @@ app.controller('AspectCtrl', ['$scope', 'rootModel', function($scope, rootModel)
 		console.log('Removing aspect at ', index);
 		$scope.data.aspects.aspects.splice(index,1);
 	};
+}
+
+
+// skill block and dependencies
+
+app.factory('SkillSets', ['rootModel', function(rootModel)
+{
+	var arr = [];
+
+	if( !rootModel.data.$resolved )
+		return arr;
+
+	for(var i=rootModel.data.totals.skill_cap; i>=0; i--)
+		{
+			var set = {
+				'label': $scope.label(i),
+				'index': i,
+				'skills': ($scope.shifted ? $scope.data.skills.shifted_lists[i] : $scope.data.skills.lists[i]) || []
+			};
+			arr.push(set);
+		}
+		return arr;
+
 }]);
 
-app.controller('SkillCtrl', ['$scope', 'rootModel', function($scope, rootModel)
+function SkillCtrl($scope, rootModel, SkillSets)
 {
 	$scope.data = rootModel.data;
 
@@ -57,22 +90,17 @@ app.controller('SkillCtrl', ['$scope', 'rootModel', function($scope, rootModel)
 		return ladder[value];
 	};
 
-	/*$scope.sets = function(){
+	$scope.presOrder = function(){
 		var arr = [];
-		if( !$scope.data.totals ) return arr;
+		if( ! $scope.data.$resolved )
+			return arr;
 
-		for(var i=$scope.data.totals.skill_cap; i>=0; i--)
-		{
-			var set = {
-				'label': $scope.label(i),
-				'index': i,
-				'skills': ($scope.shifted ? $scope.data.skills.shifted_lists[i] : $scope.data.skills.lists[i]) || []
-			};
-			arr.push(set);
+		for(var i=$scope.data.totals.skill_cap; i>=0; i--){
+			arr.push(i);
 		}
 		return arr;
-	};*/
-}]);
+	};
+}
 
 
 // special global-scope function to upload avatar

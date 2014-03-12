@@ -135,8 +135,9 @@ block content
 								img(data-bind='visible: $root.skills.editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
 			
 			#skillBlock
-				.row(ng-repeat='list in sets()')
-					p {{list | json}}
+				.row(ng-repeat='i in presOrder()')
+					.fieldLabel {{label(i)}}
+					.skillList {{data.lists[i]}}
 
 			div(ng-show='editing')
 				input#newSkill(type='text')
