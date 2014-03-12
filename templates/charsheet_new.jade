@@ -38,7 +38,7 @@ block append header
 									input(type='checkbox')
 									a(href='#notes') Notes
 								li
-									input(type='checkbox')
+									input(type='checkbox', ng-model='data.skills.is_shifter')
 									a(href='#skills') Shapeshifter
 								//li
 									input(type='checkbox')
@@ -73,8 +73,8 @@ block content
 				input(type='text', ng-show='editing', ng-model='data.player')
 
 			div#avatar
-				form(enctype='multipart/form-data')
-					input(name='avatar', type='file', accept='image/*', onchange='handleAvatarUpload()')
+				form(enctype='multipart/form-data', ng-show='editing')
+					input(name='avatar', type='file', accept='image/*', onchange='uploadAvatar()')
 				div#imgContainer
 					img(src='avatar', onerror='if(this.src!="/static/img/no-avatar.png")this.src="/static/img/no-avatar.png"')
 
@@ -92,20 +92,55 @@ block content
 
 			.field
 				p.fieldLabel Trouble:
-				p(data-bind='visible: !editing(), text: trouble.name')
-				input(type='text', data-bind='visible: editing, value: trouble.name')
+				p(ng-hide='editing') {{data.aspects.trouble.name}}
+				input(type='text', ng-show='editing', ng-model='data.aspects.trouble.name')
 
 			.field
 				p.fieldLabel Other Aspects:
-				// ko foreach: aspects
-				p(data-bind='visible: !$parent.editing(), text: name')
-				div(data-bind='if: $parent.editing')
-					input(type='text', data-bind='visible: $parent.editing, value: name')
-					input.iconButton(type='image', style='width: 15px; height: 15px;',
-						src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
-						data-bind='attr: {onclick: "removeAspect("+$index()+")"}')
-				// /ko
+				p(ng-hide='editing', ng-repeat-start='aspect in data.aspects.aspects') {{aspect.name}}
+				div(ng-show='editing', ng-repeat-end)
+					input(type='text', ng-model='aspect.name')
+					input.iconButton(type='image', ng-click='removeAspect($index)',
+						style='width: 15px; height: 15px;', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
 
-			input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_190_circle_plus.png',
-				onclick='addAspect()', data-bind='visible: editing')
+			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addAspect()')
+
+
+	.sheet-panel-group
+
+		#skills.sheet-panel(ng-controller='SkillCtrl')
+			a#skills
+			p.sectionHeader Skills
+				span(ng-show='data.skills.is_shifter')  (
+					input#shifter(type='checkbox', ng-checked='shifted')
+					label(for='shifter')
+					| )
+				if logged_user == owner
+					input.iconButton(type='image', ng-click='editing=!editing', src='/static/img/glyphicons/glyphicons_150_edit.png')
+
+
+			p(ng-show='editing')
+				| Drag skills to rearrange
+				br
+				| Drop on +0 to remove
+
+			//table#skillTable
+				tbody(data-bind='foreach: skills.sets')
+					tr(data-bind='if: $root.skills.editing() || index != 0, droppable: $root.skills.editing')
+						th(data-bind='text: level_text')
+						td: p(data-bind='foreach: skills')
+							span(data-bind='visible: $index() != 0') , 
+							span(data-bind='draggable: $root.skills.editing')
+								span(data-bind='text: $data')
+								img(data-bind='visible: $root.skills.editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
+			
+			#skillBlock
+				.row(ng-repeat='list in sets()')
+					p {{list | json}}
+
+			div(ng-show='editing')
+				input#newSkill(type='text')
+				input(type='button', value='Add skill', ng-click='addSkill()')
+				p#validSkillLadder(data-bind='text: skills.valid')
+
 
