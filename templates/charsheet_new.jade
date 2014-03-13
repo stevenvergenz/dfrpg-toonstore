@@ -112,7 +112,7 @@ block content
 			a#skills
 			p.sectionHeader Skills
 				span(ng-show='data.skills.is_shifter')  (
-					input#shifter(type='checkbox', ng-checked='shifted')
+					input#shifter(type='checkbox', ng-model='shifted')
 					label(for='shifter')
 					| )
 				if logged_user == owner
@@ -137,7 +137,15 @@ block content
 			#skillBlock
 				.row(ng-repeat='i in presOrder()')
 					.fieldLabel {{label(i)}}
-					.skillList {{data.lists[i]}}
+					.skillList
+						.skill(ng-if='shifted', ng-repeat='skill in data.skills.shifted_lists[i]')
+							span {{skill}}
+							img(ng-show='editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
+							span(ng-hide='$last') , 
+						.skill(ng-if='!shifted', ng-repeat='skill in data.skills.lists[i]')
+							span {{skill}}
+							img(ng-show='editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
+							span(ng-hide='$last') , 
 
 			div(ng-show='editing')
 				input#newSkill(type='text')

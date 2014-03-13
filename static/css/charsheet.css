@@ -194,6 +194,26 @@ span.subtitle {
 	background-image: url('/static/img/shifter_animal.svg');
 }
 
+#skillBlock .row {
+	display: flex;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#skillBlock .fieldLabel {
+	min-width: 140px;
+	width: 145px;
+	text-align: left;
+}
+
+#skillBlock .skillList {
+	text-align: left;
+}
+
+#skillBlock .skill {
+	display: inline;
+}
+
 .ui-draggable {
 	cursor: move;
 }
