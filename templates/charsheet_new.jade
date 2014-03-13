@@ -125,17 +125,18 @@ block content
 				| Drop on +0 to remove
 
 			#skillBlock
-				.row(dgy-droppable='editing', ng-repeat='i in presOrder()', ng-hide='!editing && $last')
-					.fieldLabel {{label(i)}}
+				.row(dgy-droppable='editing', dgy-drop='dropHandler', ng-repeat='level in presOrder()', ng-hide='!editing && $last')
+					.fieldLabel {{label(level)}}
 					.skillList
-						.skill.noselect(dgy-draggable='editing', ng-repeat='skill in skills(i)')
+						.skill.noselect(dgy-draggable='editing', ng-repeat='skill in skills(level)')
 							span {{skill}}
 							img(ng-show='editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
 							span(ng-hide='$last') , 
 
-			div(ng-show='editing')
-				input#newSkill(type='text')
-				input(type='button', value='Add skill', ng-click='addSkill()')
-				p#validSkillLadder {{valid()}}
+			form(ng-show='editing', ng-submit='addSkill(newSkill); newSkill=""')
+				input#newSkill(type='text', ng-model='newSkill')
+				input(type='submit', value='Add skill')
+
+			p#validSkillLadder(ng-show='editing') {{valid()}}
 
 
