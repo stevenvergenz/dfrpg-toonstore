@@ -14,12 +14,53 @@ app.service('rootModel', ['$rootScope', '$resource', function($rootScope, $resou
 	this.data = this._resource.get();
 }]);
 
-app.filter('reverse', function(){
-	return function(items){
-		return items ? items.slice().reverse() : items;
+
+/*
+ * Custom directive to enable drag/dropping
+ */
+
+app.directive('dgyDraggable', function()
+{
+	return {
+		'restrict': 'A',
+		'scope': {
+			'enabled': '&dgyDraggable'
+		},
+		'link': function(scope,element,attr)
+		{
+			// initialize
+			console.log('init false');
+			element.draggable({
+				'revert': 'invalid',
+				'disabled': !scope.enabled()
+			});
+
+			// update draggable property based on enabled
+			scope.$watch(scope.enabled, function(){
+				element.draggable('option', 'disabled', !scope.enabled());
+			});
+
+			// cleanup
+			element.on('$destroy', function(){
+				element.draggable('destroy');
+			});
+		}
 	};
 });
 
+app.directive('dgyDroppable', function()
+{
+	return {
+		'restrict': 'A',
+		'scope': {
+			'enabled': '&dgyDroppable'
+		},
+		'link': function(scope,element,attr)
+		{
+			
+		}
+	};
+});
 
 
 /**********************************************
@@ -55,28 +96,7 @@ function AspectCtrl($scope, rootModel)
 
 
 // skill block and dependencies
-
-app.factory('SkillSets', ['rootModel', function(rootModel)
-{
-	var arr = [];
-
-	if( !rootModel.data.$resolved )
-		return arr;
-
-	for(var i=rootModel.data.totals.skill_cap; i>=0; i--)
-		{
-			var set = {
-				'label': $scope.label(i),
-				'index': i,
-				'skills': ($scope.shifted ? $scope.data.skills.shifted_lists[i] : $scope.data.skills.lists[i]) || []
-			};
-			arr.push(set);
-		}
-		return arr;
-
-}]);
-
-function SkillCtrl($scope, rootModel, SkillSets)
+function SkillCtrl($scope, rootModel)
 {
 	$scope.data = rootModel.data;
 
@@ -99,6 +119,14 @@ function SkillCtrl($scope, rootModel, SkillSets)
 			arr.push(i);
 		}
 		return arr;
+	};
+
+	$scope.skills = function(level)
+	{
+		if( $scope.shifted )
+			return $scope.data.skills.shifted_lists[level];
+		else
+			return $scope.data.skills.lists[level];
 	};
 }
 

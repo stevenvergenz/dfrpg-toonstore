@@ -118,6 +118,16 @@ p.sectionHeader {
 	font-weight: bold;
 }
 
+.noselect {
+	-webkit-user-select: none;  /* Chrome all / Safari all */
+	-moz-user-select: none;     /* Firefox all */
+	-ms-user-select: none;      /* IE 10+ */
+
+	/* No support for these yet, use at own risk */
+	-o-user-select: none;
+	user-select: none;
+}
+
 div#avatar {
 	height: 200px;
 	margin-top: 10px;
@@ -196,8 +206,8 @@ span.subtitle {
 
 #skillBlock .row {
 	display: flex;
-	margin-top: 10px;
-	margin-bottom: 10px;
+	padding-top: 7px;
+	padding-bottom: 7px;
 }
 
 #skillBlock .fieldLabel {
@@ -216,6 +226,13 @@ span.subtitle {
 
 .ui-draggable {
 	cursor: move;
+}
+.ui-draggable.ui-draggable-disabled {
+	cursor: default;
+}
+
+#skillBlock .row.hoverDropTarget {
+	background-color: lightblue /*#eef*/;
 }
 
 /*
@@ -373,10 +390,6 @@ input.stressBox.leftParen.rightParen:checked + label {
 /*
  * Fine-tune sizes on various tables
  */
-
-tr.dropHoverRow {
-	background-color: #eef;
-}
 
 div#stressBlock {
 	display: -webkit-box;
