@@ -142,3 +142,31 @@ app.controller('TotalsCtrl', ['$scope','rootModel','SharedResources', function($
 		}
 	};
 }]);
+
+
+app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
+{
+	$scope.editing = false;
+	$scope.data = rootModel.data;
+
+	$scope.manageParens = function(trackIndex, boxIndex)
+	{
+		var classes = [];
+		if( ! $scope.data.$resolved )
+			return classes;
+
+		var track = $scope.data.stress[trackIndex];
+		if( track && track.toughness != 0 && boxIndex == track.boxes.length-track.toughness )
+			classes.push('leftParen');
+		if( track && track.toughness != 0 && boxIndex == track.boxes.length-1 )
+			classes.push('rightParen');
+		return classes;
+	};
+
+	$scope.armorText = function(trackIndex, armorIndex)
+	{
+		var armor = $scope.data.stress[trackIndex].armor[armorIndex];
+		return 'Armor: '+armor.strength+' vs '+armor.vs;
+	};
+}]);
+
