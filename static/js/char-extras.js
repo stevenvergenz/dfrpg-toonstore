@@ -6,7 +6,6 @@ var app = angular.module('charsheet', ['ngResource']);
 app.service('rootModel', ['$rootScope', '$resource', function($rootScope, $resource)
 {
 	this._resource = $resource('json', {}, {cache:true});
-
 	this.data = this._resource.get();
 }]);
 
@@ -71,6 +70,64 @@ app.directive('dgyDroppable', function()
 		}
 	};
 });
+
+app.service('SharedResources', ['rootModel', function(rootModel)
+{
+	var self = this;
+	self.shifted = false;
+
+	// select correct list
+	self.skills = function(level)
+	{
+		if( !rootModel.data.$resolved )
+			return [];
+
+		if( self.shifted )
+			return rootModel.data.skills.shifted_lists[level];
+		else
+			return rootModel.data.skills.lists[level];
+	};
+
+	// convenience label function
+	self.skillLabel = function(value){
+		var ladder = ['Mediocre (+0)', 'Average (+1)', 'Fair (+2)', 'Good (+3)', 'Great (+4)', 'Superb (+5)', 'Fantastic (+6)', 'Epic (+7)', 'Legendary (+8)'];
+		return ladder[value];
+	};
+
+	self.skillPointsSpent = function(){
+		var spent = 0;
+		for(var i=0; i<8; i++){
+			spent += i * self.skills(i).length;
+		}
+		return spent;
+	};
+
+	// calculate skill points available
+	self.skillPointsAvailable = function(){
+		if( !rootModel.data.$resolved )
+			return;
+		else
+			return rootModel.data.totals.skills_total - self.skillPointsSpent();
+	};
+
+	self.refreshSpent = function(){
+		if( !rootModel.data.$resolved )
+			return;
+
+		var total = 0;
+		for( var i=0; i<rootModel.data.powers.length; i++ ){
+			total += rootModel.data.powers[i].cost;
+		}
+		return total;
+	};
+
+	self.adjustedRefresh = function(){
+		if( !rootModel.data.$resolved )
+			return;
+
+		return rootModel.data.totals.base_refresh + self.refreshSpent();
+	};
+}]);
 
 // special global-scope function to upload avatar
 function uploadAvatar()

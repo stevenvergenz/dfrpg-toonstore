@@ -129,9 +129,11 @@ function newCharacterRequest(req,res)
 			'severity': 'Severe','mode': 'Any','used': false,'aspect': ''},{
 			'severity': 'Extreme','mode': 'Any','used': false,'aspect': 'Replace permanent'}],
 		'totals': {
-			'power_level': 'Submerged','base_refresh': 10,'skill_cap': 5,'skills_total': 35,'fate_points': 0},
+			'base_refresh': 10,'skill_cap': 5,'skills_total': 35,'fate_points': 0},
 		'skills': {
-			'lists': []
+			'lists': [[],[],[],[],[],[],[],[],[]],
+			'shifted_lists': [[],[],[],[],[],[],[],[],[]],
+			'is_shifter': false
 		},
 		'powers': []
 	};
