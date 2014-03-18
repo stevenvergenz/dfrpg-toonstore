@@ -152,16 +152,19 @@ app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
 	$scope.boxes = function(trackIndex)
 	{
 		if( $scope.data.stress.length <= trackIndex )
-			return [];
+			return undefined;
 
 		var track = $scope.data.stress[trackIndex];
 		if( !track.boxes )
 			track.boxes = [];
 
-		while( track.boxes.length < track.strength )
-			track.boxes.push( false );
+		if( track.boxes.length < track.strength )
+			while( track.boxes.length < track.strength )
+				track.boxes.push( false );
+		else if( track.boxes.length > track.strength )
+			track.boxes = track.boxes.slice(0, track.strength);
 
-		return track.boxes.slice(0, track.strength);
+		return track.boxes;
 	};
 
 	$scope.manageParens = function(trackIndex, boxIndex)
@@ -188,8 +191,15 @@ app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
 		$scope.data.stress[trackIndex].armor.push( {vs:'source', strength:0} );
 	};
 
-	$scope.deleteTrack = function(trackIndex){
-		$scope.data.stress.splice(trackIndex,1);
+	$scope.addTrack = function(){
+		$scope.data.stress.push({
+			'name': 'Stress',
+			'skill': 'Skill',
+			'toughness': 0,
+			'strength': 2,
+			'boxes': [false,false],
+			'armor': []
+		});
 	};
 }]);
 

@@ -238,19 +238,16 @@ block content
 						input(type='number', ng-model='track.toughness')
 					.button-section
 						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_270_shield.png', ng-click='addArmorTo($index)')
-						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='deleteTrack($index)')
+						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='data.stress.splice($index,1)')
 
-				// ko foreach: armor
-				.track(ng-repeat-end)
+				.track(ng-repeat-end, ng-repeat='armor in data.stress[trackIndex].armor')
 					span Armor:
-					input(type='number', data-bind='value: strength')
+					input(type='number', ng-model='armor.strength')
 					span  vs. 
-					input(type='text', data-bind='value: vs')
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
-						data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}')
-				// /ko
+					input(type='text', ng-model='armor.vs')
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='data.stress[trackIndex].armor.splice(armor,1)')
 
 
-			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addTrack()')
 
 
