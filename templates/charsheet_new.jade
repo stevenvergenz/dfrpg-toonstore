@@ -202,7 +202,7 @@ block content
 				'name': 'Social','skill': 'Presence','toughness': 0,'boxes': [{'used': false},{'used':false}],'armor': []}],
 
 
-			#stressBlock(ng-hide='editing')
+			#stressBlock
 				.track
 					.rowHeader
 					.boxes
@@ -216,8 +216,8 @@ block content
 						span.subtitle ({{track.skill}})
 					.boxes
 						.box(ng-repeat='box in [0,1,2,3,4,5,6,7]')
-							input.stressBox(type='checkbox', id='{{track.name}}-{{track.skill}}-{{box}}',
-								ng-model='track.boxes[box].used', ng-class='manageParens(trackIndex,box)', ng-disabled='!track.boxes[box]')
+							input.stressBox(type='checkbox', id='{{track.name}}-{{track.skill}}-{{box}}', ng-model='boxes(trackIndex)[box]',
+								ng-class='manageParens(trackIndex,box)', ng-disabled='box >= data.stress[trackIndex].strength')
 							if logged_user == owner
 								label(for='{{track.name}}-{{track.skill}}-{{box}}')
 							else
@@ -226,25 +226,22 @@ block content
 				.track(ng-repeat-end, ng-repeat='armor in track.armor') {{armorText(trackIndex,$index)}}
 
 			#stressEditBlock(ng-show='editing')
-				// ko foreach: stress
-				.track
+				.track(ng-repeat-start='track in data.stress', ng-init='trackIndex = $index')
 					.section
-						input(type='text', data-bind='value: name')
-						input(type='text', data-bind='value: skill')
+						input(type='text', ng-model='track.name')
+						input(type='text', ng-model='track.skill')
 					.section
 						label Strength
-						input(type='number', data-bind='value: strength')
+						input(type='number', ng-model='track.strength')
 					.section
 						label Tough
-						input(type='number', data-bind='value: toughness')
+						input(type='number', ng-model='track.toughness')
 					.button-section
-						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_270_shield.png',
-							data-bind='attr: {onclick: "addArmorTo("+$index()+")"}')
-						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
-							data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}')
+						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_270_shield.png', ng-click='addArmorTo($index)')
+						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='deleteTrack($index)')
 
 				// ko foreach: armor
-				.track
+				.track(ng-repeat-end)
 					span Armor:
 					input(type='number', data-bind='value: strength')
 					span  vs. 
@@ -253,7 +250,6 @@ block content
 						data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}')
 				// /ko
 
-				// /ko
 
 			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
 

@@ -149,6 +149,21 @@ app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
 	$scope.editing = false;
 	$scope.data = rootModel.data;
 
+	$scope.boxes = function(trackIndex)
+	{
+		if( $scope.data.stress.length <= trackIndex )
+			return [];
+
+		var track = $scope.data.stress[trackIndex];
+		if( !track.boxes )
+			track.boxes = [];
+
+		while( track.boxes.length < track.strength )
+			track.boxes.push( false );
+
+		return track.boxes.slice(0, track.strength);
+	};
+
 	$scope.manageParens = function(trackIndex, boxIndex)
 	{
 		var classes = [];
@@ -167,6 +182,14 @@ app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
 	{
 		var armor = $scope.data.stress[trackIndex].armor[armorIndex];
 		return 'Armor: '+armor.strength+' vs '+armor.vs;
+	};
+
+	$scope.addArmorTo = function(trackIndex){
+		$scope.data.stress[trackIndex].armor.push( {vs:'source', strength:0} );
+	};
+
+	$scope.deleteTrack = function(trackIndex){
+		$scope.data.stress.splice(trackIndex,1);
 	};
 }]);
 

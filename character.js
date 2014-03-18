@@ -120,9 +120,9 @@ function newCharacterRequest(req,res)
 			'trouble': {'name': '', 'description': ''},
 			'aspects': []},
 		'stress': [{
-			'name': 'Physical','skill': 'Endurance','toughness': 0,'boxes': [{'used': false},{'used':false}],'armor': []},{
-			'name': 'Mental','skill': 'Conviction','toughness': 0,'boxes': [{'used': false},{'used':false}],'armor': []},{
-			'name': 'Social','skill': 'Presence','toughness': 0,'boxes': [{'used': false},{'used':false}],'armor': []}],
+			'name': 'Physical','skill': 'Endurance','toughness': 0, 'strength': 2, 'armor': []},{
+			'name': 'Mental','skill': 'Conviction','toughness': 0,'strength': 2,'armor': []},{
+			'name': 'Social','skill': 'Presence','toughness': 0,'strength': 2,'armor': []}],
 		'consequences': [{
 			'severity': 'Mild','mode': 'Any','used': false,'aspect': ''},{
 			'severity': 'Moderate','mode': 'Any','used': false,'aspect': ''},{
