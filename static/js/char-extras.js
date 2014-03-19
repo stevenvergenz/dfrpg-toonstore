@@ -9,14 +9,14 @@ app.service('rootModel', ['$rootScope','$timeout','$resource', function($rootSco
 		'get': {
 			'method': 'GET',
 			'transformResponse': function(data,headers){
-				$timeout(function(){$rootScope.$broadcast('is_clean');}, 500);
+				$timeout(function(){$rootScope.$broadcast('is_clean');}, 100);
 				return angular.fromJson(data);
 			}
 		},
 		'save': {
 			'method': 'POST',
 			'transformResponse': function(data,headers){
-				$timeout(function(){$rootScope.$broadcast('is_clean');}, 500);
+				$timeout(function(){$rootScope.$broadcast('is_clean');}, 100);
 				return angular.fromJson(data);
 			}
 		}
@@ -43,6 +43,23 @@ app.directive('dgyNotify', function()
 		}
 	};
 });
+
+app.directive('resizingtextarea', function()
+{
+	return {
+		'restrict': 'E',
+		'template': '<textarea ng-change="adjust()" ng-keypress="adjust()"></textarea>',
+		'replace': true,
+		'link': function(scope,element,attr){
+			scope.adjust = function(){
+				console.log('more stuff');
+				this.style.height = 0;
+				this.style.height = this.scrollHeight+"px";
+			}
+		}
+	};
+});
+
 
 /*
  * Custom directive to enable drag/dropping

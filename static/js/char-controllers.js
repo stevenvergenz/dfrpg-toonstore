@@ -231,3 +231,63 @@ app.controller('StressTrackCtrl', ['$scope', 'rootModel', function($scope,rootMo
 		$scope.$emit('is_dirty');
 	};
 }]);
+
+
+// consequence controller
+//
+app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope,rootModel)
+{
+	$scope.editing = false;
+
+	$scope.magnitude = function(severity)
+	{
+		switch(severity.toLowerCase()){
+			case "mild": return -2;
+			case "moderate": return -4;
+			case "severe": return -6;
+			case "extreme": return -8;
+		}
+	};
+
+	$scope.stressTypes = function()
+	{
+		var types = ['Any'];
+		if( !$scope.data.$resolved )
+			return types;
+
+		for( var i in $scope.data.stress ){
+			if( types.indexOf($scope.data.stress[i].name) == -1 ){
+				types.push( $scope.data.stress[i].name );
+			}
+		}
+		return types;
+
+	};
+
+	$scope.addConsequence = function()
+	{
+		data.consequences.push({
+			'severity': 'Mild',
+			'mode': 'Any',
+			'used': false,
+			'aspect': ''
+		});
+		$scope.$emit('is_dirty');
+	};
+
+	$scope.removeConsequence = function(i){
+		$scope.data.consequences.splice(i,1);
+		$scope.$emit('is_dirty');
+	};
+
+	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
+	$scope.$on('is_clean', function(){ $scope.dirty = false; });
+}]);
+
+
+app.controller('ConseqCtrl', ['$scope', function($scope)
+{
+	$scope.data = $scope.$parent.con;
+	$scope.editing = false;
+}]);
+

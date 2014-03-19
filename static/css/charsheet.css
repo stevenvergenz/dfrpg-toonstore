@@ -663,6 +663,11 @@ div#stressBlock {
 #conseqBlock .aspect {
 	text-align: right;
 	max-width: 50%;
+	font-family: 'Metamorphous',cursive;
+	font-size: 12pt;
+	vertical-align: middle;
+	border: none;
+	resize: none;
 }
 
 #conseqBlock .removeButton {
