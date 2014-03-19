@@ -3,12 +3,46 @@ var app = angular.module('charsheet', ['ngResource']);
 /*
  * Retrieve the JSON data from server
  */
-app.service('rootModel', ['$rootScope', '$resource', function($rootScope, $resource)
+app.service('rootModel', ['$rootScope','$timeout','$resource', function($rootScope,$timeout,$resource)
 {
-	this._resource = $resource('json', {}, {cache:true});
+	this._resource = $resource('json', {}, {
+		'get': {
+			'method': 'GET',
+			'transformResponse': function(data,headers){
+				$timeout(function(){$rootScope.$broadcast('is_clean');}, 500);
+				return angular.fromJson(data);
+			}
+		},
+		'save': {
+			'method': 'POST',
+			'transformResponse': function(data,headers){
+				$timeout(function(){$rootScope.$broadcast('is_clean');}, 500);
+				return angular.fromJson(data);
+			}
+		}
+	});
+
 	this.data = this._resource.get();
+
+	$rootScope.data = this.data;
+
+	$rootScope.$on('is_dirty', function(){ $rootScope.dirty = true; });
+	$rootScope.$on('is_clean', function(){ $rootScope.dirty = false; });
 }]);
 
+app.directive('dgyNotify', function()
+{
+	return {
+		'restrict': 'A',
+		'link': function(scope,element,attr){
+			if( attr.ngModel ){
+				scope.$watch(attr.ngModel, function(newVal,oldVal){
+					scope.$emit('is_dirty');
+				});
+			}
+		}
+	};
+});
 
 /*
  * Custom directive to enable drag/dropping

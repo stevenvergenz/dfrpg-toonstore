@@ -10,10 +10,12 @@ var app = angular.module('charsheet');
 
 // handle general panel
 
-app.controller('GeneralCtrl', ['$scope','rootModel', function($scope, rootModel)
+app.controller('GeneralCtrl', ['$scope','rootModel','$rootScope', function($scope, rootModel, $rootScope)
 {
-	$scope.data = rootModel.data;
 	$scope.editing = false;
+
+	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
+	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);
 
 
@@ -21,7 +23,6 @@ app.controller('GeneralCtrl', ['$scope','rootModel', function($scope, rootModel)
 
 app.controller('AspectCtrl', ['$scope','rootModel', function($scope, rootModel)
 {
-	$scope.data = rootModel.data;
 	$scope.editing = false;
 
 	$scope.addAspect = function(){
@@ -33,6 +34,9 @@ app.controller('AspectCtrl', ['$scope','rootModel', function($scope, rootModel)
 		console.log('Removing aspect at ', index);
 		$scope.data.aspects.aspects.splice(index,1);
 	};
+
+	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
+	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);
 
 
@@ -40,7 +44,6 @@ app.controller('AspectCtrl', ['$scope','rootModel', function($scope, rootModel)
 //
 app.controller('SkillCtrl', ['$scope','rootModel','SharedResources', function($scope, rootModel, SharedResources)
 {
-	$scope.data = rootModel.data;
 	$scope.editing = false;
 
 	$scope.shifted = false;
@@ -82,6 +85,7 @@ app.controller('SkillCtrl', ['$scope','rootModel','SharedResources', function($s
 	{
 		$scope.skills(0).push(skillName);
 		$scope.skills(0).sort();
+		$scope.$emit('is_dirty');
 	};
 
 
@@ -106,11 +110,15 @@ app.controller('SkillCtrl', ['$scope','rootModel','SharedResources', function($s
 
 			// update ui
 			$scope.$apply();
+			$scope.$emit('is_dirty');
 
 			console.log('Moved skill from', draggedLevel, 'to', droppedLevel);
 		}
 	};
 
+
+	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
+	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);
 
 
@@ -118,7 +126,6 @@ app.controller('SkillCtrl', ['$scope','rootModel','SharedResources', function($s
 //
 app.controller('TotalsCtrl', ['$scope','rootModel','SharedResources', function($scope,rootModel,SharedResources)
 {
-	$scope.data = rootModel.data;
 	$scope.editing = false;
 
 	$scope.skillLabel = SharedResources.skillLabel;
@@ -144,6 +151,9 @@ app.controller('TotalsCtrl', ['$scope','rootModel','SharedResources', function($
 			return 'Submerged';
 		}
 	};
+
+	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
+	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);
 
 
@@ -152,7 +162,6 @@ app.controller('TotalsCtrl', ['$scope','rootModel','SharedResources', function($
 app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
 {
 	$scope.editing = false;
-	$scope.data = rootModel.data;
 
 	$scope.addTrack = function(){
 		$scope.data.stress.push({
@@ -163,7 +172,11 @@ app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
 			'boxes': [false,false,null,null,null,null,null,null],
 			'armor': []
 		});
+		$scope.$emit('is_dirty');
 	};
+
+	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
+	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);
 
 
@@ -205,9 +218,16 @@ app.controller('StressTrackCtrl', ['$scope', 'rootModel', function($scope,rootMo
 
 	$scope.addArmor = function(){
 		$scope.data.armor.push( {vs:'source', strength:0} );
+		$scope.$emit('is_dirty');
+	};
+
+	$scope.removeArmor = function(i){
+		$scope.data.armor.splice(i,1);
+		$scope.$emit('is_dirty');
 	};
 
 	$scope.delete = function(){
 		rootModel.data.stress.splice($scope.index,1);
+		$scope.$emit('is_dirty');
 	};
 }]);

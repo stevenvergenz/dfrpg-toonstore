@@ -12,6 +12,19 @@ ul.navmenu {
 	background-color: #4a4a72;
 }
 
+div.dirty {
+	border: solid #f44 1px !important;
+}
+
+a.dirty {
+	color: #f44;
+}
+
+a.dirty::before {
+	content: ">>";
+
+}
+
 span.subarrow {
 	background-image: url('/static/css/ui-darkness/images/ui-icons_ffffff_256x240.png');
 	background-position: -32px 0px;
