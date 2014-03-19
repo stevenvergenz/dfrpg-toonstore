@@ -196,58 +196,56 @@ block content
 			p.sectionHeader Stress
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
-			//'stress': [{
-				'name': 'Physical','skill': 'Endurance','toughness': 0,'boxes': [{'used': false},{'used':false}],'armor': []},{
-				'name': 'Mental','skill': 'Conviction','toughness': 0,'boxes': [{'used': false},{'used':false}],'armor': []},{
-				'name': 'Social','skill': 'Presence','toughness': 0,'boxes': [{'used': false},{'used':false}],'armor': []}],
 
-
-			#stressBlock
+			#stressBlock(ng-hide='editing')
 				.track
 					.rowHeader
 					.boxes
 						.colHeader(ng-repeat='i in [1,2,3,4,5,6,7,8]')
 							span {{i}}
 
-				.track(ng-repeat-start='track in data.stress', ng-init='trackIndex = $index')
-					.rowHeader
-						span {{track.name}}
-						br
-						span.subtitle ({{track.skill}})
-					.boxes
-						.box(ng-repeat='box in [0,1,2,3,4,5,6,7]')
-							input.stressBox(type='checkbox', id='{{track.name}}-{{track.skill}}-{{box}}', ng-model='boxes(trackIndex)[box]',
-								ng-class='manageParens(trackIndex,box)', ng-disabled='box >= data.stress[trackIndex].strength')
-							if logged_user == owner
-								label(for='{{track.name}}-{{track.skill}}-{{box}}')
-							else
-								label
+				div(ng-repeat='track in data.stress', ng-controller='StressTrackCtrl', style='margin-bottom: 5px;')
+					.track
+						.rowHeader
+							span {{data.name}}
+							br
+							span.subtitle ({{data.skill}})
+						.boxes
+							.box(ng-repeat='box in data.boxes track by $index')
+								input.stressBox(type='checkbox', id='{{data.name}}-{{data.skill}}-{{$index}}', ng-model='data.boxes[$index]',
+									ng-class='manageParens($index)', ng-disabled='box === null')
+								if logged_user == owner
+									label(for='{{data.name}}-{{data.skill}}-{{$index}}')
+								else
+									label
 
-				.track(ng-repeat-end, ng-repeat='armor in track.armor') {{armorText(trackIndex,$index)}}
+					.track(ng-repeat='armor in data.armor') Armor: {{armor.strength}} vs. {{armor.vs}}
 
 			#stressEditBlock(ng-show='editing')
-				.track(ng-repeat-start='track in data.stress', ng-init='trackIndex = $index')
-					.section
-						input(type='text', ng-model='track.name')
-						input(type='text', ng-model='track.skill')
-					.section
-						label Strength
-						input(type='number', ng-model='track.strength')
-					.section
-						label Tough
-						input(type='number', ng-model='track.toughness')
-					.button-section
-						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_270_shield.png', ng-click='addArmorTo($index)')
-						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='data.stress.splice($index,1)')
 
-				.track(ng-repeat-end, ng-repeat='armor in data.stress[trackIndex].armor')
-					span Armor:
-					input(type='number', ng-model='armor.strength')
-					span  vs. 
-					input(type='text', ng-model='armor.vs')
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='data.stress[trackIndex].armor.splice(armor,1)')
+				div(ng-repeat='track in data.stress', ng-controller='StressTrackCtrl')
+					.track
+						.section
+							input(type='text', ng-model='data.name')
+							input(type='text', ng-model='data.skill')
+						.section
+							label Strength
+							input(type='number', ng-model='data.strength')
+						.section
+							label Tough
+							input(type='number', ng-model='data.toughness')
+						.button-section
+							input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_270_shield.png', ng-click='addArmor()')
+							input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='delete()')
 
+					.track(ng-repeat='armor in data.armor')
+						span  Armor:
+						input(type='number', ng-model='armor.strength')
+						span  vs. 
+						input(type='text', ng-model='armor.vs')
+						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='data.armor.splice($index,1)')
+
+					hr(ng-hide='$last')
 
 			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addTrack()')
-
 

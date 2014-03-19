@@ -37,6 +37,7 @@ app.controller('AspectCtrl', ['$scope','rootModel', function($scope, rootModel)
 
 
 // skill block and dependencies
+//
 app.controller('SkillCtrl', ['$scope','rootModel','SharedResources', function($scope, rootModel, SharedResources)
 {
 	$scope.data = rootModel.data;
@@ -113,6 +114,8 @@ app.controller('SkillCtrl', ['$scope','rootModel','SharedResources', function($s
 }]);
 
 
+// manage miscellaneous fields
+//
 app.controller('TotalsCtrl', ['$scope','rootModel','SharedResources', function($scope,rootModel,SharedResources)
 {
 	$scope.data = rootModel.data;
@@ -144,52 +147,12 @@ app.controller('TotalsCtrl', ['$scope','rootModel','SharedResources', function($
 }]);
 
 
+// manage the set of stress tracks
+//
 app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
 {
 	$scope.editing = false;
 	$scope.data = rootModel.data;
-
-	$scope.boxes = function(trackIndex)
-	{
-		if( $scope.data.stress.length <= trackIndex )
-			return undefined;
-
-		var track = $scope.data.stress[trackIndex];
-		if( !track.boxes )
-			track.boxes = [];
-
-		if( track.boxes.length < track.strength )
-			while( track.boxes.length < track.strength )
-				track.boxes.push( false );
-		else if( track.boxes.length > track.strength )
-			track.boxes = track.boxes.slice(0, track.strength);
-
-		return track.boxes;
-	};
-
-	$scope.manageParens = function(trackIndex, boxIndex)
-	{
-		var classes = [];
-		if( ! $scope.data.$resolved )
-			return classes;
-
-		var track = $scope.data.stress[trackIndex];
-		if( track && track.toughness != 0 && boxIndex == track.boxes.length-track.toughness )
-			classes.push('leftParen');
-		if( track && track.toughness != 0 && boxIndex == track.boxes.length-1 )
-			classes.push('rightParen');
-		return classes;
-	};
-
-	$scope.armorText = function(trackIndex, armorIndex)
-	{
-		var armor = $scope.data.stress[trackIndex].armor[armorIndex];
-		return 'Armor: '+armor.strength+' vs '+armor.vs;
-	};
-
-	$scope.addArmorTo = function(trackIndex){
-		$scope.data.stress[trackIndex].armor.push( {vs:'source', strength:0} );
-	};
 
 	$scope.addTrack = function(){
 		$scope.data.stress.push({
@@ -197,9 +160,54 @@ app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
 			'skill': 'Skill',
 			'toughness': 0,
 			'strength': 2,
-			'boxes': [false,false],
+			'boxes': [false,false,null,null,null,null,null,null],
 			'armor': []
 		});
 	};
 }]);
 
+
+// manage a single stress track
+//
+app.controller('StressTrackCtrl', ['$scope', 'rootModel', function($scope,rootModel)
+{
+	$scope.data = $scope.$parent.track;
+	$scope.index = $scope.$parent.$index;
+
+	// manage strength -> boxes mapping
+	$scope.$watch('data.strength', function(newVal, oldVal)
+	{
+		// maintain length
+		while( $scope.data.boxes.length < 8 )
+			$scope.data.boxes.push(null);
+
+		for(var i=0; i<8; i++)
+		{
+			// make legit boxes before strength
+			if( i < $scope.data.strength && $scope.data.boxes[i] === null )
+				$scope.data.boxes[i] = false;
+
+			// strip out boxes after strength
+			else if( i >= $scope.data.strength && $scope.data.boxes[i] !== null )
+				$scope.data.boxes[i] = null;
+		}
+	});
+	
+	$scope.manageParens = function(boxIndex)
+	{
+		var classes = [];
+		if( $scope.data.toughness != 0 && boxIndex == $scope.data.strength-$scope.data.toughness )
+			classes.push('leftParen');
+		if( $scope.data.toughness != 0 && boxIndex == $scope.data.strength-1 )
+			classes.push('rightParen');
+		return classes;
+	};
+
+	$scope.addArmor = function(){
+		$scope.data.armor.push( {vs:'source', strength:0} );
+	};
+
+	$scope.delete = function(){
+		rootModel.data.stress.splice($scope.index,1);
+	};
+}]);
