@@ -48,21 +48,48 @@ app.directive('resizingtextarea', function()
 {
 	return {
 		'restrict': 'E',
-		'template': '<textarea ng-change="adjust()" ng-keypress="adjust()"></textarea>',
+		'template': '<textarea></textarea>',
 		'replace': true,
-		'link': function(scope,element,attr){
-			scope.adjust = function(){
-				console.log('more stuff');
-				this.style.height = 0;
-				this.style.height = this.scrollHeight+"px";
-			}
+		'link': function($scope,elem,attrs)
+		{
+			elem.bind('keydown', function(evt){
+				var element = evt.target;
+				if( evt.which === 13 || evt.which === 27 ){
+					evt.preventDefault();
+					element.blur();
+				}
+			});
+
+			elem.bind('keyup', 'blur', function(evt)
+			{
+				var element = evt.target;
+				$(element).height(0);
+				var height = $(element)[0].scrollHeight;
+				$(element).height(height);
+			});
+
+			elem.bind('click', function(evt){
+				if(evt.preventDefault)
+					evt.preventDefault();
+				var elem = $(evt.target);
+				if( !elem.attr('readonly') )
+					elem.focus().select();
+			});
+
+			setTimeout(function()
+			{
+				var element = elem;
+				$(element).height(0);
+				var height = $(element)[0].scrollHeight;
+				$(element).height(height);
+			}, 100);
 		}
 	};
 });
 
 
 /*
- * Custom directive to enable drag/dropping
+  Custom directive to enable drag/dropping
  */
 
 app.directive('dgyDraggable', function()
@@ -121,6 +148,40 @@ app.directive('dgyDroppable', function()
 		}
 	};
 });
+
+
+app.filter('conseqSort', function()
+{
+	function sort(left,right){
+		var severity = ['Mild', 'Moderate', 'Severe', 'Extreme'];
+		if( severity.indexOf(left.severity) < severity.indexOf(right.severity) ){
+			return -1;
+		}
+		else if( severity.indexOf(left.severity) > severity.indexOf(right.severity) ){
+			return 1;
+		}
+		else {
+			if( left.mode < right.mode ){
+				return -1;
+			}
+			else if( left.mode > right.mode ){
+				return 1;
+			}
+			else {
+				return 0;
+			}
+		}
+	}
+
+	return function(list)
+	{
+		if(list){
+			list.sort(sort);
+		}
+		return list;
+	};
+});
+
 
 app.service('SharedResources', ['rootModel', function(rootModel)
 {

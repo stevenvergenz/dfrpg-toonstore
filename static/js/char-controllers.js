@@ -266,7 +266,7 @@ app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope,rootMod
 
 	$scope.addConsequence = function()
 	{
-		data.consequences.push({
+		$scope.data.consequences.push({
 			'severity': 'Mild',
 			'mode': 'Any',
 			'used': false,
@@ -284,10 +284,4 @@ app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope,rootMod
 	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);
 
-
-app.controller('ConseqCtrl', ['$scope', function($scope)
-{
-	$scope.data = $scope.$parent.con;
-	$scope.editing = false;
-}]);
 

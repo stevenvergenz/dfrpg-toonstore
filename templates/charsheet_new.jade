@@ -250,13 +250,13 @@ block content
 			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addTrack()')
 
 
-		#consequences.sheet-panel(ng-controller='ConsequenceCtrl')
+		#consequences.sheet-panel(ng-controller='ConsequenceCtrl', ng-class='{dirty: dirty}')
 			a#conseq
 			p.sectionHeader Consequences
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
-			#conseqBlock(ng-repeat='con in data.consequences')
+			#conseqBlock(ng-repeat='con in data.consequences | conseqSort')
 				.row(ng-class='{"top-divider": !$first}')
 					.horizgroup
 						input.removeButton(type='image', ng-show='editing', ng-click='removeConsequence($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
@@ -270,17 +270,10 @@ block content
 								option(value='Extreme') Extreme (-8)
 							select(dgy-notify, ng-show='editing', ng-model='con.mode', ng-options='type for type in stressTypes()')
 
-					//.aspect(ng-controller='ConseqCtrl')
-						if logged_user == owner
-							span(ng-hide='editing', ng-class='{grey: data.aspect==""}', ng-click='editing=true') {{data.aspect=='' ? 'Unused' : data.aspect}}
-						else
-							span(ng-hide='editing', ng-class='{grey: data.aspect==""}') {{data.aspect=='' ? 'Unused' : data.aspect}}
-							
-					resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder='Unused')
-
-					
-			div(ng-repeat='i in data.consequences')
-				p {{i|json}}
+					if logged_user == owner
+						resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder='Unused')
+					else
+						resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder='Unused', readonly='readonly')
 
 			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addConsequence()')
 
