@@ -285,3 +285,29 @@ app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope,rootMod
 }]);
 
 
+app.controller('PowersCtrl', ['$scope','rootModel','SharedResources', function($scope,rootModel,SharedResources)
+{
+	$scope.editing = false;
+
+	$scope.totalAdjustment = SharedResources.refreshSpent;
+	$scope.splitDescription = function(index){
+		return $scope.data.powers[index].description.split('\n');
+	};
+
+	$scope.addPower = function(){
+		$scope.data.powers.push({
+			'cost': 0,
+			'name': 'New power',
+			'description': 'A short description'
+		});
+		$scope.$emit('is_dirty');
+	};
+
+	$scope.removePower = function(i){
+		$scope.data.powers.splice(i,1);
+		$scope.$emit('is_dirty');
+	};
+
+	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
+	$scope.$on('is_clean', function(){ $scope.dirty = false; });
+}]);

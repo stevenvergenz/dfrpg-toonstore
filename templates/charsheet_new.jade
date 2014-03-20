@@ -277,4 +277,37 @@ block content
 
 			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addConsequence()')
 
+	.sheet-panel-group
+
+		#powers.sheet-panel(ng-controller='PowersCtrl', ng-class='{dirty: dirty}')
+			a#powers
+			p.sectionHeader Stunts & Powers
+				if logged_user == owner
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
+
+			table#powerTable
+				thead: tr
+					th Cost
+					th Ability
+
+				tbody
+
+					tr(ng-repeat-start='power in data.powers', ng-hide='editing')
+						td.mainRow {{power.cost}}
+						td.mainRow {{power.name}}
+					tr(ng-show='editing')
+						td.mainRow: input(type='number', min='-8', max='8', dgy-notify, ng-model='power.cost')
+						td.mainRow: input(type='text', dgy-notify, ng-model='power.name')
+					tr(ng-hide='editing')
+						td &nbsp;
+						td: p.descriptionLine(ng-repeat='line in splitDescription($index)') {{line}}
+					tr(ng-repeat-end, ng-show='editing')
+						td: input.iconButton(type='image', dgy-notify, ng-click='removePower($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+						td: textarea(dgy-notify, ng-model='power.description')
+
+					tr
+						td.mainRow(style='border-top: solid black 1px;') {{totalAdjustment()}}
+						td.mainRow Total Refresh Adjustment
+
+			input.iconButton(type='image', dgy-notify, ng-show='editing', ng-click='addPower()', src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
 
