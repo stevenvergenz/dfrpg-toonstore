@@ -13,7 +13,7 @@ block append includes
 	script(src='/static/js/jquery.ui.touch-punch.min.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
-	//script(src='/static/js/angular-dragdrop/src/angular-dragdrop.min.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.js')
 	script(src='/static/js/char-extras.js')
 	script(src='/static/js/char-controllers.js')
 	script(src='/static/js/markdown.js')
@@ -37,7 +37,7 @@ block append header
 								span.subarrow
 							ul
 								li
-									input(type='checkbox')
+									input(type='checkbox', ng-controller='NotesCtrl', dgy-notify, ng-model='data.notes.enabled')
 									a(href='#notes') Notes
 								li
 									input(type='checkbox', dgy-notify, ng-model='data.skills.is_shifter')
@@ -310,4 +310,35 @@ block content
 						td.mainRow Total Refresh Adjustment
 
 			input.iconButton(type='image', dgy-notify, ng-show='editing', ng-click='addPower()', src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+
+
+		#notes.sheet-panel(ng-controller='NotesCtrl', ng-show='data.notes.enabled', ng-class='{dirty:dirty}')
+			a#notes
+			p.sectionHeader Notes
+				if logged_user == owner
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
+
+			div(ng-show='editing')
+				p Text is styled with Markdown. Click out of the text box to update preview.
+				.dgy-accordion
+					a(href='javascript:;') A Brief Primer
+					pre#primer
+						| This is a header
+						| ----------------
+						| 
+						| ## So is this
+						| 
+						| Paragraphs are separated by a blank line.
+						| 
+						| You can also **bold** and *italics*.
+						| 
+						| 1. Numeric lists start with a number.
+						| 2. See? Easy!
+						| 3. Subitems are indented 4 spaces
+						|     * But this one is an unordered list
+						|     * Another list item
+
+				textarea#editor(dgy-notify, ng-model='data.notes.text')
+
+			.inner(ng-bind-html='toHtml(data.notes.text)')
 

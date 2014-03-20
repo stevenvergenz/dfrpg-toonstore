@@ -311,3 +311,25 @@ app.controller('PowersCtrl', ['$scope','rootModel','SharedResources', function($
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
 	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);
+
+
+// notes controller
+//
+app.controller('NotesCtrl', ['$scope','rootModel', function($scope,rootModel)
+{
+	$scope.editing = false;
+
+	$scope.$watch('data.$resolved', function(){
+		if( $scope.data.$resolved && !$scope.data.notes ){
+			$scope.data.notes = {'text':'', 'enabled':false};
+		}
+	});
+
+	$scope.toHtml = function(md){
+		if(md)
+			return markdown.toHTML(md);
+	};
+
+	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
+	$scope.$on('is_clean', function(){ $scope.dirty = false; });
+}]);

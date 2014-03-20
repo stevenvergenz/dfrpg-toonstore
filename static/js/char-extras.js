@@ -1,4 +1,4 @@
-var app = angular.module('charsheet', ['ngResource']);
+var app = angular.module('charsheet', ['ngResource','ngSanitize']);
 
 /*
  * Retrieve the JSON data from server
@@ -148,6 +148,25 @@ app.directive('dgyDroppable', function()
 		}
 	};
 });
+
+
+app.directive('dgyAccordion', function()
+{	
+	return {
+		'restrict': 'AC',
+		'link': function(scope,element,attr)
+		{
+			// initialize
+			element.accordion({collapsible: true, active: false, heightStyle: 'content', icons: false});
+
+			// cleanup
+			element.bind('$destroy', function(){
+				element.accordion('destroy');
+			});
+		}
+	};
+});
+
 
 
 app.filter('conseqSort', function()
