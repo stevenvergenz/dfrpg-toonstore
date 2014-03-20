@@ -10,7 +10,7 @@ var app = angular.module('charsheet');
 
 // handle general panel
 
-app.controller('GeneralCtrl', ['$scope','rootModel','$rootScope', function($scope, rootModel, $rootScope)
+app.controller('GeneralCtrl', ['$scope', function($scope)
 {
 	$scope.editing = false;
 
@@ -21,18 +21,20 @@ app.controller('GeneralCtrl', ['$scope','rootModel','$rootScope', function($scop
 
 // handle aspects
 
-app.controller('AspectCtrl', ['$scope','rootModel', function($scope, rootModel)
+app.controller('AspectCtrl', ['$scope', function($scope)
 {
 	$scope.editing = false;
 
 	$scope.addAspect = function(){
 		console.log('Adding aspect');
 		$scope.data.aspects.aspects.push( {name: '', description: ''} );
+		$scope.$emit('is_dirty');
 	};
 
 	$scope.removeAspect = function(index){
 		console.log('Removing aspect at ', index);
 		$scope.data.aspects.aspects.splice(index,1);
+		$scope.$emit('is_dirty');
 	};
 
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
@@ -42,7 +44,7 @@ app.controller('AspectCtrl', ['$scope','rootModel', function($scope, rootModel)
 
 // skill block and dependencies
 //
-app.controller('SkillCtrl', ['$scope','rootModel','SharedResources', function($scope, rootModel, SharedResources)
+app.controller('SkillCtrl', ['$scope','SharedResources', function($scope, SharedResources)
 {
 	$scope.editing = false;
 
@@ -124,7 +126,7 @@ app.controller('SkillCtrl', ['$scope','rootModel','SharedResources', function($s
 
 // manage miscellaneous fields
 //
-app.controller('TotalsCtrl', ['$scope','rootModel','SharedResources', function($scope,rootModel,SharedResources)
+app.controller('TotalsCtrl', ['$scope','SharedResources', function($scope,SharedResources)
 {
 	$scope.editing = false;
 
@@ -159,7 +161,7 @@ app.controller('TotalsCtrl', ['$scope','rootModel','SharedResources', function($
 
 // manage the set of stress tracks
 //
-app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
+app.controller('StressCtrl', ['$scope', function($scope)
 {
 	$scope.editing = false;
 
@@ -182,7 +184,7 @@ app.controller('StressCtrl', ['$scope','rootModel', function($scope, rootModel)
 
 // manage a single stress track
 //
-app.controller('StressTrackCtrl', ['$scope', 'rootModel', function($scope,rootModel)
+app.controller('StressTrackCtrl', ['$scope', function($scope)
 {
 	$scope.data = $scope.$parent.track;
 	$scope.index = $scope.$parent.$index;
@@ -235,7 +237,7 @@ app.controller('StressTrackCtrl', ['$scope', 'rootModel', function($scope,rootMo
 
 // consequence controller
 //
-app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope,rootModel)
+app.controller('ConsequenceCtrl', ['$scope', function($scope)
 {
 	$scope.editing = false;
 
@@ -285,7 +287,7 @@ app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope,rootMod
 }]);
 
 
-app.controller('PowersCtrl', ['$scope','rootModel','SharedResources', function($scope,rootModel,SharedResources)
+app.controller('PowersCtrl', ['$scope','SharedResources', function($scope,SharedResources)
 {
 	$scope.editing = false;
 
@@ -315,7 +317,7 @@ app.controller('PowersCtrl', ['$scope','rootModel','SharedResources', function($
 
 // notes controller
 //
-app.controller('NotesCtrl', ['$scope','rootModel', function($scope,rootModel)
+app.controller('NotesCtrl', ['$scope', function($scope)
 {
 	$scope.editing = false;
 

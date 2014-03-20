@@ -11,10 +11,12 @@ block append styles
 block append includes
 	script(src='/static/js/jquery-ui-1.10.3.custom.js')
 	script(src='/static/js/jquery.ui.touch-punch.min.js')
-	script(src='/static/js/knockout-2.2.1.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.js')
+	script(src='/static/js/char-extras.js')
+	script(src='/static/js/char-controllers.js')
 	script(src='/static/js/markdown.js')
-	script(src='/static/js/viewmodel.js')
-	script(src='/static/js/charsheet.js')
 	script.
 		overrideUserRedirect = true;
 		$(document).ready(function(){
@@ -35,10 +37,10 @@ block append header
 								span.subarrow
 							ul
 								li
-									input(type='checkbox', data-bind='checked: $root.notes.enabled')
+									input(type='checkbox', dgy-notify, ng-model='data.notes.enabled')
 									a(href='#notes') Notes
 								li
-									input(type='checkbox', data-bind='checked: $root.skills.is_shifter')
+									input(type='checkbox', dgy-notify, ng-model='data.skills.is_shifter')
 									a(href='#skills') Shapeshifter
 								//li
 									input(type='checkbox')
@@ -56,275 +58,232 @@ block append header
 						li: a(href='#totals') Totals
 						li: a(href='#powers') Stunts & Powers
 
-			.navitem: a(href='javascript:;', onclick='pushToServer()') Save
+			.navitem: a(href='javascript:;', ng-class='{dirty: dirty}', ng-click='data.$save()') Save
 
 block content
 
 	.sheet-panel-group
 
-		#general.sheet-panel
-			
+		#general.sheet-panel(ng-controller="GeneralCtrl", ng-class='{dirty: dirty}')
 			p.sectionHeader
-				span(data-bind='visible: !generalEditing(), text: name')
-				input(type='text', data-bind='visible: generalEditing, value: name')
+				span(ng-hide='editing') {{data.name}}
+				input(type='text', dgy-notify, ng-show='editing', ng-model="data.name")
 				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
-						onclick='viewModel.generalEditing( !viewModel.generalEditing() )')
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
 			div
-				span(data-bind='visible: !generalEditing(), text: "("+player()+")"')
-				input(type='text', data-bind='visible: generalEditing, value: player')
+				span(ng-hide='editing') ({{data.player}})
+				input(type='text', dgy-notify, ng-show='editing', ng-model='data.player')
 
 			div#avatar
-				form(data-bind='visible: generalEditing', enctype='multipart/form-data')
-					input(name='avatar', type='file', accept='image/*', onchange='handleAvatarUpload()')
+				form(enctype='multipart/form-data', ng-show='editing')
+					input(name='avatar', type='file', accept='image/*', onchange='uploadAvatar()')
 				div#imgContainer
 					img(src='avatar', onerror='if(this.src!="/static/img/no-avatar.png")this.src="/static/img/no-avatar.png"')
-		
 
-		#aspects.sheet-panel(data-bind='with: aspects')
+
+		#aspects.sheet-panel(ng-controller='AspectCtrl', ng-class='{dirty: dirty}')
 			a#aspects
 			p.sectionHeader Aspects
 				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
-						onclick='viewModel.aspects.editing( !viewModel.aspects.editing() )')
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
 
 			.field
 				p.fieldLabel High Concept:
-				p(data-bind='visible: !editing(), text: high_concept.name')
-				input(type='text', data-bind='visible: editing, value: high_concept.name')
+				p(ng-hide='editing') {{data.aspects.high_concept.name}}
+				input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.name')
 
 			.field
 				p.fieldLabel Trouble:
-				p(data-bind='visible: !editing(), text: trouble.name')
-				input(type='text', data-bind='visible: editing, value: trouble.name')
+				p(ng-hide='editing') {{data.aspects.trouble.name}}
+				input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.name')
 
 			.field
 				p.fieldLabel Other Aspects:
-				// ko foreach: aspects
-				p(data-bind='visible: !$parent.editing(), text: name')
-				div(data-bind='if: $parent.editing')
-					input(type='text', data-bind='visible: $parent.editing, value: name')
-					input.iconButton(type='image', style='width: 15px; height: 15px;',
-						src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
-						data-bind='attr: {onclick: "removeAspect("+$index()+")"}')
-				// /ko
+				p(ng-hide='editing', ng-repeat-start='aspect in data.aspects.aspects') {{aspect.name}}
+				div(ng-show='editing', ng-repeat-end)
+					input(type='text', dgy-notify, ng-model='aspect.name')
+					input.iconButton(type='image', ng-click='removeAspect($index)',
+						style='width: 15px; height: 15px;', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
 
-			input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_190_circle_plus.png',
-				onclick='addAspect()', data-bind='visible: editing')
+			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addAspect()')
 
 
 	.sheet-panel-group
 
-		#skills.sheet-panel
+		#skills.sheet-panel(ng-controller='SkillCtrl', ng-class='{dirty: dirty}')
 			a#skills
 			p.sectionHeader Skills
-				span(data-bind='visible: $root.skills.is_shifter')  (
-					input#shifter(type='checkbox', data-bind='checked: $root.skills.shifted')
+				span(ng-show='data.skills.is_shifter')  (
+					input#shifter(type='checkbox', ng-model='shifted')
 					label(for='shifter')
 					| )
 				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
-						onclick='viewModel.skills.editing( !viewModel.skills.editing() )')
+					input.iconButton(type='image', ng-click='editing=!editing', src='/static/img/glyphicons/glyphicons_150_edit.png')
 
-
-			p(data-bind='visible: $root.skills.editing')
+			p(ng-show='editing')
 				| Drag skills to rearrange
 				br
 				| Drop on +0 to remove
 
-			table#skillTable
-				tbody(data-bind='foreach: skills.sets')
-					tr(data-bind='if: $root.skills.editing() || index != 0, droppable: $root.skills.editing')
-						th(data-bind='text: level_text')
-						td: p(data-bind='foreach: skills')
-							span(data-bind='visible: $index() != 0') , 
-							span(data-bind='draggable: $root.skills.editing')
-								span(data-bind='text: $data')
-								img(data-bind='visible: $root.skills.editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
-						
-			div(data-bind='if: skills.editing()')
-				form(onsubmit='addSkill(); return false;')
-					input#newSkill(type='text')
-					input(type='submit', value='Add skill')
-				p#validSkillLadder(data-bind='text: skills.valid')
+			#skillBlock
+				.row(dgy-droppable='editing', dgy-drop='dropHandler', ng-repeat='level in presOrder()', ng-hide='!editing && $last')
+					.fieldLabel {{label(level)}}
+					.skillList
+						.skill.noselect(dgy-draggable='editing', ng-repeat='skill in skills(level)')
+							span {{skill}}
+							img(ng-show='editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
+							span(ng-hide='$last') , 
 
-		#totals.sheet-panel(data-bind='with: totals')
+			form(ng-show='editing', ng-submit='addSkill(newSkill); newSkill=""')
+				input#newSkill(type='text', ng-model='newSkill')
+				input(type='submit', value='Add skill')
+
+			p#validSkillLadder(ng-show='editing') {{valid()}}
+
+
+		#totals.sheet-panel(ng-controller='TotalsCtrl', ng-class='{dirty: dirty}')
 			a#totals
 			if logged_user == owner
 				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
-					style='position: absolute; right: 8px;',
-					onclick='viewModel.totals.editing( !viewModel.totals.editing() )')
+					style='position: absolute; right: 8px;', ng-click='editing=!editing')
 
 			img#star(src='/static/img/pentacle.svg')
 
 			#top-container.container
 				#powerLevelContainer
-					#powerLevel(data-bind='visible: !editing()')
+					#powerLevel(ng-hide='editing')
 						span Power Level:
 						br
-						span(data-bind='text: power_level')
-					label(data-bind='if: editing') Skill Points:
+						span {{powerLevel()}}
+					label(ng-show='editing') Skill Points:
 						br
-						input(type='number', data-bind='value: skills_total')
+						input(type='number', dgy-notify, ng-model='data.totals.skills_total')
 
 				#skillCapContainer
 					#skillCap
 						span Skill Cap:
 						br
-						span(data-bind='visible: !editing(), text: skill_cap_text')
-						input(type='number', min=1, max=8, data-bind='visible: editing, value: skill_cap')
-					label(data-bind='if: editing')
+						span(ng-hide='editing') {{skillLabel(data.totals.skill_cap)}}
+						input(type='number', min=1, max=8, dgy-notify, ng-show='editing', ng-model='data.totals.skill_cap')
+					label(ng-show='editing')
 
 			#mid-container.container
 				#spent-container
-					span#skillsSpent.bubble(data-bind='text: skills_spent') 
+					span#skillsSpent.bubble {{skillPointsSpent()}}
 					span Skill Points Spent
 				#available-container
-					span#skillsAvailable.bubble(data-bind='text: skills_available')
+					span#skillsAvailable.bubble {{skillPointsAvailable()}}
 					span Available
 
 			#bottom-container.container
 				.row
-					span#baseRefresh.bubble.doubleBubble(data-bind='visible: !editing(), text: base_refresh')
-					input.bubble.doubleBubble(type='number', min=0, data-bind='visible: editing, value: base_refresh')
+					span#baseRefresh.bubble.doubleBubble(ng-hide='editing') {{data.totals.base_refresh}}
+					input.bubble.doubleBubble(type='number', min=0, dgy-notify, ng-show='editing', ng-model='data.totals.base_refresh')
 					span Base Refresh Level
 				.row
-					span#adjustedRefresh.bubble.doubleBubble(data-bind='text: adjusted_refresh')
+					span#adjustedRefresh.bubble.doubleBubble {{adjustedRefresh()}}
 					span Adjusted Refresh
 				.row
-					span#fatePoints.bubble.doubleBubble(data-bind='visible: !editing(), text: fate_points')
-					input.bubble.doubleBubble(type='number', min=0, data-bind='visible: editing, value: fate_points')
+					span#fatePoints.bubble.doubleBubble(ng-hide='editing') {{data.totals.fate_points}}
+					input.bubble.doubleBubble(type='number', min=0, dgy-notify, ng-show='editing', ng-model='data.totals.fate_points')
 					span Fate Points
-	
+
+
 	.sheet-panel-group
 
-		#stress.sheet-panel
+		#stress.sheet-panel(ng-controller='StressCtrl', ng-class='{dirty: dirty}')
 			a#stress
 			p.sectionHeader Stress
 				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
-						onclick='viewModel.stress.editing( !viewModel.stress.editing() )')
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
-
-			#stressBlock(data-bind='ifnot: $root.stress.editing')
+			#stressBlock(ng-hide='editing')
 				.track
 					.rowHeader
 					.boxes
-						for i in [1,2,3,4,5,6,7,8]
-							.colHeader
-								span= i
+						.colHeader(ng-repeat='i in [1,2,3,4,5,6,7,8]')
+							span {{i}}
 
-				// ko foreach: stress
-				.track
-					.rowHeader
-						span(data-bind='text: name')
-						br
-						span.subtitle(data-bind='text: "("+skill()+")"')
-					.boxes
-						// ko foreach: [0,1,2,3,4,5,6,7]
-						.box
-							// ko if: $parent.boxes()[$data] != undefined
-							input(type='checkbox', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}, css: $parent.boxes()[$data].icon, checked: $parent.boxes()[$data].used')
-							// /ko
-							// ko ifnot: $parent.boxes()[$data] != undefined
-							input.stressBox(type='checkbox', disabled='disabled', data-bind='attr: {id: $parent.name()+"-"+$parent.skill()+"-"+$data}')
-							// /ko
-							if logged_user == owner
-								label(data-bind='attr: {for: $parent.name()+"-"+$parent.skill()+"-"+$data}')
-							else
-								label
-						// /ko
+				div(ng-repeat='track in data.stress', ng-controller='StressTrackCtrl', style='margin-bottom: 5px;')
+					.track
+						.rowHeader
+							span {{data.name}}
+							br
+							span.subtitle ({{data.skill}})
+						.boxes
+							.box(ng-repeat='box in data.boxes track by $index')
+								input.stressBox(type='checkbox', id='{{data.name}}-{{data.skill}}-{{$index}}', dgy-notify, ng-model='data.boxes[$index]',
+									ng-class='manageParens($index)', ng-disabled='box === null')
+								if logged_user == owner
+									label(for='{{data.name}}-{{data.skill}}-{{$index}}')
+								else
+									label
 
-				// ko foreach: armor
-				.track(data-bind='text: text')
-				// /ko
+					.track(ng-repeat='armor in data.armor') Armor: {{armor.strength}} vs. {{armor.vs}}
 
-				// /ko
+			#stressEditBlock(ng-show='editing')
 
-			#stressEditBlock(data-bind='if: $root.stress.editing')
-				// ko foreach: stress
-				.track
-					.section
-						input(type='text', data-bind='value: name')
-						input(type='text', data-bind='value: skill')
-					.section
-						label Strength
-						input(type='number', data-bind='value: strength')
-					.section
-						label Tough
-						input(type='number', data-bind='value: toughness')
-					.button-section
-						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_270_shield.png',
-							data-bind='attr: {onclick: "addArmorTo("+$index()+")"}')
-						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
-							data-bind='attr: {onclick: "removeStressTrack("+$index()+")"}')
+				div(ng-repeat='track in data.stress', ng-controller='StressTrackCtrl')
+					.track
+						.section
+							input(type='text', dgy-notify, ng-model='data.name')
+							input(type='text', dgy-notify, ng-model='data.skill')
+						.section
+							label Strength
+							input(type='number', dgy-notify, ng-model='data.strength')
+						.section
+							label Tough
+							input(type='number', dgy-notify, ng-model='data.toughness')
+						.button-section
+							input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_270_shield.png', ng-click='addArmor()')
+							input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='delete()')
 
-				// ko foreach: armor
-				.track
-					span Armor:
-					input(type='number', data-bind='value: strength')
-					span  vs. 
-					input(type='text', data-bind='value: vs')
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
-						data-bind='attr: {onclick: "removeArmorFrom("+$parentContext.$index()+","+$index()+")"}')
-				// /ko
+					.track(ng-repeat='armor in data.armor')
+						span  Armor:
+						input(type='number', dgy-notify, ng-model='armor.strength')
+						span  vs. 
+						input(type='text', dgy-notify, ng-model='armor.vs')
+						input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='data.armor.splice($index,1)')
 
-				// /ko
+					hr(ng-hide='$last')
 
-			input.iconButton(type='image', data-bind='visible: $root.stress.editing',
-				src='/static/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addStressTrack()')
+			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addTrack()')
 
 
-		#consequences.sheet-panel
+		#consequences.sheet-panel(ng-controller='ConsequenceCtrl', ng-class='{dirty: dirty}')
 			a#conseq
 			p.sectionHeader Consequences
 				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
-						onclick='viewModel.consequences.editing( !viewModel.consequences.editing() )')
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
-			#conseqBlock(data-bind='foreach: consequences')
-				//hr(style='width: 100%;', data-bind='visible: $index() > 0')
-				.row(data-bind='css: {"top-divider": $index() > 0}')
+			#conseqBlock(ng-repeat='con in data.consequences | conseqSort')
+				.row(ng-class='{"top-divider": !$first}')
 					.horizgroup
-						input.removeButton(type='image', data-bind='visible: $root.consequences.editing, event: {click: removeConsequence}', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+						input.removeButton(type='image', ng-show='editing', ng-click='removeConsequence($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
 						.vertgroup
-							.header(data-bind='visible: !$root.consequences.editing(), text: severity() + " ("+magnitude()+")"')
-							.subtitle(data-bind='visible: !$root.consequences.editing(), text: mode() + " Type"')
-							select(data-bind='visible: $root.consequences.editing, value: severity')
+							.header(ng-hide='editing') {{con.severity}} ({{magnitude(con.severity)}})
+							.subtitle(ng-hide='editing') {{con.mode}} Type
+							select(dgy-notify, ng-show='editing', ng-model='con.severity')
 								option(value='Mild') Mild (-2)
 								option(value='Moderate') Moderate (-4)
 								option(value='Severe') Severe (-6)
 								option(value='Extreme') Extreme (-8)
-							select(data-bind='visible: $root.consequences.editing, options: $root.stress_types, value: mode')
+							select(dgy-notify, ng-show='editing', ng-model='con.mode', ng-options='type for type in stressTypes()')
 
-					//-input.stressBox(type='checkbox', onchange='updateConseqAspect(this)', data-bind='attr: {id: "conseq"+$index()}, checked: used')
-						if logged_user == owner
-							label(data-bind='attr: {for: "conseq"+$index()}')
-						else
-							label
-					.aspect
-						if logged_user == owner
-							span(data-bind='visible: !editing(), text: aspect() == "" ? "Unused" : aspect(), css: {grey: aspect() == ""}', onclick='focusIn(this)')
-						else
-							span(data-bind='visible: !editing(), text: aspect() == "" ? "Unused" : aspect(), css: {grey: aspect() == ""}')
-							
-						input(type='text', data-bind='visible: editing, value: aspect', onblur='focusOut(this)', onkeyup='checkReturn(this,event)', style='width: 100%;')
+					if logged_user == owner
+						resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder='Unused')
+					else
+						resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder='Unused', readonly='readonly')
 
-					
+			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addConsequence()')
 
-			input.iconButton(type='image', data-bind='visible: $root.consequences.editing',
-				src='/static/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addConsequence()')
-
-
-	
 	.sheet-panel-group
 
-		#powers.sheet-panel
+		#powers.sheet-panel(ng-controller='PowersCtrl', ng-class='{dirty: dirty}')
 			a#powers
 			p.sectionHeader Stunts & Powers
 				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
-						onclick='viewModel.powers.editing( !viewModel.powers.editing() )')
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 			table#powerTable
 				thead: tr
@@ -333,42 +292,35 @@ block content
 
 				tbody
 
-					// ko foreach: powers
-					tr(data-bind='ifnot: $root.powers.editing')
-						td.mainRow(data-bind='text: cost')
-						td.mainRow(data-bind='text: name')
-					tr(data-bind='if: $root.powers.editing')
-						td.mainRow: input(type='number', min='-8', max='8', data-bind='value: cost')
-						td.mainRow: input(type='text', data-bind='value: name')
-					tr(data-bind='if: description().length > 0 && !$root.powers.editing()')
+					tr(ng-repeat-start='power in data.powers', ng-hide='editing')
+						td.mainRow {{power.cost}}
+						td.mainRow {{power.name}}
+					tr(ng-show='editing')
+						td.mainRow: input(type='number', min='-8', max='8', dgy-notify, ng-model='power.cost')
+						td.mainRow: input(type='text', dgy-notify, ng-model='power.name')
+					tr(ng-hide='editing')
 						td &nbsp;
-						td(data-bind='foreach: description')
-							p.descriptionLine(data-bind='text: $data')
-					tr(data-bind='if: $root.powers.editing')
-						td: input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png',
-							data-bind='attr: {onclick: "removePower("+$index()+")"}')
-						td: textarea(data-bind='value: full_description')
-
-					// /ko
+						td: p.descriptionLine(ng-repeat='line in splitDescription($index)') {{line}}
+					tr(ng-repeat-end, ng-show='editing')
+						td: input.iconButton(type='image', dgy-notify, ng-click='removePower($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+						td: textarea(dgy-notify, ng-model='power.description')
 
 					tr
-						td.mainRow(style='border-top: solid black 1px;', data-bind='text: $root.totals.refresh_adjustment')
+						td.mainRow(style='border-top: solid black 1px;') {{totalAdjustment()}}
 						td.mainRow Total Refresh Adjustment
 
-			input.iconButton(type='image', data-bind='visible: powers.editing',
-				src='/static/img/glyphicons/glyphicons_190_circle_plus.png', onclick='addPower()')
+			input.iconButton(type='image', dgy-notify, ng-show='editing', ng-click='addPower()', src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
 
 
-		#notes.sheet-panel(data-bind='if: $root.notes.enabled, visible: $root.notes.enabled')
+		#notes.sheet-panel(ng-controller='NotesCtrl', ng-show='data.notes.enabled', ng-class='{dirty:dirty}')
 			a#notes
 			p.sectionHeader Notes
 				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
-						onclick='viewModel.notes.editing( !viewModel.notes.editing() )')
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
-			div(data-bind='visible: $root.notes.editing')
+			div(ng-show='editing')
 				p Text is styled with Markdown. Click out of the text box to update preview.
-				.accordion(data-bind='accordion: true')
+				.dgy-accordion
 					a(href='javascript:;') A Brief Primer
 					pre#primer
 						| This is a header
@@ -386,6 +338,7 @@ block content
 						|     * But this one is an unordered list
 						|     * Another list item
 
-				textarea#editor(data-bind='value: $root.notes.text')
+				textarea#editor(dgy-notify, ng-model='data.notes.text')
 
-			.inner(data-bind='html: $root.notes.html')
+			.inner(ng-bind-html='toHtml(data.notes.text)')
+
