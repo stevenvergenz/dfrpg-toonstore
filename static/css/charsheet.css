@@ -349,8 +349,7 @@ span.subtitle {
 	text-align: left;
 	font-family: 'Armata', sans-serif;
 	max-height: 750px;
-	overflow-y: scroll;
-	max-height: 750px;
+	overflow-y: auto;
 }
 
 /*
