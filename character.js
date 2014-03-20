@@ -129,7 +129,8 @@ function newCharacterRequest(req,res)
 			'shifted_lists': [[],[],[],[],[],[],[],[],[]],
 			'is_shifter': false
 		},
-		'powers': []
+		'powers': [],
+		'notes': {'text':'','enabled':false}
 	};
 
 	global.log('Attempting character creation');
