@@ -140,7 +140,7 @@ function newCharacterRequest(req,res)
 
 	global.log('Attempting character creation');
 	var connection = mysql.createConnection( global.config.database );
-	connection.query('INSERT INTO Characters SET created_on=NOW(), last_updated=NOW(), ?;',
+	connection.query('INSERT INTO Characters SET created_on=NOW(), ?;',
 		{'canonical_name': req.body.canon_name, 'name': req.body.name, 'owner': req.session.user,
 			'concept': req.body.concept, 'info': JSON.stringify(toon)},
 		function(err,rows,fields)
