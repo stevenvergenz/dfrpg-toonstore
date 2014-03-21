@@ -331,7 +331,7 @@ block content
 
 			div(ng-show='editing')
 				p Text is styled with Markdown. Click out of the text box to update preview.
-				.dgy-accordion
+				div(dgy-accordion='true')
 					a(href='javascript:;') A Brief Primer
 					pre#primer
 						| This is a header
@@ -351,5 +351,5 @@ block content
 
 				textarea#editor(dgy-notify, ng-model='data.notes.text')
 
-			.inner(ng-bind-html='toHtml(data.notes.text)')
+			.inner(ng-hide='editing', ng-bind-html='toHtml(data.notes.text)')
 

@@ -117,7 +117,7 @@ function transformCharacter(toon)
 
 	newtoon.notes = {
 		'text': toon.notes ? toon.notes.text : '',
-		'enabled': toon.notes ? toon.notes.enabled || false : false
+		'enabled': toon.notes && toon.notes.enabled ? toon.notes.enabled : false
 	};
 
 	return newtoon;
