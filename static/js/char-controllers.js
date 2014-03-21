@@ -300,7 +300,7 @@ app.controller('PowersCtrl', ['$scope','SharedResources', function($scope,Shared
 		$scope.data.powers.push({
 			'cost': 0,
 			'name': 'New power',
-			'description': 'A short description'
+			'description': ''
 		});
 		$scope.$emit('is_dirty');
 	};

@@ -89,21 +89,32 @@ block content
 
 			.field
 				p.fieldLabel High Concept:
-				p(ng-hide='editing') {{data.aspects.high_concept.name}}
 				input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.name')
+				textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.description')
+
+				.dgy-accordion(ng-hide='editing')
+					p {{data.aspects.high_concept.name}}
+					p.description {{data.aspects.high_concept.description}}
 
 			.field
 				p.fieldLabel Trouble:
-				p(ng-hide='editing') {{data.aspects.trouble.name}}
 				input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.name')
+				textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.description')
+				.dgy-accordion(ng-hide='editing')
+					p {{data.aspects.trouble.name}}
+					p.description {{data.aspects.trouble.description}}
 
 			.field
 				p.fieldLabel Other Aspects:
-				p(ng-hide='editing', ng-repeat-start='aspect in data.aspects.aspects') {{aspect.name}}
+				.dgy-accordion(ng-hide='editing', ng-repeat-start='aspect in data.aspects.aspects')
+					p {{aspect.name}}
+					p.description {{aspect.description}}
+
 				div(ng-show='editing', ng-repeat-end)
 					input(type='text', dgy-notify, ng-model='aspect.name')
 					input.iconButton(type='image', ng-click='removeAspect($index)',
 						style='width: 15px; height: 15px;', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+					textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='aspect.description')
 
 			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addAspect()')
 
@@ -303,7 +314,7 @@ block content
 						td: p.descriptionLine(ng-repeat='line in splitDescription($index)') {{line}}
 					tr(ng-repeat-end, ng-show='editing')
 						td: input.iconButton(type='image', dgy-notify, ng-click='removePower($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
-						td: textarea(dgy-notify, ng-model='power.description')
+						td: textarea(placeholder='Description', dgy-notify, ng-model='power.description')
 
 					tr
 						td.mainRow(style='border-top: solid black 1px;') {{totalAdjustment()}}
