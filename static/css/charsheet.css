@@ -13,7 +13,7 @@ ul.navmenu {
 }
 
 div.dirty {
-	border: solid #f44 1px !important;
+	border: solid #f44 2px !important;
 }
 
 a.dirty {
@@ -165,11 +165,11 @@ div#avatar {
 	background-color: lightgrey;
 }
 
-#aspects .dgy-accordion p {
+#aspects .ui-accordion p {
 	padding: 0;
 }
 
-#aspects .dgy-accordion p.description {
+#aspects .ui-accordion p.description {
 	padding-top: 5px;
 	padding-bottom: 5px;
 }
@@ -185,7 +185,17 @@ div#avatar {
 	font-size: 10pt;
 	margin-left: 5px;
 	margin-right: 5px;
-	text-align: left;
+}
+
+#aspects .ui-accordion:not(.ui-accordion-disabled) .ui-accordion-header::after {
+	content: "\25B2";
+	margin-left: 2px;
+	position: relative;
+	bottom: 2px;
+}
+
+#aspects .ui-accordion:not(.ui-accordion-disabled) .ui-accordion-header.ui-accordion-header-active::after {
+	content: "\25BC";
 }
 
 table p {

@@ -92,7 +92,7 @@ block content
 				input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.name')
 				textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.description')
 
-				.dgy-accordion(ng-hide='editing')
+				div(dgy-accordion='data.aspects.high_concept.description', ng-hide='editing')
 					p {{data.aspects.high_concept.name}}
 					p.description {{data.aspects.high_concept.description}}
 
@@ -100,13 +100,13 @@ block content
 				p.fieldLabel Trouble:
 				input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.name')
 				textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.description')
-				.dgy-accordion(ng-hide='editing')
+				div(dgy-accordion='data.aspects.trouble.description', ng-hide='editing')
 					p {{data.aspects.trouble.name}}
 					p.description {{data.aspects.trouble.description}}
 
 			.field
 				p.fieldLabel Other Aspects:
-				.dgy-accordion(ng-hide='editing', ng-repeat-start='aspect in data.aspects.aspects')
+				div(dgy-accordion='aspect.description', ng-hide='editing', ng-repeat-start='aspect in data.aspects.aspects')
 					p {{aspect.name}}
 					p.description {{aspect.description}}
 

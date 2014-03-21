@@ -154,10 +154,17 @@ app.directive('dgyAccordion', function()
 {	
 	return {
 		'restrict': 'AC',
+		'scope': {
+			'enabled': '&dgyAccordion'
+		},
 		'link': function(scope,element,attr)
 		{
 			// initialize
-			element.accordion({collapsible: true, active: false, heightStyle: 'content', icons: false});
+			element.accordion({collapsible: true, active: false, heightStyle: 'content', icons: false, disabled: !scope.enabled()});
+
+			scope.$watch(scope.enabled, function(){
+				element.accordion('option', 'disabled', !scope.enabled());
+			});
 
 			// cleanup
 			element.bind('$destroy', function(){
