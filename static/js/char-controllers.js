@@ -184,7 +184,7 @@ app.controller('StressCtrl', ['$scope', function($scope)
 
 // manage a single stress track
 //
-app.controller('StressTrackCtrl', ['$scope', function($scope)
+app.controller('StressTrackCtrl', ['$scope','rootModel', function($scope,rootModel)
 {
 	$scope.data = $scope.$parent.track;
 	$scope.index = $scope.$parent.$index;

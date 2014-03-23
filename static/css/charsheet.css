@@ -700,12 +700,15 @@ div#stressBlock {
 	vertical-align: middle;
 	border: none;
 	resize: none;
+	margin: 0;
+	padding: 0;
 }
 
 #conseqBlock .removeButton {
 	margin-right: 5px;
 	width: 15px;
 	height: 15px;
+	flex-shrink: 0;
 }
 
 #conseqBlock .grey {
