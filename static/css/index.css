@@ -55,6 +55,7 @@ div.error, div.warning, div.info {
 	border-radius: 5px;
 	border: solid grey 1px;
 	color: black;
+	padding: 15px;
 }
 
 div.error {
