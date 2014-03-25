@@ -1,6 +1,6 @@
 # dfrpg-toonstore
 
-View/edit/share Dresden Files character sheets online
+View/edit/share Dresden Files character sheets online. Use the hosted version at [toonstore.net](http://toonstore.net), or set up your own instance!
 
 ## Dependencies
 
