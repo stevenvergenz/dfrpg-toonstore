@@ -344,7 +344,10 @@ app.controller('CastingCtrl', ['$scope', function($scope)
 	$scope.editingRotes = false;
 	$scope.editingRules = false;
 
-	// construct new empty body
+	// used to keep track of whether or not a mod is enabled
+	$scope.modEnabled = {};
+
+	// construct new empty body if needed
 	$scope.$watch('data.$resolved', function(){
 		if( $scope.data.$resolved && !$scope.data.casting ){
 			//$scope.data.casting = {'enabled':false, 'rules':[], 'rotes':[]};
@@ -358,6 +361,26 @@ app.controller('CastingCtrl', ['$scope', function($scope)
 			]};
 		}
 	});
+
+	// produce list of mods
+	$scope.modList = function()
+	{
+		var list = [];
+		if( !$scope.data.$resolved )
+			return list;
+
+		for(var i in $scope.data.casting.rules)
+		{
+			var rule = $scope.data.casting.rules[i];
+			for(var j in rule.mods){
+				if(list.indexOf(rule.mods[j]) == -1)
+					list.push(rule.mods[j]);
+			}
+		}
+
+		list.sort();
+		return list;
+	};
 
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
 	$scope.$on('is_clean', function(){ $scope.dirty = false; });

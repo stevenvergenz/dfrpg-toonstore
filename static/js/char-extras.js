@@ -209,6 +209,16 @@ app.filter('conseqSort', function()
 });
 
 
+// replace all spaces with non-breaking spaces
+app.filter('noWrap', function()
+{
+	return function(str){
+		if(str)
+			str = str.replace(/ /g, '\xA0');
+		return str;
+	};
+});
+
 app.service('SharedResources', ['rootModel', function(rootModel)
 {
 	var self = this;

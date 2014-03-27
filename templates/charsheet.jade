@@ -337,14 +337,10 @@ block content
 
 			p(style='text-align: left;')
 				span.subheader Mods: 
-				// ko foreach: casting.mods
-				//span.spellmod(data-bind='text: $data.replace(/ /g, "\xA0"), css: {inactive: $root.casting.activeMods.indexOf($data) == -1}')
-				label.spellmod
-					span(data-bind='text: $data.replace(/ /g, "\xA0")')
-					input(type='checkbox')
-				wbr
-				// /ko
-
+				span.spellmod(ng-repeat='mod in modList()')
+					input.hide(type='checkbox', id='{{mod}}', ng-model='modEnabled[mod]')
+					label(for='{{mod}}') {{mod | noWrap}}
+					wbr
 
 			span.subheader(style='text-align: left;') Rules:
 			// ko foreach: casting.rules

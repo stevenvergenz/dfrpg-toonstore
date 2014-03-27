@@ -759,31 +759,28 @@ p.descriptionLine {
 	text-indent: -10px;
 }
 
-span.spellmod {
-	background-color: #2a2a5a;
-	color: white;
-	padding-left: 2px;
-	padding-right: 2px;
-	border-radius: 3px;
+.spellmod {
 	margin: 1px;
+	cursor: pointer;
+	line-height: 1.5em;
 }
 
-span.spellmod.inactive {
+.spellmod input[type='checkbox'] + label {
 	background-color: white;
 	color: black;
-	border: solid black 1px;
-}
 
-label.spellmod {
-	background-color: #2a2a5a;
-	color: white;
+	border: solid black 1px;
+	border-radius: 3px;
 	padding-left: 2px;
 	padding-right: 2px;
-	border-radius: 3px;
-	margin: 1px;
 }
 
-label.spellmod > input[type='checkbox'] {
+.spellmod input[type='checkbox']:checked + label {
+	background-color: #2a2a5a;
+	color: white;
+}
+
+#calc input.hide[type='checkbox'] {
 	display: none;
 }
 
