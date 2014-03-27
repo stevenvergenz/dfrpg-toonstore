@@ -354,10 +354,10 @@ app.controller('CastingCtrl', ['$scope', function($scope)
 
 			// build dummy data
 			$scope.data.casting = {'enabled':true, 'rules': [
-				{'mods': ['Blasting Rod','Fire','Offense'],
-				 'bonus': {'strength':2,'to':'control'}},
-				{'mods': ['Fire'],
-				 'bonus': {'strength':1,'to':'power'}},
+				{'if': ['Blasting Rod','Fire','Offense'],
+				 'then': {'bonus':2,'to':'control'}},
+				{'if': ['Fire'],
+				 'then': {'bonus':1,'to':'power'}},
 			]};
 		}
 	});
@@ -372,9 +372,9 @@ app.controller('CastingCtrl', ['$scope', function($scope)
 		for(var i in $scope.data.casting.rules)
 		{
 			var rule = $scope.data.casting.rules[i];
-			for(var j in rule.mods){
-				if(list.indexOf(rule.mods[j]) == -1)
-					list.push(rule.mods[j]);
+			for(var j in rule.if){
+				if(list.indexOf(rule.if[j]) == -1)
+					list.push(rule.if[j]);
 			}
 		}
 
