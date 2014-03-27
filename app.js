@@ -13,14 +13,12 @@ var character = require('./character.js');
 
 // create the express application
 var app = express();
-var parser = express.bodyParser();
-app.use(function(req,res,next){
-	if( /\/\w+\/\w+\/json/.test(req.url) && req.method == 'POST' ){
-		console.log('Bypassing bodyParser');
-		return next();
-	}
-	parser(req,res,next);
-});
+app.use(express.bodyParser({
+	keepExtensions: true,
+	uploadDir: libpath.resolve(__dirname,'uploads')
+}));
+
+
 app.use(express.cookieParser());
 app.use(express.session({secret: global.config.cookie_secret}));
 app.set('views', 'templates');
@@ -45,9 +43,21 @@ app.get('/:user([A-Za-z0-9_-]+)', user.userPage);
 // route the character management pages
 app.get('/newtoon', character.newCharacterPage);
 app.post('/newtoon', character.newCharacterRequest);
-app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', character.servePage);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/', character.servePage);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.serveJson);
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', character.serveAvatar);
+app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', character.saveAvatar);
+
+
+// redirect if character sheet doesn't have trailing slash
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', function(req,res,next){
+	if( req.params.user != 'site' )
+		res.redirect(req.url + '/');
+	else
+		next();
+});
+
 
 app.post('/killtoon', character.deleteCharacterRequest);
 app.get('/killtoon', character.deleteCharacterPage);
@@ -59,7 +69,7 @@ app.get('/site/terms', global.renderPage('terms'));
 app.get('/site/privacy', global.renderPage('privacy'));
 app.get('/', global.renderPage('index'));
 
-app.use('/static', express.static(__dirname+'/static', {maxAge: 24*60*60}));
+app.use('/static', express.static( libpath.resolve(__dirname,'static'), {maxAge: 24*60*60}));
 
 // catch-all: serve static file or 404
 app.use(function(req,res)

@@ -29,7 +29,7 @@ function register(req,res)
 	// connect to the db
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'INSERT INTO Users SET username = ?, email = ?, registered = NOW(), last_login = DEFAULT;', 
+		'INSERT INTO Users SET username = ?, email = ?, registered = NOW(), last_login = NOW();', 
 		[body.username,req.session.user_email],
 		function(err, rows, fields){
 			if( err ){

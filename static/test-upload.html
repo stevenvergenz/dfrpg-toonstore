@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html><head>
+	<script src="http://code.jquery.com/jquery-2.1.0.js"></script>
+	<script>
+
+		function handleUpload()
+		{
+			var formData = new FormData($('form')[0]);
+			$.ajax({
+				'url': 'http://localhost:3001/tester/lifeson/avatar',
+				'type': 'POST',
+				'contentType': false,
+				'processData': false,
+				'cache': false,
+
+				'data': formData,
+				'success': function(data,status,xhr){
+					console.log(data);
+				},
+				'error': function(xhr,status,err){
+					console.log(err, status);
+				},
+				'xhr': function(){
+					var myXhr = $.ajaxSettings.xhr();
+					if(myXhr.upload){
+						myXhr.upload.addEventListener('progress', handleProgress, false);
+					}
+					return myXhr;
+				}
+			});
+
+		}
+
+		function handleProgress(e){
+			if(e.lengthComputable){
+				$('progress').attr({value:e.loaded,max:e.total});
+			}
+		}
+
+	</script>
+
+</head>
+<body>
+
+	<form enctype="multipart/form-data">
+		<input type="file" name="testfile" accept="image/*"></input>
+		<input type="button" value="Upload" onclick="handleUpload()"></input>
+	</form>
+	<progress></progress>
+
+</body></html>
