@@ -765,7 +765,7 @@ p.descriptionLine {
 	line-height: 1.5em;
 }
 
-.spellmod input[type='checkbox'] + label {
+.spellmod input.hide[type='checkbox'] + label {
 	background-color: white;
 	color: black;
 
@@ -775,7 +775,7 @@ p.descriptionLine {
 	padding-right: 2px;
 }
 
-.spellmod input[type='checkbox']:checked + label {
+.spellmod input.hide[type='checkbox']:checked + label {
 	background-color: #2a2a5a;
 	color: white;
 }
@@ -787,6 +787,7 @@ p.descriptionLine {
 .subheader {
 	font-size: 14pt;
 	font-style: italic;
+	margin-bottom: 5px;
 }
 
 /*#calc, #rotes {
@@ -795,7 +796,13 @@ p.descriptionLine {
 
 #calc .rule-row {
 	display: -webkit-flex;
-	-webkit-flex-direction: row;
-	-webkit-align-items: center;
-	-webkit-justify-content: space-between;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
 }
+
+#calc .if {
+	max-width: 50%;
+	text-align: right;
+}
+

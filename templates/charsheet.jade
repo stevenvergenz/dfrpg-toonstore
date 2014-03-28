@@ -287,7 +287,7 @@ block content
 	.sheet-panel-group(ng-controller='CastingCtrl', ng-show='data.casting.enabled', ng-class='{dirty:dirty}')
 		a#spellcasting
 
-		#rotes.sheet-panel
+		//-#rotes.sheet-panel
 			p.sectionHeader(style='margin-bottom: 10px;') Rote Spells
 				if logged_user == owner
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
@@ -332,24 +332,23 @@ block content
 		#calc.sheet-panel
 			p.sectionHeader Spell Workspace
 				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png',
-						onclick='viewModel.casting.editingWorkspace( !viewModel.casting.editingWorkspace() )')
+					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editingRules=!editingRules')
 
-			p(style='text-align: left;')
-				span.subheader Mods: 
-				span.spellmod(ng-repeat='mod in modList()')
-					input.hide(type='checkbox', id='{{mod}}', ng-model='modEnabled[mod]')
-					label(for='{{mod}}') {{mod | noWrap}}
-					wbr
+			h2.subheader Mods: 
+			div: span.spellmod(ng-repeat='mod in modList()')
+				input.hide(type='checkbox', id='{{mod}}', ng-model='modEnabled[mod]')
+				label(for='{{mod}}') {{mod | noWrap}}
+				wbr
 
-			span.subheader(style='text-align: left;') Rules:
-			// ko foreach: casting.rules
-			.rule-row
-				div(data-bind='foreach: conditions', style='-webkit-flex-grow: 1;')
-					span.spellmod(data-bind='text: $data.replace(/ /g, "\xA0")')
-					wbr
+			h2.subheader Rules:
+			.rule-row(ng-repeat='rule in data.casting.rules')
+				.if
+					span.spellmod(ng-repeat='mod in rule.if')
+						input.hide(type='checkbox', id='{{mod}}', ng-checked='modEnabled[mod]', disabled='disabled')
+						label {{mod | noWrap}}
+						wbr
 				img(src='/static/img/glyphicons/glyphicons_211_right_arrow.png')
-				div(style='width: 115px; text-align: right;')
+				.then(style='width: 115px; text-align: right;')
 					// ko if: $root.casting.editingWorkspace
 					input(type='number', min=0, data-bind='value: value', style='width: 30px;')
 					select(data-bind='value: bonusType')
@@ -359,7 +358,7 @@ block content
 					// ko ifnot: $root.casting.editingWorkspace
 					span(data-bind='text: "+"+value()+" "+bonusType()')
 					// /ko
-			// /ko
+
 			input.iconButton(type='image', data-bind='visible: casting.editingWorkspace, event: {click: casting.rules.add}',
 				src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
 
