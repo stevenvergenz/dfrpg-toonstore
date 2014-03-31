@@ -34,7 +34,7 @@ CREATE TABLE `Characters` (
   PRIMARY KEY (`canonical_name`,`owner`),
   KEY `owner` (`owner`),
   CONSTRAINT `Characters_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `Users` (`username`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,6 @@ CREATE TABLE `Characters` (
 
 LOCK TABLES `Characters` WRITE;
 /*!40000 ALTER TABLE `Characters` DISABLE KEYS */;
-INSERT INTO `Characters` VALUES ('lifeson','Andrew Lifeson','tester','{\"name\":\"Andrew Lifeson\",\"player\":\"tester\",\"aspects\":{\"high_concept\":{\"name\":\"White Council Footsoldier\",\"description\":\"\"},\"trouble\":{\"name\":\"Still On The Battlefield\",\"description\":\"\"},\"aspects\":[{\"name\":\"I Am From A Gutter Too\",\"description\":\"\"},{\"name\":\"Warden\'s Honor\",\"description\":\"\"},{\"name\":\"No Kill Like Overkill\",\"description\":\"\"},{\"name\":\"Crazy Enough To Work\",\"description\":\"\"},{\"name\":\"Conviction Is Both Sword And Shield\",\"description\":\"\"}]},\"stress\":[{\"name\":\"Physical\",\"skill\":\"Endurance\",\"toughness\":0,\"boxes\":[{\"used\":false},{\"used\":true},{\"used\":false},{\"used\":false}],\"armor\":[{\"vs\":\"blunt objects\",\"strength\":2}]},{\"name\":\"Physical\",\"skill\":\"Loyalty Cardigan\",\"toughness\":0,\"armor\":[],\"boxes\":[{\"used\":false},{\"used\":false}]},{\"name\":\"Mental\",\"skill\":\"Conviction\",\"toughness\":2,\"armor\":[],\"boxes\":[{\"used\":false},{\"used\":true},{\"used\":false},{\"used\":false},{\"used\":false},{\"used\":false}]},{\"name\":\"Social\",\"skill\":\"Presence\",\"toughness\":0,\"armor\":[],\"boxes\":[{\"used\":false},{\"used\":true}]}],\"consequences\":[{\"severity\":\"Mild\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"\"},{\"severity\":\"Mild\",\"mode\":\"Physical\",\"used\":true,\"aspect\":\"Spun about\"},{\"severity\":\"Mild\",\"mode\":\"Mental\",\"used\":false,\"aspect\":\"\"},{\"severity\":\"Moderate\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"\"},{\"severity\":\"Severe\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"\"},{\"severity\":\"Extreme\",\"mode\":\"Any\",\"used\":false,\"aspect\":\"Replace permanent\"}],\"totals\":{\"power_level\":\"Submerged\",\"base_refresh\":12,\"skill_cap\":5,\"skills_total\":42,\"fate_points\":3},\"skills\":{\"lists\":[[],[\"Presence\",\"Empathy\",\"Fists\",\"Resources\",\"Investigation\"],[\"Might\",\"Survival\",\"Alertness\"],[\"Contacts\",\"Weapons\",\"Intimidation\"],[\"Discipline\",\"Lore\",\"Athletics\"],[\"Conviction\",\"Endurance\"]]},\"powers\":[{\"cost\":-4,\"name\":\"Evocation + Refinement\",\"description\":[\"Elements: Spirit, Air, Water\",\"Spec: +2 power to spirit evocation\",\"Spec: +1 control to air evocation\",\"Focus item: Crystal belt buckle\",\"* +1 control to offensive spirit magic\",\"Focus item: Hawk skin gloves\",\"* +1 power to defensive air magic\"]},{\"cost\":-3,\"name\":\"Thaumaturgy\",\"description\":[\"Spec: +1 control to spectromancy\"]},{\"cost\":-1,\"name\":\"The Sight\",\"description\":[]},{\"cost\":0,\"name\":\"Soulgaze\",\"description\":[]},{\"cost\":0,\"name\":\"Wizard\'s Constitution\",\"description\":[]},{\"cost\":-1,\"name\":\"Switchblade master\",\"description\":[\"+1 to attacks with short blades\"]},{\"cost\":-1,\"name\":\"Controlled outburst\",\"description\":[\"Zone attacks avoid allies\"]}],\"notes\":{\"text\":\"## Adventure log\\n\\nDropped into Laos jungle, asked to recover kidnapped diplomats from the Vietcong. They are holed up in a Buddhist monastery at the top of the mountain.\\n\\nStarted hiking up the mountain.\\n\\nCong outpost. Killed scouts, but alerted others.\\n\\nThen everyone died.\\n\\n_fin_\"}}','White Council Footsoldier','2013-06-27',NULL,NULL);
 /*!40000 ALTER TABLE `Characters` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -60,8 +59,9 @@ CREATE TABLE `Users` (
   `registered` date DEFAULT NULL,
   `last_login` date DEFAULT NULL,
   PRIMARY KEY (`username`),
-  UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  UNIQUE KEY `email` (`email`),
+  KEY `username` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -70,7 +70,6 @@ CREATE TABLE `Users` (
 
 LOCK TABLES `Users` WRITE;
 /*!40000 ALTER TABLE `Users` DISABLE KEYS */;
-INSERT INTO `Users` VALUES ('tester','tester@example.com','2013-06-27','2013-08-05');
 /*!40000 ALTER TABLE `Users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -83,4 +82,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-05 11:20:13
+-- Dump completed on 2014-03-31  8:57:52
