@@ -9,7 +9,7 @@ function servePage(req,res,next)
 {
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'SELECT name FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		'SELECT name,concept FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( err ){
@@ -18,7 +18,7 @@ function servePage(req,res,next)
 			}
 			else if( rows.length == 1 ){
 				global.log('Serving character page for', req.url);
-				global.renderPage('charsheet', {toonName: rows[0].name})(req,res);
+				global.renderPage('charsheet', {toonName: rows[0].name, toonConcept: rows[0].concept})(req,res);
 			}
 			else {
 				next();

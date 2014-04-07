@@ -1,7 +1,7 @@
 extends index
 
 block title
-	title= owner + ' | Online Dresden Files RPG Character Hosting | ToonStore.net'
+	title= owner + ' | ToonStore.net'
 
 block content
 
@@ -16,7 +16,7 @@ block content
 			ul#charList
 				each char in toons
 					li
-						a(href='/#{owner}/#{char.canon_name}/')= char.name +' - '+ char.concept
+						a(href='/#{owner}/#{char.canon_name}/')= char.name +', '+ char.concept
 						| &nbsp;
 						if logged_user == owner
 							span(style='font-size: 80%;')
