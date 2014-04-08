@@ -9,19 +9,20 @@ function servePage(req,res,next)
 {
 	var connection = mysql.createConnection( global.config.database );
 	connection.query(
-		'SELECT name,concept FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		'SELECT name,concept,private FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( err ){
 				global.error( err, global.logLevels.warning );
 				res.send(500);
 			}
-			else if( rows.length == 1 ){
+			else if( rows.length == 1 && (!rows[0].private || req.params.user == req.session.user)){
 				global.log('Serving character page for', req.url);
 				global.renderPage('charsheet', {toonName: rows[0].name, toonConcept: rows[0].concept})(req,res);
 			}
 			else {
-				next();
+				global.log('Blocking access to', req.url);
+				global.renderPage('404', {code: 404})(req,res);
 			}
 			connection.end();
 		}

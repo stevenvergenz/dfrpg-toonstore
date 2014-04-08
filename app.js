@@ -58,9 +58,9 @@ app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', function(req,res,next){
 		next();
 });
 
-
 app.post('/killtoon', character.deleteCharacterRequest);
 app.get('/killtoon', character.deleteCharacterPage);
+app.post('/togglePrivacy', user.togglePrivacy);
 
 // route the extra pages
 app.get('/site/about', global.renderPage('about'));

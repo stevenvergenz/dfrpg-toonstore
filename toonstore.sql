@@ -31,6 +31,7 @@ CREATE TABLE `Characters` (
   `created_on` date DEFAULT NULL,
   `last_updated` date DEFAULT NULL,
   `avatar` char(40) DEFAULT NULL,
+  `private` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`canonical_name`,`owner`),
   KEY `owner` (`owner`),
   CONSTRAINT `Characters_ibfk_1` FOREIGN KEY (`owner`) REFERENCES `Users` (`username`) ON DELETE CASCADE
@@ -82,4 +83,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-03-31  8:57:52
+-- Dump completed on 2014-04-07 19:18:57
