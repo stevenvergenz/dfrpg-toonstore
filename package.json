@@ -11,7 +11,8 @@
 		"mysql": "2.0.x",
 		"express": "3.2.x",
 		"jade": "0.31.x",
-		"gm": "1.14.x"
+		"gm": "1.14.x",
+		"libxmljs": "0.8.x"
 	},
 	"engine": "node >= 0.10.3"
 }

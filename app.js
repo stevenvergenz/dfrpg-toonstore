@@ -9,6 +9,7 @@ var register = require('./register.js');
 var login = require('./login.js');
 var user = require('./user.js');
 var character = require('./character.js');
+var sitemap = require('./sitemap.js');
 
 
 // create the express application
@@ -58,9 +59,9 @@ app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', function(req,res,next){
 		next();
 });
 
-
 app.post('/killtoon', character.deleteCharacterRequest);
 app.get('/killtoon', character.deleteCharacterPage);
+app.post('/togglePrivacy', user.togglePrivacy);
 
 // route the extra pages
 app.get('/site/about', global.renderPage('about'));
@@ -70,13 +71,17 @@ app.get('/site/privacy', global.renderPage('privacy'));
 app.get('/', global.renderPage('index'));
 
 app.use('/static', express.static( libpath.resolve(__dirname,'static'), {maxAge: 24*60*60}));
+app.get('/sitemap.xml', sitemap.serve);
 
 // catch-all: serve static file or 404
 app.use(function(req,res)
 {
-	global.error('File not found:', req.url, global.logLevels.warning);
-	global.renderPage('404', {code: 404})(req,res);
-	//res.send(404);
+	if( req.url != '/favicon.ico' ){
+		global.error('File not found:', req.url, global.logLevels.warning);
+		global.renderPage('404', {code: 404})(req,res);
+	}
+	else
+		res.send(404);
 });
 
 // start the server
