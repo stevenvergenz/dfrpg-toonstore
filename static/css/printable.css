@@ -1,0 +1,71 @@
+@media not print { .page {
+	width: 7.5in;
+}}
+
+body {
+	font-family: "Metamorphous", cursive;
+	font-size: 10pt;
+}
+
+
+/***********************************************************
+ * General layout classes
+ ***********************************************************/
+
+.page {
+	display: flex;
+	flex-direction: column;
+}
+
+.column {
+	display: flex;
+	flex-direction: column;
+	width: 50%;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: flex-start;
+	page-break-after: auto;
+	page-break-inside: avoid;
+}
+
+
+/***********************************************************
+ * General panel properties
+ ***********************************************************/
+
+.sheet-panel {
+	border: solid #777 1px;
+	border-radius: 8px;
+	padding: 5px;
+	margin: 2px;
+	flex-grow: 1;
+}
+
+.sheet-panel > h2 {
+	margin: 0;
+	font-size: 14pt;
+	text-align: center;
+}
+
+
+/***********************************************************
+ * Specific panel properties
+ ***********************************************************/
+
+#aspects { text-align: center; }
+
+#aspects > h3 {
+	margin: 0;
+	margin-top: 6px;
+	font-size: 7pt;
+	letter-spacing: 3px;
+	text-transform: uppercase;
+}
+
+#aspects span.aspect {
+	display: block;
+}

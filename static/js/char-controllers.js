@@ -10,7 +10,7 @@ var app = angular.module('charsheet');
 
 // handle general panel
 
-app.controller('GeneralCtrl', ['$scope', function($scope)
+app.controller('GeneralCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 
@@ -21,7 +21,7 @@ app.controller('GeneralCtrl', ['$scope', function($scope)
 
 // handle aspects
 
-app.controller('AspectCtrl', ['$scope', function($scope)
+app.controller('AspectCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 
@@ -53,7 +53,7 @@ app.controller('AspectCtrl', ['$scope', function($scope)
 
 // skill block and dependencies
 //
-app.controller('SkillCtrl', ['$scope','SharedResources', function($scope, SharedResources)
+app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($scope, SharedResources)
 {
 	$scope.editing = false;
 
@@ -135,7 +135,7 @@ app.controller('SkillCtrl', ['$scope','SharedResources', function($scope, Shared
 
 // manage miscellaneous fields
 //
-app.controller('TotalsCtrl', ['$scope','SharedResources', function($scope,SharedResources)
+app.controller('TotalsCtrl', ['$scope','SharedResources','rootModel', function($scope,SharedResources)
 {
 	$scope.editing = false;
 
@@ -170,7 +170,7 @@ app.controller('TotalsCtrl', ['$scope','SharedResources', function($scope,Shared
 
 // manage the set of stress tracks
 //
-app.controller('StressCtrl', ['$scope', function($scope)
+app.controller('StressCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 
@@ -246,7 +246,7 @@ app.controller('StressTrackCtrl', ['$scope','rootModel', function($scope,rootMod
 
 // consequence controller
 //
-app.controller('ConsequenceCtrl', ['$scope', function($scope)
+app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 
@@ -296,7 +296,7 @@ app.controller('ConsequenceCtrl', ['$scope', function($scope)
 }]);
 
 
-app.controller('PowersCtrl', ['$scope','SharedResources', function($scope,SharedResources)
+app.controller('PowersCtrl', ['$scope','SharedResources','rootModel', function($scope,SharedResources)
 {
 	$scope.editing = false;
 
@@ -326,7 +326,7 @@ app.controller('PowersCtrl', ['$scope','SharedResources', function($scope,Shared
 
 // notes controller
 //
-app.controller('NotesCtrl', ['$scope', function($scope)
+app.controller('NotesCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 
