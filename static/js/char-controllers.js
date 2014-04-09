@@ -37,6 +37,15 @@ app.controller('AspectCtrl', ['$scope', function($scope)
 		$scope.$emit('is_dirty');
 	};
 
+	$scope.parseAspect = function(raw){
+		var tag = /^\[(BACKGROUND|RISING CONFLICT|STORY|GUEST STAR)\]\s*(.+)$/;
+		var match = tag.exec(raw);
+		if( match )
+			return {'name': match[2], 'type': match[1].toLowerCase()};
+		else
+			return {'name': raw, 'type': null};
+	};
+
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
 	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);

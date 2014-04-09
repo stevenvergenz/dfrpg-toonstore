@@ -107,7 +107,7 @@ block content
 			.field
 				p.fieldLabel Other Aspects:
 				div(dgy-accordion='aspect.description', ng-hide='editing', ng-repeat-start='aspect in data.aspects.aspects')
-					p {{aspect.name}}
+					p {{parseAspect(aspect.name).name}}
 					p.description {{aspect.description}}
 
 				div(ng-show='editing', ng-repeat-end)
