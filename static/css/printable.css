@@ -27,7 +27,7 @@ body {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
-	align-items: flex-start;
+	/*align-items: flex-start;*/
 	page-break-after: auto;
 	page-break-inside: avoid;
 }
@@ -68,4 +68,21 @@ body {
 
 #aspects span.aspect {
 	display: block;
+}
+
+
+#stress table {
+	width: 100%;
+}
+
+#stress table th.rowHeader {
+	text-align: left;
+}
+
+#stress table th.rowHeader > * {
+	display: block;
+}
+
+#stress table th.rowHeader .skill {
+	font-weight: normal;
 }

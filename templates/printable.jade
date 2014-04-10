@@ -24,7 +24,7 @@ html
 
 			.row
 				.column
-					#aspects.sheet-panel(ng-controller='AspectCtrl', style='height: 210px;')
+					#aspects.sheet-panel(ng-controller='AspectCtrl', style='height: 210px; max-height: 210px;')
 						h2 Aspects
 
 						h3 High Concept
@@ -36,8 +36,43 @@ html
 						h3 Other Aspects
 						span.aspect(ng-repeat='a in data.aspects.aspects') {{parseAspect(a.name).name}}
 
-					#stress.sheet-panel(style='height: 170px;')
+					#stress.sheet-panel
 						h2 Stress
+
+						table
+							tr
+								th
+								for i in [1,2,3,4,5,6,7,8]
+									th= i
+
+							tr(ng-repeat='track in data.stress')
+								th.rowHeader
+									span.name {{track.name}}
+									span.skill ({{track.skill}})
+						//#stressBlock(ng-hide='editing')
+							.track
+								.rowHeader
+								.boxes
+									.colHeader(ng-repeat='i in [1,2,3,4,5,6,7,8]')
+										span {{i}}
+
+							div(ng-repeat='track in data.stress', ng-controller='StressTrackCtrl', style='margin-bottom: 5px;')
+								.track
+									.rowHeader
+										span {{data.name}}
+										br
+										span.subtitle ({{data.skill}})
+									.boxes
+										.box(ng-repeat='box in data.boxes track by $index')
+											input.stressBox(type='checkbox', id='{{data.name}}-{{data.skill}}-{{$index}}', dgy-notify, ng-model='data.boxes[$index]',
+												ng-class='manageParens($index)', ng-disabled='box === null')
+											if logged_user == owner
+												label(for='{{data.name}}-{{data.skill}}-{{$index}}')
+											else
+												label
+
+								.track(ng-repeat='armor in data.armor') Armor: {{armor.strength}} vs. {{armor.vs}}
+
 
 					#conseq.sheet-panel(style='height: 170px;')
 						h2 Consequences
