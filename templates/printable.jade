@@ -24,7 +24,7 @@ html
 
 			.row
 				.column
-					#aspects.sheet-panel(ng-controller='AspectCtrl', style='height: 210px; max-height: 210px;')
+					#aspects.sheet-panel(ng-controller='AspectCtrl')
 						h2 Aspects
 
 						h3 High Concept
@@ -60,10 +60,55 @@ html
 								.track(ng-repeat='armor in data.armor') Armor: {{armor.strength}} vs. {{armor.vs}}
 
 
-					#conseq.sheet-panel(style='height: 170px;')
+					#conseq.sheet-panel(ng-controller='ConsequenceCtrl')
 						h2 Consequences
+						table
+							tr
+								th Type
+								th P/M/S
+								th Stress
+								th Used?
+								th Aspect
+							tr(ng-repeat='conseq in data.consequences | conseqSort')
+								td {{conseq.severity}}
+								td {{conseq.mode}}
+								td {{magnitude(conseq.severity)}}
+								td: div(style='display:inline-block; width:14px; height:14px; border-radius:50%; border:solid black 1px;')
+								td
 
-					#totals.sheet-panel(style='height: 210px;')
+					#totals.sheet-panel(ng-controller='TotalsCtrl')
+
+						#top-container.container
+							#powerLevel
+								span.label Power Level
+								br
+								span {{powerLevel()}}
+							#skillCap
+								span.label Skill Cap
+								br
+								span {{skillLabel(data.totals.skill_cap)}}
+
+						#middle-container.container
+							#skillsSpent
+								span.label Skill Points Spent
+								.bubble: span {{skillPointsSpent()}}
+							#available-container
+								span.label Total Available
+								.bubble: span {{skillPointsAvailable()}}
+
+						#bottom-container
+							#star
+								img(src='/static/img/pentacle.svg')
+								.center-container: span Current Fate Points
+							#baseRefreshLevel(style='left: 131px;')
+								.bubble: span {{data.totals.base_refresh}}
+								span Base Refresh Level
+							#adjustedRefresh(style='left: 142px;')
+								.bubble: span {{adjustedRefresh()}}
+								span Adjusted Refresh
+							#fpFromLastSession(style='left: 133px;')
+								.bubble: span {{data.totals.fate_points}}
+								span Last Session's FP
 
 				.column
 					#skills.sheet-panel(style='height: 240px;')

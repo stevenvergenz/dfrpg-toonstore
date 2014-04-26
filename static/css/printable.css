@@ -211,3 +211,87 @@ div#stressBlock {
 }
 
 
+
+#conseq tr > th:first-child, #conseq tr > td:first-child {
+	text-align: left;
+}
+
+#conseq tr > th, #conseq tr > td {
+	text-align: center;
+	white-space: nowrap;
+}
+
+#conseq tr > th:last-child, #conseq tr > td:last-child {
+	text-align: right;
+	width: 99%;
+}
+
+
+
+#totals .container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+
+}
+
+#totals #top-container {
+	text-align: center;
+}
+
+#totals .label {
+	font-size: 8pt;
+	letter-spacing: 1px;
+}
+
+#totals div.bubble {
+	border: solid black 1px;
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}
+
+#totals div.doubleBubble {
+	border: double black 3px;
+}
+
+#totals #middle-container .bubble {
+	margin-left: 5px;
+}
+
+#totals .center-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+}
+
+#totals #bottom-container > * {
+	position: relative;
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+#totals #bottom-container #star {
+	width: 140px;
+	height: 140px;
+	position: absolute;
+	margin: -6px 0 0 0;
+}
+
+#totals #bottom-container #star > * {
+	width: 140px;
+	height: 140px;
+	position: absolute;
+}
+
+#totals #bottom-container #star > img {
+	opacity: 0.6;
+}
+
+#totals #bottom-container .bubble {
+	margin-right: 5px;
+}
