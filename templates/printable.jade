@@ -24,6 +24,7 @@ html
 
 			.row
 				.column
+
 					#aspects.sheet-panel(ng-controller='AspectCtrl')
 						h2 Aspects
 
@@ -111,8 +112,17 @@ html
 								span Last Session's FP
 
 				.column
-					#skills.sheet-panel(style='height: 240px;')
-						h2 Skills
 
-					#powers.sheet-panel(style='height: 552px;')
+					#skills.sheet-panel(ng-controller='SkillCtrl')
+						h2 Skills
+						#skillBlock
+							.row(ng-repeat='level in presOrder()', ng-hide='$last')
+								.fieldLabel {{label(level)}}
+								.skillList
+									.skill(ng-repeat='skill in skills(level)')
+										span {{skill}}
+										span(ng-hide='$last') , 
+
+
+					#powers.sheet-panel(ng-controller='PowersCtrl')
 						h2 Stunts & Powers

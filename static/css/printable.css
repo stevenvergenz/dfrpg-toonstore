@@ -26,6 +26,10 @@ body {
 	width: 50%;
 }
 
+.column > :last-child {
+	flex-grow: 1;
+}
+
 .row {
 	display: flex;
 	flex-direction: row;
@@ -42,7 +46,6 @@ body {
 	border-radius: 8px;
 	padding: 5px;
 	margin: 2px;
-	flex-grow: 1;
 }
 
 .sheet-panel > h2 {
@@ -295,3 +298,29 @@ div#stressBlock {
 #totals #bottom-container .bubble {
 	margin-right: 5px;
 }
+
+
+
+#skillBlock .row {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	padding-top: 7px;
+	padding-bottom: 7px;
+}
+
+#skillBlock .fieldLabel {
+	min-width: 120px;
+	width: 120px;
+	text-align: left;
+	font-size: 11pt;
+}
+
+#skillBlock .skillList {
+	text-align: left;
+}
+
+#skillBlock .skill {
+	display: inline;
+}
+
