@@ -324,3 +324,24 @@ div#stressBlock {
 	display: inline;
 }
 
+
+#powers {
+	position: relative;
+}
+
+#powers #ladder {
+	position: absolute;
+	bottom:0; right:0;
+
+	border: solid #777 1px;
+	border-radius: 5px;
+	padding: 3px;
+	margin: 5px;
+	font-size: 9pt;
+}
+
+#powers #ladder p {
+	margin: 0;
+	text-align: center;
+	font-weight: bold;
+}

@@ -126,3 +126,10 @@ html
 
 					#powers.sheet-panel(ng-controller='PowersCtrl')
 						h2 Stunts & Powers
+
+						#ladder
+							p The Ladder
+							table
+								tr(ng-repeat='i in ladder')
+									td {{i.label}}
+									td {{i.value}}

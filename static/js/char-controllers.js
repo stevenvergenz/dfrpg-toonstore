@@ -300,6 +300,20 @@ app.controller('PowersCtrl', ['$scope','SharedResources','rootModel', function($
 {
 	$scope.editing = false;
 
+	$scope.ladder = [
+		{label: 'Legendary', value: '+8'},
+		{label: 'Epic', value: '+7'},
+		{label: 'Fantastic', value: '+6'},
+		{label: 'Superb', value: '+5'},
+		{label: 'Great', value: '+4'},
+		{label: 'Good', value: '+3'},
+		{label: 'Fair', value: '+2'},
+		{label: 'Average', value: '+1'},
+		{label: 'Mediocre', value: '+0'},
+		{label: 'Poor', value: '-1'},
+		{label: 'Terrible', value: '-2'},
+	];
+
 	$scope.totalAdjustment = SharedResources.refreshSpent;
 	$scope.splitDescription = function(index){
 		return $scope.data.powers[index].description.split('\n');
