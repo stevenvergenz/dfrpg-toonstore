@@ -14,16 +14,16 @@ html
 
 	body
 		.page(ng-app='charsheet')
-			.row
-				.column: .sheet-panel
+			.page-row
+				.page-column: .sheet-panel
 					span(style='font-size: 0.6em;') Character 
 					span {{data.name}}
-				.column: .sheet-panel(style='text-align: right;')
+				.page-column: .sheet-panel(style='text-align: right;')
 					span {{data.player}}
 					span(style='font-size: 0.6em;')  Player
 
-			.row
-				.column
+			.page-row
+				.page-column
 
 					#aspects.sheet-panel(ng-controller='AspectCtrl')
 						h2 Aspects
@@ -111,7 +111,7 @@ html
 								.bubble: span {{data.totals.fate_points}}
 								span Last Session's FP
 
-				.column
+				.page-column
 
 					#skills.sheet-panel(ng-controller='SkillCtrl')
 						h2 Skills
@@ -126,6 +126,18 @@ html
 
 					#powers.sheet-panel(ng-controller='PowersCtrl')
 						h2 Stunts & Powers
+
+						.row.header
+							.cost Cost
+							.name Ability
+
+						.row(ng-repeat='power in data.powers')
+							.cost {{power.cost}}
+							.name {{power.name}}
+							.description
+								span(ng-repeat='line in splitDescription($index)') {{line}}
+									br(ng-if='!$last')
+						
 
 						#ladder
 							p The Ladder

@@ -20,17 +20,17 @@ body {
 	page-break-inside: avoid;
 }
 
-.column {
+.page-column {
 	display: flex;
 	flex-direction: column;
 	width: 50%;
 }
 
-.column > :last-child {
+.page-column > :last-child {
 	flex-grow: 1;
 }
 
-.row {
+.page-row {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
@@ -304,7 +304,6 @@ div#stressBlock {
 #skillBlock .row {
 	display: flex;
 	flex-direction: row;
-	justify-content: flex-start;
 	padding-top: 7px;
 	padding-bottom: 7px;
 }
@@ -344,4 +343,30 @@ div#stressBlock {
 	margin: 0;
 	text-align: center;
 	font-weight: bold;
+}
+
+#powers .row {
+	margin-top: 6px;
+	margin-bottom: 6px;
+}
+
+#powers .row.header {
+	font-weight: bold;
+}
+
+#powers .row > * {
+	display: inline-block;
+}
+
+#powers .cost {
+	text-align: right;
+	width: 30px;
+	margin-right: 10px;
+}
+
+#powers .description {
+	display: block;
+	margin-left: 40px;
+	font-size: 8pt;
+	letter-spacing: 1px;
 }
