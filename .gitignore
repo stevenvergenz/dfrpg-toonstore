@@ -16,3 +16,4 @@ npm-debug.log
 *.swp
 node_modules/
 .directory
+uploads/
