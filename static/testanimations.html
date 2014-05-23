@@ -17,12 +17,12 @@
 				animation: shake 400ms ease-in-out;
 			}
 
-			#dice {
+			.diceroller {
 				display: flex;
 				flex-direction: row;
 			}
 
-			.die {
+			.diceroller > .die {
 				width: 35px;
 				height: 35px;
 				margin: 3px;
@@ -34,16 +34,16 @@
 				justify-content: center;
 			}
 
-			.die, .die * {
+			.diceroller > .die, .diceroller > .die * {
 				cursor: default;
 			}
 
-			.die > span {
+			.diceroller > .die > span {
 				font-size: 28pt;
 				font-weight: bold;
 			}
 
-			.total {
+			.diceroller > .total {
 				width: 35px;
 				height: 35px;
 				margin: 3px;
@@ -59,7 +59,7 @@
 		</style>
 	</head>
 	<body>
-		<div id='dice'>
+		<div class='diceroller'>
 			<div class='die'><span> </span></div>
 			<div class='die'><span> </span></div>
 			<div class='die'><span> </span></div>
@@ -70,15 +70,15 @@
 		<p id='total'></p>
 
 		<script>
-			document.querySelector('#dice').onclick = function(){
-				var dice = document.querySelectorAll('#dice > .die');
+			document.querySelector('.diceroller').onclick = function(){
+				var dice = this.querySelectorAll('.die');
 				var total = 0;
 				for(var i=0; i<dice.length; i++){
 					var value = Math.floor(Math.random()*3 -1);
 					dice[i].firstChild.innerHTML = ['\u2212',' ','+'][value+1];
 					total += value;
 				}
-				document.querySelector('#dice > .total > span').innerHTML = total>=0 ? '+'+total : total;
+				this.querySelector('.total > span').innerHTML = total>=0 ? '+'+total : total;
 			}
 		</script>
 	</body>

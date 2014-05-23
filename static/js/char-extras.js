@@ -87,6 +87,37 @@ app.directive('resizingtextarea', function()
 	};
 });
 
+app.directive('diceroller', function()
+{
+	return {
+		'restrict': 'E',
+		'replace': true,
+
+		'template': '<div class="diceroller">'+
+			'<div class="die"><span> </span></div>'+
+			'<div class="die"><span> </span></div>'+
+			'<div class="die"><span> </span></div>'+
+			'<div class="die"><span> </span></div>'+
+			'<div class="total"><span>+0</span></div>'+
+		'</div>',
+
+		'link': function($scope,elem,attrs)
+		{
+			elem.bind('click', function(evt){
+				var dice = elem[0].querySelectorAll('.die');
+				var total = 0;
+				for(var i=0; i<dice.length; i++){
+					var value = Math.floor(Math.random()*3 -1);
+					dice[i].firstChild.innerHTML = ['\u2212',' ','+'][value+1];
+					total += value;
+				}
+				elem[0].querySelector('.total > span').innerHTML = total>=0 ? '+'+total : total;
+
+			});
+		}
+	};
+});
+
 
 /*
   Custom directive to enable drag/dropping
