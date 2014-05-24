@@ -103,17 +103,30 @@ app.directive('diceroller', function()
 
 		'link': function($scope,elem,attrs)
 		{
+			// randomize the dice
 			elem.bind('click', function(evt){
+				if(evt.stopPropagation)
+					evt.stopPropagation();
+
 				var dice = elem[0].querySelectorAll('.die');
 				var total = 0;
 				for(var i=0; i<dice.length; i++){
-					var value = Math.floor(Math.random()*3 -1);
+					var value = Math.floor(Math.random()*3)-1;
 					dice[i].firstChild.innerHTML = ['\u2212',' ','+'][value+1];
 					total += value;
 				}
 				elem[0].querySelector('.total > span').innerHTML = total>=0 ? '+'+total : total;
 
 			});
+
+			// prevent the symbols from being selected
+			var parts = elem[0].querySelectorAll('*');
+			for(var i=0; i<parts.length; i++){
+				parts[i].onmousedown = function(evt){
+					if(evt.preventDefault)
+						evt.preventDefault();
+				};
+			}
 		}
 	};
 });

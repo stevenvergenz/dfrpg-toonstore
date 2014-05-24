@@ -286,6 +286,7 @@ span.subtitle {
 	flex-direction: row;
 	justify-content: center;
 
+	user-select: none;
 	margin: 10px;
 }
 
