@@ -281,54 +281,6 @@ span.subtitle {
 	background-color: lightblue /*#eef*/;
 }
 
-.diceroller {
-	display: flex;
-	flex-direction: row;
-	justify-content: center;
-
-	user-select: none;
-	margin: 10px;
-}
-
-.diceroller > .die {
-	width: 35px;
-	height: 35px;
-	margin: 3px;
-	border: solid grey 1px;
-	border-radius: 5px;
-
-	font-family: sarif;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-
-.diceroller * {
-	cursor: default;
-	user-select: none;
-}
-
-.diceroller > .die > span {
-	font-size: 28pt;
-	font-weight: bold;
-}
-
-.diceroller > .total {
-	width: 35px;
-	height: 35px;
-	margin: 3px;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	font-size: 18pt;
-	font-weight: bold;
-}
-
-
-
 
 /*
  * Style the totals box

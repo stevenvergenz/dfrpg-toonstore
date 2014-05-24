@@ -94,10 +94,10 @@ app.directive('diceroller', function()
 		'replace': true,
 
 		'template': '<div class="diceroller">'+
-			'<div class="die"><span> </span></div>'+
-			'<div class="die"><span> </span></div>'+
-			'<div class="die"><span> </span></div>'+
-			'<div class="die"><span> </span></div>'+
+			'<div class="die"><span>&#8226;</span></div>'+
+			'<div class="die"><span>&#8226;</span></div>'+
+			'<div class="die"><span>&#8226;</span></div>'+
+			'<div class="die"><span>&#8226;</span></div>'+
 			'<div class="total"><span>+0</span></div>'+
 		'</div>',
 
@@ -108,13 +108,24 @@ app.directive('diceroller', function()
 				if(evt.stopPropagation)
 					evt.stopPropagation();
 
+				// animate shake
+				elem[0].className += ' shakenbake';
+				function animationEnd(evt){
+					elem[0].className = elem[0].className.replace(/\bshakenbake/g, '');
+				}
+				elem[0].addEventListener('webkitAnimationEnd', animationEnd);
+				elem[0].addEventListener('MSAnimationEnd', animationEnd);
+				elem[0].addEventListener('animationend', animationEnd);
+
+				// randomize each die
 				var dice = elem[0].querySelectorAll('.die');
 				var total = 0;
 				for(var i=0; i<dice.length; i++){
 					var value = Math.floor(Math.random()*3)-1;
-					dice[i].firstChild.innerHTML = ['\u2212',' ','+'][value+1];
+					dice[i].firstChild.innerHTML = ['\u2212','\u2022','+'][value+1];
 					total += value;
 				}
+				// update the total field
 				elem[0].querySelector('.total > span').innerHTML = total>=0 ? '+'+total : total;
 
 			});
