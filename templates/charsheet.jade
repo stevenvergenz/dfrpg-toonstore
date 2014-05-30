@@ -63,14 +63,19 @@ block append header
 
 block content
 
+	if logged_user != owner
+		.content-block: .warning.
+			This page is currently in back-seat mode. You can make local edits to the character sheet, but will not be able to save.
+			Your changes will be lost once you refresh the page, and are not visible to other viewers of the character.
+
+
 	.sheet-panel-group
 
 		#general.sheet-panel(ng-controller="GeneralCtrl", ng-class='{dirty: dirty}')
 			p.sectionHeader
 				span(ng-hide='editing') {{data.name}}
 				input(type='text', dgy-notify, ng-show='editing', ng-model="data.name")
-				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
+				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
 			div
 				span(ng-hide='editing') ({{data.player}})
 				input(type='text', dgy-notify, ng-show='editing', ng-model='data.player')
@@ -85,8 +90,7 @@ block content
 		#aspects.sheet-panel(ng-controller='AspectCtrl', ng-class='{dirty: dirty}')
 			a#aspects
 			p.sectionHeader Aspects
-				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
+				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
 
 			.field
 				p.fieldLabel High Concept:
@@ -129,8 +133,7 @@ block content
 					input#shifter(type='checkbox', ng-model='shifted')
 					label(for='shifter')
 					| )
-				if logged_user == owner
-					input.iconButton(type='image', ng-click='editing=!editing', src='/static/img/glyphicons/glyphicons_150_edit.png')
+				input.iconButton(type='image', ng-click='editing=!editing', src='/static/img/glyphicons/glyphicons_150_edit.png')
 
 			p(ng-show='editing')
 				| Drag skills to rearrange
@@ -156,8 +159,7 @@ block content
 
 		#totals.sheet-panel(ng-controller='TotalsCtrl', ng-class='{dirty: dirty}')
 			a#totals
-			if logged_user == owner
-				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
+			input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
 					style='position: absolute; right: 8px;', ng-click='editing=!editing')
 
 			img#star(src='/static/img/pentacle.svg')
@@ -207,8 +209,7 @@ block content
 		#stress.sheet-panel(ng-controller='StressCtrl', ng-class='{dirty: dirty}')
 			a#stress
 			p.sectionHeader Stress
-				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
+				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 			#stressBlock(ng-hide='editing')
 				.track
@@ -227,10 +228,7 @@ block content
 							.box(ng-repeat='box in data.boxes track by $index')
 								input.stressBox(type='checkbox', id='{{data.name}}-{{data.skill}}-{{$index}}', dgy-notify, ng-model='data.boxes[$index]',
 									ng-class='manageParens($index)', ng-disabled='box === null')
-								if logged_user == owner
-									label(for='{{data.name}}-{{data.skill}}-{{$index}}')
-								else
-									label
+								label(for='{{data.name}}-{{data.skill}}-{{$index}}')
 
 					.track(ng-repeat='armor in data.armor') Armor: {{armor.strength}} vs. {{armor.vs}}
 
@@ -266,8 +264,7 @@ block content
 		#consequences.sheet-panel(ng-controller='ConsequenceCtrl', ng-class='{dirty: dirty}')
 			a#conseq
 			p.sectionHeader Consequences
-				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
+				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 			#conseqBlock(ng-repeat='con in data.consequences | conseqSort')
 				.row(ng-class='{"top-divider": !$first}')
@@ -283,10 +280,7 @@ block content
 								option(value='Extreme') Extreme (-8)
 							select(dgy-notify, ng-show='editing', ng-model='con.mode', ng-options='type for type in stressTypes()')
 
-					if logged_user == owner
-						resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder='Unused')
-					else
-						resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder='Unused', readonly='readonly')
+					resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder='Unused')
 
 			input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addConsequence()')
 
@@ -295,8 +289,7 @@ block content
 		#powers.sheet-panel(ng-controller='PowersCtrl', ng-class='{dirty: dirty}')
 			a#powers
 			p.sectionHeader Stunts & Powers
-				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
+				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 			table#powerTable
 				thead: tr
@@ -328,8 +321,7 @@ block content
 		#notes.sheet-panel(ng-controller='NotesCtrl', ng-show='data.notes.enabled', ng-class='{dirty:dirty}')
 			a#notes
 			p.sectionHeader Notes
-				if logged_user == owner
-					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
+				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 			div(ng-show='editing')
 				p Text is styled with Markdown. Click out of the text box to update preview.
