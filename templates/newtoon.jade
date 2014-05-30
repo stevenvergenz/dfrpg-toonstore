@@ -17,6 +17,12 @@ block append includes
 			return valid;
 		}
 
+		function generateSlug(fullName){
+			var name = $(fullName).val();
+			var slug = name.split(' ').pop().toLowerCase().replace(/[^\w]/g, '_');
+			$('#canon_name').val(slug);
+		}
+
 block content
 
 	.content-block: .titledbox
@@ -26,7 +32,7 @@ block content
 			form(action='/newtoon', method='post', onsubmit="return validate();")
 
 				label(for='name') Full name
-				input#name(type='text', name='name', required, placeholder='John Doe')
+				input#name(type='text', name='name', required, placeholder='John Doe', onkeyup="generateSlug(this)")
 				p.caption The character's name. Can be changed later.
 
 				label(for='canon_name') Short name (also permalink)
