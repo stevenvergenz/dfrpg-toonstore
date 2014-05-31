@@ -24,11 +24,21 @@
 			.jumbotron {
 				background-image: url('/static/img/dice-banner.jpg');
 				background-size: cover;
+				background-position-y: -10px;
 				border-bottom: solid skyblue 5px;
 			}
 			.jumbotron .container {
 				color: white;
 				text-shadow: #444 1px 1px;
+			}
+			.thumbnail img {
+				width: 300px;
+				height: 200px;
+				border: 3px solid lightgrey;
+				border-radius: 3px;
+			}
+			.thumbnail .caption {
+				text-align: center;
 			}
 
 			body {
@@ -65,24 +75,34 @@
 		</div>
 
 		<div class='container' id='body'>
+			<h2>Featured Characters:</h2>
 			<div class='row'>
 				<div class='col-md-4'>
-					<h2>Heading</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
+					<div class='thumbnail'>
+						<img src='/static/img/lifeson.png'/>
+						<div class='caption'>
+							<h3>Andrew Lifeson,<br/>White Council Footsoldier</h3>
+							<p><a class='btn btn-primary' href='/Derogatory/lifeson/'>View</a></p>
+						</div>
+					</div>
 				</div>
 				<div class='col-md-4'>
-					<h2>Heading</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
+					<div class='thumbnail'>
+						<img src='/static/img/stennett.png'/>
+						<div class='caption'>
+							<h3>Ryan Marcus Stennett,<br/>Cerberus Associate Headhunter</h3>
+							<p><a class='btn btn-primary' href='/Derogatory/lifeson/'>View</a></p>
+						</div>
+					</div>
 				</div>
 				<div class='col-md-4'>
-					<h2>Heading</h2>
-					<p>
-						Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.
-					</p>
+					<div class='thumbnail'>
+						<img src='/static/img/race.png'/>
+						<div class='caption'>
+							<h3>Race Banter,<br/>Greater Dragonmarked Heir of Orien</h3>
+							<p><a class='btn btn-primary' href='/Derogatory/lifeson/'>View</a></p>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
