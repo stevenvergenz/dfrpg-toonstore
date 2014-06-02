@@ -25,11 +25,16 @@
 				background-image: url('/static/img/dice-banner.jpg');
 				background-size: cover;
 				background-position-y: -10px;
-				border-bottom: solid skyblue 5px;
 			}
 			.jumbotron .container {
 				color: white;
 				text-shadow: #444 1px 1px;
+			}
+
+			.container#body {
+				text-align: center;
+				border-top: solid skyblue 3px;
+				border-bottom: solid skyblue 3px;
 			}
 			.thumbnail img {
 				width: 300px;
@@ -41,10 +46,12 @@
 				text-align: center;
 			}
 
+			html {
+				min-height: 100%;
+			}
 			body {
 				background: url('/static/img/watermark.png') bottom right no-repeat #3a6c77;
 				color: white;
-				min-height: 800px;
 			}
 		</style>
 	</head>
@@ -75,7 +82,7 @@
 		</div>
 
 		<div class='container' id='body'>
-			<h2>Featured Characters:</h2>
+			<h2>Featured Characters</h2>
 			<div class='row'>
 				<div class='col-md-4'>
 					<div class='thumbnail'>
