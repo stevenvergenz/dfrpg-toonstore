@@ -1,5 +1,6 @@
 html {
 	min-height: 100%;
+	position: relative;
 }
 
 body {
@@ -17,7 +18,7 @@ body {
 
 .container {
 	width: 100%;
-	max-width: 940px;
+	max-width: 1170px;
 	margin: auto;
 }
 
@@ -28,7 +29,7 @@ body {
 	text-align: center;
 }
 .navbar.header {
-	border-bottom: 3px solid skyblue
+	border-bottom: 3px solid skyblue;
 }
 
 
@@ -95,4 +96,59 @@ body {
 .jumbotron .container {
 	color: white;
 	text-shadow: #444 1px 1px;
+}
+
+.row {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	flex-wrap: wrap;
+}
+
+.col-md-4 {
+	flex-basis: 4;
+}
+
+.thumbnail {
+	border: solid grey 1px;
+	border-radius: 5px;
+	background-color: whitesmoke;
+	color: black;
+	padding: 5px 15px;
+	margin: 10px;
+	max-width: 330px;
+	width: 330px;
+}
+
+.thumbnail img {
+	/*width: 100%;
+	height: auto;*/
+	max-width: 100%;
+	max-height: 200px;
+	border: 3px solid lightgrey;
+	border-radius: 3px;
+}
+
+.btn {
+	padding: 8px 15px;
+	color: white;
+	background-color: #428bca;
+	border: 1px solid #357ebd;
+	border-radius: 4px;
+	text-decoration: none;
+}
+
+.btn:hover {
+	background-color: #3276b1;
+	text-decoration: underline;
+}
+
+.placeholder.footer {
+	height: 80px;
+}
+
+.navbar.footer {
+	border-top: 3px solid skyblue;
+	position: absolute;
+	bottom: 0%;
 }
