@@ -18,7 +18,8 @@ body {
 
 .container {
 	width: 100%;
-	max-width: 1170px;
+	max-width: 1200px;
+	padding: 0 15px;
 	margin: auto;
 }
 
@@ -114,7 +115,7 @@ body {
 	border-radius: 5px;
 	background-color: whitesmoke;
 	color: black;
-	padding: 5px 15px;
+	padding: 10px 15px;
 	margin: 10px;
 	max-width: 330px;
 	width: 330px;
