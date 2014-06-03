@@ -1,0 +1,98 @@
+html {
+	min-height: 100%;
+}
+
+body {
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+	font-size: 14px;
+	line-height: 1.42857143;
+	margin: 0;
+	background: url('/static/img/watermark.png') bottom right no-repeat #3a6c77;
+	color: white;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+.container {
+	width: 100%;
+	max-width: 940px;
+	margin: auto;
+}
+
+.navbar {
+	width: 100%;
+	background-color: whitesmoke;
+	color: #3a6c77;
+	text-align: center;
+}
+.navbar.header {
+	border-bottom: 3px solid skyblue
+}
+
+
+.navbar .container {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.navbar-left {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-start;
+	align-items: center;
+}
+
+.navbar-right {
+	display: flex;
+	flex-direction: row;
+	justify-content: flex-end;
+	align-items: center;
+}
+
+.navbar-center {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+	margin: auto;
+}
+
+.navbar .logo img {
+	width: 130px;
+	height: auto;
+	padding: 5px;
+}
+
+.navbar a:not(.logo) {
+	margin: 10px;
+	color: #3a6c77;
+}
+
+.jumbotron {
+	width: 100%;
+	padding-top: 40px;
+	padding-bottom: 40px;
+
+	background-image: url('/static/img/dice-banner.jpg');
+	background-size: cover;
+}
+
+.jumbotron h1 {
+	font-size: 32pt;
+	margin-top: 16px;
+	margin-bottom: 30px;
+}
+
+.jumbotron p {
+	margin-bottom: 15px;
+	font-size: 16pt;
+	font-weight: 200;
+}
+
+.jumbotron .container {
+	color: white;
+	text-shadow: #444 1px 1px;
+}
