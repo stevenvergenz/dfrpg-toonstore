@@ -121,7 +121,7 @@ body {
 	width: 330px;
 }
 
-.thumbnail img {
+.thumbnail > img {
 	/*width: 100%;
 	height: auto;*/
 	max-width: 100%;
@@ -137,6 +137,10 @@ body {
 	border: 1px solid #357ebd;
 	border-radius: 4px;
 	text-decoration: none;
+	background-image: -webkit-linear-gradient(top, #408794, #24495A);
+	background-image: -moz-linear-gradient(top, #408794, #24495A);
+	background-image: -ms-linear-gradient(top, #408794, #24495A);
+	background-image: linear-gradient(top, #408794, #24495A);
 }
 
 .btn:hover {
