@@ -10,6 +10,7 @@ var login = require('./login.js');
 var user = require('./user.js');
 var character = require('./character.js');
 var sitemap = require('./sitemap.js');
+var stats = require('./stats.js');
 
 
 // create the express application
@@ -72,6 +73,9 @@ app.get('/', global.renderPage('index'));
 
 app.use('/static', express.static( libpath.resolve(__dirname,'static'), {maxAge: 24*60*60}));
 app.get('/sitemap.xml', sitemap.serve);
+
+app.get('/stats', stats.serveStats);
+
 
 // catch-all: serve static file or 404
 app.use(function(req,res)

@@ -1,0 +1,71 @@
+extends index
+
+block title
+	title Community Statistics | ToonStore.net
+
+block append styles
+	style.
+		td,th {
+			padding: 5px;
+			min-width: 5em;
+		}
+
+		table {
+			text-align: center;
+			margin: auto;
+		}
+
+		tr:first-of-type th {
+			border-bottom: solid grey 1px;
+		}
+
+		th:first-of-type {
+			text-align: right;
+			border-right: solid grey 1px;
+		}
+
+		tr:nth-of-type(2n) {
+			background-color: whitesmoke;
+		}
+
+
+block content
+
+	.content-block
+
+		h1 Community Statistics
+
+	.content-block: .normalbox
+
+		table
+			tr
+				th
+				th 1 Day
+				th 7 Days
+				th 30 Days
+				th All Time
+			tr
+				th Registrations
+				td= regCount1
+				td= regCount7
+				td= regCount30
+				td= regCountAll
+			tr
+				th Logins
+				td= loginCount1
+				td= loginCount7
+				td= loginCount30
+				td= loginCountAll
+				
+			tr
+				th Characters
+				td= charCount1
+				td= charCount7
+				td= charCount30
+				td= charCountAll
+			tr
+				th Character Edits
+				td= editCount1
+				td= editCount7
+				td= editCount30
+				td= editCountAll
