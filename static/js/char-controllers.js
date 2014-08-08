@@ -340,7 +340,7 @@ app.controller('PowersCtrl', ['$scope','SharedResources','rootModel', function($
 
 // notes controller
 //
-app.controller('NotesCtrl', ['$scope','$sce','rootModel', function($scope, $sce)
+app.controller('NotesCtrl', ['$scope','$sce','$sanitize','rootModel', function($scope, $sce, $sanitize)
 {
 	$scope.editing = false;
 
@@ -352,7 +352,7 @@ app.controller('NotesCtrl', ['$scope','$sce','rootModel', function($scope, $sce)
 
 	$scope.toHtml = function(md){
 		if(md)
-			return $sce.trustAsHtml(markdown.toHTML(md));
+			return $sce.trustAsHtml($sanitize(markdown.toHTML(md)));
 	};
 
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
