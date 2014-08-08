@@ -138,8 +138,11 @@ html
 								span(ng-repeat='line in splitDescription($index)') {{line}}
 									br(ng-if='!$last')
 						
+						#totalsRow.row
+							.bubble: span {{totalAdjustment()}}
+							.name Total Refresh Adjustment
 
-						#ladder
+						//-#ladder
 							p The Ladder
 							table
 								tr(ng-repeat='i in ladder')
