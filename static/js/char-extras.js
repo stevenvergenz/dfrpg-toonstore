@@ -1,4 +1,4 @@
-var app = angular.module('charsheet', ['ngResource','ngSanitize']);
+var app = angular.module('charsheet', ['ngResource']);
 
 /*
  * Retrieve the JSON data from server

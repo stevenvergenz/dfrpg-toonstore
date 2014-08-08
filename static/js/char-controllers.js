@@ -10,7 +10,7 @@ var app = angular.module('charsheet');
 
 // handle general panel
 
-app.controller('GeneralCtrl', ['$scope', function($scope)
+app.controller('GeneralCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 
@@ -21,7 +21,7 @@ app.controller('GeneralCtrl', ['$scope', function($scope)
 
 // handle aspects
 
-app.controller('AspectCtrl', ['$scope', function($scope)
+app.controller('AspectCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 
@@ -37,6 +37,15 @@ app.controller('AspectCtrl', ['$scope', function($scope)
 		$scope.$emit('is_dirty');
 	};
 
+	$scope.parseAspect = function(raw){
+		var tag = /^\[(BACKGROUND|RISING CONFLICT|STORY|GUEST STAR)\]\s*(.+)$/;
+		var match = tag.exec(raw);
+		if( match )
+			return {'name': match[2], 'type': match[1].toLowerCase()};
+		else
+			return {'name': raw, 'type': null};
+	};
+
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
 	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);
@@ -44,7 +53,7 @@ app.controller('AspectCtrl', ['$scope', function($scope)
 
 // skill block and dependencies
 //
-app.controller('SkillCtrl', ['$scope','SharedResources', function($scope, SharedResources)
+app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($scope, SharedResources)
 {
 	$scope.editing = false;
 
@@ -126,7 +135,7 @@ app.controller('SkillCtrl', ['$scope','SharedResources', function($scope, Shared
 
 // manage miscellaneous fields
 //
-app.controller('TotalsCtrl', ['$scope','SharedResources', function($scope,SharedResources)
+app.controller('TotalsCtrl', ['$scope','SharedResources','rootModel', function($scope,SharedResources)
 {
 	$scope.editing = false;
 
@@ -161,7 +170,7 @@ app.controller('TotalsCtrl', ['$scope','SharedResources', function($scope,Shared
 
 // manage the set of stress tracks
 //
-app.controller('StressCtrl', ['$scope', function($scope)
+app.controller('StressCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 
@@ -237,7 +246,7 @@ app.controller('StressTrackCtrl', ['$scope','rootModel', function($scope,rootMod
 
 // consequence controller
 //
-app.controller('ConsequenceCtrl', ['$scope', function($scope)
+app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 
@@ -287,9 +296,23 @@ app.controller('ConsequenceCtrl', ['$scope', function($scope)
 }]);
 
 
-app.controller('PowersCtrl', ['$scope','SharedResources', function($scope,SharedResources)
+app.controller('PowersCtrl', ['$scope','SharedResources','rootModel', function($scope,SharedResources)
 {
 	$scope.editing = false;
+
+	$scope.ladder = [
+		{label: 'Legendary', value: '+8'},
+		{label: 'Epic', value: '+7'},
+		{label: 'Fantastic', value: '+6'},
+		{label: 'Superb', value: '+5'},
+		{label: 'Great', value: '+4'},
+		{label: 'Good', value: '+3'},
+		{label: 'Fair', value: '+2'},
+		{label: 'Average', value: '+1'},
+		{label: 'Mediocre', value: '+0'},
+		{label: 'Poor', value: '-1'},
+		{label: 'Terrible', value: '-2'},
+	];
 
 	$scope.totalAdjustment = SharedResources.refreshSpent;
 	$scope.splitDescription = function(index){
@@ -317,7 +340,7 @@ app.controller('PowersCtrl', ['$scope','SharedResources', function($scope,Shared
 
 // notes controller
 //
-app.controller('NotesCtrl', ['$scope', function($scope)
+app.controller('NotesCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 

@@ -14,7 +14,6 @@ block append includes
 	script(src='/static/js/jquery.ui.touch-punch.min.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
-	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.js')
 	script(src='/static/js/char-extras.js')
 	script(src='/static/js/char-controllers.js')
 	script(src='/static/js/markdown.js')
@@ -33,6 +32,9 @@ block append header
 					a Panels
 						span.subarrow
 					ul
+						li
+							a(href='printable') Printer-friendly
+						li: hr
 						li
 							a Optional Panels
 								span.subarrow
@@ -112,7 +114,7 @@ block content
 			.field
 				p.fieldLabel Other Aspects:
 				div(dgy-accordion='aspect.description', ng-hide='editing', ng-repeat-start='aspect in data.aspects.aspects')
-					p {{aspect.name}}
+					p {{parseAspect(aspect.name).name}}
 					p.description {{aspect.description}}
 
 				div(ng-show='editing', ng-repeat-end)
