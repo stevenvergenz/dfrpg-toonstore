@@ -149,10 +149,25 @@ div#avatar {
 #avatar > #imgContainer {
 	width: 100%;
 	height: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
 	overflow: hidden;
+
+	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: -webkit-flex;
+	display: flex;
+
+	-webkit-box-align: center;
+	-moz-align-items: center;
+	-ms-flex-align: center;
+	-webkit-align-items: center;
+	align-items: center;
+
+	-webkit-box-pack: center;
+	-moz-justify-content: center;
+	-ms-flex-pack: center;
+	-webkit-justify-content: center;
+	justify-content: center;
 }
 
 #avatar > #imgContainer > img {
