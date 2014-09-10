@@ -38,7 +38,7 @@ app.controller('AspectCtrl', ['$scope','rootModel', function($scope)
 	};
 
 	$scope.parseAspect = function(raw){
-		var tag = /^\[(BACKGROUND|RISING CONFLICT|STORY|GUEST STAR)\]\s*(.+)$/;
+		var tag = /^\[([^\]]+)\]\s*(.+)$/;
 		var match = tag.exec(raw);
 		if( match )
 			return {'name': match[2], 'type': match[1].toLowerCase()};
