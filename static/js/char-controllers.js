@@ -330,6 +330,12 @@ app.controller('PowersCtrl', ['$scope','SharedResources','rootModel', function($
 		$scope.$emit('is_dirty');
 	};
 
+	$scope.sortOptions = {
+		axis: 'y',
+		cursor: 'move',
+		handle: '.dragHandle'
+	};
+
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
 	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);

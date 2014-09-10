@@ -1,4 +1,4 @@
-var app = angular.module('charsheet', ['ngResource','ngSanitize']);
+var app = angular.module('charsheet', ['ngResource','ngSanitize','ui.sortable']);
 
 /*
  * Retrieve the JSON data from server
@@ -29,6 +29,20 @@ app.service('rootModel', ['$rootScope','$timeout','$resource', function($rootSco
 	$rootScope.$on('is_dirty', function(){ $rootScope.dirty = true; });
 	$rootScope.$on('is_clean', function(){ $rootScope.dirty = false; });
 }]);
+
+app.directive('dgyNotifyCollection', function()
+{
+	return {
+		'restrict': 'A',
+		'link': function(scope,element,attr){
+			if( attr.ngModel ){
+				scope.$watchCollection(attr.ngModel, function(newVal,oldVal){
+					scope.$emit('is_dirty');
+				});
+			}
+		}
+	};
+});
 
 app.directive('dgyNotify', function()
 {

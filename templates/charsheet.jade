@@ -5,19 +5,20 @@ block title
 
 block append styles
 	link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Metamorphous&subset=latin,latin-ext')
+	link(rel='stylesheet', type='text/css', href='/static/css/jquery-ui.min.css')
 	link(rel='stylesheet', type='text/css', href='/static/css/charsheet.css')
-	link(rel='stylesheet', type='text/css', href='/static/css/jquery-ui-1.10.3.custom.css')
 	link(rel='stylesheet', type='text/css', href='/static/css/dice.css')
 
 block append includes
-	script(src='/static/js/jquery-ui-1.10.3.custom.js')
+	script(src='/static/js/jquery-ui.min.js')
 	script(src='/static/js/jquery.ui.touch-punch.min.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.js')
+	script(src='/static/js/markdown.js')
+	script(src='/static/js/sortable.js')
 	script(src='/static/js/char-extras.js')
 	script(src='/static/js/char-controllers.js')
-	script(src='/static/js/markdown.js')
 	script.
 		overrideUserRedirect = true;
 		$(document).ready(function(){
@@ -298,19 +299,21 @@ block content
 				.row.block
 					div Cost
 					div Ability
-				.block(ng-repeat='power in data.powers')
-					.row
-						.cost
-							input(type='number', min='-8', max='8', dgy-notify, ng-model='power.cost', ng-show='editing')
-							span(ng-hide='editing') {{power.cost}}
-						.name
-							input(type='text', dgy-notify, ng-model='power.name', ng-show='editing')
-							span(ng-hide='editing') {{power.name}}
-					.row
-						div
-							input.iconButton(type='image', ng-show='editing', dgy-notify, ng-click='removePower($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
-						.description(ng-bind-html='power.description | mdToHtml', ng-hide='editing')
-						textarea.descriptionEdit(ng-show='editing', ng-model='power.description', dgy-notify)
+				div(ui-sortable='sortOptions', ng-model='data.powers', dgy-notify-collection)
+					.block(ng-repeat='power in data.powers')
+						.row
+							.cost
+								input(type='number', min='-8', max='8', dgy-notify, ng-model='power.cost', ng-show='editing')
+								span(ng-hide='editing') {{power.cost}}
+							.name
+								input(type='text', dgy-notify, ng-model='power.name', ng-show='editing')
+								span(ng-hide='editing') {{power.name}}
+						.row
+							.icons
+								img.iconButton.dragHandle(src='/static/img/glyphicons/glyphicons_186_move.png', ng-show='editing')
+								input.iconButton(type='image', ng-show='editing', dgy-notify, ng-click='removePower($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+							.description(ng-bind-html='power.description | mdToHtml', ng-hide='editing')
+							textarea.descriptionEdit(ng-show='editing', ng-model='power.description', dgy-notify)
 
 				.block
 					input.iconButton(type='image', dgy-notify, ng-show='editing', ng-click='addPower()', src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
