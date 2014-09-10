@@ -271,7 +271,12 @@ span.subtitle {
 }
 
 #skillBlock .row {
+	display: -webkit-box;
+	display: -moz-flex;
+	display: -ms-flexbox;
+	display: -webkit-flex;
 	display: flex;
+
 	padding-top: 7px;
 	padding-bottom: 7px;
 }
