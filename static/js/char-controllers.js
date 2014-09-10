@@ -315,9 +315,6 @@ app.controller('PowersCtrl', ['$scope','SharedResources','rootModel', function($
 	];
 
 	$scope.totalAdjustment = SharedResources.refreshSpent;
-	$scope.splitDescription = function(index){
-		return $scope.data.powers[index].description.split('\n');
-	};
 
 	$scope.addPower = function(){
 		$scope.data.powers.push({
@@ -349,11 +346,6 @@ app.controller('NotesCtrl', ['$scope','$sce','$sanitize','rootModel', function($
 			$scope.data.notes = {'text':'', 'enabled':false};
 		}
 	});
-
-	$scope.toHtml = function(md){
-		if(md)
-			return $sce.trustAsHtml($sanitize(markdown.toHTML(md)));
-	};
 
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
 	$scope.$on('is_clean', function(){ $scope.dirty = false; });

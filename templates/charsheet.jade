@@ -294,31 +294,31 @@ block content
 			p.sectionHeader Stunts & Powers
 				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
-			table#powerTable
-				thead: tr
-					th Cost
-					th Ability
+			#powerBlock
+				.row.block
+					div Cost
+					div Ability
+				.block(ng-repeat='power in data.powers')
+					.row
+						.cost
+							input(type='number', min='-8', max='8', dgy-notify, ng-model='power.cost', ng-show='editing')
+							span(ng-hide='editing') {{power.cost}}
+						.name
+							input(type='text', dgy-notify, ng-model='power.name', ng-show='editing')
+							span(ng-hide='editing') {{power.name}}
+					.row
+						div
+							input.iconButton(type='image', ng-show='editing', dgy-notify, ng-click='removePower($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+						.description(ng-bind-html='power.description | mdToHtml', ng-hide='editing')
+						textarea.descriptionEdit(ng-show='editing', ng-model='power.description', dgy-notify)
 
-				tbody
+				.block
+					input.iconButton(type='image', dgy-notify, ng-show='editing', ng-click='addPower()', src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
 
-					tr(ng-repeat-start='power in data.powers', ng-hide='editing')
-						td.mainRow {{power.cost}}
-						td.mainRow {{power.name}}
-					tr(ng-show='editing')
-						td.mainRow: input(type='number', min='-8', max='8', dgy-notify, ng-model='power.cost')
-						td.mainRow: input(type='text', dgy-notify, ng-model='power.name')
-					tr(ng-hide='editing')
-						td &nbsp;
-						td: p.descriptionLine(ng-repeat='line in splitDescription($index)') {{line}}
-					tr(ng-repeat-end, ng-show='editing')
-						td: input.iconButton(type='image', dgy-notify, ng-click='removePower($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
-						td: textarea(placeholder='Description', dgy-notify, ng-model='power.description')
+				.block.row
+					div.bubble: span {{totalAdjustment()}}
+					div Total Refresh Adjustment
 
-					tr
-						td.mainRow(style='border-top: solid black 1px;') {{totalAdjustment()}}
-						td.mainRow Total Refresh Adjustment
-
-			input.iconButton(type='image', dgy-notify, ng-show='editing', ng-click='addPower()', src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
 
 
 		#notes.sheet-panel(ng-controller='NotesCtrl', ng-show='data.notes.enabled', ng-class='{dirty:dirty}')
@@ -348,5 +348,5 @@ block content
 
 				textarea#editor(dgy-notify, ng-model='data.notes.text')
 
-			.inner(ng-hide='editing', ng-bind-html='toHtml(data.notes.text)')
+			.inner(ng-hide='editing', ng-bind-html='data.notes.text | mdToHtml')
 

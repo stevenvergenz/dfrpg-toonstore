@@ -263,6 +263,13 @@ app.filter('conseqSort', function()
 	};
 });
 
+app.filter('mdToHtml', ['$sce', '$sanitize', function($sce, $sanitize){
+	return function(md){
+		if(md)
+			return $sce.trustAsHtml($sanitize(markdown.toHTML(md)));
+	};
+	
+}]);
 
 app.service('SharedResources', ['rootModel', function(rootModel)
 {
