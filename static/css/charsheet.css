@@ -180,26 +180,31 @@ div#avatar {
 	background-color: lightgrey;
 }
 
-#aspects .ui-accordion p {
+#aspects .ui-accordion > * {
 	padding: 0;
 }
 
-#aspects .ui-accordion p.description {
+/*#aspects .ui-accordion p.description {
 	padding-top: 5px;
 	padding-bottom: 5px;
-}
+}*/
 
 #aspects textarea {
-	width: 90%;
-	font-family: 'Metamorphous', cursive;
+	width: 95%;
+	font-family: 'sans';
+	font-size: 10pt;
 	height: 65px;
-	resize: none;
 }
 
 #aspects .description {
 	font-size: 10pt;
-	margin-left: 5px;
-	margin-right: 5px;
+	margin-left: 10px;
+	margin-right: 10px;
+	text-align: justify;
+}
+
+#aspects .description > p {
+	margin: 8px 0;
 }
 
 #aspects .ui-accordion:not(.ui-accordion-disabled) .ui-accordion-header::after {
