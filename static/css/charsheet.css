@@ -363,7 +363,7 @@ span.subtitle {
 }
 
 .bubble {
-	display: inline-block !important;
+	display: inline-block;
 	width: 40px !important;
 	height: 40px !important;
 	border: solid black 1px;
@@ -768,8 +768,11 @@ div#stressBlock {
 }
 
 /* description div */
-#powerBlock .description > * {
+#powerBlock .description {
 	font-size: 80%;
+}
+
+#powerBlock .description > * {
 	margin: 2px 0;
 }
 
@@ -780,4 +783,8 @@ div#stressBlock {
 /* totals row */
 #powerBlock .block.row:last-child {
 	padding-top: 10px;
+}
+
+#powerBlock .block.row:last-child .bubble {
+	display: inline-block;
 }

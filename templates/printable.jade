@@ -12,6 +12,7 @@ html
 		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.js')
 		script(src='/static/js/char-extras.js')
 		script(src='/static/js/char-controllers.js')
+		script(src='/static/js/markdown.js')
 
 	body
 		.page(ng-app='charsheet')
@@ -135,9 +136,7 @@ html
 						.row(ng-repeat='power in data.powers')
 							.cost {{power.cost}}
 							.name {{power.name}}
-							.description
-								span(ng-repeat='line in splitDescription($index)') {{line}}
-									br(ng-if='!$last')
+							.description(ng-bind-html='power.description | mdToHtml')
 						
 						#totalsRow.row
 							.bubble: span {{totalAdjustment()}}

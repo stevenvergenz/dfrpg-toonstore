@@ -370,6 +370,14 @@ div.bubble {
 	font-size: 8pt;
 	letter-spacing: 1px;
 }
+#powers .description > * {
+	margin: 2px 0;
+}
+
+#powers .description ul {
+	padding-left: 20px;
+}
+
 
 #powers #totalsRow .name {
 	margin-left: 1em;
