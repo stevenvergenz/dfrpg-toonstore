@@ -25,6 +25,12 @@ app.controller('AspectCtrl', ['$scope','rootModel', function($scope)
 {
 	$scope.editing = false;
 
+	$scope.dragOptions = {
+		axis: 'y',
+		cursor: 'move',
+		handle: '.dragHandle'
+	};
+
 	$scope.addAspect = function(){
 		console.log('Adding aspect');
 		$scope.data.aspects.aspects.push( {name: '', description: ''} );
