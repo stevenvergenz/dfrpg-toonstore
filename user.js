@@ -2,10 +2,11 @@ var mysql = require('mysql');
 var libpath = require('path');
 
 var global = require('./global.js');
+var config = require('./config.json');
 
 function userPage(req,res,next)
 {
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query(
 		'SELECT Users.username, Characters.name, Characters.canonical_name, Characters.concept, Characters.private '+
 		'FROM Users LEFT JOIN Characters ON Users.username = Characters.owner '+
@@ -51,7 +52,7 @@ function togglePrivacy(req,res,next)
 		return;
 	}
 
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query(
 		'UPDATE Characters SET private = private XOR true WHERE owner = ? AND canonical_name = ?;',
 		[req.session.user, req.body.id],

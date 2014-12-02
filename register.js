@@ -4,6 +4,7 @@ var mysql = require('mysql');
 //var crypto = require('crypto');
 
 var global = require('./global.js');
+var config = require('./config.json');
 
 
 function register(req,res)
@@ -27,7 +28,7 @@ function register(req,res)
 	global.log('Registering user:', body.username);
 
 	// connect to the db
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query(
 		'INSERT INTO Users SET username = ?, email = ?, registered = NOW(), last_login = NOW();', 
 		[body.username,req.session.user_email],
@@ -58,7 +59,7 @@ function checkUsername(req,res)
 	}
 
 	// connect to the db
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query('SELECT COUNT(username) AS userCount FROM Users WHERE username = ?', [user], function(err, rows, fields)
 	{
 		if( err ){

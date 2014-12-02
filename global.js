@@ -3,20 +3,6 @@
  */
 var libpath = require('path');
 
-var config = {
-	'database': {
-		'host': 'localhost',
-		'user': 'toonstore',
-		'password': 'KhazdanWillNeverDie',
-		'database': 'toonstore'
-	},
-	'port': 3001,
-	'cookie_secret': 'I return from whence I came...',
-	'persona_audience': 'http://localhost:3001',
-	'use_sitemap': true
-};
-
-
 var logLevels = {
 	'fatal': 0,
 	'error': 1,
@@ -123,6 +109,5 @@ function renderPage(template, options)
 exports.error = error;
 exports.log = log;
 exports.logLevels = logLevels;
-exports.config = config;
 exports.renderPage = renderPage;
 

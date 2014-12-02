@@ -2,13 +2,14 @@ var lxml = require('libxmljs'),
 	mysql = require('mysql'),
 	liburl = require('url'),
 	global = require('./global.js');
+var config = require('./config.json');
 
 
 // generate a sitemap
 function serveSitemap(req,res,next)
 {
 	// don't generate if admin disables it
-	if( !global.config.use_sitemap )
+	if( !config.use_sitemap )
 		res.send(404);
 
 	// create sitemap template
@@ -20,16 +21,16 @@ function serveSitemap(req,res,next)
 	});
 
 	var root = doc.root();
-	root.node('url').node('loc', liburl.resolve(global.config.persona_audience, '/'))
+	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/'))
 		.parent().node('priority', '1.0');
-	root.node('url').node('loc', liburl.resolve(global.config.persona_audience, '/site/about'))
+	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/site/about'))
 		.parent().node('priority', '0.8');
-	root.node('url').node('loc', liburl.resolve(global.config.persona_audience, '/site/contact'));
-	root.node('url').node('loc', liburl.resolve(global.config.persona_audience, '/site/terms'));
-	root.node('url').node('loc', liburl.resolve(global.config.persona_audience, '/site/privacy'));
+	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/site/contact'));
+	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/site/terms'));
+	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/site/privacy'));
 
 	// generate sitemap for user/character URLs
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query(
 		'SELECT CONCAT("/",owner,"/",canonical_name,"/") AS url, last_updated FROM Characters WHERE private = false '+
 		'UNION SELECT CONCAT("/",username) AS url, last_login AS last_updated FROM Users ORDER BY url;',
@@ -52,7 +53,7 @@ function serveSitemap(req,res,next)
 
 				// add url entry
 				var newurl = root.node('url');
-				newurl.node('loc', liburl.resolve(global.config.persona_audience, rows[i].url));
+				newurl.node('loc', liburl.resolve(config.persona_audience, rows[i].url));
 				if(date)
 					newurl.node('lastmod', date);
 			}

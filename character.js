@@ -4,10 +4,12 @@ var fs = require('fs');
 var crypto = require('crypto');
 var gm = require('gm');
 var global = require('./global.js');
+var config = require('./config.json');
+
 
 function servePage(req,res,next)
 {
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query(
 		'SELECT name,concept,private,info FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
@@ -37,7 +39,7 @@ function servePage(req,res,next)
 
 function serveJson(req,res,next)
 {
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query(
 		'SELECT info FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
@@ -70,7 +72,7 @@ function pushJson(req,res,next)
 	//console.log( JSON.stringify(req.body.stress[0], null, 2) );
 	//res.send(200);
 
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query(
 		'UPDATE Characters SET info = ?, name = ?, concept = ?, last_updated = NOW() WHERE owner = ? AND canonical_name = ?;',
 		[JSON.stringify(req.body), req.body.name, req.body.aspects.high_concept.name, req.params.user, req.params.char],
@@ -141,7 +143,7 @@ function newCharacterRequest(req,res)
 	};
 
 	global.log('Attempting character creation');
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query('INSERT INTO Characters SET created_on=NOW(), ?;',
 		{'canonical_name': req.body.canon_name, 'name': req.body.name, 'owner': req.session.user,
 			'concept': req.body.concept, 'info': JSON.stringify(toon)},
@@ -168,7 +170,7 @@ function deleteCharacterPage(req,res)
 		return;
 	}
 
-	var connection = mysql.createConnection(global.config.database);
+	var connection = mysql.createConnection(config.database);
 	connection.query('SELECT name, concept FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.session.user, req.query.id],
 		function(err,rows,fields)
@@ -204,7 +206,7 @@ function deleteCharacterRequest(req,res)
 	}
 
 	global.log('Attempting character deletion:',req.body.charname);
-	var connection = mysql.createConnection(global.config.database);
+	var connection = mysql.createConnection(config.database);
 	connection.query('DELETE FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.session.user, req.body.charname],
 		function(err,info)
@@ -229,7 +231,7 @@ function deleteCharacterRequest(req,res)
 
 function serveAvatar(req,res,next)
 {
-	var connection = mysql.createConnection(global.config.database);
+	var connection = mysql.createConnection(config.database);
 	connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,info)
@@ -271,7 +273,7 @@ function saveAvatar(req,res,next)
 		else global.log(err);
 	});
 
-	var connection = mysql.createConnection(global.config.database);
+	var connection = mysql.createConnection(config.database);
 
 	function saveNewAvatar(err,info)
 	{

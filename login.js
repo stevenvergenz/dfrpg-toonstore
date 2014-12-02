@@ -6,6 +6,7 @@ var https = require('https');
 var querystring = require('querystring');
 
 var global = require('./global.js');
+var config = require('./config.json');
 
 
 function processPersonaLogin(req,res)
@@ -49,7 +50,7 @@ function processPersonaLogin(req,res)
 	// actually make the verification request
 	var data = querystring.stringify({
 		'assertion': req.body.email,
-		'audience': global.config.persona_audience
+		'audience': config.persona_audience
 	});
 	verifyReq.setHeader('Content-Type', 'application/x-www-form-urlencoded');
 	verifyReq.setHeader('Content-Length', data.length);
@@ -63,7 +64,7 @@ function logInVerifiedEmail(req,res,email)
 	req.session.user_email = email;
 
 	// look up corresponding username
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query('SELECT username FROM Users WHERE email = ?;', [email],
 		function(err,rows,fields){
 			if( err ){

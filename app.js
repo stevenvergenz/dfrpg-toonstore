@@ -1,10 +1,11 @@
-var http = require('http');
+var http = require('http'), https = require('https');
 var fs = require('fs');
 var libpath = require('path');
 var liburl = require('url');
 var express = require('express');
 
 var global = require('./global.js');
+var config = require('./config.json');
 var register = require('./register.js');
 var login = require('./login.js');
 var user = require('./user.js');
@@ -22,7 +23,7 @@ app.use(express.bodyParser({
 
 
 app.use(express.cookieParser());
-app.use(express.session({secret: global.config.cookie_secret}));
+app.use(express.session({secret: config.cookie_secret}));
 app.set('views', 'templates');
 app.set('view engine', 'jade');
 
@@ -90,6 +91,22 @@ app.use(function(req,res)
 });
 
 // start the server
-http.createServer(app).listen(global.config.port);
-global.log('Server running at http://localhost:'+global.config.port+'/');
+if( config.use_ssl )
+{
+	var sslconfig = {
+		key: fs.readFileSync(config.ssl_key),
+		cert: fs.readFileSync(config.ssl_cert)
+	};
+
+	if( config.ssl_password )
+		sslconfig.passphrase = config.ssl_password;
+
+	https.createServer(sslconfig,app).listen(config.port);
+	global.log('Server running at https://localhost:'+config.port+'/');
+}
+else
+{
+	http.createServer(app).listen(config.port);
+	global.log('Server running at http://localhost:'+config.port+'/');
+}
 

@@ -1,5 +1,6 @@
 var mysql = require('mysql'),
 	global = require('./global.js');
+var config = require('./config.json');
 
 function serveStats(req,res,next)
 {
@@ -41,7 +42,7 @@ function serveStats(req,res,next)
 		yesterday, lastWeek, lastMonth
 	];
 
-	var connection = mysql.createConnection( global.config.database );
+	var connection = mysql.createConnection( config.database );
 	connection.query(query, args, function(err,rows,fields)
 	{
 		if(err){
