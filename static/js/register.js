@@ -35,7 +35,7 @@ function checkUsername(elem)
 	}
 }
 
-function validate()
+function validateUsername()
 {
 	var valid = userGood;
 
@@ -49,3 +49,46 @@ function validate()
 	return valid;
 }
 
+function validate()
+{
+	var valid = userGood && checkPass();
+	if( !valid ){
+		$('#submitMessage').text('Fix the problems above before submitting');
+	}
+	else {
+		$('#submitMessage').clear();
+	}
+
+	return valid;
+}
+
+function checkPass()
+{
+	var pass = $('input#password');
+	var confirm = $('input#confirm');
+	var passMsg = $('p#passStrength span');
+	var confirmMsg = $('p#passMatch');
+	var colors = {
+		0: 'red',
+		1: 'orangered',
+		2: 'orange',
+		3: 'green',
+		4: 'blue'
+	};
+
+
+	var strength = zxcvbn(pass.val());
+	passMsg.text(strength.crack_time_display + (strength.score<3 ? " (too simple!)" : ""));
+	passMsg.css({color: colors[strength.score]});
+
+	if( pass.val() === confirm.val() ){
+		confirmMsg.text('Passwords match');
+	}
+	else {
+		confirmMsg.text('Passwords do not match');
+	}
+
+	return pass.val().length > 0
+		&& pass.val() === confirm.val()
+		&& strength.score >= 3;
+}

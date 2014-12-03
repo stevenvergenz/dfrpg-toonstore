@@ -4,11 +4,12 @@ block title
 	title Register | ToonStore.net
 
 block append includes
+	script(src='/static/js/zxcvbn-async.js')
 	script(src='/static/js/register.js')
 
 	if page == '/post-register'
 		script.
-			$(document).ready(function(){
+			$(function(){
 				function redirect(){
 					window.location.replace('/'+userInfo.username);
 				}
@@ -23,7 +24,7 @@ block content
 			.title: span Sign up
 			.inner
 				p Thank you for your interest! Just fill out the information below and we'll get you set up.
-				form(action='/register', method='post')
+				form(action='/register', method='post', onsubmit='return validate();')
 
 					label(for='email') E-mail address
 					input(type='email', name='email', required)
@@ -36,10 +37,13 @@ block content
 					p.caption#userMessage No spaces or special characters except for _ and -
 
 					label(for='password') Password
-					input(type='password', name='password', required)
+					input#password(type='password', name='password', required, onkeyup='checkPass();')
+					p.caption#passStrength Crack time: 
+						span ???
 
 					label(for='confirm') Confirm password
-					input(type='password', name='confirm', required)
+					input#confirm(type='password', name='confirm', required, onkeyup='checkPass();')
+					p.caption#passMatch
 
 					table: tr
 						td: input#agreement(type='checkbox', name='agreement', required)
@@ -57,7 +61,7 @@ block content
 			.title: span Sign up
 			.inner
 				p Since this is the first time you've logged in, you must pick a username.
-				form(action='/federated-register', method='post', onsubmit='return validate();')
+				form(action='/federated-register', method='post', onsubmit='return validateUsername();')
 
 					label(for='username') Username (also your permalink)
 					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
