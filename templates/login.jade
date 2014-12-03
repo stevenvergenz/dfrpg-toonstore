@@ -1,0 +1,31 @@
+extends index
+
+block title
+	title Log in | ToonStore.net
+
+block content
+
+	.content-block: #login-box.titledbox
+		.title: span Log in
+		.inner
+			form(action='/login', method='post')
+
+				label(for='email') E-mail
+				input#email(type='email', name='email', required)
+
+				label(for='password') Password 
+					span#reset(style='font-size: 80%;') (
+						a(href='/reset') forgot password
+						)
+				input#email(type='password', name='password', required)
+
+				.flexrow
+					input(type='submit', value='Log in') 
+					a(href='/register') Register
+
+			hr
+
+			.flexrow
+				div: a(href='javascript:;', onclick='navigator.id.request()') Sign in with Mozilla Persona
+				div: a(href='javascript:;') Sign in with Google+
+				div: a(href='javascript:;') Sign in with Facebook

@@ -261,6 +261,11 @@ p.error, input.error {
 	padding: 7px 10px;
 }
 
+hr {
+	width: 100%;
+	margin: 15px 0;
+}
+
 .flexrow {
 	width: 98%;
 

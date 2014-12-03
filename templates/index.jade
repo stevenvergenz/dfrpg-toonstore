@@ -48,7 +48,7 @@ html
 							.navitem: a(href='/'+logged_user)= logged_user
 							.navitem: a(href='javascript:;', onclick='navigator.id.logout()') Log Out
 						else
-							.navitem: input(type='image', src='/static/img/persona_signin.png', onclick='navigator.id.request()') Log In
+							.navitem: a(href='/login') Log In
 
 			.content
 
