@@ -77,15 +77,15 @@ function checkPass()
 	};
 
 
-	var strength = zxcvbn(pass.val());
+	var strength = zxcvbn(pass.val(), [$('#username').val()]);
 	passMsg.text(strength.crack_time_display + (strength.score<3 ? " (too simple!)" : ""));
 	passMsg.css({color: colors[strength.score]});
 
 	if( pass.val() === confirm.val() ){
-		confirmMsg.text('Passwords match');
+		confirmMsg.text('Passwords match').css({color:'#555'});
 	}
 	else {
-		confirmMsg.text('Passwords do not match');
+		confirmMsg.text('Passwords do not match').css({color: 'red'});
 	}
 
 	return pass.val().length > 0
