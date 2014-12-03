@@ -6,8 +6,12 @@ var mysql = require('mysql');
 var global = require('./global.js');
 var config = require('./config.json');
 
-
 function register(req,res)
+{
+	res.send(500);
+}
+
+function federatedRegister(req,res)
 {
 	var body = req.body;
 	if( ['register', 'post-register', 'newtoon', 'killtoon', 'site'].indexOf(body.username) != -1 ){
@@ -75,5 +79,6 @@ function checkUsername(req,res)
 }
 
 exports.register = register;
+exports.federatedRegister = federatedRegister;
 exports.checkUsername = checkUsername;
 

@@ -73,7 +73,7 @@ function logInVerifiedEmail(req,res,email)
 			}
 			else if( rows.length == 0 ){
 				global.error('Login error: no such email');
-				res.json(307, {status: 'error', type: 'redirect', content: '/register'});
+				res.json(307, {status: 'error', type: 'redirect', content: '/federated-register'});
 			}
 			else {
 				global.log('Login successful');
