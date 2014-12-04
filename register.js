@@ -12,7 +12,7 @@ function register(req,res)
 	{
 		if(ex){
 			global.error('Could not create new salt!', ex);
-			res.send(500);
+			global.renderPage('register', {message: {type:'error', content:err}})(req,res);
 			return;
 		}
 
@@ -31,16 +31,17 @@ function register(req,res)
 			function(err, rows, fields)
 			{
 				if(err){
-					global.error(err);
-					res.send(500);
-					return;
+					global.error('Failed to add new user to DB!', err);
+					global.renderPage('register', {message: {type:'error', content:'That email is already registered.'}})(req,res);
 				}
-
-				global.log('New user registered:', req.body.username);
-				req.session.user = req.body.username;
-				req.session.user_email = req.body.email;
-				req.session.persona = false;
-				res.redirect('/post-register');
+				else {
+					global.log('New user registered:', req.body.username);
+					req.session.user = req.body.username;
+					req.session.user_email = req.body.email;
+					req.session.persona = false;
+					res.redirect('/post-register');
+				}
+				connection.end();
 			}
 		);
 	});

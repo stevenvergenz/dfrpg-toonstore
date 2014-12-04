@@ -24,7 +24,7 @@ html
 			script(src='/static/js/ie-fail.js')
 
 			script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email, persona_user: persona_user}) + ';'
-			script(src='/static/js/persona.js')
+			script(src='/static/js/login.js')
 
 	body
 		if page == '/'
@@ -46,7 +46,7 @@ html
 					.itemgroup
 						if logged_user_email
 							.navitem: a(href='/'+logged_user)= logged_user
-							.navitem: a(href='javascript:;', onclick='navigator.id.logout()') Log Out
+							.navitem: a(href='javascript:;', onclick='logout()') Log Out
 						else
 							.navitem: a(href='/login') Log In
 
