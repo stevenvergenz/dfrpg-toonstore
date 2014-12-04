@@ -23,7 +23,7 @@ html
 			script(src='/static/js/jquery-1.10.1.js')
 			script(src='/static/js/ie-fail.js')
 
-			script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email}) + ';'
+			script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email, persona_user: persona_user}) + ';'
 			script(src='/static/js/persona.js')
 
 	body

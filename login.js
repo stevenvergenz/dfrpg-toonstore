@@ -79,6 +79,7 @@ function logInVerifiedEmail(req,res,email)
 				global.log('Login successful');
 				connection.query('UPDATE Users SET last_login = NOW() WHERE username = ?;', [rows[0].username]);
 				req.session.user = rows[0].username;
+				req.session.persona = true;
 				res.json(200, {status: 'OK', username: rows[0].username} );
 			}
 

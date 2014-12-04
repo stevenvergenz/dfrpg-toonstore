@@ -34,6 +34,7 @@ app.use(express.logger());
 app.get('/register', global.renderPage('register'));
 app.get('/federated-register', global.renderPage('register'));
 app.get('/post-register', global.renderPage('register'));
+app.post('/register', register.register);
 app.post('/federated-register', register.federatedRegister);
 app.get('/register/verify', register.checkUsername);
 

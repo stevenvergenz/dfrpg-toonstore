@@ -1,14 +1,49 @@
 var fs = require('fs');
 var libpath = require('path');
 var mysql = require('mysql');
-//var crypto = require('crypto');
+var crypto = require('crypto');
 
 var global = require('./global.js');
 var config = require('./config.json');
 
 function register(req,res)
 {
-	res.send(500);
+	crypto.randomBytes(32, function(ex,buf)
+	{
+		if(ex){
+			global.error('Could not create new salt!', ex);
+			res.send(500);
+			return;
+		}
+
+		var salt = buf.toString('hex');
+
+		var hash = crypto.createHash('sha256');
+		var passHash = hash.update(salt+req.body.password, 'utf8').digest('hex');
+
+		console.log('Salt:',salt);
+		console.log('Pass:',passHash);
+
+		var connection = mysql.createConnection( config.database );
+		connection.query(
+			'INSERT INTO Users SET username = ?, email = ?, password = ?, salt = ?;',
+			[req.body.username, req.body.email, passHash, salt],
+			function(err, rows, fields)
+			{
+				if(err){
+					global.error(err);
+					res.send(500);
+					return;
+				}
+
+				global.log('New user registered:', req.body.username);
+				req.session.user = req.body.username;
+				req.session.user_email = req.body.email;
+				req.session.persona = false;
+				res.redirect('/post-register');
+			}
+		);
+	});
 }
 
 function federatedRegister(req,res)
@@ -44,6 +79,7 @@ function federatedRegister(req,res)
 			else {
 				global.log('Registration successful');
 				req.session.user = body.username;
+				req.session.persona = true;
 				res.redirect('/post-register');
 			}
 			connection.end();
