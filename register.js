@@ -26,7 +26,7 @@ function register(req,res)
 
 		var connection = mysql.createConnection( config.database );
 		connection.query(
-			'INSERT INTO Users SET username = ?, email = ?, password = ?, salt = ?;',
+			'INSERT INTO Users SET username = ?, email = ?, registered = NOW(), last_login = NOW(), password = ?, salt = ?;',
 			[req.body.username, req.body.email, passHash, salt],
 			function(err, rows, fields)
 			{
