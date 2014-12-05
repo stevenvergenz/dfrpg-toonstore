@@ -396,7 +396,7 @@ span.subtitle {
 
 #notes #editor {
 	width: 98%;
-	height: 200px;
+	height: 700px;
 }
 
 #notes #primer {
@@ -409,6 +409,7 @@ span.subtitle {
 	font-family: 'Armata', sans-serif;
 	max-height: 750px;
 	overflow-y: auto;
+	font-size: 10pt;
 }
 
 /*
@@ -767,6 +768,11 @@ div#stressBlock {
 
 #powerBlock .block {
 	margin: 8px 0px;
+}
+
+#powerBlock .itemlist {
+	max-height: 700px;
+	overflow-y: scroll;
 }
 
 #powerBlock .block > .row:first-child {

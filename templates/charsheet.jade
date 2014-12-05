@@ -302,7 +302,7 @@ block content
 				.row.block
 					div Cost
 					div Ability
-				div(ui-sortable='sortOptions', ng-model='data.powers', dgy-notify-collection)
+				.itemlist(ui-sortable='sortOptions', ng-model='data.powers', dgy-notify-collection)
 					.block(ng-repeat='power in data.powers')
 						.row
 							.cost
