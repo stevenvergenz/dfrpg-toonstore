@@ -48,6 +48,33 @@ LOCK TABLES `Characters` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `Tokens`
+--
+
+DROP TABLE IF EXISTS `Tokens`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `Tokens` (
+  `username` char(40) NOT NULL,
+  `email` char(40) NOT NULL,
+  `type` enum('pass','reg') NOT NULL,
+  `token` char(32) NOT NULL,
+  `expires` datetime NOT NULL,
+  PRIMARY KEY (`username`),
+  UNIQUE KEY `email` (`email`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `Tokens`
+--
+
+LOCK TABLES `Tokens` WRITE;
+/*!40000 ALTER TABLE `Tokens` DISABLE KEYS */;
+/*!40000 ALTER TABLE `Tokens` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `Users`
 --
 
@@ -85,4 +112,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-02 21:52:37
+-- Dump completed on 2014-12-10 16:23:04
