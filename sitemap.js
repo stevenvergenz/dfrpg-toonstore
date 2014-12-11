@@ -26,8 +26,6 @@ function serveSitemap(req,res,next)
 	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/site/about'))
 		.parent().node('priority', '0.8');
 	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/site/contact'));
-	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/site/terms'));
-	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/site/privacy'));
 
 	// generate sitemap for user/character URLs
 	var connection = mysql.createConnection( config.database );
