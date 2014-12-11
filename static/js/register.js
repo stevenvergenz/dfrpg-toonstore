@@ -51,7 +51,8 @@ function validateUsername()
 
 function validate()
 {
-	var valid = userGood && checkPass();
+	//var valid = userGood && checkPass();
+	var valid = userGood;
 	if( !valid ){
 		$('#submitMessage').text('Fix the problems above before submitting');
 	}
@@ -62,7 +63,7 @@ function validate()
 	return valid;
 }
 
-function checkPass()
+/*function checkPass()
 {
 	var pass = $('input#password');
 	var confirm = $('input#confirm');
@@ -91,4 +92,4 @@ function checkPass()
 	return pass.val().length > 0
 		&& pass.val() === confirm.val()
 		&& strength.score >= 3;
-}
+}*/
