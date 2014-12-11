@@ -57,9 +57,11 @@ DROP TABLE IF EXISTS `Tokens`;
 CREATE TABLE `Tokens` (
   `username` char(40) NOT NULL,
   `email` char(40) NOT NULL,
-  `type` enum('pass','reg') NOT NULL,
+  `type` enum('PASS','REG') NOT NULL,
   `token` char(32) NOT NULL,
   `expires` datetime NOT NULL,
+  `password` char(64) NOT NULL,
+  `salt` char(64) NOT NULL,
   PRIMARY KEY (`username`),
   UNIQUE KEY `email` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -112,4 +114,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-10 16:23:04
+-- Dump completed on 2014-12-10 22:20:16
