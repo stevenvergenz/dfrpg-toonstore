@@ -35,7 +35,7 @@ function checkUsername(elem)
 	}
 }
 
-function validate()
+function validateUsername()
 {
 	var valid = userGood;
 
@@ -48,4 +48,19 @@ function validate()
 
 	return valid;
 }
+
+function validate()
+{
+	//var valid = userGood && checkPass();
+	var valid = userGood;
+	if( !valid ){
+		$('#submitMessage').text('Fix the problems above before submitting');
+	}
+	else {
+		$('#submitMessage').clear();
+	}
+
+	return valid;
+}
+
 

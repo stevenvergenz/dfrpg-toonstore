@@ -4,14 +4,66 @@ var liburl = require('url');
 var fs = require('fs');
 var https = require('https');
 var querystring = require('querystring');
+var crypto = require('crypto');
 
 var global = require('./global.js');
 var config = require('./config.json');
 
 
+function processLogin(req,res)
+{
+	global.log('Native login attempt');
+
+	var email = req.body.email, password = req.body.password;
+	var connection = mysql.createConnection( config.database );
+	connection.query('SELECT username,salt FROM Users WHERE email = ?', [email], function(err,rows,fields)
+	{
+		if(err){
+			global.error('Error querying db:', err);
+			global.renderPage('login', {message: {type:'error', content:err}})(req,res);
+			connection.end();
+		}
+		else if(rows.length === 0){
+			global.log('Email not found:', email);
+			global.renderPage('login', {message: {type:'error', content:'Incorrect email or password'}})(req,res);
+			connection.end();
+		}
+		else
+		{
+			var username = rows[0].username;
+			var hashfn = crypto.createHash('sha256');
+			var hash = hashfn.update(rows[0].salt+password, 'utf8').digest('hex');
+
+			connection.query('UPDATE Users SET last_login = NOW() WHERE email = ? AND password = ?', [email, hash],
+				function(err,rows,fields)
+				{
+					if(err){
+						global.error('Error updating db:', err);
+						global.renderPage('login', {message: {type:'error', content:err}})(req,res);
+					}
+					else if( rows.length === 0 ){
+						global.log('Incorrect password for:', email);
+						global.renderPage('login', {message: {type:'error', content:'Incorrect email or password'}})(req,res);
+					}
+					else {
+						global.log('User logged in:', email);
+						connection.query('DELETE FROM Tokens WHERE email = ?;', [email]);
+						req.session.user = username;
+						req.session.user_email = email;
+						req.session.persona = false;
+						res.redirect('/'+username);
+					}
+					connection.end();
+				}
+			);
+		}
+	});
+}
+
+
 function processPersonaLogin(req,res)
 {
-	global.log('Login attempt');
+	global.log('Persona login attempt');
 	
 	var options = {
 		'host': 'verifier.login.persona.org',
@@ -73,12 +125,13 @@ function logInVerifiedEmail(req,res,email)
 			}
 			else if( rows.length == 0 ){
 				global.error('Login error: no such email');
-				res.json(307, {status: 'error', type: 'redirect', content: '/register'});
+				res.json(307, {status: 'error', type: 'redirect', content: '/federated-register'});
 			}
 			else {
 				global.log('Login successful');
 				connection.query('UPDATE Users SET last_login = NOW() WHERE username = ?;', [rows[0].username]);
 				req.session.user = rows[0].username;
+				req.session.persona = true;
 				res.json(200, {status: 'OK', username: rows[0].username} );
 			}
 
@@ -98,6 +151,7 @@ function processLogout(req,res)
 }
 
 
-exports.processLogin = processPersonaLogin;
+exports.processLogin = processLogin;
+exports.processPersonaLogin = processPersonaLogin;
 exports.processLogout = processLogout;
 

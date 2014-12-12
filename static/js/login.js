@@ -9,13 +9,27 @@ var overrideUserRedirect = false;
 
 $(document).ready(function()
 {
+	if( userInfo.persona_user )
+	{
+		handlePersona();
+	}
+});
+
+function loginPersona()
+{
+	handlePersona();
+	navigator.id.request();
+}
+
+function handlePersona()
+{
 	navigator.id.watch({
 		'loggedInUser': userInfo.email,
 		'onlogin': function(assertion){
 			console.log('Attempting login');
 			$.ajax({
 				type: 'POST',
-				url: '/login',
+				url: '/login/persona',
 				data: {'email': assertion},
 				success: function(res,status,xhr){
 					if( !overrideUserRedirect )
@@ -53,7 +67,7 @@ $(document).ready(function()
 				url: '/logout',
 				success: function(res,status,xhr){
 					if( !overrideUserRedirect )
-						window.location.replace('/');
+						window.location.href = '/';
 					else
 						window.location.reload();
 				},
@@ -63,5 +77,27 @@ $(document).ready(function()
 			});
 		}
 	});
-});
+}
 
+function logout()
+{
+	if( userInfo.persona_user ){
+		navigator.id.logout();
+	}
+	else {
+		console.log('Attempting logout');
+		$.ajax({
+			type: 'POST',
+			url: '/logout',
+			success: function(res,status,xhr){
+				if( !overrideUserRedirect )
+					window.location.href = '/';
+				else
+					window.location.reload();
+			},
+			error: function(xhr,status,err){
+				console.log('Failed to request logout');
+			}
+		});	
+	}
+}

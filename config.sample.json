@@ -1,14 +1,25 @@
 {
 	"database": {
 		"host": "localhost",
-		"user": "fakeuser",
-		"password": "fakepassword",
-		"database": "fakedb"
+		"user": "toonstore",
+		"password": "",
+		"database": "toonstore"
 	},
+
+	"smtp": {
+		"host": "localhost",
+		"port": 25,
+		"auth": {
+			"user": "",
+			"pass": ""
+		}
+	},
+
 	"port": 3001,
 	"cookie_secret": "I return from whence I came...",
 	"persona_audience": "http://localhost:3001",
 	"use_sitemap": false,
+
 	"use_ssl": false,
 	"ssl_key": "localhost:3001.key",
 	"ssl_cert": "localhost:3001.crt",

@@ -71,6 +71,7 @@ function renderPage(template, options)
 			'query': req.query,
 			'logged_user': req.session && req.session.user ? req.session.user : null,
 			'logged_user_email': req.session && req.session.user_email ? req.session.user_email : null,
+			'persona_user': req.session && req.session.persona ? req.session.persona : null,
 			'owner': req.params && req.params.user ? req.params.user : null,
 			'toon': req.params && req.params.char ? req.params.char : null
 		};
