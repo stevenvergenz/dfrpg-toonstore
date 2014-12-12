@@ -25,7 +25,15 @@ block content
 
 			hr
 
-			.flexrow
-				div: a(href='javascript:;', onclick='loginPersona()') Sign in with Mozilla Persona
-				div: a(href='javascript:;') Sign in with Google+
-				div: a(href='javascript:;') Sign in with Facebook
+			#loginOptions
+				input#persona(type='image', src='/static/img/persona-button.png', onclick='loginPersona()')
+				input#google(type='image', src='/static/img/google-login/base.png')
+				a(href='javascript:;') Sign in with Facebook
+
+			script.
+				gapi.signin.render('google', {
+					callback: 'googleLogin',
+					clientid: '#{g_client_id}',
+					cookiepolicy: 'single_host_origin',
+					scope: 'email'
+				});

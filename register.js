@@ -55,7 +55,7 @@ function register(req,res)
 							var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, 'templates/activate-email.jade')) );
 							var html = template({
 								registration: true,
-								url: config.persona_audience,
+								url: config.origin,
 								token: token,
 								username: req.body.username
 							});

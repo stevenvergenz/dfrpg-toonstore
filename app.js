@@ -47,7 +47,7 @@ app.get('/activate/:token([0-9a-f]{32})', activate.serveActivationPage);
 app.post('/activate/:token([0-9a-f]{32})', activate.setPassword);
 
 // route the login pages
-app.get('/login', global.renderPage('login'));
+app.get('/login', global.renderPage('login', {g_client_id: config.google_client_id}));
 app.post('/login/persona', login.processPersonaLogin);
 app.post('/login', login.processLogin);
 app.post('/logout', login.processLogout);

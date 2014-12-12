@@ -50,7 +50,7 @@ function passwordReset(req,res,next)
 				var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, 'templates/activate-email.jade')) );
 				var html = template({
 					registration: false,
-					url: config.persona_audience,
+					url: config.origin,
 					token: token,
 					username: req.body.username
 				});
