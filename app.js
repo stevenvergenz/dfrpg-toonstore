@@ -40,6 +40,8 @@ app.post('/federated-register', register.federatedRegister);
 app.get('/register/verify', register.checkUsername);
 
 // route the activation pages (password resets)
+app.get('/passreset', global.renderPage('activation'));
+app.post('/passreset', activate.passwordReset);
 app.get('/pre-activate', global.renderPage('activation'));
 app.get('/activate/:token([0-9a-f]{32})', activate.serveActivationPage);
 app.post('/activate/:token([0-9a-f]{32})', activate.setPassword);

@@ -25,8 +25,22 @@ block content
 					p Your password reset request has been received. We have emailed you a link,
 						| please click the link to change your password.
 
-				p Note that it can take a few minutes to get the email. If you don't see it,
+				p Note that it can take a few minutes to get the email. If you don't see it, 
 					| don't forget to check your spam folder.
+
+	else if page == '/passreset'
+
+		.content-block: .titledbox
+			.title: span Reset password
+			.inner
+				p Type in your email address below, and we will email you a link to reset your password.
+				form(method='POST')
+					label(for='email') E-mail
+					input#email(type='email', name='email', required)
+
+					.flexrow
+						input(type='submit', value='Submit')
+
 
 	else
 

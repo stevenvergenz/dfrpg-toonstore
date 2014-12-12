@@ -8,11 +8,15 @@ var jade = require('jade');
 var global = require('./global.js');
 var config = require('./config.json');
 
+
+var blacklist = ['register', 'post-register', 'federated-register', 'activate', 'pre-activate', 'login', 'logout', 'newtoon', 'killtoon', 'site'];
+
+
 function register(req,res)
 {
 	var token = crypto.pseudoRandomBytes(16).toString('hex');
 
-	if( ['register', 'post-register', 'federated-register', 'activate', 'pre-activate', 'login', 'logout', 'newtoon', 'killtoon', 'site'].indexOf(req.body.username) != -1 ){
+	if( blacklist.indexOf(req.body.username) != -1 ){
 		global.error('Registration error: cannot register reserved word');
 		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}})(req,res);
 		return;
@@ -82,7 +86,7 @@ function register(req,res)
 function federatedRegister(req,res)
 {
 	var body = req.body;
-	if( ['register', 'post-register', 'federated-register', 'activate', 'pre-activate', 'login', 'logout', 'newtoon', 'killtoon', 'site'].indexOf(body.username) != -1 ){
+	if( blacklist.indexOf(body.username) != -1 ){
 		global.error('Registration error: cannot register reserved word');
 		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}})(req,res);
 		return;
@@ -126,7 +130,7 @@ function checkUsername(req,res)
 	var user = req.query.a;
 
 	// test for reserve words
-	if( ['register', 'post-register', 'federated-register', 'activate', 'pre-activate', 'login', 'logout', 'newtoon', 'killtoon', 'site'].indexOf(user) != -1 ){
+	if( blacklist.indexOf(user) != -1 ){
 		res.json(200, {found: true});
 		return;
 	}

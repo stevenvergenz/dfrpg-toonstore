@@ -1,5 +1,10 @@
 var mysql = require('mysql'),
 	crypto = require('crypto'),
+	fs = require('fs'),
+	libpath = require('path'),
+	nodemailer = require('nodemailer'),
+	jade = require('jade'),
+
 	global = require('./global.js'),
 	config = require('./config.json');
 
@@ -22,6 +27,50 @@ function serveActivationPage(req,res,next)
 
 		connection.end();
 	});
+}
+
+function passwordReset(req,res,next)
+{
+	var token = crypto.pseudoRandomBytes(16).toString('hex');
+
+	var connection = mysql.createConnection( config.database );
+	connection.query('DELETE FROM Tokens WHERE email = ?;', [req.body.email]);
+	connection.query(
+		'INSERT INTO Tokens SET email = ?, token = ?, expires = ADDTIME(NOW(), "00:15:00");',
+		[req.body.email, token],
+		function(err,result)
+		{
+			if( err ){
+				global.error('Failed to register pass reset token.', err);
+				global.renderPage('index', {message: {type:'error', content:'Unidentified database error'}})(req,res);
+			}
+			else
+			{
+				// build email message
+				var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, 'templates/activate-email.jade')) );
+				var html = template({
+					registration: false,
+					url: config.persona_audience,
+					token: token,
+					username: req.body.username
+				});
+
+				// send out confirmation email
+				global.log('Sent out password token:', token);
+				var transporter = nodemailer.createTransport(config.smtp);
+				transporter.sendMail({
+					from: 'no-reply@toonstore.net',
+					to: req.body.email,
+					subject: 'Reset your password - ToonStore.net',
+					html: html
+				});
+								
+				res.redirect('/pre-activate');
+
+			}
+			connection.end();
+		}
+	);
 }
 
 
@@ -65,5 +114,6 @@ function setPassword(req,res,next)
 }
 
 exports.serveActivationPage = serveActivationPage;
+exports.passwordReset = passwordReset;
 exports.setPassword = setPassword;
 
