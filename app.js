@@ -7,6 +7,7 @@ var express = require('express');
 var global = require('./global.js');
 var config = require('./config.json');
 var register = require('./register.js');
+var activate = require('./activate.js');
 var login = require('./login.js');
 var user = require('./user.js');
 var character = require('./character.js');
@@ -37,6 +38,11 @@ app.get('/post-register', global.renderPage('register'));
 app.post('/register', register.register);
 app.post('/federated-register', register.federatedRegister);
 app.get('/register/verify', register.checkUsername);
+
+// route the activation pages (password resets)
+app.get('/pre-activate', global.renderPage('activation'));
+app.get('/activate/:token([0-9a-f]{32})', activate.serveActivationPage);
+app.post('/activate/:token([0-9a-f]{32})', activate.setPassword);
 
 // route the login pages
 app.get('/login', global.renderPage('login'));

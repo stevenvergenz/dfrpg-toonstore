@@ -10,8 +10,8 @@
 		"host": "localhost",
 		"port": 25,
 		"auth": {
-			"user": null,
-			"pass": null
+			"user": "",
+			"pass": ""
 		}
 	},
 

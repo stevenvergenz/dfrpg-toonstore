@@ -48,6 +48,7 @@ html
 							.navitem: a(href='/'+logged_user)= logged_user
 							.navitem: a(href='javascript:;', onclick='logout()') Log Out
 						else
+							.navitem: a(href='/register') Register
 							.navitem: a(href='/login') Log In
 
 			.content

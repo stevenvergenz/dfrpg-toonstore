@@ -3,26 +3,25 @@ p Hello #{username}!
 
 if registration
 	p.
-		Thank you for using the ToonStore! Click the link below to get started.
+		Thank you for using the ToonStore! Click the link below to get started:
 else
 	p.
 		Thank you for using the ToonStore! You have requested a password reset, so click the
-		link below to get started.
+		link below to get started:
 
 p
 	a(href='#{url}/activate/#{token}') #{url}/activate/#{token}
+
+p Note that this link is only active for 15 minutes, after which you will need to request a new one.
 
 p.
 	Enter your new password where prompted, and confirm. We don't have any hard and fast rules
 	about password complexity, but the indicator will tell you how long it will take a computer
 	to guess it. If it is blue or green, you're good to go.
 
-p.
-	I hope you enjoy using the ToonStore! If you have any questions, comments, or complaints,
-	please 
-	a(href='#{url}/site/contact') contact us
-	!
+p I hope you enjoy using the ToonStore! If you have any questions, comments, or complaints,
+	| please <a href='#{url}/site/contact'>contact us</a>!
 
 p All the best,
 	br
-	The ToonStore Team
+	| The ToonStore Team

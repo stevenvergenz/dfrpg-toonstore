@@ -4,7 +4,6 @@ block title
 	title Register | ToonStore.net
 
 block append includes
-	script(src='/static/js/zxcvbn-async.js')
 	script(src='/static/js/register.js')
 
 	if page == '/post-register'
@@ -35,16 +34,6 @@ block content
 					label(for='username') Username (also your permalink)
 					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
 					p.caption#userMessage No spaces or special characters except for _ and -
-
-					//-
-						label(for='password') Password
-						input#password(type='password', name='password', required, onkeyup='checkPass();')
-						p.caption#passStrength Crack time: 
-							span ???
-
-						label(for='confirm') Confirm password
-						input#confirm(type='password', name='confirm', required, onkeyup='checkPass();')
-						p.caption#passMatch
 
 					table: tr
 						td: input#agreement(type='checkbox', name='agreement', required)

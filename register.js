@@ -12,9 +12,22 @@ function register(req,res)
 {
 	var token = crypto.pseudoRandomBytes(16).toString('hex');
 
+	if( ['register', 'post-register', 'federated-register', 'activate', 'pre-activate', 'login', 'logout', 'newtoon', 'killtoon', 'site'].indexOf(req.body.username) != -1 ){
+		global.error('Registration error: cannot register reserved word');
+		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}})(req,res);
+		return;
+	}
+	else if( !/^[A-Za-z_-]+$/.test(req.body.username) ){
+		global.error('Registration error: cannot register invalid username');
+		global.renderPage('register', {message: {type:'warning', content:'That username is invalid, choose another.'}})(req,res);
+		return;
+	}
+	global.log('Registering user:', req.body.username);
+
+
 	var connection = mysql.createConnection( config.database );
 	connection.query('INSERT INTO Users SET email = ?, username = ?, registered = NOW();', [req.body.email, req.body.username],
-		function(err,rows,fields)
+		function(err,result)
 		{
 			if(err){
 				global.error('Failed to add new user to DB!', err);
@@ -26,7 +39,7 @@ function register(req,res)
 				connection.query(
 					'INSERT INTO Tokens SET email = ?, token = ?, expires = ADDTIME(NOW(), "00:15:00");',
 					[req.body.email, token],
-					function(err,rows,fields)
+					function(err,result)
 					{
 						if( err ){
 							global.error('Failed to register pass reset token.', err);
@@ -34,6 +47,15 @@ function register(req,res)
 						}
 						else
 						{
+							// build email message
+							var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, 'templates/activate-email.jade')) );
+							var html = template({
+								registration: true,
+								url: config.persona_audience,
+								token: token,
+								username: req.body.username
+							});
+
 							// send out confirmation email
 							global.log('Sent out password token:', token);
 							var transporter = nodemailer.createTransport(config.smtp);
@@ -41,15 +63,10 @@ function register(req,res)
 								from: 'no-reply@toonstore.net',
 								to: req.body.email,
 								subject: 'Verify your account - ToonStore.net',
-								html: jade.renderFile( libpath.resolve(__dirname, 'templates/activate-email.jade'), {
-									registration: true,
-									url: config.persona_audience,
-									token: token,
-									username: req.body.username
-								})
+								html: html
 							});
 								
-							global.renderPage('activation', {})(req,res);
+							res.redirect('/pre-activate?t=register');
 
 						}
 						connection.end();
@@ -60,42 +77,12 @@ function register(req,res)
 	);
 
 }
-	/*crypto.randomBytes(32, function(ex,buf)
-	{
-		if(ex){
-			global.error('Could not create new salt!', ex);
-			global.renderPage('register', {message: {type:'error', content:err}})(req,res);
-			return;
-		}
 
-		var salt = buf.toString('hex');
-		var hash = crypto.createHash('sha256');
-		var passHash = hash.update(salt+req.body.password, 'utf8').digest('hex');*/
-
-		/*connection.query(
-			'INSERT INTO Users SET username = ?, email = ?, registered = NOW(), last_login = NOW(), password = ?, salt = ?;',
-			[req.body.username, req.body.email, passHash, salt],
-			function(err, rows, fields)
-			{
-				if(err){
-					global.error('Failed to add new user to DB!', err);
-					global.renderPage('register', {message: {type:'error', content:'That email is already registered.'}})(req,res);
-				}
-				else {
-					global.log('New user registered:', req.body.username);
-					req.session.user = req.body.username;
-					req.session.user_email = req.body.email;
-					req.session.persona = false;
-					res.redirect('/post-register');
-				}
-				connection.end();
-			}
-		);*/
 
 function federatedRegister(req,res)
 {
 	var body = req.body;
-	if( ['register', 'post-register', 'newtoon', 'killtoon', 'site'].indexOf(body.username) != -1 ){
+	if( ['register', 'post-register', 'federated-register', 'activate', 'pre-activate', 'login', 'logout', 'newtoon', 'killtoon', 'site'].indexOf(body.username) != -1 ){
 		global.error('Registration error: cannot register reserved word');
 		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}})(req,res);
 		return;
@@ -117,7 +104,7 @@ function federatedRegister(req,res)
 	connection.query(
 		'INSERT INTO Users SET username = ?, email = ?, registered = NOW(), last_login = NOW();', 
 		[body.username,req.session.user_email],
-		function(err, rows, fields){
+		function(err, result){
 			if( err ){
 				global.error('Registration error:', err, global.logLevels.error);
 				global.renderPage('register', {message: {type:'error', content:err}})(req,res);
@@ -139,7 +126,7 @@ function checkUsername(req,res)
 	var user = req.query.a;
 
 	// test for reserve words
-	if( ['register', 'post-register', 'newtoon', 'killtoon', 'site'].indexOf(user) != -1 ){
+	if( ['register', 'post-register', 'federated-register', 'activate', 'pre-activate', 'login', 'logout', 'newtoon', 'killtoon', 'site'].indexOf(user) != -1 ){
 		res.json(200, {found: true});
 		return;
 	}

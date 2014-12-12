@@ -47,6 +47,7 @@ function processLogin(req,res)
 					}
 					else {
 						global.log('User logged in:', email);
+						connection.query('DELETE FROM Tokens WHERE email = ?;', [email]);
 						req.session.user = username;
 						req.session.user_email = email;
 						req.session.persona = false;
