@@ -15,49 +15,55 @@ function processLogin(req,res)
 	global.log('Native login attempt');
 
 	var email = req.body.email, password = req.body.password;
-	var connection = mysql.createConnection( config.database );
-	connection.query('SELECT username,salt FROM Users WHERE email = ?', [email], function(err,rows,fields)
-	{
-		if(err){
-			global.error('Error querying db:', err);
-			global.renderPage('login', {message: {type:'error', content:err}})(req,res);
-			connection.end();
-		}
-		else if(rows.length === 0){
-			global.log('Email not found:', email);
-			global.renderPage('login', {message: {type:'error', content:'Incorrect email or password'}})(req,res);
-			connection.end();
-		}
-		else
-		{
-			var username = rows[0].username;
-			var hashfn = crypto.createHash('sha256');
-			var hash = hashfn.update(rows[0].salt+password, 'utf8').digest('hex');
 
-			connection.query('UPDATE Users SET last_login = NOW() WHERE email = ? AND password = ?', [email, hash],
-				function(err,rows,fields)
-				{
-					if(err){
-						global.error('Error updating db:', err);
-						global.renderPage('login', {message: {type:'error', content:err}})(req,res);
+	setTimeout(continued, 2000);
+
+	function continued()
+	{
+		var connection = mysql.createConnection( config.database );
+		connection.query('SELECT username,salt FROM Users WHERE email = ?', [email], function(err,rows,fields)
+		{
+			if(err){
+				global.error('Error querying db:', err);
+				global.renderPage('login', {message: {type:'error', content:err}})(req,res);
+				connection.end();
+			}
+			else if(rows.length === 0){
+				global.log('Email not found:', email);
+				global.renderPage('login', {message: {type:'error', content:'Incorrect email or password'}})(req,res);
+				connection.end();
+			}
+			else
+			{
+				var username = rows[0].username;
+				var hashfn = crypto.createHash('sha256');
+				var hash = hashfn.update(rows[0].salt+password, 'utf8').digest('hex');
+
+				connection.query('UPDATE Users SET last_login = NOW() WHERE email = ? AND password = ?', [email, hash],
+					function(err,rows,fields)
+					{
+						if(err){
+							global.error('Error updating db:', err);
+							global.renderPage('login', {message: {type:'error', content:err}})(req,res);
+						}
+						else if( rows.length === 0 ){
+							global.log('Incorrect password for:', email);
+							global.renderPage('login', {message: {type:'error', content:'Incorrect email or password'}})(req,res);
+						}
+						else {
+							global.log('User logged in:', email);
+							connection.query('DELETE FROM Tokens WHERE email = ?;', [email]);
+							req.session.user = username;
+							req.session.user_email = email;
+							req.session.persona = false;
+							res.redirect('/'+username);
+						}
+						connection.end();
 					}
-					else if( rows.length === 0 ){
-						global.log('Incorrect password for:', email);
-						global.renderPage('login', {message: {type:'error', content:'Incorrect email or password'}})(req,res);
-					}
-					else {
-						global.log('User logged in:', email);
-						connection.query('DELETE FROM Tokens WHERE email = ?;', [email]);
-						req.session.user = username;
-						req.session.user_email = email;
-						req.session.persona = false;
-						res.redirect('/'+username);
-					}
-					connection.end();
-				}
-			);
-		}
-	});
+				);
+			}
+		});
+	}
 }
 
 
