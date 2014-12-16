@@ -297,6 +297,19 @@ app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope)
 		$scope.$emit('is_dirty');
 	};
 
+	$scope.addTempAspect = function()
+	{
+		$scope.data.aspects.tempAspects.push($scope.tempAspect);
+		$scope.tempAspect = '';
+		$scope.$emit('is_dirty');
+	};
+
+	$scope.removeTempAspect = function(i)
+	{
+		$scope.data.aspects.tempAspects.splice(i,1);
+		$scope.$emit('is_dirty');
+	};
+
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
 	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);

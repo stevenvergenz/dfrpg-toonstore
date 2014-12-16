@@ -10,7 +10,10 @@ app.service('rootModel', ['$rootScope','$timeout','$resource', function($rootSco
 			'method': 'GET',
 			'transformResponse': function(data,headers){
 				$timeout(function(){$rootScope.$broadcast('is_clean');}, 100);
-				return angular.fromJson(data);
+				var json = angular.fromJson(data);
+				if(! json.aspects.tempAspects )
+					json.aspects.tempAspects = [];
+				return json;
 			}
 		},
 		'save': {

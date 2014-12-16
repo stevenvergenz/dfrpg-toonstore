@@ -750,6 +750,15 @@ div#stressBlock {
 	font-size: 80%;
 }
 
+#tempAspectBlock .removeButton, #tempAspectBlock .addButton {
+	height: 1em;
+	margin: 0 5px;
+}
+
+#tempAspectBlock p.tempAspect, #tempAspectBlock p.fieldLabel {
+	margin: 5px;
+}
+
 #powerBlock .row {
 	display: -webkit-box;
 	display: -moz-flex;
