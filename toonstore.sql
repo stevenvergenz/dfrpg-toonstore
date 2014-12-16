@@ -59,7 +59,7 @@ CREATE TABLE `Tokens` (
   `token` char(32) NOT NULL,
   `expires` datetime NOT NULL,
   PRIMARY KEY (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
