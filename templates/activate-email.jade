@@ -1,5 +1,8 @@
 doctype html
-p Hello #{username}!
+p Hello
+	if username
+		#{username}
+	!
 
 if registration
 	p.
