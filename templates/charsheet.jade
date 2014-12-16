@@ -81,7 +81,9 @@ block content
 				input(type='text', dgy-notify, ng-show='editing', ng-model="data.name")
 				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
 			div
-				span(ng-hide='editing') ({{data.player}})
+				span(ng-hide='editing') (
+					a(href='/#{owner}') {{data.player}}
+					| )
 				input(type='text', dgy-notify, ng-show='editing', ng-model='data.player')
 
 			div#avatar
