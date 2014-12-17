@@ -27,10 +27,10 @@ block content
 
 			#loginOptions
 				input#persona(type='image', src='/static/img/persona-button.png', onclick='loginPersona()')
-				input#google(type='image', src='/static/img/google-login/base.png')
-				a(href='javascript:;') Sign in with Facebook
+				//input#google(type='image', src='/static/img/google-login/base.png')
+				//a(href='javascript:;') Sign in with Facebook
 
-			script.
+			//-script.
 				gapi.signin.render('google', {
 					callback: 'googleLogin',
 					clientid: '#{g_client_id}',
