@@ -21,11 +21,11 @@ function serveSitemap(req,res,next)
 	});
 
 	var root = doc.root();
-	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/'))
+	root.node('url').node('loc', liburl.resolve(config.origin, '/'))
 		.parent().node('priority', '1.0');
-	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/site/about'))
+	root.node('url').node('loc', liburl.resolve(config.origin, '/site/about'))
 		.parent().node('priority', '0.8');
-	root.node('url').node('loc', liburl.resolve(config.persona_audience, '/site/contact'));
+	root.node('url').node('loc', liburl.resolve(config.origin, '/site/contact'));
 
 	// generate sitemap for user/character URLs
 	var connection = mysql.createConnection( config.database );
@@ -51,7 +51,7 @@ function serveSitemap(req,res,next)
 
 				// add url entry
 				var newurl = root.node('url');
-				newurl.node('loc', liburl.resolve(config.persona_audience, rows[i].url));
+				newurl.node('loc', liburl.resolve(config.origin, rows[i].url));
 				if(date)
 					newurl.node('lastmod', date);
 			}

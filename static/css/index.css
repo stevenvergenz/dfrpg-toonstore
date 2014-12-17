@@ -243,6 +243,16 @@ p.error, input.error {
 	flex-direction: column;
 }
 
+#login-box #loginOptions {
+	width: 98%;
+}
+
+#login-box #loginOptions > * {
+	margin: 5px auto;
+	display: block;
+	width: 200px;
+}
+
 .titledbox .inner form input {
 	display: block;
 }

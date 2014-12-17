@@ -108,7 +108,7 @@ function processPersonaLogin(req,res)
 	// actually make the verification request
 	var data = querystring.stringify({
 		'assertion': req.body.email,
-		'audience': config.persona_audience
+		'audience': config.origin
 	});
 	verifyReq.setHeader('Content-Type', 'application/x-www-form-urlencoded');
 	verifyReq.setHeader('Content-Length', data.length);
