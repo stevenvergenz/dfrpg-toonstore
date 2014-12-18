@@ -22,7 +22,9 @@ block content
 		.content-block: #register-box.titledbox
 			.title: span Sign up
 			.inner
-				p Thank you for your interest! Just fill out the information below and we'll get you set up.
+				p Thank you for your interest! 
+					a(href='/login') Log in with Persona
+					|  or fill out the information below and we'll get you set up.
 				form(action='/register', method='post', onsubmit='return validate();')
 
 					label(for='email') E-mail address
