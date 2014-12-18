@@ -91,7 +91,7 @@ function federatedRegister(req,res)
 		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}})(req,res);
 		return;
 	}
-	else if( !/^[A-Za-z_-]+$/.test(body.username) ){
+	else if( !/^[A-Za-z0-9_-]+$/.test(body.username) ){
 		global.error('Registration error: cannot register invalid username');
 		global.renderPage('register', {message: {type:'warning', content:'That username is invalid, choose another.'}})(req,res);
 		return;
