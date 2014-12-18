@@ -1,6 +1,6 @@
-# dfrpg-toonstore
+﻿# dfrpg-toonstore
 
-View/edit/share Dresden Files character sheets online. Use the hosted version at [toonstore.net](http://toonstore.net), or set up your own instance!
+View/edit/share Dresden Files character sheets online. Use the hosted version at [toonstore.net](https://toonstore.net), or set up your own instance!
 
 ## Dependencies
 
@@ -16,25 +16,31 @@ View/edit/share Dresden Files character sheets online. Use the hosted version at
 
 ## Configuration
 
+### Create config file
+
+1. Copy *config.sample.json* to *config.json*.
+2. Open *config.json* in your favorite text editor.
+3. Set the server's listen port, cookie secret, and origin URL.
+
 ### Configure database
 
-1. Create a MySQL user and database for ToonStore
-2. Add the MySQL credentials to global.js.
-3. Import the sample database dump 'toonstore.sql'
+1. Create a MySQL database and privileged user for ToonStore.
 
-### Configure server
+ 		mariadb> CREATE USER 'tsuser'@'localhost' IDENTIFIED BY 'password';
+		mariadb> CREATE DATABASE 'toonstore';
+		mariadb> GRANT ALL ON toonstore.* TO 'tsuser'@'localhost';
 
-1. Open global.js in your text editor of choice.
-2. Set the server's listen port where indicated.
-3. Set the server's cookie secret where indicated.
-4. Set the public-facing URL for login verification.
+2. Add the MySQL login information to *config.json*.
+
+3. Import the sample database dump *toonstore.sql*.
+
+		user@localhost:~$ mysql -u tsuser -p toonstore < toonstore.sql
+		Enter password: *********
 
 
 ## Running
 
-    $ node app.js
+    $ node src/app.js
 	$ chrome http://localhost:3001/
 	
-There is a test user in the database template. Though you can no longer log into the account, you can view the sample character sheet
-by viewing https://example.com/tester/lifeson.
 
