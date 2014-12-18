@@ -2,7 +2,7 @@ var mysql = require('mysql');
 var libpath = require('path');
 
 var global = require('./global.js');
-var config = require('./config.json');
+var config = require('../config.json');
 
 function userPage(req,res,next)
 {

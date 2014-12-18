@@ -1,6 +1,6 @@
 var mysql = require('mysql'),
 	global = require('./global.js');
-var config = require('./config.json');
+var config = require('../config.json');
 
 function serveStats(req,res,next)
 {

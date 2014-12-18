@@ -5,7 +5,7 @@ var liburl = require('url');
 var express = require('express');
 
 var global = require('./global.js');
-var config = require('./config.json');
+var config = require('../config.json');
 var register = require('./register.js');
 var activate = require('./activate.js');
 var login = require('./login.js');
@@ -19,13 +19,13 @@ var stats = require('./stats.js');
 var app = express();
 app.use(express.bodyParser({
 	keepExtensions: true,
-	uploadDir: libpath.resolve(__dirname,'uploads')
+	uploadDir: libpath.resolve(__dirname,'..','uploads')
 }));
 
 
 app.use(express.cookieParser());
 app.use(express.session({secret: config.cookie_secret}));
-app.set('views', 'templates');
+app.set('views', libpath.resolve(__dirname,'..','templates'));
 app.set('view engine', 'jade');
 
 // the global logger middleware
@@ -85,7 +85,7 @@ app.get('/site/terms', global.renderPage('terms'));
 app.get('/site/privacy', global.renderPage('privacy'));
 app.get('/', global.renderPage('index'));
 
-app.use('/static', express.static( libpath.resolve(__dirname,'static'), {maxAge: 24*60*60}));
+app.use('/static', express.static( libpath.resolve(__dirname,'..','static'), {maxAge: 24*60*60}));
 app.get('/sitemap.xml', sitemap.serve);
 
 app.get('/stats', stats.serveStats);

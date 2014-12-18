@@ -2,7 +2,7 @@ var lxml = require('libxmljs'),
 	mysql = require('mysql'),
 	liburl = require('url'),
 	global = require('./global.js');
-var config = require('./config.json');
+var config = require('../config.json');
 
 
 // generate a sitemap

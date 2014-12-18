@@ -4,7 +4,7 @@ var fs = require('fs');
 var crypto = require('crypto');
 var gm = require('gm');
 var global = require('./global.js');
-var config = require('./config.json');
+var config = require('../config.json');
 
 
 function servePage(req,res,next)
@@ -245,7 +245,7 @@ function serveAvatar(req,res,next)
 				res.send(404);
 			}
 			else {
-				res.sendfile( libpath.resolve(__dirname, 'uploads', info[0].avatar) );
+				res.sendfile( libpath.resolve(__dirname, '..','uploads', info[0].avatar) );
 			}
 			connection.end();
 		}
@@ -261,19 +261,30 @@ function saveAvatar(req,res,next)
 
 	// scale down to what will fit in the avatar box
 	var newFile = req.files.avatar.path;
+	var connection = null;
+
 	gm(newFile).size(function(err,size){
 		if(!err){
 			var factor = size.width>size.height ? 350/size.width : 196/size.height;
 			gm(newFile)
 				.resize( size.width*factor, size.height*factor )
 				.write(newFile, function(err){
-					if(err) global.error(err);
+					if(err){
+						global.error(err);
+						res.send(500);
+					}
+					else {
+						connection = mysql.createConnection(config.database);
+						checkAvatar();
+					}
 				});
 		}
-		else global.log(err);
+		else {
+			global.log(err);
+			fs.unlink(newFile);
+			res.send(400);
+		}
 	});
-
-	var connection = mysql.createConnection(config.database);
 
 	function saveNewAvatar(err,info)
 	{
@@ -301,7 +312,7 @@ function saveAvatar(req,res,next)
 			return;
 		}
 		else if(info.length == 1 && info[0].avatar){
-			fs.unlink( libpath.resolve(__dirname, 'uploads', info[0].avatar) );
+			fs.unlink( libpath.resolve(__dirname, '..', 'uploads', info[0].avatar) );
 		}
 
 		var filename = libpath.basename(req.files.avatar.path);
@@ -311,10 +322,12 @@ function saveAvatar(req,res,next)
 		);
 	}
 
-	connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
-		[req.session.user, req.params.char],
-		getCurrentAvatar
-	);
+	function checkAvatar(){
+		connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
+			[req.session.user, req.params.char],
+			getCurrentAvatar
+		);
+	}
 
 }
 

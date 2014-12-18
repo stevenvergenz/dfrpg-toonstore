@@ -7,7 +7,7 @@ var querystring = require('querystring');
 var crypto = require('crypto');
 
 var global = require('./global.js');
-var config = require('./config.json');
+var config = require('../config.json');
 
 
 function processLogin(req,res)

@@ -6,7 +6,7 @@ var nodemailer = require('nodemailer');
 var jade = require('jade');
 
 var global = require('./global.js');
-var config = require('./config.json');
+var config = require('../config.json');
 
 
 var blacklist = ['register', 'post-register', 'federated-register', 'activate', 'pre-activate', 'login', 'logout', 'newtoon', 'killtoon', 'site'];

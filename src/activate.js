@@ -6,7 +6,7 @@ var mysql = require('mysql'),
 	jade = require('jade'),
 
 	global = require('./global.js'),
-	config = require('./config.json');
+	config = require('../config.json');
 
 
 function serveActivationPage(req,res,next)
