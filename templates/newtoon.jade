@@ -4,24 +4,7 @@ block title
 	title New Character | ToonStore.net
 
 block append includes
-
-	script.
-		function validate(){
-			var valid = /^[A-Za-z0-9_-]+$/.test( $('#canon_name').val() );
-			if( !valid ){
-				if( $('div.error').length == 0 )
-					$('<div class="content-block"><div class="error"><p>That short name is invalid.</p></div></div>').prependTo( $('.content') );
-				else
-					$('div.error>p').text('That short name is invalid');
-			}
-			return valid;
-		}
-
-		function generateSlug(fullName){
-			var name = $(fullName).val();
-			var slug = name.split(' ').pop().toLowerCase().replace(/[^\w]/g, '_');
-			$('#canon_name').val(slug);
-		}
+	script(src='/static/js/newtoon.js')
 
 block content
 
@@ -44,5 +27,19 @@ block content
 				label(for='concept') High concept
 				input#concept(type='text', name='concept', required, placeholder='Man of Mystery')
 				p.caption The character's defining concept. Can be changed later.
+
+				input#private(type='checkbox', name='private')
+				label(for='private') Make this character private
+				script.
+					if( /[?&]private/.test(window.location.search) ){
+						$('input#private').prop('checked',true);
+					}
+
+				input#copy(type='hidden', name='copy')
+				script.
+					var match = /[?&]copy=([^&]+)/.exec(window.location.search);
+					if(match){
+						$('input#copy').val(match[1]);
+					}
 
 				input(type='submit', name='submit', value='Submit')

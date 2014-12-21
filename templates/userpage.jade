@@ -35,6 +35,11 @@ block content
 					li
 						a(href='/#{owner}/#{char.canon_name}/')= char.name +', '+ char.concept
 						| &nbsp;
+						if logged_user != null
+							span(style='font-size: 80%;')
+								| (
+								a(href='/newtoon?copy=/#{owner}/#{char.canon_name}/') Duplicate
+								| )
 						if logged_user == owner
 							span(style='font-size: 80%;')
 								| (
@@ -44,6 +49,7 @@ block content
 								| (
 								a(href='/killtoon?id=#{char.canon_name}') Delete
 								| )
+
 		else if logged_user == owner
 			p No public characters
 
@@ -57,6 +63,10 @@ block content
 					li
 						a(href='/#{owner}/#{char.canon_name}/')= char.name +', '+ char.concept
 						| &nbsp;
+						span(style='font-size: 80%;')
+							| (
+							a(href='/newtoon?copy=/#{owner}/#{char.canon_name}/&private') Duplicate
+							| )
 						span(style='font-size: 80%;')
 							| (
 							span.fakeLink(onclick='togglePrivacy("#{char.canon_name}")') Make Public

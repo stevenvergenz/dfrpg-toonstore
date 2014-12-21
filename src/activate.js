@@ -47,7 +47,7 @@ function passwordReset(req,res,next)
 			else
 			{
 				// build email message
-				var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, 'templates/activate-email.jade')) );
+				var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, '../templates/activate-email.jade')) );
 				var html = template({
 					registration: false,
 					url: config.origin,

@@ -253,8 +253,13 @@ p.error, input.error {
 	width: 200px;
 }
 
-.titledbox .inner form input {
+.titledbox .inner form input:not([type="checkbox"]) {
 	display: block;
+}
+
+.titledbox .inner form input[type="checkbox"] {
+	margin-bottom: 15px;
+	margin-right: 5px;
 }
 
 /*#login-box label, #login-box input:not([type=submit]):not([type=file]) {
