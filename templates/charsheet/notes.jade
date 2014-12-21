@@ -1,0 +1,28 @@
+a#notes
+	p.sectionHeader Notes
+		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
+
+	div(ng-show='editing')
+		p Text is styled with Markdown. Click out of the text box to update preview.
+		div(dgy-accordion='true')
+			a(href='javascript:;') A Brief Primer
+			pre#primer
+				| This is a header
+				| ----------------
+				| 
+				| ## So is this
+				| 
+				| Paragraphs are separated by a blank line.
+				| 
+				| You can also **bold** and *italics*.
+				| 
+				| 1. Numeric lists start with a number.
+				| 2. See? Easy!
+				| 3. Subitems are indented 4 spaces
+				|     * But this one is an unordered list
+				|     * Another list item
+
+		textarea#editor(dgy-notify, ng-model='data.notes.text')
+
+	.inner(ng-hide='editing', ng-bind-html='data.notes.text | mdToHtml')
+
