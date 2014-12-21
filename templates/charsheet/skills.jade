@@ -1,31 +1,48 @@
+block append includes
+	script
+		$(function(){
+			$("#tabs").tabs();
+		});
+
 #skills.sheet-panel(ng-controller='SkillCtrl', ng-class='{dirty: dirty}')
 	a#skills
-	p.sectionHeader Skills
-		span(ng-show='data.skills.is_shifter')  (
-			input#shifter(type='checkbox', ng-model='shifted')
-			label(for='shifter')
-			| )
-		input.iconButton(type='image', ng-click='editing=!editing', src='/static/img/glyphicons/glyphicons_150_edit.png')
+	#tabs
+		ul
+			li
+				a(href='#tab1') Tab1
+			li
+				a(href='#tab2') Tab2
 
-	p(ng-show='editing')
-		| Drag skills to rearrange
-		br
-		| Drop on +0 to remove
+		#tab1
+			p.sectionHeader Skills
+				span(ng-show='data.skills.is_shifter')  (
+					input#shifter(type='checkbox', ng-model='shifted')
+					label(for='shifter')
+					| )
+				input.iconButton(type='image', ng-click='editing=!editing', src='/static/img/glyphicons/glyphicons_150_edit.png')
 
-	#skillBlock
-		.row(dgy-droppable='editing', dgy-drop='dropHandler', ng-repeat='level in presOrder()', ng-hide='!editing && $last')
-			.fieldLabel {{label(level)}}
-			.skillList
-				.skill.noselect(dgy-draggable='editing', ng-repeat='skill in skills(level)')
-					span {{skill}}
-					img(ng-show='editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
-					span(ng-hide='$last') , 
+			p(ng-show='editing')
+				| Drag skills to rearrange
+				br
+				| Drop on +0 to remove
 
-	form(ng-show='editing', ng-submit='addSkill(newSkill); newSkill=""')
-		input#newSkill(type='text', ng-model='newSkill')
-		input(type='submit', value='Add skill')
+			#skillBlock
+				.row(dgy-droppable='editing', dgy-drop='dropHandler', ng-repeat='level in presOrder()', ng-hide='!editing && $last')
+					.fieldLabel {{label(level)}}
+					.skillList
+						.skill.noselect(dgy-draggable='editing', ng-repeat='skill in skills(level)')
+							span {{skill}}
+							img(ng-show='editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
+							span(ng-hide='$last') , 
 
-	p#validSkillLadder(ng-show='editing') {{valid()}}
+			form(ng-show='editing', ng-submit='addSkill(newSkill); newSkill=""')
+				input#newSkill(type='text', ng-model='newSkill')
+				input(type='submit', value='Add skill')
 
-	diceroller
+			p#validSkillLadder(ng-show='editing') {{valid()}}
 
+			diceroller
+
+		#tab2
+			p
+				This is test text for tabs.
