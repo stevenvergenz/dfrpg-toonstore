@@ -144,23 +144,60 @@ function newCharacterRequest(req,res)
 
 	global.log('Attempting character creation');
 	var connection = mysql.createConnection( config.database );
-	connection.query('INSERT INTO Characters SET created_on=NOW(), ?;',
-		{'canonical_name': req.body.canon_name, 'name': req.body.name, 'owner': req.session.user,
-			'concept': req.body.concept, 'info': JSON.stringify(toon)},
-		function(err,rows,fields)
-		{
-			if( err ){
-				global.error('MySQL error:', err);
-				global.renderPage('newtoon', {message: {type: 'error', content:'You are already using that short name'}})(req,res);
+
+	if( req.body.copy )
+	{
+		var parts = req.body.copy.split('/');
+		connection.query('SELECT info FROM Characters WHERE owner = ? AND canonical_name = ? AND (private = 0 OR owner = ?);',
+			[parts[0], parts[1], req.session.user],
+			function(err,rows,fields)
+			{
+				if(err){
+					global.error('MySQL error:', err);
+					global.renderPage('newtoon', {message: {type: 'error', content:'An unidentified error has occurred. Contact a site admin.'}})(req,res);
+					connection.end();
+				}
+				else if(rows.length === 0){
+					global.error('Cannot copy nonexistent or private character', req.body.copy);
+					res.send(400);
+					connection.end();
+				}
+				else {
+					var info = JSON.parse(rows[0].info);
+					console.log(info);
+					info.name = req.body.name;
+					info.player = req.session.user;
+					info.aspects.high_concept = {name: req.body.concept, description: ''};
+					addCharacter(info);
+				}
 			}
-			else {
-				global.log('Creation successful');
-				var url = '/'+req.session.user+'/'+req.body.canon_name+'/';
-				res.redirect(url);
+		);
+	}
+	else {
+		addCharacter(toon);
+	}
+
+	function addCharacter(info)
+	{
+		console.log(req.body.private);
+		connection.query('INSERT INTO Characters SET created_on=NOW(), ?;',
+			{'canonical_name': req.body.canon_name, 'name': req.body.name, 'owner': req.session.user,
+				'concept': req.body.concept, 'info': JSON.stringify(info), 'private': req.body.private==='on'?1:0},
+			function(err,rows,fields)
+			{
+				if( err ){
+					global.error('MySQL error:', err);
+					global.renderPage('newtoon', {message: {type: 'error', content:'You are already using that short name'}})(req,res);
+				}
+				else {
+					global.log('Creation successful');
+					var url = '/'+req.session.user+'/'+req.body.canon_name+'/';
+					res.redirect(url);
+				}
+				connection.end();
 			}
-			connection.end();
-		}
-	);
+		);
+	}
 }
 
 function deleteCharacterPage(req,res)

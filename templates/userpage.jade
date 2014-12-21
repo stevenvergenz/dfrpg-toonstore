@@ -38,7 +38,7 @@ block content
 						if logged_user != null
 							span(style='font-size: 80%;')
 								| (
-								a(href='/newtoon?copy=/#{owner}/#{char.canon_name}/') Duplicate
+								a(href='/newtoon?copy=#{owner}/#{char.canon_name}') Duplicate
 								| )
 						if logged_user == owner
 							span(style='font-size: 80%;')
@@ -65,7 +65,7 @@ block content
 						| &nbsp;
 						span(style='font-size: 80%;')
 							| (
-							a(href='/newtoon?copy=/#{owner}/#{char.canon_name}/&private') Duplicate
+							a(href='/newtoon?copy=#{owner}/#{char.canon_name}&private') Duplicate
 							| )
 						span(style='font-size: 80%;')
 							| (

@@ -21,10 +21,10 @@ function prepopulateCopy()
 {
 	var match = /[?&]copy=([^&]+)/.exec(window.location.search);
 	if(match){
-		$.getJSON(match[1]+'json', function(data,status,xhr)
+		$.getJSON('/'+match[1]+'/json', function(data,status,xhr)
 		{
 			$('input#name').val(data.name);
-			$('input#canon_name').val( match[1].split('/')[2] );
+			$('input#canon_name').val( match[1].split('/')[1] );
 			$('input#concept').val(data.aspects.high_concept.name);
 		});
 	}

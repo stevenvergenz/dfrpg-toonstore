@@ -12,7 +12,7 @@ block content
 		.title New character
 
 		.inner
-			form(action='/newtoon', method='post', onsubmit="return validate();")
+			form(method='post', onsubmit="return validate();")
 
 				label(for='name') Full name
 				input#name(type='text', name='name', required, placeholder='John Doe', onkeyup="generateSlug(this)")
