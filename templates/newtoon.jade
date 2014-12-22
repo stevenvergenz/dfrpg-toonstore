@@ -12,6 +12,7 @@ block content
 		.title New character
 
 		.inner
+
 			form(method='post', onsubmit="return validate();")
 
 				label(for='name') Full name
@@ -36,10 +37,5 @@ block content
 					}
 
 				input#copy(type='hidden', name='copy')
-				script.
-					var match = /[?&]copy=([^&]+)/.exec(window.location.search);
-					if(match){
-						$('input#copy').val(match[1]);
-					}
 
 				input(type='submit', name='submit', value='Submit')

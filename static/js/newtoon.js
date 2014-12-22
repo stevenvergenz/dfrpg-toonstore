@@ -26,6 +26,9 @@ function prepopulateCopy()
 			$('input#name').val(data.name);
 			$('input#canon_name').val( match[1].split('/')[1] );
 			$('input#concept').val(data.aspects.high_concept.name);
+			$('input#copy').val(match[1]);
+
+			$('<div class="info" style="margin-bottom: 15px;">Duplicating character:<br/><strong>'+data.name+'</strong><br/>('+match[1]+')</div>').prependTo('.titledbox .inner');
 		});
 	}
 }
