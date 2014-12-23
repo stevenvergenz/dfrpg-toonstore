@@ -43,10 +43,10 @@ function register(req,res)
 				connection.query(
 					'INSERT INTO Tokens SET email = ?, token = ?, expires = ADDTIME(NOW(), "00:15:00");',
 					[req.body.email, token],
-					function(err,result)
+					function(err2,result2)
 					{
-						if( err ){
-							global.error('Failed to register pass reset token.', err);
+						if( err2 ){
+							global.error('Failed to register pass reset token.', err2);
 							global.renderPage('index', {message: {type:'error', content:'Unidentified database error'}})(req,res);
 						}
 						else

@@ -96,7 +96,7 @@ function setPassword(req,res,next)
 			{
 				if(err){
 					global.error('Failed to set password!', err);
-					global.renderPage('404', {code: 500, message: {type:'error',content:'An unidentified error has occurred, please contact the site admin.'}})(req,res);
+					global.renderPage('activation', {code: 500, message: {type:'error',content:'An unidentified error has occurred, please contact the site admin.'}})(req,res);
 				}
 				else if(result.affectedRows === 0){
 					global.error('Token not found or expired');
@@ -104,6 +104,7 @@ function setPassword(req,res,next)
 				}
 				else {
 					global.log('Password reset for token', req.params.token);
+					req.session.latent_message = 'Your password has been set. Please log in to continue.';
 					res.redirect('/login');
 				}
 				connection.end();

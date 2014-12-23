@@ -147,6 +147,7 @@ function newCharacterRequest(req,res)
 
 	if( req.body.copy )
 	{
+		global.log('Attempting copy of', req.body.copy);
 		var parts = req.body.copy.split('/');
 		connection.query('SELECT info FROM Characters WHERE owner = ? AND canonical_name = ? AND (private = 0 OR owner = ?);',
 			[parts[0], parts[1], req.session.user],
@@ -154,17 +155,17 @@ function newCharacterRequest(req,res)
 			{
 				if(err){
 					global.error('MySQL error:', err);
-					global.renderPage('newtoon', {message: {type: 'error', content:'An unidentified error has occurred. Contact a site admin.'}})(req,res);
+					global.renderPage('newtoon', {code:500, message: {type: 'error', content:'An unidentified error has occurred. Contact a site admin.'}})(req,res);
 					connection.end();
 				}
 				else if(rows.length === 0){
-					global.error('Cannot copy nonexistent or private character', req.body.copy);
+					global.error('Cannot copy non-existent or private character', req.body.copy);
+					global.renderPage('newtoon', {code:400, message: {type: 'error', content:'Cannot copy non-existent character.'}})(req,res);
 					res.send(400);
 					connection.end();
 				}
 				else {
 					var info = JSON.parse(rows[0].info);
-					console.log(info);
 					info.name = req.body.name;
 					info.player = req.session.user;
 					info.aspects.high_concept = {name: req.body.concept, description: ''};
@@ -179,15 +180,14 @@ function newCharacterRequest(req,res)
 
 	function addCharacter(info)
 	{
-		console.log(req.body.private);
 		connection.query('INSERT INTO Characters SET created_on=NOW(), ?;',
 			{'canonical_name': req.body.canon_name, 'name': req.body.name, 'owner': req.session.user,
-				'concept': req.body.concept, 'info': JSON.stringify(info), 'private': req.body.private==='on'?1:0},
+				'concept': req.body.concept, 'info': JSON.stringify(info), 'private': req.body.private==='on' ? true : false},
 			function(err,rows,fields)
 			{
 				if( err ){
 					global.error('MySQL error:', err);
-					global.renderPage('newtoon', {message: {type: 'error', content:'You are already using that short name'}})(req,res);
+					global.renderPage('newtoon', {code:400, message: {type: 'error', content:'You are already using that short name'}})(req,res);
 				}
 				else {
 					global.log('Creation successful');
