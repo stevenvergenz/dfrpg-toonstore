@@ -3,13 +3,13 @@ var libpath = require('path');
 var fs = require('fs');
 
 var global = require('./global.js');
-
+var config = require('../config.json');
 
 var filename = process.argv[2];
 var file = JSON.parse(fs.readFileSync(filename));
 
-var connection = mysql.createConnection( global.config.database );
-connection.query('UPDATE Characters SET info = ? WHERE canonical_name = "lifeson" AND owner = "tester";', [JSON.stringify(file)],
+var connection = mysql.createConnection( config.database );
+connection.query('UPDATE Characters SET info = ? WHERE canonical_name = "asdf" AND owner = "Derogatory";', [JSON.stringify(file)],
 	function(err,rows,fields){
 		if(err){
 			console.log(err);

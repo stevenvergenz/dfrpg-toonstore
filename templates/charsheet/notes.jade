@@ -1,4 +1,5 @@
-a#notes
+#notes.sheet-panel(ng-controller='NotesCtrl', ng-show='data.notes.enabled', ng-class='{dirty:dirty}')
+	a#notes
 	p.sectionHeader Notes
 		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 

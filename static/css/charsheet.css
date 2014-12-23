@@ -773,7 +773,22 @@ div#stressBlock {
 	align-items: center;
 
 	text-align: left;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 5px;
 }
+
+#powerBlock .ui-accordion:not(.ui-accordion-disabled) .ui-accordion-header .name span::after {
+	content: "\25B2";
+	margin-left: 2px;
+	position: relative;
+	bottom: 2px;
+}
+
+#powerBlock .ui-accordion:not(.ui-accordion-disabled) .ui-accordion-header.ui-accordion-header-active .name span::after {
+	content: "\25BC";
+}
+
 
 #powerBlock .block {
 	margin: 8px 0px;
@@ -809,6 +824,10 @@ div#stressBlock {
 	-ms-flex-pack: flex-end;
 	-webkit-justify-content: flex-end;
 	justify-content: flex-end;
+}
+
+#powerBlock .name {
+	max-width: 275px;
 }
 
 /* description div */
