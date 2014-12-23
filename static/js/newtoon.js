@@ -28,7 +28,7 @@ function prepopulateCopy()
 			$('input#concept').val(data.aspects.high_concept.name);
 			$('input#copy').val(match[1]);
 
-			$('<div class="info" style="margin-bottom: 15px;">Duplicating character:<br/><strong>'+data.name+'</strong><br/>('+match[1]+')</div>').prependTo('.titledbox .inner');
+			$('<div class="info" style="margin-bottom: 15px;">Duplicating character:<br/><strong>'+data.name+'</strong><br/><span class="caption">('+match[1]+')</span></div>').prependTo('.titledbox .inner');
 		});
 	}
 }

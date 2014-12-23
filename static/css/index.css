@@ -44,7 +44,7 @@ a:hover, a:active {
 	text-decoration: underline;
 }
 
-p.caption {
+.caption {
 	font-size: 0.7em;
 	color: #555;
 }
