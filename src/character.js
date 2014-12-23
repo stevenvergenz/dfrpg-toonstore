@@ -25,7 +25,7 @@ function servePage(req,res,next)
 				}
 				else {
 					global.log('Serving character page for', req.url);
-					global.renderPage('charsheet', {toonName: rows[0].name, toonConcept: rows[0].concept})(req,res);
+					global.renderPage('charsheet/base', {toonName: rows[0].name, toonConcept: rows[0].concept})(req,res);
 				}
 			}
 			else {

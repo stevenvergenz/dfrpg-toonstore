@@ -1,0 +1,38 @@
+#aspects.sheet-panel(ng-controller='AspectCtrl', ng-class='{dirty: dirty}')
+	a#aspects
+	p.sectionHeader Aspects
+		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
+
+	.field
+		p.fieldLabel High Concept:
+		input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.name')
+		textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.description')
+
+		div(dgy-accordion='data.aspects.high_concept.description', ng-hide='editing')
+			p {{data.aspects.high_concept.name}}
+			.description(ng-bind-html='data.aspects.high_concept.description | mdToHtml')
+
+	.field
+		p.fieldLabel Trouble:
+		input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.name')
+		textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.description')
+		div(dgy-accordion='data.aspects.trouble.description', ng-hide='editing')
+			p {{data.aspects.trouble.name}}
+			.description(ng-bind-html='data.aspects.trouble.description | mdToHtml')
+
+	.field
+		p.fieldLabel Other Aspects:
+		div(ui-sortable='dragOptions', dgy-notify-collection, ng-model='data.aspects.aspects')
+			div(ng-repeat='aspect in data.aspects.aspects')
+				div(dgy-accordion='aspect.description', ng-hide='editing')
+					p {{parseAspect(aspect.name).name}}
+					.description(ng-bind-html='aspect.description | mdToHtml')
+
+				div(ng-show='editing')
+					img.iconButton.dragHandle(src='/static/img/glyphicons/glyphicons_186_move.png', style='width:15px;height:15px;')
+					input(type='text', dgy-notify, ng-model='aspect.name')
+					input.iconButton(type='image', ng-click='removeAspect($index)',
+						style='width: 15px; height: 15px;', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+					textarea(placeholder='Description', dgy-notify, ng-model='aspect.description')
+
+	input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addAspect()')
