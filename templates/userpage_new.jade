@@ -1,0 +1,29 @@
+extends index
+
+block title
+	title= owner + ' | ToonStore.net'
+
+block append styles
+	link(rel='stylesheet', href='/static/css/userpage.scss')
+	style.
+		span.fakeLink {
+			color: blue;
+			cursor: pointer;
+		}
+
+block append includes
+	script.
+		function togglePrivacy(toonName){
+			$.post('/togglePrivacy', {id: toonName}, function(data,status,xhr)
+			{
+				window.location.reload(true);
+			});
+		}
+
+
+block content
+
+	.content-block
+		h1 #{owner}'s page
+
+

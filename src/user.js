@@ -40,6 +40,69 @@ function userPage(req,res,next)
 	);
 }
 
+function newUserPage(req,res,next)
+{
+	var connection = mysql.createConnection( config.database );
+	connection.query('SELECT COUNT(*) AS count FROM Users WHERE username = ?;', [req.params.user], function(err,rows,fields)
+	{
+		if(err){
+			global.error(err);
+			global.renderPage('404', {code:500})(req,res);
+		}
+		else if(rows[0].count === 1){
+			global.log('Serving user page for', req.params.user);
+			global.renderPage('userpage_new',{})(req,res);
+		}
+		else {
+			next();
+		}
+		connection.end();
+	});
+}
+
+function userJson(req,res,next)
+{
+	var connection = mysql.createConnection( config.database );
+	connection.query(
+		'SELECT Characters.owner, Characters.name, Characters.canonical_name, Characters.concept, '+
+			'Characters.private, Characters.last_updated, Characters.created_on '+
+		'FROM Users LEFT JOIN Characters ON Users.username = Characters.owner '+
+		'WHERE Users.username = ?;', [req.params.user],
+		function(err,rows,fields){
+			if( err ){
+				global.error( err, global.logLevels.warning );
+			}
+			else if( rows.length != 0 )
+			{
+				global.log('Serving user json for', req.params.user);
+				
+				var characters = {'public': []};
+				if( req.session.user === req.params.user ){
+					characters.private = [];
+				}
+
+				for(var i=0; i<rows.length; i++)
+				{
+					if( rows[i].private === 0 ){
+						delete rows[i].private;
+						characters.public.push(rows[i]);
+					}
+					else if( req.params.user === req.session.user ){
+						delete rows[i].private;
+						characters.private.push(rows[i]);
+					}
+				}
+
+				res.json(characters);
+			}
+			else {
+				next();
+			}
+			connection.end();
+		}
+	);
+}
+
 function togglePrivacy(req,res,next)
 {
 	// check if a user is logged in and passed the correct data
@@ -74,5 +137,7 @@ function togglePrivacy(req,res,next)
 	);
 }
 
-exports.userPage = userPage;
+exports.userPage = newUserPage;
+exports.userJson = userJson;
 exports.togglePrivacy = togglePrivacy;
+

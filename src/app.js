@@ -54,6 +54,7 @@ app.post('/logout', login.processLogout);
 
 // route the user pages
 app.get('/:user([A-Za-z0-9_-]+)', user.userPage);
+app.get('/:user([A-Za-z0-9_-]+).json', user.userJson);
 
 // route the character management pages
 app.get('/newtoon', character.newCharacterPage);
