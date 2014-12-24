@@ -19,23 +19,48 @@ function compileSCSS(callback)
 		if( match )
 		{
 			var outfile = libpath.resolve(__dirname, '../static/css/compiled/', match[1]+'.css');
-			sass.render({
-				file: infile, outFile: outfile,
-				imagePath: '/static/img',
-				outputStyle: 'compressed',
-				success: function(){
-					global.log('Compile successful:', item);
-					cb();
-				},
-				error: function(err){
-					global.error('Compile FAILED:', item);
-					global.log(err);
-					cb(err);
-				}
-			});
+			var instats, outstats;
+
+			// get the stats for the scss template
+			try {
+				instats = fs.statSync(infile);
+			}
+			catch(e){
+				global.error('Cannot stat input file', infile);
+				cb(e);
+				return;
+			}
+
+			try {
+				outstats = fs.statSync(outfile);
+			}
+			catch(e){
+				outstats = null;
+			}
+
+			if( !outstats || instats.mtime > outstats.ctime )
+			{
+				sass.renderFile({
+					file: infile, outFile: outfile,
+					imagePath: '/static/img',
+					outputStyle: 'compressed',
+					success: function(){
+						global.log('Compile successful:', item);
+						cb();
+					},
+					error: function(err){
+						global.error('Compile FAILED:', item);
+						global.log(err);
+						cb(err);
+					}
+				});
+			}
+			else {
+				global.log('File', item, 'unmodified, skipping.');
+				cb();
+			}
 		}
 		else {
-			global.log('Skipping', item);
 			cb();
 		}
 	}

@@ -1,0 +1,56 @@
+@import 'polyfill';
+
+div.character
+{
+	background-color: white;
+	color: black;
+	border: 1px solid lightgrey;
+	margin: 5px 0;
+	padding: 5px;
+
+	@include display-flex();
+	@include flex-direction(row);
+
+	// Style the avatar window
+
+	$avatar_width: 130px;
+	$avatar_height: 100px;
+
+	div.avatar
+	{
+		width: $avatar_width;
+		height: $avatar_height;
+		overflow: hidden;
+
+		@include display-flex();
+		@include justify-content(center);
+		@include align-items(center);
+
+		img
+		{
+			border-radius: 5px;
+			max-width: $avatar_width;
+			max-height: $avatar_height;
+		}
+	}
+
+	// style the description fields
+
+	div.char-content
+	{
+		margin-left: 10px;
+
+		p.title
+		{
+			margin: 10px 0;
+			font-size: 18pt;
+		}
+
+		.controls {
+			a img, input {
+				margin: 5px;
+				height: 18px;
+			}
+		}
+	}
+}

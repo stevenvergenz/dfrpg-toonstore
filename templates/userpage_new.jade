@@ -5,13 +5,10 @@ block title
 
 block append styles
 	link(rel='stylesheet', href='/static/css/compiled/userpage.css')
-	style.
-		span.fakeLink {
-			color: blue;
-			cursor: pointer;
-		}
 
 block append includes
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
 	script.
 		function togglePrivacy(toonName){
 			$.post('/togglePrivacy', {id: toonName}, function(data,status,xhr)
@@ -25,5 +22,25 @@ block content
 
 	.content-block
 		h1 #{owner}'s page
+
+		#charList
+			.character
+				.avatar
+					a(href='/Derogatory/tesla/')
+						img(src='/Derogatory/tesla/avatar')
+
+				.char-content
+					p.title
+						a(href='/Derogatory/tesla/') Nikola Tesla, Servant Caster
+					.controls
+						//if logged_user != null
+						a(href='/newtoon?copy=Derogatory/tesla')
+							img(src='/static/img/glyphicons/glyphicons_318_more_items.png', title='Duplicate')
+
+						//if logged_user == owner
+						input(type='image', onclick='togglePrivacy("tesla")', src='/static/img/glyphicons/glyphicons_052_eye_close.png', title='Make Private')
+
+						a(href='/killtoon?id=tesla')
+							img(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
 
 
