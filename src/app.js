@@ -13,7 +13,7 @@ var user = require('./user.js');
 var character = require('./character.js');
 var sitemap = require('./sitemap.js');
 var stats = require('./stats.js');
-
+var sass = require('./sass.js');
 
 // create the express application
 var app = express();
@@ -103,23 +103,29 @@ app.use(function(req,res)
 		res.send(404);
 });
 
-// start the server
-if( config.use_ssl )
-{
-	var sslconfig = {
-		key: fs.readFileSync(config.ssl_key),
-		cert: fs.readFileSync(config.ssl_cert)
-	};
 
-	if( config.ssl_password )
-		sslconfig.passphrase = config.ssl_password;
 
-	https.createServer(sslconfig,app).listen(config.port);
-	global.log('Server running at https://localhost:'+config.port+'/');
-}
-else
+sass.compile( startServer );
+
+function startServer()
 {
-	http.createServer(app).listen(config.port);
-	global.log('Server running at http://localhost:'+config.port+'/');
+	// start the server
+	if( config.use_ssl )
+	{
+		var sslconfig = {
+			key: fs.readFileSync(config.ssl_key),
+			cert: fs.readFileSync(config.ssl_cert)
+		};
+
+		if( config.ssl_password )
+			sslconfig.passphrase = config.ssl_password;
+
+		https.createServer(sslconfig,app).listen(config.port);
+	}
+	else
+	{
+		http.createServer(app).listen(config.port);
+	}
+	global.log('Server running on port', config.port, 'with origin', config.origin);
 }
 
