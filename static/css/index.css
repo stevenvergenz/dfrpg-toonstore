@@ -223,6 +223,16 @@ p.error, input.error {
 	margin: 20px;
 }
 
+
+ul#charList li {
+	margin: 5px inherit;
+}
+
+ul#charList a img, ul#charList span.fakeLink img {
+	height: 16px;
+	margin: 0 5px;
+}
+
 /*#login-box, #register-box {
 	display: -webkit-flex;
 	-webkit-flex-direction: column;

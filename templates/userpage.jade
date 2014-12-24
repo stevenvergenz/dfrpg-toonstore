@@ -36,19 +36,16 @@ block content
 						a(href='/#{owner}/#{char.canon_name}/')= char.name +', '+ char.concept
 						| &nbsp;
 						if logged_user != null
-							span(style='font-size: 80%;')
-								| (
-								a(href='/newtoon?copy=#{owner}/#{char.canon_name}') Duplicate
-								| )
+							a(href='/newtoon?copy=#{owner}/#{char.canon_name}')
+								img(src='/static/img/glyphicons/glyphicons_318_more_items.png', title='Duplicate')
+
 						if logged_user == owner
-							span(style='font-size: 80%;')
-								| (
-								span.fakeLink(onclick='togglePrivacy("#{char.canon_name}")') Make Private
-								| )
-							span(style='font-size: 80%;')
-								| (
-								a(href='/killtoon?id=#{char.canon_name}') Delete
-								| )
+							span.fakeLink(onclick='togglePrivacy("#{char.canon_name}")')
+								img(src='/static/img/glyphicons/glyphicons_052_eye_close.png', title='Make Private')
+
+							a(href='/killtoon?id=#{char.canon_name}')
+								img(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
+
 
 		else if logged_user == owner
 			p No public characters
@@ -63,18 +60,15 @@ block content
 					li
 						a(href='/#{owner}/#{char.canon_name}/')= char.name +', '+ char.concept
 						| &nbsp;
-						span(style='font-size: 80%;')
-							| (
-							a(href='/newtoon?copy=#{owner}/#{char.canon_name}&private') Duplicate
-							| )
-						span(style='font-size: 80%;')
-							| (
-							span.fakeLink(onclick='togglePrivacy("#{char.canon_name}")') Make Public
-							| )
-						span(style='font-size: 80%;')
-							| (
-							a(href='/killtoon?id=#{char.canon_name}') Delete
-							| )
+						a(href='/newtoon?copy=#{owner}/#{char.canon_name}')
+							img(src='/static/img/glyphicons/glyphicons_318_more_items.png', title='Duplicate')
+
+						span.fakeLink(onclick='togglePrivacy("#{char.canon_name}")')
+							img(src='/static/img/glyphicons/glyphicons_051_eye_open.png', title='Make Public', style='height: 13px;')
+
+						a(href='/killtoon?id=#{char.canon_name}')
+							img(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
+
 		else if logged_user == owner
 			p No private characters
 
