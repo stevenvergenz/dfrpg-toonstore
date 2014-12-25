@@ -35,6 +35,15 @@ app.directive('dgyFallback', function()
 	};
 });
 
+
+app.filter('relativeTime', function()
+{
+	return function(isotime){
+		return moment(isotime).fromNow();
+	};
+});
+
+
 $(function(){
 	angular.bootstrap( $('.content-block')[0], ['userpage'] );
 });

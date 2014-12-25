@@ -9,6 +9,7 @@ block append styles
 block append includes
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
+	script(src='/static/js/moment.min.js')
 	script(src='/static/js/userpage.js')
 	script.
 		function togglePrivacy(toonName){
@@ -35,7 +36,7 @@ block content
 				.char-content
 					p.title
 						a(ng-href='/{{char.owner}}/{{char.canonical_name}}/') {{char.name}}, {{char.concept}}
-					p.updated Last updated {{char.last_updated}}
+					p.updated Last updated {{char.last_updated | relativeTime}}
 					.controls
 						if logged_user != null
 							a(ng-href='/newtoon?copy={{char.owner}}/{{char.canonical_name}}')
@@ -77,3 +78,5 @@ block content
 								img(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
 
 				p(ng-show='data.private.length === 0') No private characters.
+
+			p: a(href='/newtoon') Create a new character
