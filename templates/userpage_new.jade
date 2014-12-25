@@ -9,6 +9,7 @@ block append styles
 block append includes
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
+	script(src='/static/js/userpage.js')
 	script.
 		function togglePrivacy(toonName){
 			$.post('/togglePrivacy', {id: toonName}, function(data,status,xhr)
@@ -23,24 +24,56 @@ block content
 	.content-block
 		h1 #{owner}'s page
 
-		#charList
-			.character
+		#charList(ng-controller='UserPageCtrl')
+			h4 Characters:
+
+			.character(ng-repeat='char in data.public')
 				.avatar
-					a(href='/Derogatory/tesla/')
-						img(src='/Derogatory/tesla/avatar')
+					a(ng-href='/{{char.owner}}/{{char.canonical_name}}/')
+						img(src='/{{char.owner}}/{{char.canonical_name}}/avatar', dgy-fallback='/static/img/no-avatar.png')
 
 				.char-content
 					p.title
-						a(href='/Derogatory/tesla/') Nikola Tesla, Servant Caster
+						a(ng-href='/{{char.owner}}/{{char.canonical_name}}/') {{char.name}}, {{char.concept}}
+					p.updated Last updated {{char.last_updated}}
 					.controls
-						//if logged_user != null
-						a(href='/newtoon?copy=Derogatory/tesla')
-							img(src='/static/img/glyphicons/glyphicons_318_more_items.png', title='Duplicate')
+						if logged_user != null
+							a(ng-href='/newtoon?copy={{char.owner}}/{{char.canonical_name}}')
+								img(src='/static/img/glyphicons/glyphicons_318_more_items.png', title='Duplicate')
 
-						//if logged_user == owner
-						input(type='image', onclick='togglePrivacy("tesla")', src='/static/img/glyphicons/glyphicons_052_eye_close.png', title='Make Private')
+						if logged_user == owner
+							input(type='image', ng-click='togglePrivacy(char.canonical_name)',
+								src='/static/img/glyphicons/glyphicons_052_eye_close.png', title='Make Private')
 
-						a(href='/killtoon?id=tesla')
-							img(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
+							a(ng-href='/killtoon?id={{char.canonical_name}}')
+								img(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
 
+			
+			if logged_user == owner
+				p(ng-show='data.public.length === 0') No public characters.
+			else
+				p(ng-show='data.public.length === 0') This user lacks character (badum-ching!)
 
+			if logged_user == owner
+				h4 Private Characters:
+
+				.character(ng-repeat='char in data.private')
+					.avatar
+						a(ng-href='/{{char.owner}}/{{char.canonical_name}}/')
+							img(src='/{{char.owner}}/{{char.canonical_name}}/avatar', dgy-fallback='/static/img/no-avatar.png')
+
+					.char-content
+						p.title
+							a(ng-href='/{{char.owner}}/{{char.canonical_name}}/') {{char.name}}, {{char.concept}}
+						.controls
+							a(ng-href='/newtoon?copy={{char.owner}}/{{char.canonical_name}}')
+								img(src='/static/img/glyphicons/glyphicons_318_more_items.png', title='Duplicate')
+	
+							input(type='image', ng-click='togglePrivacy(char.canonical_name)',
+								src='/static/img/glyphicons/glyphicons_051_eye_open.png', title='Make Public',
+								style='height:15px;')
+
+							a(ng-href='/killtoon?id={{char.canonical_name}}')
+								img(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
+
+				p(ng-show='data.private.length === 0') No private characters.
