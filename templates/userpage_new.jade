@@ -31,7 +31,7 @@ block content
 			.character(ng-repeat='char in data.public')
 				.avatar
 					a(ng-href='/{{char.owner}}/{{char.canonical_name}}/')
-						img(src='/{{char.owner}}/{{char.canonical_name}}/avatar', dgy-fallback='/static/img/no-avatar.png')
+						img(dgy-src='/{{char.owner}}/{{char.canonical_name}}/avatar')
 
 				.char-content
 					p.title
@@ -61,7 +61,7 @@ block content
 				.character(ng-repeat='char in data.private')
 					.avatar
 						a(ng-href='/{{char.owner}}/{{char.canonical_name}}/')
-							img(src='/{{char.owner}}/{{char.canonical_name}}/avatar', dgy-fallback='/static/img/no-avatar.png')
+							img(dgy-src='/{{char.owner}}/{{char.canonical_name}}/avatar')
 
 					.char-content
 						p.title

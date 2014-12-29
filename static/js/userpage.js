@@ -19,18 +19,24 @@ app.controller('UserPageCtrl', ['$scope','$resource', function($scope,$resource)
 			window.location.reload(true);
 		});
 	};
+
 }]);
 
 
-app.directive('dgyFallback', function()
+app.directive('dgySrc', function()
 {
 	return {
 		restrict: 'A',
-		link: function(scope,element,attr){
+		link: function(scope,element,attr)
+		{
+			var fallback = '/static/img/no-avatar.png';
+
 			element.bind('error', function(evt){
-				if( element[0].src !== attr.dgyFallback )
-					element[0].src = attr.dgyFallback;
+				if( attr['src'] !== fallback )
+					element.attr('src', fallback);
 			});
+
+			element.attr('src', attr.dgySrc);
 		}
 	};
 });
