@@ -36,7 +36,7 @@ block content
 				.char-content
 					p.title
 						a(ng-href='/{{char.owner}}/{{char.canonical_name}}/') {{char.name}}, {{char.concept}}
-					p.updated Last updated {{char.last_updated | relativeTime}}
+					p.updated(title='{{char.last_updated | calendarTime}}') Last updated {{char.last_updated | relativeTime}}
 					.controls
 						if logged_user != null
 							a(ng-href='/newtoon?copy={{char.owner}}/{{char.canonical_name}}')

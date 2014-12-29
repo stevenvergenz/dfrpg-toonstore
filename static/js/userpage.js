@@ -49,6 +49,12 @@ app.filter('relativeTime', function()
 	};
 });
 
+app.filter('calendarTime', function()
+{
+	return function(isotime){
+		return moment(isotime).calendar();
+	};
+});
 
 $(function(){
 	angular.bootstrap( $('.content-block')[0], ['userpage'] );
