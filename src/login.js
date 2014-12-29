@@ -21,7 +21,7 @@ function processLogin(req,res)
 	function continued()
 	{
 		var connection = mysql.createConnection( config.database );
-		connection.query('SELECT username,salt FROM Users WHERE email = ?', [email], function(err,rows,fields)
+		connection.query('SELECT username,salt FROM Users WHERE BINARY email = ?', [email], function(err,rows,fields)
 		{
 			if(err){
 				global.error('Error querying db:', err);
@@ -39,7 +39,7 @@ function processLogin(req,res)
 				var hashfn = crypto.createHash('sha256');
 				var hash = hashfn.update(rows[0].salt+password, 'utf8').digest('hex');
 
-				connection.query('UPDATE Users SET last_login = NOW() WHERE email = ? AND password = ?', [email, hash],
+				connection.query('UPDATE Users SET last_login = NOW() WHERE BINARY email = ? AND password = ?', [email, hash],
 					function(err,rows,fields)
 					{
 						if(err){
@@ -52,7 +52,7 @@ function processLogin(req,res)
 						}
 						else {
 							global.log('User logged in:', email);
-							connection.query('DELETE FROM Tokens WHERE email = ?;', [email]);
+							connection.query('DELETE FROM Tokens WHERE BINARY email = ?;', [email]);
 							req.session.user = username;
 							req.session.user_email = email;
 							req.session.persona = false;
@@ -123,7 +123,7 @@ function logInVerifiedEmail(req,res,email)
 
 	// look up corresponding username
 	var connection = mysql.createConnection( config.database );
-	connection.query('SELECT username FROM Users WHERE email = ?;', [email],
+	connection.query('SELECT username FROM Users WHERE BINARY email = ?;', [email],
 		function(err,rows,fields){
 			if( err ){
 				global.error('MySQL error:', err);
@@ -135,7 +135,7 @@ function logInVerifiedEmail(req,res,email)
 			}
 			else {
 				global.log('Login successful');
-				connection.query('UPDATE Users SET last_login = NOW() WHERE username = ?;', [rows[0].username]);
+				connection.query('UPDATE Users SET last_login = NOW() WHERE BINARY username = ?;', [rows[0].username]);
 				req.session.user = rows[0].username;
 				req.session.persona = true;
 				res.json(200, {status: 'OK', username: rows[0].username} );

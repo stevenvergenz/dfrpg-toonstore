@@ -16,7 +16,7 @@ connection.query('SELECT owner,canonical_name,info FROM Characters;', function(e
 	for(var i in rows)
 	{
 		var newtoon = transformCharacter( JSON.parse(rows[i].info) );
-		connection.query('UPDATE Characters SET info = ? WHERE canonical_name = ? AND owner = ?;',
+		connection.query('UPDATE Characters SET info = ? WHERE BINARY canonical_name = ? AND BINARY owner = ?;',
 			[JSON.stringify(newtoon), rows[i].canonical_name, rows[i].owner],
 			function(err){
 				if(err){

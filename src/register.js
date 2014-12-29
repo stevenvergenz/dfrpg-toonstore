@@ -39,7 +39,7 @@ function register(req,res)
 				connection.end();
 			}
 			else {
-				connection.query('DELETE FROM Tokens WHERE email = ?;', [req.body.email]);
+				connection.query('DELETE FROM Tokens WHERE BINARY email = ?;', [req.body.email]);
 				connection.query(
 					'INSERT INTO Tokens SET email = ?, token = ?, expires = ADDTIME(NOW(), "00:15:00");',
 					[req.body.email, token],
@@ -137,7 +137,7 @@ function checkUsername(req,res)
 
 	// connect to the db
 	var connection = mysql.createConnection( config.database );
-	connection.query('SELECT COUNT(username) AS userCount FROM Users WHERE username = ?', [user], function(err, rows, fields)
+	connection.query('SELECT COUNT(username) AS userCount FROM Users WHERE BINARY username = ?', [user], function(err, rows, fields)
 	{
 		if( err ){
 			global.error('MySQL error:', err);
