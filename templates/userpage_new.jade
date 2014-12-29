@@ -36,7 +36,7 @@ block content
 				.char-content
 					p.title
 						a(ng-href='/{{char.owner}}/{{char.canonical_name}}/') {{char.name}}, {{char.concept}}
-					p.updated(title='{{char.last_updated | calendarTime}}') Last updated {{char.last_updated | relativeTime}}
+					p.updated(title='{{char.last_updated | calendarTime}}') {{char.last_updated | relativeTime}}
 					.controls
 						if logged_user != null
 							a(ng-href='/newtoon?copy={{char.owner}}/{{char.canonical_name}}')
@@ -66,6 +66,7 @@ block content
 					.char-content
 						p.title
 							a(ng-href='/{{char.owner}}/{{char.canonical_name}}/') {{char.name}}, {{char.concept}}
+						p.updated(title='{{char.last_updated | calendarTime}}') {{char.last_updated | relativeTime}}
 						.controls
 							a(ng-href='/newtoon?copy={{char.owner}}/{{char.canonical_name}}')
 								img(src='/static/img/glyphicons/glyphicons_318_more_items.png', title='Duplicate')

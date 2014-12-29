@@ -45,14 +45,20 @@ app.directive('dgySrc', function()
 app.filter('relativeTime', function()
 {
 	return function(isotime){
-		return moment(isotime).fromNow();
+		if(isotime)
+			return 'Last updated '+moment(isotime).fromNow();
+		else
+			return 'Never updated';
 	};
 });
 
 app.filter('calendarTime', function()
 {
 	return function(isotime){
-		return moment(isotime).calendar();
+		if(isotime)
+			return moment(isotime).calendar();
+		else
+			return 'Never updated';
 	};
 });
 
