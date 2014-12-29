@@ -11,7 +11,7 @@ function servePage(req,res,next)
 {
 	var connection = mysql.createConnection( config.database );
 	connection.query(
-		'SELECT name,concept,private,info FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		'SELECT name,concept,private,info FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( err ){
@@ -41,7 +41,7 @@ function serveJson(req,res,next)
 {
 	var connection = mysql.createConnection( config.database );
 	connection.query(
-		'SELECT info FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		'SELECT info FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( err ){
@@ -74,7 +74,7 @@ function pushJson(req,res,next)
 
 	var connection = mysql.createConnection( config.database );
 	connection.query(
-		'UPDATE Characters SET info = ?, name = ?, concept = ?, last_updated = NOW() WHERE owner = ? AND canonical_name = ?;',
+		'UPDATE Characters SET info = ?, name = ?, concept = ?, last_updated = NOW() WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[JSON.stringify(req.body), req.body.name, req.body.aspects.high_concept.name, req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( !err ){
@@ -149,7 +149,7 @@ function newCharacterRequest(req,res)
 	{
 		global.log('Attempting copy of', req.body.copy);
 		var parts = req.body.copy.split('/');
-		connection.query('SELECT info FROM Characters WHERE owner = ? AND canonical_name = ? AND (private = 0 OR owner = ?);',
+		connection.query('SELECT info FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ? AND (private = 0 OR BINARY owner = ?);',
 			[parts[0], parts[1], req.session.user],
 			function(err,rows,fields)
 			{
@@ -208,7 +208,7 @@ function deleteCharacterPage(req,res)
 	}
 
 	var connection = mysql.createConnection(config.database);
-	connection.query('SELECT name, concept FROM Characters WHERE owner = ? AND canonical_name = ?;',
+	connection.query('SELECT name, concept FROM Characters WHERE BINARY owner = ? AND OWNER canonical_name = ?;',
 		[req.session.user, req.query.id],
 		function(err,rows,fields)
 		{
@@ -244,7 +244,7 @@ function deleteCharacterRequest(req,res)
 
 	global.log('Attempting character deletion:',req.body.charname);
 	var connection = mysql.createConnection(config.database);
-	connection.query('DELETE FROM Characters WHERE owner = ? AND canonical_name = ?;',
+	connection.query('DELETE FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.session.user, req.body.charname],
 		function(err,info)
 		{
@@ -269,7 +269,7 @@ function deleteCharacterRequest(req,res)
 function serveAvatar(req,res,next)
 {
 	var connection = mysql.createConnection(config.database);
-	connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
+	connection.query('SELECT avatar FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,info)
 		{
@@ -353,14 +353,14 @@ function saveAvatar(req,res,next)
 		}
 
 		var filename = libpath.basename(req.files.avatar.path);
-		connection.query('UPDATE Characters SET avatar = ? WHERE owner = ? AND canonical_name = ?;',
+		connection.query('UPDATE Characters SET avatar = ? WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 			[filename, req.session.user, req.params.char],
 			saveNewAvatar
 		);
 	}
 
 	function checkAvatar(){
-		connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		connection.query('SELECT avatar FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 			[req.session.user, req.params.char],
 			getCurrentAvatar
 		);

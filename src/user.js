@@ -10,7 +10,7 @@ function userPage(req,res,next)
 	connection.query(
 		'SELECT Users.username, Characters.name, Characters.canonical_name, Characters.concept, Characters.private '+
 		'FROM Users LEFT JOIN Characters ON Users.username = Characters.owner '+
-		'WHERE Users.username = ? ORDER BY Characters.last_updated DESC;', [req.params.user],
+		'WHERE BINARY Users.username = ? ORDER BY Characters.last_updated DESC;', [req.params.user],
 		function(err,rows,fields){
 			if( err ){
 				global.error( err, global.logLevels.warning );
@@ -54,7 +54,7 @@ function togglePrivacy(req,res,next)
 
 	var connection = mysql.createConnection( config.database );
 	connection.query(
-		'UPDATE Characters SET private = private XOR true WHERE owner = ? AND canonical_name = ?;',
+		'UPDATE Characters SET private = private XOR true WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.session.user, req.body.id],
 		function(err,info){
 			if(err){

@@ -34,7 +34,7 @@ function passwordReset(req,res,next)
 	var token = crypto.pseudoRandomBytes(16).toString('hex');
 
 	var connection = mysql.createConnection( config.database );
-	connection.query('DELETE FROM Tokens WHERE email = ?;', [req.body.email]);
+	connection.query('DELETE FROM Tokens WHERE BINARY email = ?;', [req.body.email]);
 	connection.query(
 		'INSERT INTO Tokens SET email = ?, token = ?, expires = ADDTIME(NOW(), "00:15:00");',
 		[req.body.email, token],
@@ -90,7 +90,7 @@ function setPassword(req,res,next)
 
 		var connection = mysql.createConnection( config.database );
 		connection.query(
-			'UPDATE Users SET password = ?, salt = ? WHERE email = (SELECT email FROM Tokens WHERE token = ? AND expires > NOW());',
+			'UPDATE Users SET password = ?, salt = ? WHERE BINARY email = (SELECT email FROM Tokens WHERE token = ? AND expires > NOW());',
 			[passHash, salt, req.params.token],
 			function(err, result)
 			{
