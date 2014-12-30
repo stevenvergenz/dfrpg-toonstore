@@ -234,7 +234,7 @@ app.directive('dgyAccordion', function()
 
 			scope.$watch(scope.enabled, function(newVal,oldVal)
 			{
-				if(newVal && !oldVal){
+				if(newVal){// && !oldVal){
 					// initialize
 					element.accordion({collapsible: true, active: false, heightStyle: 'content', icons: false});
 				}
