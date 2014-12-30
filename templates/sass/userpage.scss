@@ -1,5 +1,18 @@
 @import 'polyfill';
 
+a#newtoon
+{
+	background-image: linear-gradient(#fff,#bbb);
+	padding: 6px 10px;
+	color: black;
+	border: solid grey 1px;
+	border-radius: 3px;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
 span.sortLink
 {
 	cursor: pointer;

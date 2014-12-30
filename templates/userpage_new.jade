@@ -25,7 +25,8 @@ block content
 	.content-block
 		h1 #{owner}'s page
 
-		p: a(href='/newtoon') Create a new character
+		if logged_user == owner
+			p: a#newtoon(href='/newtoon') Create a new character
 
 		#charList(ng-controller='UserPageCtrl')
 			h4 Characters:
