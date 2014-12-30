@@ -40,17 +40,26 @@ function compileSCSS(callback)
 
 			if( !outstats || instats.mtime > outstats.ctime )
 			{
-				sass.renderFile({
-					file: infile, outFile: outfile,
+				sass.render({
+					file: infile,
 					imagePath: '/static/img',
 					outputStyle: 'compressed',
-					success: function(){
-						global.log('Compile successful:', item);
-						cb();
+					success: function(result)
+					{
+						fs.writeFile(outfile, result.css, function(err)
+						{
+							if(err){
+								global.error('Could not output to file', outfile);
+								cb(err);
+							}
+							else {
+								global.log('Compile successful:', item);
+								cb();
+							}
+						});
 					},
 					error: function(err){
 						global.error('Compile FAILED:', item);
-						global.log(err);
 						cb(err);
 					}
 				});

@@ -102,7 +102,7 @@ div.character
 
 		p.title:after {
 			content: '';
-			background: url('/static/img/glyphicons/glyphicons_203_lock.png') round;
+			background: image-url('glyphicons/glyphicons_203_lock.png') round;
 			margin-left: 10px;
 			position: absolute;
 			width: 18px;
