@@ -188,6 +188,10 @@ div#avatar {
 	padding: 0;
 }
 
+#aspects p.aspectText {
+	margin: 5px;
+}
+
 /*#aspects .ui-accordion p.description {
 	padding-top: 5px;
 	padding-bottom: 5px;

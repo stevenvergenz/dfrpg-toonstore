@@ -8,7 +8,7 @@
 			div Cost
 			div Ability
 		.itemlist(ui-sortable='sortOptions', ng-model='data.powers', dgy-notify-collection)
-			.block(ng-repeat='power in data.powers', dgy-accordion='!editing && power.description')
+			.block(ng-repeat='power in data.powers', dgy-accordion='!editing && power.description.length > 100')
 				.row
 					.cost
 						input(type='number', min='-8', max='8', dgy-notify, ng-model='power.cost', ng-show='editing')

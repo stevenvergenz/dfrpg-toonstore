@@ -231,11 +231,16 @@ app.directive('dgyAccordion', function()
 		},
 		'link': function(scope,element,attr)
 		{
-			// initialize
-			element.accordion({collapsible: true, active: false, heightStyle: 'content', icons: false, disabled: !scope.enabled()});
 
-			scope.$watch(scope.enabled, function(){
-				element.accordion('option', 'disabled', !scope.enabled());
+			scope.$watch(scope.enabled, function(newVal,oldVal)
+			{
+				if(newVal && !oldVal){
+					// initialize
+					element.accordion({collapsible: true, active: false, heightStyle: 'content', icons: false});
+				}
+				else if(oldVal && !newVal){
+					element.accordion('destroy');
+				}
 			});
 
 			// cleanup
