@@ -1,6 +1,6 @@
-var app = angular.module('userpage', ['ngResource']);
+var app = angular.module('userpage', ['ngResource','ngCookies']);
 
-app.controller('UserPageCtrl', ['$scope','$resource', function($scope,$resource)
+app.controller('UserPageCtrl', ['$scope','$resource','$cookies', function($scope,$resource,$cookies)
 {
 	$scope._resource = $resource(window.location.pathname+'.json', {}, {
 		'get': {
@@ -28,8 +28,8 @@ app.controller('UserPageCtrl', ['$scope','$resource', function($scope,$resource)
 			return '/static/img/glyphicons/glyphicons_052_eye_close.png';
 	};
 
-	$scope.sortField = 'last_updated';
-	$scope.sortReverse = true;
+	$scope.sortField = $cookies.sortField || 'last_updated';
+	$scope.sortReverse = $cookies.sortReverse === undefined || $cookies.sortReverse === 'true';
 
 	$scope.setSort = function(field)
 	{
@@ -40,6 +40,14 @@ app.controller('UserPageCtrl', ['$scope','$resource', function($scope,$resource)
 			$scope.sortField = field;
 			$scope.sortReverse = false;
 		}
+		$scope.setCookies();
+	};
+
+	$scope.setCookies = function()
+	{
+		var qualifiers = ';path="'+window.location.pathname+'";max-age=31536000;';
+		document.cookie = 'sortField='+$scope.sortField + qualifiers;
+		document.cookie = 'sortReverse='+angular.toJson($scope.sortReverse) + qualifiers;
 	};
 }]);
 
