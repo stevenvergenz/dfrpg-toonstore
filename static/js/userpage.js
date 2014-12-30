@@ -20,6 +20,19 @@ app.controller('UserPageCtrl', ['$scope','$resource', function($scope,$resource)
 		});
 	};
 
+	$scope.sortField = 'last_updated';
+	$scope.sortReverse = true;
+
+	$scope.setSort = function(field)
+	{
+		if( field === $scope.sortField ){
+			$scope.sortReverse = !$scope.sortReverse;
+		}
+		else {
+			$scope.sortField = field;
+			$scope.sortReverse = false;
+		}
+	};
 }]);
 
 

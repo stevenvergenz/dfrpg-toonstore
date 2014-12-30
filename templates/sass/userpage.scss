@@ -1,5 +1,27 @@
 @import 'polyfill';
 
+span.sortLink
+{
+	//text-decoration: underline;
+	cursor: pointer;
+	@include user-select(none);
+
+	&.sortField
+	{
+		&:after {
+			content: "\25B2";
+			margin-left: 2px;
+			position: relative;
+			bottom: 2px;
+			//text-decoration: none;
+		}
+
+		&.sortReverse:after {
+			content: "\25BC";
+		}
+	}
+}
+
 div.character
 {
 	background-color: white;
@@ -14,13 +36,12 @@ div.character
 
 	// Style the avatar window
 
-	$avatar_width: 130px;
-	$avatar_height: 100px;
+	$max_height: 100px;
 
 	div.avatar
 	{
-		width: $avatar_width;
-		height: $avatar_height;
+		width: 130px;
+		height: $max_height;
 		overflow: hidden;
 
 		@include display-flex();
@@ -30,9 +51,8 @@ div.character
 		img
 		{
 			border-radius: 5px;
-			width: 100%;
-			max-width: $avatar_width;
-			max-height: $avatar_height;
+			max-width: 100%;
+			max-height: $max_height;
 		}
 	}
 

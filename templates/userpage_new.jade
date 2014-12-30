@@ -25,10 +25,19 @@ block content
 	.content-block
 		h1 #{owner}'s page
 
+		p: a(href='/newtoon') Create a new character
+
 		#charList(ng-controller='UserPageCtrl')
 			h4 Characters:
 
-			.character(ng-repeat='char in data.public')
+			p Sort by: 
+				span.sortLink(ng-class='{"sortField":sortField==="last_updated","sortReverse":sortReverse}', ng-click='setSort("last_updated")') Last Update
+				|  | 
+				span.sortLink(ng-class='{"sortField":sortField==="created_on","sortReverse":sortReverse}', ng-click='setSort("created_on")') Creation Date
+				|  | 
+				span.sortLink(ng-class='{"sortField":sortField==="name","sortReverse":sortReverse}', ng-click='setSort("name")') Name
+
+			.character(ng-repeat='char in data.public | orderBy : sortField : sortReverse')
 				.avatar
 					a(ng-href='/{{char.owner}}/{{char.canonical_name}}/')
 						img(dgy-src='/{{char.owner}}/{{char.canonical_name}}/avatar')
@@ -80,4 +89,3 @@ block content
 
 				p(ng-show='data.private.length === 0') No private characters.
 
-			p: a(href='/newtoon') Create a new character
