@@ -76,24 +76,13 @@ function userJson(req,res,next)
 			{
 				global.log('Serving user json for', req.params.user);
 				
-				var characters = {'public': []};
-				if( req.session.user === req.params.user ){
-					characters.private = [];
+				if( req.params.user === req.session.user ){
+					res.json(rows);
 				}
-
-				for(var i=0; i<rows.length; i++)
-				{
-					if( rows[i].private === 0 ){
-						delete rows[i].private;
-						characters.public.push(rows[i]);
-					}
-					else if( req.params.user === req.session.user ){
-						delete rows[i].private;
-						characters.private.push(rows[i]);
-					}
+				else {
+					var publicOnly = rows.filter(function(e){ return e.private == false; });
+					res.json(publicOnly);
 				}
-
-				res.json(characters);
 			}
 			else {
 				next();

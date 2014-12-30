@@ -2,7 +2,6 @@
 
 span.sortLink
 {
-	//text-decoration: underline;
 	cursor: pointer;
 	@include user-select(none);
 
@@ -13,7 +12,6 @@ span.sortLink
 			margin-left: 2px;
 			position: relative;
 			bottom: 2px;
-			//text-decoration: none;
 		}
 
 		&.sortReverse:after {
@@ -82,6 +80,24 @@ div.character
 				margin: 5px;
 				height: 18px;
 			}
+		}
+	}
+
+	&.private
+	{
+		background-color: #ccc;
+
+		p.title:after {
+			content: '';
+			background: url('/static/img/glyphicons/glyphicons_203_lock.png') round;
+			margin-left: 10px;
+			position: absolute;
+			width: 18px;
+			height: 23px;
+		}
+
+		input.privacy {
+			height: 13px !important;
 		}
 	}
 }

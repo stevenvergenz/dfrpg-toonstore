@@ -5,6 +5,7 @@ app.controller('UserPageCtrl', ['$scope','$resource', function($scope,$resource)
 	$scope._resource = $resource(window.location.pathname+'.json', {}, {
 		'get': {
 			'method': 'GET',
+			'isArray': true,
 			'transformResponse': function(data,headers){
 				return angular.fromJson(data);
 			}
@@ -18,6 +19,13 @@ app.controller('UserPageCtrl', ['$scope','$resource', function($scope,$resource)
 		{
 			window.location.reload(true);
 		});
+	};
+
+	$scope.togglePrivacyIcon = function(private){
+		if(private)
+			return '/static/img/glyphicons/glyphicons_051_eye_open.png';
+		else
+			return '/static/img/glyphicons/glyphicons_052_eye_close.png';
 	};
 
 	$scope.sortField = 'last_updated';
