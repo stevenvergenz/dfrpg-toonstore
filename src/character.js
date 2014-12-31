@@ -208,7 +208,7 @@ function deleteCharacterPage(req,res)
 	}
 
 	var connection = mysql.createConnection(config.database);
-	connection.query('SELECT name, concept FROM Characters WHERE BINARY owner = ? AND OWNER canonical_name = ?;',
+	connection.query('SELECT name, concept FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.session.user, req.query.id],
 		function(err,rows,fields)
 		{
