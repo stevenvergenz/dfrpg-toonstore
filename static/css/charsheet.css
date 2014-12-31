@@ -843,8 +843,8 @@ div#stressBlock {
 	font-size: 80%;
 }
 
-#powerBlock .description > * {
-	margin: 2px 0;
+#powerBlock .description * {
+	margin: 5px 0;
 }
 
 #powerBlock .description ul {
