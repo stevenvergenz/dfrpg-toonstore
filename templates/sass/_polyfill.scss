@@ -9,9 +9,20 @@
 
 @mixin justify-content($justify)
 {
-	-webkit-box-pack: $justify;
+	$oldarg: $justify;
+	@if $justify == 'space-between' {
+		$oldarg: justify;
+	}
+	@if $justify =='flex-start' {
+		$oldarg: start;
+	}
+	@if $justify =='flex-end' {
+		$oldarg: end;
+	}
+
+	-webkit-box-pack: $oldarg;
 	-moz-justify-content: $justify;
-	-ms-flex-pack: $justify;
+	-ms-flex-pack: $oldarg;
 	-webkit-justify-content: $justify;
 	justify-content: $justify;
 }

@@ -14,57 +14,6 @@
 p.error, input.error {
 	color: red;
 }
-.navbar {
-	color: white;
-	width: 100%;
-	padding: 15px 0;
-	font-family: 'Denk One', sans-serif;
-	border-bottom: solid grey 1px;
-
-	display: -webkit-box;
-	display: -moz-flex;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-
-	-webkit-box-orient: horizontal;
-	-moz-flex-direction: row;
-	-ms-flex-direction: row;
-	-webkit-flex-direction: row;
-	flex-direction: row;
-
-	-webkit-box-align: center;
-	-moz-align-items: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-
-	-webkit-box-pack: justify;
-	-moz-justify-content: space-between;
-	-ms-flex-pack: justify;
-	-webkit-justify-content: space-between;
-	justify-content: space-between;
-}
-
-.navbar .itemgroup {
-	display: -webkit-box;
-	display: -moz-flex;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-
-	-webkit-box-orient: horizontal;
-	-moz-flex-direction: row;
-	-ms-flex-direction: row;
-	-webkit-flex-direction: row;
-	flex-direction: row;
-}
-
-.navbar .navitem {
-	padding-left: 12px;
-	padding-right: 12px;
-	text-align: center;
-}
 .normalbox {
 	background-color: white;
 	color: black;
@@ -228,44 +177,6 @@ hr {
 	margin: 10px;
 	text-align: center;
 }
-
-.footer {
-	font-family: 'Denk One', sans-serif;
-	margin-top: 15px;
-	padding: 15px 0;
-	border-top: solid grey 1px;
-	width: 100%;
-
-	display: -webkit-box;
-	display: -moz-flex;
-	display: -ms-flexbox;
-	display: -webkit-flex;
-	display: flex;
-
-	-webkit-box-orient: horizontal;
-	-moz-flex-direction: row;
-	-ms-flex-direction: row;
-	-webkit-flex-direction: row;
-	flex-direction: row;
-
-	-webkit-box-align: center;
-	-moz-align-items: center;
-	-ms-flex-align: center;
-	-webkit-align-items: center;
-	align-items: center;
-
-	-webkit-box-pack: center;
-	-moz-justify-content: center;
-	-ms-flex-pack: center;
-	-webkit-justify-content: center;
-	justify-content: center;
-}
-.footer > * {
-	padding: 0 12px;
-}
-
-.footer a:link, .footer a:visited {
-	color: inherit;
 
 /*
  * Other colors:
