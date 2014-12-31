@@ -26,7 +26,17 @@ function prepopulateCopy()
 			$('input#name').val(data.name);
 			$('input#canon_name').val( match[1].split('/')[1] );
 			$('input#concept').val(data.aspects.high_concept.name);
-			$('input#copy').val(match[1]);
+
+			// select a template and hide the select if the template is provided as a query arg
+			if( $('select#template > option[value="'+match[1]+'"]').length === 0 )
+			{
+				$('select#template').append(
+					$('<option>', {value: match[1]} )
+				);
+			}
+			$('select#template').val(match[1]);
+			$('#templateContainer').css({display: 'none'});
+
 
 			$('<div class="info" style="margin-bottom: 15px;">Duplicating character:<br/><strong>'+data.name+'</strong><br/><span class="caption">('+match[1]+')</span></div>').prependTo('.titledbox .inner');
 		});

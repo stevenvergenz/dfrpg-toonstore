@@ -92,5 +92,5 @@ app.filter('calendarTime', function()
 });
 
 $(function(){
-	angular.bootstrap( $('.content-block')[0], ['userpage'] );
+	angular.bootstrap( $('div.wrapper')[0], ['userpage'] );
 });

@@ -92,13 +92,40 @@ function pushJson(req,res,next)
 
 function newCharacterPage(req,res)
 {
-	if( req.session.user ){
-		global.log('Serving new character page');
-		global.renderPage('newtoon')(req,res);
-	}
-	else {
+	if( !req.session.user ){
 		res.send(401);
+		return;
 	}
+
+	// get list of users/characters to use as templates
+	var templates = [], users = [];
+	for(var i=0; i<config.templates.length; i++)
+	{
+		if( /\//.test(config.templates[i]) )
+			templates.push(config.templates[i]);
+		else
+			users.push(config.templates[i]);
+	}
+
+	global.log('Serving new character page');
+	var connection = mysql.createConnection( config.database );
+	connection.query('SELECT CONCAT(owner,"/",canonical_name) AS slug FROM Characters WHERE BINARY owner IN (?);', [users], function(err,rows,fields)
+	{
+		if(err){
+			global.error('MySQL error while retrieving templates:', err);
+			console.log(connection.escape(users));
+			global.renderPage('newtoon')(req,res);
+		}
+		else
+		{
+			var userTemplates = rows.reduce(function(sum,cur){ sum.push(cur.slug); return sum; }, []);
+			templates.push.apply(templates, userTemplates);
+			templates.sort();
+			global.renderPage('newtoon', {templates: templates})(req,res);
+		}
+		connection.end();
+	});
+
 }
 
 function newCharacterRequest(req,res)
@@ -113,7 +140,7 @@ function newCharacterRequest(req,res)
 		global.renderPage('newtoon', {message: {type: 'error', content:'You must fill out all fields'}})(req,res);
 		return;
 	}
-	
+
 	// create blank character JSON object
 	var toon = {
 		'name': req.body.name,
@@ -145,10 +172,10 @@ function newCharacterRequest(req,res)
 	global.log('Attempting character creation');
 	var connection = mysql.createConnection( config.database );
 
-	if( req.body.copy )
+	if( req.body.template )
 	{
-		global.log('Attempting copy of', req.body.copy);
-		var parts = req.body.copy.split('/');
+		global.log('Attempting copy of', req.body.template);
+		var parts = req.body.template.split('/');
 		connection.query('SELECT info FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ? AND (private = 0 OR BINARY owner = ?);',
 			[parts[0], parts[1], req.session.user],
 			function(err,rows,fields)
@@ -159,7 +186,7 @@ function newCharacterRequest(req,res)
 					connection.end();
 				}
 				else if(rows.length === 0){
-					global.error('Cannot copy non-existent or private character', req.body.copy);
+					global.error('Cannot copy non-existent or private character');
 					global.renderPage('newtoon', {code:400, message: {type: 'error', content:'Cannot copy non-existent character.'}})(req,res);
 					res.send(400);
 					connection.end();

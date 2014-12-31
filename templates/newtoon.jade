@@ -29,13 +29,19 @@ block content
 				input#concept(type='text', name='concept', required, placeholder='Man of Mystery')
 				p.caption The character's defining concept. Can be changed later.
 
+				#templateContainer
+					label(for='template') Character template
+					select#template(name='template')
+						option
+						for item in templates
+							option(value='#{item}', label='#{item}')
+					p.caption The template your character is based on
+
 				input#private(type='checkbox', name='private')
 				label(for='private') Make this character private
 				script.
 					if( /[?&]private/.test(window.location.search) ){
 						$('input#private').prop('checked',true);
 					}
-
-				input#copy(type='hidden', name='copy')
 
 				input(type='submit', name='submit', value='Submit')
