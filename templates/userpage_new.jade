@@ -3,7 +3,7 @@ extends index
 block title
 	title= owner + ' | ToonStore.net'
 
-block append styles
+block styles
 	link(rel='stylesheet', href='/static/css/compiled/userpage.css')
 
 block append includes
@@ -12,14 +12,6 @@ block append includes
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-cookies.js')
 	script(src='/static/js/moment.min.js')
 	script(src='/static/js/userpage.js')
-	script.
-		function togglePrivacy(toonName){
-			$.post('/togglePrivacy', {id: toonName}, function(data,status,xhr)
-			{
-				window.location.reload(true);
-			});
-		}
-
 
 block content
 

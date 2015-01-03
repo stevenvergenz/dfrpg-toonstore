@@ -5,35 +5,36 @@ block title
 
 block content
 
-	.content-block: #login-box.titledbox
+	.content-block: #login-box.formbox
 		.title: span Log in
-		.inner
-			form(action='/login', method='post')
+		form(action='/login', method='post')
 
+			.field
 				label(for='email') E-mail
 				input#email(type='email', name='email', required)
 
+			.field
 				label(for='password') Password 
 					span#reset(style='font-size: 80%;') (
 						a(href='/passreset') forgot password
 						)
 				input#email(type='password', name='password', required)
 
-				.flexrow
-					input(type='submit', value='Log in') 
-					a(href='/register') Register
+			.field
+				input(type='submit', value='Log in') 
+				a(href='/register') Register
 
-			hr
+		hr
 
-			#loginOptions
-				input#persona(type='image', src='/static/img/persona-button.png', onclick='loginPersona()')
-				//input#google(type='image', src='/static/img/google-login/base.png')
-				//a(href='javascript:;') Sign in with Facebook
+		#loginOptions
+			input#persona(type='image', src='/static/img/persona-button.png', onclick='loginPersona()')
+			//input#google(type='image', src='/static/img/google-login/base.png')
+			//a(href='javascript:;') Sign in with Facebook
 
-			//-script.
-				gapi.signin.render('google', {
-					callback: 'googleLogin',
-					clientid: '#{g_client_id}',
-					cookiepolicy: 'single_host_origin',
-					scope: 'email'
-				});
+		//-script.
+			gapi.signin.render('google', {
+				callback: 'googleLogin',
+				clientid: '#{g_client_id}',
+				cookiepolicy: 'single_host_origin',
+				scope: 'email'
+			});

@@ -19,59 +19,61 @@ block content
 
 	if page == '/register'
 
-		.content-block: #register-box.titledbox
+		.content-block: .formbox
 			.title: span Sign up
-			.inner
-				p Thank you for your interest! 
-					a(href='/login') Log in with Persona
-					|  or fill out the information below and we'll get you set up.
-				form(action='/register', method='post', onsubmit='return validate();')
+			//.inner
+			p Thank you for your interest! 
+				a(href='/login') Log in with Persona
+				|  or fill out the information below and we'll get you set up.
+			form(action='/register', method='post', onsubmit='return validate();')
 
+				.field
 					label(for='email') E-mail address
 					input(type='email', name='email', required)
-					p.caption We promise not to share your email with anyone! See the 
+					span.caption We promise not to share your email with anyone! See the 
 						a(href='/site/privacy') privacy policy
 						.
 
+				.field
 					label(for='username') Username (also your permalink)
 					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
-					p.caption#userMessage No spaces or special characters except for _ and -
+					span.caption#userMessage No spaces or special characters except for _ and -
 
-					table: tr
-						td: input#agreement(type='checkbox', name='agreement', required)
-						td: label(for='agreement').
-							I have read and agree with the <a href='/site/terms'>Terms of Use</a> 
-							and the <a href='/site/privacy'>Privacy Policy</a>.
+				.field
+					input#agreement(type='checkbox', name='agreement', required)
+					label(for='agreement').
+						I have read and agree with the <a href='/site/terms'>Terms of Use</a> 
+						and the <a href='/site/privacy'>Privacy Policy</a>.
 
-					.flexrow
-						input(type='submit', value='Submit')
-						p.caption#submitMessage
+				.field
+					input(type='submit', value='Submit')
+					span.caption#submitMessage
 
 	else if page == '/federated-register'
 
-		.content-block: #register-box.titledbox
+		.content-block: .formbox
 			.title: span Sign up
-			.inner
-				p Since this is the first time you've logged in, you must pick a username.
-				form(action='/federated-register', method='post', onsubmit='return validateUsername();')
+			p Since this is the first time you've logged in, you must pick a username.
+			form(action='/federated-register', method='post', onsubmit='return validateUsername();')
 
+				.field
 					label(for='username') Username (also your permalink)
 					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
-					p.caption#userMessage No spaces or special characters except for _ and -
+					span.caption#userMessage No spaces or special characters except for _ and -
 
-					table: tr
-						td: input#agreement(type='checkbox', name='agreement', required)
-						td: label(for='agreement').
-							I have read and agree with the <a href='/site/terms'>Terms of Use</a> 
-							and the <a href='/site/privacy'>Privacy Policy</a>.
+				.field
+					input#agreement(type='checkbox', name='agreement', required)
+					label(for='agreement').
+						I have read and agree with the <a href='/site/terms'>Terms of Use</a> 
+						and the <a href='/site/privacy'>Privacy Policy</a>.
 
-					.flexrow
-						input(type='submit', value='Submit')
-						p.caption#submitMessage
+				.field
+					input(type='submit', value='Submit')
+					span.caption#submitMessage
 
 	else if page == '/post-register'
 
-		.content-block: .titledbox
+		.content-block: .formbox
 			.title Registration successful!
 			.inner
 				p You have completed registration. You will be redirected to your profile page in 5 seconds.

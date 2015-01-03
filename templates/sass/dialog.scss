@@ -1,0 +1,96 @@
+@import 'polyfill';
+@import 'theme';
+@import 'navbar';
+
+.normalbox
+{
+	background-color: white;
+	color: black;
+	border-radius: 5px;
+	padding: 10px; 
+
+	a:link, a:visited,
+	{
+		color: blue;
+	}
+}
+
+.formbox
+{
+	background-color: white;
+	color: black;
+	border: solid grey 1px;
+	border-radius: 5px;
+	margin: 10px auto;
+	overflow: hidden;
+	max-width: 340px;
+	padding: 20px;
+
+	@include display-flex();
+	@include flex-direction(column);
+
+	a:link, a:visited {
+		color: blue;
+	}
+
+	hr {
+		width: 100%;
+		margin: 15px 0;
+	}
+
+	.title
+	{
+		background-color: #313150;
+		background-image: linear-gradient(#313150, #000000);
+		color: white;
+		padding: 10px;
+		margin: -20px;
+		margin-bottom: 0;
+		font-weight: bold;
+	}
+
+	p {
+		margin-bottom: 0;
+	}
+
+	form
+	{
+		.field
+		{
+			margin: 15px 0;
+
+			label + input {
+				display: block;
+				width: 98%;
+				height: 20px;
+				margin: 5px 0;
+			}
+
+			input[type=submit] {
+				padding: 5px 10px;
+				margin-right: 10px;
+			}
+
+			.caption {
+				font-size: 0.7em;
+				color: #555;
+				margin: 5px 0;
+			}
+		}
+
+		p.error, input.error {
+			color: red;
+		}
+	}
+
+	#loginOptions
+	{
+		width: 100%;
+		& > input
+		{
+			display: block;
+			margin: 5px auto;
+		}
+	}
+}
+
