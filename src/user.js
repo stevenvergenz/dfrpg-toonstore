@@ -66,7 +66,7 @@ function userJson(req,res,next)
 	connection.query(
 		'SELECT Characters.owner, Characters.name, Characters.canonical_name, Characters.concept, '+
 			'Characters.private, Characters.last_updated, Characters.created_on '+
-		'FROM Users LEFT JOIN Characters ON Users.username = Characters.owner '+
+		'FROM Characters LEFT JOIN Users ON Users.username = Characters.owner '+
 		'WHERE BINARY Users.username = ?;', [req.params.user],
 		function(err,rows,fields){
 			if( err ){
