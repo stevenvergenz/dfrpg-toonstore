@@ -66,22 +66,29 @@ function userJson(req,res,next)
 	connection.query(
 		'SELECT Characters.owner, Characters.name, Characters.canonical_name, Characters.concept, '+
 			'Characters.private, Characters.last_updated, Characters.created_on '+
-		'FROM Characters LEFT JOIN Users ON Users.username = Characters.owner '+
+		'FROM Users LEFT JOIN Characters ON Users.username = Characters.owner '+
 		'WHERE BINARY Users.username = ?;', [req.params.user],
 		function(err,rows,fields){
 			if( err ){
 				global.error( err, global.logLevels.warning );
 			}
-			else if( rows.length != 0 )
+			else if( rows.length > 0 )
 			{
 				global.log('Serving user json for', req.params.user);
-				
-				if( req.params.user === req.session.user ){
-					res.json(rows);
+			
+				if( rows.length === 1 && rows.canonical_name === null )
+				{
+					res.json([]);
 				}
-				else {
-					var publicOnly = rows.filter(function(e){ return e.private == false; });
-					res.json(publicOnly);
+				else
+				{
+					if( req.params.user === req.session.user ){
+						res.json(rows);
+					}
+					else {
+						var publicOnly = rows.filter(function(e){ return e.private == false; });
+						res.json(publicOnly);
+					}
 				}
 			}
 			else {
