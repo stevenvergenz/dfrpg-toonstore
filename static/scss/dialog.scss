@@ -78,6 +78,21 @@
 			}
 		}
 
+		.field.checkbox
+		{
+			margin: 15px 0;
+
+			@include display-flex();
+			@include flex-direction(row);
+			@include align-items(center);
+
+			input[type=checkbox]
+			{
+				@include flex-shrink(0);
+				margin-right: 10px;
+			}
+		}
+
 		p.error, input.error {
 			color: red;
 		}

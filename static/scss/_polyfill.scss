@@ -66,6 +66,14 @@
 	align-items: $align;
 }
 
+@mixin flex-shrink($factor)
+{
+	-moz-flex-shrink: $factor;
+	-ms-flex-shrink: $factor;
+	-webkit-flex-shrink: $factor;
+	flex-shrink: $factor;
+}
+
 @mixin user-select($select)
 {
 	-webkit-touch-callout: $select;

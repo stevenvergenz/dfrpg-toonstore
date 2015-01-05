@@ -39,7 +39,7 @@ block content
 					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
 					span.caption#userMessage No spaces or special characters except for _ and -
 
-				.field
+				.field.checkbox
 					input#agreement(type='checkbox', name='agreement', required)
 					label(for='agreement').
 						I have read and agree with the <a href='/site/terms'>Terms of Use</a> 
@@ -61,7 +61,7 @@ block content
 					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
 					span.caption#userMessage No spaces or special characters except for _ and -
 
-				.field
+				.field.checkbox
 					input#agreement(type='checkbox', name='agreement', required)
 					label(for='agreement').
 						I have read and agree with the <a href='/site/terms'>Terms of Use</a> 
@@ -75,6 +75,5 @@ block content
 
 		.content-block: .formbox
 			.title Registration successful!
-			.inner
-				p You have completed registration. You will be redirected to your profile page in 5 seconds.
+			p You have completed registration. You will be redirected to your profile page in 5 seconds.
 
