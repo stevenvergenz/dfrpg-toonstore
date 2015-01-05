@@ -108,23 +108,32 @@ function newCharacterPage(req,res)
 	}
 
 	global.log('Serving new character page');
-	var connection = mysql.createConnection( config.database );
-	connection.query('SELECT CONCAT(owner,"/",canonical_name) AS slug FROM Characters WHERE BINARY owner IN (?);', [users], function(err,rows,fields)
+
+	if( users.length > 0 )
 	{
-		if(err){
-			global.error('MySQL error while retrieving templates:', err);
-			console.log(connection.escape(users));
-			global.renderPage('newtoon')(req,res);
-		}
-		else
+		var connection = mysql.createConnection( config.database );
+		connection.query('SELECT CONCAT(owner,"/",canonical_name) AS slug FROM Characters WHERE BINARY owner IN (?);', [users], function(err,rows,fields)
 		{
-			var userTemplates = rows.reduce(function(sum,cur){ sum.push(cur.slug); return sum; }, []);
-			templates.push.apply(templates, userTemplates);
-			templates.sort();
-			global.renderPage('newtoon', {templates: templates})(req,res);
-		}
-		connection.end();
-	});
+			if(err){
+				global.error('MySQL error while retrieving templates:', err);
+				console.log(connection.escape(users));
+				global.renderPage('newtoon')(req,res);
+			}
+			else
+			{
+				var userTemplates = rows.reduce(function(sum,cur){ sum.push(cur.slug); return sum; }, []);
+				templates.push.apply(templates, userTemplates);
+				templates.sort();
+				global.renderPage('newtoon', {templates: templates})(req,res);
+			}
+			connection.end();
+		});
+	}
+	else
+	{
+		templates.sort();
+		global.renderPage('newtoon', {templates: templates})(req,res);
+	}
 
 }
 

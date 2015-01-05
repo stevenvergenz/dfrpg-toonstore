@@ -76,7 +76,7 @@ function userJson(req,res,next)
 			{
 				global.log('Serving user json for', req.params.user);
 			
-				if( rows.length === 1 && rows.canonical_name === null )
+				if( rows.length === 1 && rows[0].canonical_name === null )
 				{
 					res.json([]);
 				}
