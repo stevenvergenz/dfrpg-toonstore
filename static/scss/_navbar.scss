@@ -39,6 +39,7 @@
 	@include flex-direction(row);
 	@include align-items(center);
 	@include justify-content(center);
+	@include flex-wrap(wrap);
 
 	& > *
 	{
