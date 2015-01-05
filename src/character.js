@@ -76,7 +76,7 @@ function pushJson(req,res,next)
 	connection.query(
 		'UPDATE Characters SET info = ?, name = ?, concept = ?, last_updated = NOW() WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[JSON.stringify(req.body), req.body.name, req.body.aspects.high_concept.name, req.params.user, req.params.char],
-		function(err,rows,fields){
+		function(err,result){
 			if( !err ){
 				global.log('Success');
 				res.json(req.body);

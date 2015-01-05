@@ -40,13 +40,13 @@ function processLogin(req,res)
 				var hash = hashfn.update(rows[0].salt+password, 'utf8').digest('hex');
 
 				connection.query('UPDATE Users SET last_login = NOW() WHERE BINARY email = ? AND password = ?', [email, hash],
-					function(err,rows,fields)
+					function(err,result)
 					{
 						if(err){
 							global.error('Error updating db:', err);
 							global.renderPage('login', {message: {type:'error', content:err}})(req,res);
 						}
-						else if( rows.length === 0 ){
+						else if( result.affectedRows === 0 ){
 							global.log('Incorrect password for:', email);
 							global.renderPage('login', {message: {type:'error', content:'Incorrect email or password'}})(req,res);
 						}
