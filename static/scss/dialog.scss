@@ -25,6 +25,7 @@
 	overflow: hidden;
 	max-width: 340px;
 	padding: 20px;
+	padding-top: 0;
 
 	@include display-flex();
 	@include flex-direction(column);
@@ -44,8 +45,7 @@
 		background-image: linear-gradient(#313150, #000000);
 		color: white;
 		padding: 10px;
-		margin: -20px;
-		margin-bottom: 0;
+		margin: 0 -20px;
 		font-weight: bold;
 	}
 
@@ -59,7 +59,7 @@
 		{
 			margin: 15px 0;
 
-			label + input {
+			label + input, label + select {
 				display: block;
 				width: 98%;
 				height: 20px;

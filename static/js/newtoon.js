@@ -38,7 +38,7 @@ function prepopulateCopy()
 			$('#templateContainer').css({display: 'none'});
 
 
-			$('<div class="info" style="margin-bottom: 15px;">Duplicating character:<br/><strong>'+data.name+'</strong><br/><span class="caption">('+match[1]+')</span></div>').prependTo('.titledbox .inner');
+			$('<div class="info" style="margin-top: 15px;">Duplicating character:<br/><strong>'+data.name+'</strong><br/><span class="caption">('+match[1]+')</span></div>').insertBefore('.formbox form');
 		});
 	}
 }

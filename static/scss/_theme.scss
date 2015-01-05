@@ -98,4 +98,11 @@ div.info
 	background-color: lightcyan;
 }
 
-
+.message, .error, .warning, .info
+{
+	.caption {
+		font-size: 0.7em;
+		color: #555;
+		margin: 5px 0;
+	}
+}
