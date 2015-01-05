@@ -13,12 +13,12 @@ function compileSCSS(callback)
 	 */
 	function compile(item, cb)
 	{
-		var infile = libpath.resolve(__dirname, '../templates/sass/', item);
+		var infile = libpath.resolve(__dirname, '../static/scss/', item);
 
 		var match = /^([^_][\w]*)\.scss$/.exec(item);
 		if( match )
 		{
-			var outfile = libpath.resolve(__dirname, '../static/css/compiled/', match[1]+'.css');
+			var outfile = libpath.resolve(__dirname, '../static/scss/', match[1]+'.css');
 			var instats, outstats;
 
 			// get the stats for the scss template
@@ -44,8 +44,19 @@ function compileSCSS(callback)
 					file: infile,
 					imagePath: '/static/img',
 					outputStyle: 'compressed',
+
+					sourceMap: true,
+					outFile: outfile,
+
 					success: function(result)
 					{
+						fs.writeFile(outfile+'.map', JSON.stringify(result.map), function(err)
+						{
+							if(err){
+								global.error('Could not output source map to file', outfile+'.map');
+							}
+						});
+
 						fs.writeFile(outfile, result.css, function(err)
 						{
 							if(err){
@@ -75,7 +86,7 @@ function compileSCSS(callback)
 	}
 
 	// read all the files in the sass template directory
-	fs.readdir( libpath.resolve(__dirname, '../templates/sass'), function(err,files)
+	fs.readdir( libpath.resolve(__dirname, '../static/scss'), function(err,files)
 	{
 		if(err){
 			global.error('Could not open Sass template directory!', err);

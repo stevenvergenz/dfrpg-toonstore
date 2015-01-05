@@ -8,35 +8,37 @@ block append includes
 
 block content
 
-	.content-block: .titledbox
+	.content-block: .formbox
 		.title New character
 
-		.inner
+		form(method='post', onsubmit="return validate();")
 
-			form(method='post', onsubmit="return validate();")
-
+			.field
 				label(for='name') Full name
 				input#name(type='text', name='name', required, placeholder='John Doe', onkeyup="generateSlug(this)")
 				p.caption The character's name. Can be changed later.
 
+			.field
 				label(for='canon_name') Short name (also permalink)
 				input#canon_name(type='text', name='canon_name', required, placeholder='doe')
 				p.caption Something short, identifiable, and unique amongst your characters. Last names usually suffice.
 				p.caption Only A-Z, a-z, 0-9, -, and _ are allowed.
 				p.caption This is PERMANENT.
 
+			.field
 				label(for='concept') High concept
 				input#concept(type='text', name='concept', required, placeholder='Man of Mystery')
 				p.caption The character's defining concept. Can be changed later.
 
-				#templateContainer
-					label(for='template') Character template
-					select#template(name='template')
-						option
-						for item in templates
-							option(value='#{item}', label='#{item}')
-					p.caption The template your character is based on
+			.field#templateContainer
+				label(for='template') Character template
+				select#template(name='template')
+					option
+					for item in templates
+						option(value='#{item}', label='#{item}')
+				p.caption The template your character is based on.
 
+			.field
 				input#private(type='checkbox', name='private')
 				label(for='private') Make this character private
 				script.
@@ -44,4 +46,5 @@ block content
 						$('input#private').prop('checked',true);
 					}
 
+			.field
 				input(type='submit', name='submit', value='Submit')
