@@ -107,17 +107,7 @@ app.directive('resizingtextarea', function()
 app.directive('diceroller', function()
 {
 	return {
-		'restrict': 'E',
-		'replace': true,
-
-		'template': '<div class="diceroller">'+
-			'<div class="die"><span>&#8226;</span></div>'+
-			'<div class="die"><span>&#8226;</span></div>'+
-			'<div class="die"><span>&#8226;</span></div>'+
-			'<div class="die"><span>&#8226;</span></div>'+
-			'<div class="total"><span>+0</span></div>'+
-		'</div>',
-
+		'restrict': 'C',
 		'link': function($scope,elem,attrs)
 		{
 			// randomize the dice

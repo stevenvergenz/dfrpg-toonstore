@@ -1,6 +1,6 @@
 #skills.sheet-panel(ng-controller='SkillCtrl', ng-class='{dirty: dirty}')
 	a#skills
-	p.sectionHeader Skills
+	h2.panelHeader Skills
 		span(ng-show='data.skills.is_shifter')  (
 			input#shifter(type='checkbox', ng-model='shifted')
 			label(for='shifter')
@@ -27,5 +27,11 @@
 
 	p#validSkillLadder(ng-show='editing') {{valid()}}
 
-	diceroller
+	.diceroller
+		.die: span &#8226;
+		.die: span &#8226;
+		.die: span &#8226;
+		.die: span &#8226;
+		.total: span +0
+
 
