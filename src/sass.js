@@ -65,13 +65,13 @@ function compileSCSS(dir, callback)
 							cb(err);
 						}
 						else {
-							global.log('Compile successful:', item);
+							global.log('Compile successful:', infile);
 							cb();
 						}
 					});
 				},
 				error: function(err){
-					global.error('Compile FAILED:', item);
+					global.error('Compile FAILED:', infile);
 					cb(err);
 				}
 			});

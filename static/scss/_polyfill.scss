@@ -74,6 +74,14 @@
 	flex-shrink: $factor;
 }
 
+@mixin flex-basis($factor)
+{
+	-moz-flex-basis: $factor;
+	-ms-flex: 0 1 $factor;
+	-webkit-flex-basis: $factor;
+	flex-basis: $factor;
+}
+
 @mixin user-select($select)
 {
 	-webkit-touch-callout: $select;

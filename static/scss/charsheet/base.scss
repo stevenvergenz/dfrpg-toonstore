@@ -1,0 +1,46 @@
+@import '../polyfill';
+@import '../theme';
+@import '../navbar';
+
+div.sheet-panel-group
+{
+	width: 100%;
+
+	@include display-flex();
+	@include flex-direction(row);
+	@include justify-content(center);
+	@include flex-wrap(wrap);
+}
+
+div.sheet-panel
+{
+	border: 1px solid grey;
+	border-radius: 5px;
+
+	padding: 10px;
+	margin: 5px;
+
+	background-color: white;
+	color: black;
+	text-align: center;
+	overflow: hidden;
+	
+	max-width: 350px;
+	width: 350px;
+	@include flex-basis(350px);
+
+	&.dirty {
+		border: solid #f44 2px !important;
+	}
+}
+
+.content {
+	font-family: 'Armata', cursive;
+}
+
+:focus {
+	outline: none;
+}
+
+@import 'navbar';
+
