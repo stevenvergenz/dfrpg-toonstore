@@ -105,10 +105,17 @@ app.use(function(req,res)
 
 
 
-sass.compile( startServer );
+sass.compile( '../static/scss', startServer );
 
-function startServer()
+function startServer(err)
 {
+	if(err){
+		global.error('Sass failed to compile! See above errors for debugging.');
+	}
+	else {
+		global.log('Sass compiled successfully');
+	}
+
 	// start the server
 	if( config.use_ssl )
 	{

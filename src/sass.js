@@ -6,79 +6,85 @@ var fs = require('fs'),
 	global = require('./global.js');
 
 
-function compileSCSS(callback)
+function compileSCSS(dir, callback)
 {
 	/*
 	 * function to compile each file, used as a callback to the async call
 	 */
 	function compile(item, cb)
 	{
-		var infile = libpath.resolve(__dirname, '../static/scss/', item);
+		var infile = libpath.resolve(__dirname, dir, item);
+		var instats = null;
+
+		// get the stats for the scss template
+		try {
+			instats = fs.statSync(infile);
+		}
+		catch(e){
+			global.error('Cannot stat input file', infile);
+			cb(e);
+			return;
+		}
 
 		var match = /^([^_][\w]*)\.scss$/.exec(item);
 		if( match )
 		{
-			var outfile = libpath.resolve(__dirname, '../static/scss/', match[1]+'.css');
-			var instats, outstats;
+			var outfile = libpath.resolve(__dirname, dir, match[1]+'.css');
 
-			// get the stats for the scss template
-			try {
-				instats = fs.statSync(infile);
-			}
-			catch(e){
-				global.error('Cannot stat input file', infile);
-				cb(e);
-				return;
-			}
-
+			/*var outstats;
 			try {
 				outstats = fs.statSync(outfile);
 			}
 			catch(e){
 				outstats = null;
 			}
-
 			if( !outstats || instats.mtime > outstats.ctime )
-			{
-				sass.render({
-					file: infile,
-					imagePath: '/static/img',
-					outputStyle: 'compressed',
+			{*/
 
-					sourceMap: true,
-					outFile: outfile,
+			sass.render({
+				file: infile,
+				imagePath: '/static/img',
+				outputStyle: 'compressed',
 
-					success: function(result)
+				sourceMap: true,
+				outFile: outfile,
+
+				success: function(result)
+				{
+					fs.writeFile(outfile+'.map', JSON.stringify(result.map), function(err)
 					{
-						fs.writeFile(outfile+'.map', JSON.stringify(result.map), function(err)
-						{
-							if(err){
-								global.error('Could not output source map to file', outfile+'.map');
-							}
-						});
+						if(err){
+							global.error('Could not output source map to file', outfile+'.map');
+						}
+					});
 
-						fs.writeFile(outfile, result.css, function(err)
-						{
-							if(err){
-								global.error('Could not output to file', outfile);
-								cb(err);
-							}
-							else {
-								global.log('Compile successful:', item);
-								cb();
-							}
-						});
-					},
-					error: function(err){
-						global.error('Compile FAILED:', item);
-						cb(err);
-					}
-				});
-			}
+					fs.writeFile(outfile, result.css, function(err)
+					{
+						if(err){
+							global.error('Could not output to file', outfile);
+							cb(err);
+						}
+						else {
+							global.log('Compile successful:', item);
+							cb();
+						}
+					});
+				},
+				error: function(err){
+					global.error('Compile FAILED:', item);
+					cb(err);
+				}
+			});
+
+			/*}
 			else {
 				global.log('File', item, 'unmodified, skipping.');
 				cb();
-			}
+			}*/
+		}
+		else if( instats.isDirectory() )
+		{
+			compileSCSS(infile, cb);
 		}
 		else {
 			cb();
@@ -86,24 +92,27 @@ function compileSCSS(callback)
 	}
 
 	// read all the files in the sass template directory
-	fs.readdir( libpath.resolve(__dirname, '../static/scss'), function(err,files)
+	var indir = libpath.resolve(__dirname, dir)
+	fs.readdir( indir, function(err,files)
 	{
-		if(err){
-			global.error('Could not open Sass template directory!', err);
-			return;
-		}
-
-		// compile each file, run callback on successful completion
-		async.eachLimit(files, 4, compile, function(err)
+		if(err)
 		{
-			if(err){
-				global.error('Failed to compile Sass templates!', err);
-			}
-			else {
-				global.log('Sass templates compiled successfully.');
-				callback();
-			}
-		});
+			global.error('Could not open directory!', err);
+			callback(err);
+		}
+		else
+		{
+			// compile each file, run callback on successful completion
+			async.eachSeries(files, compile, function(err)
+			{
+				if(err){
+					callback(err);
+				}
+				else {
+					callback();
+				}
+			});
+		}
 	});
 }
 
