@@ -13,6 +13,9 @@
 	@if $justify == 'space-between' {
 		$oldarg: justify;
 	}
+	@if $justify == 'space-around' {
+		$oldarg: distribute;
+	}
 	@if $justify =='flex-start' {
 		$oldarg: start;
 	}
@@ -72,6 +75,14 @@
 	-ms-flex-shrink: $factor;
 	-webkit-flex-shrink: $factor;
 	flex-shrink: $factor;
+}
+
+@mixin flex-grow($factor)
+{
+	-moz-flex-grow: $factor;
+	-ms-flex: $factor $factor;
+	-webkit-flex-grow: $factor;
+	flex-grow: $factor;
 }
 
 @mixin flex-basis($factor)

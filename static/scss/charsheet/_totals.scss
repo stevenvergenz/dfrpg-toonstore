@@ -1,0 +1,59 @@
+
+#totals.sheet-panel
+{
+	position: relative;
+
+	input[type=number]
+	{
+		width: 40px;
+		height: 20px;
+	}
+
+	#star
+	{
+		width: 270px;
+		height: 270px;
+		position: absolute;
+		bottom: -3px;
+		left: -3px;
+		opacity: 0.3;
+		pointer-events: none;
+	}
+
+	.container
+	{
+		@include display-flex();
+		@include justify-content(space-around);
+		@include flex-direction(row);
+		@include flex-wrap(wrap);
+
+		margin: 10px 0;
+	}
+
+	#bottom-container
+	{
+		@include flex-direction(column);
+		@include align-items(center);
+	}
+
+	.doubleBubble {
+		border: double black 3px;
+	}
+}
+
+#totals, #powers
+{
+	.bubble
+	{
+		display: inline-block;
+		width: 40px !important;
+		height: 40px !important;
+		border: solid black 1px;
+		border-radius: 50%;
+		line-height: 40px;
+		text-align: center;
+		margin-right: 5px;
+
+		@include flex-shrink(0);
+	}
+}
