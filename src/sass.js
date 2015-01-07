@@ -72,6 +72,7 @@ function compileSCSS(dir, callback)
 				},
 				error: function(err){
 					global.error('Compile FAILED:', infile);
+					global.error(err);
 					cb(err);
 				}
 			});

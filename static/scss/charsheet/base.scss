@@ -40,6 +40,10 @@ div.sheet-panel
 		margin: 0;
 		margin-bottom: 5px;
 	}
+
+	a {
+		color: blue;
+	}
 }
 
 .content {
@@ -63,4 +67,7 @@ input.iconButton {
 @import 'skills';
 @import 'totals';
 @import 'stress';
+@import 'consequences';
+@import 'powers';
+@import 'notes';
 
