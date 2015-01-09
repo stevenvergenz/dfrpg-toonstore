@@ -19,7 +19,7 @@ block content
 		h2 Table of Contents
 
 		ul
-			li Character Management
+			li: a(href='#management') Character Management
 			li: a(href='#backseat') Viewing, Sharing, and Back-seat Mode
 			li Optional Components
 			li Markdown Support
@@ -34,6 +34,20 @@ block content
 					li Stunts & Powers
 					li Notes
 
+		a#management
+		h2 Character Management
+
+		p When you log in, the first thing you see is your list of characters. Each character features some basic information about the character along with a number of controls: Duplicate, Make Private/Public, and Delete. These options are only available on your own characters, with the exception of the Duplicate button. Any user may duplicate any other user's characters.
+
+		.imgcontainer: img(src='/static/img/tutorial/management.png')
+
+		p If a character is made private via the Make Private button, it will not appear in the character listing and be inaccessible to everyone except for the owner. Use the Make Public button to display a character again. This is a great feature for GMs that want quick access to NPCs without the player characters knowing about or seeing them.
+		
+		p For new users, this character listing is obviously blank. Click the "Create a new character" button at the top to make your first character. Fill out the basic information for the character where prompted, and hit Submit. If you chose a template for your character, then the character will be pre-populated with the powers and stats of that template.
+
+		p 
+
+
 		a#backseat
 		h2 Viewing, Sharing, and Back-seat Mode
 
@@ -44,3 +58,5 @@ block content
 		p People receiving your link will see a big banner at the top of the sheet saying that they are in back-seat mode. They can make changes to the sheet, but the changes are gone when the page is closed. This is useful if a player is absent from a gaming session and someone else is playing the character. They can still track stress, etc. at the table.
 
 		p Characters also contain a link back to their owners' pages. Anyone can click this link to see other (public) characters created by the same user.
+
+		p: a(href='#toc') Back to top

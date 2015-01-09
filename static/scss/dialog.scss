@@ -18,11 +18,14 @@
 	{
 		@include display-flex();
 		@include justify-content(center);
+		@include align-items(center);
 		margin: 10px 0;
 
 		img
 		{
 			border: solid grey 1px;
+			max-width: 100%;
+			height: auto;
 		}
 	}
 }
