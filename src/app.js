@@ -85,6 +85,7 @@ app.get('/site/about', global.renderPage('about'));
 app.get('/site/contact', global.renderPage('contact'));
 app.get('/site/terms', global.renderPage('terms'));
 app.get('/site/privacy', global.renderPage('privacy'));
+app.get('/site/howto', global.renderPage('howto'));
 app.get('/', global.renderPage('index'));
 
 app.use('/static', express.static( libpath.resolve(__dirname,'..','static'), {maxAge: 24*60*60}));

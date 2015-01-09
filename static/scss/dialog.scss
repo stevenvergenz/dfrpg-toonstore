@@ -13,6 +13,18 @@
 	{
 		color: blue;
 	}
+
+	.imgcontainer
+	{
+		@include display-flex();
+		@include justify-content(center);
+		margin: 10px 0;
+
+		img
+		{
+			border: solid grey 1px;
+		}
+	}
 }
 
 .formbox
