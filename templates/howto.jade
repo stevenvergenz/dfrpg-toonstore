@@ -3,6 +3,7 @@ extends index
 block title
 	title Beginner's Guide | ToonStore.net
 
+
 block content
 
 	h1 Beginner's Guide
@@ -15,14 +16,15 @@ block content
 			a(href='https://plus.google.com/communities/100638011667854470760') Google+ group
 			|  to get your questions answered. Now on to the walkthrough!
 
+
 		a#toc
 		h2 Table of Contents
 
 		ul
 			li: a(href='#management') Character Management
 			li: a(href='#backseat') Viewing, Sharing, and Back-seat Mode
-			li Optional Components
-			li Markdown Support
+			li: a(href='#options') Optional Components
+			li: a(href='#markdown') Markdown Support
 			li Panels
 				ul
 					li Titles and Character Portrait
@@ -33,6 +35,7 @@ block content
 					li Consequences
 					li Stunts & Powers
 					li Notes
+
 
 		a#management
 		h2 Character Management
@@ -45,13 +48,13 @@ block content
 		
 		p For new users, this character listing is obviously blank. Click the "Create a new character" button at the top to make your first character. Fill out the basic information for the character where prompted, and hit Submit. If you chose a template for your character, then the character will be pre-populated with the powers and stats of that template.
 
-		p 
+		p: a(href='#') Back to top
 
 
 		a#backseat
 		h2 Viewing, Sharing, and Back-seat Mode
 
-		p The whole point of the ToonStore is to enable easy sharing of character sheets. As such, sharing your sheet is easy. Just copy/paste the character link from the URL bar of your browser and send it out however you like (social media, forum post, email, etc.). This will only work for your public characters; private characters are only visible to their owners.
+		p The whole point of the ToonStore is to enable easy sharing of character sheets. As such, sharing your sheet is easy. When viewing a character, just copy/paste the character link from the URL bar of your browser and send it out however you like (social media, forum post, email, etc.). This will only work for your public characters; private characters are only visible to their owners.
 
 		.imgcontainer: img(src='/static/img/tutorial/url-bar.png')
 
@@ -59,4 +62,83 @@ block content
 
 		p Characters also contain a link back to their owners' pages. Anyone can click this link to see other (public) characters created by the same user.
 
-		p: a(href='#toc') Back to top
+		p: a(href='#') Back to top
+
+
+		a#optionals
+		h2 Optional Components
+
+		p Not all character sheet features are appropriate for all characters. The default look of the page mimics the published character sheets for the DFRPG, but alternatives are sometimes desirable. As such, there are a few optional features available via the Panels > Optional Panels menu.
+
+		.imgcontainer: img(src='/static/img/tutorial/optionals.png')
+
+		p The Notes option adds a free-form Markdown-enabled box to fill with whatever text-based data you wish. Rote spells, inventory, adventure logs, whatever you need!
+
+		p The Shapeshifter option enables the creation of a second set of shapeshifted skills in the Skills panel. This will be addressed in the Skills section.
+
+		p: a(href='#') Back to top
+
+
+		a#markdown
+		h2 Markdown Support
+
+		p Many text fields in the ToonStore character sheet support Markdown, the formatting syntax used by Reddit, Github, and others. It is designed to be as intuitive and readable as possible, even in plain text. The full syntax can be found 
+			a(href='http://daringfireball.net/projects/markdown/syntax') here
+			| , but here's a quick overview:
+
+		.sidebyside
+			div: pre: code.
+				Heading
+				=======
+
+				Subheading
+				----------
+
+				#### Heading 4
+
+			| becomes
+			div
+				h1 Heading
+				h2 Subheading
+				h4 Heading 4
+
+		hr
+
+		.sidebyside
+			div: pre: code.
+				*emphasis* and
+				**strong emphasis**
+			| becomes
+			div
+				em emphasis
+				|  and 
+				strong strong emphasis
+
+		hr
+
+		.sidebyside
+			div: pre: code
+				| * Item 1
+				| * Item 2
+				|     * Subitem 1
+				| * Item 3
+
+			| becomes
+
+			div: ul
+				li Item 1
+					ul: li Subitem 1
+				li Item 2
+				li Item 3
+
+		hr
+
+		.sidebyside
+			div: pre: code.
+				![Lifeson](/Derogatory/lifeson/avatar)
+				[Lifeson](/Derogatory/lifeson/)
+
+			| becomes
+			div
+				img(src='/Derogatory/lifeson/avatar', style='width: 100px;')
+				a(href='/Derogatory/lifeson/') Lifeson

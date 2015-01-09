@@ -28,6 +28,29 @@
 			height: auto;
 		}
 	}
+
+	.sidebyside
+	{
+		@include display-flex();
+		@include align-items(center);
+		@include flex-wrap(wrap);
+
+		& > *
+		{
+			margin: 10px 20px;
+			padding: 10px 20px;
+			border: solid grey 1px;
+			overflow-x: auto;
+			width: 300px;
+			max-width: 100%;
+		}
+	}
+
+	@include desktop {
+		hr {
+			display: none;
+		}
+	}
 }
 
 .formbox
