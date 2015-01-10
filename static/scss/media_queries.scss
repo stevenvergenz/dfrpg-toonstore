@@ -1,0 +1,29 @@
+@media only screen and (max-width: 600px){
+	.navbar {
+		border-bottom: 0;
+
+		.itemgroup {
+			display: none;
+			height: auto;
+		}
+
+		a#pull {
+			display: block;
+			width: 100%;
+			position: relative;
+			background-color: #283744;
+		}
+
+		a#pull:after{
+			content:"";
+			background: image-url('glyphicons/glyphicons_187_more.png') round;
+			width: 30px;
+			height: 30px;
+			display: inline-block;
+			position: absolute;
+			right: 15px;
+			top: 10px;
+		}
+	}
+
+}

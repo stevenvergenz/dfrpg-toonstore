@@ -38,20 +38,7 @@ html
 		.wrapper
 
 			block header
-
-				.navbar
-					.itemgroup
-						.navitem: a(href='/') Toon&#8203;Store
-						//-.navitem Forum
-						.navitem: a(href='/site/about') About
-						.navitem: a(href='/site/contact') Contact Us
-					.itemgroup
-						if logged_user_email
-							.navitem: a(href='/'+logged_user)= logged_user
-							.navitem: a(href='javascript:;', onclick='logout()') Log Out
-						else
-							.navitem: a(href='/register') Register
-							.navitem: a(href='/login') Log In
+				include ./navbar
 
 			.content
 

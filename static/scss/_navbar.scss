@@ -2,11 +2,13 @@
 
 .navbar
 {
-	color: white;
+	height:40px;
 	width: 100%;
-	padding: 15px 0;
+	color: white;
+	font-size: 11pt;
 	font-family: 'Denk One', sans-serif;
 	border-bottom: solid grey 1px;
+	position: relative;
 
 	@include display-flex();
 	@include flex-direction(row);
@@ -17,14 +19,27 @@
 	{
 		@include display-flex();
 		@include flex-direction(row);
+		padding: 0;
+		margin: 0 auto;
+		width: 500px;
+		height: 40px;
 	}
 
 	.navitem
 	{
-		padding-left: 12px;
-		padding-right: 12px;
-		text-align: center;
+		display: inline;
+		float: left;
+
+		a {
+			width: 100px;
+			text-align: center;
+			display: inline-block;
+		}	
 	}
+
+	a#pull {
+			display: none;
+		}
 }
 
 .footer
