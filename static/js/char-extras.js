@@ -231,16 +231,26 @@ app.directive('dgyAccordion', function()
 		},
 		'link': function(scope,element,attr)
 		{
-			// initialize
-			element.accordion({collapsible: true, active: false, heightStyle: 'content', icons: false, disabled: !scope.enabled()});
-
-			scope.$watch(scope.enabled, function(){
-				element.accordion('option', 'disabled', !scope.enabled());
+			var initialized = false;
+			scope.$watch(scope.enabled, function(newVal,oldVal)
+			{
+				if(newVal){
+					initialized = true;
+					element.accordion({collapsible: true, active: false, heightStyle: 'content', icons: false});
+				}
+				else if(initialized){
+					element.accordion('destroy');
+					initialized = false;
+				}
 			});
 
 			// cleanup
-			element.bind('$destroy', function(){
-				element.accordion('destroy');
+			element.bind('$destroy', function()
+			{
+				if(initialized){
+					element.accordion('destroy');
+					initialized = false;
+				}
 			});
 		}
 	};

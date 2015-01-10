@@ -21,13 +21,17 @@ block append includes
 
 block content
 
-	.content-block: .titledbox
+	.content-block: .formbox
 		.title Delete Character
 
-		.inner: form(action='/killtoon', method='post', onsubmit='return validate();')
+		form(action='/killtoon', method='post', onsubmit='return validate();')
 
 			p In the box below, type the following exactly as it appears:
-			label#confirm(for='confirm', style='background-color: #ffe5e5')= toon.name+", "+toon.hc+", is dead."
-			input#confirm(name='confirm', type='text')
+			.field
+				label#confirm(for='confirm', style='background-color: #ffe5e5')= toon.name+", "+toon.hc+", is dead."
+				input#confirm(name='confirm', type='text')
+
 			input(type='hidden', name='charname', value=toon.canon)
-			input(type='submit', value='Delete character')
+
+			.field
+				input(type='submit', value='Delete character')

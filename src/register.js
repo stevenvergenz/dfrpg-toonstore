@@ -39,20 +39,20 @@ function register(req,res)
 				connection.end();
 			}
 			else {
-				connection.query('DELETE FROM Tokens WHERE email = ?;', [req.body.email]);
+				connection.query('DELETE FROM Tokens WHERE BINARY email = ?;', [req.body.email]);
 				connection.query(
 					'INSERT INTO Tokens SET email = ?, token = ?, expires = ADDTIME(NOW(), "00:15:00");',
 					[req.body.email, token],
-					function(err,result)
+					function(err2,result2)
 					{
-						if( err ){
-							global.error('Failed to register pass reset token.', err);
+						if( err2 ){
+							global.error('Failed to register pass reset token.', err2);
 							global.renderPage('index', {message: {type:'error', content:'Unidentified database error'}})(req,res);
 						}
 						else
 						{
 							// build email message
-							var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, 'templates/activate-email.jade')) );
+							var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, '../templates/activate-email.jade')) );
 							var html = template({
 								registration: true,
 								url: config.origin,
@@ -137,7 +137,7 @@ function checkUsername(req,res)
 
 	// connect to the db
 	var connection = mysql.createConnection( config.database );
-	connection.query('SELECT COUNT(username) AS userCount FROM Users WHERE username = ?', [user], function(err, rows, fields)
+	connection.query('SELECT COUNT(username) AS userCount FROM Users WHERE BINARY username = ?', [user], function(err, rows, fields)
 	{
 		if( err ){
 			global.error('MySQL error:', err);

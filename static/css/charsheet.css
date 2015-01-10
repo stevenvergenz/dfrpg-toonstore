@@ -1,5 +1,5 @@
 .content {
-	font-family: 'Metamorphous', cursive;
+	font-family: 'Armata', cursive;
 }
 
 ul.navmenu {
@@ -23,6 +23,10 @@ a.dirty {
 a.dirty::before {
 	content: ">>";
 
+}
+
+:focus {
+	outline: none;
 }
 
 span.subarrow {
@@ -182,6 +186,10 @@ div#avatar {
 
 #aspects .ui-accordion > * {
 	padding: 0;
+}
+
+#aspects p.aspectText {
+	margin: 5px;
 }
 
 /*#aspects .ui-accordion p.description {
@@ -722,7 +730,7 @@ div#stressBlock {
 #conseqBlock .aspect {
 	text-align: right;
 	max-width: 50%;
-	font-family: 'Metamorphous',cursive;
+	font-family: 'Armata',cursive;
 	font-size: 12pt;
 	vertical-align: middle;
 	border: none;
@@ -773,7 +781,22 @@ div#stressBlock {
 	align-items: center;
 
 	text-align: left;
+	padding: 0;
+	margin: 0;
+	margin-bottom: 5px;
 }
+
+#powerBlock .ui-accordion:not(.ui-accordion-disabled) .ui-accordion-header .name span::after {
+	content: "\25B2";
+	margin-left: 2px;
+	position: relative;
+	bottom: 2px;
+}
+
+#powerBlock .ui-accordion:not(.ui-accordion-disabled) .ui-accordion-header.ui-accordion-header-active .name span::after {
+	content: "\25BC";
+}
+
 
 #powerBlock .block {
 	margin: 8px 0px;
@@ -811,13 +834,17 @@ div#stressBlock {
 	justify-content: flex-end;
 }
 
+#powerBlock .name {
+	max-width: 275px;
+}
+
 /* description div */
 #powerBlock .description {
 	font-size: 80%;
 }
 
-#powerBlock .description > * {
-	margin: 2px 0;
+#powerBlock .description * {
+	margin: 5px 0;
 }
 
 #powerBlock .description ul {

@@ -34,7 +34,7 @@ function passwordReset(req,res,next)
 	var token = crypto.pseudoRandomBytes(16).toString('hex');
 
 	var connection = mysql.createConnection( config.database );
-	connection.query('DELETE FROM Tokens WHERE email = ?;', [req.body.email]);
+	connection.query('DELETE FROM Tokens WHERE BINARY email = ?;', [req.body.email]);
 	connection.query(
 		'INSERT INTO Tokens SET email = ?, token = ?, expires = ADDTIME(NOW(), "00:15:00");',
 		[req.body.email, token],
@@ -47,7 +47,7 @@ function passwordReset(req,res,next)
 			else
 			{
 				// build email message
-				var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, 'templates/activate-email.jade')) );
+				var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, '../templates/activate-email.jade')) );
 				var html = template({
 					registration: false,
 					url: config.origin,
@@ -90,13 +90,13 @@ function setPassword(req,res,next)
 
 		var connection = mysql.createConnection( config.database );
 		connection.query(
-			'UPDATE Users SET password = ?, salt = ? WHERE email = (SELECT email FROM Tokens WHERE token = ? AND expires > NOW());',
+			'UPDATE Users SET password = ?, salt = ? WHERE BINARY email = (SELECT email FROM Tokens WHERE token = ? AND expires > NOW());',
 			[passHash, salt, req.params.token],
 			function(err, result)
 			{
 				if(err){
 					global.error('Failed to set password!', err);
-					global.renderPage('404', {code: 500, message: {type:'error',content:'An unidentified error has occurred, please contact the site admin.'}})(req,res);
+					global.renderPage('activation', {code: 500, message: {type:'error',content:'An unidentified error has occurred, please contact the site admin.'}})(req,res);
 				}
 				else if(result.affectedRows === 0){
 					global.error('Token not found or expired');
@@ -104,6 +104,7 @@ function setPassword(req,res,next)
 				}
 				else {
 					global.log('Password reset for token', req.params.token);
+					req.session.latent_message = 'Your password has been set. Please log in to continue.';
 					res.redirect('/login');
 				}
 				connection.end();

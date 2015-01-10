@@ -1,0 +1,112 @@
+@import 'polyfill';
+
+/*
+ ************************* General page layout items ***********************
+ */
+
+html {
+	height: 100%;
+}
+
+body {
+	@include display-flex();
+	@include justify-content(center);
+
+	margin: 0;
+	width: 100%;
+	min-height: 100%;
+	background-color: black;
+	color: white;
+
+	font-family: 'Armata', sans-serif;
+}
+
+.wrapper
+{
+	background-color: #2a2a5a;
+	background-image: linear-gradient(#2a2a5a, #0f0f20);
+	width: 950px;
+	z-index: 1;
+
+	@include display-flex();
+	@include flex-direction(column);
+	@include align-items(center);
+	-ms-flex: 0 1 950px;
+}
+
+.content
+{
+	@include display-flex();
+	@include flex-direction(column);
+
+	width: 95%;
+	min-height: 700px;
+}
+
+.content-block
+{
+	margin: 15px 0;
+}
+
+a
+{
+	color: inherit;
+
+	&:link, &:visited {
+		text-decoration: none;
+	}
+
+	&:hover, &:active {
+		text-decoration: underline;
+	}
+}
+
+
+
+/*
+ ****************************** Message bubbles ****************************
+ */
+
+div.message
+{
+	margin: 0;
+	text-align: center;
+	border-radius: 5px;
+	border: solid grey 1px;
+	color: black;
+	padding: 15px;
+}
+
+div.error
+{
+	@extend div.message;
+	border-color: red;
+	background-color: pink;
+}
+
+div.warning
+{
+	@extend div.message;
+	border-color: gold;
+	background-color: beige;
+}
+
+div.info
+{
+	@extend div.message;
+	border-color: blue;
+	background-color: lightcyan;
+}
+
+.message, .error, .warning, .info
+{
+	.caption {
+		font-size: 0.7em;
+		color: #555;
+		margin: 5px 0;
+	}
+
+	a {
+		color: blue;
+	}
+}

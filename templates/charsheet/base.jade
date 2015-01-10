@@ -3,7 +3,8 @@ extends ../index
 block title
 	title= toonName + ', ' + toonConcept + ' | ToonStore.net'
 
-block append styles
+block styles
+	link(rel='stylesheet', type='text/css', href='/static/scss/theme.css')
 	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous&subset=latin,latin-ext')
 	link(rel='stylesheet', type='text/css', href='/static/css/jquery-ui.min.css')
 	link(rel='stylesheet', type='text/css', href='/static/css/charsheet.css')
@@ -35,24 +36,19 @@ block content
 			This page is currently in back-seat mode. You can make local edits to the character sheet, but will not be able to save.
 			Your changes will be lost once you refresh the page, and are not visible to other viewers of the character.
 
-
 	.sheet-panel-group
 		include ./general
-
 		include ./aspects
 		
 		
 	.sheet-panel-group
 		include ./skills
-
 		include ./totals
 		
 	.sheet-panel-group
 		include ./stress
-
 		include ./consequences
 	
 	.sheet-panel-group
 		include ./powers
-	
 		include ./notes

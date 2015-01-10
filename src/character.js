@@ -11,7 +11,7 @@ function servePage(req,res,next)
 {
 	var connection = mysql.createConnection( config.database );
 	connection.query(
-		'SELECT name,concept,private,info FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		'SELECT name,concept,private,info FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( err ){
@@ -41,7 +41,7 @@ function serveJson(req,res,next)
 {
 	var connection = mysql.createConnection( config.database );
 	connection.query(
-		'SELECT info FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		'SELECT info FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,rows,fields){
 			if( err ){
@@ -74,9 +74,9 @@ function pushJson(req,res,next)
 
 	var connection = mysql.createConnection( config.database );
 	connection.query(
-		'UPDATE Characters SET info = ?, name = ?, concept = ?, last_updated = NOW() WHERE owner = ? AND canonical_name = ?;',
+		'UPDATE Characters SET info = ?, name = ?, concept = ?, last_updated = NOW() WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[JSON.stringify(req.body), req.body.name, req.body.aspects.high_concept.name, req.params.user, req.params.char],
-		function(err,rows,fields){
+		function(err,result){
 			if( !err ){
 				global.log('Success');
 				res.json(req.body);
@@ -92,13 +92,49 @@ function pushJson(req,res,next)
 
 function newCharacterPage(req,res)
 {
-	if( req.session.user ){
-		global.log('Serving new character page');
-		global.renderPage('newtoon')(req,res);
-	}
-	else {
+	if( !req.session.user ){
 		res.send(401);
+		return;
 	}
+
+	// get list of users/characters to use as templates
+	var templates = [], users = [];
+	for(var i=0; i<config.templates.length; i++)
+	{
+		if( /\//.test(config.templates[i]) )
+			templates.push(config.templates[i]);
+		else
+			users.push(config.templates[i]);
+	}
+
+	global.log('Serving new character page');
+
+	if( users.length > 0 )
+	{
+		var connection = mysql.createConnection( config.database );
+		connection.query('SELECT CONCAT(owner,"/",canonical_name) AS slug FROM Characters WHERE BINARY owner IN (?);', [users], function(err,rows,fields)
+		{
+			if(err){
+				global.error('MySQL error while retrieving templates:', err);
+				console.log(connection.escape(users));
+				global.renderPage('newtoon')(req,res);
+			}
+			else
+			{
+				var userTemplates = rows.reduce(function(sum,cur){ sum.push(cur.slug); return sum; }, []);
+				templates.push.apply(templates, userTemplates);
+				templates.sort();
+				global.renderPage('newtoon', {templates: templates})(req,res);
+			}
+			connection.end();
+		});
+	}
+	else
+	{
+		templates.sort();
+		global.renderPage('newtoon', {templates: templates})(req,res);
+	}
+
 }
 
 function newCharacterRequest(req,res)
@@ -113,7 +149,7 @@ function newCharacterRequest(req,res)
 		global.renderPage('newtoon', {message: {type: 'error', content:'You must fill out all fields'}})(req,res);
 		return;
 	}
-	
+
 	// create blank character JSON object
 	var toon = {
 		'name': req.body.name,
@@ -144,23 +180,60 @@ function newCharacterRequest(req,res)
 
 	global.log('Attempting character creation');
 	var connection = mysql.createConnection( config.database );
-	connection.query('INSERT INTO Characters SET created_on=NOW(), ?;',
-		{'canonical_name': req.body.canon_name, 'name': req.body.name, 'owner': req.session.user,
-			'concept': req.body.concept, 'info': JSON.stringify(toon)},
-		function(err,rows,fields)
-		{
-			if( err ){
-				global.error('MySQL error:', err);
-				global.renderPage('newtoon', {message: {type: 'error', content:'You are already using that short name'}})(req,res);
+
+	if( req.body.template )
+	{
+		global.log('Attempting copy of', req.body.template);
+		var parts = req.body.template.split('/');
+		connection.query('SELECT info FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ? AND (private = 0 OR BINARY owner = ?);',
+			[parts[0], parts[1], req.session.user],
+			function(err,rows,fields)
+			{
+				if(err){
+					global.error('MySQL error:', err);
+					global.renderPage('newtoon', {code:500, message: {type: 'error', content:'An unidentified error has occurred. Contact a site admin.'}})(req,res);
+					connection.end();
+				}
+				else if(rows.length === 0){
+					global.error('Cannot copy non-existent or private character');
+					global.renderPage('newtoon', {code:400, message: {type: 'error', content:'Cannot copy non-existent character.'}})(req,res);
+					res.send(400);
+					connection.end();
+				}
+				else {
+					var info = JSON.parse(rows[0].info);
+					info.name = req.body.name;
+					info.player = req.session.user;
+					info.aspects.high_concept = {name: req.body.concept, description: ''};
+					addCharacter(info);
+				}
 			}
-			else {
-				global.log('Creation successful');
-				var url = '/'+req.session.user+'/'+req.body.canon_name+'/';
-				res.redirect(url);
+		);
+	}
+	else {
+		addCharacter(toon);
+	}
+
+	function addCharacter(info)
+	{
+		connection.query('INSERT INTO Characters SET created_on=NOW(), ?;',
+			{'canonical_name': req.body.canon_name, 'name': req.body.name, 'owner': req.session.user,
+				'concept': req.body.concept, 'info': JSON.stringify(info), 'private': req.body.private==='on' ? true : false},
+			function(err,rows,fields)
+			{
+				if( err ){
+					global.error('MySQL error:', err);
+					global.renderPage('newtoon', {code:400, message: {type: 'error', content:'You are already using that short name'}})(req,res);
+				}
+				else {
+					global.log('Creation successful');
+					var url = '/'+req.session.user+'/'+req.body.canon_name+'/';
+					res.redirect(url);
+				}
+				connection.end();
 			}
-			connection.end();
-		}
-	);
+		);
+	}
 }
 
 function deleteCharacterPage(req,res)
@@ -171,7 +244,7 @@ function deleteCharacterPage(req,res)
 	}
 
 	var connection = mysql.createConnection(config.database);
-	connection.query('SELECT name, concept FROM Characters WHERE owner = ? AND canonical_name = ?;',
+	connection.query('SELECT name, concept FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.session.user, req.query.id],
 		function(err,rows,fields)
 		{
@@ -207,7 +280,7 @@ function deleteCharacterRequest(req,res)
 
 	global.log('Attempting character deletion:',req.body.charname);
 	var connection = mysql.createConnection(config.database);
-	connection.query('DELETE FROM Characters WHERE owner = ? AND canonical_name = ?;',
+	connection.query('DELETE FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.session.user, req.body.charname],
 		function(err,info)
 		{
@@ -232,7 +305,7 @@ function deleteCharacterRequest(req,res)
 function serveAvatar(req,res,next)
 {
 	var connection = mysql.createConnection(config.database);
-	connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
+	connection.query('SELECT avatar FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 		[req.params.user, req.params.char],
 		function(err,info)
 		{
@@ -316,14 +389,14 @@ function saveAvatar(req,res,next)
 		}
 
 		var filename = libpath.basename(req.files.avatar.path);
-		connection.query('UPDATE Characters SET avatar = ? WHERE owner = ? AND canonical_name = ?;',
+		connection.query('UPDATE Characters SET avatar = ? WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 			[filename, req.session.user, req.params.char],
 			saveNewAvatar
 		);
 	}
 
 	function checkAvatar(){
-		connection.query('SELECT avatar FROM Characters WHERE owner = ? AND canonical_name = ?;',
+		connection.query('SELECT avatar FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
 			[req.session.user, req.params.char],
 			getCurrentAvatar
 		);

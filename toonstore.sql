@@ -28,8 +28,8 @@ CREATE TABLE `Characters` (
   `owner` char(40) NOT NULL,
   `info` text,
   `concept` char(40) DEFAULT NULL,
-  `created_on` date DEFAULT NULL,
-  `last_updated` date DEFAULT NULL,
+  `created_on` datetime DEFAULT NULL,
+  `last_updated` datetime DEFAULT NULL,
   `avatar` char(40) DEFAULT NULL,
   `private` tinyint(1) DEFAULT '0',
   PRIMARY KEY (`canonical_name`,`owner`),
@@ -109,4 +109,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2014-12-11 15:04:39
+-- Dump completed on 2014-12-31 13:45:24

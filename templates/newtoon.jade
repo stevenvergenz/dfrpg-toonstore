@@ -4,45 +4,47 @@ block title
 	title New Character | ToonStore.net
 
 block append includes
-
-	script.
-		function validate(){
-			var valid = /^[A-Za-z0-9_-]+$/.test( $('#canon_name').val() );
-			if( !valid ){
-				if( $('div.error').length == 0 )
-					$('<div class="content-block"><div class="error"><p>That short name is invalid.</p></div></div>').prependTo( $('.content') );
-				else
-					$('div.error>p').text('That short name is invalid');
-			}
-			return valid;
-		}
-
-		function generateSlug(fullName){
-			var name = $(fullName).val();
-			var slug = name.split(' ').pop().toLowerCase().replace(/[^\w]/g, '_');
-			$('#canon_name').val(slug);
-		}
+	script(src='/static/js/newtoon.js')
 
 block content
 
-	.content-block: .titledbox
+	.content-block: .formbox
 		.title New character
 
-		.inner
-			form(action='/newtoon', method='post', onsubmit="return validate();")
+		form(method='post', onsubmit="return validate();")
 
+			.field
 				label(for='name') Full name
 				input#name(type='text', name='name', required, placeholder='John Doe', onkeyup="generateSlug(this)")
 				p.caption The character's name. Can be changed later.
 
+			.field
 				label(for='canon_name') Short name (also permalink)
 				input#canon_name(type='text', name='canon_name', required, placeholder='doe')
 				p.caption Something short, identifiable, and unique amongst your characters. Last names usually suffice.
 				p.caption Only A-Z, a-z, 0-9, -, and _ are allowed.
 				p.caption This is PERMANENT.
 
+			.field
 				label(for='concept') High concept
 				input#concept(type='text', name='concept', required, placeholder='Man of Mystery')
 				p.caption The character's defining concept. Can be changed later.
 
+			.field#templateContainer
+				label(for='template') Character template
+				select#template(name='template')
+					option
+					for item in templates
+						option(value='#{item}', label='#{item}')= item
+				p.caption The template your character is based on.
+
+			.field.checkbox
+				input#private(type='checkbox', name='private')
+				label(for='private') Make this character private
+				script.
+					if( /[?&]private/.test(window.location.search) ){
+						$('input#private').prop('checked',true);
+					}
+
+			.field
 				input(type='submit', name='submit', value='Submit')

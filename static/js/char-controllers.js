@@ -375,3 +375,7 @@ app.controller('NotesCtrl', ['$scope','$sce','$sanitize','rootModel', function($
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
 	$scope.$on('is_clean', function(){ $scope.dirty = false; });
 }]);
+
+$(function(){
+	angular.bootstrap( $('div.wrapper')[0], ['charsheet'] );
+});

@@ -23,5 +23,7 @@
 	"use_ssl": false,
 	"ssl_key": "localhost:3001.key",
 	"ssl_cert": "localhost:3001.crt",
-	"ssl_password": null
+	"ssl_password": null,
+
+	"templates": []
 }

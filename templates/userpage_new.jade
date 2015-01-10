@@ -1,0 +1,66 @@
+extends index
+
+block title
+	title= owner + ' | ToonStore.net'
+
+block styles
+	link(rel='stylesheet', href='/static/scss/userpage.css')
+
+block append includes
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-cookies.js')
+	script(src='/static/js/moment.min.js')
+	script(src='/static/js/userpage.js')
+
+block content
+
+	.content-block
+		h1 #{owner}'s page
+
+		if logged_user == owner
+			p: a#newtoon(href='/newtoon') Create a new character
+
+		#charList(ng-controller='UserPageCtrl')
+			h4 Characters:
+
+			p Sort by: 
+				span.sortLink(ng-class='{"sortField":sortField==="last_updated","sortReverse":sortReverse}', ng-click='setSort("last_updated")') Last Update
+				|  | 
+				span.sortLink(ng-class='{"sortField":sortField==="created_on","sortReverse":sortReverse}', ng-click='setSort("created_on")') Creation Date
+				|  | 
+				span.sortLink(ng-class='{"sortField":sortField==="name","sortReverse":sortReverse}', ng-click='setSort("name")') Name
+				if logged_user == owner
+					|  | 
+					span.sortLink(ng-class='{"sortField":sortField==="private","sortReverse":sortReverse}', ng-click='setSort("private")') Privacy
+
+
+			.character(ng-repeat='char in data | orderBy : sortField : sortReverse', ng-class='{"private":char.private==true}')
+				.avatar
+					a(ng-href='/{{char.owner}}/{{char.canonical_name}}/')
+						img(dgy-src='/{{char.owner}}/{{char.canonical_name}}/avatar')
+
+				.char-content
+					p.title
+						a(ng-href='/{{char.owner}}/{{char.canonical_name}}/') {{char.name}}, {{char.concept}}
+					p.updated(title='{{char.last_updated | calendarTime}}') {{char.last_updated | relativeTime}}
+					.controls
+						if logged_user != null
+							a(ng-href='/newtoon?copy={{char.owner}}/{{char.canonical_name}}')
+								img.duplicate(src='/static/img/glyphicons/glyphicons_318_more_items.png', title='Duplicate')
+
+						if logged_user == owner
+							input.privacy(type='image', ng-click='togglePrivacy(char.canonical_name)',
+								ng-src='{{togglePrivacyIcon(char.private)}}',
+								title='Make {{char.private ? "Public" : "Private"}}')
+
+							a(ng-href='/killtoon?id={{char.canonical_name}}')
+								img.delete(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
+
+			
+			if logged_user == owner
+				p(ng-show='data.length === 0') You currently have no characters. 
+					a(href='/newtoon') Create a new one?
+			else
+				p(ng-show='data.length === 0') This user lacks character (badum-ching!)
+
