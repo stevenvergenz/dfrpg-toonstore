@@ -25,9 +25,9 @@ block content
 			li: a(href='#backseat') Viewing, Sharing, and Back-seat Mode
 			li: a(href='#options') Optional Components
 			li: a(href='#markdown') Markdown Support
-			li Panels
+			li: a(href='#panels') Panels
 				ul
-					li Titles and Character Portrait
+					li: a(href='#general') Titles and Character Portrait
 					li Aspects
 					li Skills
 					li Number Crunching
@@ -152,9 +152,41 @@ block content
 		p Just like the published character sheet, ToonStore character sheets are built of different sections that we call panels. Each panel should be recognizable to anyone that has played the DFRPG. However, there may be features available that are not immediately obvious, hence this section.
 
 		p All panels have one thing in common though: the Edit button (
-			img(src='/static/img/glyphicons/glyphicons_150_edit.png')
-			| ). Clicking it will change the corresponding panel into editable fields, where you can put your character information. Clicking it again will return to classic view.
+			img.icon(src='/static/img/glyphicons/glyphicons_150_edit.png')
+			| ). Clicking it will change the corresponding panel into editable fields, where you can input your character information. Clicking it again will return to classic view.
 
-		h3 Titles and Character Portrait
+		p: a(href='#') Back to top
 
-		p This panel is pretty basic. It contains the character's name, the player's name (with link back to his user page), and the character portrait. 
+
+		a#general
+		h3 Title and Character Portrait Panel
+
+		p This panel is pretty basic. It contains the character's name, the player's name (with link back to his user page), and the character portrait. Edit mode allows you to upload a new portrait, which accepts BMPs, JPEGs, PNGs, and GIFs, along with several lesser-known formats.
+
+		p: a(href='#') Back to top
+
+
+		a#aspects
+		h3 Aspects Panel
+
+		p The Aspects panel provides a list of your character's permanent aspects. Edit mode provides a set of fields to input your aspect names, which can be prefixed with a phase name in brackets (e.g. [PHASE]) if so desired. For example, if your character was orphaned on the mean streets of Detroit, you might input the aspect as "[BACKGROUND] Grew Up Hard, Grew Up Fast". The phase name will be omitted from the name of the aspect when not in edit mode, yielding simply 
+			em Grew Up Hard, Grew Up Fast
+			| .
+
+		p Each aspect field is paired with a text box to input a full description of that aspect, which will appear as a collapsible subtext when not in edit mode. These description fields are Markdown-enabled.
+
+		p By default, new characters only have a high concept and a trouble. To add additional aspects, click the plus icon (
+			img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+			| ) at the bottom of the panel. This will add a new aspect name/description field pair. These additional aspects can be reordered by dragging the drag handle (
+			img.icon(src='/static/img/glyphicons/glyphicons_186_move.png')
+			| ) up and down to the desired position, or removed by clicking the Delete button (
+			img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+			| ).
+
+		p: a(href='#') Back to top
+
+
+		a#skills
+		h3 Skills Panel
+
+

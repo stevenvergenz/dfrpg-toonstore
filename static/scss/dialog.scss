@@ -29,6 +29,11 @@
 		}
 	}
 
+	img.icon
+	{
+		width: 1em;
+	}
+
 	.sidebyside
 	{
 		@include display-flex();
