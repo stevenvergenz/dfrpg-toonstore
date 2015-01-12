@@ -1,0 +1,76 @@
+@include keyframes(shakenbake)
+{
+	0% {
+		@include transform(translateX(0px));
+		text-shadow: 0 0 20px black;
+		color: transparent;
+	}
+	10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90% {
+		@include transform(translateX(3px));
+	}
+	5%, 15%, 25%, 35%, 45%, 55%, 65%, 75%, 85%, 95% {
+		@include transform(translateX(-3px));
+	}
+	80% {
+		color: transparent;
+		text-shadow: 0 0 10px black;
+	}
+	100% {
+		@include transform(translateX(0px));
+		text-shadow: 0;
+		color: black;
+	}
+}
+
+@mixin diceroller()
+{
+	.diceroller
+	{
+		@include display-flex();
+		@include flex-direction(row);
+		@include justify-content(center);
+
+		&.shakenbake {
+			@include animation(shakenbake 0.7s both);
+		}
+
+		* {
+			cursor: default;
+			@include user-select(none);
+		}
+
+		.die
+		{
+			width: 35px;
+			height: 35px;
+			margin: 3px;
+			border: solid grey 1px;
+			border-radius: 5px;
+
+			font-family: sarif;
+
+			@include display-flex();
+			@include align-items(center);
+			@include justify-content(center);
+
+			span {
+				font-size: 28pt;
+				font-weight: bold;
+			}
+		}
+
+		.total
+		{
+			width: 35px;
+			height: 35px;
+			margin: 3px;
+			font-size: 18pt;
+			font-weight: bold;
+
+			@include display-flex();
+			@include align-items(center);
+			@include justify-content(center);
+		}
+	}
+}
+

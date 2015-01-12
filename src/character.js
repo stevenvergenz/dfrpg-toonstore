@@ -1,8 +1,4 @@
 var mysql = require('mysql');
-var libpath = require('path');
-var fs = require('fs');
-var crypto = require('crypto');
-var gm = require('gm');
 var global = require('./global.js');
 var config = require('../config.json');
 
@@ -185,7 +181,7 @@ function newCharacterRequest(req,res)
 	{
 		global.log('Attempting copy of', req.body.template);
 		var parts = req.body.template.split('/');
-		connection.query('SELECT info FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ? AND (private = 0 OR BINARY owner = ?);',
+		connection.query('SELECT info,avatar FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ? AND (private = 0 OR BINARY owner = ?);',
 			[parts[0], parts[1], req.session.user],
 			function(err,rows,fields)
 			{
@@ -205,7 +201,7 @@ function newCharacterRequest(req,res)
 					info.name = req.body.name;
 					info.player = req.session.user;
 					info.aspects.high_concept = {name: req.body.concept, description: ''};
-					addCharacter(info);
+					addCharacter(info, rows[0].avatar);
 				}
 			}
 		);
@@ -214,11 +210,12 @@ function newCharacterRequest(req,res)
 		addCharacter(toon);
 	}
 
-	function addCharacter(info)
+	function addCharacter(info, avatar)
 	{
 		connection.query('INSERT INTO Characters SET created_on=NOW(), ?;',
 			{'canonical_name': req.body.canon_name, 'name': req.body.name, 'owner': req.session.user,
-				'concept': req.body.concept, 'info': JSON.stringify(info), 'private': req.body.private==='on' ? true : false},
+				'concept': req.body.concept, 'info': JSON.stringify(info), 'avatar': avatar,
+				'private': req.body.private==='on' ? true : false},
 			function(err,rows,fields)
 			{
 				if( err ){
@@ -302,108 +299,6 @@ function deleteCharacterRequest(req,res)
 	);
 }
 
-function serveAvatar(req,res,next)
-{
-	var connection = mysql.createConnection(config.database);
-	connection.query('SELECT avatar FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
-		[req.params.user, req.params.char],
-		function(err,info)
-		{
-			if(err){
-				global.error('MySQL error:', err);
-				next();
-			}
-			else if(info.length == 0 || !info[0].avatar){
-				global.log('Avatar not found');
-				res.send(404);
-			}
-			else {
-				res.sendfile( libpath.resolve(__dirname, '..','uploads', info[0].avatar) );
-			}
-			connection.end();
-		}
-	);
-}
-
-function saveAvatar(req,res,next)
-{
-	if( !(req.session && req.session.user) ){
-		res.send(401);
-		return;
-	}
-
-	// scale down to what will fit in the avatar box
-	var newFile = req.files.avatar.path;
-	var connection = null;
-
-	gm(newFile).size(function(err,size){
-		if(!err){
-			var factor = size.width>size.height ? 350/size.width : 196/size.height;
-			gm(newFile)
-				.resize( size.width*factor, size.height*factor )
-				.write(newFile, function(err){
-					if(err){
-						global.error(err);
-						res.send(500);
-					}
-					else {
-						connection = mysql.createConnection(config.database);
-						checkAvatar();
-					}
-				});
-		}
-		else {
-			global.log(err);
-			fs.unlink(newFile);
-			res.send(400);
-		}
-	});
-
-	function saveNewAvatar(err,info)
-	{
-		if(err){
-			global.error('MySQL error:', err);
-			res.send(500);
-		}
-		else if(info.affectedRows == 0){
-			global.log('Avatar not found');
-			res.send(404);
-		}
-		else {
-			global.log('Avatar saved');
-			res.send(200);
-		}
-		connection.end();
-	}
-
-	function getCurrentAvatar(err,info)
-	{
-		if(err){
-			global.error('MySQL error:', err);
-			res.send(500);
-			connection.end();
-			return;
-		}
-		else if(info.length == 1 && info[0].avatar){
-			fs.unlink( libpath.resolve(__dirname, '..', 'uploads', info[0].avatar) );
-		}
-
-		var filename = libpath.basename(req.files.avatar.path);
-		connection.query('UPDATE Characters SET avatar = ? WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
-			[filename, req.session.user, req.params.char],
-			saveNewAvatar
-		);
-	}
-
-	function checkAvatar(){
-		connection.query('SELECT avatar FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
-			[req.session.user, req.params.char],
-			getCurrentAvatar
-		);
-	}
-
-}
-
 exports.servePage = servePage;
 exports.serveJson = serveJson;
 exports.pushJson = pushJson;
@@ -414,5 +309,3 @@ exports.newCharacterRequest = newCharacterRequest;
 exports.deleteCharacterRequest = deleteCharacterRequest;
 exports.deleteCharacterPage = deleteCharacterPage;
 
-exports.serveAvatar = serveAvatar;
-exports.saveAvatar = saveAvatar;

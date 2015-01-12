@@ -1,3 +1,13 @@
+
+$desktop-width: 950px;
+
+@mixin desktop {
+	@media (min-width: #{$desktop-width}) {
+		@content;
+	}
+}
+
+
 @mixin display-flex()
 {
 	display: -webkit-box;
@@ -12,6 +22,9 @@
 	$oldarg: $justify;
 	@if $justify == 'space-between' {
 		$oldarg: justify;
+	}
+	@if $justify == 'space-around' {
+		$oldarg: distribute;
 	}
 	@if $justify =='flex-start' {
 		$oldarg: start;
@@ -74,6 +87,22 @@
 	flex-shrink: $factor;
 }
 
+@mixin flex-grow($factor)
+{
+	-moz-flex-grow: $factor;
+	-ms-flex: $factor $factor;
+	-webkit-flex-grow: $factor;
+	flex-grow: $factor;
+}
+
+@mixin flex-basis($factor)
+{
+	-moz-flex-basis: $factor;
+	-ms-flex: 0 1 $factor;
+	-webkit-flex-basis: $factor;
+	flex-basis: $factor;
+}
+
 @mixin user-select($select)
 {
 	-webkit-touch-callout: $select;
@@ -82,4 +111,27 @@
     -moz-user-select: $select;
     -ms-user-select: $select;
     user-select: $select;
+}
+
+@mixin keyframes($animation-name)
+{
+	@-webkit-keyframes $animation-name {
+		@content;
+	}
+	@keyframes $animation-name {
+		@content;
+	}
+}
+
+@mixin animation($str)
+{
+	-webkit-animation: #{$str};
+	animation: #{$str};
+}
+
+@mixin transform($op)
+{
+	-webkit-transform: $op;
+	-ms-transform: $op;
+	transform: $op;
 }

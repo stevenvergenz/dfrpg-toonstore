@@ -1,0 +1,66 @@
+
+#aspects.sheet-panel
+{
+
+	.field
+	{
+		margin-top: 10px;
+		margin-bottom: 10px;
+
+		.fieldLabel {
+			font-weight: bold;
+			margin: 5px 0;
+		}
+
+		input[type=text] {
+			width: 70%;
+		}
+
+		p.aspectText {
+			margin: 5px;
+		}
+
+		textarea
+		{
+			width: 95%;
+			font-family: 'sans';
+			font-size: 10pt;
+			height: 65px;
+		}
+
+		.description
+		{
+			font-size: 10pt;
+			margin-left: 10px;
+			margin-right: 10px;
+			text-align: justify;
+
+			p {
+				margin: 8px 0;
+			}
+		}
+	}
+
+	.ui-accordion
+	{
+		& > * {
+			padding: 0;
+		}
+
+		&:not(.ui-accordion-disabled)
+		{
+			.ui-accordion-header:after
+			{
+				margin-left: 2px;
+				position: relative;
+				bottom: 2px;
+				content: "\25B2";
+			}
+
+			.ui-accordion-header.ui-accordion-header-active:after {
+				content: "\25BC";
+			}				
+		}
+	}
+}
+

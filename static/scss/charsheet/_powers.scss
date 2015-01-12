@@ -1,0 +1,97 @@
+
+#powers.sheet-panel #powerBlock
+{
+
+	textarea, input[type='text'] {
+		width: 100%;
+	}
+
+	textarea {
+		height: 70px;
+	}
+
+	.row
+	{
+		@include display-flex();
+		@include align-items(center);
+
+		text-align: left;
+		padding: 0;
+		margin: 0;
+		margin-bottom: 5px;
+
+		.name {
+			max-width: 275px;
+		}
+
+		& > :first-child
+		{
+			width: 40px;
+			margin-right: 10px;
+			@include display-flex();
+			@include justify-content(flex-end);
+		}
+
+		// totals row
+		&.block:last-child
+		{
+			padding-top: 10px;
+
+			.bubble {
+				display: inline-block;
+			}
+		}
+	}
+
+	// header row
+	& > .row:first-child {
+		font-weight: bold;
+	}
+
+	.ui-accordion:not(.ui-accordion-disabled)
+	{
+		.ui-accordion-header .name span::after {
+			content: "\25B2";
+			margin-left: 2px;
+			position: relative;
+			bottom: 2px;
+		}
+
+		.ui-accordion-header.ui-accordion-header-active .name span::after {
+			content: "\25BC";
+		}
+	}
+
+
+	.block
+	{
+		margin: 8px 0px;
+
+		& > .row:first-child
+		{
+			margin-bottom: 5px;
+		}
+	}
+
+	@include desktop {
+		max-height: 700px;
+		overflow-y: scroll;
+	}
+
+	.description
+	{
+		font-size: 80%;
+		* {
+			margin: 5px 0;
+		}
+
+		ul {
+			padding-left: 20px;
+		}
+	}
+
+	.icons {
+		@include flex-direction(column);
+	}
+}
+

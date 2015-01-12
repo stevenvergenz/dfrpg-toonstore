@@ -11,6 +11,7 @@ var activate = require('./activate.js');
 var login = require('./login.js');
 var user = require('./user.js');
 var character = require('./character.js');
+var avatars = require('./avatars.js');
 var sitemap = require('./sitemap.js');
 var stats = require('./stats.js');
 var sass = require('./sass.js');
@@ -63,8 +64,8 @@ app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/', character.servePage);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/printable', character.servePage);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.serveJson);
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson);
-app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', character.serveAvatar);
-app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', character.saveAvatar);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', avatars.serveAvatar);
+app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', avatars.saveAvatar);
 
 
 // redirect if character sheet doesn't have trailing slash
@@ -105,10 +106,17 @@ app.use(function(req,res)
 
 
 
-sass.compile( startServer );
+sass.compile( '../static/scss', startServer );
 
-function startServer()
+function startServer(err)
 {
+	if(err){
+		global.error('Sass failed to compile! See above errors for debugging.');
+	}
+	else {
+		global.log('Sass compiled successfully');
+	}
+
 	// start the server
 	if( config.use_ssl )
 	{

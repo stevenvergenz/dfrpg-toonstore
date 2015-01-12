@@ -1,0 +1,142 @@
+
+#stress.sheet-panel
+{
+	input[type="checkbox"].stressBox
+	{
+		display: none;
+
+		& + label
+		{
+			vertical-align: middle;
+			display: inline-block;
+			width: 20px;
+			height: 20px;
+			background-repeat: no-repeat;
+			background-position: 0px 0px;
+			background-image: image-url('checkbox.png');
+			background-origin: padding-box;
+			padding: 0 3px;
+		}
+
+		&:checked + label {
+			background-position: -26px 0px;
+		}
+		&[disabled="disabled"] + label {
+			background-position: -52px 0px;
+		}
+
+		&.leftParen
+		{
+			& + label {
+				background-position: 0px -20px;
+			}
+			&:checked + label {
+				background-position: -26px -20px;
+			}
+		}
+
+		&.rightParen
+		{
+			& + label {
+				background-position: 0px -40px;
+			}
+			&:checked + label {
+				background-position: -26px -40px;
+			}
+		}
+
+		&.leftParen.rightParen
+		{
+			& + label {
+				background-position: 0px -60px;
+			}
+			&:checked + label {
+				background-position: -26px -60px;
+			}
+		}
+	}
+
+
+	div#stressBlock
+	{
+		@include display-flex();
+		@include flex-direction(column);
+		width: 100%;
+
+		.track
+		{
+			@include display-flex();
+			@include flex-direction(row);
+			@include justify-content(space-between);
+			@include align-items(center);
+			@include flex-wrap(wrap);
+
+			margin: 3px 0;
+		}
+
+		.rowHeader
+		{
+			width: 100px;
+			font-weight: bold;
+			text-align: left;
+		}
+
+		span.subtitle {
+			font-size: 80%;
+			font-weight: normal;
+		}
+
+		.colHeader
+		{
+			font-weight: bold;
+			text-align: center;
+			width: 22px;
+		}
+
+		.boxes
+		{
+			@include display-flex();
+			@include flex-direction(row);
+			@include justify-content(space-around);
+			@include flex-grow(1);
+
+			padding: 0 2px;
+
+			.box {
+				margin: 0 -2px;
+			}
+		}
+	}
+
+	div#stressEditBlock
+	{
+		font-size: 10pt;
+
+		.track
+		{
+			@include display-flex();
+			@include flex-direction(row);
+			@include justify-content(space-between);
+			@include align-items(center);
+
+			margin: 3px 0;
+		}
+
+		.section
+		{
+			@include display-flex();
+			@include align-items(center);
+			@include flex-direction(column);
+		}
+
+		.button-section {
+			width: 30px;
+		}
+		input[type=text] {
+			width: 90px;
+		}
+		input[type=number] {
+			width: 50px;
+		}
+	}
+}

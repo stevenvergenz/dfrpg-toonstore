@@ -1,6 +1,6 @@
 #stress.sheet-panel(ng-controller='StressCtrl', ng-class='{dirty: dirty}')
 	a#stress
-	p.sectionHeader Stress
+	h2.panelHeader Stress
 		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 	#stressBlock(ng-hide='editing')
