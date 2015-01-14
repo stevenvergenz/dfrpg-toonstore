@@ -22,7 +22,6 @@ block content
 			p: a#newtoon(href='/newtoon') Create a new character
 
 		#charList(ng-controller='UserPageCtrl')
-			h4 Characters:
 
 			p Sort by: 
 				span.sortLink(ng-class='{"sortField":sortField==="last_updated","sortReverse":sortReverse}', ng-click='setSort("last_updated")') Last Update
@@ -58,9 +57,13 @@ block content
 								img.delete(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
 
 			
-			if logged_user == owner
-				p(ng-show='data.length === 0') You currently have no characters. 
-					a(href='/newtoon') Create a new one?
-			else
-				p(ng-show='data.length === 0') This user lacks character (badum-ching!)
+			.normalbox(ng-show='data.length === 0')
+				if logged_user == owner
+					p You currently have no characters.
+
+					p Since you're new here, why not check out this 
+						a(href='/site/howto') Beginner's Guide
+						| ?
+				else
+					p This user lacks character (badum-ching!)
 
