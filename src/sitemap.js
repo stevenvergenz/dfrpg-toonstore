@@ -25,7 +25,10 @@ function serveSitemap(req,res,next)
 		.parent().node('priority', '1.0');
 	root.node('url').node('loc', liburl.resolve(config.origin, '/site/about'))
 		.parent().node('priority', '0.8');
-	root.node('url').node('loc', liburl.resolve(config.origin, '/site/contact'));
+	root.node('url').node('loc', liburl.resolve(config.origin, '/site/donate'))
+		.parent().node('priority', '0.8');
+	root.node('url').node('loc', liburl.resolve(config.origin, '/site/contact'))
+		.parent().node('priority', '0.8');
 
 	// generate sitemap for user/character URLs
 	var connection = mysql.createConnection( config.database );

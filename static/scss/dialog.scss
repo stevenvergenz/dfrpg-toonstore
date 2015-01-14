@@ -13,6 +13,43 @@
 	{
 		color: blue;
 	}
+
+	.imgcontainer
+	{
+		@include display-flex();
+		@include justify-content(center);
+		@include align-items(center);
+
+		width: 100%;
+		margin: 10px 0;
+		
+		img
+		{
+			border: solid grey 1px;
+			max-width: 100%;
+			height: auto;
+		}
+
+		.iframecontainer
+		{
+			max-width: 100%;
+			position: relative;
+
+			&:before
+			{
+				content: "";
+				display: block;
+				padding-top: 56.25%;
+			}
+
+			iframe
+			{
+				position: absolute;
+				top: 0; left: 0;
+				width: 100%; height: 100%;
+			}
+		}
+	}
 }
 
 .formbox
