@@ -31,6 +31,24 @@ app.service('rootModel', ['$rootScope','$timeout','$resource', function($rootSco
 
 	$rootScope.$on('is_dirty', function(){ $rootScope.dirty = true; });
 	$rootScope.$on('is_clean', function(){ $rootScope.dirty = false; });
+	$rootScope.$watch('dirty', function(newVal,oldVal)
+	{
+		function confirmUnload(e){
+			e.returnValue = 'This character has unsaved changes. If you leave these changes will be lost.';
+			return e.returnValue;
+		}
+
+		if( newVal === true ){
+			console.log('Page listener added');
+			//window.addEventListener('beforeunload', confirmUnload);
+			window.onbeforeunload = confirmUnload;
+		}
+		else {
+			console.log('Page listener removed');
+			//window.removeEventListener('beforeunload', confirmUnload);
+			window.onbeforeunload = null;
+		}
+	});
 }]);
 
 app.directive('dgyNotifyCollection', function()
