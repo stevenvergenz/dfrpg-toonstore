@@ -13,7 +13,11 @@ else
 		link below to get started:
 
 p
-	a(href='#{url}/activate/#{token}') #{url}/activate/#{token}
+	a(href='#{url}/activate/#{token}')
+		if registration
+			Set your password
+		else
+			Reset your password
 
 p Note that this link is only active for 15 minutes, after which you will need to request a new one.
 
