@@ -1,6 +1,6 @@
 if logged_user == owner
 	#charnav.navbar
-		ul.navmenu
+		ul.navmenu.navitem
 			li
 				a Panels
 					span.subarrow
@@ -33,6 +33,9 @@ if logged_user == owner
 					li: a(href='#conseq') Consequences
 					li: a(href='#totals') Totals
 					li: a(href='#powers') Stunts & Powers
+	
 
-		.navitem: a(href='javascript:;', ng-class='{dirty: dirty}', ng-click='data.$save()') Save
+		.itemgroup
+			.navitem: a(href='/site/howto') Beginner's Guide
+			.navitem: a(href='javascript:;', ng-class='{dirty: dirty}', ng-click='data.$save()') Save
 

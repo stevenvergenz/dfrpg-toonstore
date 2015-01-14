@@ -1,0 +1,262 @@
+extends index
+
+block title
+	title Beginner's Guide | ToonStore.net
+
+
+block content
+
+	h1 Beginner's Guide
+
+	.content-block: .normalbox
+
+		h2 Before we get started...
+
+		p Thanks for using the ToonStore! In order to help you get up to speed, this page is designed to teach you the basics of how to navigate character sheets and get the best use out of the ToonStore. If you still have questions after reading through, join the devs and other users at the 
+			a(href='https://plus.google.com/communities/100638011667854470760') Google+ group
+			|  to get your questions answered. Now on to the walkthrough!
+
+
+		a#toc
+		h2 Table of Contents
+
+		ul
+			li: a(href='#management') Character Management
+			li: a(href='#backseat') Viewing, Sharing, and Back-seat Mode
+			li: a(href='#optionals') Optional Components
+			li: a(href='#markdown') Markdown Support
+			li: a(href='#panels') Panels
+				ul
+					li: a(href='#general') Titles and Character Portrait Panel
+					li: a(href='#aspects') Aspects Panel
+					li: a(href='#skills') Skills Panel
+					li: a(href='#totals') Number Crunching Panel
+					li: a(href='#stress') Stress Panel
+					li: a(href='#consequences') Consequences Panel
+					li: a(href='#powers') Stunts & Powers Panel
+					li: a(href='#notes') Notes Panel (Optional)
+
+
+		a#management
+		h2 Character Management
+
+		p When you log in, the first thing you see is your list of characters. Each character features some basic information about the character along with a number of controls: Duplicate, Make Private/Public, and Delete. These options are only available on your own characters, with the exception of the Duplicate button. Any user may duplicate any other user's characters.
+
+		.imgcontainer: img(src='/static/img/tutorial/management.png')
+
+		p If a character is made private via the Make Private button, it will not appear in the character listing and be inaccessible to everyone except for the owner. Use the Make Public button to display a character again. This is a great feature for GMs that want quick access to NPCs without the player characters knowing about or seeing them.
+		
+		p For new users, this character listing is obviously blank. Click the "Create a new character" button at the top to make your first character. Fill out the basic information for the character where prompted, and hit Submit. If you chose a template for your character, then the character will be pre-populated with the powers and stats of that template.
+
+		p: a(href='#') Back to top
+
+
+		a#backseat
+		h2 Viewing, Sharing, and Back-seat Mode
+
+		p The whole point of the ToonStore is to enable easy sharing of character sheets. As such, sharing your sheet is easy. When viewing a character, just copy/paste the character link from the URL bar of your browser and send it out however you like (social media, forum post, email, etc.). This will only work for your public characters; private characters are only visible to their owners.
+
+		.imgcontainer: img(src='/static/img/tutorial/url-bar.png')
+
+		p People receiving your link will see a big banner at the top of the sheet saying that they are in back-seat mode. They can make changes to the sheet, but the changes are gone when the page is closed. This is useful if a player is absent from a gaming session and someone else is playing the character. They can still track stress, etc. at the table.
+
+		p Characters also contain a link back to their owners' pages. Anyone can click this link to see other (public) characters created by the same user.
+
+		p: a(href='#') Back to top
+
+
+		a#optionals
+		h2 Optional Components
+
+		p Not all character sheet features are appropriate for all characters. The default look of the page mimics the published character sheets for the DFRPG, but alternatives are sometimes desirable. As such, there are a few optional features available via the Panels > Optional Panels menu.
+
+		.imgcontainer: img(src='/static/img/tutorial/optionals.png')
+
+		p The Notes option adds a free-form Markdown-enabled box to fill with whatever text-based data you wish. Rote spells, inventory, adventure logs, whatever you need!
+
+		p The Shapeshifter option enables the creation of a second set of shapeshifted skills in the Skills panel. This will be addressed in the Skills section.
+
+		p: a(href='#') Back to top
+
+
+		a#markdown
+		h2 Markdown Support
+
+		p Many text fields in the ToonStore character sheet support Markdown, the formatting syntax used by Reddit, Github, and others. It is designed to be as intuitive and readable as possible, even in plain text. The full syntax can be found 
+			a(href='http://daringfireball.net/projects/markdown/syntax') here
+			| , but here's a quick overview:
+
+		.sidebyside
+			div: pre: code.
+				Heading
+				=======
+
+				Subheading
+				----------
+
+				#### Heading 4
+
+			| becomes
+			div
+				h1 Heading
+				h2 Subheading
+				h4 Heading 4
+
+		hr
+
+		.sidebyside
+			div: pre: code.
+				*emphasis* and
+				**strong emphasis**
+			| becomes
+			div
+				em emphasis
+				|  and 
+				strong strong emphasis
+
+		hr
+
+		.sidebyside
+			div: pre: code
+				| * Item 1
+				| * Item 2
+				|     * Subitem 1
+				| * Item 3
+
+			| becomes
+
+			div: ul
+				li Item 1
+					ul: li Subitem 1
+				li Item 2
+				li Item 3
+
+		hr
+
+		.sidebyside
+			div: pre: code.
+				![Lifeson](/Derogatory/lifeson/avatar)
+				[Lifeson](/Derogatory/lifeson/)
+
+			| becomes
+			div
+				img(src='/Derogatory/lifeson/avatar', style='width: 100px;')
+				a(href='/Derogatory/lifeson/') Lifeson
+
+		p: a(href='#') Back to top
+
+
+		a#panels
+		h2 Panels
+
+		p Just like the published character sheet, ToonStore character sheets are built of different sections that we call panels. Each panel should be recognizable to anyone that has played the DFRPG. However, there may be features available that are not immediately obvious, hence this section.
+
+		p All panels have two things in common. First, the Edit button (
+			img.icon(src='/static/img/glyphicons/glyphicons_150_edit.png')
+			| ). Clicking it will change the corresponding panel into editable fields, where you can input your character information. Clicking it again will return to classic view. Second, if you edit any part of a panel, it will get a red border around it, reminding you to save your changes. If you are logged in, click the Save link at the top of the page to push your changes to the server.
+
+		p: a(href='#') Back to top
+
+
+		a#general
+		h3 Title and Character Portrait Panel
+
+		p This panel is pretty basic. It contains the character's name, the player's name (with link back to his user page), and the character portrait. Edit mode allows you to upload a new portrait, which accepts BMPs, JPEGs, PNGs, and GIFs, along with several lesser-known formats.
+
+		p: a(href='#') Back to top
+
+
+		a#aspects
+		h3 Aspects Panel
+
+		p The Aspects panel provides a list of your character's permanent aspects. Edit mode provides a set of fields to input your aspect names, which can be prefixed with a phase name in brackets (e.g. [PHASE]) if so desired. For example, if your character was orphaned on the mean streets of Detroit, you might input the aspect as "[BACKGROUND] Grew Up Hard, Grew Up Fast". The phase name will be omitted from the name of the aspect when not in edit mode, yielding simply 
+			em Grew Up Hard, Grew Up Fast
+			| .
+
+		p Each aspect field is paired with a text box to input a full description of that aspect, which will appear as a collapsible subtext when not in edit mode. These description fields are Markdown-enabled.
+
+		p By default, new characters only have a high concept and a trouble. To add additional aspects, click the plus icon (
+			img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+			| ) at the bottom of the panel. This will add a new aspect name/description field pair. These additional aspects can be reordered by dragging the drag handle (
+			img.icon(src='/static/img/glyphicons/glyphicons_186_move.png')
+			| ) up and down to the desired position, or removed by clicking the Delete button (
+			img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+			| ).
+
+		p: a(href='#') Back to top
+
+
+		a#skills
+		h3 Skills Panel
+
+		p The Skills panel provides an easy way to calculate your skill point usage in addition to simply displaying your skills. Edit mode provides the skill ladder up to your skill cap, and a field to add new skills. Add a skill, then drag it from +0 to the level you want it. The indicator at the bottom will tell you if your skill ladder is valid, and how many points you have left to spend. These numbers are based on the skill cap and skill point values provided in the 
+			em Number Crunching
+			|  panel.
+
+		p At the bottom of the Skills panel is a simple fudge dice roller. Click it to roll the dice.
+
+		p If you have the 
+			em Shapeshifter
+			|  option enabled, then a new toggle will appear at the top of the Skills panel: a shapeshifter button (
+			img.icon(src='/static/img/shifter_human.svg')
+			| ). Clicking it will switch to a second distinct skill ladder for you to populate. Place your skills like normal. Clicking the shapeshifter button again will switch back to the first set of skills.
+
+		p: a(href='#') Back to top
+
+
+		a#totals
+		h3 Number Crunching Panel
+
+		p This panel contains totals information for the Skills and Powers panels. Edit mode will let you set the refresh level, skill level, skill cap, and number of fate points for your character. These values are used to compute your available skill points and adjusted refresh.
+
+		p: a(href='#') Back to top
+
+
+		a#stress
+		h3 Stress Panel
+
+		p Anyone who has played a Fate-based game will recognize the Stress panel. The panel has a number of stress tracks, and each track has up to 8 stress boxes. To mark a stress box as used, simply click it.
+
+		.imgcontainer
+			img(src='/static/img/tutorial/stress.gif')
+
+		p The Edit view of this panel has a lot of controls, but don't be intimidated; it's really very simple. The minimum you have to do is label your track with a name and relevant skill, and choose how many boxes it has (the field labeled "Strength"). If you want, you can also indicate how many of those boxes have a Catch with the field labeled "Tough" (short for Toughness). If you have armor, you can also add a line to the relevant stress track so you remember to mitigate that stress.
+
+		p All new characters start with the default DFRPG stress tracks: Physical, Mental, and Social. If you need additonal stress tracks (for example, Hunger), you can add more by clicking the Add button (
+			img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+			| ) at the bottom of the panel. Conversely, if you are playing a system that has fewer stress tracks, you can remove a track by clicking the Remove button (
+			img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+			| ) next to that track.
+
+		p: a(href='#') Back to top
+
+
+		a#consequences
+		h3 Consequences Panel
+
+		p The Consequences panel is essentially a more specialized version of the Aspects panel. Each consequence has severity (Mild, Moderate, etc.) and a relevant stress type (Any Type, Physical, Mental, etc.). A consequence's stress type can only be one of those that you have a stress track for. To use the consequence, just click the text on the right, which will change into a textbox. In Edit mode, you can add new consequences with the Add button at the bottom of the panel, or remove them with the Remove button next to the relevant consequence.
+
+		p You can also manage temporary aspects from the Consequences panel. Add a new temporary aspect with the text box at the bottom of the Consequences panel, or remove one by clicking the Remove button next to the relevant aspect.
+
+		p: a(href='#') Back to top
+
+
+		a#powers
+		h3 Stunts & Powers Panel
+
+		p This panel displays your powers and stunts in an easy-to-read table. Each row consists of the ability name and its cost (negative for refresh spent, positive for refresh gained). Each ability can also have a markdown-enabled description, which will be collapsed (expanded on click) if it gets too long.
+
+		p Besides the obvious, Edit mode also has controls to add new stunts (the Add button at the bottom), remove stunts (the Remove button next to each item), and reorder stunts (the drag handle next to each item).
+
+		p: a(href='#') Back to top
+
+
+		a#notes
+		h3 Notes Panel (Optional)
+
+		p The Notes panel couldn't be simpler. It's a free-form markdown-enabled text box. Put whatever markdown you want into Edit mode, and it comes out in normal mode nicely formatted. See the 
+			a(href='#markdown') markdown section
+			|  for more information about how that works.
+
+		p: a(href='#') Back to top
+

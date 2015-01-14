@@ -9,7 +9,7 @@
 		textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.description')
 
 		div(dgy-accordion='data.aspects.high_concept.description', ng-hide='editing')
-			p.aspectText {{data.aspects.high_concept.name}}
+			p.aspectText {{parseAspect(data.aspects.high_concept.name).name}}
 			.description(ng-bind-html='data.aspects.high_concept.description | mdToHtml')
 
 	.field
@@ -17,7 +17,7 @@
 		input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.name')
 		textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.description')
 		div(dgy-accordion='data.aspects.trouble.description', ng-hide='editing')
-			p.aspectText {{data.aspects.trouble.name}}
+			p.aspectText {{parseAspect(data.aspects.trouble.name).name}}
 			.description(ng-bind-html='data.aspects.trouble.description | mdToHtml')
 
 	.field
