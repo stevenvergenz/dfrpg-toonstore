@@ -23,18 +23,18 @@ block content
 		ul
 			li: a(href='#management') Character Management
 			li: a(href='#backseat') Viewing, Sharing, and Back-seat Mode
-			li: a(href='#options') Optional Components
+			li: a(href='#optionals') Optional Components
 			li: a(href='#markdown') Markdown Support
 			li: a(href='#panels') Panels
 				ul
-					li: a(href='#general') Titles and Character Portrait
-					li: a(href='#aspects') Aspects
-					li: a(href='#skills') Skills
-					li: a(href='#totals') Number Crunching
-					li Stress
-					li Consequences
-					li Stunts & Powers
-					li Notes
+					li: a(href='#general') Titles and Character Portrait Panel
+					li: a(href='#aspects') Aspects Panel
+					li: a(href='#skills') Skills Panel
+					li: a(href='#totals') Number Crunching Panel
+					li: a(href='#stress') Stress Panel
+					li: a(href='#consequences') Consequences Panel
+					li: a(href='#powers') Stunts & Powers Panel
+					li: a(href='#notes') Notes Panel (Optional)
 
 
 		a#management
@@ -237,3 +237,26 @@ block content
 		p The Consequences panel is essentially a more specialized version of the Aspects panel. Each consequence has severity (Mild, Moderate, etc.) and a relevant stress type (Any Type, Physical, Mental, etc.). A consequence's stress type can only be one of those that you have a stress track for. To use the consequence, just click the text on the right, which will change into a textbox. In Edit mode, you can add new consequences with the Add button at the bottom of the panel, or remove them with the Remove button next to the relevant consequence.
 
 		p You can also manage temporary aspects from the Consequences panel. Add a new temporary aspect with the text box at the bottom of the Consequences panel, or remove one by clicking the Remove button next to the relevant aspect.
+
+		p: a(href='#') Back to top
+
+
+		a#powers
+		h3 Stunts & Powers Panel
+
+		p This panel displays your powers and stunts in an easy-to-read table. Each row consists of the ability name and its cost (negative for refresh spent, positive for refresh gained). Each ability can also have a markdown-enabled description, which will be collapsed (expanded on click) if it gets too long.
+
+		p Besides the obvious, Edit mode also has controls to add new stunts (the Add button at the bottom), remove stunts (the Remove button next to each item), and reorder stunts (the drag handle next to each item).
+
+		p: a(href='#') Back to top
+
+
+		a#notes
+		h3 Notes Panel (Optional)
+
+		p The Notes panel couldn't be simpler. It's a free-form markdown-enabled text box. Put whatever markdown you want into Edit mode, and it comes out in normal mode nicely formatted. See the 
+			a(href='#markdown') markdown section
+			|  for more information about how that works.
+
+		p: a(href='#') Back to top
+
