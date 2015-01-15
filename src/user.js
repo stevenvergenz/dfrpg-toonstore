@@ -36,6 +36,7 @@ function userJson(req,res,next)
 		function(err,rows,fields){
 			if( err ){
 				global.error( err, global.logLevels.warning );
+				res.send(500);
 			}
 			else if( rows.length > 0 )
 			{
