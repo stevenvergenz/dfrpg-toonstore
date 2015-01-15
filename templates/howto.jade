@@ -40,13 +40,16 @@ block content
 		a#management
 		h2 Character Management
 
-		p When you log in, the first thing you see is your list of characters. Each character features some basic information about the character along with a number of controls: Duplicate, Make Private/Public, and Delete. These options are only available on your own characters, with the exception of the Duplicate button. Any user may duplicate any other user's characters.
-
 		.imgcontainer: img(src='/static/img/tutorial/management.png')
 
-		p If a character is made private via the Make Private button, it will not appear in the character listing and be inaccessible to everyone except for the owner. Use the Make Public button to display a character again. This is a great feature for GMs that want quick access to NPCs without the player characters knowing about or seeing them.
+		p When you log in, the first thing you see is your list of characters. Each character features some basic information about the character along with a number of controls:
 		
-		p For new users, this character listing is obviously blank. Click the "Create a new character" button at the top to make your first character. Fill out the basic information for the character where prompted, and hit Submit. If you chose a template for your character, then the character will be pre-populated with the powers and stats of that template.
+		ul
+			li Duplicate - This creates a copy of the given character, and prompts you to rename him/her. You may make changes to this copy without affecting the original. Any user may duplicate any other user's characters.
+			li Visibility - This toggles the visibility of a character. If marked Private, the character will not appear to others in your character listing, and be inaccessible to everyone but you. This is a great feature for GMs that want quick access to NPCs without the player characters knowing about or seeing them. By default, new characters are Public.
+			li Delete - This deletes the character. This cannot be undone.
+			
+		p For new users, this character listing is blank. Click the "Create a new character" button at the top to make your first character. Fill out the basic information for the character where prompted, and hit Submit. If you chose a template for your character, then the character will be pre-populated with the powers and stats of that template.
 
 		p: a(href='#') Back to top
 
@@ -75,6 +78,8 @@ block content
 		p The Notes option adds a free-form Markdown-enabled box to fill with whatever text-based data you wish. Rote spells, inventory, adventure logs, whatever you need!
 
 		p The Shapeshifter option enables the creation of a second set of shapeshifted skills in the Skills panel. This will be addressed in the Skills section.
+
+		p From the Panels menu, you can also access a "printer-friendly" version of the character sheet. This is poorly supported and will not work on many character sheets, but usually works for characters with short power descriptions.
 
 		p: a(href='#') Back to top
 
@@ -149,11 +154,13 @@ block content
 		a#panels
 		h2 Panels
 
-		p Just like the published character sheet, ToonStore character sheets are built of different sections that we call panels. Each panel should be recognizable to anyone that has played the DFRPG. However, there may be features available that are not immediately obvious, hence this section.
+		p Just like the published character sheet, ToonStore character sheets are built of different sections that we call panels.
 
-		p All panels have two things in common. First, the Edit button (
-			img.icon(src='/static/img/glyphicons/glyphicons_150_edit.png')
-			| ). Clicking it will change the corresponding panel into editable fields, where you can input your character information. Clicking it again will return to classic view. Second, if you edit any part of a panel, it will get a red border around it, reminding you to save your changes. If you are logged in, click the Save link at the top of the page to push your changes to the server.
+		ul
+			li Each panel can be edited individually by clicking the Edit button (
+				img.icon(src='/static/img/glyphicons/glyphicons_150_edit.png')
+				| ). Clicking it will change the corresponding panel into editable fields, where you can input your character information.
+			li If you edit any part of a panel, it will get a red border around it, reminding you to save your changes. If you are logged in, click the Save link at the top of the page to push your changes to the server. You cannot save changes for characters that are not your own.
 
 		p: a(href='#') Back to top
 
@@ -218,7 +225,8 @@ block content
 		p Anyone who has played a Fate-based game will recognize the Stress panel. The panel has a number of stress tracks, and each track has up to 8 stress boxes. To mark a stress box as used, simply click it.
 
 		.imgcontainer
-			img(src='/static/img/tutorial/stress.gif')
+			img(src='/static/img/tutorial/stress_normal.png')
+			img(src='/static/img/tutorial/stress_edit.png')
 
 		p The Edit view of this panel has a lot of controls, but don't be intimidated; it's really very simple. The minimum you have to do is label your track with a name and relevant skill, and choose how many boxes it has (the field labeled "Strength"). If you want, you can also indicate how many of those boxes have a Catch with the field labeled "Tough" (short for Toughness). If you have armor, you can also add a line to the relevant stress track so you remember to mitigate that stress.
 
