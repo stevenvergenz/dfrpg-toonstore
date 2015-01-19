@@ -63,13 +63,17 @@ block content
 		a#backseat
 		h2 Viewing, Sharing, and Back-seat Mode
 
-		p The whole point of the ToonStore is to enable easy sharing of character sheets. As such, sharing your sheet is easy. When viewing a character, just copy/paste the character link from the URL bar of your browser and send it out however you like (social media, forum post, email, etc.). This will only work for your public characters; private characters are only visible to their owners.
+		//p The whole point of the ToonStore is to enable easy sharing of character sheets. As such, sharing your sheet is easy. When viewing a character, just copy/paste the character link from the URL bar of your browser and send it out however you like (social media, forum post, email, etc.). This will only work for your public characters; private characters are only visible to their owners.
+
+		p The main purpose of ToonStore is to simply the sharing of character sheets. Currently, it's as simple as copying the character link from the URL bar and sharing the link. Anyone with the character link can view your character. This only works for your public characters; private characters are only visible to their owners.Characters also contain a link back to their owners' pages. Anyone can click this link to see other (public) characters created by the same user.
 
 		.imgcontainer: img(src='/static/img/tutorial/url-bar.png')
 
-		p People receiving your link will see a big banner at the top of the sheet saying that they are in back-seat mode. They can make changes to the sheet, but the changes are gone when the page is closed. This is useful if a player is absent from a gaming session and someone else is playing the character. They can still track stress, etc. at the table.
+		//p People receiving your link will see a big banner at the top of the sheet saying that they are in back-seat mode. They can make changes to the sheet, but the changes are gone when the page is closed. This is useful if a player is absent from a gaming session and someone else is playing the character. They can still track stress, etc. at the table.
 
-		p Characters also contain a link back to their owners' pages. Anyone can click this link to see other (public) characters created by the same user.
+		//p Characters also contain a link back to their owners' pages. Anyone can click this link to see other (public) characters created by the same user.
+
+		p When other users access your character, they will be in Back-seat mode. They can make changes to the sheet, but the changes are gone when the page is closed. One example of usage would be in the case of an absent player. With the Toonstore, another player can track relevant information regarding that character and make note of it for the next session.
 
 		p: a(href='#') Back to top
 
@@ -77,21 +81,27 @@ block content
 		a#optionals
 		h2 Optional Components
 
-		p Not all character sheet features are appropriate for all characters. The default look of the page mimics the published character sheets for the DFRPG, but alternatives are sometimes desirable. As such, there are a few optional features available via the Panels > Optional Panels menu.
+		p The character sheet mimics the published character sheets for the DFRPG, but alternatives are sometimes desirable. The character sheet features a set of optional panels, available via the Options menu.
 
 		.imgcontainer: img(src='/static/img/tutorial/optionals.png')
 
-		p The Notes option adds a free-form Markdown-enabled box to fill with whatever text-based data you wish. Rote spells, inventory, adventure logs, whatever you need!
+		ul
+			li
+				strong Notes:
+				|  This adds a free-form Markdown-enabled box to fill with whatever text-based data you wish. Rote spells, inventory, adventure logs, whatever you need!
+			li
+				strong Shapeshifter:
+				|  This enables the creation of a second set of shapeshifted skills in the Skills panel. This will be addressed in the Skills section.
 
-		p The Shapeshifter option enables the creation of a second set of shapeshifted skills in the Skills panel. This will be addressed in the Skills section.
-
-		p From the Panels menu, you can also access a "printer-friendly" version of the character sheet. This is poorly supported and will not work on many character sheets, but usually works for characters with short power descriptions.
+		//- TODO: mention the printable version, once it's better supported
 
 		p: a(href='#') Back to top
 
 
 		a#markdown
 		h2 Markdown Support
+
+		//- TODO: maybe move this to a different page?
 
 		p Many text fields in the ToonStore character sheet support Markdown, the formatting syntax used by Reddit, Github, and others. It is designed to be as intuitive and readable as possible, even in plain text. The full syntax can be found 
 			a(href='http://daringfireball.net/projects/markdown/syntax') here
@@ -228,7 +238,7 @@ block content
 		a#stress
 		h3 Stress Panel
 
-		p Anyone who has played a Fate-based game will recognize the Stress panel. The panel has a number of stress tracks, and each track has up to 8 stress boxes. To mark a stress box as used, simply click it.
+		p Stress is the default form of tracking damage in the Fate system. The Stress panel has a number of stress tracks, and each track has up to 8 stress boxes. To mark a stress box as used, simply click it.
 
 		.imgcontainer
 			img(src='/static/img/tutorial/stress_normal.png')
