@@ -35,7 +35,7 @@ block content
 				select#template(name='template')
 					option
 					for item in templates
-						option(value='#{item}', label='#{item}')
+						option(value='#{item}', label='#{item}')= item
 				p.caption The template your character is based on.
 
 			.field.checkbox
