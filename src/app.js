@@ -81,13 +81,24 @@ app.post('/killtoon', character.deleteCharacterRequest);
 app.get('/killtoon', character.deleteCharacterPage);
 app.post('/togglePrivacy', user.togglePrivacy);
 
+// generate donation information
+config.donation_address = config.donation_address || '1CX5xJ3o4rXcNRTrWGd2zCmAMtpCXGZo78';
+app.get('/site/donate', global.renderPage('donate', {donation_address: config.donation_address}));
+app.get('/site/donate/donation_qr.png', function(req,res,next)
+{
+	var donor = req.query.user ? '?message=Thanks%20from%20'+req.query.user : '';
+	var code = qr.image( 'bitcoin:' + config.donation_address + donor, {type:'png'} );
+	//var output = fs.createWriteStream( libpath.resolve(__dirname, '..','static','img','donation_qr.png') );
+	code.pipe(res);
+});
+
+
 // route the extra pages
 app.get('/site/about', global.renderPage('about'));
 app.get('/site/contact', global.renderPage('contact'));
 app.get('/site/terms', global.renderPage('terms'));
 app.get('/site/privacy', global.renderPage('privacy'));
 app.get('/site/howto', global.renderPage('howto'));
-app.get('/site/donate', global.renderPage('donate', {donation_address: config.donation_address}));
 app.get('/', global.renderPage('index'));
 
 app.use('/static', express.static( libpath.resolve(__dirname,'..','static'), {maxAge: 24*60*60}));
@@ -106,13 +117,6 @@ app.use(function(req,res)
 	else
 		res.send(404);
 });
-
-// generate donation information
-
-config.donation_address = config.donation_address || '1CX5xJ3o4rXcNRTrWGd2zCmAMtpCXGZo78';
-var code = qr.image( 'bitcoin:'+config.donation_address, {type:'png'} );
-var output = fs.createWriteStream( libpath.resolve(__dirname, '..','static','img','donation_qr.png') );
-code.pipe(output);
 
 
 sass.compile( '../static/scss', startServer );

@@ -36,7 +36,11 @@ block content
 			p You can support the ToonStore by donating to:
 
 			div(style='display:flex; flex-direction:column; align-items:center;')
-				img(src='/static/img/donation_qr.png')
-				a(href='bitcoin:#{donation_address}', style='font-family:monospace;')= donation_address
+				if logged_user
+					img(src='/site/donate/donation_qr.png?user=#{logged_user}')
+					a(href='bitcoin:#{donation_address}?message=Thanks%20from%20#{logged_user}', style='font-family:monospace;')= donation_address
+				else
+					img(src='/site/donate/donation_qr.png')
+					a(href='bitcoin:#{donation_address}', style='font-family:monospace;')= donation_address
 
 			p On behalf of the ToonStore community, thank you for helping keep ToonStore online and serving a new generation of roleplayers.
