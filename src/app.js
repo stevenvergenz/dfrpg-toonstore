@@ -87,6 +87,7 @@ app.get('/site/contact', global.renderPage('contact'));
 app.get('/site/terms', global.renderPage('terms'));
 app.get('/site/privacy', global.renderPage('privacy'));
 app.get('/site/howto', global.renderPage('howto'));
+app.get('/site/donate', global.renderPage('donate', {donation_address: config.donation_address}));
 app.get('/', global.renderPage('index'));
 
 app.use('/static', express.static( libpath.resolve(__dirname,'..','static'), {maxAge: 24*60*60}));
@@ -113,7 +114,6 @@ var code = qr.image( 'bitcoin:'+config.donation_address, {type:'png'} );
 var output = fs.createWriteStream( libpath.resolve(__dirname, '..','static','img','donation_qr.png') );
 code.pipe(output);
 
-app.get('/site/donate', global.renderPage('donate', {donation_address: config.donation_address}));
 
 sass.compile( '../static/scss', startServer );
 
