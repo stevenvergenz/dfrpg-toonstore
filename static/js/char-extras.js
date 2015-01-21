@@ -306,6 +306,17 @@ app.filter('mdToHtml', ['$sce', '$sanitize', function($sce, $sanitize){
 	
 }]);
 
+app.filter('formatRefresh', [function(){
+	return function(x){
+		if(x>0)
+			return '+'+x;
+		else if(x==0)
+			return '-'+x;
+		else
+			return x;
+	};
+}]);
+
 app.service('SharedResources', ['rootModel', function(rootModel)
 {
 	var self = this;

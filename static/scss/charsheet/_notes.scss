@@ -13,7 +13,8 @@
 		white-space: pre-wrap;
 	}
 
-	.inner {
+	.inner
+	{
 		text-align: left;
 		font-family: inherit;
 		font-size: 10pt;
@@ -21,6 +22,10 @@
 		@include desktop {
 			max-height: 750px;
 			overflow-y: auto;
+		}
+
+		img {
+			max-width: 100%;
 		}
 	}
 

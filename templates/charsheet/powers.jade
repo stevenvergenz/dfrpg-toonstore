@@ -12,7 +12,7 @@
 				.row
 					.cost
 						input(type='number', min='-8', max='8', dgy-notify, ng-model='power.cost', ng-show='editing')
-						span(ng-hide='editing') {{(power.cost > 0 ? '+' : '')+power.cost}}
+						span(ng-hide='editing') {{power.cost | formatRefresh}}
 					.name
 						input(type='text', dgy-notify, ng-model='power.name', ng-show='editing')
 						span(ng-hide='editing') {{power.name}}
