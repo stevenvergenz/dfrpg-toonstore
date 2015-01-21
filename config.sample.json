@@ -19,6 +19,7 @@
 	"cookie_secret": "I return from whence I came...",
 	"origin": "http://localhost:3001",
 	"use_sitemap": false,
+	"donation_address": "1CX5xJ3o4rXcNRTrWGd2zCmAMtpCXGZo78",
 
 	"use_ssl": false,
 	"ssl_key": "localhost:3001.key",

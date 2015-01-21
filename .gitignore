@@ -20,3 +20,4 @@ uploads/
 config.json
 static/scss/**/*.css
 static/scss/**/*.css.map
+static/img/donation_qr.png

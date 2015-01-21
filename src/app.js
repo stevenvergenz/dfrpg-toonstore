@@ -3,6 +3,7 @@ var fs = require('fs');
 var libpath = require('path');
 var liburl = require('url');
 var express = require('express');
+var qr = require('qr-image');
 
 var global = require('./global.js');
 var config = require('../config.json');
@@ -85,7 +86,6 @@ app.get('/site/about', global.renderPage('about'));
 app.get('/site/contact', global.renderPage('contact'));
 app.get('/site/terms', global.renderPage('terms'));
 app.get('/site/privacy', global.renderPage('privacy'));
-app.get('/site/donate', global.renderPage('donate'));
 app.get('/site/howto', global.renderPage('howto'));
 app.get('/', global.renderPage('index'));
 
@@ -106,7 +106,14 @@ app.use(function(req,res)
 		res.send(404);
 });
 
+// generate donation information
 
+config.donation_address = config.donation_address || '1CX5xJ3o4rXcNRTrWGd2zCmAMtpCXGZo78';
+var code = qr.image( 'bitcoin:'+config.donation_address, {type:'png'} );
+var output = fs.createWriteStream( libpath.resolve(__dirname, '..','static','img','donation_qr.png') );
+code.pipe(output);
+
+app.get('/site/donate', global.renderPage('donate', {donation_address: config.donation_address}));
 
 sass.compile( '../static/scss', startServer );
 
