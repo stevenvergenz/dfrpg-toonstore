@@ -108,7 +108,7 @@ function newCharacterPage(req,res)
 	if( users.length > 0 )
 	{
 		var connection = mysql.createConnection( config.database );
-		connection.query('SELECT CONCAT(owner,"/",canonical_name) AS slug FROM Characters WHERE BINARY owner IN (?);', [users], function(err,rows,fields)
+		connection.query('SELECT CONCAT(owner,"/",canonical_name) AS slug FROM Characters WHERE BINARY owner IN (?) AND private = FALSE;', [users], function(err,rows,fields)
 		{
 			if(err){
 				global.error('MySQL error while retrieving templates:', err);
