@@ -70,7 +70,7 @@ app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', avatars.saveAvat
 
 
 // redirect if character sheet doesn't have trailing slash
-app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', function(req,res,next){
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)$', function(req,res,next){
 	if( req.params.user != 'site' )
 		res.redirect(req.url + '/');
 	else

@@ -14,19 +14,28 @@ function servePage(req,res,next)
 				global.error( err, global.logLevels.warning );
 				res.send(500);
 			}
-			else if( rows.length == 1 && (!rows[0].private || req.params.user == req.session.user)){
-				if( /printable$/.test(req.url) ){
-					global.log('Serving printable character page for', req.url);
-					global.renderPage('printable', {toonName: rows[0].name, toonConcept: rows[0].concept})(req,res);
+			else if( rows.length == 1 )
+			{
+				// authorized user
+				if( !rows[0].private || req.params.user == req.session.user )
+				{
+					if( /printable$/.test(req.url) ){
+						global.log('Serving printable character page for', req.url);
+						global.renderPage('printable', {toonName: rows[0].name, toonConcept: rows[0].concept})(req,res);
+					}
+					else {
+						global.log('Serving character page for', req.url);
+						global.renderPage('charsheet/base', {toonName: rows[0].name, toonConcept: rows[0].concept})(req,res);
+					}
 				}
+				// unauthorized
 				else {
-					global.log('Serving character page for', req.url);
-					global.renderPage('charsheet/base', {toonName: rows[0].name, toonConcept: rows[0].concept})(req,res);
+					global.log('Serving blocked character page');
+					global.renderPage('private', {code: 401, toonName: rows[0].name, toonOwner: req.params.user})(req,res);
 				}
 			}
 			else {
-				global.log('Blocking access to', req.url);
-				global.renderPage('404', {code: 404})(req,res);
+				next();
 			}
 			connection.end();
 		}
