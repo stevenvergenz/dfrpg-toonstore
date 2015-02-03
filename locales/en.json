@@ -1,0 +1,34 @@
+{
+	"index": {
+		"title": "Online Dresden Files RPG Character Hosting | ToonStore.net",
+		"meta_description": "Create, modify, and share cloud-based mobile-friendly Dresden Files RPG or Fate character sheets right in your browser with ToonStore.",
+		"banner": {
+			"subtitle": "+2 to organization rolls"
+		},
+		"pitch": {
+			"p1": "Greetings, roleplayer!",
+			"p2": "Everyone has run into this scenario: you and your partymates are going through character creation, filling out your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion. Do you scan it and email it? Do you transcribe it? Just email the aspects?",
+			"p3": "Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.",
+			"p4": "This is where ToonStore comes in. We store your Dresden Files RPG or other Fate-based character data in the cloud, so you never lose it and can easily share it. Just view the online character sheet and make your edits right in the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.",
+			"p5": {
+				"frag1": "Interested? ",
+				"frag2": "Log in",
+				"frag3": " with your ",
+				"frag4": "Persona",
+				"frag5": " account, or ",
+				"frag6": "try it now",
+				"frag7": " to get rolling!"
+			}
+		}
+	},
+	"nav": {
+		"about": "About",
+		"contact": "Contact Us",
+		"logout": "Log Out",
+		"terms": "Terms of Use",
+		"privacy": "Privacy Policy",
+		"donate": "Donate",
+		"register": "Register",
+		"login": "Log In"
+	}
+}

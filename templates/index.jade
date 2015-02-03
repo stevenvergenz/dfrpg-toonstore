@@ -6,8 +6,8 @@ html
 		meta(name='robots', content='INDEX, FOLLOW')
 
 		block title
-			title Online Dresden Files RPG Character Hosting | ToonStore.net
-			meta(name='description', content='Create, modify, and share cloud-based mobile-friendly Dresden Files RPG or Fate character sheets right in your browser with ToonStore.')
+			title= __('index.title')
+			meta(name='description', content='#{__("index.meta_description")}')
 
 		link(rel='icon', type='image/png', href='/static/img/pentacle-simple.png')
 		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Denk+One|Pathway+Gothic+One')
@@ -41,15 +41,15 @@ html
 					.itemgroup
 						.navitem: a(href='/') Toon&#8203;Store
 						//-.navitem Forum
-						.navitem: a(href='/site/about') About
-						.navitem: a(href='/site/contact') Contact Us
+						.navitem: a(href='/site/about')= __('nav.about')
+						.navitem: a(href='/site/contact')= __('nav.contact')
 					.itemgroup
 						if logged_user_email
 							.navitem: a(href='/'+logged_user)= logged_user
-							.navitem: a(href='javascript:;', onclick='logout()') Log Out
+							.navitem: a(href='javascript:;', onclick='logout()')= __('nav.logout')
 						else
-							.navitem: a(href='/register') Register
-							.navitem: a(href='/login') Log In
+							.navitem: a(href='/register')= __('nav.register')
+							.navitem: a(href='/login')= __('nav.login')
 
 			.content
 
@@ -62,29 +62,24 @@ html
 					.content-block
 						.banner
 							h1 ToonStore
-							h2 +2 to organization rolls
+							h2= __('index.banner.subtitle') 
 
 					.content-block: .normalbox
-						p Greetings, roleplayer!
-						p.
-							Everyone has run into this scenario: you and your partymates are going through character creation, filling out
-							your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion.
-							Do you scan it and email it? Do you transcribe it? Just email the aspects?
-						p.
-							Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But
-							without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.
-						p.
-							This is where ToonStore comes in. We store your Dresden Files RPG or other Fate-based character data in the cloud,
-							so you never lose it and can easily share it. Just view the online character sheet and make your edits right in
-							the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.
+						p= __('index.pitch.p1')
+						p= __('index.pitch.p2')
+						p= __('index.pitch.p3')
+						p= __('index.pitch.p4')
 
-						p.
-							Interested? <a href='/login'>Log in</a> with your
-							<a href='https://login.persona.org/' target='_blank'>Persona</a> account, or
-							<a href='http://toonstore.net/Derogatory/lifeson/'>try it now</a> to get rolling!
+						p= __('index.pitch.p5.frag1')
+							a(href='/login')= __('index.pitch.p5.frag2')
+							= __('index.pitch.p5.frag3')
+							a(href='https://login.persona.org/', target='_blank')= __('index.pitch.p5.frag4')
+							= __('index.pitch.p5.frag5')
+							a(href='http://toonstore.net/Derogatory/lifeson/')= __('index.pitch.p5.frag6')
+							= __('index.pitch.p5.frag7')
 
 			block footer
 				.footer
-					span: a(href='/site/terms') Terms of Use
-					span: a(href='/site/privacy') Privacy Policy
-					span: a(href='/site/donate') Donate
+					span: a(href='/site/terms')= __('nav.terms')
+					span: a(href='/site/privacy')= __('nav.privacy')
+					span: a(href='/site/donate')= __('nav.donate')

@@ -1,21 +1,31 @@
-var http = require('http'), https = require('https');
-var fs = require('fs');
-var libpath = require('path');
-var liburl = require('url');
-var express = require('express');
-var qr = require('qr-image');
+var http = require('http'), https = require('https'),
+	fs = require('fs'),
+	libpath = require('path'),
+	liburl = require('url'),
+	express = require('express'),
+	qr = require('qr-image'),
+	i18n = require('i18n');
 
-var global = require('./global.js');
-var config = require('../config.json');
-var register = require('./register.js');
-var activate = require('./activate.js');
-var login = require('./login.js');
-var user = require('./user.js');
-var character = require('./character.js');
-var avatars = require('./avatars.js');
-var sitemap = require('./sitemap.js');
-var stats = require('./stats.js');
-var sass = require('./sass.js');
+var global = require('./global.js'),
+	config = require('../config.json'),
+	register = require('./register.js'),
+	activate = require('./activate.js'),
+	login = require('./login.js'),
+	user = require('./user.js'),
+	character = require('./character.js'),
+	avatars = require('./avatars.js'),
+	sitemap = require('./sitemap.js'),
+	stats = require('./stats.js'),
+	sass = require('./sass.js');
+
+// config translation middleware
+i18n.configure({
+	'locales': ['en'],
+	'cookie': 'lang',
+	'objectNotation': true,
+	'updateFiles': false,
+	'directory': libpath.resolve(__dirname, '..', 'locales')
+});
 
 // create the express application
 var app = express();
@@ -32,6 +42,9 @@ app.set('view engine', 'jade');
 
 // the global logger middleware
 app.use(express.logger());
+
+// the translation middleware
+app.use(i18n.init);
 
 // route the registration pages
 app.get('/register', global.renderPage('register'));
