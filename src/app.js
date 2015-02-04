@@ -18,14 +18,6 @@ var global = require('./global.js'),
 	stats = require('./stats.js'),
 	sass = require('./sass.js');
 
-// config translation middleware
-i18n.configure({
-	'locales': ['en'],
-	'cookie': 'lang',
-	'objectNotation': true,
-	'updateFiles': false,
-	'directory': libpath.resolve(__dirname, '..', 'locales')
-});
 
 // create the express application
 var app = express();
@@ -33,7 +25,6 @@ app.use(express.bodyParser({
 	keepExtensions: true,
 	uploadDir: libpath.resolve(__dirname,'..','uploads')
 }));
-
 
 app.use(express.cookieParser());
 app.use(express.session({secret: config.cookie_secret}));
@@ -44,7 +35,35 @@ app.set('view engine', 'jade');
 app.use(express.logger());
 
 // the translation middleware
+i18n.configure({
+	locales: ['en','pt'],
+	defaultLocale: 'en',
+	directory: libpath.resolve(__dirname,'..','locales'),
+	extension: '.json',
+	updateFiles: false,
+	objectNotation: true
+});
 app.use(i18n.init);
+
+app.use(function(req,res,next)
+{
+	req.preferredLang = req.language;
+	//console.log(Object.keys(req));
+	var match = /^\/([a-z]{2})\//.exec(req.url);
+	if(match)
+	{
+		global.log('Matched path locale');
+		var lang = match[1];
+		req.setLocale(lang);
+		req.url = req.url.slice(3);
+	}
+	/*else {
+		global.log('Default locale');
+		req.setLocale(i18n.defaultLocale);
+	}*/
+
+	next();
+});
 
 // route the registration pages
 app.get('/register', global.renderPage('register'));
