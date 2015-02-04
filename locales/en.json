@@ -1,27 +1,6 @@
 {
-	"index": {
-		"title": "Online Dresden Files RPG Character Hosting | ToonStore.net",
-		"meta_description": "Create, modify, and share cloud-based mobile-friendly Dresden Files RPG or Fate character sheets right in your browser with ToonStore.",
-		"banner": {
-			"subtitle": "+2 to organization rolls"
-		},
-		"pitch": {
-			"p1": "Greetings, roleplayer!",
-			"p2": "Everyone has run into this scenario: you and your partymates are going through character creation, filling out your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion. Do you scan it and email it? Do you transcribe it? Just email the aspects?",
-			"p3": "Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.",
-			"p4": "This is where ToonStore comes in. We store your Dresden Files RPG or other Fate-based character data in the cloud, so you never lose it and can easily share it. Just view the online character sheet and make your edits right in the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.",
-			"p5": {
-				"frag1": "Interested? ",
-				"frag2": "Log in",
-				"frag3": " with your ",
-				"frag4": "Persona",
-				"frag5": " account, or ",
-				"frag6": "try it now",
-				"frag7": " to get rolling!"
-			}
-		}
-	},
-	"nav": {
+	"nav":
+	{
 		"about": "About",
 		"contact": "Contact Us",
 		"logout": "Log Out",
@@ -30,5 +9,80 @@
 		"donate": "Donate",
 		"register": "Register",
 		"login": "Log In"
+	},
+
+	"index":
+	{
+		"pagetitle": "Online Dresden Files RPG Character Hosting",
+		"meta_description": "Create, modify, and share cloud-based mobile-friendly Dresden Files RPG or Fate character sheets right in your browser with ToonStore.",
+		"banner": {
+			"subtitle": "+2 to organization rolls"
+		},
+		"p1": "Greetings, roleplayer!",
+		"p2": "Everyone has run into this scenario: you and your partymates are going through character creation, filling out your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion. Do you scan it and email it? Do you transcribe it? Just email the aspects?",
+		"p3": "Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.",
+		"p4": "This is where ToonStore comes in. We store your Dresden Files RPG or other Fate-based character data in the cloud, so you never lose it and can easily share it. Just view the online character sheet and make your edits right in the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.",
+		"p5": {
+			"f1": "Interested? ",
+			"f2": "Log in",
+			"f3": " with your ",
+			"f4": "Persona",
+			"f5": " account, or ",
+			"f6": "try it now",
+			"f7": " to get rolling!"
+		}
+	},
+
+	"about":
+	{
+		"pagetitle": "About ToonStore",
+		"meta_description": "Learn about ToonStore, the cloud-based Fate character toolkit.",
+
+		"h1": "What is the ToonStore?",
+		"p1": "ToonStore is a place where Dresden Files RPG roleplayers can store their character sheets without having to worry about losing them, or destroying them, or leaving them behind. You can create your characters right from our easy-to-use HTML interface, edit them right at the table, and share links with your friends and/or GM via whatever medium you like.",
+
+		"h2": "How did ToonStore come to be?",
+		"p2": "In the beginning, it was simply an effort to make a better version of the fillable character sheet PDF already available. As time went on though, it slowly grew in scope and complexity to encompass character hosting as well. It was originally just for my group's benefit, but since it is no more difficult to make it publicly available, I opened it up to the public. The rest, as they say, is history.",
+
+		"h3": "Who is Derogatory Studios?",
+		"p3": {
+			"f1": "Primarily it is just me, Steven Vergenz, advised by the other members of my gaming group. I don't have a ton of time to work on this project though, so if you want to work on a feature for your own group, feel free to fork this project on ",
+			"f2": "Github",
+			"f3": " for your own needs. If you do so though, I would appreciate it if you would contribute your new features back to the original ToonStore project once you're done."
+		}
+	},
+
+	"contact":
+	{
+		"pagetitle": "Contact Us",
+		"meta_description": "How to contact the developers and maintainers of the ToonStore.",
+
+		"h1": "Questions? Comments? Suggestions?",
+		"p1": "We're easy to get a hold of! You have a couple options:",
+
+		"h2": "Github",
+		"p2": {
+			"f1": "The ",
+			"f2": "source code",
+			"f3": " for this site is all publicly available under the Apache 2.0 License, so you're welcome to start your own Toonstore for your group if you want to."
+		},
+		"p3": {
+			"f1": "We also use Github for bug reporting and feature requests. If you find a flaw in the site, or have an idea for a killer new feature, let us know! Submit an ",
+			"f2": "issue report",
+			"f3": " and we'll get right on it!"
+		},
+
+		"h3": "Google+ Group",
+		"p4": {
+			"f1": "Join the devs and other ToonStore users on our ",
+			"f2": "Google+ group",
+			"f3": " to discuss the latest updates to the site, RPGs, characters, or anything else! We'd love to have your feedback!"
+		},
+
+		"h4": "Email",
+		"p5": {
+			"f1": "If you want to contact us directly, you can email us at ",
+			"f2": "."
+		}
 	}
 }

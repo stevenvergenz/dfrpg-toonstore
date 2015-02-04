@@ -6,7 +6,7 @@ html
 		meta(name='robots', content='INDEX, FOLLOW')
 
 		block title
-			title= __('index.title')
+			title= __('index.title')+' | ToonStore.net'
 			meta(name='description', content='#{__("index.meta_description")}')
 
 		link(rel='icon', type='image/png', href='/static/img/pentacle-simple.png')
@@ -65,18 +65,18 @@ html
 							h2= __('index.banner.subtitle') 
 
 					.content-block: .normalbox
-						p= __('index.pitch.p1')
-						p= __('index.pitch.p2')
-						p= __('index.pitch.p3')
-						p= __('index.pitch.p4')
+						p= __('index.p1')
+						p= __('index.p2')
+						p= __('index.p3')
+						p= __('index.p4')
 
-						p= __('index.pitch.p5.frag1')
-							a(href='/login')= __('index.pitch.p5.frag2')
-							= __('index.pitch.p5.frag3')
-							a(href='https://login.persona.org/', target='_blank')= __('index.pitch.p5.frag4')
-							= __('index.pitch.p5.frag5')
-							a(href='http://toonstore.net/Derogatory/lifeson/')= __('index.pitch.p5.frag6')
-							= __('index.pitch.p5.frag7')
+						p= __('index.p5.f1')
+							a(href='/login')= __('index.p5.f2')
+							= __('index.p5.f3')
+							a(href='https://login.persona.org/', target='_blank')= __('index.p5.f4')
+							= __('index.p5.f5')
+							a(href='http://toonstore.net/Derogatory/lifeson/')= __('index.p5.f6')
+							= __('index.p5.f7')
 
 			block footer
 				.footer
