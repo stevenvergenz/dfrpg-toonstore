@@ -20,16 +20,18 @@ exports.detect = function(req,res,next)
 {
 	res.i18n = new MyI18n();
 
-	var pathLang = detectPathLocale(req.url);
+	var pathLang = detectPathLocale(req.url, req);
 	var cookieLang = detectCookieLocale(req.cookies[config.cookie]);
 	var headerLang = detectHeaderLocale(req.headers['accept-language']);
+
+	console.log([pathLang, cookieLang, headerLang]);
 
 	if( pathLang && cookieLang ){
 		// render in path lang, prompt to switch in cookie lang
 		res.i18n.selectedLocale = pathLang;
 		res.i18n.nativeLocale = cookieLang;
 	}
-	else if( pathLang && headerLang ){
+	else if( pathLang && headerLang && pathLang !== headerLang ){
 		// render in path lang, prompt to switch in header lang
 		res.i18n.selectedLocale = pathLang;
 		res.i18n.nativeLocale = headerLang;
@@ -43,7 +45,7 @@ exports.detect = function(req,res,next)
 		res.i18n.selectedLocale = config.defaultLocale;
 		res.i18n.nativeLocale = cookieLang;
 	}
-	else if( headerLang ){
+	else if( headerLang && headerLang !== config.defaultLocale ){
 		// render in default lang, prompt to switch in header lang
 		res.i18n.selectedLocale = config.defaultLocale;
 		res.i18n.nativeLocale = headerLang;
@@ -56,24 +58,64 @@ exports.detect = function(req,res,next)
 	next();
 };
 
-function detectPathLocale(path)
+function detectPathLocale(path, req)
 {
 	// extract locale selector from path
 	var match = /^\/([A-Za-z-]+)\//.exec(path);
-	var part = match ? match[1] : null;
-	
+	var part = match ? match[1].toUpperCase() : null;
 
-	console.log(part);
+	for(var i=0; i<config.locales.length; i++)
+	{
+		if( config.locales[i].toUpperCase() === part ){
+			req.url = req.url.slice( part.length+1 );
+			return config.locales[i];
+		}
+		else if( /(\w{2})-/.exec(config.locales[i])[1].toUpperCase() === part ){
+			req.url = req.url.slice( part.length+1 );
+			return config.locales[i];
+		}
+	}
+
 	return null;
 }
 
 function detectCookieLocale(cookie)
 {
+	cookie = cookie ? cookie.toUpperCase() : null;
+
+	for(var i=0; i<config.locales.length; i++)
+	{
+		if( config.locales[i].toUpperCase() === cookie ){
+			return config.locales[i];
+		}
+		else if( /(\w{2})-/.exec(config.locales[i])[1].toUpperCase() === cookie ){
+			return config.locales[i];
+		}
+	}
+
 	return null;
 }
 
 function detectHeaderLocale(header)
 {
+	var langs = header.split(',').map(function(l){
+		var match = /([A-Za-z-]+)(?:;q=([0-9.]+))?/.exec(l);
+		return {
+			'locale': match[1].toUpperCase(),
+			'preference': match[2] ? parseFloat(match[2]) : 1
+		};
+	});
+	langs.sort(function(a,b){ return b.preference - a.preference; });
+
+	for(var acceptIdx=0; acceptIdx<langs.length; acceptIdx++)
+	{
+		for(var langIdx=0; langIdx<config.locales.length; langIdx++)
+		{
+			if( langs[acceptIdx].locale === config.locales[langIdx].toUpperCase() )
+				return config.locales[langIdx];
+		}
+	}
+
 	return null;
 }
 
