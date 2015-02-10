@@ -5,6 +5,11 @@ html
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		meta(name='robots', content='INDEX, FOLLOW')
 
+		script.
+			function setLangCookie(lang){
+				debugger;
+			}
+
 		block title
 			title= __('index.pagetitle')+' | ToonStore.net'
 			meta(name='description', content='#{__("index.meta_description")}')
@@ -52,6 +57,14 @@ html
 							.navitem: a(href='/login')= __('nav.login')
 
 			.content
+
+				if i18n.nativeLocale
+					.content-block
+						#lang-message.info This page is available in your native language. Would you like to view this version instead?
+							br
+							a(href='#{getNativeURL()}') Take me there.
+							br
+							a(href='#{getNativeURL()}', onclick='setLangCookie("#{i18n.nativeLocale}")') Take me there and remember my decision.
 
 				if message
 					.content-block

@@ -90,6 +90,26 @@ function renderPage(template, options)
 		}
 
 		log('Rendering template "', template, '" with options', pageFields);
+
+		// add localization to scope
+		pageFields.i18n = res.i18n;
+		pageFields.__ = res.i18n.__.bind(res.i18n);
+		pageFields.__n = res.i18n.__n.bind(res.i18n);
+		pageFields.n__ = res.i18n.n__.bind(res.i18n);
+		pageFields.n__n = res.i18n.n__n.bind(res.i18n);
+
+		pageFields.getNativeUrl = function()
+		{
+			var match = /^\/([A-Za-z-]+)\//.exec(req.url);
+			var part = match ? match[1] : null;
+			if( part ){
+				return req.url.replace(part, res.i18n.nativeLocale);
+			}
+			else {
+				return '/'+res.i18n.nativeLocale+req.url;
+			}
+		};
+
 		return res.render(template, pageFields, function(err,html){
 			if( !err ){
 				res.setHeader('Content-Type', 'text/html; charset=UTF-8');

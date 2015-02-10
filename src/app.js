@@ -3,7 +3,7 @@ var http = require('http'), https = require('https'),
 	libpath = require('path'),
 	liburl = require('url'),
 	express = require('express'),
-	qr = require('qr-image'),
+	qr = require('qr-image');
 
 var global = require('./global.js'),
 	config = require('../config.json'),

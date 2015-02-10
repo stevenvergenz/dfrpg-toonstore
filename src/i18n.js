@@ -1,6 +1,7 @@
 "use strict";
 
-var i18n = require('i18n');
+var i18n = require('i18n'),
+	libpath = require('path');
 
 // the translation middleware
 var config = {
@@ -25,28 +26,44 @@ exports.detect = function(req,res,next)
 
 	if( pathLang && cookieLang ){
 		// render in path lang, prompt to switch in cookie lang
+		res.i18n.selectedLocale = pathLang;
+		res.i18n.nativeLocale = cookieLang;
 	}
 	else if( pathLang && headerLang ){
 		// render in path lang, prompt to switch in header lang
+		res.i18n.selectedLocale = pathLang;
+		res.i18n.nativeLocale = headerLang;
 	}
 	else if( pathLang ){
 		// render in path lang
+		res.i18n.selectedLocale = pathLang;
 	}
 	else if( cookieLang ){
-		// redirect to cookie lang
+		// render in default lang, prompt to switch in cookie lang
+		res.i18n.selectedLocale = config.defaultLocale;
+		res.i18n.nativeLocale = cookieLang;
 	}
 	else if( headerLang ){
-		// redirect to header lang
+		// render in default lang, prompt to switch in header lang
+		res.i18n.selectedLocale = config.defaultLocale;
+		res.i18n.nativeLocale = headerLang;
 	}
 	else {
 		// render in default lang
 		res.i18n.selectedLocale = config.defaultLocale;
-		next();
 	}
+
+	next();
 };
 
 function detectPathLocale(path)
 {
+	// extract locale selector from path
+	var match = /^\/([A-Za-z-]+)\//.exec(path);
+	var part = match ? match[1] : null;
+	
+
+	console.log(part);
 	return null;
 }
 
@@ -70,6 +87,8 @@ function MyI18n()
 	this.selectedLocale = null;
 	this.nativeLocale = null;
 }
+
+MyI18n.prototype.config = config;
 
 MyI18n.prototype.__ = function()
 {
