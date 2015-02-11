@@ -52,20 +52,20 @@ app.get('/activate/:token([0-9a-f]{32})', activate.serveActivationPage);
 app.post('/activate/:token([0-9a-f]{32})', activate.setPassword);
 
 // route the login pages
-app.get('/login', global.renderPage('login', {g_client_id: config.google_client_id}));
+app.get('/login', i18n.cookieRedirect, global.renderPage('login', {g_client_id: config.google_client_id}));
 app.post('/login/persona', login.processPersonaLogin);
 app.post('/login', login.processLogin);
 app.post('/logout', login.processLogout);
 
 // route the user pages
-app.get('/:user([A-Za-z0-9_-]+)', user.userPage);
+app.get('/:user([A-Za-z0-9_-]+)', i18n.cookieRedirect, user.userPage);
 app.get('/:user([A-Za-z0-9_-]+).json', user.userJson);
 
 // route the character management pages
-app.get('/newtoon', character.newCharacterPage);
+app.get('/newtoon', i18n.cookieRedirect, character.newCharacterPage);
 app.post('/newtoon', character.newCharacterRequest);
-app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/', character.servePage);
-app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/printable', character.servePage);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/', i18n.cookieRedirect, character.servePage);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/printable', i18n.cookieRedirect, character.servePage);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.serveJson);
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', avatars.serveAvatar);
@@ -86,7 +86,7 @@ app.post('/togglePrivacy', user.togglePrivacy);
 
 // generate donation information
 config.donation_address = config.donation_address || '1CX5xJ3o4rXcNRTrWGd2zCmAMtpCXGZo78';
-app.get('/site/donate', global.renderPage('donate', {donation_address: config.donation_address}));
+app.get('/site/donate', i18n.cookieRedirect, global.renderPage('donate', {donation_address: config.donation_address}));
 app.get('/site/donate/donation_qr.png', function(req,res,next)
 {
 	var donor = req.query.user ? '?message=Thanks%20from%20'+req.query.user : '';
@@ -97,12 +97,12 @@ app.get('/site/donate/donation_qr.png', function(req,res,next)
 
 
 // route the extra pages
-app.get('/site/about', global.renderPage('about'));
-app.get('/site/contact', global.renderPage('contact'));
-app.get('/site/terms', global.renderPage('terms'));
-app.get('/site/privacy', global.renderPage('privacy'));
-app.get('/site/howto', global.renderPage('howto'));
-app.get('/', global.renderPage('index'));
+app.get('/site/about', i18n.cookieRedirect, global.renderPage('about'));
+app.get('/site/contact', i18n.cookieRedirect, global.renderPage('contact'));
+app.get('/site/terms', i18n.cookieRedirect, global.renderPage('terms'));
+app.get('/site/privacy', i18n.cookieRedirect, global.renderPage('privacy'));
+app.get('/site/howto', i18n.cookieRedirect, global.renderPage('howto'));
+app.get('/', i18n.cookieRedirect, global.renderPage('index'));
 
 app.use('/static', express.static( libpath.resolve(__dirname,'..','static'), {maxAge: 24*60*60}));
 app.get('/sitemap.xml', sitemap.serve);

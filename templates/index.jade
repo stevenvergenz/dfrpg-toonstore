@@ -6,8 +6,15 @@ html
 		meta(name='robots', content='INDEX, FOLLOW')
 
 		script.
-			function setLangCookie(lang){
-				debugger;
+			function setLangCookie(native){
+				if(native){
+					document.cookie = '#{i18n.config.cookie}=#{i18n.nativeLocale}; max-age=31536e3; path=/';
+					return true;
+				}
+				else {
+					document.cookie = '#{i18n.config.cookie}=#{i18n.selectedLocale}; max-age=31536e3; path=/';
+					return false;
+				}
 			}
 
 		block title
@@ -58,13 +65,13 @@ html
 
 			.content
 
-				if i18n.nativeLocale
+				if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
 					.content-block
 						#lang-message.info This page is available in your native language. Would you like to view this version instead?
 							br
-							a(href='#{getNativeURL()}') Take me there.
-							br
-							a(href='#{getNativeURL()}', onclick='setLangCookie("#{i18n.nativeLocale}")') Take me there and remember my decision.
+							a(href=getNativeURL(), onclick='return setLangCookie(true);') Take me there
+							|  | 
+							a(href='javascript:;', onclick='return setLangCookie(false);') Keep me here
 
 				if message
 					.content-block

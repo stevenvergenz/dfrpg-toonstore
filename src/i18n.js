@@ -24,7 +24,11 @@ exports.detect = function(req,res,next)
 	var cookieLang = detectCookieLocale(req.cookies[config.cookie]);
 	var headerLang = detectHeaderLocale(req.headers['accept-language']);
 
-	console.log([pathLang, cookieLang, headerLang]);
+	res.i18n.cookieLocale = cookieLang;
+	res.i18n.pathLocale = pathLang;
+	res.i18n.headerLocale = headerLang;
+
+	//console.log([pathLang, cookieLang, headerLang]);
 
 	if( pathLang && cookieLang ){
 		// render in path lang, prompt to switch in cookie lang
@@ -118,6 +122,16 @@ function detectHeaderLocale(header)
 
 	return null;
 }
+
+exports.cookieRedirect = function(req,res,next)
+{
+	if( res.i18n.cookieLocale && !res.i18n.pathLocale ){
+		res.redirect( '/'+res.i18n.cookieLocale+ req.url );
+	}
+	else {
+		next();
+	}
+};
 
 
 /*
