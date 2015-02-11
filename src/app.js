@@ -37,7 +37,7 @@ app.use(express.logger());
 app.use(i18n.detect);
 
 // route the registration pages
-app.get('/register', global.renderPage('register'));
+app.get('/register', i18n.cookieRedirect, global.renderPage('register'));
 app.get('/federated-register', global.renderPage('register'));
 app.get('/post-register', global.renderPage('register'));
 app.post('/register', register.register);
@@ -45,10 +45,10 @@ app.post('/federated-register', register.federatedRegister);
 app.get('/register/verify', register.checkUsername);
 
 // route the activation pages (password resets)
-app.get('/passreset', global.renderPage('activation'));
+app.get('/passreset', i18n.cookieRedirect, global.renderPage('activation'));
 app.post('/passreset', activate.passwordReset);
 app.get('/pre-activate', global.renderPage('activation'));
-app.get('/activate/:token([0-9a-f]{32})', activate.serveActivationPage);
+app.get('/activate/:token([0-9a-f]{32})', i18n.cookieRedirect, activate.serveActivationPage);
 app.post('/activate/:token([0-9a-f]{32})', activate.setPassword);
 
 // route the login pages
@@ -81,7 +81,7 @@ app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)$', function(req,res,next){
 });
 
 app.post('/killtoon', character.deleteCharacterRequest);
-app.get('/killtoon', character.deleteCharacterPage);
+app.get('/killtoon', i18n.cookieRedirect, character.deleteCharacterPage);
 app.post('/togglePrivacy', user.togglePrivacy);
 
 // generate donation information

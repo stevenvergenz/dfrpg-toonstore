@@ -8,7 +8,12 @@
 		"privacy": "Privacy Policy",
 		"donate": "Donate",
 		"register": "Register",
-		"login": "Log In"
+		"login": "Log In",
+		"lang_dialog": {
+			"prompt": "This page is available in your native language (%s). Would you like to view this version instead?",
+			"accept": "Take me there",
+			"reject": "Keep me here"
+		}
 	},
 
 	"index":

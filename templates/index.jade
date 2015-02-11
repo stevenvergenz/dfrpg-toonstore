@@ -13,6 +13,7 @@ html
 				}
 				else {
 					document.cookie = '#{i18n.config.cookie}=#{i18n.selectedLocale}; max-age=31536e3; path=/';
+					window.location.reload(true);
 					return false;
 				}
 			}
@@ -51,27 +52,27 @@ html
 
 				.navbar
 					.itemgroup
-						.navitem: a(href='/') Toon&#8203;Store
+						.navitem: a(href=url('/')) Toon&#8203;Store
 						//-.navitem Forum
-						.navitem: a(href='/site/about')= __('nav.about')
-						.navitem: a(href='/site/contact')= __('nav.contact')
+						.navitem: a(href=url('/site/about'))= __('nav.about')
+						.navitem: a(href=url('/site/contact'))= __('nav.contact')
 					.itemgroup
 						if logged_user_email
-							.navitem: a(href='/'+logged_user)= logged_user
+							.navitem: a(href=url('/'+logged_user))= logged_user
 							.navitem: a(href='javascript:;', onclick='logout()')= __('nav.logout')
 						else
-							.navitem: a(href='/register')= __('nav.register')
-							.navitem: a(href='/login')= __('nav.login')
+							.navitem: a(href=url('/register'))= __('nav.register')
+							.navitem: a(href=url('/login'))= __('nav.login')
 
 			.content
 
 				if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
 					.content-block
-						#lang-message.info This page is available in your native language. Would you like to view this version instead?
+						#lang-message.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
 							br
-							a(href=getNativeURL(), onclick='return setLangCookie(true);') Take me there
-							|  | 
-							a(href='javascript:;', onclick='return setLangCookie(false);') Keep me here
+							a(href=getNativeURL(), onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
+							|  <> 
+							a(href='javascript:;', onclick='return setLangCookie(false);')= n__('nav.lang_dialog.reject')
 
 				if message
 					.content-block
@@ -91,15 +92,15 @@ html
 						p= __('index.p4')
 
 						p= __('index.p5.f1')
-							a(href='/login')= __('index.p5.f2')
+							a(href=url('/login'))= __('index.p5.f2')
 							= __('index.p5.f3')
 							a(href='https://login.persona.org/', target='_blank')= __('index.p5.f4')
 							= __('index.p5.f5')
-							a(href='http://toonstore.net/Derogatory/lifeson/')= __('index.p5.f6')
+							a(href='https://toonstore.net/Derogatory/lifeson/')= __('index.p5.f6')
 							= __('index.p5.f7')
 
 			block footer
 				.footer
-					span: a(href='/site/terms')= __('nav.terms')
-					span: a(href='/site/privacy')= __('nav.privacy')
-					span: a(href='/site/donate')= __('nav.donate')
+					span: a(href=url('/site/terms'))= __('nav.terms')
+					span: a(href=url('/site/privacy'))= __('nav.privacy')
+					span: a(href=url('/site/donate'))= __('nav.donate')

@@ -100,6 +100,12 @@ function renderPage(template, options)
 		pageFields.getNativeURL = function(){
 			return '/'+res.i18n.nativeLocale+req.url;
 		};
+		pageFields.url = function(path){
+			if( res.i18n.pathLocale )
+				return '/'+res.i18n.pathLocale + path;
+			else
+				return path;
+		};
 
 		return res.render(template, pageFields, function(err,html){
 			if( !err ){
