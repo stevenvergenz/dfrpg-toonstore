@@ -20,7 +20,7 @@ block content
 		h1 #{owner}'s page
 
 		if logged_user == owner
-			p: a#newtoon(href='/newtoon') Create a new character
+			p: a#newtoon(href=url('/newtoon')) Create a new character
 
 		#charList(ng-controller='UserPageCtrl')
 
@@ -37,16 +37,16 @@ block content
 
 			.character(ng-repeat='char in data | orderBy : sortField : sortReverse', ng-class='{"private":char.private==true}')
 				.avatar
-					a(ng-href='/{{char.owner}}/{{char.canonical_name}}/')
+					a(ng-href=url('/{{char.owner}}/{{char.canonical_name}}/'))
 						img(dgy-src='/{{char.owner}}/{{char.canonical_name}}/avatar')
 
 				.char-content
 					p.title
-						a(ng-href='/{{char.owner}}/{{char.canonical_name}}/') {{char.name}}, {{char.concept}}
+						a(ng-href=url('/{{char.owner}}/{{char.canonical_name}}/')) {{char.name}}, {{char.concept}}
 					p.updated(title='{{char.last_updated | calendarTime}}') {{char.last_updated | relativeTime}}
 					.controls
 						if logged_user != null
-							a(ng-href='/newtoon?copy={{char.owner}}/{{char.canonical_name}}')
+							a(ng-href=url('/newtoon?copy={{char.owner}}/{{char.canonical_name}}'))
 								img.duplicate(src='/static/img/glyphicons/glyphicons_318_more_items.png', title='Duplicate')
 
 						if logged_user == owner
@@ -54,7 +54,7 @@ block content
 								ng-src='{{togglePrivacyIcon(char.private)}}',
 								title='Make {{char.private ? "Public" : "Private"}}')
 
-							a(ng-href='/killtoon?id={{char.canonical_name}}')
+							a(ng-href=url('/killtoon?id={{char.canonical_name}}'))
 								img.delete(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
 
 			
@@ -63,7 +63,7 @@ block content
 					p You currently have no characters.
 
 					p Since you're new here, why not check out this 
-						a(href='/site/howto') Beginner's Guide
+						a(href=url('/site/howto')) Beginner's Guide
 						| ?
 				else
 					p This user lacks character (badum-ching!)

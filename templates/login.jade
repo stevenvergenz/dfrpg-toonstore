@@ -17,13 +17,13 @@ block content
 			.field
 				label(for='password') Password 
 					span#reset(style='font-size: 80%;') (
-						a(href='/passreset') forgot password
+						a(href=url('/passreset')) forgot password
 						)
 				input#email(type='password', name='password', required)
 
 			.field
 				input(type='submit', value='Log in') 
-				a(href='/register') Register
+				a(href=url('/register')) Register
 
 		hr
 
