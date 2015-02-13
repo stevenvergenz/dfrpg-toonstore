@@ -38,6 +38,39 @@
 		}
 	},
 
+	"user":
+	{
+		"pagetitle": "%s's page",
+		"meta_description": "%s's character archive, powered by the ToonStore, the cloud-based Fate character toolkit.",
+
+		"newtoon": "Create a new character",
+		"sorting": {
+			"title": "Sort by: ",
+			"lastupdate": "Last Update",
+			"creationdate": "Creation Date",
+			"name": "Name",
+			"privacy": "Privacy"
+		},
+		"notoons": {
+			"p1": "You currently have no characters.",
+			"p2": {
+				"f1": "Since you're new here, why not check out the ",
+				"f2": "Beginner's Guide",
+				"f3": "?"
+			},
+			"public": "This user lacks character (badum-ching!)"
+		},
+		"controls": {
+			"duplicate": "Duplicate",
+			"change_privacy": "Make %s",
+			"private": "Make Private",
+			"public": "Make Public",
+			"delete": "Delete",
+			"lastupdated": "Last updated %s",
+			"neverupdated": "Never updated"
+		}
+	},
+
 	"about":
 	{
 		"pagetitle": "About ToonStore",
