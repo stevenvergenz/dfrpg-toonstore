@@ -1,40 +1,40 @@
 {
 	"nav":
 	{
-		"about": "About",
-		"contact": "Contact Us",
-		"logout": "Log Out",
-		"terms": "Terms of Use",
-		"privacy": "Privacy Policy",
-		"donate": "Donate",
+		"about": "Sobre Nós",
+		"contact": "Contato",
+		"logout": "Deslogar",
+		"terms": "Termos de Uso",
+		"privacy": "Políticas de Privacidade",
+		"donate": "Doações",
 		"register": "Registrar",
 		"login": "Conecte-Se",
 		"lang_dialog": {
-			"prompt": "This page is available in your native language (%s). Would you like to view this version instead?",
-			"accept": "Take me there",
-			"reject": "Keep me here"
+			"prompt": "Esta página está disponível em sua língua nativa (%s). Você quer usar esta versão?",
+			"accept": "Vamos lá",
+			"reject": "Deixa quieto"
 		}
 	},
 
 	"index":
 	{
 		"pagetitle": "Online Dresden Files RPG Character Hosting",
-		"meta_description": "Create, modify, and share cloud-based mobile-friendly Dresden Files RPG or Fate character sheets right in your browser with ToonStore.",
+		"meta_description": "Crie, modifique e compartilhe fichas de Dresden Files RPG e Fate na nuvem, com modelos responsivos, na Toonstore.",
 		"banner": {
-			"subtitle": "+2 to organization rolls"
+			"subtitle": "+2 em rolagens de organização"
 		},
-		"p1": "Greetings, roleplayer!",
+		"p1": "Saudações, jogador!",
 		"p2": "Everyone has run into this scenario: you and your partymates are going through character creation, filling out your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion. Do you scan it and email it? Do you transcribe it? Just email the aspects?",
 		"p3": "Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.",
 		"p4": "This is where ToonStore comes in. We store your Dresden Files RPG or other Fate-based character data in the cloud, so you never lose it and can easily share it. Just view the online character sheet and make your edits right in the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.",
 		"p5": {
-			"f1": "Interested? ",
-			"f2": "Log in",
-			"f3": " with your ",
-			"f4": "Persona",
-			"f5": " account, or ",
-			"f6": "try it now",
-			"f7": " to get rolling!"
+			"f1": "Interessado? ",
+			"f2": "Entre",
+			"f3": " com a sua ",
+			"f4": "conta",
+			"f5": " Persona, ou ",
+			"f6": "teste agora",
+			"f7": " e veja como é legal!"
 		}
 	},
 
