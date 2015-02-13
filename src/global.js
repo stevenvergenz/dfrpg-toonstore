@@ -1,7 +1,8 @@
 /*
  * Stores global functions and handlers that are always useful
  */
-var libpath = require('path');
+var libpath = require('path'),
+	moment = require('moment');
 
 var logLevels = {
 	'fatal': 0,
@@ -105,6 +106,9 @@ function renderPage(template, options)
 				return '/'+res.i18n.pathLocale + path;
 			else
 				return path;
+		};
+		pageFields.formatDate = function(date){
+			return moment(date).locale(res.i18n.pathLocale).format('LL');
 		};
 
 		return res.render(template, pageFields, function(err,html){
