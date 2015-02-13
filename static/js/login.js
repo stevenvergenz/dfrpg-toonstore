@@ -67,7 +67,7 @@ function handlePersona()
 				url: '/logout',
 				success: function(res,status,xhr){
 					if( !overrideUserRedirect )
-						window.location.href = '/';
+						window.location.href = localeInfo.pathLocale ? '/'+localeInfo.pathLocale+'/' : '/';
 					else
 						window.location.reload();
 				},
@@ -91,7 +91,7 @@ function logout()
 			url: '/logout',
 			success: function(res,status,xhr){
 				if( !overrideUserRedirect )
-					window.location.href = '/';
+					window.location.href = localeInfo.pathLocale ? '/'+localeInfo.pathLocale+'/' : '/';
 				else
 					window.location.reload();
 			},

@@ -1,7 +1,8 @@
 "use strict";
 
 var i18n = require('i18n'),
-	libpath = require('path');
+	libpath = require('path'),
+	express = require('express');
 
 // the translation middleware
 var config = {
@@ -19,6 +20,15 @@ i18n.configure(config);
 exports.detect = function(req,res,next)
 {
 	res.i18n = new MyI18n();
+	res.redirect = function(url)
+	{
+		if( this.i18n.pathLocale ){
+			return express.response.redirect.call(this, '/'+this.i18n.pathLocale+url);
+		}
+		else {
+			return express.response.redirect.call(this, url);
+		}
+	}.bind(res);
 
 	var pathLang = detectPathLocale(req.url, req);
 	var cookieLang = detectCookieLocale(req.cookies[config.cookie]);

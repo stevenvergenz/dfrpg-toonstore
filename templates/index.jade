@@ -37,6 +37,7 @@ html
 			script(src='/static/js/ie-fail.js')
 
 			script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email, persona_user: persona_user}) + ';'
+			script!= 'var localeInfo = ' + JSON.stringify({pathLocale: i18n.pathLocale}) + ';'
 			script(src='/static/js/login.js')
 
 	body
