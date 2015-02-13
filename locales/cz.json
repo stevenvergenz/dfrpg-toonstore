@@ -1,0 +1,93 @@
+{
+	"nav":
+	{
+		"about": "O nás",
+		"contact": "Kontakt",
+		"logout": "Odhlásit",
+		"terms": "Podmínky používání",
+		"privacy": "Ochrana soukromí",
+		"donate": "Podpořte nás",
+		"register": "Registrovat",
+		"login": "Přihlásit",
+		"lang_dialog": {
+			"prompt": "Tato stránka existuje v češtině. Chcete pracovat s českou versí?",
+			"accept": "Ano, chci.",
+			"reject": "Ne, nechci."
+		}
+	},
+
+	"index":
+	{
+		"pagetitle": "Online úložiště postav pro Dresden Files RPG",
+		"meta_description": "Vytvářejte, upravujte a sdílejte postavy pro Dresden Files RPG nebo FATE. Postavy jsou uloženy v cloudu a optimalisovány pro vzdálený přístup z internetového prohlížeče či telefonu.",
+		"banner": {
+			"subtitle": "+2 bonus k hodům na organisaci"
+		},
+		"p1": "Vítejte!",
+		"p2": "Každý z nás už se s tím někdy setkal: Vytvoříte si postavu, vyplníte všechny kolonky a váš GM chce pro sebe jednu kopii. Co s tím? Nascanovat a poslat e-mailem? Opsat mu to? Celé? Nebo stačí opsat aspekty?",
+		"p3": "Možná už jste s tím tak trochu počítali. Vytvořili jste si třeba postavu přímo v počítači. Jenže bez jednotné formální úpravy svým textovým poznámkám stejně rozumíte jen vy sami.",
+		"p4": "A tady nastupuje ToonStore. U nás si můžete uložit svou postavu pro Dresden Files RPG či jinou hru založenou na FATE do cloudu, takže ji už nikdy neztratíte a můžete ji snadno sdílet s ostatními. Můžete k ní přistupovat a editovat ji přímo z prohlížeče. Celé je to optimalisované i pro mobil, a tudíž s sebou nemusíte tahat ani svůj pětikilový notebook.",
+		"p5": {
+			"f1": "Zaujalo vás to?",
+			"f2": "Přihlaste se",
+			"f3": " svým ",
+			"f4": "Persona",
+			"f5": " účtem, nebo ",
+			"f6": "si to jen",
+			"f7": " vyzkoušejte!"
+		}
+	},
+
+	"about":
+	{
+		"pagetitle": "O službě ToonStore",
+		"meta_description": "Více informací o službě ToonStore, cloudovém úložišti postav pro FATE.",
+
+		"h1": "Co je ToonStore?",
+		"p1": "ToonStore je místo, kam si hráči Dresden Files RPG mohou ukládat své postavy, aniž by se museli bát, že je ztratí, zmačkají, zapomenou doma apod. Postavu si můžete vytvořit přímo v našem instinktivním HTML rozhraní, editovat ji rovnou od herního stolu a sdílet ji prostřednictvím linku se spoluhráči nebo GM, jak se vám zlíbí.",
+
+		"h2": "Jak ToonStore vznikl?",
+		"p2": "Na začátku byla snaha vyrobit nějakou lepší versi již existujícího vyplňovatelného PDF záznamníku postavy. Postupně se přidala možnost si postavu v systému také uložit. Původně se jednalo o službu určenou jenom mé skupině hráčů, ale vzhledem k tomu, že zveřejnění celé věci už nedalo moc další práce, rozhodl jsem se zpřístupnit ToonStore všem. Zbytek je, jak se říká, historie.",
+
+		"h3": "Co je Derogatory Studios?",
+		"p3": {
+			"f1": "Jsem to v podstatě hlavně já, Steven Vergenz, s občasným přispěním ostatních členů naší herní skupiny. Času na vylepšování systému nemám nazbyt, takže pokud byste chtěli vytvořit nějakou funkci pro své potřeby, rozdělte (fork) tento projekt na ",
+			"f2": "Githubu",
+			"f3": " a naprogramujte si, co potřebujete. Jestli se vydáte touto cestou, byl bych rád, kdybyste výsledek své práce opět vložili i do původního projektu ToonStore."
+		}
+	},
+
+	"contact":
+	{
+		"pagetitle": "Kontakt",
+		"meta_description": "Jak kontaktovat vývojáře a správce služby ToonStore.",
+
+		"h1": "Otázky? Komentáře? Doporučení?",
+		"p1": "Nic snazšího než se nám ozvat! Možností máte několik:",
+
+		"h2": "Github",
+		"p2": {
+			"f1": "Zdrojový ",
+			"f2": "kód",
+			"f3": " této stránky je veřejně dostupný prostřednictvím Apache 2.0 License, takže si můžete vytvořit a spustit svůj vlastní Toonstore pro svou herní skupinu."
+		},
+		"p3": {
+			"f1": "Github používáme rovněž pro hlášení chyb a žádosti o nové funkce. Pokud najdete nějakou chybu nebo máte báječný nápad na novou funkci, ozvěte se! Pošlete nám ",
+			"f2": "hlášení",
+			"f3": " a my se do toho hned dáme!"
+		},
+
+		"h3": "Skupina na Google+",
+		"p4": {
+			"f1": "Přidejte se k vývojářům a uživatelům služby ToonStore ve ",
+			"f2": "skupině na Google+",
+			"f3": " a získáte přístup k informacím o nejnovějších úpravách stránek, hrách, postavách a všem možném dalším! Rádi vás uvidíme!"
+		},
+
+		"h4": "E-mail",
+		"p5": {
+			"f1": "Chcete-li nám napsat můžete to udělat na  ",
+			"f2": "."
+		}
+	}
+}
