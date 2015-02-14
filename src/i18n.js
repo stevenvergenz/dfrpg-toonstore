@@ -4,6 +4,8 @@ var i18n = require('i18n'),
 	libpath = require('path'),
 	express = require('express');
 
+var global = require('./global.js');
+
 // the translation middleware
 var config = {
 	locales: ['en-US','pt-BR'],
