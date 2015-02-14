@@ -10,12 +10,12 @@ function checkUsername(elem)
 			if( data.found ){
 				userGood = false;
 				$('#username').addClass('error');
-				$('#userMessage').addClass('error').text('Username is already taken.');
+				$('#userMessage').addClass('error').text(clientStrings.userTaken);
 			}
 			else {
 				userGood = true;
 				$('#username').removeClass('error');
-				$('#userMessage').removeClass('error').text('Username is available.');
+				$('#userMessage').removeClass('error').text(clientStrings.userAvailable);
 			}
 		});
 	};
@@ -27,7 +27,7 @@ function checkUsername(elem)
 	if( !userValid ){
 		userGood = false;
 		$('#username').addClass('error');
-		$('#userMessage').addClass('error').text('Username is invalid!');
+		$('#userMessage').addClass('error').text(clientStrings.userInvalid);
 	}
 	// wait a second before checking the username
 	else {
@@ -40,7 +40,7 @@ function validateUsername()
 	var valid = userGood;
 
 	if( !valid ){
-		$('#submitMessage').text('Fix the problems above before submitting');
+		$('#submitMessage').text(clientStrings.fix);
 	}
 	else {
 		$('#submitMessage').clear();
@@ -54,7 +54,7 @@ function validate()
 	//var valid = userGood && checkPass();
 	var valid = userGood;
 	if( !valid ){
-		$('#submitMessage').text('Fix the problems above before submitting');
+		$('#submitMessage').text(clientStrings.fix);
 	}
 	else {
 		$('#submitMessage').clear();

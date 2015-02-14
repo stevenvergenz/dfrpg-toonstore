@@ -16,6 +16,53 @@
 		}
 	},
 
+	"login":
+	{
+		"meta_description": "Log into the ToonStore",
+		"email": "E-mail",
+		"password": "Password",
+		"forgot": "forgot password",
+		"register": "Register",
+		"submit": "Log in"
+	},
+
+	"register":
+	{
+		"intro": {
+			"f1": "Thank you for your interest! ",
+			"f2": "Log in with Persona",
+			"f3": " or fill out the information below and we'll get you set up."
+		},
+		"fedIntro": "Since this is the first time you've logged in, you must pick a username.",
+		"email": {
+			"label": "E-mail address",
+			"caption": {
+				"f1": "We promise not to share your email with anyone! See the ",
+				"f2": "privacy policy",
+				"f3": "."
+			}
+		},
+		"username": {
+			"label": "Username (also your permalink)",
+			"caption": "No spaces or special characters except for _ and -"
+		},
+		"agreement": {
+			"f1": "I have read and agree with the ",
+			"f2": "Terms of Use",
+			"f3": " and the ",
+			"f4": "Privacy Policy",
+			"f5": "."
+		},
+		"submit": "Submit",
+
+		"clientStrings": {
+			"userTaken": "Username is already taken.",
+			"userAvailable": "Username is available.",
+			"userInvalid": "Username is invalid!",
+			"fix": "Fix the problems above before submitting"
+		}
+	},
+
 	"index":
 	{
 		"pagetitle": "Online Dresden Files RPG Character Hosting",

@@ -136,6 +136,7 @@ function detectHeaderLocale(header)
 exports.cookieRedirect = function(req,res,next)
 {
 	if( res.i18n.cookieLocale && !res.i18n.pathLocale ){
+		global.log('Cookie redirect to preferred locale');
 		res.redirect( '/'+res.i18n.cookieLocale+ req.url );
 	}
 	else {
