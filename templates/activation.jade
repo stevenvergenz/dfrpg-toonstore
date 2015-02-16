@@ -9,8 +9,12 @@ block title
 		title= __('activate.pagetitle') + ' | ToonStore.net'
 
 block append includes
-	script(src='/static/js/zxcvbn-async.js')
-	script(src='/static/js/activate.js')
+	if /\/activate\/[0-9a-f]{32}$/.test(page)
+		script(src='/static/js/zxcvbn-async.js')
+		script(src='/static/js/moment.min.js')
+		script(src='/static/js/moment.'+i18n.pathLocale+'.js')
+		script!= 'var clientStrings = ' + JSON.stringify(__('activate.clientStrings')) + ';'
+		script(src='/static/js/activate.js')
 
 block content
 

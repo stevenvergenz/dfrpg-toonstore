@@ -89,8 +89,30 @@
 		"submit": "Submit",
 
 		"clientStrings": {
-			
+			"toosimple": "too simple!",
+			"match": "Passwords match",
+			"nomatch": "Passwords do not match",
+			"fix": "Fix the problems above before submitting"
 		}
+	},
+
+	"activate-email":
+	{
+		"greeting_user": "Hello %s!",
+		"greeting_nouser": "Hello!",
+		"intro_reg": "Thank you for using the ToonStore! Click the link below to get started:",
+		"intro_noreg": "Thank you for using the ToonStore! You have requested a password reset, so click the link below to reset it. If you did NOT request a reset, just ignore this email.",
+		"resetpassword": "Reset your password",
+		"setpassword": "Set your password",
+		"p1": "Note that this link is only active for 20 minutes, after which you will need to request a new one.",
+		"p2": "Enter your new password where prompted, and confirm. We don't have any hard and fast rules about password complexity, but the indicator will tell you how long it will take a computer to guess it. If it is blue or green, you're good to go.",
+		"p3": {
+			"f1": "I hope you enjoy using the ToonStore! If you have any questions, comments, or complaints, please ",
+			"f2": "contact us",
+			"f3": "!"
+		},
+		"closing": "All the best,",
+		"sig": "The ToonStore Team"
 	},
 
 	"user":
