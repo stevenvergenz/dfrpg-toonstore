@@ -132,16 +132,16 @@ function renderPage(template, options)
 	return middleware;
 }
 
-function renderActivationEmail(to, username, token, registering, __)
+function renderActivationEmail(to, username, token, registering, i18n)
 {
 	// build email message
 	var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, '../templates/activate-email.jade')), {pretty: true} );
 	var html = template({
 		registration: registering,
-		url: config.origin,
+		url: config.origin + (i18n.pathLocale ? '/'+i18n.pathLocale : ''),
 		token: token,
 		username: username,
-		__: __
+		__: i18n.__.bind(i18n)
 	});
 
 	// send out confirmation email

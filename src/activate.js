@@ -47,7 +47,7 @@ function passwordReset(req,res,next)
 			else
 			{
 				global.log('Sent out password token:', token);
-				global.renderActivationEmail(req.body.email, req.body.username, token, false, res.i18n.__.bind(res.i18n));
+				global.renderActivationEmail(req.body.email, req.body.username, token, false, res.i18n);
 				res.redirect('/pre-activate');
 			}
 			connection.end();
