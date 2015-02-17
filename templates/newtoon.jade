@@ -4,6 +4,7 @@ block title
 	title= __('newtoon.pagetitle') + ' | ToonStore.net'
 
 block append includes
+	script!= 'var clientStrings = '+JSON.stringify(__('newtoon.clientStrings'))+';'
 	script(src='/static/js/newtoon.js')
 
 block content

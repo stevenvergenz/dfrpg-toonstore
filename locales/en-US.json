@@ -142,7 +142,24 @@
 			"f2": "donating",
 			"f3": " to help keep the ToonStore online and ad-free?"
 		},
-		"submit": "Submit"
+		"submit": "Submit",
+
+		"clientStrings": {
+			"invalid": "That short name is invalid.",
+			"duplicating": "Duplicating character:"
+		}
+	},
+
+	"killtoon":
+	{
+		"pagetitle": "Delete Character",
+		"intro": "In the box below, type the following exactly as it appears:",
+		"confirm": "{{name}}, {{hc}}, is dead.",
+		"submit": "Delete character",
+		
+		"clientStrings": {
+			"error": "You must enter the confirmation text to delete the character."
+		}
 	},
 
 	"user":
