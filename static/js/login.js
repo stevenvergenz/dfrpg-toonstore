@@ -33,7 +33,7 @@ function handlePersona()
 				data: {'email': assertion},
 				success: function(res,status,xhr){
 					if( !overrideUserRedirect )
-						window.location.replace('/'+res.username);
+						window.location.href = (localeInfo.pathLocale ? '/'+localeInfo.pathLocale : '')+'/'+res.username;
 					else
 						window.location.reload();
 				},
