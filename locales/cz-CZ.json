@@ -1,0 +1,400 @@
+{
+	"nav":
+	{
+		"about": "O nás",
+		"contact": "Kontakt",
+		"logout": "Odhlásit",
+		"terms": "Podmínky používání",
+		"privacy": "Ochrana soukromí",
+		"donate": "Podpořte nás",
+		"register": "Registrovat",
+		"login": "Přihlásit",
+		"lang_dialog": {
+			"prompt": "Tato stránka existuje v češtině. Chcete pracovat s českou versí?",
+			"accept": "Ano, chci.",
+			"reject": "Ne, nechci."
+		}
+	},
+
+	"login":
+	{
+		"meta_description": "Log into the ToonStore",
+		"email": "E-mail",
+		"password": "Password",
+		"forgot": "forgot password",
+		"register": "Register",
+		"submit": "Log in"
+	},
+
+	"register":
+	{
+		"intro": {
+			"f1": "Thank you for your interest! ",
+			"f2": "Log in with Persona",
+			"f3": " or fill out the information below and we'll get you set up."
+		},
+		"fedIntro": "Since this is the first time you've logged in, you must pick a username.",
+		"email": {
+			"label": "E-mail address",
+			"caption": {
+				"f1": "We promise not to share your email with anyone! See the ",
+				"f2": "privacy policy",
+				"f3": "."
+			}
+		},
+		"username": {
+			"label": "Username (also your permalink)",
+			"caption": "No spaces or special characters except for _ and -"
+		},
+		"agreement": {
+			"f1": "I have read and agree with the ",
+			"f2": "Terms of Use",
+			"f3": " and the ",
+			"f4": "Privacy Policy",
+			"f5": "."
+		},
+		"submit": "Submit",
+
+		"clientStrings": {
+			"userTaken": "Username is already taken.",
+			"userAvailable": "Username is available.",
+			"userInvalid": "Username is invalid!",
+			"fix": "Fix the problems above before submitting"
+		}
+	},
+
+	"passreset":
+	{
+		"pagetitle": "Reset your password",
+		"intro": "Type in your email address below, and we will email you a link to reset your password.",
+		"email": "E-mail",
+		"submit": "Submit"
+	},
+
+	"pre-activate":
+	{
+		"pagetitle": "Email verification",
+		"intro_register": "Thank you for joining ToonStore! We have emailed you a link to activate your account. Click the link and follow the instructions to complete your registration.",
+		"intro": "Your password reset request has been received. We have emailed you a link, please click the link to change your password.",
+		"note": "Note that it can take a few minutes to get the email. If you don't see it, check your spam folder, and add \"no-reply@toonstore.net\" to your allowed sender's list."
+	},
+
+	"activate":
+	{
+		"pagetitle": "Set your password",
+		"intro": "Type your new password in the fields below. The time to crack is an indicator of how strong your password is. Good passwords should take at least a few years to crack. If the meter is green or blue you're in good shape.",
+		"password": "Password",
+		"cracktime": "Time to crack: ",
+		"confirm": "Confirm password",
+		"submit": "Submit",
+
+		"clientStrings": {
+			"toosimple": "too simple!",
+			"match": "Passwords match",
+			"nomatch": "Passwords do not match",
+			"fix": "Fix the problems above before submitting"
+		}
+	},
+
+	"activate-email":
+	{
+		"greeting_user": "Hello %s!",
+		"greeting_nouser": "Hello!",
+		"intro_reg": "Thank you for using the ToonStore! Click the link below to get started:",
+		"intro_noreg": "Thank you for using the ToonStore! You have requested a password reset, so click the link below to reset it. If you did NOT request a reset, just ignore this email.",
+		"resetpassword": "Reset your password",
+		"setpassword": "Set your password",
+		"p1": "Note that this link is only active for 20 minutes, after which you will need to request a new one.",
+		"p2": "Enter your new password where prompted, and confirm. We don't have any hard and fast rules about password complexity, but the indicator will tell you how long it will take a computer to guess it. If it is blue or green, you're good to go.",
+		"p3": {
+			"f1": "I hope you enjoy using the ToonStore! If you have any questions, comments, or complaints, please ",
+			"f2": "contact us",
+			"f3": "!"
+		},
+		"closing": "All the best,",
+		"sig": "The ToonStore Team"
+	},
+
+	"newtoon":
+	{
+		"pagetitle": "New Character",
+		"fullname": {
+			"label": "Full name",
+			"caption": "The character's name. Can be changed later."
+		},
+		"shortname": {
+			"label": "Short name (also permalink)",
+			"p1": "Something short, identifiable, and unique amongst your characters. Last names usually suffice.",
+			"p2": "Only A-Z, a-z, 0-9, -, and _ are allowed.",
+			"p3": "This is PERMANENT."
+		},
+		"hc": {
+			"label": "High concept",
+			"caption": "The character's defining aspect. Can be changed later."
+		},
+		"template": {
+			"label": "Character template",
+			"caption": "The template your character is based on."
+		},
+		"private": "Make this character private",
+		"donate": {
+			"f1": "Have you considered ",
+			"f2": "donating",
+			"f3": " to help keep the ToonStore online and ad-free?"
+		},
+		"submit": "Submit",
+
+		"clientStrings": {
+			"invalid": "That short name is invalid.",
+			"duplicating": "Duplicating character:"
+		}
+	},
+
+	"killtoon":
+	{
+		"pagetitle": "Delete Character",
+		"intro": "In the box below, type the following exactly as it appears:",
+		"confirm": "{{name}}, {{hc}}, is dead.",
+		"submit": "Delete character",
+		
+		"clientStrings": {
+			"error": "You must enter the confirmation text to delete the character."
+		}
+	},
+
+	"user":
+	{
+		"pagetitle": "%s's page",
+		"meta_description": "%s's character archive, powered by the ToonStore, the cloud-based Fate character toolkit.",
+
+		"newtoon": "Create a new character",
+		"sorting": {
+			"title": "Sort by: ",
+			"lastupdate": "Last Update",
+			"creationdate": "Creation Date",
+			"name": "Name",
+			"privacy": "Privacy"
+		},
+		"notoons": {
+			"p1": "You currently have no characters.",
+			"p2": {
+				"f1": "Since you're new here, why not check out the ",
+				"f2": "Beginner's Guide",
+				"f3": "?"
+			},
+			"public": "This user lacks character (badum-ching!)"
+		},
+		"controls": {
+			"duplicate": "Duplicate",
+			"change_privacy": "Make %s",
+			"private": "Make Private",
+			"public": "Make Public",
+			"delete": "Delete",
+			"lastupdated": "Last updated %s",
+			"neverupdated": "Never updated"
+		}
+	},
+
+	"index":
+	{
+		"pagetitle": "Online úložiště postav pro Dresden Files RPG",
+		"meta_description": "Vytvářejte, upravujte a sdílejte postavy pro Dresden Files RPG nebo FATE. Postavy jsou uloženy v cloudu a optimalisovány pro vzdálený přístup z internetového prohlížeče či telefonu.",
+		"banner": {
+			"subtitle": "+2 bonus k hodům na organisaci"
+		},
+		"p1": "Vítejte!",
+		"p2": "Každý z nás už se s tím někdy setkal: Vytvoříte si postavu, vyplníte všechny kolonky a váš GM chce pro sebe jednu kopii. Co s tím? Nascanovat a poslat e-mailem? Opsat mu to? Celé? Nebo stačí opsat aspekty?",
+		"p3": "Možná už jste s tím tak trochu počítali. Vytvořili jste si třeba postavu přímo v počítači. Jenže bez jednotné formální úpravy svým textovým poznámkám stejně rozumíte jen vy sami.",
+		"p4": "A tady nastupuje ToonStore. U nás si můžete uložit svou postavu pro Dresden Files RPG či jinou hru založenou na FATE do cloudu, takže ji už nikdy neztratíte a můžete ji snadno sdílet s ostatními. Můžete k ní přistupovat a editovat ji přímo z prohlížeče. Celé je to optimalisované i pro mobil, a tudíž s sebou nemusíte tahat ani svůj pětikilový notebook.",
+		"p5": {
+			"f1": "Zaujalo vás to?",
+			"f2": "Přihlaste se",
+			"f3": " svým ",
+			"f4": "Persona",
+			"f5": " účtem, nebo ",
+			"f6": "si to jen",
+			"f7": " vyzkoušejte!"
+		}
+	},
+
+	"about":
+	{
+		"pagetitle": "O službě ToonStore",
+		"meta_description": "Více informací o službě ToonStore, cloudovém úložišti postav pro FATE.",
+
+		"h1": "Co je ToonStore?",
+		"p1": "ToonStore je místo, kam si hráči Dresden Files RPG mohou ukládat své postavy, aniž by se museli bát, že je ztratí, zmačkají, zapomenou doma apod. Postavu si můžete vytvořit přímo v našem instinktivním HTML rozhraní, editovat ji rovnou od herního stolu a sdílet ji prostřednictvím linku se spoluhráči nebo GM, jak se vám zlíbí.",
+
+		"h2": "Jak ToonStore vznikl?",
+		"p2": "Na začátku byla snaha vyrobit nějakou lepší versi již existujícího vyplňovatelného PDF záznamníku postavy. Postupně se přidala možnost si postavu v systému také uložit. Původně se jednalo o službu určenou jenom mé skupině hráčů, ale vzhledem k tomu, že zveřejnění celé věci už nedalo moc další práce, rozhodl jsem se zpřístupnit ToonStore všem. Zbytek je, jak se říká, historie.",
+
+		"h3": "Co je Derogatory Studios?",
+		"p3": {
+			"f1": "Jsem to v podstatě hlavně já, Steven Vergenz, s občasným přispěním ostatních členů naší herní skupiny. Času na vylepšování systému nemám nazbyt, takže pokud byste chtěli vytvořit nějakou funkci pro své potřeby, rozdělte (fork) tento projekt na ",
+			"f2": "Githubu",
+			"f3": " a naprogramujte si, co potřebujete. Jestli se vydáte touto cestou, byl bych rád, kdybyste výsledek své práce opět vložili i do původního projektu ToonStore."
+		}
+	},
+
+	"contact":
+	{
+		"pagetitle": "Kontakt",
+		"meta_description": "Jak kontaktovat vývojáře a správce služby ToonStore.",
+
+		"h1": "Otázky? Komentáře? Doporučení?",
+		"p1": "Nic snazšího než se nám ozvat! Možností máte několik:",
+
+		"h2": "Github",
+		"p2": {
+			"f1": "Zdrojový ",
+			"f2": "kód",
+			"f3": " této stránky je veřejně dostupný prostřednictvím Apache 2.0 License, takže si můžete vytvořit a spustit svůj vlastní Toonstore pro svou herní skupinu."
+		},
+		"p3": {
+			"f1": "Github používáme rovněž pro hlášení chyb a žádosti o nové funkce. Pokud najdete nějakou chybu nebo máte báječný nápad na novou funkci, ozvěte se! Pošlete nám ",
+			"f2": "hlášení",
+			"f3": " a my se do toho hned dáme!"
+		},
+
+		"h3": "Skupina na Google+",
+		"p4": {
+			"f1": "Přidejte se k vývojářům a uživatelům služby ToonStore ve ",
+			"f2": "skupině na Google+",
+			"f3": " a získáte přístup k informacím o nejnovějších úpravách stránek, hrách, postavách a všem možném dalším! Rádi vás uvidíme!"
+		},
+
+		"h4": "E-mail",
+		"p5": {
+			"f1": "Chcete-li nám napsat můžete to udělat na  ",
+			"f2": "."
+		}
+	},
+	
+	"donate":
+	{
+		"pagetitle": "Donate",
+		"meta_description": "How to donate to the maintenance and development of the ToonStore",
+
+		"plea": "The ToonStore is, and always will be, a free service for fellow lovers of the art of roleplaying. That doesn't mean that it's free for everyone. In fact, the ToonStore costs about $250 USD a year to maintain in hosting and name registration costs, which is nothing to sneeze at. Any and all contributions are welcome to help defray the costs of running this site.",
+		
+		"how": {
+			"header": "How to Donate",
+			"p1": "To avoid unnecessary fees, paperwork, currency conversions, international transactions, etc., I have decided to accept Bitcoin instead of a more traditional donation system. How does it work? I'm glad you asked!",
+			"p2": "Basically, you can send money over the internet as if it were cash; no middlemen, no checks, no delays, and no private information (like a credit card number) changing hands.",
+			"p3": {
+				"f1": "You can change money for bitcoin at any of a number of exchanges. In the United States, I recommend ",
+				"f2": " or ",
+				"f3": "."
+			}
+		},
+
+		"where":
+		{
+			"header": "Where to Donate",
+			"p1": "You can support the ToonStore by donating to the following Bitcoin address:",
+			"p2": "On behalf of the ToonStore community, thank you for helping keep ToonStore online and serving a new generation of roleplayers."
+		}
+	},
+
+	"terms":
+	{
+		"pagetitle": "Terms of Use",
+		"meta_description": "The ToonStore terms of use",
+
+		"p1": "By using the ToonStore website, you agree to abide by the following terms and conditions:",
+		"p2": "The use of the character sheet hosting services provided by the ToonStore website are provided free of charge.",
+		"p3": "Derogatory Studios makes no guarantee of the reliability or longevity of the ToonStore website, nor of characters produced therein. The ToonStore website is provided WITHOUT WARRANTY, expressed or implied. Derogatory Studios reserves the right to delete character or user data at any time for any reason without notice. If we do so, you may contact us within 30 days of deletion to request a copy of the deleted data.",
+		"p4": {
+			"f1": "Any and all data entered into a public character sheet is visible to anyone that knows or can guess the URL. Users should have no expectation of data privacy, except for data covered under the ",
+			"f2": "Privacy Policy",
+			"f3": ". However, only the user and site administrators are able to modify a user's character sheet."
+		},
+		"p5": {
+			"f1": "Users who abuse the services provided by the ToonStore website by posting spam, slanderous, offensive, or pornographic content, or by attempting to circumvent security measures may have their data deleted and their IP address blocked. Derogatory Studios reserves the right to apply the above measures to any user for any reason. If you believe these have been applied in error, you have 30 days to appeal by sending an email to the address on the ",
+			"f2": "Contact Us",
+			"f3": " page."
+		},
+		"p6": "Changes to these Terms may occur at any time at Derogatory Studio's discretion. A notice will be posted on the front page of the ToonStore website for at least 30 days after these Terms change. Continued use of the site implies consent with the updated Terms.",
+		"p7": {
+			"f1": "Any questions regarding the implementation of these policies can be emailed to Derogatory Studios at the address listed on the ",
+			"f2": "Contact Us",
+			"f3": " page."
+		},
+
+		"changelog": {
+			"title": "Change log",
+			"p1": ": Initial version"
+		}
+	},
+
+	"privacy":
+	{
+		"pagetitle": "Privacy Policy",
+		"meta_description": "ToonStore's privacy policy",
+
+		"gist": {
+			"title": "The gist of it",
+			"p1": "We don't ask for any personal information that we don't absolutely need for the running of this site.",
+			"p2": "We don't share your personal information with anyone except to comply with the law.",
+			"p3": "We don't store your personal information unless it is required for identification purposes (e.g. an email address).",
+			"p4": "Any content you create through this site is publicly accessible unless marked as private, and all content is immutable to anyone but the owner.",
+			"p5": {
+				"f1": "The above points are detailed further below. If you have any questions about the material on this page, or would like to request that we delete your account and information, email us at the address given on the ",
+				"f2": "Contact Us",
+				"f3": " page."
+			}
+		},
+		"visitors": {
+			"title": "Website Visitors",
+			"p1": "Like most websites, ToonStore collects non-personally-identifying information of the sort that web browsers and servers typically make available, such as the browser type, language preference, referring site, and the date and time of each visitor request. ToonStore's purpose in collecting non-personally identifying information is to better understand how ToonStore's visitors use its website. From time to time, Derogatory Studios may release non-personally-identifying information in the aggregate, e.g., by publishing a report on trends in the usage of its website.",
+			"p2": "ToonStore also collects potentially personally-identifying information like Internet Protocol (IP) addresses from site visitors. This is done to prevent abuse of server resources by blocking certain abusive IP addresses. Derogatory Studios only discloses IP addresses under the same circumstances that it uses and discloses personally-identifying information as described below."
+		},
+		"pii": {
+			"title": "Gathering of Personally-Identifiying Information",
+			"p1": "Certain visitors to the ToonStore website choose to interact with ToonStore in ways that require ToonStore to gather personally-identifying information. Users that choose to create an account allow ToonStore to store their email address for the duration of the account. Derogatory Studios does not disclose personally-identifying information other than as described below. And visitors can always refuse to supply personally-identifying information, with the caveat that it may prevent them from engaging in certain website-related activities."
+		},
+		"aggregate": {
+			"title": "Aggregated Statistics",
+			"p1": "ToonStore may collect statistics about the behavior of visitors to its websites. For instance, ToonStore may monitor the popularity of particular character sheets. ToonStore may display this information publicly or provide it to others. However, ToonStore does not disclose personally-identifying information other than as described below."
+		},
+		"protection": {
+			"title": "Protection of Certain Personally-Identifying Information",
+			"p1": "Derogatory Studios discloses potentially personally-identifying and personally-identifying information only to those of its employees that (i) need to know that information in order to properly maintain ToonStore's services, and (ii) that have agreed not to disclose it to others. Derogatory Studios will not rent or sell potentially personally-identifying and personally-identifying information to anyone. Other than to its employees as described above, Derogatory Studios discloses potentially personally-identifying and personally-identifying information only in response to a subpoena, court order or other governmental request, or when Derogatory Studios believes in good faith that disclosure is reasonably necessary to protect the property or rights of Derogatory Studios, third parties or the public at large. If your information is disclosed, you will be notified by email at the address provided.",
+			"p2": "If you are a registered user of the ToonStore website and have supplied your email address, Derogatory Studios may occasionally send you an email to tell you about new features, solicit your feedback, or just keep you up to date with what’s going on with ToonStore and related products. We expect to keep this type of email to a minimum. If you send us a request (for example via a support email or via one of our feedback mechanisms), we reserve the right to publish it in order to help us clarify or respond to your request or to help us support other users.",
+			"p3": "Derogatory Studios takes all measures reasonably necessary to protect against the unauthorized access, use, alteration or destruction of potentially personally-identifying and personally-identifying information."
+		},
+		"cookies": {
+			"title": "Cookies",
+			"p1": "A cookie is a string of information that a website stores on a visitor's computer, and that the visitor's browser provides to the website each time the visitor returns. ToonStore uses cookies to help ToonStore identify and track visitors, their usage of the ToonStore website, and their website access preferences. ToonStore visitors who do not wish to have cookies placed on their computers should set their browsers to refuse cookies before using the ToonStore websites, with the drawback that certain features of the ToonStore website may not function properly without the aid of cookies."
+		},
+		"transfers": {
+			"title": "Business Transfers",
+			"p1": "If Derogatory Studios, or substantially all of its assets, were acquired, user information would be one of the assets that is transferred or acquired by a third party. You acknowledge that such transfers may occur, and that any acquirer of Derogatory Studios may continue to use your personal information as set forth in this policy."
+		},
+		"ads": {
+			"title": "Ads",
+			"p1": "Ads appearing on any of our webpages may be delivered to users by advertising partners, who may set cookies. These cookies allow the ad server to recognize your computer each time they send you an online advertisement to compile information about you or others who use your computer. This information allows ad networks to, among other things, deliver targeted advertisements that they believe will be of most interest to you. This Privacy Policy covers the use of cookies by ToonStore and does not cover the use of cookies by any advertisers."
+		},
+		"content": {
+			"title": "Site Content",
+			"p1": "Because of the nature of the ToonStore website, all character data is publicly available for anyone that knows or can guess the link, including links to other characters by the same author, with the exception of characters marked as Private. No information put into a public character sheet, including the author name, should be considered private. In addition, all public character sheets are added to the ToonStore's sitemap, so they will be discoverable by automated agents such as search engine crawlers, and as a result may appear in search results. By using the ToonStore website, you agree to the above policy."
+		},
+		"changes": {
+			"title": "Privacy Policy Changes",
+			"p1": "Although most changes are likely to be minor, Derogatory Studios may change its Privacy Policy from time to time, and in Derogatory Studios' sole discretion. Derogatory Studios encourages visitors to frequently check this page for any changes to its Privacy Policy. In addition, a banner will be placed on the homepage for a minimum of 30 days notifying users of a change to the privacy policy. Your continued use of this site after any change in this Privacy Policy will constitute your acceptance of such change."
+		},
+
+		"changelog": {
+			"title": "Change log",
+			"p1": "Initial version",
+			"p2": "Updated \"Site Content\" section to account for private character sheets"
+		},
+
+		"attribution": {
+			"f1": "(Note: This privacy policy is based loosely on the privacy policy of ",
+			"f2": ", which is under a ",
+			"f3": "Creative Commons Sharealike",
+			"f4": " license. As such, this policy is under the same license.)"
+		}
+	}
+}

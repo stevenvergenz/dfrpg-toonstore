@@ -8,7 +8,7 @@ var global = require('./global.js');
 
 // the translation middleware
 var config = {
-	locales: ['en-US','pt-BR'],
+	locales: ['en-US','pt-BR','cz-CZ'],
 	defaultLocale: 'en-US',
 	directory: libpath.resolve(__dirname,'..','locales'),
 	extension: '.json',
