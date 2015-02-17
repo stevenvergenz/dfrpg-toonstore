@@ -71,6 +71,8 @@ exports.detect = function(req,res,next)
 		res.i18n.selectedLocale = config.defaultLocale;
 	}
 
+	res.setHeader("Content-Language", res.i18n.selectedLocale);
+
 	next();
 };
 
