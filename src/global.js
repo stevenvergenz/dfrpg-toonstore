@@ -1,7 +1,13 @@
 /*
  * Stores global functions and handlers that are always useful
  */
-var libpath = require('path');
+var jade = require('jade'),
+	fs = require('fs'),
+	libpath = require('path'),
+	nodemailer = require('nodemailer'),
+	moment = require('moment'),
+
+	config = require('../config.json');
 
 var logLevels = {
 	'fatal': 0,
@@ -106,6 +112,9 @@ function renderPage(template, options)
 			else
 				return path;
 		};
+		pageFields.formatDate = function(date){
+			return moment(date).locale(res.i18n.pathLocale).format('LL');
+		};
 
 		return res.render(template, pageFields, function(err,html){
 			if( !err ){
@@ -123,9 +132,37 @@ function renderPage(template, options)
 	return middleware;
 }
 
+function renderActivationEmail(to, username, token, registering, i18n)
+{
+	// build email message
+	var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, '../templates/activate-email.jade')), {pretty: true} );
+	var html = template({
+		registration: registering,
+		url: config.origin + (i18n.pathLocale ? '/'+i18n.pathLocale : ''),
+		token: token,
+		username: username,
+		__: i18n.__.bind(i18n)
+	});
+
+	// send out confirmation email
+	if(!config.debugEmail){
+		var transporter = nodemailer.createTransport(config.smtp);
+		transporter.sendMail({
+			from: 'no-reply@toonstore.net',
+			to: to,
+			subject: (registering ? 'Set' : 'Reset') + ' your password - ToonStore.net',
+			html: html
+		});
+	}
+	else {
+		log((registering ? 'Set' : 'Reset') + ' your password - ToonStore.net');
+		log(html);
+	}
+}
+
 // export everything for external modules
 exports.error = error;
 exports.log = log;
 exports.logLevels = logLevels;
 exports.renderPage = renderPage;
-
+exports.renderActivationEmail = renderActivationEmail;

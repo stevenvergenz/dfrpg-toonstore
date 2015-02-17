@@ -3,9 +3,9 @@ function validate()
 	var valid = /^[A-Za-z0-9_-]+$/.test( $('#canon_name').val() );
 	if( !valid ){
 		if( $('div.error').length == 0 )
-			$('<div class="content-block"><div class="error"><p>That short name is invalid.</p></div></div>').prependTo( $('.content') );
+			$('<div class="content-block"><div class="error"><p>'+clientStrings.invalid+'</p></div></div>').prependTo( $('.content') );
 		else
-			$('div.error>p').text('That short name is invalid');
+			$('div.error>p').text(clientStrings.invalid);
 	}
 	return valid;
 }
@@ -38,7 +38,10 @@ function prepopulateCopy()
 			$('#templateContainer').css({display: 'none'});
 
 
-			$('<div class="info" style="margin-top: 15px;">Duplicating character:<br/><strong>'+data.name+'</strong><br/><span class="caption">('+match[1]+')</span></div>').insertBefore('.formbox form');
+			$('<div class="info" style="margin-top: 15px;">'+
+				clientStrings.duplicating+'<br/><strong>'+data.name+'</strong><br/><span class="caption">('+match[1]+')</span>'+
+				'</div>'
+			).insertBefore('.formbox form');
 		});
 	}
 }

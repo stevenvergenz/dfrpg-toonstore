@@ -51,27 +51,9 @@ function register(req,res)
 						}
 						else
 						{
-							// build email message
-							var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, '../templates/activate-email.jade')) );
-							var html = template({
-								registration: true,
-								url: config.origin,
-								token: token,
-								username: req.body.username
-							});
-
-							// send out confirmation email
 							global.log('Sent out password token:', token);
-							var transporter = nodemailer.createTransport(config.smtp);
-							transporter.sendMail({
-								from: 'no-reply@toonstore.net',
-								to: req.body.email,
-								subject: 'Verify your account - ToonStore.net',
-								html: html
-							});
-								
+							global.renderActivationEmail(req.body.email, req.body.username, token, true, res.i18n);
 							res.redirect('/pre-activate?t=register');
-
 						}
 						connection.end();
 					}

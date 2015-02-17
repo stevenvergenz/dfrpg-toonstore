@@ -38,7 +38,7 @@ app.use(i18n.detect);
 
 // route the registration pages
 app.get('/register', i18n.cookieRedirect, global.renderPage('register'));
-app.get('/federated-register', global.renderPage('register'));
+app.get('/federated-register', i18n.cookieRedirect, global.renderPage('register'));
 app.get('/post-register', global.renderPage('register'));
 app.post('/register', register.register);
 app.post('/federated-register', register.federatedRegister);

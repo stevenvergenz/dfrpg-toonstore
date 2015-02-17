@@ -1,55 +1,56 @@
 extends index
 
 block title
-	title New Character | ToonStore.net
+	title= __('newtoon.pagetitle') + ' | ToonStore.net'
 
 block append includes
+	script!= 'var clientStrings = '+JSON.stringify(__('newtoon.clientStrings'))+';'
 	script(src='/static/js/newtoon.js')
 
 block content
 
 	.content-block: .formbox
-		.title New character
+		.title= __('newtoon.pagetitle')
 
 		form(method='post', onsubmit="return validate();")
 
 			.field
-				label(for='name') Full name
+				label(for='name')= __('newtoon.fullname.label')
 				input#name(type='text', name='name', required, placeholder='John Doe', onkeyup="generateSlug(this)")
-				p.caption The character's name. Can be changed later.
+				p.caption= __('newtoon.fullname.caption')
 
 			.field
-				label(for='canon_name') Short name (also permalink)
+				label(for='canon_name')= __('newtoon.shortname.label')
 				input#canon_name(type='text', name='canon_name', required, placeholder='doe')
-				p.caption Something short, identifiable, and unique amongst your characters. Last names usually suffice.
-				p.caption Only A-Z, a-z, 0-9, -, and _ are allowed.
-				p.caption This is PERMANENT.
+				p.caption= __('newtoon.shortname.p1')
+				p.caption= __('newtoon.shortname.p2')
+				p.caption= __('newtoon.shortname.p3')
 
 			.field
-				label(for='concept') High concept
+				label(for='concept')= __('newtoon.hc.label')
 				input#concept(type='text', name='concept', required, placeholder='Man of Mystery')
-				p.caption The character's defining concept. Can be changed later.
+				p.caption= __('newtoon.hc.caption')
 
 			.field#templateContainer
-				label(for='template') Character template
+				label(for='template')= __('newtoon.template.label')
 				select#template(name='template')
 					option
 					for item in templates
 						option(value='#{item}', label='#{item}')= item
-				p.caption The template your character is based on.
+				p.caption= __('newtoon.template.caption')
 
 			.field.checkbox
 				input#private(type='checkbox', name='private')
-				label(for='private') Make this character private
+				label(for='private')= __('newtoon.private')
 				script.
 					if( /[?&]private/.test(window.location.search) ){
 						$('input#private').prop('checked',true);
 					}
 
 			.field
-				p Have you considered 
-					a(href='/site/donate') donating
-					|  to help keep the ToonStore online and ad-free?
+				p= __('newtoon.donate.f1')
+					a(href=url('/site/donate'))= __('newtoon.donate.f2')
+					= __('newtoon.donate.f3')
 
 			.field
-				input(type='submit', name='submit', value='Submit')
+				input(type='submit', name='submit', value='#{__("newtoon.submit")}')

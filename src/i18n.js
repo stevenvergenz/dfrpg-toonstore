@@ -4,6 +4,8 @@ var i18n = require('i18n'),
 	libpath = require('path'),
 	express = require('express');
 
+var global = require('./global.js');
+
 // the translation middleware
 var config = {
 	locales: ['en-US','pt-BR'],
@@ -136,6 +138,7 @@ function detectHeaderLocale(header)
 exports.cookieRedirect = function(req,res,next)
 {
 	if( res.i18n.cookieLocale && !res.i18n.pathLocale ){
+		global.log('Cookie redirect to preferred locale');
 		res.redirect( '/'+res.i18n.cookieLocale+ req.url );
 	}
 	else {

@@ -74,20 +74,14 @@ app.directive('dgySrc', function()
 app.filter('relativeTime', function()
 {
 	return function(isotime){
-		if(isotime)
-			return 'Last updated '+moment(isotime).fromNow();
-		else
-			return 'Never updated';
+		return moment(isotime).locale(localeInfo.pathLocale).fromNow();
 	};
 });
 
 app.filter('calendarTime', function()
 {
 	return function(isotime){
-		if(isotime)
-			return moment(isotime).calendar();
-		else
-			return 'Never updated';
+		return moment(isotime).locale(localeInfo.pathLocale).calendar();
 	};
 });
 
