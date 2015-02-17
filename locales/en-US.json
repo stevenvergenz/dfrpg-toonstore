@@ -115,6 +115,36 @@
 		"sig": "The ToonStore Team"
 	},
 
+	"newtoon":
+	{
+		"pagetitle": "New Character",
+		"fullname": {
+			"label": "Full name",
+			"caption": "The character's name. Can be changed later."
+		},
+		"shortname": {
+			"label": "Short name (also permalink)",
+			"p1": "Something short, identifiable, and unique amongst your characters. Last names usually suffice.",
+			"p2": "Only A-Z, a-z, 0-9, -, and _ are allowed.",
+			"p3": "This is PERMANENT."
+		},
+		"hc": {
+			"label": "High concept",
+			"caption": "The character's defining aspect. Can be changed later."
+		},
+		"template": {
+			"label": "Character template",
+			"caption": "The template your character is based on."
+		},
+		"private": "Make this character private",
+		"donate": {
+			"f1": "Have you considered ",
+			"f2": "donating",
+			"f3": " to help keep the ToonStore online and ad-free?"
+		},
+		"submit": "Submit"
+	},
+
 	"user":
 	{
 		"pagetitle": "%s's page",
