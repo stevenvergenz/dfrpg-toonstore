@@ -103,8 +103,11 @@ function renderPage(template, options)
 		pageFields.__n = res.i18n.__n.bind(res.i18n);
 		pageFields.n__ = res.i18n.n__.bind(res.i18n);
 		pageFields.n__n = res.i18n.n__n.bind(res.i18n);
-		pageFields.getNativeURL = function(){
-			return '/'+res.i18n.nativeLocale+req.url;
+		pageFields.getNativeURL = function(lang){
+			if(lang)
+				return '/'+lang+req.url;
+			else
+				return '/'+res.i18n.nativeLocale+req.url;
 		};
 		pageFields.url = function(path){
 			if( res.i18n.pathLocale )
