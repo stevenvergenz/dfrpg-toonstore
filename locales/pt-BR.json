@@ -3,12 +3,12 @@
 	{
 		"about": "Sobre Nós",
 		"contact": "Contato",
-		"logout": "Deslogar",
+		"logout": "Sair",
 		"terms": "Termos de Uso",
 		"privacy": "Políticas de Privacidade",
 		"donate": "Doações",
 		"register": "Registrar",
-		"login": "Conecte-Se",
+		"login": "Conecte-se",
 		"lang_dialog": {
 			"prompt": "Esta página está disponível em sua língua nativa (%s). Você quer usar esta versão?",
 			"accept": "Vamos lá",
@@ -18,62 +18,62 @@
 
 	"login":
 	{
-		"meta_description": "Log into the ToonStore",
+		"meta_description": "Entrar na ToonStore",
 		"email": "E-mail",
-		"password": "Password",
-		"forgot": "forgot password",
-		"register": "Register",
-		"submit": "Log in"
+		"password": "Senha",
+		"forgot": "Esqueci a senha",
+		"register": "Registre-se",
+		"submit": "Login"
 	},
 
 	"register":
 	{
 		"intro": {
-			"f1": "Thank you for your interest! ",
-			"f2": "Log in with Persona",
-			"f3": " or fill out the information below and we'll get you set up."
+			"f1": "Obrigado pela preferência! ",
+			"f2": "Conecte-se com seu Persona",
+			"f3": " ou preencha os campos abaixo."
 		},
-		"fedIntro": "Since this is the first time you've logged in, you must pick a username.",
+		"fedIntro": "Escolha um nome de usuário.",
 		"email": {
-			"label": "E-mail address",
+			"label": "Email",
 			"caption": {
-				"f1": "We promise not to share your email with anyone! See the ",
-				"f2": "privacy policy",
+				"f1": "Prometemos não mostrar seu email pra mais ninguém!",
+				"f2": "veja a nossa política de privacidade",
 				"f3": "."
 			}
 		},
 		"username": {
-			"label": "Username (also your permalink)",
-			"caption": "No spaces or special characters except for _ and -"
+			"label": "Nome de usuário (também será seu link de conta)",
+			"caption": "Não use espaços ou caracteres especiais, exceto por _ e -"
 		},
 		"agreement": {
-			"f1": "I have read and agree with the ",
-			"f2": "Terms of Use",
-			"f3": " and the ",
-			"f4": "Privacy Policy",
+			"f1": "Li os termos de uso ",
+			"f2": "e concordo com a",
+			"f3": " política de privacidade",
+			"f4": "",
 			"f5": "."
 		},
-		"submit": "Submit",
+		"submit": "Enviar",
 
 		"clientStrings": {
-			"userTaken": "Username is already taken.",
-			"userAvailable": "Username is available.",
-			"userInvalid": "Username is invalid!",
-			"fix": "Fix the problems above before submitting"
+			"userTaken": "Nome de usuário indisponível.",
+			"userAvailable": "Nome de usuário disponível.",
+			"userInvalid": "Nome de usuário inválido!",
+			"fix": "Ajeite os erros antes de enviar"
 		}
 	},
 
 	"passreset":
 	{
-		"pagetitle": "Reset your password",
-		"intro": "Type in your email address below, and we will email you a link to reset your password.",
-		"email": "E-mail",
-		"submit": "Submit"
+		"pagetitle": "Resete sua senha",
+		"intro": "Preencha seu email abaixo e enviaremos um link para resetar a sua senha.",
+		"email": "Email",
+		"submit": "Enviar"
 	},
 
 	"pre-activate":
 	{
-		"pagetitle": "Email verification",
+		"pagetitle": "Verificação de email",
 		"intro_register": "Thank you for joining ToonStore! We have emailed you a link to activate your account. Click the link and follow the instructions to complete your registration.",
 		"intro": "Your password reset request has been received. We have emailed you a link, please click the link to change your password.",
 		"note": "Note that it can take a few minutes to get the email. If you don't see it, check your spam folder, and add \"no-reply@toonstore.net\" to your allowed sender's list."
