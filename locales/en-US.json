@@ -9,6 +9,7 @@
 		"donate": "Donate",
 		"register": "Register",
 		"login": "Log In",
+		"language": "Language: ",
 		"lang_dialog": {
 			"prompt": "This page is available in your native language (%s). Would you like to view this version instead?",
 			"accept": "Take me there",
