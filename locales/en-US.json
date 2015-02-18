@@ -233,6 +233,13 @@
 			"f1": "Primarily it is just me, Steven Vergenz, advised by the other members of my gaming group. I don't have a ton of time to work on this project though, so if you want to work on a feature for your own group, feel free to fork this project on ",
 			"f2": "Github",
 			"f3": " for your own needs. If you do so though, I would appreciate it if you would contribute your new features back to the original ToonStore project once you're done."
+		},
+
+		"h4": "Additional Credits",
+		"p4": {
+			"f1": "Thanks to Thecosmicgoose (",
+			"f2": "deviantart",
+			"f3": ") for his lovely artwork on the DFRPG character templates, and to Robert \"Jabberwocky\" Skopek and Lucas \"Atmo\" Leonardo for the Czech and Portuguese translations of the ToonStore."
 		}
 	},
 
