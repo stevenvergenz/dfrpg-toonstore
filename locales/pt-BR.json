@@ -81,18 +81,18 @@
 
 	"activate":
 	{
-		"pagetitle": "Set your password",
-		"intro": "Type your new password in the fields below. The time to crack is an indicator of how strong your password is. Good passwords should take at least a few years to crack. If the meter is green or blue you're in good shape.",
-		"password": "Password",
-		"cracktime": "Time to crack: ",
-		"confirm": "Confirm password",
-		"submit": "Submit",
+		"pagetitle": "Insira sua senha",
+		"intro": "Insira sua nova senha no campo abaixo. O tempo necessário para quebrar sua senha é um indicador de quão segura ela é. Boas senhas devem levar pelo menos alguns dias para quebrar. Se a barra estiver verde ou azul você está indo bem.",
+		"password": "Senha",
+		"cracktime": "Tempo para quebrar a senha: ",
+		"confirm": "Confirme sua senha",
+		"submit": "Enviar",
 
 		"clientStrings": {
-			"toosimple": "too simple!",
-			"match": "Passwords match",
-			"nomatch": "Passwords do not match",
-			"fix": "Fix the problems above before submitting"
+			"toosimple": "muito simples!",
+			"match": "Senhas batem",
+			"nomatch": "Senhas não batem",
+			"fix": "Corrija os erros antes de enviar"
 		}
 	},
 
