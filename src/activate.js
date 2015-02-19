@@ -62,7 +62,7 @@ function setPassword(req,res,next)
 	{
 		if(ex){
 			global.error('Could not create new salt!', ex);
-			global.renderPage('activation', {message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
+			global.renderPage('activation', {code:500, message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 			return;
 		}
 

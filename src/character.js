@@ -146,12 +146,12 @@ function newCharacterRequest(req,res)
 {
 	if( !req.session || !req.session.user ){
 		global.error('Anonymous character creation attempted!', global.logLevels.error);
-		global.renderPage('newtoon', {message: {type: 'error', content: res.i18n.__('server.anonNewToon')}})(req,res);
+		global.renderPage('newtoon', {code:401, message: {type: 'error', content: res.i18n.__('server.anonNewToon')}})(req,res);
 		return;
 	}
 	else if( !(req.body && req.body.name && req.body.concept && req.body.canon_name) ){
 		global.error('Incomplete character creation attempted', global.logLevels.error);
-		global.renderPage('newtoon', {message: {type: 'error', content: res.i18n.__('server.incompleteForm')}})(req,res);
+		global.renderPage('newtoon', {code:400, message: {type: 'error', content: res.i18n.__('server.incompleteForm')}})(req,res);
 		return;
 	}
 
@@ -256,7 +256,7 @@ function deleteCharacterPage(req,res)
 		{
 			if( err ){
 				global.error('MySQL error: ', err);
-				global.renderPage('killtoon', {message: {type: 'error', content: res.i18n.__('server.genericErr')}})(req,res);
+				global.renderPage('killtoon', {code: 500, message: {type: 'error', content: res.i18n.__('server.genericErr')}})(req,res);
 			}
 			else if( rows.length == 0 ){
 				global.error('No such character: '+req.query.id);
