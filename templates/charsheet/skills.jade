@@ -1,6 +1,6 @@
 #skills.sheet-panel(ng-controller='SkillCtrl', ng-class='{dirty: dirty}')
 	a#skills
-	h2.panelHeader Skills
+	h2.panelHeader= __('charsheet.headers.skills')
 		span(ng-show='data.skills.is_shifter')  (
 			input#shifter(type='checkbox', ng-model='shifted')
 			label(for='shifter')
@@ -8,9 +8,9 @@
 		input.iconButton(type='image', ng-click='editing=!editing', src='/static/img/glyphicons/glyphicons_150_edit.png')
 
 	p(ng-show='editing')
-		| Drag skills to rearrange
+		= __('charsheet.skillhelper.f1')
 		br
-		| Drop on +0 to remove
+		= __('charsheet.skillhelper.f2')
 
 	#skillBlock
 		.row(dgy-droppable='editing', dgy-drop='dropHandler', ng-repeat='level in presOrder()', ng-hide='!editing && $last')

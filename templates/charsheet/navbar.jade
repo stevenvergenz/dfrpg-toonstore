@@ -2,22 +2,22 @@ if logged_user == owner
 	#charnav.navbar
 		ul.navmenu.navitem
 			li
-				a Panels
+				a= __('charsheet.headers.panels')
 					span.subarrow
 				ul
 					li
-						a(href='printable') Printer-friendly
+						a(href='printable')= __('charsheet.headers.printable')
 					li: hr
 					li
-						a Optional Panels
+						a= __('charsheet.headers.optionals')
 							span.subarrow
 						ul
 							li
 								input(type='checkbox', dgy-notify, ng-model='data.notes.enabled')
-								a(href='#notes') Notes
+								a(href='#notes')= __('charsheet.headers.notes')
 							li
 								input(type='checkbox', dgy-notify, ng-model='data.skills.is_shifter')
-								a(href='#skills') Shapeshifter
+								a(href='#skills')= __('charsheet.headers.shapeshifter')
 							//li
 								input(type='checkbox')
 								a(href='#invent') Inventory
@@ -27,15 +27,15 @@ if logged_user == owner
 							//li
 								input(type='checkbox')
 								a(href='#spellcalc') Spellcaster/Calculator
-					li: a(href='#aspects') Aspects
-					li: a(href='#skills') Skills
-					li: a(href='#stress') Stress
-					li: a(href='#conseq') Consequences
-					li: a(href='#totals') Totals
-					li: a(href='#powers') Stunts & Powers
+					li: a(href='#aspects')= __('charsheet.headers.aspects')
+					li: a(href='#skills')= __('charsheet.headers.skills')
+					li: a(href='#stress')= __('charsheet.headers.stress')
+					li: a(href='#conseq')= __('charsheet.headers.conseq')
+					li: a(href='#totals')= __('charsheet.headers.totals')
+					li: a(href='#powers')= __('charsheet.headers.powers')
 	
 
 		.itemgroup
-			.navitem: a(href=url('/site/howto')) Help
-			.navitem: a(href='javascript:;', ng-class='{dirty: dirty}', ng-click='data.$save()') Save
+			.navitem: a(href=url('/site/howto'))= __('charsheet.headers.help')
+			.navitem: a(href='javascript:;', ng-class='{dirty: dirty}', ng-click='data.$save()')= __('charsheet.headers.save')
 

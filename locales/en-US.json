@@ -167,7 +167,7 @@
 
 	"server":
 	{
-		"genericErr": "An unidentified error has occurred, please contact the site admin with what you were doing and when this error occurred.",
+		"genericErr": "An unidentified error has occurred. Please contact the site admin with what you were doing and when this error occurred.",
 		"passwordSet": "Your password has been set. Please log in to continue.",
 		"anonNewToon": "You must be logged in to create a character.",
 		"incompleteForm": "You must fill out all fields.",
@@ -216,6 +216,70 @@
 			"lastupdated": "Last updated %s",
 			"neverupdated": "Never updated"
 		}
+	},
+
+	"charsheet":
+	{
+		"meta_description": "{{name}}, {{hc}}, powered by ToonStore",
+		"backseat": "This page is currently in back-seat mode. You can make local edits to the character sheet, but will not be able to save. Your changes will be lost once you refresh the page, and are not visible to other viewers of the character.",
+		
+		"headers": {
+			"panels": "Panels",
+			"printable": "Printer-friendly",
+			"optionals": "Optional Panels",
+			"notes": "Notes",
+			"shapeshifter": "Shapeshifter",
+			"aspects": "Aspects",
+			"skills": "Skills",
+			"stress": "Stress",
+			"conseq": "Consequences",
+			"totals": "Totals",
+			"powers": "Stunts & Powers",
+			"help": "Help",
+			"save": "Save"
+		},
+
+		"labels": {
+			"hc": "High Concept:",
+			"trouble": "Trouble:",
+			"otheraspects": "Other Aspects:",
+			"powerlevel": "Power Level:",
+			"skillcap": "Skill Cap:",
+			"skillpoints": "Skill Points:",
+			"skillspent": "Skill Points Spent",
+			"skillavailable": "Available",
+			"baserefresh": "Base Refresh Level",
+			"adjusted": "Adjusted Refresh",
+			"fp": "Fate Points",
+			"strength": "Strength",
+			"toughness": "Tough",
+			"tempaspect": "Temporary Aspects",
+			"cost": "Cost",
+			"ability": "Ability",
+			"refreshadjust": "Total Refresh Adjustment"
+		},
+
+		"description": "Description",
+		"unused": "Unused",
+
+		"armor": {
+			"f1": "Armor: ",
+			"f2": " vs. "
+		},
+		"skillhelper": {
+			"f1": "Drag skills to rearrange",
+			"f2": "Drop on +0 to remove"
+		},
+		"conseqType": {
+			"type": "Type",
+			"mild": "Mild (-2)",
+			"moderate": "Moderate (-4)",
+			"severe": "Severe (-6)",
+			"extreme": "Extreme (-8)"
+		},
+
+		"markdown": "Raw text is styled with Markdown.",
+		"primer": "A Brief Primer"
 	},
 
 	"index":

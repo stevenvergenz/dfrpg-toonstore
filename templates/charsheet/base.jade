@@ -2,7 +2,7 @@ extends ../index
 
 block title
 	title= toonName + ', ' + toonConcept + ' | ToonStore.net'
-	meta(name='description', content='#{toonName}, #{toonConcept}, powered by ToonStore')
+	meta(name='description', content='#{__("charsheet.meta_description", {name:toonName, hc:toonConcept})}')
 
 block styles
 	link(rel='stylesheet', type='text/css', href='/static/scss/charsheet/base.css')
