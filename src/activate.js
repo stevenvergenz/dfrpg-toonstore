@@ -16,7 +16,7 @@ function serveActivationPage(req,res,next)
 	{
 		if(err){
 			global.error('Cannot query Tokens table', err);
-			global.renderPage('404', {code: 500, message: {type:'error',content:'An unidentified error has occurred, please contact the site admin.'}})(req,res);
+			global.renderPage('index', {code: 500, message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 		}
 		else if( rows[0].count === 0 ){
 			next();
@@ -42,7 +42,7 @@ function passwordReset(req,res,next)
 		{
 			if( err ){
 				global.error('Failed to register pass reset token.', err);
-				global.renderPage('index', {message: {type:'error', content:'Unidentified database error'}})(req,res);
+				global.renderPage('index', {code:500, message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 			}
 			else
 			{
@@ -62,7 +62,7 @@ function setPassword(req,res,next)
 	{
 		if(ex){
 			global.error('Could not create new salt!', ex);
-			global.renderPage('activation', {message: {type:'error', content:err}})(req,res);
+			global.renderPage('activation', {message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 			return;
 		}
 
@@ -78,7 +78,7 @@ function setPassword(req,res,next)
 			{
 				if(err){
 					global.error('Failed to set password!', err);
-					global.renderPage('activation', {code: 500, message: {type:'error',content:'An unidentified error has occurred, please contact the site admin.'}})(req,res);
+					global.renderPage('activation', {code: 500, message: {type:'error', content:res.i18n.__('server.genericErr')}})(req,res);
 				}
 				else if(result.affectedRows === 0){
 					global.error('Token not found or expired');
@@ -86,7 +86,7 @@ function setPassword(req,res,next)
 				}
 				else {
 					global.log('Password reset for token', req.params.token);
-					req.session.latent_message = 'Your password has been set. Please log in to continue.';
+					req.session.latent_message = res.i18n.__('server.passwordSet');
 					res.redirect('/login');
 				}
 				connection.end();

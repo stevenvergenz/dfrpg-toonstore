@@ -153,12 +153,12 @@ function renderActivationEmail(to, username, token, registering, i18n)
 		transporter.sendMail({
 			from: 'no-reply@toonstore.net',
 			to: to,
-			subject: (registering ? 'Set' : 'Reset') + ' your password - ToonStore.net',
+			subject: (registering ? i18n.__('activate-email.subject_reg') : i18n.__('activate-email.subject_noreg')) + ' - ToonStore.net',
 			html: html
 		});
 	}
 	else {
-		log((registering ? 'Set' : 'Reset') + ' your password - ToonStore.net');
+		log((registering ? i18n.__('activate-email.subject_reg') : i18n.__('activate-email.subject_noreg')) + ' - ToonStore.net');
 		log(html);
 	}
 }

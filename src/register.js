@@ -18,12 +18,12 @@ function register(req,res)
 
 	if( blacklist.indexOf(req.body.username) != -1 ){
 		global.error('Registration error: cannot register reserved word');
-		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}})(req,res);
+		global.renderPage('register', {message: {type:'warning', content: res.i18n.__('server.userReserved')}})(req,res);
 		return;
 	}
 	else if( !/^[A-Za-z0-9_-]+$/.test(req.body.username) ){
 		global.error('Registration error: cannot register invalid username');
-		global.renderPage('register', {message: {type:'warning', content:'That username is invalid, choose another.'}})(req,res);
+		global.renderPage('register', {message: {type:'warning', content: res.i18n.__('server.userInvalid')}})(req,res);
 		return;
 	}
 	global.log('Registering user:', req.body.username);
@@ -35,7 +35,7 @@ function register(req,res)
 		{
 			if(err){
 				global.error('Failed to add new user to DB!', err);
-				global.renderPage('register', {message: {type:'error', content:'That email is already registered.'}})(req,res);
+				global.renderPage('register', {message: {type:'error', content: res.i18n.__('server.emailTaken')}})(req,res);
 				connection.end();
 			}
 			else {
@@ -47,7 +47,7 @@ function register(req,res)
 					{
 						if( err2 ){
 							global.error('Failed to register pass reset token.', err2);
-							global.renderPage('index', {message: {type:'error', content:'Unidentified database error'}})(req,res);
+							global.renderPage('index', {message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 						}
 						else
 						{

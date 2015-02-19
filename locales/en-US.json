@@ -99,6 +99,8 @@
 
 	"activate-email":
 	{
+		"subject_reg": "Set your password",
+		"subject_noreg": "Reset your password",
 		"greeting_user": "Hello %s!",
 		"greeting_nouser": "Hello!",
 		"intro_reg": "Thank you for using the ToonStore! Click the link below to get started:",
@@ -161,6 +163,21 @@
 		"clientStrings": {
 			"error": "You must enter the confirmation text to delete the character."
 		}
+	},
+
+	"server":
+	{
+		"genericErr": "An unidentified error has occurred, please contact the site admin with what you were doing and when this error occurred.",
+		"passwordSet": "Your password has been set. Please log in to continue.",
+		"anonNewToon": "You must be logged in to create a character.",
+		"incompleteForm": "You must fill out all fields.",
+		"character404": "You cannot duplicate or delete a non-existent character. If the character really exists, contact the site admin.",
+		"duplicateSlug": "You are already using that short name, choose another.",
+		"charDeleted": "Character %s successfully deleted",
+		"loginErr": "Invalid login or password",
+		"userReserved": "That username is reserved, choose another.",
+		"userInvalid": "That username is invalid, choose another.",
+		"emailTaken": "That email address is already registered. Try logging in instead."
 	},
 
 	"user":
