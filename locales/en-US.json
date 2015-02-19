@@ -180,6 +180,11 @@
 		"emailTaken": "That email address is already registered. Try logging in instead."
 	},
 
+	"404": {
+		"pagetitle": "Page not found",
+		"message": "The page you requested was not found. If you were expecting a character, maybe the owner deleted it. Use the navigation bars to choose a different page."
+	},
+
 	"user":
 	{
 		"pagetitle": "%s's page",

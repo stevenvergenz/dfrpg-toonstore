@@ -1,9 +1,10 @@
 extends index
 
 block title
-	title 404 | Online Dresden Files RPG Character Hosting | ToonStore.net
+	title= __('404.pagetitle') + ' | ToonStore.net'
 
 block content
 	.content-block
-		h1 404
-		p The page you were looking for was not found.
+		h1= __('404.pagetitle')
+		.content-block: .normalbox
+			p= __('404.message')

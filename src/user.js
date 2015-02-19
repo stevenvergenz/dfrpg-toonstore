@@ -12,7 +12,7 @@ function newUserPage(req,res,next)
 	{
 		if(err){
 			global.error('MySQL error:', err);
-			global.renderPage('index', {code:500, message: {type:'error', content: res.i18n.__('server.genericErr')})(req,res);
+			global.renderPage('index', {code:500, message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 		}
 		else if(rows[0].count === 1){
 			global.log('Serving user page for', req.params.user);
