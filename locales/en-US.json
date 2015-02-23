@@ -279,7 +279,36 @@
 		},
 
 		"markdown": "Raw text is styled with Markdown.",
-		"primer": "A Brief Primer"
+		"primer": "A Brief Primer",
+
+		"clientStrings":
+		{
+			"invalidSkills": "INVALID, %s available",
+			"validSkills": "Valid, %s available",
+			"powerLevels": {
+				"feet": "Feet In The Water",
+				"waist": "Up To Your Waist",
+				"chest": "Chest-Deep",
+				"submerged": "Submerged"
+			},
+			"stress": "Stress",
+			"skill": "Skill",
+			"newPower": "New Power",
+			"genericConseq": "Any",
+
+			"unsavedWarning": "This character has unsaved changes. If you leave this page, these changes will be lost.",
+			"skillLadder": [
+				"Mediocre (+0)",
+				"Average (+1)",
+				"Fair (+2)",
+				"Good (+3)",
+				"Great (+4)",
+				"Superb (+5)",
+				"Fantastic (+6)",
+				"Epic (+7)",
+				"Legendary (+8)"
+			]
+		}
 	},
 
 	"index":
