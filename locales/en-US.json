@@ -185,6 +185,12 @@
 		"message": "The page you requested was not found. If you were expecting a character, maybe the owner deleted it. Use the navigation bars to choose a different page."
 	},
 
+	"private": {
+		"pagetitle": "Cannot access private character",
+		"meta_description": "Access to the character sheet for %s has been blocked by the owner.",
+		"content": "Access to this character sheet has been blocked by the owner. If you own this character, log in to view and edit this character."
+	}
+
 	"user":
 	{
 		"pagetitle": "%s's page",

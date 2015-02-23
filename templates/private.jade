@@ -1,15 +1,13 @@
 extends index
 
 block title
-	title #{toonName} | ToonStore.net
-	meta(name='description', content='Access to the character sheet for #{toonName} has been blocked by the owner.')
+	title= toonName + ', ' + toonConcept + ' | ToonStore.net'
+	meta(name='description', content=__('private.meta_description', toonName))
 
 block content
 
-	h2 Cannot access private character
+	h2= __('private.pagetitle')
 
 	.content-block: .normalbox
 
-		p Access to this character sheet has been blocked by the owner. Log in as 
-			a(href=url('/#{toonOwner}'))= toonOwner
-			|  to view and edit this character.
+		p= __('private.content')
