@@ -74,9 +74,9 @@
 	"pre-activate":
 	{
 		"pagetitle": "Verificação de email",
-		"intro_register": "Thank you for joining ToonStore! We have emailed you a link to activate your account. Click the link and follow the instructions to complete your registration.",
-		"intro": "Your password reset request has been received. We have emailed you a link, please click the link to change your password.",
-		"note": "Note that it can take a few minutes to get the email. If you don't see it, check your spam folder, and add \"no-reply@toonstore.net\" to your allowed sender's list."
+		"intro_register": "Obrigado por juntar-se a Toonstore! Enviamos um email com o link para a ativação da sua conta. Clique no link e siga as instruções para concluir o registro.",
+		"intro": "Seu pedido de reconfirmação de senha foi recebido. Enviamos um link para seu email, clique no link para mudar a sua senha.",
+		"note": "Note que o email pode levar alguns minutos para chegar. Procure na sua caixa de spam caso não o encontre na caixa de entrada."
 	},
 
 	"activate":
@@ -98,9 +98,9 @@
 
 	"activate-email":
 	{
-		"greeting_user": "Hello %s!",
-		"greeting_nouser": "Hello!",
-		"intro_reg": "Thank you for using the ToonStore! Click the link below to get started:",
+		"greeting_user": "Olá %s!",
+		"greeting_nouser": "Olá!",
+		"intro_reg": "Obrigado por usar a Toonstore! Clique no link abaixo para começar:",
 		"intro_noreg": "Thank you for using the ToonStore! You have requested a password reset, so click the link below to reset it. If you did NOT request a reset, just ignore this email.",
 		"resetpassword": "Reset your password",
 		"setpassword": "Set your password",
