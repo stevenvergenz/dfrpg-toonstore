@@ -9,6 +9,7 @@
 		"donate": "Doações",
 		"register": "Registrar",
 		"login": "Conecte-se",
+		"language": "Language: ",
 		"lang_dialog": {
 			"prompt": "Esta página está disponível em sua língua nativa (%s). Você quer usar esta versão?",
 			"accept": "Vamos lá",
@@ -98,6 +99,8 @@
 
 	"activate-email":
 	{
+		"subject_reg": "Set your password",
+		"subject_noreg": "Reset your password",
 		"greeting_user": "Olá %s!",
 		"greeting_nouser": "Olá!",
 		"intro_reg": "Obrigado por usar a Toonstore! Clique no link abaixo para começar:",
@@ -162,6 +165,26 @@
 		}
 	},
 
+	"server":
+	{
+		"genericErr": "An unidentified error has occurred. Please contact the site admin with what you were doing and when this error occurred.",
+		"passwordSet": "Your password has been set. Please log in to continue.",
+		"anonNewToon": "You must be logged in to create a character.",
+		"incompleteForm": "You must fill out all fields.",
+		"character404": "You cannot duplicate or delete a non-existent character. If the character really exists, contact the site admin.",
+		"duplicateSlug": "You are already using that short name, choose another.",
+		"charDeleted": "Character %s successfully deleted",
+		"loginErr": "Invalid login or password",
+		"userReserved": "That username is reserved, choose another.",
+		"userInvalid": "That username is invalid, choose another.",
+		"emailTaken": "That email address is already registered. Try logging in instead."
+	},
+
+	"404": {
+		"pagetitle": "Page not found",
+		"message": "The page you requested was not found. If you were expecting a character, maybe the owner deleted it. Use the navigation bars to choose a different page."
+	},
+
 	"user":
 	{
 		"pagetitle": "%s's page",
@@ -192,6 +215,99 @@
 			"delete": "Delete",
 			"lastupdated": "Last updated %s",
 			"neverupdated": "Never updated"
+		}
+	},
+
+	"charsheet":
+	{
+		"meta_description": "{{name}}, {{hc}}, powered by ToonStore",
+		"backseat": "This page is currently in back-seat mode. You can make local edits to the character sheet, but will not be able to save. Your changes will be lost once you refresh the page, and are not visible to other viewers of the character.",
+		
+		"headers": {
+			"panels": "Panels",
+			"printable": "Printer-friendly",
+			"optionals": "Optional Panels",
+			"notes": "Notes",
+			"shapeshifter": "Shapeshifter",
+			"aspects": "Aspects",
+			"skills": "Skills",
+			"stress": "Stress",
+			"conseq": "Consequences",
+			"totals": "Totals",
+			"powers": "Stunts & Powers",
+			"help": "Help",
+			"save": "Save"
+		},
+
+		"labels": {
+			"hc": "High Concept:",
+			"trouble": "Trouble:",
+			"otheraspects": "Other Aspects:",
+			"powerlevel": "Power Level:",
+			"skillcap": "Skill Cap:",
+			"skillpoints": "Skill Points:",
+			"skillspent": "Skill Points Spent",
+			"skillavailable": "Available",
+			"baserefresh": "Base Refresh Level",
+			"adjusted": "Adjusted Refresh",
+			"fp": "Fate Points",
+			"strength": "Strength",
+			"toughness": "Tough",
+			"tempaspect": "Temporary Aspects",
+			"cost": "Cost",
+			"ability": "Ability",
+			"refreshadjust": "Total Refresh Adjustment"
+		},
+
+		"description": "Description",
+		"unused": "Unused",
+
+		"armor": {
+			"f1": "Armor: ",
+			"f2": " vs. "
+		},
+		"skillhelper": {
+			"f1": "Drag skills to rearrange",
+			"f2": "Drop on +0 to remove"
+		},
+		"conseqType": {
+			"type": "Type",
+			"mild": "Mild (-2)",
+			"moderate": "Moderate (-4)",
+			"severe": "Severe (-6)",
+			"extreme": "Extreme (-8)"
+		},
+
+		"markdown": "Raw text is styled with Markdown.",
+		"primer": "A Brief Primer",
+
+		"clientStrings":
+		{
+			"invalidSkills": "INVALID, %s available",
+			"validSkills": "Valid, %s available",
+			"powerLevels": {
+				"feet": "Feet In The Water",
+				"waist": "Up To Your Waist",
+				"chest": "Chest-Deep",
+				"submerged": "Submerged"
+			},
+			"stress": "Stress",
+			"skill": "Skill",
+			"newPower": "New Power",
+			"genericConseq": "Any",
+
+			"unsavedWarning": "This character has unsaved changes. If you leave this page, these changes will be lost.",
+			"skillLadder": [
+				"Mediocre (+0)",
+				"Average (+1)",
+				"Fair (+2)",
+				"Good (+3)",
+				"Great (+4)",
+				"Superb (+5)",
+				"Fantastic (+6)",
+				"Epic (+7)",
+				"Legendary (+8)"
+			]
 		}
 	},
 
@@ -233,6 +349,13 @@
 			"f1": "Primarily it is just me, Steven Vergenz, advised by the other members of my gaming group. I don't have a ton of time to work on this project though, so if you want to work on a feature for your own group, feel free to fork this project on ",
 			"f2": "Github",
 			"f3": " for your own needs. If you do so though, I would appreciate it if you would contribute your new features back to the original ToonStore project once you're done."
+		},
+
+		"h4": "Additional Credits",
+		"p4": {
+			"f1": "Thanks to Thecosmicgoose (",
+			"f2": "deviantart",
+			"f3": ") for his lovely artwork on the DFRPG character templates, and to Robert \"Jabberwocky\" Skopek and Lucas \"Atmo\" Leonardo for the Czech and Portuguese translations of the ToonStore."
 		}
 	},
 
