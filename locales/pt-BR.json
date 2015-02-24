@@ -104,64 +104,64 @@
 		"greeting_user": "Olá %s!",
 		"greeting_nouser": "Olá!",
 		"intro_reg": "Obrigado por usar a Toonstore! Clique no link abaixo para começar:",
-		"intro_noreg": "Thank you for using the ToonStore! You have requested a password reset, so click the link below to reset it. If you did NOT request a reset, just ignore this email.",
-		"resetpassword": "Reset your password",
-		"setpassword": "Set your password",
-		"p1": "Note that this link is only active for 20 minutes, after which you will need to request a new one.",
-		"p2": "Enter your new password where prompted, and confirm. We don't have any hard and fast rules about password complexity, but the indicator will tell you how long it will take a computer to guess it. If it is blue or green, you're good to go.",
+		"intro_noreg": "Obrigado por usar a Toonstore! Você pediu para resetar sua senha, então é só clicar no link abaixo que sua senha será resetada. Se você NÃO requisitou esse processo, ignore este email.",
+		"resetpassword": "Resete sua senha",
+		"setpassword": "Confirme sua senha",
+		"p1": "Note que este link estará ativo apenas por 20 minutos, após isso você terá de requerir novamente.",
+		"p2": "Digite sua senha no campo e confirme. Não temos nenhuma regra complicada para lidar com a complexibilidade da senha, o contador só irá te dizer quanto tempo leva para um computador adivinhá-la. Se estiver verde ou azul, você está a salvo.",
 		"p3": {
-			"f1": "I hope you enjoy using the ToonStore! If you have any questions, comments, or complaints, please ",
-			"f2": "contact us",
+			"f1": "Esperamos que se divirta usando a ToonStore! Se tiver qualquer pergunta, ",
+			"f2": "comentário ou reclamação, por favor nos contate",
 			"f3": "!"
 		},
-		"closing": "All the best,",
-		"sig": "The ToonStore Team"
+		"closing": "Tudo de bom,",
+		"sig": "Equipe ToonStore"
 	},
 
 	"newtoon":
 	{
-		"pagetitle": "New Character",
+		"pagetitle": "Novo Personagem",
 		"fullname": {
-			"label": "Full name",
-			"caption": "The character's name. Can be changed later."
+			"label": "Nome completo",
+			"caption": "O nome do seu personagem. Pode ser trocado mais tarde."
 		},
 		"shortname": {
-			"label": "Short name (also permalink)",
-			"p1": "Something short, identifiable, and unique amongst your characters. Last names usually suffice.",
-			"p2": "Only A-Z, a-z, 0-9, -, and _ are allowed.",
-			"p3": "This is PERMANENT."
+			"label": "Nome curto (usado como permalink)",
+			"p1": "Algo curto, identificável, e único entre seus personagens. O último nome é normalmente mais usado.",
+			"p2": "Use apenas A-Z, a-z, 0-9, -, e _.",
+			"p3": "Este é PERMANENTE."
 		},
 		"hc": {
-			"label": "High concept",
-			"caption": "The character's defining aspect. Can be changed later."
+			"label": "Conceito",
+			"caption": "O aspecto que define o personagem. Pode ser trocado depois."
 		},
 		"template": {
-			"label": "Character template",
-			"caption": "The template your character is based on."
+			"label": "Modelo de personagem",
+			"caption": "O modelo que seu personagem é baseado."
 		},
-		"private": "Make this character private",
+		"private": "Deixar este personagem privado",
 		"donate": {
-			"f1": "Have you considered ",
-			"f2": "donating",
-			"f3": " to help keep the ToonStore online and ad-free?"
+			"f1": "Já pensou em ",
+			"f2": "doar",
+			"f3": " para manter a Toonstore online e livre de ads?"
 		},
-		"submit": "Submit",
+		"submit": "Enviar",
 
 		"clientStrings": {
-			"invalid": "That short name is invalid.",
-			"duplicating": "Duplicating character:"
+			"invalid": "Este nome é inválido.",
+			"duplicating": "Duplicar personagem:"
 		}
 	},
 
 	"killtoon":
 	{
-		"pagetitle": "Delete Character",
-		"intro": "In the box below, type the following exactly as it appears:",
-		"confirm": "{{name}}, {{hc}}, is dead.",
-		"submit": "Delete character",
+		"pagetitle": "Deletar personagem",
+		"intro": "Escreva no campo abaixo exatamente o que está escrito:",
+		"confirm": "{{name}}, {{hc}}, está morto.",
+		"submit": "Deletar personagem",
 		
 		"clientStrings": {
-			"error": "You must enter the confirmation text to delete the character."
+			"error": "Você deve entrar com o texto de confirmação para deletar o personagem."
 		}
 	},
 
