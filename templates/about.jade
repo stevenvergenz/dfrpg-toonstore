@@ -1,37 +1,25 @@
 extends index
 
 block title
-	title About | ToonStore.net
-	meta(name='description', content='Learn about ToonStore, the cloud-based Fate character toolkit.')
+	title= __('about.pagetitle') + ' | ToonStore.net'
+	meta(name='description', content='#{__("about.meta_description")}')
 
 block content
 
-	h1 About ToonStore
+	h1= __('about.pagetitle')
 
 	.content-block: .normalbox
 
-		h3 What is ToonStore?
+		h3= __('about.h1')
+		p= __('about.p1')
+		h3= __('about.h2')
+		p= __('about.p2')
+		h3= __('about.h3')
+		p= __('about.p3.f1')
+			a(href='https://github.com/stevenvergenz/dfrpg-toonstore', target='_blank')= __('about.p3.f2')
+			= __('about.p3.f3')
 
-		p.
-			ToonStore is a place where Dresden Files RPG roleplayers can store their character sheets without
-			having to worry about losing them, or destroying them, or leaving them behind. You can create your
-			characters right from our easy-to-use HTML interface, edit them right at the table, and share links
-			with your friends and/or GM via whatever medium you like.
-
-		h3 How did ToonStore come to be?
-
-		p.
-			In the beginning, it was simply an effort to make a better version of the fillable character sheet
-			PDF already available. As time went on though, it slowly grew in scope and complexity to encompass
-			character hosting as well. It was originally just for my group's benefit, but since it is no more
-			difficult to make it publicly available, I opened it up to the public. The rest, as they say, is
-			history.
-
-		h3 Who is Derogatory Studios?
-
-		p.
-			Primarily it is just me, Steven Vergenz, advised by the other members of my gaming group. I don't
-			have a ton of time to work on this project though, so if you want to work on a feature for your own
-			group, feel free to fork this project on <a href='https://github.com/stevenvergenz/dfrpg-toonstore' 
-			target='_blank'>Github</a> for your own needs. If you do so though, I would appreciate it if you would 
-			contribute your new features back to the original ToonStore project once you're done.
+		h3= __('about.h4')
+		p= __('about.p4.f1')
+			a(href='http://thecosmicgoose.deviantart.com/')= __('about.p4.f2')
+			= __('about.p4.f3')

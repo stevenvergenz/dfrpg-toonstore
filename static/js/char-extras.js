@@ -34,7 +34,7 @@ app.service('rootModel', ['$rootScope','$timeout','$resource', function($rootSco
 	$rootScope.$watch('dirty', function(newVal,oldVal)
 	{
 		function confirmUnload(e){
-			e.returnValue = 'This character has unsaved changes. If you leave these changes will be lost.';
+			e.returnValue = clientStrings.unsavedWarning;
 			return e.returnValue;
 		}
 
@@ -336,8 +336,7 @@ app.service('SharedResources', ['rootModel', function(rootModel)
 
 	// convenience label function
 	self.skillLabel = function(value){
-		var ladder = ['Mediocre (+0)', 'Average (+1)', 'Fair (+2)', 'Good (+3)', 'Great (+4)', 'Superb (+5)', 'Fantastic (+6)', 'Epic (+7)', 'Legendary (+8)'];
-		return ladder[value];
+		return clientStrings.skillLadder[value];
 	};
 
 	self.skillPointsSpent = function(){
@@ -374,6 +373,25 @@ app.service('SharedResources', ['rootModel', function(rootModel)
 		return rootModel.data.totals.base_refresh + self.refreshSpent();
 	};
 }]);
+
+app.directive('dgySrc', function()
+{
+	return {
+		restrict: 'A',
+		link: function(scope,element,attr)
+		{
+			var fallback = '/static/img/no-avatar.png';
+
+			element.bind('error', function(evt){
+				if( attr['src'] !== fallback )
+					element.attr('src', fallback);
+			});
+
+			element.attr('src', attr.dgySrc);
+		}
+	};
+});
+
 
 // special global-scope function to upload avatar
 function uploadAvatar()

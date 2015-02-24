@@ -18,12 +18,12 @@ function register(req,res)
 
 	if( blacklist.indexOf(req.body.username) != -1 ){
 		global.error('Registration error: cannot register reserved word');
-		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}})(req,res);
+		global.renderPage('register', {code: 403, message: {type:'warning', content: res.i18n.__('server.userReserved')}})(req,res);
 		return;
 	}
 	else if( !/^[A-Za-z0-9_-]+$/.test(req.body.username) ){
 		global.error('Registration error: cannot register invalid username');
-		global.renderPage('register', {message: {type:'warning', content:'That username is invalid, choose another.'}})(req,res);
+		global.renderPage('register', {code: 403, message: {type:'warning', content: res.i18n.__('server.userInvalid')}})(req,res);
 		return;
 	}
 	global.log('Registering user:', req.body.username);
@@ -35,7 +35,7 @@ function register(req,res)
 		{
 			if(err){
 				global.error('Failed to add new user to DB!', err);
-				global.renderPage('register', {message: {type:'error', content:'That email is already registered.'}})(req,res);
+				global.renderPage('register', {code: 401, message: {type:'error', content: res.i18n.__('server.emailTaken')}})(req,res);
 				connection.end();
 			}
 			else {
@@ -47,31 +47,13 @@ function register(req,res)
 					{
 						if( err2 ){
 							global.error('Failed to register pass reset token.', err2);
-							global.renderPage('index', {message: {type:'error', content:'Unidentified database error'}})(req,res);
+							global.renderPage('index', {message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 						}
 						else
 						{
-							// build email message
-							var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, '../templates/activate-email.jade')) );
-							var html = template({
-								registration: true,
-								url: config.origin,
-								token: token,
-								username: req.body.username
-							});
-
-							// send out confirmation email
 							global.log('Sent out password token:', token);
-							var transporter = nodemailer.createTransport(config.smtp);
-							transporter.sendMail({
-								from: 'no-reply@toonstore.net',
-								to: req.body.email,
-								subject: 'Verify your account - ToonStore.net',
-								html: html
-							});
-								
+							global.renderActivationEmail(req.body.email, req.body.username, token, true, res.i18n);
 							res.redirect('/pre-activate?t=register');
-
 						}
 						connection.end();
 					}
@@ -88,17 +70,17 @@ function federatedRegister(req,res)
 	var body = req.body;
 	if( blacklist.indexOf(body.username) != -1 ){
 		global.error('Registration error: cannot register reserved word');
-		global.renderPage('register', {message: {type:'warning', content:'That username is reserved, choose another.'}})(req,res);
+		global.renderPage('register', {code: 403, message: {type:'warning', content:'That username is reserved, choose another.'}})(req,res);
 		return;
 	}
 	else if( !/^[A-Za-z0-9_-]+$/.test(body.username) ){
 		global.error('Registration error: cannot register invalid username');
-		global.renderPage('register', {message: {type:'warning', content:'That username is invalid, choose another.'}})(req,res);
+		global.renderPage('register', {code: 403, message: {type:'warning', content:'That username is invalid, choose another.'}})(req,res);
 		return;
 	}
 	else if( !req.session.user_email ){
 		global.error('Registration error: did not log in first');
-		global.renderPage('register', {message: {type:'warning', content:'You must sign in before attempting to choose a username.'}})(req,res);
+		global.renderPage('register', {code: 401, message: {type:'warning', content:'You must sign in before attempting to choose a username.'}})(req,res);
 		return;
 	}
 	global.log('Registering user:', body.username);
@@ -111,7 +93,7 @@ function federatedRegister(req,res)
 		function(err, result){
 			if( err ){
 				global.error('Registration error:', err, global.logLevels.error);
-				global.renderPage('register', {message: {type:'error', content:err}})(req,res);
+				global.renderPage('register', {code: 500, message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 			}
 			else {
 				global.log('Registration successful');

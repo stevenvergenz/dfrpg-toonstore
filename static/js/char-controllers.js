@@ -93,7 +93,8 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 		for( var i=1; i<$scope.data.totals.skill_cap; i++ ){
 			valid &= SharedResources.skills(i).length >= SharedResources.skills(i+1).length;
 		}
-		return (valid ? 'Valid' : 'INVALID') + ', '+SharedResources.skillPointsAvailable()+' available';
+		//return (valid ? 'Valid' : 'INVALID') + ', '+SharedResources.skillPointsAvailable()+' available';
+		return (valid ? clientStrings.validSkills : clientStrings.invalidSkills).replace('%s', SharedResources.skillPointsAvailable());
 	};
 
 
@@ -156,16 +157,16 @@ app.controller('TotalsCtrl', ['$scope','SharedResources','rootModel', function($
 			return '';
 		}
 		else if( $scope.data.totals.base_refresh < 7 ){
-			return 'Feet in the Water';
+			return clientStrings.powerLevels.feet;
 		}
 		else if( $scope.data.totals.base_refresh < 8 ){
-			return 'Up to Your Waist';
+			return clientStrings.powerLevels.waist;
 		}
 		else if( $scope.data.totals.base_refresh < 10 ){
-			return 'Chest-Deep';
+			return clientStrings.powerLevels.chest;
 		}
 		else {
-			return 'Submerged';
+			return clientStrings.powerLevels.submerged;
 		}
 	};
 
@@ -182,8 +183,8 @@ app.controller('StressCtrl', ['$scope','rootModel', function($scope)
 
 	$scope.addTrack = function(){
 		$scope.data.stress.push({
-			'name': 'Stress',
-			'skill': 'Skill',
+			'name': clientStrings.stress,
+			'skill': clientStrings.skill,
 			'toughness': 0,
 			'strength': 2,
 			'boxes': [false,false,null,null,null,null,null,null],
@@ -268,7 +269,7 @@ app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope)
 
 	$scope.stressTypes = function()
 	{
-		var types = ['Any'];
+		var types = [clientStrings.genericConseq];
 		if( !$scope.data.$resolved )
 			return types;
 
@@ -285,7 +286,7 @@ app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope)
 	{
 		$scope.data.consequences.push({
 			'severity': 'Mild',
-			'mode': 'Any',
+			'mode': clientStrings.genericConseq,
 			'used': false,
 			'aspect': ''
 		});
@@ -319,26 +320,12 @@ app.controller('PowersCtrl', ['$scope','SharedResources','rootModel', function($
 {
 	$scope.editing = false;
 
-	$scope.ladder = [
-		{label: 'Legendary', value: '+8'},
-		{label: 'Epic', value: '+7'},
-		{label: 'Fantastic', value: '+6'},
-		{label: 'Superb', value: '+5'},
-		{label: 'Great', value: '+4'},
-		{label: 'Good', value: '+3'},
-		{label: 'Fair', value: '+2'},
-		{label: 'Average', value: '+1'},
-		{label: 'Mediocre', value: '+0'},
-		{label: 'Poor', value: '-1'},
-		{label: 'Terrible', value: '-2'},
-	];
-
 	$scope.totalAdjustment = SharedResources.refreshSpent;
 
 	$scope.addPower = function(){
 		$scope.data.powers.push({
 			'cost': 0,
-			'name': 'New power',
+			'name': clientStrings.newPower,
 			'description': ''
 		});
 		$scope.$emit('is_dirty');

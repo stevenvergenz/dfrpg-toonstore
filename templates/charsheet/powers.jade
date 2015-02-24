@@ -1,12 +1,12 @@
 #powers.sheet-panel(ng-controller='PowersCtrl', ng-class='{dirty: dirty}')
 	a#powers
-	h2.panelHeader Stunts & Powers
+	h2.panelHeader= __('charsheet.headers.powers')
 		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 	#powerBlock
 		.row.block
-			div Cost
-			div Ability
+			div= __('charsheet.labels.cost')
+			div= __('charsheet.labels.ability')
 		.itemlist(ui-sortable='sortOptions', ng-model='data.powers', dgy-notify-collection)
 			.block(ng-repeat='power in data.powers', dgy-accordion='!editing && power.description.length > 100')
 				.row
@@ -30,6 +30,6 @@
 
 		.block.row
 			div.bubble: span {{totalAdjustment()}}
-			div Total Refresh Adjustment
+			div= __('charsheet.labels.refreshadjust')
 
 

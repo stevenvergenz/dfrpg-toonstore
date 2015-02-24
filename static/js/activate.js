@@ -15,14 +15,15 @@ function checkPass()
 
 
 	var strength = zxcvbn(pass.val());
-	passMsg.text(strength.crack_time_display + (strength.score<3 ? " (too simple!)" : ""));
+	var time_display = moment.duration(strength.crack_time, 'seconds').locale(localeInfo.pathLocale).humanize();
+	passMsg.text(time_display + (strength.score<3 ? " ("+clientStrings.toosimple+")" : ""));
 	passMsg.css({color: colors[strength.score]});
 
 	if( pass.val() === confirm.val() ){
-		confirmMsg.text('Passwords match').css({color:'#555'});
+		confirmMsg.text(clientStrings.match).css({color:'#555'});
 	}
 	else {
-		confirmMsg.text('Passwords do not match').css({color: 'red'});
+		confirmMsg.text(clientStrings.nomatch).css({color: 'red'});
 	}
 
 	return pass.val().length > 0
@@ -34,7 +35,7 @@ function validate()
 {
 	var valid = checkPass();
 	if( !valid ){
-		$('#submitMessage').text('Fix the problems above before submitting');
+		$('#submitMessage').text(clientStrings.fix);
 	}
 	else {
 		$('#submitMessage').clear();

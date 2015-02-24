@@ -2,7 +2,7 @@ extends index
 
 block title
 	title= owner + ' | ToonStore.net'
-	meta(name='description', content="#{owner}'s character archive, powered by the ToonStore, the cloud-based Fate character toolkit.")
+	meta(name='description', content=__('user.meta_description', owner))
 	
 block styles
 	link(rel='stylesheet', href='/static/scss/userpage.css')
@@ -12,59 +12,62 @@ block append includes
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-cookies.js')
 	script(src='/static/js/moment.min.js')
+	if i18n.pathLocale
+		script(src='/static/js/moment.'+i18n.pathLocale+'.js')
 	script(src='/static/js/userpage.js')
 
 block content
 
 	.content-block
-		h1 #{owner}'s page
+		h1= __('user.pagetitle', owner)
 
 		if logged_user == owner
-			p: a#newtoon(href='/newtoon') Create a new character
+			p: a#newtoon(href=url('/newtoon'))= __('user.newtoon')
 
 		#charList(ng-controller='UserPageCtrl')
 
-			p Sort by: 
-				span.sortLink(ng-class='{"sortField":sortField==="last_updated","sortReverse":sortReverse}', ng-click='setSort("last_updated")') Last Update
+			p= __('user.sorting.title')
+				span.sortLink(ng-class='{"sortField":sortField==="last_updated","sortReverse":sortReverse}', ng-click='setSort("last_updated")')= __('user.sorting.lastupdate')
 				|  | 
-				span.sortLink(ng-class='{"sortField":sortField==="created_on","sortReverse":sortReverse}', ng-click='setSort("created_on")') Creation Date
+				span.sortLink(ng-class='{"sortField":sortField==="created_on","sortReverse":sortReverse}', ng-click='setSort("created_on")')= __('user.sorting.creationdate')
 				|  | 
-				span.sortLink(ng-class='{"sortField":sortField==="name","sortReverse":sortReverse}', ng-click='setSort("name")') Name
+				span.sortLink(ng-class='{"sortField":sortField==="name","sortReverse":sortReverse}', ng-click='setSort("name")')= __('user.sorting.name')
 				if logged_user == owner
 					|  | 
-					span.sortLink(ng-class='{"sortField":sortField==="private","sortReverse":sortReverse}', ng-click='setSort("private")') Privacy
+					span.sortLink(ng-class='{"sortField":sortField==="private","sortReverse":sortReverse}', ng-click='setSort("private")')= __('user.sorting.privacy')
 
 
 			.character(ng-repeat='char in data | orderBy : sortField : sortReverse', ng-class='{"private":char.private==true}')
 				.avatar
-					a(ng-href='/{{char.owner}}/{{char.canonical_name}}/')
+					a(ng-href=url('/{{char.owner}}/{{char.canonical_name}}/'))
 						img(dgy-src='/{{char.owner}}/{{char.canonical_name}}/avatar')
 
 				.char-content
 					p.title
-						a(ng-href='/{{char.owner}}/{{char.canonical_name}}/') {{char.name}}, {{char.concept}}
-					p.updated(title='{{char.last_updated | calendarTime}}') {{char.last_updated | relativeTime}}
+						a(ng-href=url('/{{char.owner}}/{{char.canonical_name}}/')) {{char.name}}, {{char.concept}}
+					p.updated(ng-show='char.last_updated', title='{{char.last_updated | calendarTime}}')
+						= __('user.controls.lastupdated', '{{char.last_updated | relativeTime}}')
+					p.updated(ng-hide='char.last_updated', title=__('user.controls.neverupdated'))= __('user.controls.neverupdated')
 					.controls
 						if logged_user != null
-							a(ng-href='/newtoon?copy={{char.owner}}/{{char.canonical_name}}')
-								img.duplicate(src='/static/img/glyphicons/glyphicons_318_more_items.png', title='Duplicate')
+							a(ng-href=url('/newtoon?copy={{char.owner}}/{{char.canonical_name}}'))
+								img.duplicate(src='/static/img/glyphicons/glyphicons_318_more_items.png', title=__('user.controls.duplicate'))
 
 						if logged_user == owner
 							input.privacy(type='image', ng-click='togglePrivacy(char.canonical_name)',
 								ng-src='{{togglePrivacyIcon(char.private)}}',
-								title='Make {{char.private ? "Public" : "Private"}}')
+								title= '{{char.private ? "'+__('user.controls.public')+'" : "'+__('user.controls.private')+'"}}')
 
-							a(ng-href='/killtoon?id={{char.canonical_name}}')
-								img.delete(src='static/img/glyphicons/glyphicons_016_bin.png', title='Delete')
+							a(ng-href=url('/killtoon?id={{char.canonical_name}}'))
+								img.delete(src='static/img/glyphicons/glyphicons_016_bin.png', title=__('user.controls.delete'))
 
 			
 			.normalbox(ng-show='data.length === 0')
 				if logged_user == owner
-					p You currently have no characters.
+					p= __('user.notoons.p1')
 
-					p Since you're new here, why not check out this 
-						a(href='/site/howto') Beginner's Guide
-						| ?
+					p= __('user.notoons.p2.f1')
+						a(href=url('/site/howto'))= __('user.notoons.p2.f2')
+						= __('user.notoons.p2.f3')
 				else
-					p This user lacks character (badum-ching!)
-
+					p= __('user.notoons.public')

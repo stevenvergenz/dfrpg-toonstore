@@ -146,12 +146,12 @@ function newCharacterRequest(req,res)
 {
 	if( !req.session || !req.session.user ){
 		global.error('Anonymous character creation attempted!', global.logLevels.error);
-		global.renderPage('newtoon', {message: {type: 'error', content:'You must be logged in to create a character'}})(req,res);
+		global.renderPage('newtoon', {code:401, message: {type: 'error', content: res.i18n.__('server.anonNewToon')}})(req,res);
 		return;
 	}
 	else if( !(req.body && req.body.name && req.body.concept && req.body.canon_name) ){
 		global.error('Incomplete character creation attempted', global.logLevels.error);
-		global.renderPage('newtoon', {message: {type: 'error', content:'You must fill out all fields'}})(req,res);
+		global.renderPage('newtoon', {code:400, message: {type: 'error', content: res.i18n.__('server.incompleteForm')}})(req,res);
 		return;
 	}
 
@@ -196,12 +196,12 @@ function newCharacterRequest(req,res)
 			{
 				if(err){
 					global.error('MySQL error:', err);
-					global.renderPage('newtoon', {code:500, message: {type: 'error', content:'An unidentified error has occurred. Contact a site admin.'}})(req,res);
+					global.renderPage('newtoon', {code:500, message: {type: 'error', content: res.i18n.__('server.genericErr')}})(req,res);
 					connection.end();
 				}
 				else if(rows.length === 0){
 					global.error('Cannot copy non-existent or private character');
-					global.renderPage('newtoon', {code:400, message: {type: 'error', content:'Cannot copy non-existent character.'}})(req,res);
+					global.renderPage('newtoon', {code:400, message: {type: 'error', content: res.i18n.__('server.character404')}})(req,res);
 					res.send(400);
 					connection.end();
 				}
@@ -229,7 +229,7 @@ function newCharacterRequest(req,res)
 			{
 				if( err ){
 					global.error('MySQL error:', err);
-					global.renderPage('newtoon', {code:400, message: {type: 'error', content:'You are already using that short name'}})(req,res);
+					global.renderPage('newtoon', {code:400, message: {type: 'error', content: res.i18n.__('server.duplicateSlug')}})(req,res);
 				}
 				else {
 					global.log('Creation successful');
@@ -256,12 +256,12 @@ function deleteCharacterPage(req,res)
 		{
 			if( err ){
 				global.error('MySQL error: ', err);
-				global.renderPage('killtoon', {message: {type: 'error', content: err}})(req,res);
+				global.renderPage('killtoon', {code: 500, message: {type: 'error', content: res.i18n.__('server.genericErr')}})(req,res);
 			}
 			else if( rows.length == 0 ){
 				global.error('No such character: '+req.query.id);
 				//global.renderPage('killtoon', {message: {type: 'error', content: 'Character id does not exist, cannot be deleted.'}})(req,res);
-				req.session.latent_message = 'Character id does not exist, cannot be deleted.';
+				req.session.latent_message = res.i18n.__('server.character404');
 				res.redirect('/'+req.session.user);
 			}
 			else {
@@ -292,15 +292,15 @@ function deleteCharacterRequest(req,res)
 		{
 			if(err){
 				global.error('MySQL error:', err);
-				global.renderPage('killtoon', {code: 500, message: {type: 'error', content: err}})(req,res);
+				global.renderPage('killtoon', {code: 500, message: {type: 'error', content: res.i18n.__('server.genericErr')}})(req,res);
 			}
 			else if(info.affectedRows == 0){
 				global.log('No such character to delete');
-				global.renderPage('killtoon', {code: 403, message: {type: 'error', content: 'Character id does not exist, cannot be deleted.'}})(req,res);
+				global.renderPage('killtoon', {code: 403, message: {type: 'error', content: res.i18n.__('server.character404')}})(req,res);
 			}
 			else {
 				global.log('Character deleted');
-				req.session.latent_message = 'Character "'+req.body.charname+'" successfully deleted.';
+				req.session.latent_message = res.i18n.__('server.charDeleted', req.body.charname);
 				res.redirect('/'+req.session.user);
 			}
 			connection.end();

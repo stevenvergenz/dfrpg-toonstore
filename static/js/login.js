@@ -33,7 +33,7 @@ function handlePersona()
 				data: {'email': assertion},
 				success: function(res,status,xhr){
 					if( !overrideUserRedirect )
-						window.location.replace('/'+res.username);
+						window.location.href = (localeInfo.pathLocale ? '/'+localeInfo.pathLocale : '')+'/'+res.username;
 					else
 						window.location.reload();
 				},
@@ -67,7 +67,7 @@ function handlePersona()
 				url: '/logout',
 				success: function(res,status,xhr){
 					if( !overrideUserRedirect )
-						window.location.href = '/';
+						window.location.href = localeInfo.pathLocale ? '/'+localeInfo.pathLocale+'/' : '/';
 					else
 						window.location.reload();
 				},
@@ -91,7 +91,7 @@ function logout()
 			url: '/logout',
 			success: function(res,status,xhr){
 				if( !overrideUserRedirect )
-					window.location.href = '/';
+					window.location.href = localeInfo.pathLocale ? '/'+localeInfo.pathLocale+'/' : '/';
 				else
 					window.location.reload();
 			},

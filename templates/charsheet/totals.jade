@@ -8,16 +8,16 @@
 	#top-container.container
 		#powerLevelContainer
 			#powerLevel(ng-hide='editing')
-				span Power Level:
+				span= __('charsheet.labels.powerlevel')
 				br
 				span {{powerLevel()}}
-			label(ng-show='editing') Skill Points:
+			label(ng-show='editing')= __('charsheet.labels.skillpoints')
 				br
 				input(type='number', dgy-notify, ng-model='data.totals.skills_total')
 
 		#skillCapContainer
 			#skillCap
-				span Skill Cap:
+				span= __('charsheet.labels.skillcap')
 				br
 				span(ng-hide='editing') {{skillLabel(data.totals.skill_cap)}}
 				input(type='number', min=1, max=8, dgy-notify, ng-show='editing', ng-model='data.totals.skill_cap')
@@ -26,23 +26,23 @@
 	#mid-container.container
 		#spent-container
 			span#skillsSpent.bubble {{skillPointsSpent()}}
-			span Skill Points Spent
+			span= __('charsheet.labels.skillspent')
 		#available-container
 			span#skillsAvailable.bubble {{skillPointsAvailable()}}
-			span Available
+			span= __('charsheet.labels.skillavailable')
 
 	#bottom-container.container
 		.row
 			span#baseRefresh.bubble.doubleBubble(ng-hide='editing') {{data.totals.base_refresh}}
 			input.bubble.doubleBubble(type='number', min=0, dgy-notify, ng-show='editing', ng-model='data.totals.base_refresh')
-			span Base Refresh Level
+			span= __('charsheet.labels.baserefresh')
 		.row
 			span#adjustedRefresh.bubble.doubleBubble {{adjustedRefresh()}}
-			span Adjusted Refresh
+			span= __('charsheet.labels.adjusted')
 		.row
 			span#fatePoints.bubble.doubleBubble(ng-hide='editing') {{data.totals.fate_points}}
 			input.bubble.doubleBubble(type='number', min=0, dgy-notify, ng-show='editing', ng-model='data.totals.fate_points')
-			span Fate Points
+			span= __('charsheet.labels.fp')
 
 
 

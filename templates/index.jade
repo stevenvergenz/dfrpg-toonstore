@@ -5,12 +5,26 @@ html
 		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
 		meta(name='robots', content='INDEX, FOLLOW')
 
+		script.
+			function setLangCookie(native){
+				if(native){
+					document.cookie = '#{i18n.config.cookie}=#{i18n.nativeLocale}; max-age=31536e3; path=/';
+					return true;
+				}
+				else {
+					document.cookie = '#{i18n.config.cookie}=#{i18n.selectedLocale}; max-age=31536e3; path=/';
+					window.location.reload(true);
+					return false;
+				}
+			}
+
 		block title
-			title Online Dresden Files RPG Character Hosting | ToonStore.net
-			meta(name='description', content='Create, modify, and share cloud-based mobile-friendly Dresden Files RPG or Fate character sheets right in your browser with ToonStore.')
+			title= __('index.pagetitle')+' | ToonStore.net'
+			meta(name='description', content='#{__("index.meta_description")}')
 
 		link(rel='icon', type='image/png', href='/static/img/pentacle-simple.png')
-		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Denk+One|Pathway+Gothic+One')
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Pathway+Gothic+One')
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Denk+One&subset=latin,latin-ext')
 		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Armata&subset=latin,latin-ext')
 		block styles
 			link(rel='stylesheet', type='text/css', href='/static/scss/dialog.css')
@@ -24,7 +38,9 @@ html
 			script(src='/static/js/ie-fail.js')
 
 			script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email, persona_user: persona_user}) + ';'
+			script!= 'var localeInfo = ' + JSON.stringify({pathLocale: i18n.pathLocale}) + ';'
 			script(src='/static/js/login.js')
+			script(src='/static/js/langselect.js')
 
 	body
 		if page == '/'
@@ -35,23 +51,33 @@ html
 
 		.wrapper
 
-			block header
+			header
 
-				.navbar
-					.itemgroup
-						.navitem: a(href='/') Toon&#8203;Store
-						//-.navitem Forum
-						.navitem: a(href='/site/about') About
-						.navitem: a(href='/site/contact') Contact Us
-					.itemgroup
-						if logged_user_email
-							.navitem: a(href='/'+logged_user)= logged_user
-							.navitem: a(href='javascript:;', onclick='logout()') Log Out
-						else
-							.navitem: a(href='/register') Register
-							.navitem: a(href='/login') Log In
+				block header
+
+					nav.navbar
+						.itemgroup
+							.navitem: a(href=url('/')) Toon&#8203;Store
+							//-.navitem Forum
+							.navitem: a(href=url('/site/about'))= __('nav.about')
+							.navitem: a(href=url('/site/contact'))= __('nav.contact')
+						.itemgroup
+							if logged_user_email
+								.navitem: a(href=url('/'+logged_user))= logged_user
+								.navitem: a(href='javascript:;', onclick='logout()')= __('nav.logout')
+							else
+								.navitem: a(href=url('/register'))= __('nav.register')
+								.navitem: a(href=url('/login'))= __('nav.login')
 
 			.content
+
+				if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
+					.content-block
+						#lang-message.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
+							br
+							a(href=getNativeURL(), onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
+							|  <> 
+							a(href='javascript:;', onclick='return setLangCookie(false);')= n__('nav.lang_dialog.reject')
 
 				if message
 					.content-block
@@ -62,29 +88,36 @@ html
 					.content-block
 						.banner
 							h1 ToonStore
-							h2 +2 to organization rolls
+							h2= __('index.banner.subtitle') 
 
 					.content-block: .normalbox
-						p Greetings, roleplayer!
-						p.
-							Everyone has run into this scenario: you and your partymates are going through character creation, filling out
-							your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion.
-							Do you scan it and email it? Do you transcribe it? Just email the aspects?
-						p.
-							Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But
-							without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.
-						p.
-							This is where ToonStore comes in. We store your Dresden Files RPG or other Fate-based character data in the cloud,
-							so you never lose it and can easily share it. Just view the online character sheet and make your edits right in
-							the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.
+						p= __('index.p1')
+						p= __('index.p2')
+						p= __('index.p3')
+						p= __('index.p4')
 
-						p.
-							Interested? <a href='/login'>Log in</a> with your
-							<a href='https://login.persona.org/' target='_blank'>Persona</a> account, or
-							<a href='http://toonstore.net/Derogatory/lifeson/'>try it now</a> to get rolling!
+						p= __('index.p5.f1')
+							a(href=url('/login'))= __('index.p5.f2')
+							= __('index.p5.f3')
+							a(href='https://login.persona.org/', target='_blank')= __('index.p5.f4')
+							= __('index.p5.f5')
+							a(href='https://toonstore.net/Derogatory/lifeson/')= __('index.p5.f6')
+							= __('index.p5.f7')
 
-			block footer
-				.footer
-					span: a(href='/site/terms') Terms of Use
-					span: a(href='/site/privacy') Privacy Policy
-					span: a(href='/site/donate') Donate
+			footer
+				block footer
+					nav.footer
+						span: a(href=url('/site/terms'))= __('nav.terms')
+						span: a(href=url('/site/privacy'))= __('nav.privacy')
+						span: a(href=url('/site/donate'))= __('nav.donate')
+						.langselectmenu
+							= __('nav.language')
+							img.langselecticon(src='/static/img/flags/#{i18n.selectedLocale}.png')
+
+							ul.langselect
+								- for( var i=0; i<i18n.config.locales.length; i++ )
+									unless i18n.config.locales[i] === i18n.selectedLocale
+										li: a(href=getNativeURL(i18n.config.locales[i]))
+											img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png')
+								li.active
+									img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png')

@@ -1,39 +1,38 @@
 extends index
 
 block title
-	title Donate | ToonStore.net
-	meta(name='description', content='How to donate to the maintenance of the ToonStore')
+	title= __('donate.pagetitle') + ' | ToonStore.net'
+	meta(name='description', content='#{__("donate.meta_description")}')
 
 block content
 
 	.content-block
-		h1 Donate to the ToonStore
+		h1= __('donate.pagetitle')
 
 		.normalbox
 
-			p.
-				The ToonStore is, and always will be, a free service for fellow lovers of the art of roleplaying. That doesn't mean that it's free for everyone. In fact, the ToonStore costs about $250 USD a year to maintain in hosting and name registration costs, which is nothing to sneeze at. Any and all contributions are welcome to help defray the costs of running this site.
+			p= __('donate.plea')
 
-			h2 How to Donate
+			h2= __('donate.how.header')
 
-			p To avoid unnecessary fees, paperwork, currency conversions, international transactions, etc., I have decided to accept Bitcoin instead of a more traditional donation system. How does it work? I'm glad you asked!
+			p= __('donate.how.p1')
 
 			.imgcontainer
 				.iframecontainer(style='width:560px;')
 					iframe(width="560", height="315", src="//www.youtube.com/embed/Um63OQz3bjo", frameborder="0", allowfullscreen)
 
-			p Basically, you can send money over the internet as if it were cash; no middlemen, no checks, no delays, and no private information (like a credit card number) changing hands.
+			p= __('donate.how.p2')
 
-			p You can change money for bitcoin at any of a number of exchanges. In the US, I recommend 
+			p= __('donate.how.p3.f1')
 				a(href='//circle.com') Circle.com
-				|  or 
+				= __('donate.how.p3.f2')
 				a(href='//coinbase.com') Coinbase.com
-				| .
+				= __('donate.how.p3.f3')
 
 
-			h2 Where to Donate
+			h2= __('donate.where.header')
 
-			p You can support the ToonStore by donating to:
+			p= __('donate.where.p1')
 
 			div(style='display:flex; flex-direction:column; align-items:center;')
 				if logged_user
@@ -43,4 +42,4 @@ block content
 					img(src='/site/donate/donation_qr.png')
 					a(href='bitcoin:#{donation_address}', style='font-family:monospace;')= donation_address
 
-			p On behalf of the ToonStore community, thank you for helping keep ToonStore online and serving a new generation of roleplayers.
+			p= __('donate.where.p2')

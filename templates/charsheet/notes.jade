@@ -1,12 +1,12 @@
 #notes.sheet-panel(ng-controller='NotesCtrl', ng-show='data.notes.enabled', ng-class='{dirty:dirty}')
 	a#notes
-	h2.panelHeader Notes
+	h2.panelHeader= __('charsheet.headers.notes')
 		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 	div(ng-show='editing')
-		p Text is styled with Markdown. Click out of the text box to update preview.
+		p= __('charsheet.markdown')
 		div(dgy-accordion='true')
-			a(href='javascript:;') A Brief Primer
+			a(href='javascript:;')= __('charsheet.primer')
 			pre#primer
 				| This is a header
 				| ----------------

@@ -1,29 +1,29 @@
 extends index
 
 block title
-	title Log in | ToonStore.net
-	meta(name='description', content='Log into the ToonStore')
+	title= __('nav.login') + ' | ToonStore.net'
+	meta(name='description', content='#{__("login.meta_description")}')
 
 block content
 
 	.content-block: #login-box.formbox
-		.title: span Log in
+		.title: span= __('nav.login')
 		form(action='/login', method='post')
 
 			.field
-				label(for='email') E-mail
+				label(for='email')= __('login.email')
 				input#email(type='email', name='email', required)
 
 			.field
-				label(for='password') Password 
-					span#reset(style='font-size: 80%;') (
-						a(href='/passreset') forgot password
+				label(for='password')= __('login.password')
+					span#reset(style='font-size: 80%;')  (
+						a(href=url('/passreset'))= __('login.forgot')
 						)
 				input#password(type='password', name='password', required)
 
 			.field
-				input(type='submit', value='Log in') 
-				a(href='/register') Register
+				input(type='submit', value='#{__("login.submit")}') 
+				a(href=url('/register'))= __('login.register')
 
 		hr
 

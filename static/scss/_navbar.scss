@@ -1,5 +1,9 @@
 @import 'polyfill';
 
+header, footer {
+	width: 100%;
+}
+
 .navbar
 {
 	color: white;
@@ -41,9 +45,68 @@
 	@include justify-content(center);
 	@include flex-wrap(wrap);
 
+	$nav-padding: 12px;
 	& > *
 	{
-		padding: 0 12px;
+		padding: 0 $nav-padding;
+	}
+
+	.langselectmenu
+	{
+		position: relative;
+
+		&.active {
+			ul.langselect {
+				display: block;
+			}
+			.langselecticon {
+				visibility: hidden;
+			}
+		}
+
+		.icon {
+			width: 20px;
+		}
+
+		.langselecticon {
+			@extend .icon;
+			cursor: pointer;
+		}
+
+		ul.langselect
+		{
+			list-style: none;
+			margin: 0;
+			display: none;
+
+			$menu-padding: 3px;
+			$border-width: 1px;
+			padding: $menu-padding;
+			background-color: #d8e0ff;
+			border: solid #cacaca $border-width;
+			border-radius: 3px;
+
+			position: absolute;
+			bottom: -$menu-padding - 1;
+			right: $nav-padding - $menu-padding - $border-width - 1;
+
+			.active {
+				cursor: pointer;
+			}
+
+			.icon {
+				border: solid white 1px;
+			}
+
+			li {
+				margin: 5px 0;
+				&:first-child {
+					margin-top: 0;
+				}
+				&:last-child {
+					margin-bottom: 0;
+				}	
+			}
+		}
 	}
 }
-

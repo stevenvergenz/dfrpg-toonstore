@@ -5,7 +5,7 @@
 		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
 	div
 		span(ng-hide='editing') (
-			a(href='/#{owner}') {{data.player}}
+			a(href=url('/#{owner}')) {{data.player}}
 			| )
 		input(type='text', dgy-notify, ng-show='editing', ng-model='data.player')
 
@@ -13,6 +13,6 @@
 		form(enctype='multipart/form-data', ng-show='editing')
 			input(name='avatar', type='file', accept='image/*', onchange='uploadAvatar()')
 		div#imgContainer
-			img(src='avatar', onerror='if(this.src!="/static/img/no-avatar.png")this.src="/static/img/no-avatar.png"')
+			img(dgy-src='avatar')
 
 
