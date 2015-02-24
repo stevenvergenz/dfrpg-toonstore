@@ -72,7 +72,7 @@ Contributing Your Translation
 If you're doing a translation, submit pull requests early and often. This gives me a chance to verify that everything still technically
 works in your language, and allows other people to potentially help you with the work of translating. If you're not a developer, then
 you can see what your translation looks like before it goes live (but after I accept your pull request) by going to the developer
-preview version at https://toonstore.net:3000.
+preview version at http://toonstore.net:3000.
 
 
 Questions? Comments?
