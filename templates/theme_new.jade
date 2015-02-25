@@ -1,0 +1,47 @@
+doctype html
+html
+
+	head
+		block title
+
+	body
+		
+		header: nav
+			ul
+				li: a(href=url('/')) ToonStore
+				li: a(href=url('/site/about')) About
+				li: a(href=url('/site/contact')) Contact Us
+			ul
+				if logged_user_email
+					li: a(href=url('/'+logged_user))= logged_user
+					li: a(href='javascript:;', onclick='logout()')= __('nav.logout')
+				else
+					li: a(href=url('/register'))= __('nav.register')
+					li: a(href=url('/login'))= __('nav.login')
+
+		block content
+
+			article
+				header
+					block article_header
+
+				section: .content-block: .normalbox
+					block article_body
+
+
+		footer: nav
+			ul
+				li: a(href=url('/site/terms'))= __('nav.terms')
+				li: a(href=url('/site/privacy'))= __('nav.privacy')
+				li: a(href=url('/site/donate'))= __('nav.donate')
+				li.langselectmenu
+					= __('nav.language')
+					img.langselecticon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'))
+
+					ul.langselect
+						- for( var i=0; i<i18n.config.locales.length; i++ )
+							unless i18n.config.locales[i] === i18n.selectedLocale
+								li: a(href=getNativeURL(i18n.config.locales[i]), hreflang=i18n.config.locales[i])
+									img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png', alt=a__({locale:i18n.config.locales[i], phrase:'language'}))
+						li.active
+							img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'))
