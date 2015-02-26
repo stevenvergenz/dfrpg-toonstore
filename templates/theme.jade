@@ -1,9 +1,30 @@
 doctype html
 html
+
 	head
+		block title
+
 		meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
 		meta(name='robots', content='INDEX, FOLLOW')
+		
+		link(rel='icon', type='image/png', href='/static/img/pentacle-simple.png')
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Pathway+Gothic+One')
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Denk+One&subset=latin,latin-ext')
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Armata&subset=latin,latin-ext')
+		link(rel='stylesheet', type='text/css', href='/static/scss/theme.css')
+		block css
+			link(rel='stylesheet', type='text/css', href='/static/scss/dialog.css')
 
+		script(src='https://login.persona.org/include.js')
+		script(src='/static/js/modernizr.custom.07098.js')
+		script(src='/static/js/jquery-1.10.1.js')
+		script(src='/static/js/ie-fail.js')
+		script(src='/static/js/login.js')
+		script(src='/static/js/langselect.js')
+		block js
+
+		script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email, persona_user: persona_user}) + ';'
+		script!= 'var localeInfo = ' + JSON.stringify({pathLocale: i18n.pathLocale}) + ';'
 		script.
 			function setLangCookie(native){
 				if(native){
@@ -17,85 +38,59 @@ html
 				}
 			}
 
-		block title
 
-		link(rel='icon', type='image/png', href='/static/img/pentacle-simple.png')
-		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Pathway+Gothic+One')
-		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Denk+One&subset=latin,latin-ext')
-		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Armata&subset=latin,latin-ext')
-		block styles
-			link(rel='stylesheet', type='text/css', href='/static/scss/dialog.css')
-			link(rel='stylesheet', type='text/css', href='/static/scss/index.css')
-
-		block includes
-			script(src='/static/js/modernizr.custom.07098.js')
-			script(src='https://login.persona.org/include.js')
-			//script(src='https://apis.google.com/js/client:platform.js', async, defer)
-			script(src='/static/js/jquery-1.10.1.js')
-			script(src='/static/js/ie-fail.js')
-
-			script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email, persona_user: persona_user}) + ';'
-			script!= 'var localeInfo = ' + JSON.stringify({pathLocale: i18n.pathLocale}) + ';'
-			script(src='/static/js/login.js')
-			script(src='/static/js/langselect.js')
 
 	body
-		if page == '/'
-			a(style="z-index: 1;", href="https://github.com/stevenvergenz/dfrpg-toonstore")
-				img(style="position: absolute; top: 0; left: 0; border: 0; z-index: 1;",
-					src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png",
-					alt="Fork me on GitHub")
-
 		.wrapper
+			header: nav
+				ul
+					li: a(href=url('/')) ToonStore
+					li: a(href=url('/site/about'))= __('nav.about')
+					li: a(href=url('/site/contact'))= __('nav.contact')
+				ul
+					if logged_user_email
+						li: a(href=url('/'+logged_user))= logged_user
+						li: input.fakelink(type='button', onclick='logout()', value=__('nav.logout'))
+					else
+						li: a(href=url('/register'))= __('nav.register')
+						li: a(href=url('/login'))= __('nav.login')
 
-			header
-
-				block header
-
-					nav.navbar
-						.itemgroup
-							.navitem: a(href=url('/')) Toon&#8203;Store
-							//-.navitem Forum
-							.navitem: a(href=url('/site/about'))= __('nav.about')
-							.navitem: a(href=url('/site/contact'))= __('nav.contact')
-						.itemgroup
-							if logged_user_email
-								.navitem: a(href=url('/'+logged_user))= logged_user
-								.navitem: a(href='javascript:;', onclick='logout()')= __('nav.logout')
-							else
-								.navitem: a(href=url('/register'))= __('nav.register')
-								.navitem: a(href=url('/login'))= __('nav.login')
-
-			.content
+			article.content
 
 				if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
-					.content-block
-						#lang-message.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
-							br
-							a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
-							|  <> 
-							a(href='javascript:;', onclick='return setLangCookie(false);')= n__('nav.lang_dialog.reject')
+					aside#lang-message.content-block.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
+						br
+						a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
+						|  <> 
+						input.fakelink(type='button', onclick='return setLangCookie(false);', value=n__('nav.lang_dialog.reject'))
 
 				if message
-					.content-block
-						#page-message(class=message.type)= message.content
-					
+					aside#page-message.content-block(class=message.type)= message.content
+
 				block content
 
-			footer
-				block footer
-					nav.footer
-						span: a(href=url('/site/terms'))= __('nav.terms')
-						span: a(href=url('/site/privacy'))= __('nav.privacy')
-						span: a(href=url('/site/donate'))= __('nav.donate')
-						.langselectmenu
-							= __('nav.language')
-							img.langselecticon(src='/static/img/flags/#{i18n.selectedLocale}.png')
+					header.content-block
+						block article_header
 
-							ul.langselect
-								- for( var i=0; i<i18n.config.locales.length; i++ )
-									unless i18n.config.locales[i] === i18n.selectedLocale
-										li: a(href=getNativeURL(i18n.config.locales[i]), hreflang=i18n.config.locales[i])
-											img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png')
-								li.active
-									img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png')
+					section.content-block.normalbox
+						block article_body
+
+
+			footer: nav
+				ul
+					li: a(href=url('/site/terms'))= __('nav.terms')
+					li: a(href=url('/site/privacy'))= __('nav.privacy')
+					li: a(href=url('/site/donate'))= __('nav.donate')
+					li.langselectmenu
+						= __('nav.language')
+						img.langselecticon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'))
+
+						ul.langselect
+							- for( var i=0; i<i18n.config.locales.length; i++ )
+								unless i18n.config.locales[i] === i18n.selectedLocale
+									li: a(href=getNativeURL(i18n.config.locales[i]), hreflang=i18n.config.locales[i])
+										img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png', alt=a__({locale:i18n.config.locales[i], phrase:'language'}))
+							li.active
+								img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'))
+
+		block github

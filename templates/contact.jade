@@ -1,37 +1,37 @@
-extends index
+extends theme
 
 block title
 	title= __('contact.pagetitle') + ' | ToonStore.net'
 	meta(name='description', content='#{__("contact.meta_description")}')
 
-block content
+block article_header
 
 	h1= __('contact.pagetitle')
 
-	.content-block: .normalbox
+block article_body
 
-		h3= __('contact.h1')
+	h3= __('contact.h1')
 
-		p= __('contact.p1')
+	p= __('contact.p1')
 
-		h4= __('contact.h2')
+	h4= __('contact.h2')
 
-		p= __('contact.p2.f1')
-			a(href='https://github.com/stevenvergenz/dfrpg-toonstore', target='_blank')= __('contact.p2.f2')
-			= __('contact.p2.f3')
+	p= __('contact.p2.f1')
+		a(href='https://github.com/stevenvergenz/dfrpg-toonstore', target='_blank')= __('contact.p2.f2')
+		= __('contact.p2.f3')
 		
-		p= __('contact.p3.f1')
-			a(href='https://github.com/stevenvergenz/dfrpg-toonstore/issues', target='_blank')= __('contact.p3.f2')
-			= __('contact.p3.f3')
+	p= __('contact.p3.f1')
+		a(href='https://github.com/stevenvergenz/dfrpg-toonstore/issues', target='_blank')= __('contact.p3.f2')
+		= __('contact.p3.f3')
 
-		h4= __('contact.h3')
+	h4= __('contact.h3')
 
-		p= __('contact.p4.f1')
-			a(href='https://plus.google.com/communities/100638011667854470760')= __('contact.p4.f2')
-			= __('contact.p4.f3')
+	p= __('contact.p4.f1')
+		a(href='https://plus.google.com/communities/100638011667854470760')= __('contact.p4.f2')
+		= __('contact.p4.f3')
 
-		h4= __('contact.h4')
+	h4= __('contact.h4')
 
-		p= __('contact.p5.f1')
-			a(href='mailto:info@toonstore.net') info@toonstore.net
-			= __('contact.p5.f2')
+	p= __('contact.p5.f1')
+		a(href='mailto:info@toonstore.net') info@toonstore.net
+		= __('contact.p5.f2')
