@@ -4,6 +4,9 @@ block title
 	title= __('index.pagetitle')+' | ToonStore.net'
 	meta(name='description', content='#{__("index.meta_description")}')
 
+block append css
+	link(rel='stylesheet', type='text/css', href='/static/scss/index.css')
+
 block article_header
 	h1 ToonStore
 	h2= __('index.banner.subtitle') 
@@ -23,3 +26,8 @@ block article_body
 		a(href='https://toonstore.net/Derogatory/lifeson/')= __('index.p5.f6')
 		= __('index.p5.f7')
 
+block github
+	a(style="z-index: 1;", href="https://github.com/stevenvergenz/dfrpg-toonstore")
+		img(style="position: absolute; top: 0; left: 0; border: 0; z-index: 1;",
+			src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png",
+			alt="Fork me on GitHub")
