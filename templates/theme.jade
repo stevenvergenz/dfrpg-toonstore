@@ -42,18 +42,21 @@ html
 
 	body
 		.wrapper
-			header: nav
-				ul
-					li: a(href=url('/')) ToonStore
-					li: a(href=url('/site/about'))= __('nav.about')
-					li: a(href=url('/site/contact'))= __('nav.contact')
-				ul
-					if logged_user_email
-						li: a(href=url('/'+logged_user))= logged_user
-						li: input.fakelink(type='button', onclick='logout()', value=__('nav.logout'))
-					else
-						li: a(href=url('/register'))= __('nav.register')
-						li: a(href=url('/login'))= __('nav.login')
+			header
+				nav
+					ul
+						li: a(href=url('/')) ToonStore
+						li: a(href=url('/site/about'))= __('nav.about')
+						li: a(href=url('/site/contact'))= __('nav.contact')
+					ul
+						if logged_user_email
+							li: a(href=url('/'+logged_user))= logged_user
+							li: input.fakelink(type='button', onclick='logout()', value=__('nav.logout'))
+						else
+							li: a(href=url('/register'))= __('nav.register')
+							li: a(href=url('/login'))= __('nav.login')
+
+				block navigation
 
 			.content
 				if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
