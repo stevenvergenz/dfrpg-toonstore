@@ -9,10 +9,7 @@ block js
 	script.
 		function validate(){
 			if( $('label#confirm').text() != $('input#confirm').val() ){
-				if( $('div.error').length == 0 )
-					$('<div class="content-block"><div class="error"><p>'+clientStrings.error+'</p></div></div>').prependTo( $('.content') );
-				else
-					$('div.error>p').text(clientStrings.error);
+				$('#submitMessage').text(clientStrings.error);
 				return false;
 			}
 			else {
@@ -36,3 +33,4 @@ block content
 
 			.field
 				input(type='submit', value='#{__("killtoon.submit")}')
+				span.caption#submitMessage

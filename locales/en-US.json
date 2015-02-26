@@ -163,7 +163,7 @@
 		"submit": "Delete character",
 		
 		"clientStrings": {
-			"error": "You must enter the confirmation text to delete the character."
+			"error": "Enter the confirmation text"
 		}
 	},
 
