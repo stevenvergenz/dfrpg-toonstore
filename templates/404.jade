@@ -1,10 +1,10 @@
-extends index
+extends theme
 
 block title
 	title= __('404.pagetitle') + ' | ToonStore.net'
 
-block content
-	.content-block
-		h1= __('404.pagetitle')
-		.content-block: .normalbox
-			p= __('404.message')
+block article_header
+	h1= __('404.pagetitle')
+
+block article_body
+	p= __('404.message')

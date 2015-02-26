@@ -1,4 +1,4 @@
-extends index
+extends theme
 
 block title
 	title= __('nav.login') + ' | ToonStore.net'
@@ -6,7 +6,7 @@ block title
 
 block content
 
-	.content-block: #login-box.formbox
+	.content: #login-box.formbox
 		.title: span= __('nav.login')
 		form(action='/login', method='post')
 

@@ -55,19 +55,19 @@ html
 						li: a(href=url('/register'))= __('nav.register')
 						li: a(href=url('/login'))= __('nav.login')
 
-			article.content
+			if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
+				aside#lang-message.content-block.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
+					br
+					a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
+					|  <> 
+					input.fakelink(type='button', onclick='return setLangCookie(false);', value=n__('nav.lang_dialog.reject'))
 
-				if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
-					aside#lang-message.content-block.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
-						br
-						a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
-						|  <> 
-						input.fakelink(type='button', onclick='return setLangCookie(false);', value=n__('nav.lang_dialog.reject'))
+			if message
+				aside#page-message.content-block(class=message.type)= message.content
 
-				if message
-					aside#page-message.content-block(class=message.type)= message.content
+			block content
 
-				block content
+				article.content
 
 					header.content-block
 						block article_header

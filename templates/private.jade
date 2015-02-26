@@ -1,13 +1,11 @@
-extends index
+extends theme
 
 block title
 	title= toonName + ', ' + toonConcept + ' | ToonStore.net'
 	meta(name='description', content=__('private.meta_description', toonName))
 
-block content
-
+block article_header
 	h2= __('private.pagetitle')
 
-	.content-block: .normalbox
-
-		p= __('private.content')
+block article_body
+	p= __('private.content')
