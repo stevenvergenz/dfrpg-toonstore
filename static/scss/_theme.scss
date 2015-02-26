@@ -65,7 +65,14 @@ a
 	}
 }
 
-
+input.fakelink[type=button]
+{
+	font: inherit;
+	background: inherit;
+	border: none;
+	cursor: pointer;
+	color: blue;
+}
 
 /*
  ****************************** Message bubbles ****************************

@@ -55,25 +55,26 @@ html
 						li: a(href=url('/register'))= __('nav.register')
 						li: a(href=url('/login'))= __('nav.login')
 
-			if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
-				aside#lang-message.content-block.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
-					br
-					a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
-					|  <> 
-					input.fakelink(type='button', onclick='return setLangCookie(false);', value=n__('nav.lang_dialog.reject'))
+			.content
+				if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
+					aside#lang-message.content-block.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
+						br
+						a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
+						|  <> 
+						input.fakelink(type='button', onclick='return setLangCookie(false);', value=n__('nav.lang_dialog.reject'))
 
-			if message
-				aside#page-message.content-block(class=message.type)= message.content
+				if message
+					aside#page-message.content-block(class=message.type)= message.content
 
-			block content
+				block content
 
-				article.content
+					article
 
-					header.content-block
-						block article_header
+						header.content-block
+							block article_header
 
-					section.content-block.normalbox
-						block article_body
+						section.content-block.normalbox
+							block article_body
 
 
 			footer: nav

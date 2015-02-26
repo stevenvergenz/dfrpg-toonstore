@@ -1,7 +1,4 @@
 @import 'polyfill';
-@import 'theme';
-@import 'navbar';
-@import 'dialog';
 
 a#newtoon
 {
@@ -47,6 +44,10 @@ div.character
 
 	@include display-flex();
 	@include flex-direction(row);
+
+	a {
+		color: black;
+	}
 
 	// Style the avatar window
 

@@ -20,7 +20,7 @@ block js
 block content
 	if /\/pre-activate/.test(page)
 
-		.content: .formbox
+		.content-block.formbox
 			.title: span= __('pre-activate.pagetitle')
 			if query.t == 'register'
 				p= __('pre-activate.intro_register')
@@ -31,7 +31,7 @@ block content
 
 	else if /\/passreset$/.test(page)
 
-		.content: .formbox
+		.content-block.formbox
 			.title: span= __('passreset.pagetitle')
 			p= __('passreset.intro')
 			form(method='POST')
@@ -45,7 +45,7 @@ block content
 
 	else if /\/activate\/[0-9a-f]{32}$/.test(page)
 
-		.content: .formbox
+		.content-block.formbox
 			.title: span= __('activate.pagetitle')
 
 			p= __('activate.intro')
