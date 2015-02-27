@@ -11,7 +11,7 @@
 		"login": "Se connecter",
 		"language": "Langue: ",
 		"lang_dialog": {
-			"prompt": "Cette page est disponible dans votre langue native (%s). Souhaiteriez-vous voir cette version?"
+			"prompt": "Cette page est disponible dans votre langue native (%s). Souhaiteriez-vous voir cette version?",
 			"accept": "Emmenez-moi",
 			"reject": "Rester ici"
 		}
@@ -105,7 +105,7 @@
 		"greeting_user": "Bonjour %s!",
 		"greeting_nouser": "Bonjour!",
 		"intro_reg": "Merci d'utiliser ToonStore! Cliquez sur le lien pour commencer.",
-		"intro_noreg": "Merci d'utiliser ToonStore! Vous avez demandé à réinitialiser votre mot de passe : cliquez sur le lien ci-dessous pour le réinitialise. Si vous n'avez PAS demandé à le réinitialiser, veuillez simplement ignorer ce courriel."
+		"intro_noreg": "Merci d'utiliser ToonStore! Vous avez demandé à réinitialiser votre mot de passe : cliquez sur le lien ci-dessous pour le réinitialise. Si vous n'avez PAS demandé à le réinitialiser, veuillez simplement ignorer ce courriel.",
 		"resetpassword": "Réinitialiser votre mot de passe",
 		"setpassword": "Choisir votre mot de passe",
 		"p1": "Prenez note que ce lien n'est bon que pour 20 minutes, ensuite votre devrez en demander un nouveau.",
