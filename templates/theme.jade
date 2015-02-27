@@ -54,7 +54,10 @@ html
 							li: input.fakelink(type='button', onclick='logout()', value=__('nav.logout'))
 						else
 							li: a(href=url('/register'))= __('nav.register')
-							li: a(href=url('/login'))= __('nav.login')
+							if template == 'charsheet/base' || template == 'userpage'
+								li: a(href=url('/login?redirect=#{page}'))= __('nav.login')
+							else
+								li: a(href=url('/login'))= __('nav.login')
 
 				block navigation
 

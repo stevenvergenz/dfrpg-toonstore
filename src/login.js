@@ -56,7 +56,10 @@ function processLogin(req,res)
 							req.session.user = username;
 							req.session.user_email = email;
 							req.session.persona = false;
-							res.redirect('/'+username);
+							if(req.query.redirect)
+								res.redirect(req.query.redirect);
+							else
+								res.redirect('/'+username);
 						}
 						connection.end();
 					}

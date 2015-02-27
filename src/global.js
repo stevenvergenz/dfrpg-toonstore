@@ -74,6 +74,7 @@ function renderPage(template, options)
 	{
 		// global template fields
 		var pageFields = {
+			'template': template,
 			'page': req.url,
 			'query': req.query,
 			'logged_user': req.session && req.session.user ? req.session.user : null,

@@ -32,10 +32,12 @@ function handlePersona()
 				url: '/login/persona',
 				data: {'email': assertion},
 				success: function(res,status,xhr){
-					if( !overrideUserRedirect )
-						window.location.href = (localeInfo.pathLocale ? '/'+localeInfo.pathLocale : '')+'/'+res.username;
+					var match = /[?&]redirect=([^&]+)/.exec(window.location.search);
+					if( match ){
+						window.location.href = match[1];
+					}
 					else
-						window.location.reload();
+						window.location.href = (localeInfo.pathLocale ? '/'+localeInfo.pathLocale : '')+'/'+res.username;
 				},
 				error: function(xhr,status,err){
 					console.log('Problem logging in');
