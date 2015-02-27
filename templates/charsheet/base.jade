@@ -22,9 +22,6 @@ block js
 	script(src='/static/js/char-controllers.js')
 	script.
 		overrideUserRedirect = true;
-		$(document).ready(function(){
-			$('#charnav.navbar ul.navmenu').menu({position: {collision: 'flipfit'}});
-		});
 
 block navigation
 	include ./navbar
@@ -36,19 +33,19 @@ block content
 			This page is currently in back-seat mode. You can make local edits to the character sheet, but will not be able to save.
 			Your changes will be lost once you refresh the page, and are not visible to other viewers of the character.
 
-	.sheet-panel-group
-		include ./general
-		include ./aspects
+	.content-block
+		.sheet-panel-group
+			include ./general
+			include ./aspects	
 		
+		.sheet-panel-group
+			include ./skills
+			include ./totals
 		
-	.sheet-panel-group
-		include ./skills
-		include ./totals
-		
-	.sheet-panel-group
-		include ./stress
-		include ./consequences
+		.sheet-panel-group
+			include ./stress
+			include ./consequences
 	
-	.sheet-panel-group
-		include ./powers
-		include ./notes
+		.sheet-panel-group
+			include ./powers
+			include ./notes
