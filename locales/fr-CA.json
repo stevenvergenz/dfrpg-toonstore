@@ -668,18 +668,4 @@
 		}
 	}
 }
-		"agreement": {
-			"f1": "I have read and agree with the ",
-			"f2": "Terms of Use",
-			"f3": " and the ",
-			"f4": "Privacy Policy",
-			"f5": "."
-		}, 
-		"submit": "Submit",
 
-		"clientStrings": {
-			"userTaken": "Username is already taken.",
-			"userAvailable": "Username is available.",
-			"userInvalid": "Username is invalid!",
-			"fix": "Fix the problems above before submitting"
-		}
