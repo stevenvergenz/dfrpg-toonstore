@@ -75,7 +75,7 @@ html
 					.content-block
 						#lang-message.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
 							br
-							a(href=getNativeURL(), onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
+							a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
 							|  <> 
 							a(href='javascript:;', onclick='return setLangCookie(false);')= n__('nav.lang_dialog.reject')
 
@@ -117,7 +117,7 @@ html
 							ul.langselect
 								- for( var i=0; i<i18n.config.locales.length; i++ )
 									unless i18n.config.locales[i] === i18n.selectedLocale
-										li: a(href=getNativeURL(i18n.config.locales[i]))
+										li: a(href=getNativeURL(i18n.config.locales[i]), hreflang=i18n.config.locales[i])
 											img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png')
 								li.active
 									img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png')

@@ -28,15 +28,19 @@ setInterval(spawnChild, 12*60*60*1000);
 function serveAvatar(req,res,next)
 {
 	var connection = mysql.createConnection(config.database);
-	connection.query('SELECT avatar FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ?;',
-		[req.params.user, req.params.char],
+	connection.query('SELECT avatar FROM Characters WHERE BINARY owner = ? AND BINARY canonical_name = ? AND (private=FALSE OR BINARY owner = ?);',
+		[req.params.user, req.params.char, req.session.user],
 		function(err,info)
 		{
 			if(err){
 				global.error('MySQL error:', err);
 				next();
 			}
-			else if(info.length == 0 || !info[0].avatar){
+			else if(info.length == 0){
+				global.log('Character missing, or avatar is private');
+				res.send(404);
+			}
+			else if(!info[0].avatar){
 				global.log('Avatar not found');
 				res.send(404);
 			}
