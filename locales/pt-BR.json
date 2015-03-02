@@ -167,45 +167,45 @@
 
 	"server":
 	{
-		"genericErr": "An unidentified error has occurred. Please contact the site admin with what you were doing and when this error occurred.",
-		"passwordSet": "Your password has been set. Please log in to continue.",
-		"anonNewToon": "You must be logged in to create a character.",
-		"incompleteForm": "You must fill out all fields.",
-		"character404": "You cannot duplicate or delete a non-existent character. If the character really exists, contact the site admin.",
-		"duplicateSlug": "You are already using that short name, choose another.",
-		"charDeleted": "Character %s successfully deleted",
-		"loginErr": "Invalid login or password",
-		"userReserved": "That username is reserved, choose another.",
-		"userInvalid": "That username is invalid, choose another.",
-		"emailTaken": "That email address is already registered. Try logging in instead."
+		"genericErr": "Um erro não identificado ocorreu. Por favor contacte o administrador do site com o que você fazia na hora e o horário do acontecido.",
+		"passwordSet": "Sua senha foi definida. Por favor realize o login para continuar.",
+		"anonNewToon": "Você deve estar logado para criar um personagem.",
+		"incompleteForm": "Preencha todos os campos.",
+		"character404": "Você não pode duplicar ou deletar um personagem que não existe. Se o personagem realmente existe, contacte o administrador.",
+		"duplicateSlug": "Você já está usando esse nome curto, escolha outro.",
+		"charDeleted": "Personagem %s foi deletado com sucesso",
+		"loginErr": "Login ou senha inválidos",
+		"userReserved": "Este nome de usuário já está em uso, escolha outro.",
+		"userInvalid": "Este nome de usuário é inválido, escolha outro.",
+		"emailTaken": "Este email já está registrado. Tente logar novamente."
 	},
 
 	"404": {
-		"pagetitle": "Page not found",
-		"message": "The page you requested was not found. If you were expecting a character, maybe the owner deleted it. Use the navigation bars to choose a different page."
+		"pagetitle": "Página não encontrada",
+		"message": "A página não foi encontrada. Se você estava procurando por um personagem, é provável que o dono o tenha deletado. Use as barras de navegação para escolher uma página diferente."
 	},
 
 	"private": {
-		"pagetitle": "Cannot access private character",
-		"meta_description": "Access to the character sheet for %s has been blocked by the owner.",
-		"content": "Access to this character sheet has been blocked by the owner. If you own this character, log in to view and edit this character."
+		"pagetitle": "Não é possível acessar este personagem privado",
+		"meta_description": "O acesso à ficha do personagem %s foi bloqueado pelo dono.",
+		"content": "Acesso a essa ficha foi bloqueado pelo dono. Se você é o dono deste personagem, logue na ficha e edite as opções de visualização."
 	},
 
 	"user":
 	{
-		"pagetitle": "%s's page",
+		"pagetitle": "Ficha de %s",
 		"meta_description": "%s's character archive, powered by the ToonStore, the cloud-based Fate character toolkit.",
 
-		"newtoon": "Create a new character",
+		"newtoon": "Crie um novo personagem",
 		"sorting": {
-			"title": "Sort by: ",
-			"lastupdate": "Last Update",
-			"creationdate": "Creation Date",
-			"name": "Name",
-			"privacy": "Privacy"
+			"title": "Ordenar por: ",
+			"lastupdate": "Atualizados",
+			"creationdate": "Data de criação",
+			"name": "Nome",
+			"privacy": "Privacidade"
 		},
 		"notoons": {
-			"p1": "You currently have no characters.",
+			"p1": "Você não tem personagens.",
 			"p2": {
 				"f1": "Since you're new here, why not check out the ",
 				"f2": "Beginner's Guide",
@@ -214,13 +214,13 @@
 			"public": "This user lacks character (badum-ching!)"
 		},
 		"controls": {
-			"duplicate": "Duplicate",
-			"change_privacy": "Make %s",
-			"private": "Make Private",
-			"public": "Make Public",
-			"delete": "Delete",
-			"lastupdated": "Last updated %s",
-			"neverupdated": "Never updated"
+			"duplicate": "Duplicar",
+			"change_privacy": "Mudar %s",
+			"private": "Tornar privado",
+			"public": "Tornar público",
+			"delete": "Deletar",
+			"lastupdated": "Últimas atualizações de %s",
+			"neverupdated": "Nunca atualizado"
 		}
 	},
 
@@ -230,46 +230,46 @@
 		"backseat": "This page is currently in back-seat mode. You can make local edits to the character sheet, but will not be able to save. Your changes will be lost once you refresh the page, and are not visible to other viewers of the character.",
 		
 		"headers": {
-			"panels": "Panels",
-			"printable": "Printer-friendly",
-			"optionals": "Optional Panels",
-			"notes": "Notes",
+			"panels": "Painéis",
+			"printable": "Imprimível",
+			"optionals": "Painéis Opicionais",
+			"notes": "Notas",
 			"shapeshifter": "Shapeshifter",
-			"aspects": "Aspects",
-			"skills": "Skills",
-			"stress": "Stress",
-			"conseq": "Consequences",
-			"totals": "Totals",
-			"powers": "Stunts & Powers",
-			"help": "Help",
-			"save": "Save"
+			"aspects": "Aspectos",
+			"skills": "Perícias",
+			"stress": "Estresse",
+			"conseq": "Consequências",
+			"totals": "Totais",
+			"powers": "Manobras & Poderes",
+			"help": "Ajuda",
+			"save": "Salvar"
 		},
 
 		"labels": {
-			"hc": "High Concept:",
-			"trouble": "Trouble:",
-			"otheraspects": "Other Aspects:",
-			"powerlevel": "Power Level:",
-			"skillcap": "Skill Cap:",
-			"skillpoints": "Skill Points:",
-			"skillspent": "Skill Points Spent",
-			"skillavailable": "Available",
-			"baserefresh": "Base Refresh Level",
-			"adjusted": "Adjusted Refresh",
-			"fp": "Fate Points",
-			"strength": "Strength",
-			"toughness": "Tough",
-			"tempaspect": "Temporary Aspects",
-			"cost": "Cost",
-			"ability": "Ability",
-			"refreshadjust": "Total Refresh Adjustment"
+			"hc": "Conceito:",
+			"trouble": "Complicação:",
+			"otheraspects": "Outros Aspectos:",
+			"powerlevel": "Nível de Poder:",
+			"skillcap": "Limite de Perícia:",
+			"skillpoints": "Pontos de Perícia:",
+			"skillspent": "Pontos gastos",
+			"skillavailable": "Disponível",
+			"baserefresh": "Refresh Base",
+			"adjusted": "Refresh Ajustado",
+			"fp": "Pontos de Destino",
+			"strength": "Força",
+			"toughness": "Resistência",
+			"tempaspect": "Aspectos Temporários",
+			"cost": "Custo",
+			"ability": "Habilidade",
+			"refreshadjust": "Valor Total de Refresh"
 		},
 
-		"description": "Description",
+		"description": "Descrição",
 		"unused": "Unused",
 
 		"armor": {
-			"f1": "Armor: ",
+			"f1": "Armadura: ",
 			"f2": " vs. "
 		},
 		"skillhelper": {
@@ -277,11 +277,11 @@
 			"f2": "Drop on +0 to remove"
 		},
 		"conseqType": {
-			"type": "Type",
-			"mild": "Mild (-2)",
-			"moderate": "Moderate (-4)",
-			"severe": "Severe (-6)",
-			"extreme": "Extreme (-8)"
+			"type": "Tipo",
+			"mild": "Leve (-2)",
+			"moderate": "Moderado (-4)",
+			"severe": "Severo (-6)",
+			"extreme": "Extremo (-8)"
 		},
 
 		"markdown": "Raw text is styled with Markdown.",
@@ -297,22 +297,22 @@
 				"chest": "Chest-Deep",
 				"submerged": "Submerged"
 			},
-			"stress": "Stress",
-			"skill": "Skill",
-			"newPower": "New Power",
-			"genericConseq": "Any",
+			"stress": "Estresse",
+			"skill": "Perícia",
+			"newPower": "Novo Poder",
+			"genericConseq": "Qualquer",
 
 			"unsavedWarning": "This character has unsaved changes. If you leave this page, these changes will be lost.",
 			"skillLadder": [
-				"Mediocre (+0)",
+				"Medíocre (+0)",
 				"Average (+1)",
 				"Fair (+2)",
 				"Good (+3)",
 				"Great (+4)",
-				"Superb (+5)",
-				"Fantastic (+6)",
-				"Epic (+7)",
-				"Legendary (+8)"
+				"Soberbo (+5)",
+				"Fantástico (+6)",
+				"Épico (+7)",
+				"Lendário (+8)"
 			]
 		}
 	},
