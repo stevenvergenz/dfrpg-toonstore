@@ -1,341 +1,344 @@
 {
 	"nav":
 	{
-		"about": "Sobre Nós",
-		"contact": "Contato",
-		"logout": "Sair",
-		"terms": "Termos de Uso",
-		"privacy": "Políticas de Privacidade",
-		"donate": "Doações",
-		"register": "Registrar",
-		"login": "Conecte-se",
-		"language": "Language: ",
+		"about": "À propos",
+		"contact": "Contactez-nous",
+		"logout": "Se déconnecter",
+		"terms": "Conditions d'utilisation",
+		"privacy": "Politique de vie privée",
+		"donate": "Faire un don",
+		"register": "S'enregistrer",
+		"login": "Se connecter",
+		"language": "Langue: ",
 		"lang_dialog": {
-			"prompt": "Esta página está disponível em sua língua nativa (%s). Você quer usar esta versão?",
-			"accept": "Vamos lá",
-			"reject": "Deixa quieto"
+			"prompt": "Cette page est disponible dans votre langue native (%s). Souhaiteriez-vous voir cette version?",
+			"accept": "Emmenez-moi",
+			"reject": "Rester ici"
 		}
 	},
 
 	"login":
 	{
-		"meta_description": "Entrar na ToonStore",
-		"email": "E-mail",
-		"password": "Senha",
-		"forgot": "Esqueci a senha",
-		"register": "Registre-se",
-		"submit": "Login"
+		"meta_description": "Se connecter à ToonStore",
+		"email": "Courriel",
+		"password": "Mot de passe",
+		"forgot": "Oublié mot de passe",
+		"register": "S'enregister",
+		"submit": "Se connecter"
 	},
 
 	"register":
 	{
 		"intro": {
-			"f1": "Obrigado pela preferência! ",
-			"f2": "Conecte-se com seu Persona",
-			"f3": " ou preencha os campos abaixo."
+			"f1": "Thank you for your interest! ",
+			"f1": "Merci de votre intérêt! ",
+			"f2": "Connectez-vous avec Persona",
+			"f3": " ou remplissez les informations ci-dessous et on s'occupe du reste."
 		},
-		"fedIntro": "Escolha um nome de usuário.",
+		"fedIntro": "Puisque c'est la première fois que vous vous connectez, vous devez choisir un nom d'utilisateur.",
 		"email": {
-			"label": "Email",
+			"label": "Courriel",
 			"caption": {
-				"f1": "Prometemos não mostrar seu email pra mais ninguém!",
-				"f2": "veja a nossa política de privacidade",
+				"f1": "Nous promettons de ne pas partager votre courriel avec quiconque! Consultez la ",
+				"f2": "politique de vie privée",
 				"f3": "."
 			}
 		},
 		"username": {
-			"label": "Nome de usuário (também será seu link de conta)",
-			"caption": "Não use espaços ou caracteres especiais, exceto por _ e -"
+			"label": "Nom d'utilisateur (sert aussi de permalien)",
+			"caption": "Pas d'espaces ni de caractères spéciaux excepté _ et -"
 		},
 		"agreement": {
-			"f1": "Li os termos de uso ",
-			"f2": "e concordo com a",
-			"f3": " política de privacidade",
-			"f4": "",
+			"f1": "J'ai lu et j'accepte les ",
+			"f2": "Conditions d'utilisation",
+			"f3": " et la ",
+			"f4": "Politique de vie privée",
 			"f5": "."
 		},
-		"submit": "Enviar",
+		"submit": "Soumettre",
 
 		"clientStrings": {
-			"userTaken": "Nome de usuário indisponível.",
-			"userAvailable": "Nome de usuário disponível.",
-			"userInvalid": "Nome de usuário inválido!",
-			"fix": "Ajeite os erros antes de enviar"
+			"userTaken": "Nom d'utilisateur déjà utilisé.",
+			"userAvailable": "Nom d'utilisateur disponible.",
+			"userInvalid": "Nom d'utilisateur invalide!",
+			"fix": "Corrigez les problèmes avant de soumettre"
 		}
 	},
 
 	"passreset":
 	{
-		"pagetitle": "Resete sua senha",
-		"intro": "Preencha seu email abaixo e enviaremos um link para resetar a sua senha.",
-		"email": "Email",
-		"submit": "Enviar"
+		"pagetitle": "Réinitialiser votre mot de passe",
+		"intro": "Entrez votre courriel ci-dessous et nous vous enverrons un lien pour réinitialiser votre mot de passe.",
+		"email": "Courriel",
+		"submit": "Soumettre"
 	},
 
 	"pre-activate":
 	{
-		"pagetitle": "Verificação de email",
-		"intro_register": "Obrigado por juntar-se a Toonstore! Enviamos um email com o link para a ativação da sua conta. Clique no link e siga as instruções para concluir o registro.",
-		"intro": "Seu pedido de reconfirmação de senha foi recebido. Enviamos um link para seu email, clique no link para mudar a sua senha.",
-		"note": "Note que o email pode levar alguns minutos para chegar. Procure na sua caixa de spam caso não o encontre na caixa de entrada."
+		"pagetitle": "Vérification de courriel",
+		"intro_register": "Merci d'avoir joint ToonStore! Nous vous avons envoyé par courriel un lien pour activer votre compte. Cliquez sur le lien et suivez les instructions pour compléter votre enregistrement.",
+		"intro": "Votre demande de réinitialisation de mot de passe a été reçue. Nous vous avons envoyé un lien par courriel, cliquez dessus pour changer votre mot de passe.",
+		"note": "Prenez note que le courriel peut mettre quelques minutes à être reçu. Si vous ne le voyez pas, vérifiez votre dossier de pourriels, et ajoutez \"no-reply@toonstore.net\" à votre liste de contacts."
 	},
 
 	"activate":
 	{
-		"pagetitle": "Insira sua senha",
-		"intro": "Insira sua nova senha no campo abaixo. O tempo necessário para quebrar sua senha é um indicador de quão segura ela é. Boas senhas devem levar pelo menos alguns dias para quebrar. Se a barra estiver verde ou azul você está indo bem.",
-		"password": "Senha",
-		"cracktime": "Tempo para quebrar a senha: ",
-		"confirm": "Confirme sua senha",
-		"submit": "Enviar",
+		"pagetitle": "Choisissez votre mot de passe",
+		"intro": "Entrez votre nouveau mot de passe dans les champs ci-dessous. Le temps pour décoder est un indicateur de la force de votre mot de passe. Un bon mot de passe devrait prendre au moins quelques années à décoder. Si l'indicateur est vert ou bleu, ça devrait aller.",
+		"password": "Mot de passe",
+		"cracktime": "Temps pour décoder: ",
+		"confirm": "Confirmer mot de passe",
+		"submit": "Soumettre",
 
 		"clientStrings": {
-			"toosimple": "muito simples!",
-			"match": "Senhas batem",
-			"nomatch": "Senhas não batem",
-			"fix": "Corrija os erros antes de enviar"
+			"toosimple": "trop simple!",
+			"match": "Les mots de passe correspondent",
+			"nomatch": "Les mots de passe ne correspondent pas",
+			"fix": "Réglez les problèmes avant de soumettre"
 		}
 	},
 
 	"activate-email":
 	{
-		"subject_reg": "Set your password",
-		"subject_noreg": "Reset your password",
-		"greeting_user": "Olá %s!",
-		"greeting_nouser": "Olá!",
-		"intro_reg": "Obrigado por usar a Toonstore! Clique no link abaixo para começar:",
-		"intro_noreg": "Obrigado por usar a Toonstore! Você pediu para resetar sua senha, então é só clicar no link abaixo que sua senha será resetada. Se você NÃO requisitou esse processo, ignore este email.",
-		"resetpassword": "Resete sua senha",
-		"setpassword": "Confirme sua senha",
-		"p1": "Note que este link estará ativo apenas por 20 minutos, após isso você terá de requerir novamente.",
-		"p2": "Digite sua senha no campo e confirme. Não temos nenhuma regra complicada para lidar com a complexibilidade da senha, o contador só irá te dizer quanto tempo leva para um computador adivinhá-la. Se estiver verde ou azul, você está a salvo.",
+		"subject_reg": "Choisir votre mot de passe",
+		"subject_noreg": "Réinitialiser votre mot de passe",
+		"greeting_user": "Bonjour %s!",
+		"greeting_nouser": "Bonjour!",
+		"intro_reg": "Merci d'utiliser ToonStore! Cliquez sur le lien pour commencer.",
+		"intro_noreg": "Merci d'utiliser ToonStore! Vous avez demandé à réinitialiser votre mot de passe : cliquez sur le lien ci-dessous pour le réinitialise. Si vous n'avez PAS demandé à le réinitialiser, veuillez simplement ignorer ce courriel.",
+		"resetpassword": "Réinitialiser votre mot de passe",
+		"setpassword": "Choisir votre mot de passe",
+		"p1": "Prenez note que ce lien n'est bon que pour 20 minutes, ensuite votre devrez en demander un nouveau.",
+		"p2": "Entrez votre nouveau mot de passe lorsqu'on le vous demandera puis confirmez. Nous n'avons pas de règles strictes sur la complexité des mots de passe mais l'indicateur vous dira combien de temps un ordinateur prendrait à le deviner. S'il est bleu ou vert, ça devrait aller.",
 		"p3": {
-			"f1": "Esperamos que se divirta usando a ToonStore! Se tiver qualquer pergunta, ",
-			"f2": "comentário ou reclamação, por favor nos contate",
+			"f1": "J'espère que vous apprécierez ToonStore! Si vous avez des questions, des commentaires ou des plaintes, s'il vous plaît, ",
+			"f2": "contactez-nous",
 			"f3": "!"
 		},
-		"closing": "Tudo de bom,",
-		"sig": "Equipe ToonStore"
+		"closing": "Amicalement,",
+		"sig": "L'équipe ToonStore"
 	},
 
 	"newtoon":
 	{
-		"pagetitle": "Novo Personagem",
+		"pagetitle": "Nouveau personnage",
 		"fullname": {
-			"label": "Nome completo",
-			"caption": "O nome do seu personagem. Pode ser trocado mais tarde."
+			"label": "Nom complet",
+			"caption": "Le nom du personnage. Peut être changé plus tard."
 		},
 		"shortname": {
-			"label": "Nome curto (usado como permalink)",
-			"p1": "Algo curto, identificável, e único entre seus personagens. O último nome é normalmente mais usado.",
-			"p2": "Use apenas A-Z, a-z, 0-9, -, e _.",
-			"p3": "Este é PERMANENTE."
+			"label": "Nom court (aussi permalien)",
+			"p1": "Quelque chose de court, reconnaissable et unique parmi vos personnages. Un nom de famille devrait suffir.",
+			"p2": "Seuls A-Z, a-z, 0-9, - et _ sont permis.",
+			"p3": "Ceci est PERMANENT."
 		},
 		"hc": {
-			"label": "Conceito",
-			"caption": "O aspecto que define o personagem. Pode ser trocado depois."
+			"label": "Grand concept",
+			"caption": "L'aspect dominant d'un personnage. Peut être modifié par la suite."
 		},
 		"template": {
-			"label": "Modelo de personagem",
-			"caption": "O modelo que seu personagem é baseado."
+			"label": "Modèle de personnage",
+			"caption": "Le modèle sur lequel votre personnage est basé."
 		},
-		"private": "Deixar este personagem privado",
+		"private": "Rendre ce personnage privé",
 		"donate": {
-			"f1": "Já pensou em ",
-			"f2": "doar",
-			"f3": " para manter a Toonstore online e livre de ads?"
+			"f1": "Avez-vous envisagé de ",
+			"f2": "faire un don",
+			"f3": " pour aider ToonStore à être en ligne et sans publicité ?"
 		},
-		"submit": "Enviar",
+		"submit": "Soumettre",
 
 		"clientStrings": {
-			"invalid": "Este nome é inválido.",
-			"duplicating": "Duplicar personagem:"
+			"invalid": "Ce nom court est invalide.",
+			"duplicating": "Duplication du personnage:"
 		}
 	},
 
 	"killtoon":
 	{
-		"pagetitle": "Deletar personagem",
-		"intro": "Escreva no campo abaixo exatamente o que está escrito:",
-		"confirm": "{{name}}, {{hc}}, está morto.",
-		"submit": "Deletar personagem",
+		"pagetitle": "Effacer personnage",
+		"intro": "In the box below, type the following exactly as it appears:",
+		"intro": "Dans la boîte ci-dessous, tapez exactement ce qui suit:",
+		"confirm": "{{name}}, {{hc}}, est mort.",
+		"submit": "Effacer personnage",
 		
 		"clientStrings": {
-			"error": "Você deve entrar com o texto de confirmação para deletar o personagem."
+			"error": "Vous devez entrer le texte de confirmation pour effacer le personnage."
 		}
 	},
 
 	"server":
 	{
-		"genericErr": "Um erro não identificado ocorreu. Por favor contacte o administrador do site com o que você fazia na hora e o horário do acontecido.",
-		"passwordSet": "Sua senha foi definida. Por favor realize o login para continuar.",
-		"anonNewToon": "Você deve estar logado para criar um personagem.",
-		"incompleteForm": "Preencha todos os campos.",
-		"character404": "Você não pode duplicar ou deletar um personagem que não existe. Se o personagem realmente existe, contacte o administrador.",
-		"duplicateSlug": "Você já está usando esse nome curto, escolha outro.",
-		"charDeleted": "Personagem %s foi deletado com sucesso",
-		"loginErr": "Login ou senha inválidos",
-		"userReserved": "Este nome de usuário já está em uso, escolha outro.",
-		"userInvalid": "Este nome de usuário é inválido, escolha outro.",
-		"emailTaken": "Este email já está registrado. Tente logar novamente."
+		"genericErr": "Une erreur non-identifiée est survenue. Veuillez contacter l'administrateur du site en expliquant ce que vous faisiez lorsque cette erreur est survenue.",
+		"passwordSet": "Votre mot de passe a été enregistré. Veuillez vous connecter pour continuer.",
+		"anonNewToon": "Vous devez être connecté pour créer un personnage.",
+		"incompleteForm": "Vous devez remplir tous les champs.",
+		"character404": "Vous ne pouvez pas dupliquer ou effacer un personnage inexistant. Si ce personnage existe vraiment, contactez l'administrateur du site.",
+		"duplicateSlug": "Vous utilisez déjà ce nom court, choisissez-en un autre.",
+		"charDeleted": "Personnage %s effacé avec succès",
+		"loginErr": "Nom d'utilisateur ou mot de passe invalide",
+		"userReserved": "Ce nom d'utilisateur est réservé, choisissez-en un autre.",
+		"userInvalid": "Ce nom d'utilisateur est invalide, choisissez-en un autre.",
+		"emailTaken": "Cette adresse courriel est déjà enregistrée. Essayez plutôt de vous connecter."
 	},
 
 	"404": {
-		"pagetitle": "Página não encontrada",
-		"message": "A página não foi encontrada. Se você estava procurando por um personagem, é provável que o dono o tenha deletado. Use as barras de navegação para escolher uma página diferente."
+		"pagetitle": "Page introuvable",
+		"message": "La page que vous avez demandée n'existe pas. Si vous vous attendiez à un personnage, peut-être que son propriétaire l'a effacé. Utilisez les barres de navigation pour choisir une page différente."
 	},
 
 	"private": {
-		"pagetitle": "Não é possível acessar este personagem privado",
-		"meta_description": "O acesso à ficha do personagem %s foi bloqueado pelo dono.",
-		"content": "Acesso a essa ficha foi bloqueado pelo dono. Se você é o dono deste personagem, logue na ficha e edite as opções de visualização."
+		"pagetitle": "Impossible d'accéder à un personnage privé",
+		"meta_description": "L'accès à la feuille de personnage de %s a été bloqué par son propriétaire.",
+		"content": "L'accès à la feuille de ce personnage a été bloqué par son propriétaire. Si vous en êtes propriétaire, connectez-vous pour voir et éditer ce personnage."
 	},
 
 	"user":
 	{
-		"pagetitle": "Ficha de %s",
-		"meta_description": "%s's character archive, powered by the ToonStore, the cloud-based Fate character toolkit.",
+		"pagetitle": "Page de %s",
+		"meta_description": "Page d'archive de %s, propulsée par le ToonStore, l'outil infonuagique de personnage pour Fate.",
 
-		"newtoon": "Crie um novo personagem",
+		"newtoon": "Créer un nouveau personnage",
 		"sorting": {
-			"title": "Ordenar por: ",
-			"lastupdate": "Atualizados",
-			"creationdate": "Data de criação",
-			"name": "Nome",
-			"privacy": "Privacidade"
+			"title": "Trier par: ",
+			"lastupdate": "Dernière mise à jour",
+			"creationdate": "Date de création",
+			"name": "Nom",
+			"privacy": "Privé"
 		},
 		"notoons": {
-			"p1": "Você não tem personagens.",
+			"p1": "Vous n'avez présentement aucun personnage.",
 			"p2": {
 				"f1": "Since you're new here, why not check out the ",
-				"f2": "Beginner's Guide",
+				"f1": "Puisque vous êtes nouveau ici, pourquoi ne pas jeter un oeil au ",
+				"f2": "Guide pour débutants",
 				"f3": "?"
 			},
-			"public": "This user lacks character (badum-ching!)"
+			"public": "Cet utilisateur manque de personnalités!"
 		},
 		"controls": {
-			"duplicate": "Duplicar",
-			"change_privacy": "Mudar %s",
-			"private": "Tornar privado",
-			"public": "Tornar público",
-			"delete": "Deletar",
-			"lastupdated": "Últimas atualizações de %s",
-			"neverupdated": "Nunca atualizado"
+			"duplicate": "Dupliquer",
+			"change_privacy": "Rendre %s",
+			"private": "Rendre privé",
+			"public": "Rendre privé",
+			"delete": "Effacer",
+			"lastupdated": "Dernière mise à jour %s",
+			"neverupdated": "Jamais mis à jour"
 		}
 	},
 
 	"charsheet":
 	{
-		"meta_description": "{{name}}, {{hc}}, powered by ToonStore",
-		"backseat": "This page is currently in back-seat mode. You can make local edits to the character sheet, but will not be able to save. Your changes will be lost once you refresh the page, and are not visible to other viewers of the character.",
+		"meta_description": "{{name}}, {{hc}}, propulsé par ToonStore",
+		"backseat": "Cette page est présentement en mode visiteur. Si vous faites des changements localement à la feuille de personnage, vous ne pourrez pas les sauvegarder. Vos changements seront perdus lorsque vous rafraîchirez la page et ils ne seront pas visisbles aux autres personnes qui visionneront le personnage.",
 		
 		"headers": {
-			"panels": "Painéis",
-			"printable": "Imprimível",
-			"optionals": "Painéis Opicionais",
-			"notes": "Notas",
-			"shapeshifter": "Shapeshifter",
-			"aspects": "Aspectos",
-			"skills": "Perícias",
-			"stress": "Estresse",
-			"conseq": "Consequências",
-			"totals": "Totais",
-			"powers": "Manobras & Poderes",
-			"help": "Ajuda",
-			"save": "Salvar"
+			"panels": "Panneaux",
+			"printable": "Imprimable",
+			"optionals": "Panneaux optionnels",
+			"notes": "Notes",
+			"shapeshifter": "Métamorphe",
+			"aspects": "Aspects",
+			"skills": "Compétences",
+			"stress": "Stress",
+			"conseq": "Conséquences",
+			"totals": "Totaux",
+			"powers": "Cascades et pouvoirs",
+			"help": "Aide",
+			"save": "Sauvegarde"
 		},
 
 		"labels": {
-			"hc": "Conceito:",
-			"trouble": "Complicação:",
-			"otheraspects": "Outros Aspectos:",
-			"powerlevel": "Nível de Poder:",
-			"skillcap": "Limite de Perícia:",
-			"skillpoints": "Pontos de Perícia:",
-			"skillspent": "Pontos gastos",
-			"skillavailable": "Disponível",
-			"baserefresh": "Refresh Base",
-			"adjusted": "Refresh Ajustado",
-			"fp": "Pontos de Destino",
-			"strength": "Força",
-			"toughness": "Resistência",
-			"tempaspect": "Aspectos Temporários",
-			"cost": "Custo",
-			"ability": "Habilidade",
-			"refreshadjust": "Valor Total de Refresh"
+			"hc": "Grand concept:",
+			"trouble": "Problème:",
+			"otheraspects": "Autres aspects:",
+			"powerlevel": "Niveau de puissance:",
+			"skillcap": "Skill Cap:",
+			"skillpoints": "Points de compétence:",
+			"skillspent": "Points de compétences dépensés",
+			"skillavailable": "Disponibles",
+			"baserefresh": "Niveau de rafrâichissement de base",
+			"adjusted": "Rafraîchissement ajusté",
+			"fp": "Points Fate",
+			"strength": "Force",
+			"toughness": "Endurance",
+			"tempaspect": "Aspects temporaires",
+			"cost": "Coût",
+			"ability": "Habileté",
+			"refreshadjust": "Ajustement du rafraîchissement total"
 		},
 
-		"description": "Descrição",
-		"unused": "Unused",
+		"description": "Description",
+		"unused": "Inutilisé",
 
 		"armor": {
-			"f1": "Armadura: ",
+			"f1": "Armure: ",
 			"f2": " vs. "
 		},
 		"skillhelper": {
-			"f1": "Drag skills to rearrange",
-			"f2": "Drop on +0 to remove"
+			"f1": "Glisser les compétences pour les réarranger",
+			"f2": "Relâcher sur +0 pour enlever"
 		},
 		"conseqType": {
-			"type": "Tipo",
-			"mild": "Leve (-2)",
-			"moderate": "Moderado (-4)",
-			"severe": "Severo (-6)",
-			"extreme": "Extremo (-8)"
+			"type": "Type",
+			"mild": "Légère (-2)",
+			"moderate": "Modérée (-4)",
+			"severe": "Grave (-6)",
+			"extreme": "Extrême (-8)"
 		},
 
-		"markdown": "Raw text is styled with Markdown.",
-		"primer": "A Brief Primer",
+		"markdown": "Le text brut est stylisé en Markdown.",
+		"primer": "Une brève introduction",
 
 		"clientStrings":
 		{
-			"invalidSkills": "INVALID, %s available",
-			"validSkills": "Valid, %s available",
+			"invalidSkills": "INVALIDE, %s disponible",
+			"validSkills": "Valide, %s disponible",
 			"powerLevels": {
-				"feet": "Feet In The Water",
-				"waist": "Up To Your Waist",
-				"chest": "Chest-Deep",
-				"submerged": "Submerged"
+				"feet": "Les pieds dans l'eau",
+				"waist": "Jusqu'à la taille",
+				"chest": "Au niveau de la poitrine",
+				"submerged": "Submergé"
 			},
-			"stress": "Estresse",
-			"skill": "Perícia",
-			"newPower": "Novo Poder",
-			"genericConseq": "Qualquer",
+			"stress": "Stress",
+			"skill": "Compétence",
+			"newPower": "Nouveau Pouvoir",
+			"genericConseq": "Toute",
 
-			"unsavedWarning": "This character has unsaved changes. If you leave this page, these changes will be lost.",
+			"unsavedWarning": "Ce personnage a des changements non sauvegardés. Si vous quittez cette page, ces changements seront perdus.",
 			"skillLadder": [
-				"Medíocre (+0)",
-				"Average (+1)",
-				"Fair (+2)",
-				"Good (+3)",
-				"Great (+4)",
-				"Soberbo (+5)",
-				"Fantástico (+6)",
-				"Épico (+7)",
-				"Lendário (+8)"
+				"Médiocre (+0)",
+				"Moyen (+1)",
+				"Correct (+2)",
+				"Bon (+3)",
+				"Génial (+4)",
+				"Superbe (+5)",
+				"Fantastique (+6)",
+				"Épique (+7)",
+				"Légendaire (+8)"
 			]
 		}
 	},
 
 	"index":
 	{
-		"pagetitle": "Online Dresden Files RPG Character Hosting",
-		"meta_description": "Crie, modifique e compartilhe fichas de Dresden Files RPG e Fate na nuvem, com modelos responsivos, na Toonstore.",
+		"pagetitle": "Hébergement en ligne de personnages de Dresden Files RPG",
+		"meta_description": "Create, modify, and share cloud-based mobile-friendly Dresden Files RPG or Fate character sheets right in your browser with ToonStore.",
 		"banner": {
-			"subtitle": "+2 em rolagens de organização"
+			"subtitle": "+2 aux jets de compétence d'organisation"
 		},
-		"p1": "Saudações, jogador!",
-		"p2": "Todo mundo já passou por isso: todo mundo prepara a ficha e o GM pede por uma cópia da sua.E agora? Xerocar na vendinha da esquina? Escanear e mandar por email? Transcrever para outra ficha? Mandar por email apenas os Aspectos?",
-		"p3": "Talvez você já tinha pensado nisso enquanto preparava sua ficha em seu laptop, mas nenhuma outra pessoa senão você vai entender a confusão ordenada que existe em seu bloco de notas.",
-		"p4": "É aqui que a Toonstore entra. Nós armazenamos suas fichas de Dresdes Files RPG ou outros jogos Fate na nuvem, para fácil compartilhamento entre seu grupo e para nunca perde-la de vista. Edite sua ficha diretamente do browser, nenhuma instalação é necessária, além de poder ve-la facilmente em seu celular sem precisar carregar o peso de seu laptop para todo lado.",
+		"p1": "Greetings, roleplayer!",
+		"p2": "Everyone has run into this scenario: you and your partymates are going through character creation, filling out your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion. Do you scan it and email it? Do you transcribe it? Just email the aspects?",
+		"p3": "Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.",
+		"p4": "This is where ToonStore comes in. We store your Dresden Files RPG or other Fate-based character data in the cloud, so you never lose it and can easily share it. Just view the online character sheet and make your edits right in the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.",
 		"p5": {
-			"f1": "Interessado? ",
-			"f2": "Entre",
-			"f3": " com a sua ",
-			"f4": "conta",
-			"f5": " Persona, ou ",
-			"f6": "teste agora",
-			"f7": " e veja como é legal!"
+			"f1": "Interested? ",
+			"f2": "Log in",
+			"f3": " with your ",
+			"f4": "Persona",
+			"f5": " account, or ",
+			"f6": "try it now",
+			"f7": " to get rolling!"
 		}
 	},
 
@@ -667,3 +670,4 @@
 		}
 	}
 }
+
