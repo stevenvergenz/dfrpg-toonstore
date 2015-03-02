@@ -90,14 +90,15 @@ html
 					li: a(href=url('/site/donate'))= __('nav.donate')
 					li.langselectmenu
 						= __('nav.language')
-						img.langselecticon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'))
+						img.langselecticon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'), title=__('language'))
 
 						ul.langselect
 							- for( var i=0; i<i18n.config.locales.length; i++ )
 								unless i18n.config.locales[i] === i18n.selectedLocale
 									li: a(href=getNativeURL(i18n.config.locales[i]), hreflang=i18n.config.locales[i])
-										img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png', alt=a__({locale:i18n.config.locales[i], phrase:'language'}))
+										- var descriptor = a__({locale:i18n.config.locales[i], phrase:"language"});
+										img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png', alt=descriptor, title=descriptor)
 							li.active
-								img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'))
+								img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'), title=__('language'))
 
 		block github
