@@ -360,10 +360,12 @@
 		},
 
 		"h4": "Additional Credits",
-		"p4": {
-			"f1": "Thanks to Thecosmicgoose (",
-			"f2": "deviantart",
-			"f3": ") for his lovely artwork on the DFRPG character templates, and to Robert \"Jabberwocky\" Skopek and Lucas \"Atmo\" Leonardo for the Czech and Portuguese translations of the ToonStore."
+		"p4": "I want to thank the following people for their contributions to the ToonStore:",
+		"credits": {
+			"thecosmicgoose": "For his lovely artwork on the DFRPG character templates",
+			"jabberwocky": "For the Czech translation of the ToonStore (ongoing)",
+			"atmo": "For the Portuguese translation of the ToonStore (ongoing)",
+			"solarbear": "For the French translation of the ToonStore (ongoing)"
 		}
 	},
 
