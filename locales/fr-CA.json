@@ -133,197 +133,199 @@
 			"p3": "Ceci est PERMANENT."
 		},
 		"hc": {
-			"label": "High concept",
-			"caption": "The character's defining aspect. Can be changed later."
+			"label": "Grand concept",
+			"caption": "L'aspect dominant d'un personnage. Peut être modifié par la suite."
 		},
 		"template": {
-			"label": "Character template",
-			"caption": "The template your character is based on."
+			"label": "Modèle de personnage",
+			"caption": "Le modèle sur lequel votre personnage est basé."
 		},
-		"private": "Make this character private",
+		"private": "Rendre ce personnage privé",
 		"donate": {
-			"f1": "Have you considered ",
-			"f2": "donating",
-			"f3": " to help keep the ToonStore online and ad-free?"
+			"f1": "Avez-vous envisagé de ",
+			"f2": "faire un don",
+			"f3": " pour aider ToonStore à être en ligne et sans publicité ?"
 		},
-		"submit": "Submit",
+		"submit": "Soumettre",
 
 		"clientStrings": {
-			"invalid": "That short name is invalid.",
-			"duplicating": "Duplicating character:"
+			"invalid": "Ce nom court est invalide.",
+			"duplicating": "Duplication du personnage:"
 		}
 	},
 
 	"killtoon":
 	{
-		"pagetitle": "Delete Character",
+		"pagetitle": "Effacer personnage",
 		"intro": "In the box below, type the following exactly as it appears:",
-		"confirm": "{{name}}, {{hc}}, is dead.",
-		"submit": "Delete character",
+		"intro": "Dans la boîte ci-dessous, tapez exactement ce qui suit:",
+		"confirm": "{{name}}, {{hc}}, est mort.",
+		"submit": "Effacer personnage",
 		
 		"clientStrings": {
-			"error": "You must enter the confirmation text to delete the character."
+			"error": "Vous devez entrer le texte de confirmation pour effacer le personnage."
 		}
 	},
 
 	"server":
 	{
-		"genericErr": "An unidentified error has occurred. Please contact the site admin with what you were doing and when this error occurred.",
-		"passwordSet": "Your password has been set. Please log in to continue.",
-		"anonNewToon": "You must be logged in to create a character.",
-		"incompleteForm": "You must fill out all fields.",
-		"character404": "You cannot duplicate or delete a non-existent character. If the character really exists, contact the site admin.",
-		"duplicateSlug": "You are already using that short name, choose another.",
-		"charDeleted": "Character %s successfully deleted",
-		"loginErr": "Invalid login or password",
-		"userReserved": "That username is reserved, choose another.",
-		"userInvalid": "That username is invalid, choose another.",
-		"emailTaken": "That email address is already registered. Try logging in instead."
+		"genericErr": "Une erreur non-identifiée est survenue. Veuillez contacter l'administrateur du site en expliquant ce que vous faisiez lorsque cette erreur est survenue.",
+		"passwordSet": "Votre mot de passe a été enregistré. Veuillez vous connecter pour continuer.",
+		"anonNewToon": "Vous devez être connecté pour créer un personnage.",
+		"incompleteForm": "Vous devez remplir tous les champs.",
+		"character404": "Vous ne pouvez pas dupliquer ou effacer un personnage inexistant. Si ce personnage existe vraiment, contactez l'administrateur du site.",
+		"duplicateSlug": "Vous utilisez déjà ce nom court, choisissez-en un autre.",
+		"charDeleted": "Personnage %s effacé avec succès",
+		"loginErr": "Nom d'utilisateur ou mot de passe invalide",
+		"userReserved": "Ce nom d'utilisateur est réservé, choisissez-en un autre.",
+		"userInvalid": "Ce nom d'utilisateur est invalide, choisissez-en un autre.",
+		"emailTaken": "Cette adresse courriel est déjà enregistrée. Essayez plutôt de vous connecter."
 	},
 
 	"404": {
-		"pagetitle": "Page not found",
-		"message": "The page you requested was not found. If you were expecting a character, maybe the owner deleted it. Use the navigation bars to choose a different page."
+		"pagetitle": "Page introuvable",
+		"message": "La page que vous avez demandée n'existe pas. Si vous vous attendiez à un personnage, peut-être que son propriétaire l'a effacé. Utilisez les barres de navigation pour choisir une page différente."
 	},
 
 	"private": {
-		"pagetitle": "Cannot access private character",
-		"meta_description": "Access to the character sheet for %s has been blocked by the owner.",
-		"content": "Access to this character sheet has been blocked by the owner. If you own this character, log in to view and edit this character."
+		"pagetitle": "Impossible d'accéder à un personnage privé",
+		"meta_description": "L'accès à la feuille de personnage de %s a été bloqué par son propriétaire.",
+		"content": "L'accès à la feuille de ce personnage a été bloqué par son propriétaire. Si vous en êtes propriétaire, connectez-vous pour voir et éditer ce personnage."
 	},
 
 	"user":
 	{
-		"pagetitle": "%s's page",
-		"meta_description": "%s's character archive, powered by the ToonStore, the cloud-based Fate character toolkit.",
+		"pagetitle": "Page de %s",
+		"meta_description": "Page d'archive de %s, propulsée par le ToonStore, l'outil infonuagique de personnage pour Fate.",
 
-		"newtoon": "Create a new character",
+		"newtoon": "Créer un nouveau personnage",
 		"sorting": {
-			"title": "Sort by: ",
-			"lastupdate": "Last Update",
-			"creationdate": "Creation Date",
-			"name": "Name",
-			"privacy": "Privacy"
+			"title": "Trier par: ",
+			"lastupdate": "Dernière mise à jour",
+			"creationdate": "Date de création",
+			"name": "Nom",
+			"privacy": "Privé"
 		},
 		"notoons": {
-			"p1": "You currently have no characters.",
+			"p1": "Vous n'avez présentement aucun personnage.",
 			"p2": {
 				"f1": "Since you're new here, why not check out the ",
-				"f2": "Beginner's Guide",
+				"f1": "Puisque vous êtes nouveau ici, pourquoi ne pas jeter un oeil au ",
+				"f2": "Guide pour débutants",
 				"f3": "?"
 			},
-			"public": "This user lacks character (badum-ching!)"
+			"public": "Cet utilisateur manque de personnalités!"
 		},
 		"controls": {
-			"duplicate": "Duplicate",
-			"change_privacy": "Make %s",
-			"private": "Make Private",
-			"public": "Make Public",
-			"delete": "Delete",
-			"lastupdated": "Last updated %s",
-			"neverupdated": "Never updated"
+			"duplicate": "Dupliquer",
+			"change_privacy": "Rendre %s",
+			"private": "Rendre privé",
+			"public": "Rendre privé",
+			"delete": "Effacer",
+			"lastupdated": "Dernière mise à jour %s",
+			"neverupdated": "Jamais mis à jour"
 		}
 	},
 
 	"charsheet":
 	{
-		"meta_description": "{{name}}, {{hc}}, powered by ToonStore",
-		"backseat": "This page is currently in back-seat mode. You can make local edits to the character sheet, but will not be able to save. Your changes will be lost once you refresh the page, and are not visible to other viewers of the character.",
+		"meta_description": "{{name}}, {{hc}}, propulsé par ToonStore",
+		"backseat": "Cette page est présentement en mode visiteur. Si vous faites des changements localement à la feuille de personnage, vous ne pourrez pas les sauvegarder. Vos changements seront perdus lorsque vous rafraîchirez la page et ils ne seront pas visisbles aux autres personnes qui visionneront le personnage.",
 		
 		"headers": {
-			"panels": "Panels",
-			"printable": "Printer-friendly",
-			"optionals": "Optional Panels",
+			"panels": "Panneaux",
+			"printable": "Imprimable",
+			"optionals": "Panneaux optionnels",
 			"notes": "Notes",
-			"shapeshifter": "Shapeshifter",
+			"shapeshifter": "Métamorphe",
 			"aspects": "Aspects",
-			"skills": "Skills",
+			"skills": "Compétences",
 			"stress": "Stress",
-			"conseq": "Consequences",
-			"totals": "Totals",
-			"powers": "Stunts & Powers",
-			"help": "Help",
-			"save": "Save"
+			"conseq": "Conséquences",
+			"totals": "Totaux",
+			"powers": "Cascades et pouvoirs",
+			"help": "Aide",
+			"save": "Sauvegarde"
 		},
 
 		"labels": {
-			"hc": "High Concept:",
-			"trouble": "Trouble:",
-			"otheraspects": "Other Aspects:",
-			"powerlevel": "Power Level:",
+			"hc": "Grand concept:",
+			"trouble": "Problème:",
+			"otheraspects": "Autres aspects:",
+			"powerlevel": "Niveau de puissance:",
 			"skillcap": "Skill Cap:",
-			"skillpoints": "Skill Points:",
-			"skillspent": "Skill Points Spent",
-			"skillavailable": "Available",
-			"baserefresh": "Base Refresh Level",
-			"adjusted": "Adjusted Refresh",
-			"fp": "Fate Points",
-			"strength": "Strength",
-			"toughness": "Tough",
-			"tempaspect": "Temporary Aspects",
-			"cost": "Cost",
-			"ability": "Ability",
-			"refreshadjust": "Total Refresh Adjustment"
+			"skillpoints": "Points de compétence:",
+			"skillspent": "Points de compétences dépensés",
+			"skillavailable": "Disponibles",
+			"baserefresh": "Niveau de rafrâichissement de base",
+			"adjusted": "Rafraîchissement ajusté",
+			"fp": "Points Fate",
+			"strength": "Force",
+			"toughness": "Endurance",
+			"tempaspect": "Aspects temporaires",
+			"cost": "Coût",
+			"ability": "Habileté",
+			"refreshadjust": "Ajustement du rafraîchissement total"
 		},
 
 		"description": "Description",
-		"unused": "Unused",
+		"unused": "Inutilisé",
 
 		"armor": {
-			"f1": "Armor: ",
+			"f1": "Armure: ",
 			"f2": " vs. "
 		},
 		"skillhelper": {
-			"f1": "Drag skills to rearrange",
-			"f2": "Drop on +0 to remove"
+			"f1": "Glisser les compétences pour les réarranger",
+			"f2": "Relâcher sur +0 pour enlever"
 		},
 		"conseqType": {
 			"type": "Type",
-			"mild": "Mild (-2)",
-			"moderate": "Moderate (-4)",
-			"severe": "Severe (-6)",
-			"extreme": "Extreme (-8)"
+			"mild": "Légère (-2)",
+			"moderate": "Modérée (-4)",
+			"severe": "Grave (-6)",
+			"extreme": "Extrême (-8)"
 		},
 
-		"markdown": "Raw text is styled with Markdown.",
-		"primer": "A Brief Primer",
+		"markdown": "Le text brut est stylisé en Markdown.",
+		"primer": "Une brève introduction",
 
 		"clientStrings":
 		{
-			"invalidSkills": "INVALID, %s available",
-			"validSkills": "Valid, %s available",
+			"invalidSkills": "INVALIDE, %s disponible",
+			"validSkills": "Valide, %s disponible",
 			"powerLevels": {
-				"feet": "Feet In The Water",
-				"waist": "Up To Your Waist",
-				"chest": "Chest-Deep",
-				"submerged": "Submerged"
+				"feet": "Les pieds dans l'eau",
+				"waist": "Jusqu'à la taille",
+				"chest": "Au niveau de la poitrine",
+				"submerged": "Submergé"
 			},
 			"stress": "Stress",
-			"skill": "Skill",
-			"newPower": "New Power",
-			"genericConseq": "Any",
+			"skill": "Compétence",
+			"newPower": "Nouveau Pouvoir",
+			"genericConseq": "Toute",
 
-			"unsavedWarning": "This character has unsaved changes. If you leave this page, these changes will be lost.",
+			"unsavedWarning": "Ce personnage a des changements non sauvegardés. Si vous quittez cette page, ces changements seront perdus.",
 			"skillLadder": [
-				"Mediocre (+0)",
-				"Average (+1)",
-				"Fair (+2)",
-				"Good (+3)",
-				"Great (+4)",
-				"Superb (+5)",
-				"Fantastic (+6)",
-				"Epic (+7)",
-				"Legendary (+8)"
+				"Médiocre (+0)",
+				"Moyen (+1)",
+				"Correct (+2)",
+				"Bon (+3)",
+				"Génial (+4)",
+				"Superbe (+5)",
+				"Fantastique (+6)",
+				"Épique (+7)",
+				"Légendaire (+8)"
 			]
 		}
 	},
 
 	"index":
 	{
-		"pagetitle": "Online Dresden Files RPG Character Hosting",
+		"pagetitle": "Hébergement en ligne de personnages de Dresden Files RPG",
 		"meta_description": "Create, modify, and share cloud-based mobile-friendly Dresden Files RPG or Fate character sheets right in your browser with ToonStore.",
 		"banner": {
-			"subtitle": "+2 to organization rolls"
+			"subtitle": "+2 aux jets de compétence d'organisation"
 		},
 		"p1": "Greetings, roleplayer!",
 		"p2": "Everyone has run into this scenario: you and your partymates are going through character creation, filling out your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion. Do you scan it and email it? Do you transcribe it? Just email the aspects?",
