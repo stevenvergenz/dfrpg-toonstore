@@ -73,7 +73,8 @@ function renderPage(template, options)
 			'logged_user_email': req.session && req.session.user_email ? req.session.user_email : null,
 			'persona_user': req.session && req.session.persona ? req.session.persona : null,
 			'owner': req.params && req.params.user ? req.params.user : null,
-			'toon': req.params && req.params.char ? req.params.char : null
+			'toon': req.params && req.params.char ? req.params.char : null,
+			'ganalytics_key': config.ganalytics_key
 		};
 		var statusCode = options && options.code ? options.code : 200;
 

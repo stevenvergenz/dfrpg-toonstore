@@ -17,8 +17,11 @@
 
 	"port": 3001,
 	"cookie_secret": "I return from whence I came...",
+	"ganalytics_key": null,
 	"origin": "http://localhost:3001",
+
 	"use_sitemap": false,
+	"use_robots": false,
 
 	"use_ssl": false,
 	"ssl_key": "localhost:3001.key",
