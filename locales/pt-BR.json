@@ -321,7 +321,7 @@
 
 	"index":
 	{
-		"pagetitle": "Hospedagem Onlina de Fichas Dresden Files RPG",
+		"pagetitle": "Hospedagem Online de Fichas Dresden Files RPG",
 		"meta_description": "Crie, modifique e compartilhe fichas de Dresden Files RPG e Fate na nuvem, com modelos responsivos, na Toonstore.",
 		"banner": {
 			"subtitle": "+2 em rolagens de organização"
@@ -343,14 +343,14 @@
 
 	"about":
 	{
-		"pagetitle": "Sobre ToonStore",
+		"pagetitle": "Sobre a ToonStore",
 		"meta_description": "Saiba mais sobre a ToonStore, o kit de ferramentas de personagem na nuvem para Fate.",
 
 		"h1": "O que é a ToonStore?",
-		"p1": "ToonStore is a place where Dresden Files RPG roleplayers can store their character sheets without having to worry about losing them, or destroying them, or leaving them behind. You can create your characters right from our easy-to-use HTML interface, edit them right at the table, and share links with your friends and/or GM via whatever medium you like.",
+		"p1": "Toonstore é um site onde jogadores de Desden Files RPG ppodem armazenar suas fichas de personagem sem precisar se preocupar em perde-las, destrui-las ou esquecendo-as em casa antes de ir pro jogo. É muito fácil de criar seu personagem com a interface HTML, editando-as rapidamente enquanto joga e compartilhando-as com seu mestre e amigos via link.",
 
 		"h2": "Como a Toonstore foi criada?",
-		"p2": "In the beginning, it was simply an effort to make a better version of the fillable character sheet PDF already available. As time went on though, it slowly grew in scope and complexity to encompass character hosting as well. It was originally just for my group's benefit, but since it is no more difficult to make it publicly available, I opened it up to the public. The rest, as they say, is history.",
+		"p2": "No começo era simplesmente uma tentativa de fazer uma versão mais interessante que um PDF editável. Conforme o tempo passava, nós percebemos que tudo estava ficando mais complexo. Originamente a ideia era usar apenas para o meu grupo, mas então decidimos abrir para o público. O resto é história.",
 
 		"h3": "Quem é Derogatory Studios?",
 		"p3": {
