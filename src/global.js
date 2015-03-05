@@ -1,7 +1,8 @@
 /*
  * Stores global functions and handlers that are always useful
  */
-var libpath = require('path');
+var libpath = require('path'),
+	config = require('../config.json');
 
 var logLevels = {
 	'fatal': 0,
