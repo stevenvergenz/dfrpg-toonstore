@@ -327,135 +327,141 @@
 		"banner": {
 			"subtitle": "+2 aux jets de compétence d'organisation"
 		},
-		"p1": "Greetings, roleplayer!",
-		"p2": "Everyone has run into this scenario: you and your partymates are going through character creation, filling out your character sheet, and your DM asks for a copy of your character sheet. You have a brief moment of confusion. Do you scan it and email it? Do you transcribe it? Just email the aspects?",
-		"p3": "Perhaps you're forward-looking. Perhaps you've been doing your character from your laptop the whole time. But without the formal layout of an actual character sheet, no one but you can read your text-based character sheet.",
+		"p1": "Bienvenue, rôliste !",
+		"p2": "Tout le monde a vécu ce scénario : vous et les membres de votre groupe êtes en train de créer vos personnages, remplissant votre feuille de personnage, puis votre MJ vous demande une copie de votre feuille de personnage. Vous avez êtes confus pendant un moment : devriez-vous la scanner puis l'envoyer par courriel, simplement la transcrire, ou simplement lui transmettre vos aspects ?",
+		"p3": "Vous êtes peut-être d'avant-garde. Peut-être étiez-vous en train de créer votre personnage à partir de votre ordinateur portatif depuis le début. Mais sans la mise en page d'une véritable feuille de personnage, personne d'autre que vous ne peut lire votre feuille en format texte.",
 		"p4": "This is where ToonStore comes in. We store your Dresden Files RPG or other Fate-based character data in the cloud, so you never lose it and can easily share it. Just view the online character sheet and make your edits right in the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.",
+		"p4": "C'est là que ToonStore entre en jeu. Nous stockons vos feuilles de personnages de Dresden Files RPG et autres données de personnages de Fate dans le nuage de façon à ce que vous ne le perdiez jamais et que vous puissiez le partager facilement. Visionnez votre feuille en ligne et modifiez-la directement dans votre navigateur. Nous supportons le mobile aussi alors vous n'avez pas à transporter votre ordinateur portable de 5 kilos avec vous non plus.",
 		"p5": {
-			"f1": "Interested? ",
-			"f2": "Log in",
-			"f3": " with your ",
+			"f1": "Intéressé ? ",
+			"f2": "Connectez-vous",
+			"f3": " avec votre compte ",
 			"f4": "Persona",
-			"f5": " account, or ",
-			"f6": "try it now",
-			"f7": " to get rolling!"
+			"f5": " ou ",
+			"f6": "essayez-le maintenant",
+			"f7": " pour commencer à jouer !"
 		}
 	},
 
 	"about":
 	{
-		"pagetitle": "About ToonStore",
+		"pagetitle": "À propos de ToonStore",
 		"meta_description": "Learn about ToonStore, the cloud-based Fate character toolkit.",
 
-		"h1": "What is the ToonStore?",
-		"p1": "ToonStore is a place where Dresden Files RPG roleplayers can store their character sheets without having to worry about losing them, or destroying them, or leaving them behind. You can create your characters right from our easy-to-use HTML interface, edit them right at the table, and share links with your friends and/or GM via whatever medium you like.",
+		"h1": "Qu'est-ce que ToonStore?",
+		"p1": "ToonStore est un endroit où les joueurs de Dresden Files RPG peut stocker leurs feuilles de personnage sans avoir à s'inquiéter de les perdre, de les détruire ou de les oublier. Vous pouvez créer vos personnages directement depuis notre interface HTML conviviale, les éditer directement à la table de jeu et partager les liens avec vos amis et/ou votre MJ via le médium de votre choix.",
 
-		"h2": "How did ToonStore come to be?",
-		"p2": "In the beginning, it was simply an effort to make a better version of the fillable character sheet PDF already available. As time went on though, it slowly grew in scope and complexity to encompass character hosting as well. It was originally just for my group's benefit, but since it is no more difficult to make it publicly available, I opened it up to the public. The rest, as they say, is history.",
+		"h2": "Comment ToonStore est-il né ?",
+		"p2": "Au commencement, il s'agissait simplement d'un effort pour créer une version améliorée de la feuille de personnage remplissable en format PDF déjà disponible. Mais au fil du temps sa portée et sa complexité en vinrent à inclure l'hébergement des personnages aussi. C'était à ce moment uniquement pour l'utilisation de mon propre groupe mais puisque ce n'est pas plus compliqué à rendre publiquement disponible, je l'ai ouvert au public. La suite, heh bien, on la connaît.",
 
-		"h3": "Who is Derogatory Studios?",
+		"h3": "Qui sont Derogatory Studios?",
 		"p3": {
-			"f1": "Primarily it is just me, Steven Vergenz, advised by the other members of my gaming group. I don't have a ton of time to work on this project though, so if you want to work on a feature for your own group, feel free to fork this project on ",
+			"f1": "Principalement ce n'est que moi, Steven Vergenz, conseillé par les autres membres de mon groupe de jeu. Je n'ai pas beaucoup de temps à investir sur ce projet, cependant, alors si vous voulez travailler sur une fonctionnalité pour votre propre groupe, sentez-vous librer de faire fourcher le projet sur ",
 			"f2": "Github",
-			"f3": " for your own needs. If you do so though, I would appreciate it if you would contribute your new features back to the original ToonStore project once you're done."
+			"f3": " pour vos propres besoins. Si vous le faites, par contre, j'apprécierais si vous pouviez contribuer au projet en ramenant vos nouvelles fonctionnalités au ToonStore original lorsque vous aurez terminé."
 		},
 
-		"h4": "Additional Credits",
+		"h4": "Crédits additionnels",
 		"p4": {
-			"f1": "Thanks to Thecosmicgoose (",
+			"f1": "Merci à Thecosmicgoose (",
 			"f2": "deviantart",
-			"f3": ") for his lovely artwork on the DFRPG character templates, and to Robert \"Jabberwocky\" Skopek and Lucas \"Atmo\" Leonardo for the Czech and Portuguese translations of the ToonStore."
+			"f3": ") pour ses jolies illustrations sur les modèles de personnages DFRPG et à Robert \"Jabberwocky\" Skopek et Lucas \"Atmo\" Leonardo pour les traductions tchèque et portugaise du ToonStore."
 		}
 	},
 
 	"contact":
 	{
-		"pagetitle": "Contact Us",
-		"meta_description": "How to contact the developers and maintainers of the ToonStore.",
+		"pagetitle": "Contactez-nous",
+		"meta_description": "Comment contacter les développeurs et mainteneurs du ToonStore.",
 
-		"h1": "Questions? Comments? Suggestions?",
-		"p1": "We're easy to get a hold of! You have a couple options:",
+		"h1": "Questions? Commentaires? Suggestions?",
+		"p1": "Nous sommes faciles à rejoindre ! Voici quelques façons de le faire:",
 
 		"h2": "Github",
 		"p2": {
 			"f1": "The ",
-			"f2": "source code",
-			"f3": " for this site is all publicly available under the Apache 2.0 License, so you're welcome to start your own Toonstore for your group if you want to."
+			"f2": "code source",
+			"f3": " complet de ce site est publiquement disponible sous la license Apache 2.0 License, et vous êtes les bienvenus de démarrer votre propre ToonStore pour votre groupe si vous le désirez."
 		},
 		"p3": {
 			"f1": "We also use Github for bug reporting and feature requests. If you find a flaw in the site, or have an idea for a killer new feature, let us know! Submit an ",
-			"f2": "issue report",
-			"f3": " and we'll get right on it!"
+			"f1": "Nous utilisons aussi Github pour les rapports de bugs et les demandes de fonctionnalités. Si vous trouvez un problème sur le site ou que vous avez une idée pour une fonctionnalité géniale, laissez-nous le savoir ! Soumettez un ",
+			"f2": "rapport de problème",
+			"f3": " et nous y travaillerons !"
 		},
 
 		"h3": "Google+ Group",
 		"p4": {
 			"f1": "Join the devs and other ToonStore users on our ",
-			"f2": "Google+ group",
-			"f3": " to discuss the latest updates to the site, RPGs, characters, or anything else! We'd love to have your feedback!"
+			"f1": "Joignez les devs et autres utilisateurs de ToonStore sur notre ",
+			"f2": "groupe Google+",
+			"f3": " pourt discuter des dernières mise à jour sur le site, de jeux de rôles, de personnages et n'importe quoi d'autre ! Nous adorerions recevoir vos commentaires !"
 		},
 
-		"h4": "Email",
+		"h4": "Courriel",
 		"p5": {
-			"f1": "If you want to contact us directly, you can email us at ",
+			"f1": "Si vous voulez nous contacter directement, vous pouvez le faire par courriel à ",
 			"f2": "."
 		}
 	},
 
 	"donate":
 	{
-		"pagetitle": "Donate",
-		"meta_description": "How to donate to the maintenance and development of the ToonStore",
+		"pagetitle": "Faire un don",
+		"meta_description": "Comment faire un don pour la maintenance et le développement du ToonStore",
 
-		"plea": "The ToonStore is, and always will be, a free service for fellow lovers of the art of roleplaying. That doesn't mean that it's free for everyone. In fact, the ToonStore costs about $250 USD a year to maintain in hosting and name registration costs, which is nothing to sneeze at. Any and all contributions are welcome to help defray the costs of running this site.",
+		"plea": "Le ToonStore est et restera un service gratuit pour les amateurs de l'art du jeu de rôle. Cela ne signifie pas qu'il soit gratuit pour tous : en fait, ToonStore coûte environ 250$ US par année pour payer son hébergement et enregistrer sonn nom, ce qui n'est pas négligeable. Toute contribution est la bienvenue pour aider à défrayer les coûts de fonctionnement du site.",
 		
 		"how": {
-			"header": "How to Donate",
-			"p1": "To avoid unnecessary fees, paperwork, currency conversions, international transactions, etc., I have decided to accept Bitcoin instead of a more traditional donation system. How does it work? I'm glad you asked!",
-			"p2": "Basically, you can send money over the internet as if it were cash; no middlemen, no checks, no delays, and no private information (like a credit card number) changing hands.",
+			"header": "Comment faire un don",
+			"p1": "Pour éviter les frais inutiles, la paperasse, la conversion de devises, les transactions internationales, etc. J'ai décidé d'accepté les Bitcoins au lieu d'un système de dons traditionnel. Comment cela fonctionne-t-il ? Je suis content que vous le demandiez !",
+			"p2": "Simplement, vous pouvez envoyer de l'argent par internet comme si c'était de l'argent comptant : pas d'intermédiaire, ni chèques, ni délais et aucune information privée (comme un numéro de carte de crédit) n'est utilisé.",
 			"p3": {
-				"f1": "You can change money for bitcoin at any of a number of exchanges. In the United States, I recommend ",
-				"f2": " or ",
+				"f1": "Vous pouvez changer de l'argent en bitcoins à plusieurs endroits. Aux États-Unis, je recommande ",
+				"f2": " ou ",
 				"f3": "."
 			}
 		},
 
 		"where":
 		{
-			"header": "Where to Donate",
-			"p1": "You can support the ToonStore by donating to the following Bitcoin address:",
-			"p2": "On behalf of the ToonStore community, thank you for helping keep ToonStore online and serving a new generation of roleplayers."
+			"header": "Où faire un don",
+			"p1": "Vous pouvez supporter ToonStore en faisant un don à l'adresse Bitcoin suivante:",
+			"p2": "Au nom de la communauté ToonStore, merci d'aider à garder ToonStore en ligne et de servir une génération de rôlistes."
 		}
 	},
 
 	"terms":
 	{
-		"pagetitle": "Terms of Use",
-		"meta_description": "The ToonStore terms of use",
+		"pagetitle": "Conditions d'utilisation",
+		"meta_description": "Les conditions d'utilisation du ToonStore",
 
-		"p1": "By using the ToonStore website, you agree to abide by the following terms and conditions:",
-		"p2": "The use of the character sheet hosting services provided by the ToonStore website are provided free of charge.",
-		"p3": "Derogatory Studios makes no guarantee of the reliability or longevity of the ToonStore website, nor of characters produced therein. The ToonStore website is provided WITHOUT WARRANTY, expressed or implied. Derogatory Studios reserves the right to delete character or user data at any time for any reason without notice. If we do so, you may contact us within 30 days of deletion to request a copy of the deleted data.",
+		"p1": "En utilisant le site web du ToonStore, vous vous engagez à respecter termes et conditions suivants:",
+		"p2": "L'utilisation des services d'hébergement fournis par ToonStore est offert gratuitement.",
+		"p3": "Derogatory Studios n'offre aucune garanti que quant à la fiabilité ou la longévité du site web ToonStore ni des personnages créés. Le site ToonStore est fourni SANS GARANTIE, expresse ou implicite. Derogatory Studios se réserve le droit de supprimer un personnage ou les données d'un utilisateur à tout moment, pour toute raison et sans préavis. Si cela devait arriver, vous pouvez nous contacter dans les 30 jours suivant la suppression pour demander une copie des données supprimées.",
 		"p4": {
 			"f1": "Any and all data entered into a public character sheet is visible to anyone that knows or can guess the URL. Users should have no expectation of data privacy, except for data covered under the ",
-			"f2": "Privacy Policy",
-			"f3": ". However, only the user and site administrators are able to modify a user's character sheet."
+			"f1": "Toutes données contenues dans un personnage public est visible à toute personne qui connaît ou peut deviner l'URL. Les utilisateurs ne devraient avoir aucune attente quant à la confidentialité de leurs données, excepté les données couvertes sous la ",
+			"f2": "Politique de Vie Privée",
+			"f3": ". Cependant, seul l'utilisateur et les administrateurs du site ont la possibilité de modifier la feuille de personnage d'un utilisateur."
 		},
 		"p5": {
 			"f1": "Users who abuse the services provided by the ToonStore website by posting spam, slanderous, offensive, or pornographic content, or by attempting to circumvent security measures may have their data deleted and their IP address blocked. Derogatory Studios reserves the right to apply the above measures to any user for any reason. If you believe these have been applied in error, you have 30 days to appeal by sending an email to the address on the ",
-			"f2": "Contact Us",
-			"f3": " page."
+			"f1": "Les utilisateurs abusant des services fournis par le site ToonStore en postant du spam, du contenu calomnieux, offensant ou pornographique ou en tentant de contourner des mesures de sécurité pourraient voir leurs données effacées et leur adresse IP bloquée. Derogatory Studios se réserve le droit d'appliquer les mesures précédents à tout utilisateur pour n'importe quelle raison. Si vous croyez qu'elles ont été appliquées par erreur, vous avez 30 jours pour en appeler de la décision en envoyant un courriel à l'adresse dans la page ",
+			"f2": "Contactez-nous",
+			"f3": "."
 		},
-		"p6": "Changes to these Terms may occur at any time at Derogatory Studio's discretion. A notice will be posted on the front page of the ToonStore website for at least 30 days after these Terms change. Continued use of the site implies consent with the updated Terms.",
+		"p6": "Des changements à ces Condtions peuvent survenir à tout moment à la discrétion de Derogatory Studios. Une notice sera postée sur la page d'accueil du site ToonStore pour un minimum de 30 jours après les changements à ces Condtions. L'utilisation continue du site implique un consentement implicite des nouvelles Conditions.",
 		"p7": {
 			"f1": "Any questions regarding the implementation of these policies can be emailed to Derogatory Studios at the address listed on the ",
-			"f2": "Contact Us",
-			"f3": " page."
+			"f1": "Toute question concernant l'exécution de ces politiques peut être communiquée par courriel à Derogatory Studios à l'adresse listée dans la page ",
+			"f2": "Contactez-nous",
+			"f3": "."
 		},
 
 		"changelog": {
-			"title": "Change log",
-			"p1": ": Initial version"
+			"title": "Journal des modifications",
+			"p1": ": Version initiale"
 		}
 	},
 
