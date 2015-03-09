@@ -323,14 +323,13 @@
 	"index":
 	{
 		"pagetitle": "Hébergement en ligne de personnages de Dresden Files RPG",
-		"meta_description": "Create, modify, and share cloud-based mobile-friendly Dresden Files RPG or Fate character sheets right in your browser with ToonStore.",
+		"meta_description": "Créez, modifiez et partagez des feuilles de personnages de Dresden Files RPG ou de Fate directement dans notre navigateur avec ToonStore.",
 		"banner": {
 			"subtitle": "+2 aux jets de compétence d'organisation"
 		},
 		"p1": "Bienvenue, rôliste !",
 		"p2": "Tout le monde a vécu ce scénario : vous et les membres de votre groupe êtes en train de créer vos personnages, remplissant votre feuille de personnage, puis votre MJ vous demande une copie de votre feuille de personnage. Vous avez êtes confus pendant un moment : devriez-vous la scanner puis l'envoyer par courriel, simplement la transcrire, ou simplement lui transmettre vos aspects ?",
 		"p3": "Vous êtes peut-être d'avant-garde. Peut-être étiez-vous en train de créer votre personnage à partir de votre ordinateur portatif depuis le début. Mais sans la mise en page d'une véritable feuille de personnage, personne d'autre que vous ne peut lire votre feuille en format texte.",
-		"p4": "This is where ToonStore comes in. We store your Dresden Files RPG or other Fate-based character data in the cloud, so you never lose it and can easily share it. Just view the online character sheet and make your edits right in the browser. We're mobile-friendly too, so you don't have to haul your 10 pound laptop around either.",
 		"p4": "C'est là que ToonStore entre en jeu. Nous stockons vos feuilles de personnages de Dresden Files RPG et autres données de personnages de Fate dans le nuage de façon à ce que vous ne le perdiez jamais et que vous puissiez le partager facilement. Visionnez votre feuille en ligne et modifiez-la directement dans votre navigateur. Nous supportons le mobile aussi alors vous n'avez pas à transporter votre ordinateur portable de 5 kilos avec vous non plus.",
 		"p5": {
 			"f1": "Intéressé ? ",
@@ -384,7 +383,6 @@
 			"f3": " complet de ce site est publiquement disponible sous la license Apache 2.0 License, et vous êtes les bienvenus de démarrer votre propre ToonStore pour votre groupe si vous le désirez."
 		},
 		"p3": {
-			"f1": "We also use Github for bug reporting and feature requests. If you find a flaw in the site, or have an idea for a killer new feature, let us know! Submit an ",
 			"f1": "Nous utilisons aussi Github pour les rapports de bugs et les demandes de fonctionnalités. Si vous trouvez un problème sur le site ou que vous avez une idée pour une fonctionnalité géniale, laissez-nous le savoir ! Soumettez un ",
 			"f2": "rapport de problème",
 			"f3": " et nous y travaillerons !"
@@ -392,7 +390,6 @@
 
 		"h3": "Google+ Group",
 		"p4": {
-			"f1": "Join the devs and other ToonStore users on our ",
 			"f1": "Joignez les devs et autres utilisateurs de ToonStore sur notre ",
 			"f2": "groupe Google+",
 			"f3": " pourt discuter des dernières mise à jour sur le site, de jeux de rôles, de personnages et n'importe quoi d'autre ! Nous adorerions recevoir vos commentaires !"
@@ -440,20 +437,17 @@
 		"p2": "L'utilisation des services d'hébergement fournis par ToonStore est offert gratuitement.",
 		"p3": "Derogatory Studios n'offre aucune garanti que quant à la fiabilité ou la longévité du site web ToonStore ni des personnages créés. Le site ToonStore est fourni SANS GARANTIE, expresse ou implicite. Derogatory Studios se réserve le droit de supprimer un personnage ou les données d'un utilisateur à tout moment, pour toute raison et sans préavis. Si cela devait arriver, vous pouvez nous contacter dans les 30 jours suivant la suppression pour demander une copie des données supprimées.",
 		"p4": {
-			"f1": "Any and all data entered into a public character sheet is visible to anyone that knows or can guess the URL. Users should have no expectation of data privacy, except for data covered under the ",
 			"f1": "Toutes données contenues dans un personnage public est visible à toute personne qui connaît ou peut deviner l'URL. Les utilisateurs ne devraient avoir aucune attente quant à la confidentialité de leurs données, excepté les données couvertes sous la ",
 			"f2": "Politique de Vie Privée",
 			"f3": ". Cependant, seul l'utilisateur et les administrateurs du site ont la possibilité de modifier la feuille de personnage d'un utilisateur."
 		},
 		"p5": {
-			"f1": "Users who abuse the services provided by the ToonStore website by posting spam, slanderous, offensive, or pornographic content, or by attempting to circumvent security measures may have their data deleted and their IP address blocked. Derogatory Studios reserves the right to apply the above measures to any user for any reason. If you believe these have been applied in error, you have 30 days to appeal by sending an email to the address on the ",
 			"f1": "Les utilisateurs abusant des services fournis par le site ToonStore en postant du spam, du contenu calomnieux, offensant ou pornographique ou en tentant de contourner des mesures de sécurité pourraient voir leurs données effacées et leur adresse IP bloquée. Derogatory Studios se réserve le droit d'appliquer les mesures précédents à tout utilisateur pour n'importe quelle raison. Si vous croyez qu'elles ont été appliquées par erreur, vous avez 30 jours pour en appeler de la décision en envoyant un courriel à l'adresse dans la page ",
 			"f2": "Contactez-nous",
 			"f3": "."
 		},
 		"p6": "Des changements à ces Condtions peuvent survenir à tout moment à la discrétion de Derogatory Studios. Une notice sera postée sur la page d'accueil du site ToonStore pour un minimum de 30 jours après les changements à ces Condtions. L'utilisation continue du site implique un consentement implicite des nouvelles Conditions.",
 		"p7": {
-			"f1": "Any questions regarding the implementation of these policies can be emailed to Derogatory Studios at the address listed on the ",
 			"f1": "Toute question concernant l'exécution de ces politiques peut être communiquée par courriel à Derogatory Studios à l'adresse listée dans la page ",
 			"f2": "Contactez-nous",
 			"f3": "."
