@@ -16,6 +16,11 @@
 			"prompt": "Esta página está disponível em sua língua nativa (%s). Você quer usar esta versão?",
 			"accept": "Vamos lá",
 			"reject": "Deixa quieto"
+		},
+		"flexbox_unsupported": {
+			"f1": "This site is ",
+			"f2": "not fully supported",
+			"f3": " by your browser. If you experience problems, try upgrading to the latest version of your browser, or switching to Chrome."
 		}
 	},
 
@@ -26,7 +31,12 @@
 		"password": "Senha",
 		"forgot": "Esqueci a senha",
 		"register": "Registre-se",
-		"submit": "Login"
+		"submit": "Login",
+
+		"clientStrings": {
+			"verify_fail": "Could not verify user credentials",
+			"generic_fail": "Unidentified error logging in"
+		}
 	},
 
 	"register":
