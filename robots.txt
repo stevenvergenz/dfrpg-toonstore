@@ -1,0 +1,12 @@
+User-agent: *
+Disallow: /site/privacy
+Disallow: /site/terms
+Disallow: /newtoon
+Disallow: /killtoon
+Disallow: /register
+Disallow: /post-register
+Disallow: /federated-register
+Disallow: /register/verify
+Disallow: /togglePrivacy
+Disallow: /passreset
+Disallow: /pre-activate
