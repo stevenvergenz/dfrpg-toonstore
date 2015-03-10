@@ -4,6 +4,9 @@ block title
 	title= __('nav.login') + ' | ToonStore.net'
 	meta(name='description', content='#{__("login.meta_description")}')
 
+block js
+	script!= 'var clientStrings = ' + JSON.stringify(__('login.clientStrings')) + ';'
+
 block content
 
 	#login-box.content-block.formbox

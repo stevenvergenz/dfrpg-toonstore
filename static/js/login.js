@@ -42,7 +42,7 @@ function handlePersona()
 				error: function(xhr,status,err){
 					console.log('Problem logging in');
 					if( xhr.status == 403 ){
-						prependMessageTo( $('.content'), {'type': 'error', 'content': 'Could not verify user credentials'} );
+						prependMessageTo( $('.content'), {'type': 'error', 'content': clientStrings.verify_fail} );
 						setTimeout(function(){navigator.id.logout();},3000);
 					}
 					else if( xhr.status == 500 ){
@@ -55,7 +55,7 @@ function handlePersona()
 						window.location.replace(response.content);
 					}
 					else {
-						prependMessageTo( $('.content'), {'type': 'error', 'content': 'Unidentified error logging in'} );
+						prependMessageTo( $('.content'), {'type': 'error', 'content': clientStrings.generic_fail} );
 						setTimeout(function(){navigator.id.logout();},3000);
 					}
 				}
