@@ -16,6 +16,11 @@
 			"prompt": "This page is available in your native language (%s). Would you like to view this version instead?",
 			"accept": "Take me there",
 			"reject": "Keep me here"
+		},
+		"flexbox_unsupported": {
+			"f1": "This site is ",
+			"f2": "not fully supported",
+			"f3": " by your browser. If you experience problems, try upgrading to the latest version of your browser, or switching to Chrome."
 		}
 	},
 
