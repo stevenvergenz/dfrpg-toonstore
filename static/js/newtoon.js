@@ -24,7 +24,7 @@ function prepopulateCopy()
 		$.getJSON('/'+match[1]+'/json', function(data,status,xhr)
 		{
 			$('input#name').val(data.name);
-			$('input#canon_name').val( match[1].split('/')[1] );
+			$('input#canon_name').val( match[1].split('/')[1] + '_dupe' );
 			$('input#concept').val(data.aspects.high_concept.name);
 
 			// select a template and hide the select if the template is provided as a query arg
