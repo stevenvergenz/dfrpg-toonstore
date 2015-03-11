@@ -116,6 +116,9 @@ function detectCookieLocale(cookie)
 
 function detectHeaderLocale(header)
 {
+	if( !header )
+		return null;
+
 	var langs = header.split(',').map(function(l){
 		var match = /([A-Za-z-]+)(?:;q=([0-9.]+))?/.exec(l);
 		return {
