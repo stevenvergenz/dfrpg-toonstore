@@ -288,14 +288,6 @@
 			"f1": "Drag skills to rearrange",
 			"f2": "Drop on +0 to remove"
 		},
-		"conseqType": {
-			"type": "Type",
-			"mild": "Mild (-2)",
-			"moderate": "Moderate (-4)",
-			"severe": "Severe (-6)",
-			"extreme": "Extreme (-8)"
-		},
-
 		"markdown": "Raw text is styled with Markdown.",
 		"primer": "A Brief Primer",
 
@@ -313,6 +305,14 @@
 			"skill": "Skill",
 			"newPower": "New Power",
 			"genericConseq": "Any",
+			"conseqType": {
+				"type": "Type",
+				"mild": "Mild (-2)",
+				"moderate": "Moderate (-4)",
+				"severe": "Severe (-6)",
+				"extreme": "Extreme (-8)"
+			},
+
 
 			"unsavedWarning": "This character has unsaved changes. If you leave this page, these changes will be lost.",
 			"skillLadder": [

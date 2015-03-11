@@ -288,14 +288,6 @@
 			"f1": "Arraste Perícias para rearanjar",
 			"f2": "Arraste para o +0 para remover"
 		},
-		"conseqType": {
-			"type": "Tipo",
-			"mild": "Leve (-2)",
-			"moderate": "Moderado (-4)",
-			"severe": "Severo (-6)",
-			"extreme": "Extremo (-8)"
-		},
-
 		"markdown": "Texto normal é estilizado com Markdown.",
 		"primer": "Um Breve Exemplo",
 
@@ -313,6 +305,14 @@
 			"skill": "Perícia",
 			"newPower": "Novo Poder",
 			"genericConseq": "Qualquer",
+			"conseqType": {
+				"type": "Tipo",
+				"mild": "Leve (-2)",
+				"moderate": "Moderado (-4)",
+				"severe": "Severo (-6)",
+				"extreme": "Extremo (-8)"
+			},
+
 
 			"unsavedWarning": "Este personagem ainda não foi salvo. Se você atualizar ou deixar esta página as mudanças serão perdidas.",
 			"skillLadder": [

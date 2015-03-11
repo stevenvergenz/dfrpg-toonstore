@@ -290,13 +290,6 @@
 			"f1": "Glisser les compétences pour les réarranger",
 			"f2": "Relâcher sur +0 pour enlever"
 		},
-		"conseqType": {
-			"type": "Type",
-			"mild": "Légère (-2)",
-			"moderate": "Modérée (-4)",
-			"severe": "Grave (-6)",
-			"extreme": "Extrême (-8)"
-		},
 
 		"markdown": "Le text brut est stylisé en Markdown.",
 		"primer": "Une brève introduction",
@@ -315,6 +308,13 @@
 			"skill": "Compétence",
 			"newPower": "Nouveau Pouvoir",
 			"genericConseq": "Toute",
+			"conseqType": {
+				"type": "Type",
+				"mild": "Légère (-2)",
+				"moderate": "Modérée (-4)",
+				"severe": "Grave (-6)",
+				"extreme": "Extrême (-8)"
+			},
 
 			"unsavedWarning": "Ce personnage a des changements non sauvegardés. Si vous quittez cette page, ces changements seront perdus.",
 			"skillLadder": [
