@@ -38,7 +38,7 @@ function prepopulateCopy()
 			$('#templateContainer').css({display: 'none'});
 
 
-			$('<div class="info" style="margin-top: 15px;">'+
+			$('<aside class="info" style="margin-top: 15px;">'+
 				clientStrings.duplicating+'<br/><strong>'+data.name+'</strong><br/><span class="caption">('+match[1]+')</span>'+
 				'</div>'
 			).insertBefore('.formbox form');
