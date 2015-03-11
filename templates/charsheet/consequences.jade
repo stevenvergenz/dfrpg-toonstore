@@ -15,7 +15,9 @@
 						option(value='Moderate')= __('charsheet.conseqType.moderate')
 						option(value='Severe')= __('charsheet.conseqType.severe')
 						option(value='Extreme')= __('charsheet.conseqType.extreme')
-					select(dgy-notify, ng-show='editing', ng-model='con.mode', ng-options='type for type in stressTypes()')
+					select(dgy-notify, ng-show='editing', ng-model='con.mode')
+						option(value='Any')= __('charsheet.clientStrings.genericConseq')
+						option(ng-repeat='type in stressTypes()', ng-value='type') {{type}}
 
 			resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder=__('charsheet.unused'))
 

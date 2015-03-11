@@ -269,7 +269,7 @@ app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope)
 
 	$scope.stressTypes = function()
 	{
-		var types = [clientStrings.genericConseq];
+		var types = [];
 		if( !$scope.data.$resolved )
 			return types;
 
@@ -286,7 +286,7 @@ app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope)
 	{
 		$scope.data.consequences.push({
 			'severity': 'Mild',
-			'mode': clientStrings.genericConseq,
+			'mode': 'Any',
 			'used': false,
 			'aspect': ''
 		});
