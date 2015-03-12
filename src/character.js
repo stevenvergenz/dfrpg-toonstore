@@ -95,6 +95,8 @@ function pushJson(req,res,next)
 	);
 }
 
+var templates = null;
+
 function newCharacterPage(req,res)
 {
 	if( !req.session.user ){
@@ -102,56 +104,58 @@ function newCharacterPage(req,res)
 		return;
 	}
 
-	// get list of users/characters to use as templates
-	var templates = [], users = [];
-	for(var i=0; i<config.templates.length; i++)
+	if( !templates )
 	{
-		if( /\//.test(config.templates[i]) )
-			templates.push(config.templates[i]);
-		else
-			users.push(config.templates[i]);
-	}
-
-	global.log('Serving new character page');
-
-	if( users.length > 0 )
-	{
-		var connection = mysql.createConnection( config.database );
-		connection.query('SELECT CONCAT(owner,"/",canonical_name) AS slug FROM Characters WHERE BINARY owner IN (?) AND private = FALSE;', [users], function(err,rows,fields)
+		// get list of users/characters to use as templates
+		var users = [];
+		templates = [];
+		for(var i=0; i<config.templates.length; i++)
 		{
-			if(err){
-				global.error('MySQL error while retrieving templates:', err);
-				console.log(connection.escape(users));
-				global.renderPage('newtoon')(req,res);
-			}
+			if( /\//.test(config.templates[i]) )
+				templates.push(config.templates[i]);
 			else
+				users.push(config.templates[i]);
+		}
+
+		global.log('Serving new character page');
+
+		if( users.length > 0 )
+		{
+			var connection = mysql.createConnection( config.database );
+			connection.query('SELECT CONCAT(owner,"/",canonical_name) AS slug FROM Characters WHERE BINARY owner IN (?) AND private = FALSE;', [users], function(err,rows,fields)
 			{
-				var userTemplates = rows.reduce(function(sum,cur){ sum.push(cur.slug); return sum; }, []);
-				templates.push.apply(templates, userTemplates);
-				templates.sort();
-				global.renderPage('newtoon', {templates: templates})(req,res);
-			}
-			connection.end();
-		});
-	}
-	else
-	{
-		templates.sort();
-		global.renderPage('newtoon', {templates: templates})(req,res);
+				if(err){
+					global.error('MySQL error while retrieving templates:', err);
+					console.log(connection.escape(users));
+				}
+				else
+				{
+					var userTemplates = rows.reduce(function(sum,cur){ sum.push(cur.slug); return sum; }, []);
+					templates.push.apply(templates, userTemplates);
+					templates.sort();
+				}
+				connection.end();
+			});
+		}
+		else
+		{
+			templates.sort();
+		}
 	}
 
+	global.renderPage('newtoon', {templates: templates})(req,res);
 }
 
 function newCharacterRequest(req,res)
 {
 	if( !req.session || !req.session.user ){
 		global.error('Anonymous character creation attempted!', global.logLevels.error);
-		global.renderPage('newtoon', {code:401, message: {type: 'error', content: res.i18n.__('server.anonNewToon')}})(req,res);
+		global.renderPage('newtoon', {templates: templates, code:401, message: {type: 'error', content: res.i18n.__('server.anonNewToon')}})(req,res);
 		return;
 	}
 	else if( !(req.body && req.body.name && req.body.concept && req.body.canon_name) ){
 		global.error('Incomplete character creation attempted', global.logLevels.error);
-		global.renderPage('newtoon', {code:400, message: {type: 'error', content: res.i18n.__('server.incompleteForm')}})(req,res);
+		global.renderPage('newtoon', {templates: templates, code:400, message: {type: 'error', content: res.i18n.__('server.incompleteForm')}})(req,res);
 		return;
 	}
 
@@ -196,12 +200,12 @@ function newCharacterRequest(req,res)
 			{
 				if(err){
 					global.error('MySQL error:', err);
-					global.renderPage('newtoon', {code:500, message: {type: 'error', content: res.i18n.__('server.genericErr')}})(req,res);
+					global.renderPage('newtoon', {templates: templates, code:500, message: {type: 'error', content: res.i18n.__('server.genericErr')}})(req,res);
 					connection.end();
 				}
 				else if(rows.length === 0){
 					global.error('Cannot copy non-existent or private character');
-					global.renderPage('newtoon', {code:400, message: {type: 'error', content: res.i18n.__('server.character404')}})(req,res);
+					global.renderPage('newtoon', {templates: templates, code:400, message: {type: 'error', content: res.i18n.__('server.character404')}})(req,res);
 					res.send(400);
 					connection.end();
 				}
@@ -229,7 +233,7 @@ function newCharacterRequest(req,res)
 			{
 				if( err ){
 					global.error('MySQL error:', err);
-					global.renderPage('newtoon', {code:400, message: {type: 'error', content: res.i18n.__('server.duplicateSlug')}})(req,res);
+					global.renderPage('newtoon', {templates: templates, code:400, message: {type: 'error', content: res.i18n.__('server.duplicateSlug')}})(req,res);
 				}
 				else {
 					global.log('Creation successful');
