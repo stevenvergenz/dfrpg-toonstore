@@ -67,6 +67,7 @@ nav
 		&.menuonly
 		{
 			@extend .menu;
+			display: none;
 		}
 	}
 }
