@@ -1,3 +1,19 @@
+mixin langmenu
+	li.langselectmenu
+		= __('nav.language')
+		input.langselecticon(type='image', src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'), title=__('language'))
+
+		ul.langselect
+			- for( var i=0; i<i18n.config.locales.length; i++ )
+				unless i18n.config.locales[i] === i18n.selectedLocale
+					li: a(href=getNativeURL(i18n.config.locales[i]), hreflang=i18n.config.locales[i])
+						- var descriptor = a__({locale:i18n.config.locales[i], phrase:"language"});
+						img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png', alt=descriptor, title=descriptor)
+			li.active
+				img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'), title=__('language'))
+
+
+
 doctype html
 html
 
@@ -55,10 +71,18 @@ html
 		.wrapper
 			header
 				nav
-					ul
+					input#hamburger.fakelink(type='button', value='☰ Menu')
+					ul.menu
 						li: a(href=url('/')) ToonStore
 						li: a(href=url('/site/about'))= __('nav.about')
 						li: a(href=url('/site/contact'))= __('nav.contact')
+						li: a(href=url('/site/donate'))= __('nav.donate')
+					
+					ul.menuonly
+						li: a(href=url('/site/terms'))= __('nav.terms')
+						li: a(href=url('/site/privacy'))= __('nav.privacy')
+						+langmenu
+
 					ul
 						if logged_user_email
 							li: a(href=url('/'+logged_user))= logged_user
@@ -98,18 +122,6 @@ html
 				ul
 					li: a(href=url('/site/terms'))= __('nav.terms')
 					li: a(href=url('/site/privacy'))= __('nav.privacy')
-					li: a(href=url('/site/donate'))= __('nav.donate')
-					li.langselectmenu
-						= __('nav.language')
-						img.langselecticon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'), title=__('language'))
-
-						ul.langselect
-							- for( var i=0; i<i18n.config.locales.length; i++ )
-								unless i18n.config.locales[i] === i18n.selectedLocale
-									li: a(href=getNativeURL(i18n.config.locales[i]), hreflang=i18n.config.locales[i])
-										- var descriptor = a__({locale:i18n.config.locales[i], phrase:"language"});
-										img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png', alt=descriptor, title=descriptor)
-							li.active
-								img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'), title=__('language'))
+					+langmenu
 
 		block github

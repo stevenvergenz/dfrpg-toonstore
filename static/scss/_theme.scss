@@ -44,7 +44,9 @@ body {
 	@include flex-direction(column);
 
 	width: 95%;
-	min-height: 700px;
+	@include desktop {
+		min-height: 700px;
+	}
 }
 
 .content-block
