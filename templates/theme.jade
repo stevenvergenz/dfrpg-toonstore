@@ -71,7 +71,7 @@ html
 		.wrapper
 			header
 				nav
-					input#hamburger.fakelink(type='button', value='☰ Menu', onclick='$("header nav ul.menu").toggleClass("activemenu");')
+					input#hamburger.fakelink(type='button', value='☰ '+__('nav.menu'), onclick='$("header nav ul.menu").toggleClass("activemenu");')
 					ul.menu
 						li: a(href=url('/')) ToonStore
 						li: a(href=url('/site/about'))= __('nav.about')

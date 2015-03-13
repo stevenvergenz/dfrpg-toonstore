@@ -3,6 +3,7 @@
 
 	"nav":
 	{
+		"menu": "Menu",
 		"about": "O nás",
 		"contact": "Kontakt",
 		"logout": "Odhlásit",

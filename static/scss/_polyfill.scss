@@ -1,6 +1,6 @@
 
 $desktop-width: 950px;
-$mobile-width: 480px;
+$mobile-width: 700px;
 
 @mixin desktop {
 	@media (min-width: $desktop-width) {

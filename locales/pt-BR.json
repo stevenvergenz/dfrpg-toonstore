@@ -3,6 +3,7 @@
 
 	"nav":
 	{
+		"menu": "Menu",
 		"about": "Sobre Nós",
 		"contact": "Contato",
 		"logout": "Sair",
