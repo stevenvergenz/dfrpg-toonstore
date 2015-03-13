@@ -3,6 +3,7 @@ mixin langmenu
 		= __('nav.language')
 		br
 		select(onchange='window.location.href = this.options[this.selectedIndex].value;')
+			option(value=getNativeURL('x-default'), selected=(i18n.config.locales.indexOf(i18n.pathLocale)==-1)) Default
 			- for( var i=0; i<i18n.config.locales.length; i++ )
 				option(value=getNativeURL(i18n.config.locales[i]), selected=(i18n.pathLocale==i18n.config.locales[i]))= a__({locale:i18n.config.locales[i], phrase:"language"})
 
