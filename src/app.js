@@ -61,16 +61,21 @@ app.post('/logout', login.processLogout);
 app.get('/:user([A-Za-z0-9_-]+)', i18n.cookieRedirect, user.userPage);
 app.get('/:user([A-Za-z0-9_-]+).json', user.userJson);
 
+// route the adventure pages
+app.get('/:user([A-Za-z0-9_-]+)/adventure/my_adventure', global.renderPage('adventure'));
+
 // route the character management pages
 app.get('/newtoon', i18n.cookieRedirect, character.newCharacterPage);
 app.post('/newtoon', character.newCharacterRequest);
+app.post('/killtoon', character.deleteCharacterRequest);
+app.get('/killtoon', i18n.cookieRedirect, character.deleteCharacterPage);
+app.post('/togglePrivacy', user.togglePrivacy);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/', i18n.cookieRedirect, character.servePage);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/printable', i18n.cookieRedirect, character.servePage);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.serveJson);
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', avatars.serveAvatar);
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', avatars.saveAvatar);
-
 
 // redirect if character sheet doesn't have trailing slash
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)$', function(req,res,next){
@@ -79,10 +84,6 @@ app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)$', function(req,res,next){
 	else
 		next();
 });
-
-app.post('/killtoon', character.deleteCharacterRequest);
-app.get('/killtoon', i18n.cookieRedirect, character.deleteCharacterPage);
-app.post('/togglePrivacy', user.togglePrivacy);
 
 // generate donation information
 config.donation_address = config.donation_address || '1CX5xJ3o4rXcNRTrWGd2zCmAMtpCXGZo78';

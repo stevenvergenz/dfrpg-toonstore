@@ -1,0 +1,71 @@
+extends theme
+
+block title
+	title My Adventure | ToonStore.net
+	meta(name='description', content='My Adventure, an adventure powered by ToonStore.net')
+
+block content
+
+	.content-block
+
+		h1 My Adventure 
+			input(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png')
+
+		p Wherein a cast of lovable misfits break into a highly secure government facility to save their raman shop.
+
+	.content-block.normalbox
+
+		h2 Starring 
+			input(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png')
+
+		ul
+			li
+				a(href='/Derogatory') Derogatory
+				| , playing as 
+				select
+					option Andrew Lifeson, White Council Footsoldier
+					option Julian, Halfling Thief
+					option Kitti Davis, Script Kiddie
+					option &lt;nobody&gt;
+
+			li
+				a(href='/HellbaneDV') HellbaneDV
+				| , playing as 
+				a(href='/HellbaneDV/Deadwind/') Lawrence Deadwind, Mathemagician
+			li
+				a(href='/SupahSeppe') SupahSeppe
+				| , playing as 
+				a(href='/SupahSeppe/Stennett/') Ryan Marcus Stennett, Cerberus Associate Headhunter
+
+		.field
+			input(type='text')
+			input(type='button', value='Add player to adventure')
+		.field
+			select
+				option
+				option Derogatory
+				option HellbaneDV
+				option SupahSeppe
+			input(type='button', value='Remove player')
+
+	.content-block.normalbox
+
+		h2 Adventure Notes 
+			input(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png')
+
+		p These notes here are markdown-enabled, and editable by anyone in the party.
+
+		h2 Session Zero
+
+		p Well there we were, minding our own business, when suddenly, 
+			strong BOOM
+			| !
+
+	.content-block.normalbox
+
+		h2 Game Master Notes 
+			input(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png')
+
+		p These notes are markdown-enabled, and only visible/editable to the GM (read: the person that created the adventure).
+
+		p A favorite NPC will die in the next session.
