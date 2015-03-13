@@ -28,6 +28,7 @@ app.service('rootModel', ['$rootScope','$timeout','$resource', function($rootSco
 	this.data = this._resource.get();
 
 	$rootScope.data = this.data;
+	$rootScope.clientStrings = clientStrings;
 
 	$rootScope.$on('is_dirty', function(){ $rootScope.dirty = true; });
 	$rootScope.$on('is_clean', function(){ $rootScope.dirty = false; });

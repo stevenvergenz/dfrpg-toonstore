@@ -17,6 +17,11 @@
 			"prompt": "Cette page est disponible dans votre langue native (%s). Souhaiteriez-vous voir cette version?",
 			"accept": "Emmenez-moi",
 			"reject": "Rester ici"
+		},
+		"flexbox_unsupported": {
+			"f1": "This site is ",
+			"f2": "not fully supported",
+			"f3": " by your browser. If you experience problems, try upgrading to the latest version of your browser, or switching to Chrome."
 		}
 	},
 
@@ -27,13 +32,17 @@
 		"password": "Mot de passe",
 		"forgot": "Oublié mot de passe",
 		"register": "S'enregister",
-		"submit": "Se connecter"
+		"submit": "Se connecter",
+
+		"clientStrings": {
+			"verify_fail": "Could not verify user credentials",
+			"generic_fail": "Unidentified error logging in"
+		}
 	},
 
 	"register":
 	{
 		"intro": {
-			"f1": "Thank you for your interest! ",
 			"f1": "Merci de votre intérêt! ",
 			"f2": "Connectez-vous avec Persona",
 			"f3": " ou remplissez les informations ci-dessous et on s'occupe du reste."
@@ -282,13 +291,6 @@
 			"f1": "Glisser les compétences pour les réarranger",
 			"f2": "Relâcher sur +0 pour enlever"
 		},
-		"conseqType": {
-			"type": "Type",
-			"mild": "Légère (-2)",
-			"moderate": "Modérée (-4)",
-			"severe": "Grave (-6)",
-			"extreme": "Extrême (-8)"
-		},
 
 		"markdown": "Le text brut est stylisé en Markdown.",
 		"primer": "Une brève introduction",
@@ -307,6 +309,13 @@
 			"skill": "Compétence",
 			"newPower": "Nouveau Pouvoir",
 			"genericConseq": "Toute",
+			"conseqType": {
+				"type": "Type",
+				"mild": "Légère (-2)",
+				"moderate": "Modérée (-4)",
+				"severe": "Grave (-6)",
+				"extreme": "Extrême (-8)"
+			},
 
 			"unsavedWarning": "Ce personnage a des changements non sauvegardés. Si vous quittez cette page, ces changements seront perdus.",
 			"skillLadder": [

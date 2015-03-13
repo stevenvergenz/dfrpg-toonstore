@@ -17,6 +17,11 @@
 			"prompt": "Esta página está disponível em sua língua nativa (%s). Você quer usar esta versão?",
 			"accept": "Vamos lá",
 			"reject": "Deixa quieto"
+		},
+		"flexbox_unsupported": {
+			"f1": "This site is ",
+			"f2": "not fully supported",
+			"f3": " by your browser. If you experience problems, try upgrading to the latest version of your browser, or switching to Chrome."
 		}
 	},
 
@@ -27,7 +32,12 @@
 		"password": "Senha",
 		"forgot": "Esqueci a senha",
 		"register": "Registre-se",
-		"submit": "Login"
+		"submit": "Login",
+
+		"clientStrings": {
+			"verify_fail": "Não foi possível verificar as credenciais do usuário",
+			"generic_fail": "Ocorreu um erro não identificado durante o processo"
+		}
 	},
 
 	"register":
@@ -279,14 +289,6 @@
 			"f1": "Arraste Perícias para rearanjar",
 			"f2": "Arraste para o +0 para remover"
 		},
-		"conseqType": {
-			"type": "Tipo",
-			"mild": "Leve (-2)",
-			"moderate": "Moderado (-4)",
-			"severe": "Severo (-6)",
-			"extreme": "Extremo (-8)"
-		},
-
 		"markdown": "Texto normal é estilizado com Markdown.",
 		"primer": "Um Breve Exemplo",
 
@@ -304,6 +306,14 @@
 			"skill": "Perícia",
 			"newPower": "Novo Poder",
 			"genericConseq": "Qualquer",
+			"conseqType": {
+				"type": "Tipo",
+				"mild": "Leve (-2)",
+				"moderate": "Moderado (-4)",
+				"severe": "Severo (-6)",
+				"extreme": "Extremo (-8)"
+			},
+
 
 			"unsavedWarning": "Este personagem ainda não foi salvo. Se você atualizar ou deixar esta página as mudanças serão perdidas.",
 			"skillLadder": [
@@ -355,28 +365,28 @@
 
 		"h3": "Quem é Derogatory Studios?",
 		"p3": {
-			"f1": "Primarily it is just me, Steven Vergenz, advised by the other members of my gaming group. I don't have a ton of time to work on this project though, so if you want to work on a feature for your own group, feel free to fork this project on ",
-			"f2": "Github",
-			"f3": " for your own needs. If you do so though, I would appreciate it if you would contribute your new features back to the original ToonStore project once you're done."
+			"f1": "No início era apenas eu, Steven Vergenz, sendo aconselhado pelos outros membros do meu grupo de jogo. Eu não tenho muito tempo para trabalhar neste projeto, então se quiser criar algo para o seu grupo sinta-se livre para \"forkear\" este projeto no ",
+			"f2": "Github.",
+			"f3": " Caso o faça, apreciaríamos muito se você contribuísse com o novo recurso para a Toonstore original."
 		},
 
 		"h4": "Créditos adicionais",
-		"p4": "I want to thank the following people for their contributions to the ToonStore:",
+		"p4": "Gostaria de agradecer as seguintes pessoas por suas contribuições à Toonstore:",
 		"credits": {
-			"thecosmicgoose": "For his lovely artwork on the DFRPG character templates",
-			"jabberwocky": "For the Czech translation of the ToonStore (ongoing)",
-			"atmo": "For the Portuguese translation of the ToonStore (ongoing)",
-			"solarbear": "For the French translation of the ToonStore (ongoing)"
+			"thecosmicgoose": "Pela sua incrível arte para os modelos de ficha DFRPG",
+			"jabberwocky": "Pela tradução em Tcheco da Toonstore (em andamento)",
+			"atmo": "Pela tradução em Português da Toonstore (em andamento)",
+			"solarbear": "ForPela tradução em Frânces da Toonstore (em andamento)"
 		}
 	},
 
 	"contact":
 	{
 		"pagetitle": "Contato",
-		"meta_description": "How to contact the developers and maintainers of the ToonStore.",
+		"meta_description": "Como entrar em contato com os desenvolvedores e mantenedores da ToonStore.",
 
 		"h1": "Perguntas? Comentários? Sugestões?",
-		"p1": "We're easy to get a hold of! You have a couple options:",
+		"p1": "É fácil! Aqui estão as opções:",
 
 		"h2": "Github",
 		"p2": {
@@ -385,21 +395,21 @@
 			"f3": " para este site está disponível ao público sob a Apache 2.0 License, caso você queira uma Toonstore para o seu próprio grupo."
 		},
 		"p3": {
-			"f1": "We also use Github for bug reporting and feature requests. If you find a flaw in the site, or have an idea for a killer new feature, let us know! Submit an ",
-			"f2": "issue report",
-			"f3": " and we'll get right on it!"
+			"f1": "Também usamos o Github para reportar bugs e pedidos de recursos novos. Se achar algum erro no site, ou se tem uma ideia para um recurso legal, não fique calado! ",
+			"f2": "Mande um relatório de problema (issue report)",
+			"f3": " e cuidaremos disto na mesma hora!"
 		},
 
 		"h3": "Grupo Google+",
 		"p4": {
-			"f1": "Join the devs and other ToonStore users on our ",
-			"f2": "Google+ group",
-			"f3": " to discuss the latest updates to the site, RPGs, characters, or anything else! We'd love to have your feedback!"
+			"f1": "Junte-se ao grupo do Google+ para debater sobre as novas atualizações do site, ",
+			"f2": "RPG, personagens",
+			"f3": " e qualquer outra coisa! Os desenvolvedores também estão por lá!"
 		},
 
 		"h4": "Email",
 		"p5": {
-			"f1": "If you want to contact us directly, you can email us at ",
+			"f1": "Se quiser entrar em contato direto, nos envie um email ",
 			"f2": "."
 		}
 	},
