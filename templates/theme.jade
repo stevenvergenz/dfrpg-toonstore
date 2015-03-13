@@ -1,5 +1,5 @@
 mixin langmenu
-	li.langselectmenu
+	li.langselectmenu.menuonly
 		= __('nav.language')
 		input.langselecticon(type='image', src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'), title=__('language'))
 
@@ -71,16 +71,15 @@ html
 		.wrapper
 			header
 				nav
-					input#hamburger.fakelink(type='button', value='☰ Menu')
+					input#hamburger.fakelink(type='button', value='☰ Menu', onclick='$("header nav ul.menu").toggleClass("activemenu");')
 					ul.menu
 						li: a(href=url('/')) ToonStore
 						li: a(href=url('/site/about'))= __('nav.about')
 						li: a(href=url('/site/contact'))= __('nav.contact')
 						li: a(href=url('/site/donate'))= __('nav.donate')
-					
-					ul.menuonly
-						li: a(href=url('/site/terms'))= __('nav.terms')
-						li: a(href=url('/site/privacy'))= __('nav.privacy')
+						hr.menuonly
+						li.menuonly: a(href=url('/site/terms'))= __('nav.terms')
+						li.menuonly: a(href=url('/site/privacy'))= __('nav.privacy')
 						+langmenu
 
 					ul

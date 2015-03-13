@@ -20,6 +20,11 @@ $mobile-width: 480px;
 	}
 }
 
+@mixin nonphone {
+	@media (min-width: $mobile-width) {
+		@content;
+	}
+}
 
 @mixin display-flex()
 {

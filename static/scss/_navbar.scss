@@ -31,10 +31,7 @@ nav
 	{
 		padding: 0 $nav-padding;
 
-		@include desktop {
-			display: none;
-		}
-		@include tablet {
+		@include nonphone {
 			display: none;
 		}
 	}
@@ -59,15 +56,36 @@ nav
 
 		&.menu
 		{
-			@include phone {
+			@include phone
+			{
 				display: none;
-			}
-		}
+				position: absolute;
+				top: 51px;
+				left: 0;
 
-		&.menuonly
-		{
-			@extend .menu;
-			display: none;
+				padding: 5px 0;
+
+				text-align: left;
+				background-color: #41568a;
+				border: solid grey 1px;
+
+				&.activemenu
+				{
+					display: block;
+				}
+
+				& > li
+				{
+					padding: 5px 10px;
+				}
+			}
+
+			.menuonly
+			{
+				@include nonphone {
+					display: none;
+				}
+			}
 		}
 	}
 }
