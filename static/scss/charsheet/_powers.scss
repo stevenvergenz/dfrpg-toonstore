@@ -73,7 +73,7 @@
 		}
 	}
 
-	@include desktop {
+	@include nonphone {
 		max-height: 700px;
 		overflow-y: auto;
 	}
