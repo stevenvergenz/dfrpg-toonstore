@@ -1,17 +1,10 @@
 mixin langmenu
-	li.langselectmenu.menuonly
+	li.menuonly
 		= __('nav.language')
-		input.langselecticon(type='image', src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'), title=__('language'))
-
-		ul.langselect
+		br
+		select(onchange='window.location.href = this.options[this.selectedIndex].value;')
 			- for( var i=0; i<i18n.config.locales.length; i++ )
-				unless i18n.config.locales[i] === i18n.selectedLocale
-					li: a(href=getNativeURL(i18n.config.locales[i]), hreflang=i18n.config.locales[i])
-						- var descriptor = a__({locale:i18n.config.locales[i], phrase:"language"});
-						img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png', alt=descriptor, title=descriptor)
-			li.active
-				img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png', alt=__('language'), title=__('language'))
-
+				option(value=getNativeURL(i18n.config.locales[i]), selected=(i18n.pathLocale==i18n.config.locales[i]))= a__({locale:i18n.config.locales[i], phrase:"language"})
 
 
 doctype html
@@ -24,6 +17,11 @@ html
 		meta(name='robots', content='INDEX, FOLLOW')
 		
 		link(rel='icon', type='image/png', href='/static/img/pentacle-simple.png')
+
+		link(rel='alternate', hreflang='x-default', href=getNativeURL('x-default'))
+		- for( var i=0; i<i18n.config.locales.length; i++ )
+			link(rel='alternate', hreflang=i18n.config.locales[i], href=getNativeURL(i18n.config.locales[i]))
+
 		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Pathway+Gothic+One')
 		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Denk+One&subset=latin,latin-ext')
 		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Armata&subset=latin,latin-ext')
@@ -47,7 +45,6 @@ html
 		script(src='/static/js/jquery-1.10.1.js')
 		script(src='/static/js/ie-fail.js')
 		script(src='/static/js/login.js')
-		script(src='/static/js/langselect.js')
 		block js
 
 		script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email, persona_user: persona_user}) + ';'

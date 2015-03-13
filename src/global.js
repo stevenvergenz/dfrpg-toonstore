@@ -109,7 +109,10 @@ function renderPage(template, options)
 		pageFields.a__ = i18n.__.bind(i18n);
 		pageFields.getNativeURL = function(lang){
 			if(lang)
-				return '/'+lang+req.url;
+				if( lang === 'x-default' )
+					return req.url;
+				else
+					return '/'+lang+req.url;
 			else
 				return '/'+res.i18n.nativeLocale+req.url;
 		};
