@@ -19,9 +19,9 @@
 			"reject": "Deixa quieto"
 		},
 		"flexbox_unsupported": {
-			"f1": "This site is ",
-			"f2": "not fully supported",
-			"f3": " by your browser. If you experience problems, try upgrading to the latest version of your browser, or switching to Chrome."
+			"f1": "Este site não ",
+			"f2": "é compatível com o seu",
+			"f3": " browser. Se estiver experimentando algum tipo de problema, tente atualizar o seu browser, ou utilize o Chrome."
 		}
 	},
 
@@ -417,17 +417,17 @@
 	"donate":
 	{
 		"pagetitle": "Doações",
-		"meta_description": "How to donate to the maintenance and development of the ToonStore",
+		"meta_description": "Como doar para a manutenção e desenvolvimento da ToonStore",
 
-		"plea": "The ToonStore is, and always will be, a free service for fellow lovers of the art of roleplaying. That doesn't mean that it's free for everyone. In fact, the ToonStore costs about $250 USD a year to maintain in hosting and name registration costs, which is nothing to sneeze at. Any and all contributions are welcome to help defray the costs of running this site.",
+		"plea": "A ToonStore é, e sempre será, um serviço gratuito para todos os amantes da arte da interpretação. Isso não significa que será livre para todos. Na verdade, a Toonstore custa por volta de 250 dólares por ano para manter o host e o registro de nome, e esse valor não é um problema para nós. Toda e qualquer contribuição é bem vinda e ajudará a manter a Toonstore viva e atualizada.",
 		
 		"how": {
 			"header": "Como Doar",
-			"p1": "To avoid unnecessary fees, paperwork, currency conversions, international transactions, etc., I have decided to accept Bitcoin instead of a more traditional donation system. How does it work? I'm glad you asked!",
-			"p2": "Basically, you can send money over the internet as if it were cash; no middlemen, no checks, no delays, and no private information (like a credit card number) changing hands.",
+			"p1": "Para evitar taxas desnecessárias, papelada, mudanças de câmbio, transações internacionais, etc, eu resolvi aceitar o Bitcoin em vez do sistema tradicional. Como funciona, você pergunta?",
+			"p2": "Basicamente, você envia dinheiro pela internet como se fosse uma transação informal; nada de terceiros, checagens, atrasos ou informações privadas (como o seu número de cartão de crédito).",
 			"p3": {
-				"f1": "You can change money for bitcoin at any of a number of exchanges. In the United States, I recommend ",
-				"f2": " or ",
+				"f1": "Você pode trocar dinheiro por bitcoin de várias formas. Nos Estados Unidos eu recomendo  ",
+				"f2": " ou ",
 				"f3": "."
 			}
 		},
@@ -435,8 +435,8 @@
 		"where":
 		{
 			"header": "Por onde Doar",
-			"p1": "You can support the ToonStore by donating to the following Bitcoin address:",
-			"p2": "On behalf of the ToonStore community, thank you for helping keep ToonStore online and serving a new generation of roleplayers."
+			"p1": "Você pode ajudar a Toonstore doando para o seguinte endereço Bitcoin:",
+			"p2": "Em nome da comunidade Toonstore, muito obrigado por manter este site online e servindo a toda uma geração de jogadores."
 		}
 	},
 
