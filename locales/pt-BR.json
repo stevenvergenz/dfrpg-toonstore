@@ -12,7 +12,7 @@
 		"donate": "Doações",
 		"register": "Registrar",
 		"login": "Conecte-se",
-		"language": "Language: ",
+		"language": "Língua: ",
 		"lang_dialog": {
 			"prompt": "Esta página está disponível em sua língua nativa (%s). Você quer usar esta versão?",
 			"accept": "Vamos lá",
