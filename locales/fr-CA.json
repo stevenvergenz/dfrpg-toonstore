@@ -461,29 +461,31 @@
 
 	"privacy":
 	{
-		"pagetitle": "Privacy Policy",
-		"meta_description": "ToonStore's privacy policy",
+		"pagetitle": "Politique de vie privée",
+		"meta_description": "La politique de vie privée de ToonStore",
 
 		"gist": {
-			"title": "The gist of it",
-			"p1": "We don't ask for any personal information that we don't absolutely need for the running of this site.",
-			"p2": "We don't share your personal information with anyone except to comply with the law.",
-			"p3": "We don't store your personal information unless it is required for identification purposes (e.g. an email address).",
-			"p4": "Any content you create through this site is publicly accessible unless marked as private, and all content is immutable to anyone but the owner.",
+			"title": "En bref",
+			"p1": "Nous ne demandons aucune information personnelle dont nous n'avons pas absolument besoin pour le fonctionnement du site.",
+			"p2": "Nous ne partageons aucune information personnelle avec qui que ce soit sauf pour se conformer à la loi.",
+			"p3": "Nous ne stockons pas votre information personnelle à moins que ce ne soit requis pour des fins d'identification (ex. un adresse courriel).",
+			"p4": "Tout le contenu que vous créez sur ce site est publiquement accessible à moins d'être marqué privée et tout le contenu ne peut être modifié sauf par son propriétaire.",
 			"p5": {
 				"f1": "The above points are detailed further below. If you have any questions about the material on this page, or would like to request that we delete your account and information, email us at the address given on the ",
-				"f2": "Contact Us",
-				"f3": " page."
+				"f1": "Les points ci-dessus sont expliqués plus en détail ci-dessous. Si vous avez des questions au sujet du matériel sur cette page ou que vous désirez que nous détruisions votre compte et vos informations, envoyez-nous un courriel à l'adresse indiquée dans la page ",
+				"f2": "Contactez-nous",
+				"f3": "."
 			}
 		},
 		"visitors": {
-			"title": "Website Visitors",
-			"p1": "Like most websites, ToonStore collects non-personally-identifying information of the sort that web browsers and servers typically make available, such as the browser type, language preference, referring site, and the date and time of each visitor request. ToonStore's purpose in collecting non-personally identifying information is to better understand how ToonStore's visitors use its website. From time to time, Derogatory Studios may release non-personally-identifying information in the aggregate, e.g., by publishing a report on trends in the usage of its website.",
-			"p2": "ToonStore also collects potentially personally-identifying information like Internet Protocol (IP) addresses from site visitors. This is done to prevent abuse of server resources by blocking certain abusive IP addresses. Derogatory Studios only discloses IP addresses under the same circumstances that it uses and discloses personally-identifying information as described below."
+			"title": "Visiteurs du site web",
+			"p1": "Comme la plupart des sites web, ToonStore amasse de l'information ne permettant pas de vous identifier personnellement du genre que les navigateurs et les serveurs web rendent généralement disponibles, comme le type de navigateur, les préférences de langue, votre site de référence et la date et l'heure de chaque requête de visiteur. De temps à autre, Derogatory Studios pourrait rendre public des information ne vous identifiant pas personnellement de façon agrégée, par exemple en publiant un rapport des tendances d'utilisation sur son site web.",
+			"p2": "ToonStore stocke aussi des informations permettant potentiellement de vous identifier comme les adresses Internet Protocol (IP) de ses visiteurs. C'est fait dans le but de prévenir l'abus des ressources du serveur en bloquant certaines adresses IP abusives. Derogatory Studios divulguera ces adresses IP dans les mêmes circonstances qu'il utilise les informations permettant de vus identifier tel que décrit ci-dessous."
 		},
 		"pii": {
-			"title": "Gathering of Personally-Identifiying Information",
+			"title": "Cueillette d'informations permettant de vous identifier personnellement",
 			"p1": "Certain visitors to the ToonStore website choose to interact with ToonStore in ways that require ToonStore to gather personally-identifying information. Users that choose to create an account allow ToonStore to store their email address for the duration of the account. Derogatory Studios does not disclose personally-identifying information other than as described below. And visitors can always refuse to supply personally-identifying information, with the caveat that it may prevent them from engaging in certain website-related activities."
+			"p1": "."
 		},
 		"aggregate": {
 			"title": "Aggregated Statistics",
