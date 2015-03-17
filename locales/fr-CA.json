@@ -97,6 +97,8 @@
 	{
 		"pagetitle": "Choisissez votre mot de passe",
 		"intro": "Entrez votre nouveau mot de passe dans les champs ci-dessous. Le temps pour décoder est un indicateur de la force de votre mot de passe. Un bon mot de passe devrait prendre au moins quelques années à décoder. Si l'indicateur est vert ou bleu, ça devrait aller.",
+		"xkcd": "How do I generate good passwords?",
+
 		"password": "Mot de passe",
 		"cracktime": "Temps pour décoder: ",
 		"confirm": "Confirmer mot de passe",

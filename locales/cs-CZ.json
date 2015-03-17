@@ -97,6 +97,8 @@
 	{
 		"pagetitle": "Set your password",
 		"intro": "Type your new password in the fields below. The time to crack is an indicator of how strong your password is. Good passwords should take at least a few years to crack. If the meter is green or blue you're in good shape.",
+		"xkcd": "How do I generate good passwords?",
+
 		"password": "Password",
 		"cracktime": "Time to crack: ",
 		"confirm": "Confirm password",

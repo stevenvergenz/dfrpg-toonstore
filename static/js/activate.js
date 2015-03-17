@@ -8,7 +8,7 @@ function checkPass()
 	var colors = {
 		0: 'red',
 		1: 'orangered',
-		2: 'orange',
+		2: 'rgb(176,163,33)',
 		3: 'green',
 		4: 'blue'
 	};
@@ -16,7 +16,7 @@ function checkPass()
 
 	var strength = zxcvbn(pass.val());
 	var time_display = moment.duration(strength.crack_time, 'seconds').locale(localeInfo.pathLocale).humanize();
-	passMsg.text(time_display + (strength.score<3 ? " ("+clientStrings.toosimple+")" : ""));
+	passMsg.text(time_display + (strength.score<1 ? " ("+clientStrings.toosimple+")" : ""));
 	passMsg.css({color: colors[strength.score]});
 
 	if( pass.val() === confirm.val() ){
@@ -28,7 +28,7 @@ function checkPass()
 
 	return pass.val().length > 0
 		&& pass.val() === confirm.val()
-		&& strength.score >= 3;
+		&& strength.score >= 1;
 }
 
 function validate()

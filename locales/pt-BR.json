@@ -97,6 +97,8 @@
 	{
 		"pagetitle": "Insira sua senha",
 		"intro": "Insira sua nova senha no campo abaixo. O tempo necessário para quebrar sua senha é um indicador de quão segura ela é. Boas senhas devem levar pelo menos alguns dias para quebrar. Se a barra estiver verde ou azul você está indo bem.",
+		"xkcd": "Como faço para gerar boas senhas?",
+
 		"password": "Senha",
 		"cracktime": "Tempo para quebrar a senha: ",
 		"confirm": "Confirme sua senha",

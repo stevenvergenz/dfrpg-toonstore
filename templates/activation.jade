@@ -49,6 +49,7 @@ block content
 			.title: span= __('activate.pagetitle')
 
 			p= __('activate.intro')
+			p: a(href='http://xkcd.com/936/', target='_blank')= __('activate.xkcd')
 
 			form(method='POST', onsubmit='return validate();')
 				.field
@@ -63,5 +64,5 @@ block content
 					p.caption#passMatch
 
 				.field
-					input(type='submit', value='#{__("activate.submit")}')
+					input(type='submit', value=__('activate.submit'))
 					p.caption#submitMessage
