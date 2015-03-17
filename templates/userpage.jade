@@ -60,7 +60,7 @@ block content
 								title= '{{char.private ? "'+__('user.controls.public')+'" : "'+__('user.controls.private')+'"}}')
 
 							a(ng-href=url('/killtoon?id={{char.canonical_name}}'))
-								img.delete(src='static/img/glyphicons/glyphicons_016_bin.png', title=__('user.controls.delete'))
+								img.delete(src='/static/img/glyphicons/glyphicons_016_bin.png', title=__('user.controls.delete'))
 
 			
 			.normalbox(ng-show='data.length === 0')

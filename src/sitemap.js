@@ -10,7 +10,7 @@ function serveSitemap(req,res,next)
 {
 	// don't generate if admin disables it
 	if( !config.use_sitemap )
-		res.send(404);
+		return next();
 
 	// create sitemap template
 	var doc = lxml.Document();
@@ -67,4 +67,38 @@ function serveSitemap(req,res,next)
 	);
 }
 
-exports.serve = serveSitemap;
+function serveRobots(req,res,next)
+{
+	if( !config.use_robots )
+		return next();
+
+	var disallowedUrlBases = [
+		'/site/privacy',
+		'/site/terms',
+		'/newtoon',
+		'/killtoon',
+		'/register',
+		'/post-register',
+		'/federated-register',
+		'/register/verify',
+		'/togglePrivacy',
+		'/passreset',
+		'/pre-activate'
+	];
+
+	var disallowedUrls = [].concat(disallowedUrlBases);
+
+	for(var i=0; i<res.i18n.config.locales.length; i++)
+	{
+		for(var j=0; j<disallowedUrlBases.length; j++)
+		{
+			disallowedUrls.push( '/'+res.i18n.config.locales[i]+disallowedUrlBases[j] );
+		}
+	}
+
+	res.set('content-type', 'text/plain');
+	res.send( 'User-agent: *\nDisallow: ' + disallowedUrls.join('\nDisallow: ') );
+}
+
+exports.serveSitemap = serveSitemap;
+exports.serveRobots = serveRobots
