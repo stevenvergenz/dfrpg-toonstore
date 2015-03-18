@@ -484,63 +484,63 @@
 		},
 		"pii": {
 			"title": "Cueillette d'informations permettant de vous identifier personnellement",
-			"p1": "Certain visitors to the ToonStore website choose to interact with ToonStore in ways that require ToonStore to gather personally-identifying information. Users that choose to create an account allow ToonStore to store their email address for the duration of the account. Derogatory Studios does not disclose personally-identifying information other than as described below. And visitors can always refuse to supply personally-identifying information, with the caveat that it may prevent them from engaging in certain website-related activities."
-			"p1": "."
+			"p1": "Certains visiteurs du site ToonStore choisissent d'interagir avec ToonStore d'une façon qui fait qu'il requiert de rassembler des informations permettant de vous identifier personnellement. Les utilisateurs choissant de créer un compte donnent la permission à ToonStore de stocker leur adresse courriel pour la durée du compte. Derogatory Studios ne révèle pas d'information vous identifiant personnellement sauf dans les cas décrits plus bas. Les  visiteurs peuvent toujours refuser de fournir de l'information les identifiant personnellement mais cela pourrait les empêcher de profiter pleinement des fonctionalités du site."
 		},
 		"aggregate": {
-			"title": "Aggregated Statistics",
-			"p1": "ToonStore may collect statistics about the behavior of visitors to its websites. For instance, ToonStore may monitor the popularity of particular character sheets. ToonStore may display this information publicly or provide it to others. However, ToonStore does not disclose personally-identifying information other than as described below."
+			"title": "Statistiques agrégées",
+			"p1": "ToonStore pourrait stocker des statistiques au sujet du comportement des visiteurs sur ses sites web. Par exemple, ToonStore pourrait surveiller la popularité de certaines feuilles de personnage. ToonStore peut afficher cette information publiquement ou la fournir à des tiers. Cependant, ToonStore ne fournira pas d'information vous identifiant personnellement autrement que ce qui est spécifié plus bas."
 		},
 		"protection": {
-			"title": "Protection of Certain Personally-Identifying Information",
-			"p1": "Derogatory Studios discloses potentially personally-identifying and personally-identifying information only to those of its employees that (i) need to know that information in order to properly maintain ToonStore's services, and (ii) that have agreed not to disclose it to others. Derogatory Studios will not rent or sell potentially personally-identifying and personally-identifying information to anyone. Other than to its employees as described above, Derogatory Studios discloses potentially personally-identifying and personally-identifying information only in response to a subpoena, court order or other governmental request, or when Derogatory Studios believes in good faith that disclosure is reasonably necessary to protect the property or rights of Derogatory Studios, third parties or the public at large. If your information is disclosed, you will be notified by email at the address provided.",
-			"p2": "If you are a registered user of the ToonStore website and have supplied your email address, Derogatory Studios may occasionally send you an email to tell you about new features, solicit your feedback, or just keep you up to date with what’s going on with ToonStore and related products. We expect to keep this type of email to a minimum. If you send us a request (for example via a support email or via one of our feedback mechanisms), we reserve the right to publish it in order to help us clarify or respond to your request or to help us support other users.",
-			"p3": "Derogatory Studios takes all measures reasonably necessary to protect against the unauthorized access, use, alteration or destruction of potentially personally-identifying and personally-identifying information."
+			"title": "Protection de certaines informations vous identifiant personnellement",
+			"p1": "Derogatory Studios ne divulguera d'information permettant potentiellement de vous identifier ou permettant de vous identifier qu'à ses employés qui (i) dvoient connaître cette information pour pouvoir maintenir convenablement les services de ToonStore et (ii) qui ont accepté de ne pas les divulguer à des tiers. Derogatory Studios ne louera pas et ne vendra pas d'information permettant potentiellement de vous identifier ou permettant de vous identifier à quiconque. Autre qu'à ses employés tel que décrit ci-dessus, Derogatory Studios ne divulgue des informations permettant potentiellement de vous identifier et permettant de vous identifier qu'en réponse à un subpoena, un ordre de la cour ou autre demande gouvernementale ou lorsque Derogatory Studios croit en toute bonne foi que cette divulgation est raisonnablement nécessaire pour protéger la propriété ou les droits de Derogatory Studios, des tierces parties ou du public en général. Si vos informations sont divulguées, vous en serez informé par courriel à l'adresse que vous avez fournie.",
+			"p2": "Si vous êtes un utilisateur enregistré du site web ToonStore et que vous avez fourni votre adresse courriel, Derogatory Studios pourra vous envoyer des courriels occasionnellement pour vous faire part de ses nouvelles fonctionnalités, vous demander des commentaires ou simplement vous garder à jour sur les activités de ToonStore et des produits reliées. Nous garderons la fréquence de ce type de courriel au minimum. Si vous nous envoyez une demande (par exemple via un courriel de support ou l'un de nos mécanismes de commentaires), nous nous réservons le droit de le publier dans le but de nous aider à clarifier ou répondre à votre requête ou nous aider à supporter d'autres utilisateurs.",
+			"p3": "Derogatory Studios prend toutes les précautions raisonnablement nécessaires pour se protéger contre les accès non autorisés, l'utilisation, l'altération ou la destruction d'information permettant potentiellement de vous identifier ou permettant de vous identifier."
 		},
 		"cookies": {
 			"title": "Cookies",
-			"p1": "A cookie is a string of information that a website stores on a visitor's computer, and that the visitor's browser provides to the website each time the visitor returns. ToonStore uses cookies to help ToonStore identify and track visitors, their usage of the ToonStore website, and their website access preferences. ToonStore visitors who do not wish to have cookies placed on their computers should set their browsers to refuse cookies before using the ToonStore websites, with the drawback that certain features of the ToonStore website may not function properly without the aid of cookies."
+			"p1": "Un cookie est une petite chaîne de caractères qu'un site web stocke dans l'ordinateur d'un visiteur et que le navigateur du visiteur fournit au site web chaque fois que le visiteur revient. ToonStore utilise des cookies pour permettre à ToonStore d'identifier et suivre ses visiteurs, leur utilisation du site web ToonStore and les préférences d'accès au site web. Les visiteurs de ToonStore qui ne souhaitent pas avoir des  cookies placés sur leur ordinateur devront configurer leurs navigateurs pour qu'ils refusent les cookies avant d'utiliser les sites web ToonStore, avec le désavantage que certaines fonctionnalités du site web ToonStore puissent ne pas fonctionner convenablement sans l'utilisation de cookies."
 		},
 		"transfers": {
-			"title": "Business Transfers",
-			"p1": "If Derogatory Studios, or substantially all of its assets, were acquired, user information would be one of the assets that is transferred or acquired by a third party. You acknowledge that such transfers may occur, and that any acquirer of Derogatory Studios may continue to use your personal information as set forth in this policy."
+			"title": "Transferts de compagnie",
+			"p1": "Si Derogatory Studios ou une partie substantielle de ses actifs venaient être acquise, les informations d'utilisateurs seraient une part des actifs qui seraient transférés ou acquise par une tierce partie. Vous reconnaissez que de tels transferts puissent survenir et que tout acquéreur de Derogatory Studios puisse continuer à utiliser votre information personnelle telle que décrite dans cette politique."
 		},
 		"ads": {
-			"title": "Ads",
-			"p1": "Ads appearing on any of our webpages may be delivered to users by advertising partners, who may set cookies. These cookies allow the ad server to recognize your computer each time they send you an online advertisement to compile information about you or others who use your computer. This information allows ad networks to, among other things, deliver targeted advertisements that they believe will be of most interest to you. This Privacy Policy covers the use of cookies by ToonStore and does not cover the use of cookies by any advertisers."
+			"title": "Publicité",
+			"p1": "Les publicités apparaissant sur n'importe quel de nos pages peuvent être livrées aux utilisateurs par l'un de nos partenaires publicitaires qui pourraient enregistrer des cookies. Ces cookies permettent au serveur de publicité de reconnaître votre ordinateur chaque fois qu'ils vous envoient une publicité en ligne pour compiler de l'information à votre sujet ou au sujet d'autres personnes utilisant votre ordinateur. Cette information permet aux réseaux publicitaires, entre autres choses, de livrer des publicités ciblées qu'ils croient qui pourraient vous intéresser. Cette Politique de vie privée couvre l'utilisation des cookies par ToonStore et ne couvre pas l'utilisation de cookies par des publicitaires."
 		},
 		"content": {
-			"title": "Site Content",
-			"p1": "Because of the nature of the ToonStore website, all character data is publicly available for anyone that knows or can guess the link, including links to other characters by the same author, with the exception of characters marked as Private. No information put into a public character sheet, including the author name, should be considered private. In addition, all public character sheets are added to the ToonStore's sitemap, so they will be discoverable by automated agents such as search engine crawlers, and as a result may appear in search results. By using the ToonStore website, you agree to the above policy."
+			"title": "Contenu du site",
+			"p1": "Étant donné la nature du site web ToonStore, toutes les données des personnages est disponible publiquement disponible à quiconque connaît ou peut en deviner le lien, incluant des liens vers d'autres personnages du même auteur, à l'exception des personnages définis comme étant Privés. Aucune information dans une feuille de personnage, y compris le nom de l'auteur, ne devrait être considérée comme privée. De plus, toutes les feuilles de personnage sont incluses dans le plan du site ToonStore, alors elles sont découvrables par des agents automatisés tels les robots de moteurs de recherche et pourraient donc apparaître dans des résultats de recherche. En utilisant le site web ToonStore, vous acceptez la politique ci-dessus."
 		},
 		"changes": {
 			"title": "Privacy Policy Changes",
-			"p1": "Although most changes are likely to be minor, Derogatory Studios may change its Privacy Policy from time to time, and in Derogatory Studios' sole discretion. Derogatory Studios encourages visitors to frequently check this page for any changes to its Privacy Policy. In addition, a banner will be placed on the homepage for a minimum of 30 days notifying users of a change to the privacy policy. Your continued use of this site after any change in this Privacy Policy will constitute your acceptance of such change."
+			"title": "Chagements à la Politique de vie privée",
+			"p1": "Quoique la plupart dea changements risquent d'être minimes, Derogatory Studios pourrait modifier sa Politique de vie privée de temps à autre et ce à la seule discrétion de Derogatory Studios. Derogatory Studios encourage ses visiteurs à vérifier régulièrement cette page pour tout changement à sa politique de vie privée. Votre utilisation continue du site après tout changement à cette Politique de vie privée constitue une acception de votre part à ces changements."
 		},
 
 		"changelog": {
-			"title": "Change log",
-			"p1": "Initial version",
-			"p2": "Updated \"Site Content\" section to account for private character sheets"
+			"title": "Journal des modifications",
+			"p1": "Version initiale",
+			"p2": "Modifié la section \"Contenu du site\" pour tenir compte des feuilles de personnages privés"
 		},
 
 		"attribution": {
-			"f1": "(Note: This privacy policy is based loosely on the privacy policy of ",
-			"f2": ", which is under a ",
+			"f1": "(Note: Cette politique de vie privée est basée en partie sur la politique de vie privée de ",
+			"f2": ", qui est sous une license ",
 			"f3": "Creative Commons Sharealike",
-			"f4": " license. As such, this policy is under the same license.)"
+			"f4": ". Ainsi, cette politique est sous la même license.)"
 		}
 	},
 
 	"howto":
 	{
-		"pagetitle": "Beginner's Guide",
-		"meta_description": "Learn how to use the ToonStore to its maximum potential",
+		"pagetitle": "Guide du débutant",
+		"meta_description": "Apprenez à utiliser ToonStore à son pleien potentiel",
 
-		"h1": "Before we get started...",
+		"h1": "Avant de commencer...",
 		"intro": {
 			"f1": "Thanks for using the ToonStore! In order to help you get up to speed, this page is designed to teach you the basics of how to navigate character sheets and get the best use out of the ToonStore. If you still have questions after reading through, join the devs and other users at the ",
-			"f2": "Google+ group",
+			"f2": "groupe Google+",
 			"f3": " to get your questions answered. Now on to the walkthrough!"
 		},
 
