@@ -107,16 +107,14 @@ function renderPage(template, options)
 		pageFields.n__ = res.i18n.n__.bind(res.i18n);
 		pageFields.n__n = res.i18n.n__n.bind(res.i18n);
 		pageFields.a__ = i18n.__.bind(i18n);
-		pageFields.getNativeURL = function(lang, absolute)
-		{
-			var root = absolute ? config.origin : '';
+		pageFields.getNativeURL = function(lang){
 			if(lang)
 				if( lang === 'x-default' )
-					return root+req.url;
+					return req.url;
 				else
-					return root+'/'+lang+req.url;
+					return '/'+lang+req.url;
 			else
-				return root+'/'+res.i18n.nativeLocale+req.url;
+				return '/'+res.i18n.nativeLocale+req.url;
 		};
 		pageFields.url = function(path){
 			if( res.i18n.pathLocale )
