@@ -1,6 +1,4 @@
 @import 'polyfill';
-@import 'theme';
-@import 'navbar';
 
 .normalbox
 {
@@ -8,11 +6,6 @@
 	color: black;
 	border-radius: 5px;
 	padding: 10px; 
-
-	a:link, a:visited,
-	{
-		color: blue;
-	}
 
 	.imgcontainer
 	{
@@ -87,9 +80,10 @@
 	color: black;
 	border: solid grey 1px;
 	border-radius: 5px;
-	margin: 10px auto;
+	margin: 15px auto;
 	overflow: hidden;
 	max-width: 340px;
+	width: 340px;
 	padding: 20px;
 	padding-top: 0;
 

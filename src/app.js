@@ -106,6 +106,12 @@ app.get('/', i18n.cookieRedirect, global.renderPage('index'));
 
 app.use('/static', express.static( libpath.resolve(__dirname,'..','static'), {maxAge: 24*60*60}));
 app.get('/sitemap.xml', sitemap.serve);
+app.get('/robots.txt', function(req,res,next){
+	if(config.use_robots)
+		res.sendfile( libpath.resolve(__dirname, '..', 'robots.txt') );
+	else
+		next();
+});
 
 app.get('/stats', stats.serveStats);
 

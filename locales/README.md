@@ -75,6 +75,16 @@ you can see what your translation looks like before it goes live (but after I ac
 preview version at http://toonstore.net:3000.
 
 
+Checking Progress
+-----------------
+
+If you're using Bash, you can check your progress percentage using the following one-liner:
+
+	echo "scale=3; `diff -y --suppress-common-lines locales/en-US.json locales/MY-LANG-HERE.json | wc -l`/`grep '": "' locales/en-US.json | wc -l`*100" | bc -l
+
+where you replace `MY-LANG-HERE` with your language/country code.
+
+
 Questions? Comments?
 --------------------
 

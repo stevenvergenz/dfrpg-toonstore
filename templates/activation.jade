@@ -1,4 +1,4 @@
-extends index
+extends theme
 
 block title
 	if /\/passreset$/.test(page)
@@ -8,7 +8,7 @@ block title
 	else if /\/activate\/[0-9a-f]{32}$/.test(page)
 		title= __('activate.pagetitle') + ' | ToonStore.net'
 
-block append includes
+block js
 	if /\/activate\/[0-9a-f]{32}$/.test(page)
 		script(src='/static/js/zxcvbn-async.js')
 		script(src='/static/js/moment.min.js')
@@ -18,10 +18,9 @@ block append includes
 		script(src='/static/js/activate.js')
 
 block content
-
 	if /\/pre-activate/.test(page)
 
-		.content-block: .formbox
+		.content-block.formbox
 			.title: span= __('pre-activate.pagetitle')
 			if query.t == 'register'
 				p= __('pre-activate.intro_register')
@@ -32,7 +31,7 @@ block content
 
 	else if /\/passreset$/.test(page)
 
-		.content-block: .formbox
+		.content-block.formbox
 			.title: span= __('passreset.pagetitle')
 			p= __('passreset.intro')
 			form(method='POST')
@@ -46,7 +45,7 @@ block content
 
 	else if /\/activate\/[0-9a-f]{32}$/.test(page)
 
-		.content-block: .formbox
+		.content-block.formbox
 			.title: span= __('activate.pagetitle')
 
 			p= __('activate.intro')

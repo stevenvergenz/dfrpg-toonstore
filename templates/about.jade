@@ -1,25 +1,41 @@
-extends index
+extends theme
 
 block title
 	title= __('about.pagetitle') + ' | ToonStore.net'
 	meta(name='description', content='#{__("about.meta_description")}')
 
-block content
+block article_header
 
 	h1= __('about.pagetitle')
 
-	.content-block: .normalbox
+block article_body
 
-		h3= __('about.h1')
-		p= __('about.p1')
-		h3= __('about.h2')
-		p= __('about.p2')
-		h3= __('about.h3')
-		p= __('about.p3.f1')
-			a(href='https://github.com/stevenvergenz/dfrpg-toonstore', target='_blank')= __('about.p3.f2')
-			= __('about.p3.f3')
+	h3= __('about.h1')
+	p= __('about.p1')
+	h3= __('about.h2')
+	p= __('about.p2')
+	h3= __('about.h3')
+	p= __('about.p3.f1')
+		a(href='https://github.com/stevenvergenz/dfrpg-toonstore', target='_blank')= __('about.p3.f2')
+		= __('about.p3.f3')
 
-		h3= __('about.h4')
-		p= __('about.p4.f1')
-			a(href='http://thecosmicgoose.deviantart.com/')= __('about.p4.f2')
-			= __('about.p4.f3')
+	h3= __('about.h4')
+
+	p= __('about.p4')
+	ul
+		li
+			a(href='http://thecosmicgoose.deviantart.com/') TheCosmicGoose
+			|  - 
+			= __('about.credits.thecosmicgoose')
+		li
+			a(href='https://plus.google.com/118006564316818303060/about') Lucas "Atmo" Leonardo
+			|  - 
+			= __('about.credits.atmo')
+		li
+			a(href='https://plus.google.com/108022144237517569500/about') Robert "Jabberwocky" Skopek
+			|  - 
+			= __('about.credits.jabberwocky')
+		li
+			a(href='http://www.reddit.com/user/solarbear') David "SolarBear" Lacerte
+			|  - 
+			= __('about.credits.solarbear')

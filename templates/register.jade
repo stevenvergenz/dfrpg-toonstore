@@ -1,13 +1,13 @@
-extends index
+extends theme
 
 block title
 	title= __('nav.register') + ' | ToonStore.net'
 	meta(name='description', content='#{__("register.meta_description")}')
 
-block append includes
+block js
 	script(src='/static/js/register.js')
 	script!= 'var clientStrings = ' + JSON.stringify(__('register.clientStrings')) + ';'
-	if page == '/post-register'
+	if /\/post-register$/.test(page)
 		script.
 			$(function(){
 				function redirect(){
@@ -20,7 +20,7 @@ block content
 
 	if /\/register$/.test(page)
 
-		.content-block: .formbox
+		.content-block.formbox
 			.title: span= __('nav.register')
 			//.inner
 			p= __('register.intro.f1')
@@ -54,7 +54,7 @@ block content
 
 	else if /\/federated-register$/.test(page)
 
-		.content-block: .formbox
+		.content-block.formbox
 			.title: span= __('nav.register')
 			p= __('register.fedIntro')
 			form(method='post', onsubmit='return validateUsername();')
@@ -77,7 +77,7 @@ block content
 
 	else if /\/post-register$/.test(page)
 
-		.content-block: .formbox
+		.content-block.formbox
 			.title Registration successful!
 			p You have completed registration. You will be redirected to your profile page in 5 seconds.
 

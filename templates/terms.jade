@@ -1,34 +1,34 @@
-extends index
+extends theme
 
 block title
 	title= __('terms.pagetitle') + ' | ToonStore.net'
 	meta(name='description', content='#{__("terms.meta_description")}')
 
-block content
+block article_header
 
 	h1= __('terms.pagetitle') 
 
-	.content-block: .normalbox
+block article_body
 
-		p= __('terms.p1')
+	p= __('terms.p1')
 
-		ul
-			li: p= __('terms.p2')
-			li: p= __('terms.p3')
-			li: p= __('terms.p4.f1')
-				a(href=url('/site/privacy'), target='_blank')= __('terms.p4.f2')
-				= __('terms.p4.f3')
-			li: p= __('terms.p5.f1')
-				a(href=url('/site/contact'), target='_blank')= __('terms.p5.f2')
-				= __('terms.p5.f3')
-			li: p= __('terms.p6')
-			li: p= __('terms.p7.f1')
-				a(href=url('/site/contact'), target='_blank')= __('terms.p7.f2')
-				= __('terms.p7.f3')
+	ul
+		li: p= __('terms.p2')
+		li: p= __('terms.p3')
+		li: p= __('terms.p4.f1')
+			a(href=url('/site/privacy'), target='_blank')= __('terms.p4.f2')
+			= __('terms.p4.f3')
+		li: p= __('terms.p5.f1')
+			a(href=url('/site/contact'), target='_blank')= __('terms.p5.f2')
+			= __('terms.p5.f3')
+		li: p= __('terms.p6')
+		li: p= __('terms.p7.f1')
+			a(href=url('/site/contact'), target='_blank')= __('terms.p7.f2')
+			= __('terms.p7.f3')
 
-		h3= __('terms.changelog.title')
+	h3= __('terms.changelog.title')
 
-		ul
-			li
-				strong= formatDate('2013-08-29')
-				= ': '+__('terms.changelog.p1')
+	ul
+		li
+			strong= formatDate('2013-08-29')
+			= ': '+__('terms.changelog.p1')

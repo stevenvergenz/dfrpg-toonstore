@@ -1,14 +1,11 @@
-#charnav.navbar
+nav#charnav
 {
 	background-color: #4a4a72;
 
-	a.dirty
+	input.fakelink.dirty
 	{
 		color: #f44;
-
-		&::before {
-			content: ">>";
-		}
+		text-transform: uppercase;
 	}
 	
 	ul.navmenu

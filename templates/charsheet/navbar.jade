@@ -1,5 +1,12 @@
 if logged_user == owner
-	#charnav.navbar
+
+	nav#charnav
+		div#placeholder
+		ul
+			li: a(href=url('/site/howto'))= __('charsheet.headers.help')
+			li: input.fakelink(type='button', ng-class='{dirty: dirty}', ng-click='data.$save()', value=__('charsheet.headers.save'))
+
+	//-#charnav.navbar
 		ul.navmenu.navitem
 			li
 				a= __('charsheet.headers.panels')

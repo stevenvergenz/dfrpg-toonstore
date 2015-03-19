@@ -1,282 +1,280 @@
-extends index
+extends theme
 
 block title
 	title= __('howto.pagetitle') + ' | ToonStore.net'
 
 
-block content
+block article_header
 
 	h1= __('howto.pagetitle')
 
-	.content-block: .normalbox
+block article_body
 
-		h2= __('howto.h1')
+	h2= __('howto.h1')
 
-		p= __('howto.intro.f1')
-			a(href='https://plus.google.com/communities/100638011667854470760')= __('howto.intro.f2')
-			= __('howto.intro.f3')
+	p= __('howto.intro.f1')
+		a(href='https://plus.google.com/communities/100638011667854470760')= __('howto.intro.f2')
+		= __('howto.intro.f3')
 
-		a#toc
-		h2= __('howto.h2')
+	a#toc
+	h2= __('howto.h2')
 
-		ul
-			li: a(href='#management')= __('howto.h3')
-			li: a(href='#backseat')= __('howto.h4')
-			li: a(href='#optionals')= __('howto.h5')
-			li: a(href='#markdown')= __('howto.h6')
-			li: a(href='#panels')= __('howto.h7')
-				ul
-					li: a(href='#general')= __('howto.h8')
-					li: a(href='#aspects')= __('howto.h9')
-					li: a(href='#skills')= __('howto.h10')
-					li: a(href='#totals')= __('howto.h11')
-					li: a(href='#stress')= __('howto.h12')
-					li: a(href='#consequences')= __('howto.h13')
-					li: a(href='#powers')= __('howto.h14')
-					li: a(href='#notes')= __('howto.h15')
+	ul
+		li: a(href='#management')= __('howto.h3')
+		li: a(href='#backseat')= __('howto.h4')
+		li: a(href='#optionals')= __('howto.h5')
+		li: a(href='#markdown')= __('howto.h6')
+		li: a(href='#panels')= __('howto.h7')
+			ul
+				li: a(href='#general')= __('howto.h8')
+				li: a(href='#aspects')= __('howto.h9')
+				li: a(href='#skills')= __('howto.h10')
+				li: a(href='#totals')= __('howto.h11')
+				li: a(href='#stress')= __('howto.h12')
+				li: a(href='#consequences')= __('howto.h13')
+				li: a(href='#powers')= __('howto.h14')
+				li: a(href='#notes')= __('howto.h15')
 
 
-		a#management
-		h2= __('howto.h3')
+	a#management
+	h2= __('howto.h3')
 
-		.imgcontainer: img(src='/static/img/tutorial/management.png')
+	.imgcontainer: img(src='/static/img/tutorial/management.png')
 
-		p= __('howto.cm.p1')
-		ul
-			li
-				strong= __('howto.cm.b1.title')
-				|  - 
-				= __('howto.cm.b1.text')
-			li
-				strong= __('howto.cm.b2.title')
-				|  - 
-				= __('howto.cm.b2.text')
-			li
-				strong= __('howto.cm.b3.title')
-				|  - 
-				= __('howto.cm.b3.text')
+	p= __('howto.cm.p1')
+	ul
+		li
+			strong= __('howto.cm.b1.title')
+			|  - 
+			= __('howto.cm.b1.text')
+		li
+			strong= __('howto.cm.b2.title')
+			|  - 
+			= __('howto.cm.b2.text')
+		li
+			strong= __('howto.cm.b3.title')
+			|  - 
+			= __('howto.cm.b3.text')
 			
-		p= __('howto.cm.p2')
+	p= __('howto.cm.p2')
 
-		p: a(href='#')= __('howto.backtotop')
+	p: a(href='#')= __('howto.backtotop')
 
 
-		a#backseat
-		h2= __('howto.h4')
+	a#backseat
+	h2= __('howto.h4')
 
-		p= __('howto.viewing.p1')
+	p= __('howto.viewing.p1')
 
-		.imgcontainer: img(src='/static/img/tutorial/url-bar.png')
+	.imgcontainer: img(src='/static/img/tutorial/url-bar.png')
 
-		p= __('howto.viewing.p2')
+	p= __('howto.viewing.p2')
 
-		p: a(href='#')= __('howto.backtotop')
+	p: a(href='#')= __('howto.backtotop')
 
 
-		a#optionals
-		h2= __('howto.h5')
+	a#optionals
+	h2= __('howto.h5')
 
-		p= __('howto.optional.p1')
+	p= __('howto.optional.p1')
 
-		.imgcontainer: img(src='/static/img/tutorial/optionals.png')
+	.imgcontainer: img(src='/static/img/tutorial/optionals.png')
 
-		ul
-			li
-				strong= __('howto.optional.b1.title')
-				|  - 
-				= __('howto.optional.b1.text')
-			li
-				strong= __('howto.optional.b2.title')
-				|  - 
-				= __('howto.optional.b2.text')
+	ul
+		li
+			strong= __('howto.optional.b1.title')
+			|  - 
+			= __('howto.optional.b1.text')
+		li
+			strong= __('howto.optional.b2.title')
+			|  - 
+			= __('howto.optional.b2.text')
 
-		//- TODO: mention the printable version, once it's better supported
+	//- TODO: mention the printable version, once it's better supported
 
-		p: a(href='#')= __('howto.backtotop')
+	p: a(href='#')= __('howto.backtotop')
 
 
-		a#markdown
-		h2= __('howto.h6')
+	a#markdown
+	h2= __('howto.h6')
 
-		//- TODO: maybe move this to a different page?
+	//- TODO: maybe move this to a different page?
 
-		p= __('howto.markdown.f1')
-			a(href='http://daringfireball.net/projects/markdown/syntax')= __('howto.markdown.f2')
-			= __('howto.markdown.f3')
+	p= __('howto.markdown.f1')
+		a(href='http://daringfireball.net/projects/markdown/syntax')= __('howto.markdown.f2')
+		= __('howto.markdown.f3')
 
-		.sidebyside
-			div: pre: code.
-				Heading
-				=======
+	.sidebyside
+		div: pre: code.
+			Heading
+			=======
 
-				Subheading
-				----------
+			Subheading
+			----------
 
-				#### Heading 4
+			#### Heading 4
 
-			= __('howto.markdown.becomes')
-			div
-				h1 Heading
-				h2 Subheading
-				h4 Heading 4
+		= __('howto.markdown.becomes')
+		div
+			h1 Heading
+			h2 Subheading
+			h4 Heading 4
+	hr
+	.sidebyside
+		div: pre: code.
+			*emphasis* and
+			**strong emphasis**
+		= __('howto.markdown.becomes')
+		div
+			em emphasis
+			|  and 
+			strong strong emphasis
 
-		hr
+	hr
 
-		.sidebyside
-			div: pre: code.
-				*emphasis* and
-				**strong emphasis**
-			= __('howto.markdown.becomes')
-			div
-				em emphasis
-				|  and 
-				strong strong emphasis
+	.sidebyside
+		div: pre: code
+			| * Item 1
+			| * Item 2
+			|     * Subitem 1
+			| * Item 3
 
-		hr
+		= __('howto.markdown.becomes')
 
-		.sidebyside
-			div: pre: code
-				| * Item 1
-				| * Item 2
-				|     * Subitem 1
-				| * Item 3
+		div: ul
+			li Item 1
+				ul: li Subitem 1
+			li Item 2
+			li Item 3
 
-			= __('howto.markdown.becomes')
+	hr
 
-			div: ul
-				li Item 1
-					ul: li Subitem 1
-				li Item 2
-				li Item 3
+	.sidebyside
+		div: pre: code.
+			![Lifeson](/Derogatory/lifeson/avatar)
+			[Lifeson](/Derogatory/lifeson/)
 
-		hr
+		= __('howto.markdown.becomes')
+		div
+			img(src='/Derogatory/lifeson/avatar', style='width: 100px;')
+			a(href='/Derogatory/lifeson/') Lifeson
 
-		.sidebyside
-			div: pre: code.
-				![Lifeson](/Derogatory/lifeson/avatar)
-				[Lifeson](/Derogatory/lifeson/)
+	p: a(href='#')= __('howto.backtotop')
 
-			= __('howto.markdown.becomes')
-			div
-				img(src='/Derogatory/lifeson/avatar', style='width: 100px;')
-				a(href='/Derogatory/lifeson/') Lifeson
 
-		p: a(href='#')= __('howto.backtotop')
+	a#panels
+	h2= __('howto.h7')
 
+	p= __('howto.panels.p1')
 
-		a#panels
-		h2= __('howto.h7')
+	ul
+		li= __('howto.panels.p2.f1')
+			img.icon(src='/static/img/glyphicons/glyphicons_150_edit.png')
+			= __('howto.panels.p2.f2')
+		li= __('howto.panels.p3')
 
-		p= __('howto.panels.p1')
+	p: a(href='#')= __('howto.backtotop')
 
-		ul
-			li= __('howto.panels.p2.f1')
-				img.icon(src='/static/img/glyphicons/glyphicons_150_edit.png')
-				= __('howto.panels.p2.f2')
-			li= __('howto.panels.p3')
 
-		p: a(href='#')= __('howto.backtotop')
+	a#general
+	h3= __('howto.h8')
 
+	p= __('howto.portrait')
 
-		a#general
-		h3= __('howto.h8')
+	p: a(href='#')= __('howto.backtotop')
 
-		p= __('howto.portrait')
+	a#aspects
+	h3= __('howto.h9')
 
-		p: a(href='#')= __('howto.backtotop')
+	p= __('howto.aspects.p1.f1')
+		em= __('howto.aspects.p1.f2')
+		= __('howto.aspects.p1.f3')
 
-		a#aspects
-		h3= __('howto.h9')
+	p= __('howto.aspects.p2')
 
-		p= __('howto.aspects.p1.f1')
-			em= __('howto.aspects.p1.f2')
-			= __('howto.aspects.p1.f3')
+	p= __('howto.aspects.p3.f1')
+		img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+		= __('howto.aspects.p3.f2')
+		img.icon(src='/static/img/glyphicons/glyphicons_186_move.png')
+		= __('howto.aspects.p3.f3')
+		img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+		= __('howto.aspects.p3.f4')
 
-		p= __('howto.aspects.p2')
+	p: a(href='#')= __('howto.backtotop')
 
-		p= __('howto.aspects.p3.f1')
-			img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
-			= __('howto.aspects.p3.f2')
-			img.icon(src='/static/img/glyphicons/glyphicons_186_move.png')
-			= __('howto.aspects.p3.f3')
-			img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
-			= __('howto.aspects.p3.f4')
 
-		p: a(href='#')= __('howto.backtotop')
+	a#skills
+	h3= __('howto.h10')
 
+	p= __('howto.skills.p1.f1')
+		em= __('howto.skills.p1.f2')
+		= __('howto.skills.p1.f3')
 
-		a#skills
-		h3= __('howto.h10')
+	p= __('howto.skills.p2')
 
-		p= __('howto.skills.p1.f1')
-			em= __('howto.skills.p1.f2')
-			= __('howto.skills.p1.f3')
+	p= __('howto.skills.p3.f1')
+		em= __('howto.skills.p3.f2')
+		= __('howto.skills.p3.f3')
+		img.icon(src='/static/img/shifter_human.svg')
+		= __('howto.skills.p3.f4')
 
-		p= __('howto.skills.p2')
+	p: a(href='#')= __('howto.backtotop')
 
-		p= __('howto.skills.p3.f1')
-			em= __('howto.skills.p3.f2')
-			= __('howto.skills.p3.f3')
-			img.icon(src='/static/img/shifter_human.svg')
-			= __('howto.skills.p3.f4')
 
-		p: a(href='#')= __('howto.backtotop')
+	a#totals
+	h3= __('howto.h11')
 
+	p= __('howto.totals')
 
-		a#totals
-		h3= __('howto.h11')
+	p: a(href='#')= __('howto.backtotop')
 
-		p= __('howto.totals')
 
-		p: a(href='#')= __('howto.backtotop')
+	a#stress
+	h3= __('howto.h12')
 
+	p= __('howto.stress.p1')
 
-		a#stress
-		h3= __('howto.h12')
+	.imgcontainer
+		img(src='/static/img/tutorial/stress_normal.png')
+		img(src='/static/img/tutorial/stress_edit.png')
 
-		p= __('howto.stress.p1')
+	p= __('howto.stress.p2')
 
-		.imgcontainer
-			img(src='/static/img/tutorial/stress_normal.png')
-			img(src='/static/img/tutorial/stress_edit.png')
+	p= __('howto.stress.p3.f1')
+		img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+		= __('howto.stress.p3.f2')
+		img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+		= __('howto.stress.p3.f3')
 
-		p= __('howto.stress.p2')
+	p: a(href='#')= __('howto.backtotop')
 
-		p= __('howto.stress.p3.f1')
-			img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
-			= __('howto.stress.p3.f2')
-			img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
-			= __('howto.stress.p3.f3')
 
-		p: a(href='#')= __('howto.backtotop')
+	a#consequences
+	h3= __('howto.h13')
 
+	p= __('howto.conseq.p1')
 
-		a#consequences
-		h3= __('howto.h13')
+	p= __('howto.conseq.p2')
 
-		p= __('howto.conseq.p1')
+	p: a(href='#')= __('howto.backtotop')
 
-		p= __('howto.conseq.p2')
 
-		p: a(href='#')= __('howto.backtotop')
+	a#powers
+	h3= __('howto.h14')
 
+	p= __('howto.powers.p1')
 
-		a#powers
-		h3= __('howto.h14')
+	p= __('howto.powers.p2')
 
-		p= __('howto.powers.p1')
+	p: a(href='#')= __('howto.backtotop')
 
-		p= __('howto.powers.p2')
 
-		p: a(href='#')= __('howto.backtotop')
+	a#notes
+	h3= __('howto.h15')
 
+	p= __('howto.notes.f1')
+		a(href='#markdown')= __('howto.notes.f2')
+		= __('howto.notes.f3')
 
-		a#notes
-		h3= __('howto.h15')
-
-		p= __('howto.notes.f1')
-			a(href='#markdown')= __('howto.notes.f2')
-			= __('howto.notes.f3')
-
-		p: a(href='#')= __('howto.backtotop')
+	p: a(href='#')= __('howto.backtotop')
 

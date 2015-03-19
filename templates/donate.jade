@@ -1,45 +1,44 @@
-extends index
+extends theme
 
 block title
 	title= __('donate.pagetitle') + ' | ToonStore.net'
 	meta(name='description', content='#{__("donate.meta_description")}')
 
-block content
+block article_header
 
-	.content-block
-		h1= __('donate.pagetitle')
+	h1= __('donate.pagetitle')
 
-		.normalbox
+block article_body
 
-			p= __('donate.plea')
+	p= __('donate.plea')
 
-			h2= __('donate.how.header')
+	h2= __('donate.how.header')
 
-			p= __('donate.how.p1')
+	p= __('donate.how.p1')
 
-			.imgcontainer
-				.iframecontainer(style='width:560px;')
-					iframe(width="560", height="315", src="//www.youtube.com/embed/Um63OQz3bjo", frameborder="0", allowfullscreen)
+	.imgcontainer
+		.iframecontainer(style='width:560px;')
+			iframe(width="560", height="315", src="//www.youtube.com/embed/Um63OQz3bjo", frameborder="0", allowfullscreen)
 
-			p= __('donate.how.p2')
+	p= __('donate.how.p2')
 
-			p= __('donate.how.p3.f1')
-				a(href='//circle.com') Circle.com
-				= __('donate.how.p3.f2')
-				a(href='//coinbase.com') Coinbase.com
-				= __('donate.how.p3.f3')
+	p= __('donate.how.p3.f1')
+		a(href='//circle.com') Circle.com
+		= __('donate.how.p3.f2')
+		a(href='//coinbase.com') Coinbase.com
+		= __('donate.how.p3.f3')
 
 
-			h2= __('donate.where.header')
+	h2= __('donate.where.header')
 
-			p= __('donate.where.p1')
+	p= __('donate.where.p1')
 
-			div(style='display:flex; flex-direction:column; align-items:center;')
-				if logged_user
-					img(src='/site/donate/donation_qr.png?user=#{logged_user}')
-					a(href='bitcoin:#{donation_address}?message=Thanks%20from%20#{logged_user}', style='font-family:monospace;')= donation_address
-				else
-					img(src='/site/donate/donation_qr.png')
-					a(href='bitcoin:#{donation_address}', style='font-family:monospace;')= donation_address
+	div(style='display:flex; flex-direction:column; align-items:center;')
+		if logged_user
+			img(src='/site/donate/donation_qr.png?user=#{logged_user}')
+			a(href='bitcoin:#{donation_address}?message=Thanks%20from%20#{logged_user}', style='font-family:monospace;')= donation_address
+		else
+			img(src='/site/donate/donation_qr.png')
+			a(href='bitcoin:#{donation_address}', style='font-family:monospace;')= donation_address
 
-			p= __('donate.where.p2')
+	p= __('donate.where.p2')

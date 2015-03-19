@@ -1,4 +1,6 @@
 {
+	"language": "Português (Brasil)",
+
 	"nav":
 	{
 		"about": "Sobre Nós",
@@ -14,6 +16,11 @@
 			"prompt": "Esta página está disponível em sua língua nativa (%s). Você quer usar esta versão?",
 			"accept": "Vamos lá",
 			"reject": "Deixa quieto"
+		},
+		"flexbox_unsupported": {
+			"f1": "Este site não ",
+			"f2": "é compatível com o seu",
+			"f3": " browser. Se estiver experimentando algum tipo de problema, tente atualizar o seu browser, ou utilize o Chrome."
 		}
 	},
 
@@ -24,7 +31,12 @@
 		"password": "Senha",
 		"forgot": "Esqueci a senha",
 		"register": "Registre-se",
-		"submit": "Login"
+		"submit": "Login",
+
+		"clientStrings": {
+			"verify_fail": "Não foi possível verificar as credenciais do usuário",
+			"generic_fail": "Ocorreu um erro não identificado durante o processo"
+		}
 	},
 
 	"register":
@@ -99,8 +111,8 @@
 
 	"activate-email":
 	{
-		"subject_reg": "Set your password",
-		"subject_noreg": "Reset your password",
+		"subject_reg": "Digite sua senha",
+		"subject_noreg": "Resete sua senha",
 		"greeting_user": "Olá %s!",
 		"greeting_nouser": "Olá!",
 		"intro_reg": "Obrigado por usar a Toonstore! Clique no link abaixo para começar:",
@@ -194,7 +206,7 @@
 	"user":
 	{
 		"pagetitle": "Ficha de %s",
-		"meta_description": "%s's character archive, powered by the ToonStore, the cloud-based Fate character toolkit.",
+		"meta_description": "Arquivo de %s, patrocinado pela Toonstore",
 
 		"newtoon": "Crie um novo personagem",
 		"sorting": {
@@ -207,11 +219,11 @@
 		"notoons": {
 			"p1": "Você não tem personagens.",
 			"p2": {
-				"f1": "Since you're new here, why not check out the ",
-				"f2": "Beginner's Guide",
+				"f1": "Já que você é novo aqui, que tal checar o ",
+				"f2": "Guia do Iniciante",
 				"f3": "?"
 			},
-			"public": "This user lacks character (badum-ching!)"
+			"public": "Tem ninguém aqui, não!"
 		},
 		"controls": {
 			"duplicate": "Duplicar",
@@ -226,21 +238,21 @@
 
 	"charsheet":
 	{
-		"meta_description": "{{name}}, {{hc}}, powered by ToonStore",
-		"backseat": "This page is currently in back-seat mode. You can make local edits to the character sheet, but will not be able to save. Your changes will be lost once you refresh the page, and are not visible to other viewers of the character.",
+		"meta_description": "{{name}}, {{hc}}, patrocinado pela ToonStore",
+		"backseat": "Esta página está no modo secundário. Você pode fazer edições na ficha, mas estas não serão salvas. Suas mudanças serão perdidas assim que atualizar ou deixar a página e mais ninguém poderá vê-las.",
 		
 		"headers": {
 			"panels": "Painéis",
 			"printable": "Imprimível",
 			"optionals": "Painéis Opicionais",
 			"notes": "Notas",
-			"shapeshifter": "Shapeshifter",
+			"shapeshifter": "Metamorfo",
 			"aspects": "Aspectos",
 			"skills": "Perícias",
 			"stress": "Estresse",
 			"conseq": "Consequências",
 			"totals": "Totais",
-			"powers": "Manobras & Poderes",
+			"powers": "Proezas & Poderes",
 			"help": "Ajuda",
 			"save": "Salvar"
 		},
@@ -266,49 +278,49 @@
 		},
 
 		"description": "Descrição",
-		"unused": "Unused",
+		"unused": "Não usado",
 
 		"armor": {
 			"f1": "Armadura: ",
 			"f2": " vs. "
 		},
 		"skillhelper": {
-			"f1": "Drag skills to rearrange",
-			"f2": "Drop on +0 to remove"
+			"f1": "Arraste Perícias para rearanjar",
+			"f2": "Arraste para o +0 para remover"
 		},
-		"conseqType": {
-			"type": "Tipo",
-			"mild": "Leve (-2)",
-			"moderate": "Moderado (-4)",
-			"severe": "Severo (-6)",
-			"extreme": "Extremo (-8)"
-		},
-
-		"markdown": "Raw text is styled with Markdown.",
-		"primer": "A Brief Primer",
+		"markdown": "Texto normal é estilizado com Markdown.",
+		"primer": "Um Breve Exemplo",
 
 		"clientStrings":
 		{
-			"invalidSkills": "INVALID, %s available",
-			"validSkills": "Valid, %s available",
+			"invalidSkills": "INVÁLIDO, %s disponível",
+			"validSkills": "Válido, %s disponível",
 			"powerLevels": {
-				"feet": "Feet In The Water",
-				"waist": "Up To Your Waist",
-				"chest": "Chest-Deep",
-				"submerged": "Submerged"
+				"feet": "Molhando o pé",
+				"waist": "Na cinturinha",
+				"chest": "Até o peito",
+				"submerged": "Submerso"
 			},
 			"stress": "Estresse",
 			"skill": "Perícia",
 			"newPower": "Novo Poder",
 			"genericConseq": "Qualquer",
+			"conseqType": {
+				"type": "Tipo",
+				"mild": "Leve (-2)",
+				"moderate": "Moderado (-4)",
+				"severe": "Severo (-6)",
+				"extreme": "Extremo (-8)"
+			},
 
-			"unsavedWarning": "This character has unsaved changes. If you leave this page, these changes will be lost.",
+
+			"unsavedWarning": "Este personagem ainda não foi salvo. Se você atualizar ou deixar esta página as mudanças serão perdidas.",
 			"skillLadder": [
 				"Medíocre (+0)",
-				"Average (+1)",
-				"Fair (+2)",
-				"Good (+3)",
-				"Great (+4)",
+				"Médio (+1)",
+				"Razoável (+2)",
+				"Bom (+3)",
+				"Ótimo (+4)",
 				"Soberbo (+5)",
 				"Fantástico (+6)",
 				"Épico (+7)",
@@ -319,7 +331,7 @@
 
 	"index":
 	{
-		"pagetitle": "Online Dresden Files RPG Character Hosting",
+		"pagetitle": "Hospedagem Online de Fichas Dresden Files RPG",
 		"meta_description": "Crie, modifique e compartilhe fichas de Dresden Files RPG e Fate na nuvem, com modelos responsivos, na Toonstore.",
 		"banner": {
 			"subtitle": "+2 em rolagens de organização"
@@ -341,93 +353,95 @@
 
 	"about":
 	{
-		"pagetitle": "About ToonStore",
-		"meta_description": "Learn about ToonStore, the cloud-based Fate character toolkit.",
+		"pagetitle": "Sobre a ToonStore",
+		"meta_description": "Saiba mais sobre a ToonStore, o kit de ferramentas de personagem na nuvem para Fate.",
 
-		"h1": "What is the ToonStore?",
-		"p1": "ToonStore is a place where Dresden Files RPG roleplayers can store their character sheets without having to worry about losing them, or destroying them, or leaving them behind. You can create your characters right from our easy-to-use HTML interface, edit them right at the table, and share links with your friends and/or GM via whatever medium you like.",
+		"h1": "O que é a ToonStore?",
+		"p1": "Toonstore é um site onde jogadores de Desden Files RPG ppodem armazenar suas fichas de personagem sem precisar se preocupar em perde-las, destrui-las ou esquecendo-as em casa antes de ir pro jogo. É muito fácil de criar seu personagem com a interface HTML, editando-as rapidamente enquanto joga e compartilhando-as com seu mestre e amigos via link.",
 
-		"h2": "How did ToonStore come to be?",
-		"p2": "In the beginning, it was simply an effort to make a better version of the fillable character sheet PDF already available. As time went on though, it slowly grew in scope and complexity to encompass character hosting as well. It was originally just for my group's benefit, but since it is no more difficult to make it publicly available, I opened it up to the public. The rest, as they say, is history.",
+		"h2": "Como a Toonstore foi criada?",
+		"p2": "No começo era simplesmente uma tentativa de fazer uma versão mais interessante que um PDF editável. Conforme o tempo passava, nós percebemos que tudo estava ficando mais complexo. Originamente a ideia era usar apenas para o meu grupo, mas então decidimos abrir para o público. O resto é história.",
 
-		"h3": "Who is Derogatory Studios?",
+		"h3": "Quem é Derogatory Studios?",
 		"p3": {
-			"f1": "Primarily it is just me, Steven Vergenz, advised by the other members of my gaming group. I don't have a ton of time to work on this project though, so if you want to work on a feature for your own group, feel free to fork this project on ",
-			"f2": "Github",
-			"f3": " for your own needs. If you do so though, I would appreciate it if you would contribute your new features back to the original ToonStore project once you're done."
+			"f1": "No início era apenas eu, Steven Vergenz, sendo aconselhado pelos outros membros do meu grupo de jogo. Eu não tenho muito tempo para trabalhar neste projeto, então se quiser criar algo para o seu grupo sinta-se livre para \"forkear\" este projeto no ",
+			"f2": "Github.",
+			"f3": " Caso o faça, apreciaríamos muito se você contribuísse com o novo recurso para a Toonstore original."
 		},
 
-		"h4": "Additional Credits",
-		"p4": {
-			"f1": "Thanks to Thecosmicgoose (",
-			"f2": "deviantart",
-			"f3": ") for his lovely artwork on the DFRPG character templates, and to Robert \"Jabberwocky\" Skopek and Lucas \"Atmo\" Leonardo for the Czech and Portuguese translations of the ToonStore."
+		"h4": "Créditos adicionais",
+		"p4": "Gostaria de agradecer as seguintes pessoas por suas contribuições à Toonstore:",
+		"credits": {
+			"thecosmicgoose": "Pela sua incrível arte para os modelos de ficha DFRPG",
+			"jabberwocky": "Pela tradução em Tcheco da Toonstore (em andamento)",
+			"atmo": "Pela tradução em Português da Toonstore (em andamento)",
+			"solarbear": "ForPela tradução em Frânces da Toonstore (em andamento)"
 		}
 	},
 
 	"contact":
 	{
-		"pagetitle": "Contact Us",
-		"meta_description": "How to contact the developers and maintainers of the ToonStore.",
+		"pagetitle": "Contato",
+		"meta_description": "Como entrar em contato com os desenvolvedores e mantenedores da ToonStore.",
 
-		"h1": "Questions? Comments? Suggestions?",
-		"p1": "We're easy to get a hold of! You have a couple options:",
+		"h1": "Perguntas? Comentários? Sugestões?",
+		"p1": "É fácil! Aqui estão as opções:",
 
 		"h2": "Github",
 		"p2": {
-			"f1": "The ",
-			"f2": "source code",
-			"f3": " for this site is all publicly available under the Apache 2.0 License, so you're welcome to start your own Toonstore for your group if you want to."
+			"f1": "O ",
+			"f2": "código fonte",
+			"f3": " para este site está disponível ao público sob a Apache 2.0 License, caso você queira uma Toonstore para o seu próprio grupo."
 		},
 		"p3": {
-			"f1": "We also use Github for bug reporting and feature requests. If you find a flaw in the site, or have an idea for a killer new feature, let us know! Submit an ",
-			"f2": "issue report",
-			"f3": " and we'll get right on it!"
+			"f1": "Também usamos o Github para reportar bugs e pedidos de recursos novos. Se achar algum erro no site, ou se tem uma ideia para um recurso legal, não fique calado! ",
+			"f2": "Mande um relatório de problema (issue report)",
+			"f3": " e cuidaremos disto na mesma hora!"
 		},
 
-		"h3": "Google+ Group",
+		"h3": "Grupo Google+",
 		"p4": {
-			"f1": "Join the devs and other ToonStore users on our ",
-			"f2": "Google+ group",
-			"f3": " to discuss the latest updates to the site, RPGs, characters, or anything else! We'd love to have your feedback!"
+			"f1": "Junte-se ao grupo do Google+ para debater sobre as novas atualizações do site, ",
+			"f2": "RPG, personagens",
+			"f3": " e qualquer outra coisa! Os desenvolvedores também estão por lá!"
 		},
 
 		"h4": "Email",
 		"p5": {
-			"f1": "If you want to contact us directly, you can email us at ",
+			"f1": "Se quiser entrar em contato direto, nos envie um email ",
 			"f2": "."
 		}
 	},
 
 	"donate":
 	{
-		"pagetitle": "Donate",
-		"meta_description": "How to donate to the maintenance and development of the ToonStore",
+		"pagetitle": "Doações",
+		"meta_description": "Como doar para a manutenção e desenvolvimento da ToonStore",
 
-		"plea": "The ToonStore is, and always will be, a free service for fellow lovers of the art of roleplaying. That doesn't mean that it's free for everyone. In fact, the ToonStore costs about $250 USD a year to maintain in hosting and name registration costs, which is nothing to sneeze at. Any and all contributions are welcome to help defray the costs of running this site.",
+		"plea": "A ToonStore é, e sempre será, um serviço gratuito para todos os amantes da arte da interpretação. Isso não significa que será livre para todos. Na verdade, a Toonstore custa por volta de 250 dólares por ano para manter o host e o registro de nome, e esse valor não é um problema para nós. Toda e qualquer contribuição é bem vinda e ajudará a manter a Toonstore viva e atualizada.",
 		
 		"how": {
-			"header": "How to Donate",
-			"p1": "To avoid unnecessary fees, paperwork, currency conversions, international transactions, etc., I have decided to accept Bitcoin instead of a more traditional donation system. How does it work? I'm glad you asked!",
-			"p2": "Basically, you can send money over the internet as if it were cash; no middlemen, no checks, no delays, and no private information (like a credit card number) changing hands.",
+			"header": "Como Doar",
+			"p1": "Para evitar taxas desnecessárias, papelada, mudanças de câmbio, transações internacionais, etc, eu resolvi aceitar o Bitcoin em vez do sistema tradicional. Como funciona, você pergunta?",
+			"p2": "Basicamente, você envia dinheiro pela internet como se fosse uma transação informal; nada de terceiros, checagens, atrasos ou informações privadas (como o seu número de cartão de crédito).",
 			"p3": {
-				"f1": "You can change money for bitcoin at any of a number of exchanges. In the United States, I recommend ",
-				"f2": " or ",
+				"f1": "Você pode trocar dinheiro por bitcoin de várias formas. Nos Estados Unidos eu recomendo  ",
+				"f2": " ou ",
 				"f3": "."
 			}
 		},
 
 		"where":
 		{
-			"header": "Where to Donate",
-			"p1": "You can support the ToonStore by donating to the following Bitcoin address:",
-			"p2": "On behalf of the ToonStore community, thank you for helping keep ToonStore online and serving a new generation of roleplayers."
+			"header": "Por onde Doar",
+			"p1": "Você pode ajudar a Toonstore doando para o seguinte endereço Bitcoin:",
+			"p2": "Em nome da comunidade Toonstore, muito obrigado por manter este site online e servindo a toda uma geração de jogadores."
 		}
 	},
 
 	"terms":
 	{
-		"pagetitle": "Terms of Use",
+		"pagetitle": "Termos de Uso",
 		"meta_description": "The ToonStore terms of use",
 
 		"p1": "By using the ToonStore website, you agree to abide by the following terms and conditions:",

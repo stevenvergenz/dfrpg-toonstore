@@ -1,15 +1,15 @@
-extends ../index
+extends ../theme
 
 block title
 	title= toonName + ', ' + toonConcept + ' | ToonStore.net'
 	meta(name='description', content='#{__("charsheet.meta_description", {name:toonName, hc:toonConcept})}')
 
-block styles
+block css
 	link(rel='stylesheet', type='text/css', href='/static/scss/charsheet/base.css')
 	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous&subset=latin,latin-ext')
 	link(rel='stylesheet', type='text/css', href='/static/css/jquery-ui.min.css')
 
-block append includes
+block js
 	script(src='/static/js/jquery-ui.min.js')
 	script(src='/static/js/jquery.ui.touch-punch.min.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
@@ -22,33 +22,30 @@ block append includes
 	script(src='/static/js/char-controllers.js')
 	script.
 		overrideUserRedirect = true;
-		$(document).ready(function(){
-			$('#charnav.navbar ul.navmenu').menu({position: {collision: 'flipfit'}});
-		});
 
-block append header
+block navigation
 	include ./navbar
 	
 block content
 
 	if logged_user != owner
-		.content-block: .warning.
+		aside.content-block.warning.
 			This page is currently in back-seat mode. You can make local edits to the character sheet, but will not be able to save.
 			Your changes will be lost once you refresh the page, and are not visible to other viewers of the character.
 
-	.sheet-panel-group
-		include ./general
-		include ./aspects
+	.content-block
+		.sheet-panel-group
+			include ./general
+			include ./aspects	
 		
+		.sheet-panel-group
+			include ./skills
+			include ./totals
 		
-	.sheet-panel-group
-		include ./skills
-		include ./totals
-		
-	.sheet-panel-group
-		include ./stress
-		include ./consequences
+		.sheet-panel-group
+			include ./stress
+			include ./consequences
 	
-	.sheet-panel-group
-		include ./powers
-		include ./notes
+		.sheet-panel-group
+			include ./powers
+			include ./notes

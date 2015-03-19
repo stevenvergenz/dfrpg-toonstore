@@ -1,112 +1,105 @@
 @import 'polyfill';
 
-header, footer {
-	width: 100%;
-}
+$nav-padding: 12px;
 
-.navbar
+nav
 {
-	color: white;
-	width: 100%;
 	padding: 15px 0;
 	font-family: 'Denk One', sans-serif;
-	border-bottom: solid grey 1px;
+	text-align: center;
 
 	@include display-flex();
-	@include flex-direction(row);
 	@include align-items(center);
-	@include justify-content(space-between);
 
-	.itemgroup
+	header &
 	{
+		@include justify-content(space-between);
+		border-bottom: solid grey 1px;
+	}
+
+	footer &
+	{
+		@include justify-content(center);
+		border-top: solid grey 1px;
+	}
+
+	a, input.fakelink
+	{
+		color: white;
+	}
+
+	& > ul
+	{
+		list-style: none;
+		margin: 0;
+		padding: 0;
+
 		@include display-flex();
-		@include flex-direction(row);
-	}
 
-	.navitem
-	{
-		padding-left: 12px;
-		padding-right: 12px;
-		text-align: center;
+		& > li
+		{
+			padding: 0 $nav-padding;
+		}
 	}
 }
 
-.footer
+
+.langselectmenu
 {
-	font-family: 'Denk One', sans-serif;
-	margin-top: 15px;
-	padding: 15px 0;
-	border-top: solid grey 1px;
-	width: 100%;
+	position: relative;
 
-	@include display-flex();
-	@include flex-direction(row);
-	@include align-items(center);
-	@include justify-content(center);
-	@include flex-wrap(wrap);
-
-	$nav-padding: 12px;
-	& > *
-	{
-		padding: 0 $nav-padding;
+	&.active {
+		ul.langselect {
+			display: block;
+		}
+		.langselecticon {
+			visibility: hidden;
+		}
 	}
 
-	.langselectmenu
+	.icon {
+		width: 20px;
+	}
+
+	.langselecticon {
+		@extend .icon;
+		cursor: pointer;
+	}
+
+	ul.langselect
 	{
-		position: relative;
+		list-style: none;
+		margin: 0;
+		display: none;
 
-		&.active {
-			ul.langselect {
-				display: block;
-			}
-			.langselecticon {
-				visibility: hidden;
-			}
-		}
+		$menu-padding: 3px;
+		$border-width: 1px;
+		padding: $menu-padding;
+		background-color: #d8e0ff;
+		border: solid #cacaca $border-width;
+		border-radius: 3px;
 
-		.icon {
-			width: 20px;
-		}
+		position: absolute;
+		bottom: -$menu-padding - 1;
+		right: $nav-padding - $menu-padding - $border-width - 1;
 
-		.langselecticon {
-			@extend .icon;
+		.active {
 			cursor: pointer;
 		}
 
-		ul.langselect
-		{
-			list-style: none;
-			margin: 0;
-			display: none;
+		.icon {
+			border: solid white 1px;
+		}
 
-			$menu-padding: 3px;
-			$border-width: 1px;
-			padding: $menu-padding;
-			background-color: #d8e0ff;
-			border: solid #cacaca $border-width;
-			border-radius: 3px;
-
-			position: absolute;
-			bottom: -$menu-padding - 1;
-			right: $nav-padding - $menu-padding - $border-width - 1;
-
-			.active {
-				cursor: pointer;
+		li {
+			margin: 5px 0;
+			&:first-child {
+				margin-top: 0;
 			}
-
-			.icon {
-				border: solid white 1px;
-			}
-
-			li {
-				margin: 5px 0;
-				&:first-child {
-					margin-top: 0;
-				}
-				&:last-child {
-					margin-bottom: 0;
-				}	
-			}
+			&:last-child {
+				margin-bottom: 0;
+			}	
 		}
 	}
 }
+

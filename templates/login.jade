@@ -1,14 +1,17 @@
-extends index
+extends theme
 
 block title
 	title= __('nav.login') + ' | ToonStore.net'
 	meta(name='description', content='#{__("login.meta_description")}')
 
+block js
+	script!= 'var clientStrings = ' + JSON.stringify(__('login.clientStrings')) + ';'
+
 block content
 
-	.content-block: #login-box.formbox
+	#login-box.content-block.formbox
 		.title: span= __('nav.login')
-		form(action='/login', method='post')
+		form(method='post')
 
 			.field
 				label(for='email')= __('login.email')

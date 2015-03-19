@@ -1,67 +1,67 @@
-extends index
+extends theme
 
 block title
 	title= __('privacy.pagetitle') + ' | ToonStore.net'
 	meta(name='description', content='#{__("privacy.meta_description")}')
 
-block content
+block article_header
 
 	h1= __('privacy.pagetitle')
 
-	.content-block: .normalbox
+block article_body
 
-		h3= __('privacy.gist.title')
-		ul
-			li= __('privacy.gist.p1')
-			li= __('privacy.gist.p2')
-			li= __('privacy.gist.p3')
-			li= __('privacy.gist.p4')
+	h3= __('privacy.gist.title')
+	ul
+		li= __('privacy.gist.p1')
+		li= __('privacy.gist.p2')
+		li= __('privacy.gist.p3')
+		li= __('privacy.gist.p4')
 
-		p= __('privacy.gist.p5.f1')
-			a(href=url('/site/contact'))= __('privacy.gist.p5.f2')
-			= __('privacy.gist.p5.f3')
+	p= __('privacy.gist.p5.f1')
+		a(href=url('/site/contact'))= __('privacy.gist.p5.f2')
+		= __('privacy.gist.p5.f3')
 			
-		h3= __('privacy.visitors.title')
-		p= __('privacy.visitors.p1')
-		p= __('privacy.visitors.p2')
+	h3= __('privacy.visitors.title')
+	p= __('privacy.visitors.p1')
+	p= __('privacy.visitors.p2')
 
-		h3= __('privacy.pii.title')
-		p= __('privacy.pii.p1')
+	h3= __('privacy.pii.title')
+	p= __('privacy.pii.p1')
 
-		h3= __('privacy.aggregate.title')
-		p= __('privacy.aggregate.p1')
+	h3= __('privacy.aggregate.title')
+	p= __('privacy.aggregate.p1')
 
-		h3= __('privacy.protection.title')
-		p= __('privacy.protection.p1')
-		p= __('privacy.protection.p2')
-		p= __('privacy.protection.p3')
+	h3= __('privacy.protection.title')
+	p= __('privacy.protection.p1')
+	p= __('privacy.protection.p2')
+	p= __('privacy.protection.p3')
 
-		h3= __('privacy.cookies.title')
-		p= __('privacy.cookies.p1')
+	h3= __('privacy.cookies.title')
+	p= __('privacy.cookies.p1')
 
-		h3= __('privacy.transfers.title')
-		p= __('privacy.transfers.p1')
+	h3= __('privacy.transfers.title')
+	p= __('privacy.transfers.p1')
 
-		h3= __('privacy.ads.title')
-		p= __('privacy.ads.p1')
+	h3= __('privacy.ads.title')
+	p= __('privacy.ads.p1')
 
-		h3= __('privacy.content.title')
-		p= __('privacy.content.p1')
+	h3= __('privacy.content.title')
+	p= __('privacy.content.p1')
 
-		h3= __('privacy.changes.title')
-		p= __('privacy.changes.p1')
+	h3= __('privacy.changes.title')
+	p= __('privacy.changes.p1')
 
-		h3= __('privacy.changelog.title')
-		ul
-			li
-				strong= formatDate('2014-04-07')
-				= ': '+__('privacy.changelog.p2')
-			li
-				strong= formatDate('2013-08-29')
-				= ': '+__('privacy.changelog.p1')
+	h3= __('privacy.changelog.title')
+	ul
+		li
+			strong= formatDate('2014-04-07')
+			= ': '+__('privacy.changelog.p2')
+		li
+			strong= formatDate('2013-08-29')
+			= ': '+__('privacy.changelog.p1')
 
-		p= __('privacy.attribution.f1')
-			a(href='http://www.automattic.com', target='_blank') Automattic.com
-			= __('privacy.attribution.f2')
-			a(href='http://creativecommons.org/licenses/by-sa/2.5/', target='_blank')= __('privacy.attribution.f3')
-			= __('privacy.attribution.f4')
+	p= __('privacy.attribution.f1')
+		a(href='http://www.automattic.com', target='_blank') Automattic.com
+		= __('privacy.attribution.f2')
+		a(href='http://creativecommons.org/licenses/by-sa/2.5/', target='_blank')= __('privacy.attribution.f3')
+		= __('privacy.attribution.f4')
