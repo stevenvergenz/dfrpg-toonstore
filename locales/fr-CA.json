@@ -3,6 +3,7 @@
 
 	"nav":
 	{
+		"menu": "Menu",
 		"about": "À propos",
 		"contact": "Contactez-nous",
 		"logout": "Se déconnecter",

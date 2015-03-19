@@ -19,7 +19,7 @@
 		font-family: inherit;
 		font-size: 10pt;
 
-		@include desktop {
+		@include nonphone {
 			max-height: 750px;
 			overflow-y: auto;
 		}

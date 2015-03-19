@@ -19,8 +19,21 @@ nav
 
 	footer &
 	{
+		@include phone {
+			display: none;
+		}
+
 		@include justify-content(center);
 		border-top: solid grey 1px;
+	}
+
+	#hamburger
+	{
+		padding: 0 $nav-padding;
+
+		@include nonphone {
+			display: none;
+		}
 	}
 
 	a, input.fakelink
@@ -35,70 +48,45 @@ nav
 		padding: 0;
 
 		@include display-flex();
+		@include align-items(center);
 
 		& > li
 		{
 			padding: 0 $nav-padding;
 		}
-	}
-}
 
+		&.menu
+		{
+			@include phone
+			{
+				display: none;
+				position: absolute;
+				top: 51px;
+				left: 0;
 
-.langselectmenu
-{
-	position: relative;
+				padding: 5px 0;
 
-	&.active {
-		ul.langselect {
-			display: block;
-		}
-		.langselecticon {
-			visibility: hidden;
-		}
-	}
+				text-align: left;
+				background-color: #41568a;
+				border: solid grey 1px;
 
-	.icon {
-		width: 20px;
-	}
+				&.activemenu
+				{
+					display: block;
+				}
 
-	.langselecticon {
-		@extend .icon;
-		cursor: pointer;
-	}
-
-	ul.langselect
-	{
-		list-style: none;
-		margin: 0;
-		display: none;
-
-		$menu-padding: 3px;
-		$border-width: 1px;
-		padding: $menu-padding;
-		background-color: #d8e0ff;
-		border: solid #cacaca $border-width;
-		border-radius: 3px;
-
-		position: absolute;
-		bottom: -$menu-padding - 1;
-		right: $nav-padding - $menu-padding - $border-width - 1;
-
-		.active {
-			cursor: pointer;
-		}
-
-		.icon {
-			border: solid white 1px;
-		}
-
-		li {
-			margin: 5px 0;
-			&:first-child {
-				margin-top: 0;
+				& > li
+				{
+					padding: 5px 10px;
+				}
 			}
-			&:last-child {
-				margin-bottom: 0;
-			}	
+
+			.menuonly
+			{
+				@include nonphone {
+					display: none;
+				}
+			}
 		}
 	}
 }
