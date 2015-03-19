@@ -1,123 +1,34 @@
-doctype html
-html
-	head
-		meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
-		meta(http-equiv='Content-Type', content='text/html; charset=UTF-8')
-		meta(name='robots', content='INDEX, FOLLOW')
+extends theme
 
-		script.
-			function setLangCookie(native){
-				if(native){
-					document.cookie = '#{i18n.config.cookie}=#{i18n.nativeLocale}; max-age=31536e3; path=/';
-					return true;
-				}
-				else {
-					document.cookie = '#{i18n.config.cookie}=#{i18n.selectedLocale}; max-age=31536e3; path=/';
-					window.location.reload(true);
-					return false;
-				}
-			}
+block title
+	title= __('index.pagetitle')+' | ToonStore.net'
+	meta(name='description', content='#{__("index.meta_description")}')
 
-		block title
-			title= __('index.pagetitle')+' | ToonStore.net'
-			meta(name='description', content='#{__("index.meta_description")}')
+block append css
+	link(rel='stylesheet', type='text/css', href='/static/scss/index.css')
 
-		link(rel='icon', type='image/png', href='/static/img/pentacle-simple.png')
-		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Pathway+Gothic+One')
-		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Denk+One&subset=latin,latin-ext')
-		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Armata&subset=latin,latin-ext')
-		block styles
-			link(rel='stylesheet', type='text/css', href='/static/scss/dialog.css')
-			link(rel='stylesheet', type='text/css', href='/static/scss/index.css')
+block article_header
+	h1 ToonStore
+	h2= __('index.banner.subtitle') 
 
-		block includes
-			script(src='/static/js/modernizr.custom.07098.js')
-			script(src='https://login.persona.org/include.js')
-			//script(src='https://apis.google.com/js/client:platform.js', async, defer)
-			script(src='/static/js/jquery-1.10.1.js')
-			script(src='/static/js/ie-fail.js')
+block article_body
 
-			script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email, persona_user: persona_user}) + ';'
-			script!= 'var localeInfo = ' + JSON.stringify({pathLocale: i18n.pathLocale}) + ';'
-			script(src='/static/js/login.js')
-			script(src='/static/js/langselect.js')
+	p= __('index.p1')
+	p= __('index.p2')
+	p= __('index.p3')
+	p= __('index.p4')
 
-	body
-		if page == '/'
-			a(style="z-index: 1;", href="https://github.com/stevenvergenz/dfrpg-toonstore")
-				img(style="position: absolute; top: 0; left: 0; border: 0; z-index: 1;",
-					src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png",
-					alt="Fork me on GitHub")
+	p= __('index.p5.f1')
+		a(href=url('/login'))= __('index.p5.f2')
+		= __('index.p5.f3')
+		a(href='https://login.persona.org/', target='_blank')= __('index.p5.f4')
+		= __('index.p5.f5')
+		a(href='https://toonstore.net/Derogatory/lifeson/')= __('index.p5.f6')
+		= __('index.p5.f7')
 
-		.wrapper
+block github
+	a(style="z-index: 1;", href="https://github.com/stevenvergenz/dfrpg-toonstore")
+		img(style="position: absolute; top: 0; left: 0; border: 0; z-index: 1;",
+			src="https://s3.amazonaws.com/github/ribbons/forkme_left_gray_6d6d6d.png",
+			alt="Fork me on GitHub")
 
-			header
-
-				block header
-
-					nav.navbar
-						.itemgroup
-							.navitem: a(href=url('/')) Toon&#8203;Store
-							//-.navitem Forum
-							.navitem: a(href=url('/site/about'))= __('nav.about')
-							.navitem: a(href=url('/site/contact'))= __('nav.contact')
-						.itemgroup
-							if logged_user_email
-								.navitem: a(href=url('/'+logged_user))= logged_user
-								.navitem: a(href='javascript:;', onclick='logout()')= __('nav.logout')
-							else
-								.navitem: a(href=url('/register'))= __('nav.register')
-								.navitem: a(href=url('/login'))= __('nav.login')
-
-			.content
-
-				if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
-					.content-block
-						#lang-message.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
-							br
-							a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
-							|  <> 
-							a(href='javascript:;', onclick='return setLangCookie(false);')= n__('nav.lang_dialog.reject')
-
-				if message
-					.content-block
-						#page-message(class=message.type)= message.content
-					
-				block content
-
-					.content-block
-						.banner
-							h1 ToonStore
-							h2= __('index.banner.subtitle') 
-
-					.content-block: .normalbox
-						p= __('index.p1')
-						p= __('index.p2')
-						p= __('index.p3')
-						p= __('index.p4')
-
-						p= __('index.p5.f1')
-							a(href=url('/login'))= __('index.p5.f2')
-							= __('index.p5.f3')
-							a(href='https://login.persona.org/', target='_blank')= __('index.p5.f4')
-							= __('index.p5.f5')
-							a(href='https://toonstore.net/Derogatory/lifeson/')= __('index.p5.f6')
-							= __('index.p5.f7')
-
-			footer
-				block footer
-					nav.footer
-						span: a(href=url('/site/terms'))= __('nav.terms')
-						span: a(href=url('/site/privacy'))= __('nav.privacy')
-						span: a(href=url('/site/donate'))= __('nav.donate')
-						.langselectmenu
-							= __('nav.language')
-							img.langselecticon(src='/static/img/flags/#{i18n.selectedLocale}.png')
-
-							ul.langselect
-								- for( var i=0; i<i18n.config.locales.length; i++ )
-									unless i18n.config.locales[i] === i18n.selectedLocale
-										li: a(href=getNativeURL(i18n.config.locales[i]), hreflang=i18n.config.locales[i])
-											img.icon(src='/static/img/flags/#{i18n.config.locales[i]}.png')
-								li.active
-									img.icon(src='/static/img/flags/#{i18n.selectedLocale}.png')

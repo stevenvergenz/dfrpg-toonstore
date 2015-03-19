@@ -180,7 +180,7 @@ function newCharacterRequest(req,res)
 			'is_shifter': false
 		},
 		'powers': [],
-		'notes': {'text':'','enabled':false}
+		'notes': {'text':''}
 	};
 
 	global.log('Attempting character creation');

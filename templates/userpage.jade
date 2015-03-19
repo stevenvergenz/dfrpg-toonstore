@@ -1,13 +1,13 @@
-extends index
+extends theme
 
 block title
 	title= owner + ' | ToonStore.net'
 	meta(name='description', content=__('user.meta_description', owner))
 	
-block styles
+block append css
 	link(rel='stylesheet', href='/static/scss/userpage.css')
 
-block append includes
+block js
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
 	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-cookies.js')
@@ -19,6 +19,7 @@ block append includes
 block content
 
 	.content-block
+
 		h1= __('user.pagetitle', owner)
 
 		if logged_user == owner

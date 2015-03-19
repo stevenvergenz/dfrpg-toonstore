@@ -1,4 +1,6 @@
 {
+	"language": "Čeština (Česká republika)",
+
 	"nav":
 	{
 		"about": "O nás",
@@ -14,6 +16,11 @@
 			"prompt": "Tato stránka existuje v češtině. Chcete pracovat s českou versí?",
 			"accept": "Ano, chci.",
 			"reject": "Ne, nechci."
+		},
+		"flexbox_unsupported": {
+			"f1": "This site is ",
+			"f2": "not fully supported",
+			"f3": " by your browser. If you experience problems, try upgrading to the latest version of your browser, or switching to Chrome."
 		}
 	},
 
@@ -24,7 +31,12 @@
 		"password": "Password",
 		"forgot": "forgot password",
 		"register": "Register",
-		"submit": "Log in"
+		"submit": "Log in",
+
+		"clientStrings": {
+			"verify_fail": "Could not verify user credentials",
+			"generic_fail": "Unidentified error logging in"
+		}
 	},
 
 	"register":
@@ -276,14 +288,6 @@
 			"f1": "Drag skills to rearrange",
 			"f2": "Drop on +0 to remove"
 		},
-		"conseqType": {
-			"type": "Type",
-			"mild": "Mild (-2)",
-			"moderate": "Moderate (-4)",
-			"severe": "Severe (-6)",
-			"extreme": "Extreme (-8)"
-		},
-
 		"markdown": "Raw text is styled with Markdown.",
 		"primer": "A Brief Primer",
 
@@ -301,6 +305,14 @@
 			"skill": "Skill",
 			"newPower": "New Power",
 			"genericConseq": "Any",
+			"conseqType": {
+				"type": "Type",
+				"mild": "Mild (-2)",
+				"moderate": "Moderate (-4)",
+				"severe": "Severe (-6)",
+				"extreme": "Extreme (-8)"
+			},
+
 
 			"unsavedWarning": "This character has unsaved changes. If you leave this page, these changes will be lost.",
 			"skillLadder": [
@@ -358,10 +370,12 @@
 		},
 
 		"h4": "Additional Credits",
-		"p4": {
-			"f1": "Thanks to Thecosmicgoose (",
-			"f2": "deviantart",
-			"f3": ") for his lovely artwork on the DFRPG character templates, and to Robert \"Jabberwocky\" Skopek and Lucas \"Atmo\" Leonardo for the Czech and Portuguese translations of the ToonStore."
+		"p4": "I want to thank the following people for their contributions to the ToonStore:",
+		"credits": {
+			"thecosmicgoose": "For his lovely artwork on the DFRPG character templates",
+			"jabberwocky": "For the Czech translation of the ToonStore (ongoing)",
+			"atmo": "For the Portuguese translation of the ToonStore (ongoing)",
+			"solarbear": "For the French translation of the ToonStore (ongoing)"
 		}
 	},
 

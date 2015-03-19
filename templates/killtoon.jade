@@ -1,18 +1,15 @@
-extends index
+extends theme
 
 block title
 	title= __('killtoon.pagetitle')+ ' | ToonStore.net'
 
-block append includes
+block js
 
 	script!= 'var clientStrings = '+JSON.stringify(__('killtoon.clientStrings'))+';'
 	script.
 		function validate(){
 			if( $('label#confirm').text() != $('input#confirm').val() ){
-				if( $('div.error').length == 0 )
-					$('<div class="content-block"><div class="error"><p>'+clientStrings.error+'</p></div></div>').prependTo( $('.content') );
-				else
-					$('div.error>p').text(clientStrings.error);
+				$('#submitMessage').text(clientStrings.error);
 				return false;
 			}
 			else {
@@ -22,7 +19,7 @@ block append includes
 
 block content
 
-	.content-block: .formbox
+	.content-block.formbox
 		.title= __('killtoon.pagetitle')
 
 		form(method='post', onsubmit='return validate();')
@@ -36,3 +33,4 @@ block content
 
 			.field
 				input(type='submit', value='#{__("killtoon.submit")}')
+				span.caption#submitMessage

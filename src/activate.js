@@ -36,12 +36,12 @@ function passwordReset(req,res,next)
 	var connection = mysql.createConnection( config.database );
 	connection.query('DELETE FROM Tokens WHERE BINARY email = ?;', [req.body.email]);
 	connection.query(
-		'INSERT INTO Tokens SET email = ?, token = ?, expires = ADDTIME(NOW(), "00:15:00");',
+		'INSERT INTO Tokens SET email = (SELECT email FROM Users WHERE BINARY email = ?), token = ?, expires = ADDTIME(NOW(), "00:20:00");',
 		[req.body.email, token],
 		function(err,result)
 		{
 			if( err ){
-				global.error('Failed to register pass reset token.', err);
+				global.error('Failed to register pass reset token. No such email?', err);
 				global.renderPage('index', {code:500, message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 			}
 			else

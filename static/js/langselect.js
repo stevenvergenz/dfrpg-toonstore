@@ -3,7 +3,7 @@ var menu, ul, icon;
 
 $(function()
 {
-	menu = $('.footer .langselectmenu');
+	menu = $('.langselectmenu');
 	ul = $('.langselect', menu);
 	trigger = $('.langselecticon', menu);
 

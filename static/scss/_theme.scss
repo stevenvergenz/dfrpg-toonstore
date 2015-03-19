@@ -32,6 +32,10 @@ body {
 	@include flex-direction(column);
 	@include align-items(center);
 	-ms-flex: 0 1 950px;
+
+	header, footer {
+		width: 100%;
+	}
 }
 
 .content
@@ -50,7 +54,7 @@ body {
 
 a
 {
-	color: inherit;
+	color: blue;
 
 	&:link, &:visited {
 		text-decoration: none;
@@ -61,15 +65,21 @@ a
 	}
 }
 
-
+input.fakelink
+{
+	font: inherit;
+	background: inherit;
+	border: none;
+	cursor: pointer;
+	color: blue;
+}
 
 /*
  ****************************** Message bubbles ****************************
  */
 
-div.message
+aside.message
 {
-	margin: 0;
 	text-align: center;
 	border-radius: 5px;
 	border: solid grey 1px;
@@ -77,23 +87,23 @@ div.message
 	padding: 15px;
 }
 
-div.error
+aside.error
 {
-	@extend div.message;
+	@extend aside.message;
 	border-color: red;
 	background-color: pink;
 }
 
-div.warning
+aside.warning
 {
-	@extend div.message;
+	@extend aside.message;
 	border-color: gold;
 	background-color: beige;
 }
 
-div.info
+aside.info
 {
-	@extend div.message;
+	@extend aside.message;
 	border-color: blue;
 	background-color: lightcyan;
 }
@@ -104,9 +114,5 @@ div.info
 		font-size: 0.7em;
 		color: #555;
 		margin: 5px 0;
-	}
-
-	a {
-		color: blue;
 	}
 }

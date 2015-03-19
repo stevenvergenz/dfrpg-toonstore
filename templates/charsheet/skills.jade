@@ -7,6 +7,9 @@
 			| )
 		input.iconButton(type='image', ng-click='editing=!editing', src='/static/img/glyphicons/glyphicons_150_edit.png')
 
+	label(ng-show='editing') Shapeshifter
+		input(type='checkbox', ng-model='data.skills.is_shifter')
+
 	p(ng-show='editing')
 		= __('charsheet.skillhelper.f1')
 		br
