@@ -101,17 +101,19 @@ function detectCookieLocale(cookie)
 {
 	cookie = cookie ? cookie.toUpperCase() : null;
 
-	for(var i=0; i<config.locales.length; i++)
-	{
-		if( config.locales[i].toUpperCase() === cookie ){
-			return config.locales[i];
-		}
-		else if( /(\w{2})-/.exec(config.locales[i])[1].toUpperCase() === cookie ){
-			return config.locales[i];
+	if( cookie ){
+		for(var i=0; i<config.locales.length; i++)
+		{
+			if( config.locales[i].toUpperCase() === cookie ){
+				return config.locales[i];
+			}
+			else if( /(\w{2})-/.exec(config.locales[i])[1].toUpperCase() === cookie ){
+				return config.locales[i];
+			}
 		}
 	}
-
-	return null;
+	else
+		return null;
 }
 
 function detectHeaderLocale(header)
