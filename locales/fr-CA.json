@@ -18,9 +18,9 @@
 			"reject": "Rester ici"
 		},
 		"flexbox_unsupported": {
-			"f1": "This site is ",
-			"f2": "not fully supported",
-			"f3": " by your browser. If you experience problems, try upgrading to the latest version of your browser, or switching to Chrome."
+			"f1": "Ce site n'est ",
+			"f2": "pas pleinement supporté",
+			"f3": " par votre navigateur. Si vous rencontrez des problèmes, veuillez le mettre à jour ou le changer pour Chrome."
 		}
 	},
 
@@ -34,8 +34,8 @@
 		"submit": "Se connecter",
 
 		"clientStrings": {
-			"verify_fail": "Could not verify user credentials",
-			"generic_fail": "Unidentified error logging in"
+			"verify_fail": "Impossible de vérifier les informations de connection",
+			"generic_fail": "Erreur non identifiée de connection"
 		}
 	},
 
@@ -57,7 +57,7 @@
 		},
 		"username": {
 			"label": "Nom d'utilisateur (sert aussi de permalien)",
-			"caption": "Pas d'espaces ni de caractères spéciaux excepté _ et -"
+			"caption": "Pas d'espaces ni de caractères spéciaux exceptés _ et -"
 		},
 		"agreement": {
 			"f1": "J'ai lu et j'accepte les ",
@@ -89,7 +89,7 @@
 		"pagetitle": "Vérification de courriel",
 		"intro_register": "Merci d'avoir joint ToonStore! Nous vous avons envoyé par courriel un lien pour activer votre compte. Cliquez sur le lien et suivez les instructions pour compléter votre enregistrement.",
 		"intro": "Votre demande de réinitialisation de mot de passe a été reçue. Nous vous avons envoyé un lien par courriel, cliquez dessus pour changer votre mot de passe.",
-		"note": "Prenez note que le courriel peut mettre quelques minutes à être reçu. Si vous ne le voyez pas, vérifiez votre dossier de pourriels, et ajoutez \"no-reply@toonstore.net\" à votre liste de contacts."
+		"note": "Prenez note que le courriel peut mettre quelques minutes à vous parvenir. Si vous ne le voyez pas, vérifiez votre dossier de pourriels, et ajoutez \"no-reply@toonstore.net\" à votre liste de contacts."
 	},
 
 	"activate":
@@ -116,7 +116,7 @@
 		"greeting_user": "Bonjour %s!",
 		"greeting_nouser": "Bonjour!",
 		"intro_reg": "Merci d'utiliser ToonStore! Cliquez sur le lien pour commencer.",
-		"intro_noreg": "Merci d'utiliser ToonStore! Vous avez demandé à réinitialiser votre mot de passe : cliquez sur le lien ci-dessous pour le réinitialise. Si vous n'avez PAS demandé à le réinitialiser, veuillez simplement ignorer ce courriel.",
+		"intro_noreg": "Merci d'utiliser ToonStore! Vous avez demandé à réinitialiser votre mot de passe : cliquez sur le lien ci-dessous pour le réinitialiser. Si vous n'avez PAS demandé à le réinitialiser, veuillez simplement ignorer ce courriel.",
 		"resetpassword": "Réinitialiser votre mot de passe",
 		"setpassword": "Choisir votre mot de passe",
 		"p1": "Prenez note que ce lien n'est bon que pour 20 minutes, ensuite votre devrez en demander un nouveau.",
@@ -155,7 +155,7 @@
 		"donate": {
 			"f1": "Avez-vous envisagé de ",
 			"f2": "faire un don",
-			"f3": " pour aider ToonStore à être en ligne et sans publicité ?"
+			"f3": " pour aider ToonStore à rester en ligne et sans publicité ?"
 		},
 		"submit": "Soumettre",
 
@@ -168,7 +168,6 @@
 	"killtoon":
 	{
 		"pagetitle": "Effacer personnage",
-		"intro": "In the box below, type the following exactly as it appears:",
 		"intro": "Dans la boîte ci-dessous, tapez exactement ce qui suit:",
 		"confirm": "{{name}}, {{hc}}, est mort.",
 		"submit": "Effacer personnage",
@@ -180,7 +179,7 @@
 
 	"server":
 	{
-		"genericErr": "Une erreur non-identifiée est survenue. Veuillez contacter l'administrateur du site en expliquant ce que vous faisiez lorsque cette erreur est survenue.",
+		"genericErr": "Une erreur non identifiée est survenue. Veuillez contacter l'administrateur du site en expliquant ce que vous faisiez lorsque cette erreur est survenue.",
 		"passwordSet": "Votre mot de passe a été enregistré. Veuillez vous connecter pour continuer.",
 		"anonNewToon": "Vous devez être connecté pour créer un personnage.",
 		"incompleteForm": "Vous devez remplir tous les champs.",
@@ -207,7 +206,7 @@
 	"user":
 	{
 		"pagetitle": "Page de %s",
-		"meta_description": "Page d'archive de %s, propulsée par le ToonStore, l'outil infonuagique de personnage pour Fate.",
+		"meta_description": "Page d'archive de %s, propulsée par ToonStore, l'outil infonuagique de personnage pour Fate.",
 
 		"newtoon": "Créer un nouveau personnage",
 		"sorting": {
@@ -220,7 +219,6 @@
 		"notoons": {
 			"p1": "Vous n'avez présentement aucun personnage.",
 			"p2": {
-				"f1": "Since you're new here, why not check out the ",
 				"f1": "Puisque vous êtes nouveau ici, pourquoi ne pas jeter un oeil au ",
 				"f2": "Guide pour débutants",
 				"f3": "?"
@@ -231,7 +229,7 @@
 			"duplicate": "Dupliquer",
 			"change_privacy": "Rendre %s",
 			"private": "Rendre privé",
-			"public": "Rendre privé",
+			"public": "Rendre public",
 			"delete": "Effacer",
 			"lastupdated": "Dernière mise à jour %s",
 			"neverupdated": "Jamais mis à jour"
@@ -264,7 +262,7 @@
 			"trouble": "Problème:",
 			"otheraspects": "Autres aspects:",
 			"powerlevel": "Niveau de puissance:",
-			"skillcap": "Skill Cap:",
+			"skillcap": "Valeur max. de compétences:",
 			"skillpoints": "Points de compétence:",
 			"skillspent": "Points de compétences dépensés",
 			"skillavailable": "Disponibles",
@@ -339,8 +337,8 @@
 			"subtitle": "+2 aux jets de compétence d'organisation"
 		},
 		"p1": "Bienvenue, rôliste !",
-		"p2": "Tout le monde a vécu ce scénario : vous et les membres de votre groupe êtes en train de créer vos personnages, remplissant votre feuille de personnage, puis votre MJ vous demande une copie de votre feuille de personnage. Vous avez êtes confus pendant un moment : devriez-vous la scanner puis l'envoyer par courriel, simplement la transcrire, ou simplement lui transmettre vos aspects ?",
-		"p3": "Vous êtes peut-être d'avant-garde. Peut-être étiez-vous en train de créer votre personnage à partir de votre ordinateur portatif depuis le début. Mais sans la mise en page d'une véritable feuille de personnage, personne d'autre que vous ne peut lire votre feuille en format texte.",
+		"p2": "Tout le monde a vécu ce scénario : vous et les membres de votre groupe êtes en train de créer vos personnages, remplissant votre feuille de personnage, puis votre MJ vous demande une copie de votre feuille de personnage. Vous êtes confus pendant un moment : devriez-vous la scanner puis l'envoyer par courriel, la lui transcrire ou simplement lui transmettre vos aspects ?",
+		"p3": "Peut-être êtes-vous d'avant-garde. Peut-être étiez-vous en train de créer votre personnage à partir de votre ordinateur portatif depuis le début. Mais sans la mise en page d'une véritable feuille de personnage, personne d'autre que vous ne peut lire votre feuille en format texte.",
 		"p4": "C'est là que ToonStore entre en jeu. Nous stockons vos feuilles de personnages de Dresden Files RPG et autres données de personnages de Fate dans le nuage de façon à ce que vous ne le perdiez jamais et que vous puissiez le partager facilement. Visionnez votre feuille en ligne et modifiez-la directement dans votre navigateur. Nous supportons le mobile aussi alors vous n'avez pas à transporter votre ordinateur portable de 5 kilos avec vous non plus.",
 		"p5": {
 			"f1": "Intéressé ? ",
@@ -356,10 +354,10 @@
 	"about":
 	{
 		"pagetitle": "À propos de ToonStore",
-		"meta_description": "Learn about ToonStore, the cloud-based Fate character toolkit.",
+		"meta_description": "En apprendre plus au sujet de ToonStore, l'outil infonuagique de gestion de personnage pour Fate.",
 
 		"h1": "Qu'est-ce que ToonStore?",
-		"p1": "ToonStore est un endroit où les joueurs de Dresden Files RPG peut stocker leurs feuilles de personnage sans avoir à s'inquiéter de les perdre, de les détruire ou de les oublier. Vous pouvez créer vos personnages directement depuis notre interface HTML conviviale, les éditer directement à la table de jeu et partager les liens avec vos amis et/ou votre MJ via le médium de votre choix.",
+		"p1": "ToonStore est un endroit où les joueurs de Dresden Files RPG peuvent stocker leurs feuilles de personnage sans avoir à s'inquiéter de les perdre, de les détruire ou de les oublier. Vous pouvez créer vos personnages directement depuis notre interface HTML conviviale, les éditer directement à la table de jeu et partager les liens avec vos amis et/ou votre MJ via le médium de votre choix.",
 
 		"h2": "Comment ToonStore est-il né ?",
 		"p2": "Au commencement, il s'agissait simplement d'un effort pour créer une version améliorée de la feuille de personnage remplissable en format PDF déjà disponible. Mais au fil du temps sa portée et sa complexité en vinrent à inclure l'hébergement des personnages aussi. C'était à ce moment uniquement pour l'utilisation de mon propre groupe mais puisque ce n'est pas plus compliqué à rendre publiquement disponible, je l'ai ouvert au public. La suite, heh bien, on la connaît.",
@@ -384,20 +382,20 @@
 	"contact":
 	{
 		"pagetitle": "Contactez-nous",
-		"meta_description": "Comment contacter les développeurs et mainteneurs du ToonStore.",
+		"meta_description": "Comment contacter les développeurs et mainteneurs de ToonStore.",
 
 		"h1": "Questions? Commentaires? Suggestions?",
 		"p1": "Nous sommes faciles à rejoindre ! Voici quelques façons de le faire:",
 
 		"h2": "Github",
 		"p2": {
-			"f1": "The ",
+			"f1": "Le ",
 			"f2": "code source",
 			"f3": " complet de ce site est publiquement disponible sous la license Apache 2.0 License, et vous êtes les bienvenus de démarrer votre propre ToonStore pour votre groupe si vous le désirez."
 		},
 		"p3": {
 			"f1": "Nous utilisons aussi Github pour les rapports de bugs et les demandes de fonctionnalités. Si vous trouvez un problème sur le site ou que vous avez une idée pour une fonctionnalité géniale, laissez-nous le savoir ! Soumettez un ",
-			"f2": "rapport de problème",
+			"f2": "rapport de bug",
 			"f3": " et nous y travaillerons !"
 		},
 
@@ -405,7 +403,7 @@
 		"p4": {
 			"f1": "Joignez les devs et autres utilisateurs de ToonStore sur notre ",
 			"f2": "groupe Google+",
-			"f3": " pourt discuter des dernières mise à jour sur le site, de jeux de rôles, de personnages et n'importe quoi d'autre ! Nous adorerions recevoir vos commentaires !"
+			"f3": " pour discuter des dernières mise à jour sur le site, de jeux de rôles, de personnages et n'importe quoi d'autre ! Nous adorerions recevoir vos commentaires !"
 		},
 
 		"h4": "Courriel",
@@ -418,13 +416,13 @@
 	"donate":
 	{
 		"pagetitle": "Faire un don",
-		"meta_description": "Comment faire un don pour la maintenance et le développement du ToonStore",
+		"meta_description": "Comment faire un don pour la maintenance et le développement de ToonStore",
 
-		"plea": "Le ToonStore est et restera un service gratuit pour les amateurs de l'art du jeu de rôle. Cela ne signifie pas qu'il soit gratuit pour tous : en fait, ToonStore coûte environ 250$ US par année pour payer son hébergement et enregistrer sonn nom, ce qui n'est pas négligeable. Toute contribution est la bienvenue pour aider à défrayer les coûts de fonctionnement du site.",
+		"plea": "Le ToonStore est et restera un service gratuit pour les amateurs de l'art du jeu de rôle. Cela ne signifie pas qu'il soit gratuit pour tous : en fait, ToonStore coûte environ 250$ US par année pour payer son hébergement et enregistrer son nom, ce qui n'est pas négligeable. Toute contribution est la bienvenue pour aider à défrayer les coûts de fonctionnement du site.",
 		
 		"how": {
 			"header": "Comment faire un don",
-			"p1": "Pour éviter les frais inutiles, la paperasse, la conversion de devises, les transactions internationales, etc. J'ai décidé d'accepté les Bitcoins au lieu d'un système de dons traditionnel. Comment cela fonctionne-t-il ? Je suis content que vous le demandiez !",
+			"p1": "Pour éviter les frais inutiles, la paperasse, la conversion de devises, les transactions internationales, etc. J'ai décidé d'accepter les Bitcoins au lieu d'un système de dons traditionnel. Comment cela fonctionne-t-il ? Je suis content que vous le demandiez !",
 			"p2": "Simplement, vous pouvez envoyer de l'argent par internet comme si c'était de l'argent comptant : pas d'intermédiaire, ni chèques, ni délais et aucune information privée (comme un numéro de carte de crédit) n'est utilisé.",
 			"p3": {
 				"f1": "Vous pouvez changer de l'argent en bitcoins à plusieurs endroits. Aux États-Unis, je recommande ",
@@ -437,7 +435,7 @@
 		{
 			"header": "Où faire un don",
 			"p1": "Vous pouvez supporter ToonStore en faisant un don à l'adresse Bitcoin suivante:",
-			"p2": "Au nom de la communauté ToonStore, merci d'aider à garder ToonStore en ligne et de servir une génération de rôlistes."
+			"p2": "Au nom de la communauté ToonStore, merci d'aider à garder ToonStore en ligne et à servir une génération de rôlistes."
 		}
 	},
 
@@ -448,14 +446,14 @@
 
 		"p1": "En utilisant le site web du ToonStore, vous vous engagez à respecter termes et conditions suivants:",
 		"p2": "L'utilisation des services d'hébergement fournis par ToonStore est offert gratuitement.",
-		"p3": "Derogatory Studios n'offre aucune garanti que quant à la fiabilité ou la longévité du site web ToonStore ni des personnages créés. Le site ToonStore est fourni SANS GARANTIE, expresse ou implicite. Derogatory Studios se réserve le droit de supprimer un personnage ou les données d'un utilisateur à tout moment, pour toute raison et sans préavis. Si cela devait arriver, vous pouvez nous contacter dans les 30 jours suivant la suppression pour demander une copie des données supprimées.",
+		"p3": "Derogatory Studios n'offre aucune garantie quant à la fiabilité ou la longévité du site web ToonStore ni des personnages créés. Le site ToonStore est fourni SANS GARANTIE, expresse ou implicite. Derogatory Studios se réserve le droit de supprimer un personnage ou les données d'un utilisateur à tout moment, pour toute raison et sans préavis. Si cela devait arriver, vous pouvez nous contacter dans les 30 jours suivant la suppression pour demander une copie des données supprimées.",
 		"p4": {
-			"f1": "Toutes données contenues dans un personnage public est visible à toute personne qui connaît ou peut deviner l'URL. Les utilisateurs ne devraient avoir aucune attente quant à la confidentialité de leurs données, excepté les données couvertes sous la ",
+			"f1": "Toutes données contenues dans un personnage public sont visibles à toute personne qui connaît ou peut en deviner l'URL. Les utilisateurs ne devraient avoir aucune attente quant à la confidentialité de leurs données, excepté les données couvertes sous la ",
 			"f2": "Politique de Vie Privée",
 			"f3": ". Cependant, seul l'utilisateur et les administrateurs du site ont la possibilité de modifier la feuille de personnage d'un utilisateur."
 		},
 		"p5": {
-			"f1": "Les utilisateurs abusant des services fournis par le site ToonStore en postant du spam, du contenu calomnieux, offensant ou pornographique ou en tentant de contourner des mesures de sécurité pourraient voir leurs données effacées et leur adresse IP bloquée. Derogatory Studios se réserve le droit d'appliquer les mesures précédents à tout utilisateur pour n'importe quelle raison. Si vous croyez qu'elles ont été appliquées par erreur, vous avez 30 jours pour en appeler de la décision en envoyant un courriel à l'adresse dans la page ",
+			"f1": "Les utilisateurs abusant des services fournis par le site ToonStore en postant du spam, du contenu calomnieux, offensant ou pornographique ou tentant de contourner des mesures de sécurité pourraient voir leurs données effacées et leur adresse IP bloquée. Derogatory Studios se réserve le droit d'appliquer les mesures précédentes à tout utilisateur pour quelque raison que ce soit. Si vous croyez qu'elles ont été appliquées par erreur, vous avez 30 jours pour en appeler de la décision en envoyant un courriel à l'adresse dans la page ",
 			"f2": "Contactez-nous",
 			"f3": "."
 		},
@@ -484,7 +482,6 @@
 			"p3": "Nous ne stockons pas votre information personnelle à moins que ce ne soit requis pour des fins d'identification (ex. un adresse courriel).",
 			"p4": "Tout le contenu que vous créez sur ce site est publiquement accessible à moins d'être marqué privée et tout le contenu ne peut être modifié sauf par son propriétaire.",
 			"p5": {
-				"f1": "The above points are detailed further below. If you have any questions about the material on this page, or would like to request that we delete your account and information, email us at the address given on the ",
 				"f1": "Les points ci-dessus sont expliqués plus en détail ci-dessous. Si vous avez des questions au sujet du matériel sur cette page ou que vous désirez que nous détruisions votre compte et vos informations, envoyez-nous un courriel à l'adresse indiquée dans la page ",
 				"f2": "Contactez-nous",
 				"f3": "."
@@ -492,8 +489,8 @@
 		},
 		"visitors": {
 			"title": "Visiteurs du site web",
-			"p1": "Comme la plupart des sites web, ToonStore amasse de l'information ne permettant pas de vous identifier personnellement du genre que les navigateurs et les serveurs web rendent généralement disponibles, comme le type de navigateur, les préférences de langue, votre site de référence et la date et l'heure de chaque requête de visiteur. De temps à autre, Derogatory Studios pourrait rendre public des information ne vous identifiant pas personnellement de façon agrégée, par exemple en publiant un rapport des tendances d'utilisation sur son site web.",
-			"p2": "ToonStore stocke aussi des informations permettant potentiellement de vous identifier comme les adresses Internet Protocol (IP) de ses visiteurs. C'est fait dans le but de prévenir l'abus des ressources du serveur en bloquant certaines adresses IP abusives. Derogatory Studios divulguera ces adresses IP dans les mêmes circonstances qu'il utilise les informations permettant de vus identifier tel que décrit ci-dessous."
+			"p1": "Comme la plupart des sites web, ToonStore amasse de l'information ne permettant pas de vous identifier personnellement du type que les navigateurs et les serveurs web rendent généralement disponibles, comme le type de navigateur, les préférences de langue, votre site de référence et la date et l'heure de chaque requête de visiteur. De temps à autre, Derogatory Studios pourrait rendre public des information ne vous identifiant pas personnellement de façon agrégée, par exemple en publiant un rapport des tendances d'utilisation sur son site web.",
+			"p2": "ToonStore stocke aussi des informations permettant potentiellement de vous identifier comme les adresses Internet Protocol (IP) de ses visiteurs. C'est fait dans le but de prévenir l'abus des ressources du serveur en bloquant certaines adresses IP abusives. Derogatory Studios divulguera ces adresses IP dans les mêmes circonstances qu'il utilise les informations permettant de vous identifier tel que décrit ci-dessous."
 		},
 		"pii": {
 			"title": "Cueillette d'informations permettant de vous identifier personnellement",
@@ -505,28 +502,27 @@
 		},
 		"protection": {
 			"title": "Protection de certaines informations vous identifiant personnellement",
-			"p1": "Derogatory Studios ne divulguera d'information permettant potentiellement de vous identifier ou permettant de vous identifier qu'à ses employés qui (i) dvoient connaître cette information pour pouvoir maintenir convenablement les services de ToonStore et (ii) qui ont accepté de ne pas les divulguer à des tiers. Derogatory Studios ne louera pas et ne vendra pas d'information permettant potentiellement de vous identifier ou permettant de vous identifier à quiconque. Autre qu'à ses employés tel que décrit ci-dessus, Derogatory Studios ne divulgue des informations permettant potentiellement de vous identifier et permettant de vous identifier qu'en réponse à un subpoena, un ordre de la cour ou autre demande gouvernementale ou lorsque Derogatory Studios croit en toute bonne foi que cette divulgation est raisonnablement nécessaire pour protéger la propriété ou les droits de Derogatory Studios, des tierces parties ou du public en général. Si vos informations sont divulguées, vous en serez informé par courriel à l'adresse que vous avez fournie.",
+			"p1": "Derogatory Studios ne divulguera d'information permettant potentiellement de vous identifier ou permettant de vous identifier qu'à ses employés qui (i) doivent connaître cette information pour pouvoir maintenir convenablement les services de ToonStore et (ii) qui ont accepté de ne pas les divulguer à des tiers. Derogatory Studios ne louera pas et ne vendra pas d'information permettant potentiellement de vous identifier ou permettant de vous identifier à quiconque. Autre qu'à ses employés tel que décrit ci-dessus, Derogatory Studios ne divulgue des informations permettant potentiellement de vous identifier et permettant de vous identifier qu'en réponse à un subpoena, un ordre de la cour ou autre demande gouvernementale ou lorsque Derogatory Studios croit en toute bonne foi que cette divulgation est raisonnablement nécessaire pour protéger la propriété ou les droits de Derogatory Studios, de tierces parties ou du public en général. Si vos informations sont divulguées, vous en serez informé par courriel à l'adresse que vous avez fournie.",
 			"p2": "Si vous êtes un utilisateur enregistré du site web ToonStore et que vous avez fourni votre adresse courriel, Derogatory Studios pourra vous envoyer des courriels occasionnellement pour vous faire part de ses nouvelles fonctionnalités, vous demander des commentaires ou simplement vous garder à jour sur les activités de ToonStore et des produits reliées. Nous garderons la fréquence de ce type de courriel au minimum. Si vous nous envoyez une demande (par exemple via un courriel de support ou l'un de nos mécanismes de commentaires), nous nous réservons le droit de le publier dans le but de nous aider à clarifier ou répondre à votre requête ou nous aider à supporter d'autres utilisateurs.",
 			"p3": "Derogatory Studios prend toutes les précautions raisonnablement nécessaires pour se protéger contre les accès non autorisés, l'utilisation, l'altération ou la destruction d'information permettant potentiellement de vous identifier ou permettant de vous identifier."
 		},
 		"cookies": {
 			"title": "Cookies",
-			"p1": "Un cookie est une petite chaîne de caractères qu'un site web stocke dans l'ordinateur d'un visiteur et que le navigateur du visiteur fournit au site web chaque fois que le visiteur revient. ToonStore utilise des cookies pour permettre à ToonStore d'identifier et suivre ses visiteurs, leur utilisation du site web ToonStore and les préférences d'accès au site web. Les visiteurs de ToonStore qui ne souhaitent pas avoir des  cookies placés sur leur ordinateur devront configurer leurs navigateurs pour qu'ils refusent les cookies avant d'utiliser les sites web ToonStore, avec le désavantage que certaines fonctionnalités du site web ToonStore puissent ne pas fonctionner convenablement sans l'utilisation de cookies."
+			"p1": "Un cookie est une petite chaîne de caractères qu'un site web stocke dans l'ordinateur d'un visiteur et que le navigateur du visiteur fournit au site web chaque fois que le visiteur revient. ToonStore utilise des cookies pour permettre à ToonStore d'identifier et suivre ses visiteurs, leur utilisation du site web ToonStore ainsi que les préférences d'accès au site web. Les visiteurs de ToonStore qui ne souhaitent pas avoir des cookies placés sur leur ordinateur devront configurer leurs navigateurs de façon à ce qu'ils refusent les cookies avant d'utiliser les sites web ToonStore, avec le désavantage que certaines fonctionnalités du site web ToonStore puissent ne pas fonctionner convenablement sans l'utilisation de cookies."
 		},
 		"transfers": {
 			"title": "Transferts de compagnie",
-			"p1": "Si Derogatory Studios ou une partie substantielle de ses actifs venaient être acquise, les informations d'utilisateurs seraient une part des actifs qui seraient transférés ou acquise par une tierce partie. Vous reconnaissez que de tels transferts puissent survenir et que tout acquéreur de Derogatory Studios puisse continuer à utiliser votre information personnelle telle que décrite dans cette politique."
+			"p1": "Si Derogatory Studios ou une partie substantielle de ses actifs venaient être acquis, les informations d'utilisateurs seraient une part des actifs qui seraient transférés ou acquise par une tierce partie. Vous reconnaissez que de tels transferts puissent survenir et que tout acquéreur de Derogatory Studios puisse continuer à utiliser votre information personnelle telle que décrite dans cette politique."
 		},
 		"ads": {
 			"title": "Publicité",
-			"p1": "Les publicités apparaissant sur n'importe quel de nos pages peuvent être livrées aux utilisateurs par l'un de nos partenaires publicitaires qui pourraient enregistrer des cookies. Ces cookies permettent au serveur de publicité de reconnaître votre ordinateur chaque fois qu'ils vous envoient une publicité en ligne pour compiler de l'information à votre sujet ou au sujet d'autres personnes utilisant votre ordinateur. Cette information permet aux réseaux publicitaires, entre autres choses, de livrer des publicités ciblées qu'ils croient qui pourraient vous intéresser. Cette Politique de vie privée couvre l'utilisation des cookies par ToonStore et ne couvre pas l'utilisation de cookies par des publicitaires."
+			"p1": "Les publicités apparaissant sur n'importe laquelle de nos pages peuvent être livrées aux utilisateurs par l'un de nos partenaires publicitaires qui pourraient enregistrer des cookies. Ces cookies permettent au serveur de publicité de reconnaître votre ordinateur chaque fois qu'ils vous envoient une publicité en ligne pour compiler de l'information à votre sujet ou au sujet d'autres personnes utilisant votre ordinateur. Cette information permet aux réseaux publicitaires, entre autres choses, de livrer des publicités ciblées qu'ils croient qui pourraient vous intéresser. Cette Politique de vie privée couvre l'utilisation des cookies par ToonStore et ne couvre pas l'utilisation de cookies par des publicitaires."
 		},
 		"content": {
 			"title": "Contenu du site",
-			"p1": "Étant donné la nature du site web ToonStore, toutes les données des personnages est disponible publiquement disponible à quiconque connaît ou peut en deviner le lien, incluant des liens vers d'autres personnages du même auteur, à l'exception des personnages définis comme étant Privés. Aucune information dans une feuille de personnage, y compris le nom de l'auteur, ne devrait être considérée comme privée. De plus, toutes les feuilles de personnage sont incluses dans le plan du site ToonStore, alors elles sont découvrables par des agents automatisés tels les robots de moteurs de recherche et pourraient donc apparaître dans des résultats de recherche. En utilisant le site web ToonStore, vous acceptez la politique ci-dessus."
+			"p1": "Étant donné la nature du site web ToonStore, toutes les données des personnages sont publiquement disponibles à quiconque connaît ou peut en deviner le lien, incluant des liens vers d'autres personnages du même auteur, à l'exception des personnages définis comme étant Privés. Aucune information dans une feuille de personnage, y compris le nom de l'auteur, ne devrait être considérée comme privée. De plus, toutes les feuilles de personnage sont incluses dans le plan du site ToonStore, alors elles sont découvrables par des agents automatisés tels les robots de moteurs de recherche et pourraient donc apparaître dans des résultats de recherche. En utilisant le site web ToonStore, vous acceptez la politique ci-dessus."
 		},
 		"changes": {
-			"title": "Privacy Policy Changes",
 			"title": "Chagements à la Politique de vie privée",
 			"p1": "Quoique la plupart dea changements risquent d'être minimes, Derogatory Studios pourrait modifier sa Politique de vie privée de temps à autre et ce à la seule discrétion de Derogatory Studios. Derogatory Studios encourage ses visiteurs à vérifier régulièrement cette page pour tout changement à sa politique de vie privée. Votre utilisation continue du site après tout changement à cette Politique de vie privée constitue une acception de votre part à ces changements."
 		},
@@ -548,7 +544,7 @@
 	"howto":
 	{
 		"pagetitle": "Guide du débutant",
-		"meta_description": "Apprenez à utiliser ToonStore à son pleien potentiel",
+		"meta_description": "Apprenez à utiliser ToonStore à son plein potentiel",
 
 		"h1": "Avant de commencer...",
 		"intro": {
@@ -566,7 +562,7 @@
 		"h8": "Titles and Character Portrait Panel",
 		"h8": "Panneau Titres et portrait de personnage",
 		"h9": "Panneau aspects",
-		"h10": "Panneau habiletés",
+		"h10": "Panneau compétences",
 		"h11": "Panneau analyse de nombres",
 		"h12": "Panneau stress",
 		"h13": "Panneau stress",
@@ -593,7 +589,7 @@
 		},
 
 		"viewing": {
-			"p1": "L'objectif premier de ToonStore est simplement le partage de feuilles de personnage. C'est aussi simple que de copier un lien de personnage à partir de la barre d'adresse puis de partager ce lien. Quiconque possède la lien peut voir votre personnage. Cela ne fonctionne que pour les personnages publics ; les personnages privés ne se visisbles que pour leur auteur. Les personnages contiennent aussi un lien menant à la page de leur auteur. N'importe qui cliquant sur ce lien pour voir les autres personnages (publics) créés par le même utilisateur.",
+			"p1": "L'objectif premier de ToonStore est simplement le partage de feuilles de personnage. C'est aussi simple que de copier un lien de personnage à partir de la barre d'adresse puis de partager ce lien. Quiconque possède le lien peut voir votre personnage. Cela ne fonctionne que pour les personnages publics ; les personnages privés ne se visisbles que pour leur auteur. Les personnages contiennent aussi un lien menant à la page de leur auteur. N'importe qui cliquant sur ce lien peut voir les autres personnages (publics) créés par le même utilisateur.",
 			"p2": "Lorsque d'autres utilisateurs accèdent à votre personnage, il seront en mode Visiteur. Ils peuvent apporter des modifications à la feuille mais ces changements seront perdus dès que la page sera fermée. Un exemple d'utilisation serait celui d'un joueur absent. Avec ToonStore, un autre joueur pourra suivre les informations pertinentes relatives à ce personnage et en prendre note pour la prochaine session."
 		},
 
@@ -601,16 +597,16 @@
 			"p1": "La feuille de personnage imite les feuilles publiées pour DFRPG mais des alternatives sont parfois désirables. La feuille de personnage contient un ensemble de panneaux optionnels disponibles via le menu Options.",
 			"b1": {
 				"title": "Notes",
-				"text": "Cela ajoute un formulaire gérant le Markdown qui pourra contenir toute données textuelles que vous voudrez. Sorts mémorisés, inventaire, journal d'aventure, tout ce que vous désirez!"
+				"text": "Cela ajoute un formulaire gérant le Markdown qui pourra contenir toutes les données textuelles que vous voudrez. Sorts mémorisés, inventaire, journal d'aventure, tout ce que vous désirez!"
 			},
 			"b2": {
 				"title": "Métamorphe",
-				"text": "Cela active la création d'un deuxième ensemble d'habiletés métamorphes dans le panneau Habiletés. Cela sera adressé dans la section Habiletés."
+				"text": "Cela active la création d'un deuxième ensemble des compétences métamorphes dans le panneau Compétences. Cela sera adressé dans la section Compétences."
 			}
 		},
 
 		"markdown": {
-			"f1": "De nombreux champs dans la feuille de personnage ToonStore supportent Markdown, le systèm de formattage utilisé par Reddit, Github et bien d'autres. Il est conçu pour être aussi intuitif et lisible que possible, même en texte clair. Vous trouverez sa syntaxe complète ",
+			"f1": "De nombreux champs dans la feuille de personnage ToonStore supportent Markdown, le système de formattage utilisé par Reddit, Github et bien d'autres. Il est conçu pour être aussi intuitif et lisible que possible, même en texte clair. Vous trouverez sa syntaxe complète ",
 			"f2": "ici",
 			"f3": ", mais en voici un rapide aperçu:",
 			"becomes": "devient"
@@ -620,17 +616,17 @@
 			"p1": "Tout comme la feuille de personnage publiée, les feuilles de personnage de ToonStore sont bâties de plusieurs sections que nous appelons panneaux.",
 			"p2": {
 				"f1": "Chaque panneau peut être édité individuellement en cliquant sur le bouton Éditer (",
-				"f2": "). Cliquer dessus changer le panneau correspondant en champs éditables où vous pourrez entrer l'information de votre personnage."
+				"f2": "). Cliquer dessus changera le panneau correspondant en champs éditables où vous pourrez entrer l'information de votre personnage."
 			},
-			"p3": "Si vous éditez n'importe quelle partie d'un panneau, il affichera une bordure rouge autour, vous rappelant de sauvegarder vos changements. Si vous êtes connectés, cliquez sur le lien Sauvegarder en haut de la page pour envoyer vos modifications sur le serveur. Vous ne pouvez sauvegarder des modifications à des personnages qui ne sont pas les vôtres."
+			"p3": "Si vous éditez n'importe quelle partie d'un panneau, une bordure rouge s'affichera autour de lui, vous rappelant de sauvegarder vos changements. Si vous êtes connectés, cliquez sur le lien Sauvegarder en haut de la page pour envoyer vos modifications sur le serveur. Vous ne pouvez sauvegarder des modifications à des personnages qui ne sont pas les vôtres."
 		},
 
-		"portrait": "Ce panneau est plutôt simple : il contient le nom du personnage, celui du joueur (qui est un lien vers la page de l'utilisateur) et le portrait du personnage. Le mode éidition pour permet de télécharger un nouveau portrait qui supporte les formats BMP, JPEG, PNG et GIF, de même que quelques autres moins bien connus.",
+		"portrait": "Ce panneau est plutôt simple : il contient le nom du personnage, celui du joueur (qui est un lien vers la page de l'utilisateur) et le portrait du personnage. Le mode édition vous permet de télécharger un nouveau portrait qui supporte les formats BMP, JPEG, PNG et GIF, de même que quelques autres moins bien connus.",
 
 		"aspects": {
 			"p1": {
-				"f1": "Le panneau Aspects vous fournit une liste des aspects permanents de votre personnage. Le mode Édition vous fournit un ensemble de champs où entrer le nom de vos aspects, qui peut être préfixés par un nom de phase entre crochets (ex. [PHASE]) si vous le désirez. Par exemple, si un personnage était devenu orphelin dans les dures rues de Détroit, vous pourriez entre l'aspect comme étant \"[HISTOIRE]Grandi fort, grandit vite\". Le nom de la phase sera omis lorsque vous ne serez pas en mode Édition, affichant simplement ",
-				"f2": "Grandit fort, grandit vite",
+				"f1": "Le panneau Aspects vous fournit une liste des aspects permanents de votre personnage. Le mode Édition vous fournit un ensemble de champs où entrer le nom de vos aspects, qui peut être préfixés par un nom de phase entre crochets (ex. [PHASE]) si vous le désirez. Par exemple, si un personnage était devenu orphelin dans les dures rues de Détroit, vous pourriez entre l'aspect comme étant \"[HISTOIRE]Grandi fort, grandi vite\". Le nom de la phase sera omis lorsque vous ne serez pas en mode Édition, affichant simplement ",
+				"f2": "Grandi fort, grandi vite",
 				"f3": "."
 			},
 			"p2": "Chaque champ d'aspect est jumelé à une boîte texte pour entrer une description complète de cet aspect, qui apparaîtra comme du sous-texte pliant lorsque vous ne serez pas en mode édition. Ces champs descriptions gèrent le Markdown.",
@@ -644,25 +640,24 @@
 
 		"skills": {
 			"p1": {
-				"f1": "The Skills panel provides an easy way to calculate your skill point usage in addition to simply displaying your skills. Edit mode provides the skill ladder up to your skill cap, and a field to add new skills. Add a skill, then drag it from +0 to the level you want it. The indicator at the bottom will tell you if your skill ladder is valid, and how many points you have left to spend. These numbers are based on the skill cap and skill point values provided in the ",
-				"f1": "Le panneau habiletés vous fournit une façon simple de calculer votre utilisation de points d'habiletés en plus de simplement afficher ces habiletés. Le mode Édition vous fournit l'échelle d'habiletés jusqu'à votre valeur maximum pour les habiletés de même qu'un champ pour ajouter de nouvelles habiletés. Ajoutez une habileté puis glissez-la de +0 jusqu'au niveau désiré. L'indicateur en bas vous indiquera si votre échelle d'habiletés est valide et combien de points il vous reste à dépenser. Ces chiffres sont basés sur la valeur maximum pour les habiletés et les valeurs de points d'habiletés sont disponibles dans le panneau",
+				"f1": "Le panneau Compétences vous fournit une façon simple de calculer votre utilisation de points de compétence en plus de simplement afficher ces compétences. Le mode Édition vous fournit l'échelle de compétences jusqu'à votre valeur maximum pour les compétences de même qu'un champ pour ajouter de nouvelles compétences. Ajoutez une compétence puis glissez-la de +0 jusqu'au niveau désiré. L'indicateur en bas vous indiquera si votre échelle de compétences est valide et combien de points il vous reste à dépenser. Ces chiffres sont basés sur la valeur maximum pour les compétences et les valeurs de points de compétence sont disponibles dans le panneau",
 				"f2": "Analyse de nombres",
 				"f3": "."
 			},
-			"p2": "Au bas du panneau Habiletés est un simple lanceur de dés Fudge. Cliquez pour brasser les dés.",
+			"p2": "Au bas du panneau Compétences est un simple lanceur de dés Fudge. Cliquez pour brasser les dés.",
 			"p3": {
 				"f1": "Si vous avez activé l'option ",
 				"f2": "Métamorphe",
-				"f3": " alors une nouvelle bascule apparaîtra en haut du panneau Habiletés : le bouton métamorphe (",
-				"f4": "). Cliquer dessus changera pour votre deuxième échelle d'habiletés, distincte de l'autre, pour que vous la remplissiez. Placez-y vous habiletés normalement. Cliquer sur le bouton métamorphe à nouveau vous ramènera au premier ensemble d'habiletés."
+				"f3": " alors une nouvelle bascule apparaîtra en haut du panneau Compétences : le bouton métamorphe (",
+				"f4": "). Cliquer dessus changera pour votre deuxième échelle de compétences, distincte de l'autre, pour que vous la remplissiez. Placez-y vous compétences normalement. Cliquer sur le bouton métamorphe à nouveau vous ramènera au premier ensemble de compétences."
 			}
 		},
 
-		"totals": "Ce panneau contient les totayx pour les panneaux Habiletés et Pouvoirs. Le mode Édition vous permettra de changer la valeur de rafraîchissement, la valeur maximum des habiletés et le nombre de points Fate de votre personnage. Ces valeurs sont utilisées pour calculer le nombre de points d'habileté disponibles et le rafraîchissement ajusté.",
+		"totals": "Ce panneau contient les totaux pour les panneaux Compétences et Pouvoirs. Le mode Édition vous permettra de changer la valeur de rafraîchissement, la valeur maximum des compétences et le nombre de points Fate de votre personnage. Ces valeurs sont utilisées pour calculer le nombre de points de compétence disponibles et le rafraîchissement ajusté.",
 
 		"stress": {
 			"p1": "Le stress est la manière par défaut de noter les dommages dans le système Fate. Le panneau Stress a un certain nombre de pistes de stress, chacune ayant jusqu'à 8 boîtes de stress. Pour marquer une boîte de stress comme étant utilisée, cliquez simplement dessus.",
-			"p2": "La vue Édition de ce panneau possède plusieurs contrôles mais ne soyez pas intimidés, c'est très simple. Le minimum que vous ayez à faire est d'étiqueter votre piste avec un nom et une habileté appropriée puis de choisir combien de boîtes elle possède (le champ étiqueté \"Force\"). Si vous le voulez, vous pouvez aussi indiquer combien de ces boîtes possèdent un Prise avec le champ appelé \"Endu\" (version courte d'Endurance). Si vous avez une armure, vous pouvez aussi ajouter une ligne à la piste appropriée pour vous rappeler d'atténuer ce stress.",
+			"p2": "La vue Édition de ce panneau possède plusieurs contrôles mais ne soyez pas intimidés, c'est très simple. Le minimum que vous ayez à faire est d'étiqueter votre piste avec un nom et une compétence appropriée puis de choisir combien de boîtes elle possède (le champ étiqueté \"Force\"). Si vous le voulez, vous pouvez aussi indiquer combien de ces boîtes possèdent un Prise avec le champ appelé \"Endu\" (version courte d'Endurance). Si vous avez une armure, vous pouvez aussi ajouter une ligne à la piste appropriée pour vous rappeler d'atténuer ce stress.",
 			"p3": {
 				"f1": "Tous les personnages commencent avec les pistes de stress habituelles de DFRPG : Physique, Mentale et Sociale. Si vous avez besoin d'autres pistes de stress (par exemple, Faim) vous pouvez en ajouter d'autres en cliquant sur Ajouter (",
 				"f2": ") en bas du panneau. Inversement, si vous jouez avec un système ayant moins de pistes de stress, vous pouvez en enlever en cliquant sur Enlever (",
@@ -671,21 +666,19 @@
 		},
 
 		"conseq": {
-			"p1": "Le panneau Conséquences est une version spécialisée du panneau Aspects. Chaque conséquence a une sévérité (Bénigne, Modérée, etc.) et un type de stress approprié (Tout Type, Physique, Mental, etc.). Le type de stress d'une conséquences ne peut être que l'un de ceux pour lesquels vous possédez une piste de stress. Pour utiliser la conséquence, cliquez sur le texte à sa droite qui se changera alors en boîte de texte. En mode Édition, vous pouvez ajouter de nouvelles conséquences avec le bouton Ajouter en bas du panneau ou en enlever une avec le bouton Enlever à côté de la conséquence voulue.",
+			"p1": "Le panneau Conséquences est une version spécialisée du panneau Aspects. Chaque conséquence a une sévérité (Bénigne, Modérée, etc.) et un type de stress approprié (Tout Type, Physique, Mental, etc.). Le type de stress d'une conséquence ne peut être que l'un de ceux pour lesquels vous possédez une piste de stress. Pour utiliser la conséquence, cliquez sur le texte à sa droite qui se changera alors en boîte de texte. En mode Édition, vous pouvez ajouter de nouvelles conséquences avec le bouton Ajouter en bas du panneau ou en enlever une avec le bouton Enlever à côté de la conséquence voulue.",
 			"p2": "Vous pouvez aussi gérer les aspects temporaires depuis le panneau Conséquences. Ajoutez un aspect temporaire avec la boîte de texte au bas du panneau Conséquences ou enlevez-en une en cliquant sur le bouton Enlever à côté de l'aspect voulu."
 		},
 
 		"powers": {
-			"p1": "Ce panneau affiche vos pouvoirs et cascades dans un tableau facile à lire. Chaque rangée consiste en une habileté et son coût (négatif pour du rafraîchissement dépensé, positif pour du rafraîchissement gagné). Chaque habileté peut aussi avoir une description gérant le Markdown qui sera pliée (dépliée en cliquant dessus) si le texte devient trop long.",
+			"p1": "Ce panneau affiche vos pouvoirs et cascades dans un tableau facile à lire. Chaque rangée consiste en une compétence et son coût (négatif pour du rafraîchissement dépensé, positif pour du rafraîchissement gagné). Chaque compétence peut aussi avoir une description gérant le Markdown qui sera pliée (dépliée en cliquant dessus) si le texte devient trop long.",
 			"p2": "De plus, le mode Édition a des contrôles pour ajouter de nouvelles cascades (le bouton Ajouter en bas), enlever des cascades (le bouton Enlever à côté de chaque item) et réordonner les cascades (la poignée pour faire glisser chaque item)."
 		},
 
 		"notes": {
-			"f1": "The Notes panel couldn't be simpler. It's a free-form markdown-enabled text box. Put whatever markdown you want into Edit mode, and it comes out in normal mode nicely formatted. See the ",
 			"f1": "Le panneau Notes ne pourrait être plus simple. Il s'agit d'une boîte de texte libre gérant le Markdown. Entrez le Markdown voulu en mode Édition et il en sortira bien formaté en mode normal. Voyez la ",
 			"f2": "section Markdown ",
 			"f3": " pour plus d'information sur son fonctionnement."
 		}
 	}
 }
-
