@@ -1,9 +1,9 @@
-extends index
+extends theme
 
 block title
 	title Community Statistics | ToonStore.net
 
-block append styles
+block css
 	style.
 		td,th {
 			padding: 5px;
@@ -29,43 +29,41 @@ block append styles
 		}
 
 
-block content
+block article_header
 
-	.content-block
+	h1 Community Statistics
 
-		h1 Community Statistics
+block article_body
 
-	.content-block: .normalbox
-
-		table
-			tr
-				th
-				th 1 Day
-				th 7 Days
-				th 30 Days
-				th All Time
-			tr
-				th Registrations
-				td= regCount1
-				td= regCount7
-				td= regCount30
-				td= regCountAll
-			tr
-				th Logins
-				td= loginCount1
-				td= loginCount7
-				td= loginCount30
-				td= loginCountAll
-				
-			tr
-				th Characters
-				td= charCount1
-				td= charCount7
-				td= charCount30
-				td= charCountAll
-			tr
-				th Characters Saved
-				td= editCount1
-				td= editCount7
-				td= editCount30
-				td= editCountAll
+	table
+		tr
+			th
+			th 1 Day
+			th 7 Days
+			th 30 Days
+			th All Time
+		tr
+			th Registrations
+			td= regCount1
+			td= regCount7
+			td= regCount30
+			td= regCountAll
+		tr
+			th Logins
+			td= loginCount1
+			td= loginCount7
+			td= loginCount30
+			td= loginCountAll
+			
+		tr
+			th Characters
+			td= charCount1
+			td= charCount7
+			td= charCount30
+			td= charCountAll
+		tr
+			th Characters Saved
+			td= editCount1
+			td= editCount7
+			td= editCount30
+			td= editCountAll

@@ -1,20 +1,23 @@
-var http = require('http'), https = require('https');
-var fs = require('fs');
-var libpath = require('path');
-var liburl = require('url');
-var express = require('express');
+var http = require('http'), https = require('https'),
+	fs = require('fs'),
+	libpath = require('path'),
+	liburl = require('url'),
+	express = require('express'),
+	qr = require('qr-image');
 
-var global = require('./global.js');
-var config = require('../config.json');
-var register = require('./register.js');
-var activate = require('./activate.js');
-var login = require('./login.js');
-var user = require('./user.js');
-var character = require('./character.js');
-var avatars = require('./avatars.js');
-var sitemap = require('./sitemap.js');
-var stats = require('./stats.js');
-var sass = require('./sass.js');
+var global = require('./global.js'),
+	config = require('../config.json'),
+	register = require('./register.js'),
+	activate = require('./activate.js'),
+	login = require('./login.js'),
+	user = require('./user.js'),
+	character = require('./character.js'),
+	avatars = require('./avatars.js'),
+	sitemap = require('./sitemap.js'),
+	stats = require('./stats.js'),
+	sass = require('./sass.js'),
+	i18n = require('./i18n.js');
+
 
 // create the express application
 var app = express();
@@ -22,7 +25,6 @@ app.use(express.bodyParser({
 	keepExtensions: true,
 	uploadDir: libpath.resolve(__dirname,'..','uploads')
 }));
-
 
 app.use(express.cookieParser());
 app.use(express.session({secret: config.cookie_secret}));
@@ -32,36 +34,38 @@ app.set('view engine', 'jade');
 // the global logger middleware
 app.use(express.logger());
 
+app.use(i18n.detect);
+
 // route the registration pages
-app.get('/register', global.renderPage('register'));
-app.get('/federated-register', global.renderPage('register'));
+app.get('/register', i18n.cookieRedirect, global.renderPage('register'));
+app.get('/federated-register', i18n.cookieRedirect, global.renderPage('register'));
 app.get('/post-register', global.renderPage('register'));
 app.post('/register', register.register);
 app.post('/federated-register', register.federatedRegister);
 app.get('/register/verify', register.checkUsername);
 
 // route the activation pages (password resets)
-app.get('/passreset', global.renderPage('activation'));
+app.get('/passreset', i18n.cookieRedirect, global.renderPage('activation'));
 app.post('/passreset', activate.passwordReset);
 app.get('/pre-activate', global.renderPage('activation'));
-app.get('/activate/:token([0-9a-f]{32})', activate.serveActivationPage);
+app.get('/activate/:token([0-9a-f]{32})', i18n.cookieRedirect, activate.serveActivationPage);
 app.post('/activate/:token([0-9a-f]{32})', activate.setPassword);
 
 // route the login pages
-app.get('/login', global.renderPage('login', {g_client_id: config.google_client_id}));
+app.get('/login', i18n.cookieRedirect, global.renderPage('login', {g_client_id: config.google_client_id}));
 app.post('/login/persona', login.processPersonaLogin);
 app.post('/login', login.processLogin);
 app.post('/logout', login.processLogout);
 
 // route the user pages
-app.get('/:user([A-Za-z0-9_-]+)', user.userPage);
+app.get('/:user([A-Za-z0-9_-]+)', i18n.cookieRedirect, user.userPage);
 app.get('/:user([A-Za-z0-9_-]+).json', user.userJson);
 
 // route the character management pages
-app.get('/newtoon', character.newCharacterPage);
+app.get('/newtoon', i18n.cookieRedirect, character.newCharacterPage);
 app.post('/newtoon', character.newCharacterRequest);
-app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/', character.servePage);
-app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/printable', character.servePage);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/', i18n.cookieRedirect, character.servePage);
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/printable', i18n.cookieRedirect, character.servePage);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.serveJson);
 app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/json', character.pushJson);
 app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', avatars.serveAvatar);
@@ -69,7 +73,7 @@ app.post('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)/avatar', avatars.saveAvat
 
 
 // redirect if character sheet doesn't have trailing slash
-app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', function(req,res,next){
+app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)$', function(req,res,next){
 	if( req.params.user != 'site' )
 		res.redirect(req.url + '/');
 	else
@@ -77,20 +81,37 @@ app.get('/:user([A-Za-z0-9_-]+)/:char([A-Za-z0-9_-]+)', function(req,res,next){
 });
 
 app.post('/killtoon', character.deleteCharacterRequest);
-app.get('/killtoon', character.deleteCharacterPage);
+app.get('/killtoon', i18n.cookieRedirect, character.deleteCharacterPage);
 app.post('/togglePrivacy', user.togglePrivacy);
 
+// generate donation information
+config.donation_address = config.donation_address || '1CX5xJ3o4rXcNRTrWGd2zCmAMtpCXGZo78';
+app.get('/site/donate', i18n.cookieRedirect, global.renderPage('donate', {donation_address: config.donation_address}));
+app.get('/site/donate/donation_qr.png', function(req,res,next)
+{
+	var donor = req.query.user ? '?message=Thanks%20from%20'+req.query.user : '';
+	var code = qr.image( 'bitcoin:' + config.donation_address + donor, {type:'png'} );
+	//var output = fs.createWriteStream( libpath.resolve(__dirname, '..','static','img','donation_qr.png') );
+	code.pipe(res);
+});
+
+
 // route the extra pages
-app.get('/site/about', global.renderPage('about'));
-app.get('/site/contact', global.renderPage('contact'));
-app.get('/site/terms', global.renderPage('terms'));
-app.get('/site/privacy', global.renderPage('privacy'));
-app.get('/site/donate', global.renderPage('donate'));
-app.get('/site/howto', global.renderPage('howto'));
-app.get('/', global.renderPage('index'));
+app.get('/site/about', i18n.cookieRedirect, global.renderPage('about'));
+app.get('/site/contact', i18n.cookieRedirect, global.renderPage('contact'));
+app.get('/site/terms', i18n.cookieRedirect, global.renderPage('terms'));
+app.get('/site/privacy', i18n.cookieRedirect, global.renderPage('privacy'));
+app.get('/site/howto', i18n.cookieRedirect, global.renderPage('howto'));
+app.get('/', i18n.cookieRedirect, global.renderPage('index'));
 
 app.use('/static', express.static( libpath.resolve(__dirname,'..','static'), {maxAge: 24*60*60}));
 app.get('/sitemap.xml', sitemap.serve);
+app.get('/robots.txt', function(req,res,next){
+	if(config.use_robots)
+		res.sendfile( libpath.resolve(__dirname, '..', 'robots.txt') );
+	else
+		next();
+});
 
 app.get('/stats', stats.serveStats);
 
@@ -105,7 +126,6 @@ app.use(function(req,res)
 	else
 		res.send(404);
 });
-
 
 
 sass.compile( '../static/scss', startServer );

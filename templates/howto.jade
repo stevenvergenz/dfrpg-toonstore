@@ -1,334 +1,280 @@
-extends index
+extends theme
 
 block title
-	title Beginner's Guide | ToonStore.net
+	title= __('howto.pagetitle') + ' | ToonStore.net'
 
 
-block content
+block article_header
 
-	h1 Beginner's Guide
+	h1= __('howto.pagetitle')
 
-	.content-block: .normalbox
+block article_body
 
-		h2 Before we get started...
+	h2= __('howto.h1')
 
-		p Thanks for using the ToonStore! In order to help you get up to speed, this page is designed to teach you the basics of how to navigate 
-			| character sheets and get the best use out of the ToonStore. If you still have questions after reading through, join the devs and other users at the 
-			a(href='https://plus.google.com/communities/100638011667854470760') Google+ group
-			|  to get your questions answered. Now on to the walkthrough!
+	p= __('howto.intro.f1')
+		a(href='https://plus.google.com/communities/100638011667854470760')= __('howto.intro.f2')
+		= __('howto.intro.f3')
 
+	a#toc
+	h2= __('howto.h2')
 
-		a#toc
-		h2 Table of Contents
-
-		ul
-			li: a(href='#management') Character Management
-			li: a(href='#backseat') Viewing, Sharing, and Back-seat Mode
-			li: a(href='#optionals') Optional Components
-			li: a(href='#markdown') Markdown Support
-			li: a(href='#panels') Panels
-				ul
-					li: a(href='#general') Titles and Character Portrait Panel
-					li: a(href='#aspects') Aspects Panel
-					li: a(href='#skills') Skills Panel
-					li: a(href='#totals') Number Crunching Panel
-					li: a(href='#stress') Stress Panel
-					li: a(href='#consequences') Consequences Panel
-					li: a(href='#powers') Stunts & Powers Panel
-					li: a(href='#notes') Notes Panel (Optional)
+	ul
+		li: a(href='#management')= __('howto.h3')
+		li: a(href='#backseat')= __('howto.h4')
+		li: a(href='#optionals')= __('howto.h5')
+		li: a(href='#markdown')= __('howto.h6')
+		li: a(href='#panels')= __('howto.h7')
+			ul
+				li: a(href='#general')= __('howto.h8')
+				li: a(href='#aspects')= __('howto.h9')
+				li: a(href='#skills')= __('howto.h10')
+				li: a(href='#totals')= __('howto.h11')
+				li: a(href='#stress')= __('howto.h12')
+				li: a(href='#consequences')= __('howto.h13')
+				li: a(href='#powers')= __('howto.h14')
+				li: a(href='#notes')= __('howto.h15')
 
 
-		a#management
-		h2 Character Management
+	a#management
+	h2= __('howto.h3')
 
-		.imgcontainer: img(src='/static/img/tutorial/management.png')
+	.imgcontainer: img(src='/static/img/tutorial/management.png')
 
-		p When you log in, the first thing you see is your list of characters. Each character features some basic information about the character 
-			| along with a number of controls:
-		
-		ul
-			li
-				strong Duplicate
-				|  - This creates a copy of the given character, and prompts you to rename him/her. You may make changes to this copy without affecting 
-				| the original. Any user may duplicate any other user's characters.
-			li
-				strong Visibility
-				|  - This toggles the visibility of a character. If marked Private, the character will not appear to others in your character listing, 
-				| and be inaccessible to everyone but you. This is a great feature for GMs that want quick access to NPCs without the player characters 
-				| knowing about or seeing them. By default, new characters are Public.
-			li
-				strong Delete
-				|  - This deletes the character. This cannot be undone.
+	p= __('howto.cm.p1')
+	ul
+		li
+			strong= __('howto.cm.b1.title')
+			|  - 
+			= __('howto.cm.b1.text')
+		li
+			strong= __('howto.cm.b2.title')
+			|  - 
+			= __('howto.cm.b2.text')
+		li
+			strong= __('howto.cm.b3.title')
+			|  - 
+			= __('howto.cm.b3.text')
 			
-		p.
-			For new users, this character listing is blank. Click the "Create a new character" button at the top to make your first character. Fill out 
-			the basic information for the character where prompted, and hit Submit. If you chose a template for your character, then the character 
-			will be pre-populated with the powers and stats of that template.
+	p= __('howto.cm.p2')
 
-		p: a(href='#') Back to top
+	p: a(href='#')= __('howto.backtotop')
 
 
-		a#backseat
-		h2 Viewing, Sharing, and Back-seat Mode
+	a#backseat
+	h2= __('howto.h4')
 
-		p.
-			The main purpose of ToonStore is to simply the sharing of character sheets. Currently, it's as simple as copying the character link from the 
-			URL bar and sharing the link. Anyone with the character link can view your character. This only works for your public characters; private 
-			characters are only visible to their owners. Characters also contain a link back to their owners' pages. Anyone can click this link to see 
-			other (public) characters created by the same user.
+	p= __('howto.viewing.p1')
 
-		.imgcontainer: img(src='/static/img/tutorial/url-bar.png')
+	.imgcontainer: img(src='/static/img/tutorial/url-bar.png')
 
-		p.
-			When other users access your character, they will be in Back-seat mode. They can make changes to the sheet, but the changes are gone when the 
-			page is closed. One example of usage would be in the case of an absent player. With the Toonstore, another player can track relevant information 
-			regarding that character and make note of it for the next session.
+	p= __('howto.viewing.p2')
 
-		p: a(href='#') Back to top
+	p: a(href='#')= __('howto.backtotop')
 
 
-		a#optionals
-		h2 Optional Components
+	a#optionals
+	h2= __('howto.h5')
 
-		p.
-			The character sheet mimics the published character sheets for the DFRPG, but alternatives are sometimes desirable. The character sheet features 
-			a set of optional panels, available via the Options menu.
+	p= __('howto.optional.p1')
 
-		.imgcontainer: img(src='/static/img/tutorial/optionals.png')
+	.imgcontainer: img(src='/static/img/tutorial/optionals.png')
 
-		ul
-			li
-				strong Notes:
-				|  This adds a free-form Markdown-enabled box to fill with whatever text-based data you wish. Rote spells, inventory, adventure logs, 
-				| whatever you need!
-			li
-				strong Shapeshifter:
-				|  This enables the creation of a second set of shapeshifted skills in the Skills panel. This will be addressed in the Skills section.
+	ul
+		li
+			strong= __('howto.optional.b1.title')
+			|  - 
+			= __('howto.optional.b1.text')
+		li
+			strong= __('howto.optional.b2.title')
+			|  - 
+			= __('howto.optional.b2.text')
 
-		//- TODO: mention the printable version, once it's better supported
+	//- TODO: mention the printable version, once it's better supported
 
-		p: a(href='#') Back to top
+	p: a(href='#')= __('howto.backtotop')
 
 
-		a#markdown
-		h2 Markdown Support
+	a#markdown
+	h2= __('howto.h6')
 
-		//- TODO: maybe move this to a different page?
+	//- TODO: maybe move this to a different page?
 
-		p Many text fields in the ToonStore character sheet support Markdown, the formatting syntax used by Reddit, Github, and others. It is designed 
-			| to be as intuitive and readable as possible, even in plain text. The full syntax can be found 
-			a(href='http://daringfireball.net/projects/markdown/syntax') here
-			| , but here's a quick overview:
+	p= __('howto.markdown.f1')
+		a(href='http://daringfireball.net/projects/markdown/syntax')= __('howto.markdown.f2')
+		= __('howto.markdown.f3')
 
-		.sidebyside
-			div: pre: code.
-				Heading
-				=======
+	.sidebyside
+		div: pre: code.
+			Heading
+			=======
 
-				Subheading
-				----------
+			Subheading
+			----------
 
-				#### Heading 4
+			#### Heading 4
 
-			| becomes
-			div
-				h1 Heading
-				h2 Subheading
-				h4 Heading 4
+		= __('howto.markdown.becomes')
+		div
+			h1 Heading
+			h2 Subheading
+			h4 Heading 4
+	hr
+	.sidebyside
+		div: pre: code.
+			*emphasis* and
+			**strong emphasis**
+		= __('howto.markdown.becomes')
+		div
+			em emphasis
+			|  and 
+			strong strong emphasis
 
-		hr
+	hr
 
-		.sidebyside
-			div: pre: code.
-				*emphasis* and
-				**strong emphasis**
-			| becomes
-			div
-				em emphasis
-				|  and 
-				strong strong emphasis
+	.sidebyside
+		div: pre: code
+			| * Item 1
+			| * Item 2
+			|     * Subitem 1
+			| * Item 3
 
-		hr
+		= __('howto.markdown.becomes')
 
-		.sidebyside
-			div: pre: code
-				| * Item 1
-				| * Item 2
-				|     * Subitem 1
-				| * Item 3
+		div: ul
+			li Item 1
+				ul: li Subitem 1
+			li Item 2
+			li Item 3
 
-			| becomes
+	hr
 
-			div: ul
-				li Item 1
-					ul: li Subitem 1
-				li Item 2
-				li Item 3
+	.sidebyside
+		div: pre: code.
+			![Lifeson](/Derogatory/lifeson/avatar)
+			[Lifeson](/Derogatory/lifeson/)
 
-		hr
+		= __('howto.markdown.becomes')
+		div
+			img(src='/Derogatory/lifeson/avatar', style='width: 100px;')
+			a(href='/Derogatory/lifeson/') Lifeson
 
-		.sidebyside
-			div: pre: code.
-				![Lifeson](/Derogatory/lifeson/avatar)
-				[Lifeson](/Derogatory/lifeson/)
+	p: a(href='#')= __('howto.backtotop')
 
-			| becomes
-			div
-				img(src='/Derogatory/lifeson/avatar', style='width: 100px;')
-				a(href='/Derogatory/lifeson/') Lifeson
 
-		p: a(href='#') Back to top
+	a#panels
+	h2= __('howto.h7')
 
+	p= __('howto.panels.p1')
 
-		a#panels
-		h2 Panels
+	ul
+		li= __('howto.panels.p2.f1')
+			img.icon(src='/static/img/glyphicons/glyphicons_150_edit.png')
+			= __('howto.panels.p2.f2')
+		li= __('howto.panels.p3')
 
-		p Just like the published character sheet, ToonStore character sheets are built of different sections that we call panels.
+	p: a(href='#')= __('howto.backtotop')
 
-		ul
-			li Each panel can be edited individually by clicking the Edit button (
-				img.icon(src='/static/img/glyphicons/glyphicons_150_edit.png')
-				| ). Clicking it will change the corresponding panel into editable fields, where you can input your character information.
-			li If you edit any part of a panel, it will get a red border around it, reminding you to save your changes. If you are logged in, click the 
-				| Save link at the top of the page to push your changes to the server. You cannot save changes for characters that are not your own.
 
-		p: a(href='#') Back to top
+	a#general
+	h3= __('howto.h8')
 
+	p= __('howto.portrait')
 
-		a#general
-		h3 Title and Character Portrait Panel
+	p: a(href='#')= __('howto.backtotop')
 
-		p.
-			This panel is pretty basic. It contains the character's name, the player's name (with link back to his user page), and the character portrait. 
-			Edit mode allows you to upload a new portrait, which accepts BMPs, JPEGs, PNGs, and GIFs, along with several lesser-known formats.
+	a#aspects
+	h3= __('howto.h9')
 
-		p: a(href='#') Back to top
+	p= __('howto.aspects.p1.f1')
+		em= __('howto.aspects.p1.f2')
+		= __('howto.aspects.p1.f3')
 
+	p= __('howto.aspects.p2')
 
-		a#aspects
-		h3 Aspects Panel
+	p= __('howto.aspects.p3.f1')
+		img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+		= __('howto.aspects.p3.f2')
+		img.icon(src='/static/img/glyphicons/glyphicons_186_move.png')
+		= __('howto.aspects.p3.f3')
+		img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+		= __('howto.aspects.p3.f4')
 
-		p The Aspects panel provides a list of your character's permanent aspects. Edit mode provides a set of fields to input your aspect names, which can 
-			| be prefixed with a phase name in brackets (e.g. [PHASE]) if so desired. For example, if your character was orphaned on the mean streets of 
-			| Detroit, you might input the aspect as "[BACKGROUND] Grew Up Hard, Grew Up Fast". The phase name will be omitted from the name of the aspect 
-			| when not in edit mode, yielding simply 
-			em Grew Up Hard, Grew Up Fast
-			| .
+	p: a(href='#')= __('howto.backtotop')
 
-		p.
-			Each aspect field is paired with a text box to input a full description of that aspect, which will appear as a collapsible subtext when not in 
-			edit mode. These description fields are Markdown-enabled.
 
-		p By default, new characters only have a high concept and a trouble. To add additional aspects, click the plus icon (
-			img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
-			| ) at the bottom of the panel. This will add a new aspect name/description field pair. These additional aspects can be reordered by dragging 
-			| the drag handle (
-			img.icon(src='/static/img/glyphicons/glyphicons_186_move.png')
-			| ) up and down to the desired position, or removed by clicking the Delete button (
-			img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
-			| ).
+	a#skills
+	h3= __('howto.h10')
 
-		p: a(href='#') Back to top
+	p= __('howto.skills.p1.f1')
+		em= __('howto.skills.p1.f2')
+		= __('howto.skills.p1.f3')
 
+	p= __('howto.skills.p2')
 
-		a#skills
-		h3 Skills Panel
+	p= __('howto.skills.p3.f1')
+		em= __('howto.skills.p3.f2')
+		= __('howto.skills.p3.f3')
+		img.icon(src='/static/img/shifter_human.svg')
+		= __('howto.skills.p3.f4')
 
-		p The Skills panel provides an easy way to calculate your skill point usage in addition to simply displaying your skills. Edit mode provides the 
-			| skill ladder up to your skill cap, and a field to add new skills. Add a skill, then drag it from +0 to the level you want it. The indicator 
-			| at the bottom will tell you if your skill ladder is valid, and how many points you have left to spend. These numbers are based on the skill 
-			| cap and skill point values provided in the 
-			em Number Crunching
-			|  panel.
+	p: a(href='#')= __('howto.backtotop')
 
-		p At the bottom of the Skills panel is a simple fudge dice roller. Click it to roll the dice.
 
-		p If you have the 
-			em Shapeshifter
-			|  option enabled, then a new toggle will appear at the top of the Skills panel: a shapeshifter button (
-			img.icon(src='/static/img/shifter_human.svg')
-			| ). Clicking it will switch to a second distinct skill ladder for you to populate. Place your skills like normal. Clicking the shapeshifter 
-			| button again will switch back to the first set of skills.
+	a#totals
+	h3= __('howto.h11')
 
-		p: a(href='#') Back to top
+	p= __('howto.totals')
 
+	p: a(href='#')= __('howto.backtotop')
 
-		a#totals
-		h3 Number Crunching Panel
 
-		p.
-			This panel contains totals information for the Skills and Powers panels. Edit mode will let you set the refresh level, skill level, skill cap, 
-			and number of fate points for your character. These values are used to compute your available skill points and adjusted refresh.
+	a#stress
+	h3= __('howto.h12')
 
-		p: a(href='#') Back to top
+	p= __('howto.stress.p1')
 
+	.imgcontainer
+		img(src='/static/img/tutorial/stress_normal.png')
+		img(src='/static/img/tutorial/stress_edit.png')
 
-		a#stress
-		h3 Stress Panel
+	p= __('howto.stress.p2')
 
-		p.
-			Stress is the default form of tracking damage in the Fate system. The Stress panel has a number of stress tracks, and each track has up to 8 
-			stress boxes. To mark a stress box as used, simply click it.
+	p= __('howto.stress.p3.f1')
+		img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+		= __('howto.stress.p3.f2')
+		img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+		= __('howto.stress.p3.f3')
 
-		.imgcontainer
-			img(src='/static/img/tutorial/stress_normal.png')
-			img(src='/static/img/tutorial/stress_edit.png')
+	p: a(href='#')= __('howto.backtotop')
 
-		p.
-			The Edit view of this panel has a lot of controls, but don't be intimidated; it's really very simple. The minimum you have to do is label your 
-			track with a name and relevant skill, and choose how many boxes it has (the field labeled "Strength"). If you want, you can also indicate how 
-			many of those boxes have a Catch with the field labeled "Tough" (short for Toughness). If you have armor, you can also add a line to the 
-			relevant stress track so you remember to mitigate that stress.
 
-		p All new characters start with the default DFRPG stress tracks: Physical, Mental, and Social. If you need additonal stress tracks (for example, 
-			| Hunger), you can add more by clicking the Add button (
-			img.icon(src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
-			| ) at the bottom of the panel. Conversely, if you are playing a system that has fewer stress tracks, you can remove a track by clicking the 
-			| Remove button (
-			img.icon(src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
-			| ) next to that track.
+	a#consequences
+	h3= __('howto.h13')
 
-		p: a(href='#') Back to top
+	p= __('howto.conseq.p1')
 
+	p= __('howto.conseq.p2')
 
-		a#consequences
-		h3 Consequences Panel
+	p: a(href='#')= __('howto.backtotop')
 
-		p.
-			The Consequences panel is a more specialized version of the Aspects panel. Each consequence has severity (Mild, Moderate, etc.) and a relevant 
-			stress type (Any Type, Physical, Mental, etc.). A consequence's stress type can only be one of those that you have a stress track for. To use 
-			the consequence, click the text on the right, which will change into a textbox. In Edit mode, you can add new consequences with the Add button 
-			at the bottom of the panel, or remove them with the Remove button next to the relevant consequence.
 
-		p.
-			You can also manage temporary aspects from the Consequences panel. Add a new temporary aspect with the text box at the bottom of the Consequences 
-			panel, or remove one by clicking the Remove button next to the relevant aspect.
+	a#powers
+	h3= __('howto.h14')
 
-		p: a(href='#') Back to top
+	p= __('howto.powers.p1')
 
+	p= __('howto.powers.p2')
 
-		a#powers
-		h3 Stunts & Powers Panel
+	p: a(href='#')= __('howto.backtotop')
 
-		p.
-			This panel displays your powers and stunts in an easy-to-read table. Each row consists of the ability name and its cost (negative for refresh 
-			spent, positive for refresh gained). Each ability can also have a markdown-enabled description, which will be collapsed (expanded on click) if 
-			it gets too long.
 
-		p.
-			In addition, Edit mode has controls to add new stunts (the Add button at the bottom), remove stunts (the Remove button next to 
-			each item), and reorder stunts (the drag handle next to each item).
+	a#notes
+	h3= __('howto.h15')
 
-		p: a(href='#') Back to top
+	p= __('howto.notes.f1')
+		a(href='#markdown')= __('howto.notes.f2')
+		= __('howto.notes.f3')
 
-
-		a#notes
-		h3 Notes Panel (Optional)
-
-		p The Notes panel couldn't be simpler. It's a free-form markdown-enabled text box. Put whatever markdown you want into Edit mode, and it comes out 
-			| in normal mode nicely formatted. See the 
-			a(href='#markdown') markdown section
-			|  for more information about how that works.
-
-		p: a(href='#') Back to top
+	p: a(href='#')= __('howto.backtotop')
 

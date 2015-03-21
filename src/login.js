@@ -25,12 +25,12 @@ function processLogin(req,res)
 		{
 			if(err){
 				global.error('Error querying db:', err);
-				global.renderPage('login', {message: {type:'error', content:err}})(req,res);
+				global.renderPage('login', {code: 500, message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 				connection.end();
 			}
 			else if(rows.length === 0){
 				global.log('Email not found:', email);
-				global.renderPage('login', {message: {type:'error', content:'Incorrect email or password'}})(req,res);
+				global.renderPage('login', {code: 401, message: {type:'error', content: res.i18n.__('server.loginErr')}})(req,res);
 				connection.end();
 			}
 			else
@@ -44,11 +44,11 @@ function processLogin(req,res)
 					{
 						if(err){
 							global.error('Error updating db:', err);
-							global.renderPage('login', {message: {type:'error', content:err}})(req,res);
+							global.renderPage('login', {code: 500, message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 						}
 						else if( result.affectedRows === 0 ){
 							global.log('Incorrect password for:', email);
-							global.renderPage('login', {message: {type:'error', content:'Incorrect email or password'}})(req,res);
+							global.renderPage('login', {code: 401, message: {type:'error', content: res.i18n.__('server.loginErr')}})(req,res);
 						}
 						else {
 							global.log('User logged in:', email);
@@ -56,7 +56,10 @@ function processLogin(req,res)
 							req.session.user = username;
 							req.session.user_email = email;
 							req.session.persona = false;
-							res.redirect('/'+username);
+							if(req.query.redirect)
+								res.redirect(req.query.redirect);
+							else
+								res.redirect('/'+username);
 						}
 						connection.end();
 					}

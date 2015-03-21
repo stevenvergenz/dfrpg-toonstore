@@ -1,16 +1,14 @@
 @import 'polyfill';
 
-.banner
+article header
 {
-	@include display-flex();
-	@include align-items(center);
-	@include flex-direction(column);
-
+	text-align: center;
 	font-size: 2.0em;
-	padding: 18px;
+	padding: 18px 0;
 
 	h1 {
 		font-family: 'Denk One', sans-serif;
+		font-size: 2.0em;
 	}
 
 	h2 {
@@ -18,9 +16,7 @@
 		font-weight: normal;
 	}
 
-	& > * {
+	h1, h2 {
 		margin: 10px;
-		text-align: center;
 	}
 }
-

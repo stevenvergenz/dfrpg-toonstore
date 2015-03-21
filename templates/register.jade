@@ -1,80 +1,83 @@
-extends index
+extends theme
 
 block title
-	title Register | ToonStore.net
-	meta(name='description', content='Register for the ToonStore')
+	title= __('nav.register') + ' | ToonStore.net'
+	meta(name='description', content='#{__("register.meta_description")}')
 
-block append includes
+block js
 	script(src='/static/js/register.js')
-
-	if page == '/post-register'
+	script!= 'var clientStrings = ' + JSON.stringify(__('register.clientStrings')) + ';'
+	if /\/post-register$/.test(page)
 		script.
 			$(function(){
 				function redirect(){
-					window.location.replace('/'+userInfo.username);
+					window.location.replace( (localeInfo.pathLocale ? '/'+localeInfo.pathLocale : '')+'/'+userInfo.username);
 				}
 				setTimeout( redirect, 5000 );
 			});
 
 block content
 
-	if page == '/register'
+	if /\/register$/.test(page)
 
-		.content-block: .formbox
-			.title: span Sign up
+		.content-block.formbox
+			.title: span= __('nav.register')
 			//.inner
-			p Thank you for your interest! 
-				a(href='/login') Log in with Persona
-				|  or fill out the information below and we'll get you set up.
-			form(action='/register', method='post', onsubmit='return validate();')
+			p= __('register.intro.f1')
+				a(href=url('/login'))= __('register.intro.f2')
+				= __('register.intro.f3')
+			form(method='post', onsubmit='return validate();')
 
 				.field
-					label(for='email') E-mail address
+					label(for='email')= __('register.email.label')
 					input(type='email', name='email', required)
-					span.caption We promise not to share your email with anyone! See the 
-						a(href='/site/privacy') privacy policy
-						.
+					span.caption= __('register.email.caption.f1')
+						a(href=url('/site/privacy'))= __('register.email.caption.f2')
+						= __('register.email.caption.f3')
 
 				.field
-					label(for='username') Username (also your permalink)
+					label(for='username')= __('register.username.label')
 					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
-					span.caption#userMessage No spaces or special characters except for _ and -
+					span.caption#userMessage= __('register.username.caption')
 
 				.field.checkbox
 					input#agreement(type='checkbox', name='agreement', required)
-					label(for='agreement').
-						I have read and agree with the <a href='/site/terms'>Terms of Use</a> 
-						and the <a href='/site/privacy'>Privacy Policy</a>.
+					label(for='agreement')= __('register.agreement.f1')
+						a(href=url('/site/terms'))= __('register.agreement.f2')
+						= __('register.agreement.f3')
+						a(href=url('/site/privacy'))= __('register.agreement.f4')
+						= __('register.agreement.f5')
 
 				.field
-					input(type='submit', value='Submit')
+					input(type='submit', value='#{__("register.submit")}')
 					span.caption#submitMessage
 
-	else if page == '/federated-register'
+	else if /\/federated-register$/.test(page)
 
-		.content-block: .formbox
-			.title: span Sign up
-			p Since this is the first time you've logged in, you must pick a username.
-			form(action='/federated-register', method='post', onsubmit='return validateUsername();')
+		.content-block.formbox
+			.title: span= __('nav.register')
+			p= __('register.fedIntro')
+			form(method='post', onsubmit='return validateUsername();')
 
 				.field
-					label(for='username') Username (also your permalink)
+					label(for='username')= __('register.username.label')
 					input#username(type='text', name='username', required, onkeyup='checkUsername(this);')
-					span.caption#userMessage No spaces or special characters except for _ and -
+					span.caption#userMessage= __('register.username.caption')
 
 				.field.checkbox
 					input#agreement(type='checkbox', name='agreement', required)
-					label(for='agreement').
-						I have read and agree with the <a href='/site/terms'>Terms of Use</a> 
-						and the <a href='/site/privacy'>Privacy Policy</a>.
-
+					label(for='agreement')= __('register.agreement.f1')
+						a(href=url('/site/terms'))= __('register.agreement.f2')
+						= __('register.agreement.f3')
+						a(href=url('/site/privacy'))= __('register.agreement.f4')
+						= __('register.agreement.f5')
 				.field
-					input(type='submit', value='Submit')
+					input(type='submit', value='#{__("register.submit")}')
 					span.caption#submitMessage
 
-	else if page == '/post-register'
+	else if /\/post-register$/.test(page)
 
-		.content-block: .formbox
+		.content-block.formbox
 			.title Registration successful!
 			p You have completed registration. You will be redirected to your profile page in 5 seconds.
 

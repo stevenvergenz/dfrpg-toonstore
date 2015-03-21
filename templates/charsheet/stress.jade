@@ -1,14 +1,14 @@
 #stress.sheet-panel(ng-controller='StressCtrl', ng-class='{dirty: dirty}')
 	a#stress
-	h2.panelHeader Stress
+	h2.panelHeader= __('charsheet.headers.stress')
 		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 	#stressBlock(ng-hide='editing')
 		.track
 			.rowHeader
 			.boxes
-				.colHeader(ng-repeat='i in [1,2,3,4,5,6,7,8]')
-					span {{i}}
+				- for( var i=1; i<=8; i++ )
+					.colHeader= i
 
 		div(ng-repeat='track in data.stress', ng-controller='StressTrackCtrl', style='margin-bottom: 5px;')
 			.track
@@ -22,7 +22,10 @@
 							ng-class='manageParens($index)', ng-disabled='box === null')
 						label(for='{{data.name}}-{{data.skill}}-{{$index}}')
 
-			.track(ng-repeat='armor in data.armor') Armor: {{armor.strength}} vs. {{armor.vs}}
+			.track(ng-repeat='armor in data.armor')= __('charsheet.armor.f1')
+				| {{armor.strength}}
+				= __('charsheet.armor.f2')
+				| {{armor.vs}}
 
 	#stressEditBlock(ng-show='editing')
 
@@ -32,19 +35,19 @@
 					input(type='text', dgy-notify, ng-model='data.name')
 					input(type='text', dgy-notify, ng-model='data.skill')
 				.section
-					label Strength
+					label= __('charsheet.labels.strength')
 					input(type='number', dgy-notify, ng-model='data.strength')
 				.section
-					label Tough
+					label= __('charsheet.labels.toughness')
 					input(type='number', dgy-notify, ng-model='data.toughness')
 				.button-section
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_270_shield.png', ng-click='addArmor()')
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='delete()')
 
 			.track(ng-repeat='armor in data.armor')
-				span  Armor:
+				span= __('charsheet.armor.f1')
 				input(type='number', dgy-notify, ng-model='armor.strength')
-				span  vs. 
+				span= __('charsheet.armor.f2')
 				input(type='text', dgy-notify, ng-model='armor.vs')
 				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='data.armor.splice($index,1)')
 

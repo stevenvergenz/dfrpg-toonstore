@@ -14,16 +14,21 @@
 			"pass": ""
 		}
 	},
+	"debugEmail": true,
 
 	"port": 3001,
 	"cookie_secret": "I return from whence I came...",
+	"ganalytics_key": null,
 	"origin": "http://localhost:3001",
+	"donation_address": "1CX5xJ3o4rXcNRTrWGd2zCmAMtpCXGZo78",
+
 	"use_sitemap": false,
+	"use_robots": false,
 
 	"use_ssl": false,
 	"ssl_key": "localhost:3001.key",
 	"ssl_cert": "localhost:3001.crt",
 	"ssl_password": null,
 
-	"templates": []
+	"templates": ["DresdenFilesRPG"]
 }

@@ -1,17 +1,15 @@
-extends index
+extends theme
 
 block title
-	title Delete Character | ToonStore.net
+	title= __('killtoon.pagetitle')+ ' | ToonStore.net'
 
-block append includes
+block js
 
+	script!= 'var clientStrings = '+JSON.stringify(__('killtoon.clientStrings'))+';'
 	script.
 		function validate(){
 			if( $('label#confirm').text() != $('input#confirm').val() ){
-				if( $('div.error').length == 0 )
-					$('<div class="content-block"><div class="error"><p>You must enter the confirmation text to delete the character.</p></div></div>').prependTo( $('.content') );
-				else
-					$('div.error>p').text('You must ender the confirmation text to delete the character.');
+				$('#submitMessage').text(clientStrings.error);
 				return false;
 			}
 			else {
@@ -21,17 +19,18 @@ block append includes
 
 block content
 
-	.content-block: .formbox
-		.title Delete Character
+	.content-block.formbox
+		.title= __('killtoon.pagetitle')
 
-		form(action='/killtoon', method='post', onsubmit='return validate();')
+		form(method='post', onsubmit='return validate();')
 
-			p In the box below, type the following exactly as it appears:
+			p= __('killtoon.intro')
 			.field
-				label#confirm(for='confirm', style='background-color: #ffe5e5')= toon.name+", "+toon.hc+", is dead."
+				label#confirm(for='confirm', style='background-color: #ffe5e5')= __('killtoon.confirm', {name:toon.name, hc:toon.hc})
 				input#confirm(name='confirm', type='text')
 
 			input(type='hidden', name='charname', value=toon.canon)
 
 			.field
-				input(type='submit', value='Delete character')
+				input(type='submit', value='#{__("killtoon.submit")}')
+				span.caption#submitMessage

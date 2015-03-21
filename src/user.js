@@ -11,8 +11,8 @@ function newUserPage(req,res,next)
 	connection.query('SELECT COUNT(*) AS count FROM Users WHERE BINARY username = ?;', [req.params.user], function(err,rows,fields)
 	{
 		if(err){
-			global.error(err);
-			global.renderPage('404', {code:500})(req,res);
+			global.error('MySQL error:', err);
+			global.renderPage('index', {code:500, message: {type:'error', content: res.i18n.__('server.genericErr')}})(req,res);
 		}
 		else if(rows[0].count === 1){
 			global.log('Serving user page for', req.params.user);

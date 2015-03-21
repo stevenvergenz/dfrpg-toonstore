@@ -1,6 +1,6 @@
 #consequences.sheet-panel(ng-controller='ConsequenceCtrl', ng-class='{dirty: dirty}')
 	a#conseq
-	h2.panelHeader Consequences
+	h2.panelHeader= __('charsheet.headers.conseq')
 		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 	#conseqBlock(ng-repeat='con in data.consequences | conseqSort')
@@ -8,21 +8,23 @@
 			.horizgroup
 				input.removeButton(type='image', ng-show='editing', ng-click='removeConsequence($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
 				.vertgroup
-					.header(ng-hide='editing') {{con.severity}} ({{magnitude(con.severity)}})
-					.subtitle(ng-hide='editing') {{con.mode}} Type
+					.header(ng-hide='editing') {{clientStrings.conseqType[con.severity.toLowerCase()]}}
+					.subtitle(ng-hide='editing')= '{{con.mode}} '+__('charsheet.clientStrings.conseqType.type')
 					select(dgy-notify, ng-show='editing', ng-model='con.severity')
-						option(value='Mild') Mild (-2)
-						option(value='Moderate') Moderate (-4)
-						option(value='Severe') Severe (-6)
-						option(value='Extreme') Extreme (-8)
-					select(dgy-notify, ng-show='editing', ng-model='con.mode', ng-options='type for type in stressTypes()')
+						option(value='Mild')= __('charsheet.clientStrings.conseqType.mild')
+						option(value='Moderate')= __('charsheet.clientStrings.conseqType.moderate')
+						option(value='Severe')= __('charsheet.clientStrings.conseqType.severe')
+						option(value='Extreme')= __('charsheet.clientStrings.conseqType.extreme')
+					select(dgy-notify, ng-show='editing', ng-model='con.mode')
+						option(value='Any')= __('charsheet.clientStrings.genericConseq')
+						option(ng-repeat='type in stressTypes()', ng-value='type') {{type}}
 
-			resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder='Unused')
+			resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder=__('charsheet.unused'))
 
 	input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addConsequence()')
 
 	#tempAspectBlock(ng-hide='editing')
-		p.header Temporary Aspects
+		p.header= __('charsheet.labels.tempaspect')
 		div(ng-repeat='a in data.aspects.tempAspects track by $index')
 			p.tempAspect {{a}}
 				input.removeButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='removeTempAspect($index)')

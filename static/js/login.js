@@ -32,15 +32,17 @@ function handlePersona()
 				url: '/login/persona',
 				data: {'email': assertion},
 				success: function(res,status,xhr){
-					if( !overrideUserRedirect )
-						window.location.replace('/'+res.username);
+					var match = /[?&]redirect=([^&]+)/.exec(window.location.search);
+					if( match ){
+						window.location.href = match[1];
+					}
 					else
-						window.location.reload();
+						window.location.href = (localeInfo.pathLocale ? '/'+localeInfo.pathLocale : '')+'/'+res.username;
 				},
 				error: function(xhr,status,err){
 					console.log('Problem logging in');
 					if( xhr.status == 403 ){
-						prependMessageTo( $('.content'), {'type': 'error', 'content': 'Could not verify user credentials'} );
+						prependMessageTo( $('.content'), {'type': 'error', 'content': clientStrings.verify_fail} );
 						setTimeout(function(){navigator.id.logout();},3000);
 					}
 					else if( xhr.status == 500 ){
@@ -53,7 +55,7 @@ function handlePersona()
 						window.location.replace(response.content);
 					}
 					else {
-						prependMessageTo( $('.content'), {'type': 'error', 'content': 'Unidentified error logging in'} );
+						prependMessageTo( $('.content'), {'type': 'error', 'content': clientStrings.generic_fail} );
 						setTimeout(function(){navigator.id.logout();},3000);
 					}
 				}
@@ -67,7 +69,7 @@ function handlePersona()
 				url: '/logout',
 				success: function(res,status,xhr){
 					if( !overrideUserRedirect )
-						window.location.href = '/';
+						window.location.href = localeInfo.pathLocale ? '/'+localeInfo.pathLocale+'/' : '/';
 					else
 						window.location.reload();
 				},
@@ -91,7 +93,7 @@ function logout()
 			url: '/logout',
 			success: function(res,status,xhr){
 				if( !overrideUserRedirect )
-					window.location.href = '/';
+					window.location.href = localeInfo.pathLocale ? '/'+localeInfo.pathLocale+'/' : '/';
 				else
 					window.location.reload();
 			},

@@ -1,27 +1,27 @@
 #aspects.sheet-panel(ng-controller='AspectCtrl', ng-class='{dirty: dirty}')
 	a#aspects
-	h2.panelHeader Aspects
+	h2.panelHeader= __('charsheet.headers.aspects')
 		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
 
 	.field
-		p.fieldLabel High Concept:
+		p.fieldLabel= __('charsheet.labels.hc')
 		input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.name')
-		textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.description')
+		textarea(placeholder=__('charsheet.description'), dgy-notify, ng-show='editing', ng-model='data.aspects.high_concept.description')
 
 		div(dgy-accordion='data.aspects.high_concept.description', ng-hide='editing')
 			p.aspectText {{parseAspect(data.aspects.high_concept.name).name}}
 			.description(ng-bind-html='data.aspects.high_concept.description | mdToHtml')
 
 	.field
-		p.fieldLabel Trouble:
+		p.fieldLabel= __('charsheet.labels.trouble')
 		input(type='text', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.name')
-		textarea(placeholder='Description', dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.description')
+		textarea(placeholder=__('charsheet.description'), dgy-notify, ng-show='editing', ng-model='data.aspects.trouble.description')
 		div(dgy-accordion='data.aspects.trouble.description', ng-hide='editing')
 			p.aspectText {{parseAspect(data.aspects.trouble.name).name}}
 			.description(ng-bind-html='data.aspects.trouble.description | mdToHtml')
 
 	.field
-		p.fieldLabel Other Aspects:
+		p.fieldLabel= __('charsheet.labels.otheraspects')
 		div(ui-sortable='dragOptions', dgy-notify-collection, ng-model='data.aspects.aspects')
 			div(ng-repeat='aspect in data.aspects.aspects')
 				div(dgy-accordion='aspect.description', ng-hide='editing')
@@ -33,6 +33,6 @@
 					input(type='text', dgy-notify, ng-model='aspect.name')
 					input.iconButton(type='image', ng-click='removeAspect($index)',
 						style='width: 15px; height: 15px;', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
-					textarea(placeholder='Description', dgy-notify, ng-model='aspect.description')
+					textarea(placeholder=__('charsheet.description'), dgy-notify, ng-model='aspect.description')
 
 	input.iconButton(type='image', ng-show='editing', src='/static/img/glyphicons/glyphicons_190_circle_plus.png', ng-click='addAspect()')

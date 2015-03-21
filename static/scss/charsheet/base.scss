@@ -1,6 +1,4 @@
 @import '../polyfill';
-@import '../theme';
-@import '../navbar';
 
 div.sheet-panel-group
 {
@@ -54,7 +52,7 @@ div.sheet-panel
 	outline: none;
 }
 
-input.iconButton {
+.iconButton {
 	margin-left: 10px;
 	width: 20px;
 	height: 20px;

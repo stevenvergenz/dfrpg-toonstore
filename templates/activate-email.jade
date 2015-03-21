@@ -1,34 +1,28 @@
 doctype html
-p Hello
-	if username
-		#{username}
-	!
+if username
+	p= __('activate-email.greeting_user', username)
+else
+	p= __('activate-email.greeting_nouser')
 
 if registration
-	p.
-		Thank you for using the ToonStore! Click the link below to get started:
+	p= __('activate-email.intro_reg')
 else
-	p.
-		Thank you for using the ToonStore! You have requested a password reset, so click the
-		link below to get started:
+	p= __('activate-email.intro_noreg')
 
 p
 	a(href='#{url}/activate/#{token}')
 		if registration
-			Set your password
+			= __('activate-email.setpassword')
 		else
-			Reset your password
+			= __('activate-email.resetpassword')
 
-p Note that this link is only active for 15 minutes, after which you will need to request a new one.
+p= __('activate-email.p1')
+p= __('activate-email.p2')
 
-p.
-	Enter your new password where prompted, and confirm. We don't have any hard and fast rules
-	about password complexity, but the indicator will tell you how long it will take a computer
-	to guess it. If it is blue or green, you're good to go.
+p= __('activate-email.p3.f1')
+	a(href='#{url}/site/contact')= __('activate-email.p3.f2')
+	= __('activate-email.p3.f3')
 
-p I hope you enjoy using the ToonStore! If you have any questions, comments, or complaints,
-	| please <a href='#{url}/site/contact'>contact us</a>!
-
-p All the best,
+p= __('activate-email.closing')
 	br
-	| The ToonStore Team
+	= __('activate-email.sig')

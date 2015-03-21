@@ -1,68 +1,67 @@
-extends index
+extends theme
 
 block title
-	if /^\/pre-activate/.test(page)
-		title Activate your account | ToonStore.net
-	else if /^\/activate\/[0-9a-f]{32}/.test(page)
-		title Choose a password | ToonStore.net
+	if /\/passreset$/.test(page)
+		title= __('passreset.pagetitle') + ' | ToonStore.net'
+	else if /\/pre-activate/.test(page)
+		title= __('pre-activate.pagetitle') + ' | ToonStore.net'
+	else if /\/activate\/[0-9a-f]{32}$/.test(page)
+		title= __('activate.pagetitle') + ' | ToonStore.net'
 
-block append includes
-	script(src='/static/js/zxcvbn-async.js')
-	script(src='/static/js/activate.js')
+block js
+	if /\/activate\/[0-9a-f]{32}$/.test(page)
+		script(src='/static/js/zxcvbn-async.js')
+		script(src='/static/js/moment.min.js')
+		if i18n.pageLocale
+			script(src='/static/js/moment.'+i18n.pathLocale+'.js')
+		script!= 'var clientStrings = ' + JSON.stringify(__('activate.clientStrings')) + ';'
+		script(src='/static/js/activate.js')
 
 block content
+	if /\/pre-activate/.test(page)
 
-	if /^\/pre-activate/.test(page)
-
-		.content-block: .formbox
-			.title: span Email verification
+		.content-block.formbox
+			.title: span= __('pre-activate.pagetitle')
 			if query.t == 'register'
-				p Thank you for joining ToonStore! We have emailed you a link to activate
-					| your account. Click the link and follow the instructions to complete
-					| your registration.
+				p= __('pre-activate.intro_register')
 			else
-				p Your password reset request has been received. We have emailed you a link,
-					| please click the link to change your password.
+				p= __('pre-activate.intro')
 
-			p Note that it can take a few minutes to get the email. If you don't see it, 
-				| check your spam folder, and add "no-reply@toonstore.net" to your allowed
-				| sender's list.
+			p= __('pre-activate.note')
 
-	else if page == '/passreset'
+	else if /\/passreset$/.test(page)
 
-		.content-block: .formbox
-			.title: span Reset password
-			p Type in your email address below, and we will email you a link to reset your password.
+		.content-block.formbox
+			.title: span= __('passreset.pagetitle')
+			p= __('passreset.intro')
 			form(method='POST')
 				.field
-					label(for='email') E-mail
+					label(for='email')= __('passreset.email')
 					input#email(type='email', name='email', required)
 
 				.field
-					input(type='submit', value='Submit')
+					input(type='submit', value='#{__("passreset.submit")}')
 
 
-	else
+	else if /\/activate\/[0-9a-f]{32}$/.test(page)
 
-		.content-block: .formbox
-			.title: span Set your password
+		.content-block.formbox
+			.title: span= __('activate.pagetitle')
 
-			p Type your new password in the fields below. The time to crack is an indicator
-				| of how strong your password is. Good passwords should take at least a few
-				| years to crack. If the meter is green or blue you're in good shape.
+			p= __('activate.intro')
 
 			form(method='POST', onsubmit='return validate();')
 				.field
-					label(for='password') Password
+					label(for='password')= __('activate.password')
 					input#password(type='password', name='password', required, onkeyup='checkPass();')
-					p.caption#passStrength Time to crack: 
+					p.caption#passStrength= __('activate.cracktime')
 						span ???
 
 				.field
-					label(for='confirm') Confirm password
+					label(for='confirm')= __('activate.confirm')
 					input#confirm(type='password', name='confirm', required, onkeyup='checkPass();')
 					p.caption#passMatch
 
 				.field
-					input(type='submit', value='Submit')
+					input(type='submit', value='#{__("activate.submit")}')
 					p.caption#submitMessage
