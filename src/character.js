@@ -25,7 +25,7 @@ function servePage(req,res,next)
 					}
 					else {
 						global.log('Serving character page for', req.url);
-						global.renderPage('charsheet/base', {toonName: rows[0].name, toonConcept: rows[0].concept})(req,res);
+						global.renderPage('charsheet/base', {toonName: rows[0].name, toonConcept: rows[0].concept, charModel: rows[0].info})(req,res);
 					}
 				}
 				// unauthorized
@@ -84,11 +84,11 @@ function pushJson(req,res,next)
 		function(err,result){
 			if( !err ){
 				global.log('Success');
-				res.json(req.body);
+				res.send(200);
 			}
 			else {
 				global.error('MySQL error:', err, global.logLevels.error);
-				res.send(500);
+				res.status(500).send('Database error');
 			}
 			connection.end();
 		}

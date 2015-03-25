@@ -1,34 +1,27 @@
-var app = angular.module('charsheet', ['ngResource','ngSanitize','ui.sortable']);
+var app = angular.module('charsheet', ['ngSanitize','ui.sortable']);
 
 /*
  * Retrieve the JSON data from server
  */
-app.service('rootModel', ['$rootScope','$timeout','$resource', function($rootScope,$timeout,$resource)
+app.service('rootModel', ['$rootScope','$timeout','$http', function($rootScope,$timeout,$http)
 {
-	this._resource = $resource('json', {}, {
-		'get': {
-			'method': 'GET',
-			'transformResponse': function(data,headers){
-				$timeout(function(){$rootScope.$broadcast('is_clean');}, 100);
-				var json = angular.fromJson(data);
-				if(! json.aspects.tempAspects )
-					json.aspects.tempAspects = [];
-				return json;
-			}
-		},
-		'save': {
-			'method': 'POST',
-			'transformResponse': function(data,headers){
-				$timeout(function(){$rootScope.$broadcast('is_clean');}, 100);
-				return angular.fromJson(data);
-			}
-		}
-	});
-
-	this.data = this._resource.get();
-
-	$rootScope.data = this.data;
 	$rootScope.clientStrings = clientStrings;
+
+	this.data = charModel;
+	$rootScope.data = charModel;
+	$rootScope.data.$save = function()
+	{
+		$http.post('json', $rootScope.data)
+			.success(function(data,status){
+				console.log('Character data saved');
+				$rootScope.$broadcast('is_clean');
+			})
+			.error(function(data,status){
+				console.log('Save failed!');
+				alert('Character data save failed!: '+data);
+			});
+	};
+	$timeout(function(){$rootScope.$broadcast('is_clean');}, 100);
 
 	$rootScope.$on('is_dirty', function(){ $rootScope.dirty = true; });
 	$rootScope.$on('is_clean', function(){ $rootScope.dirty = false; });
@@ -41,12 +34,10 @@ app.service('rootModel', ['$rootScope','$timeout','$resource', function($rootSco
 
 		if( newVal === true ){
 			console.log('Page listener added');
-			//window.addEventListener('beforeunload', confirmUnload);
 			window.onbeforeunload = confirmUnload;
 		}
 		else {
 			console.log('Page listener removed');
-			//window.removeEventListener('beforeunload', confirmUnload);
 			window.onbeforeunload = null;
 		}
 	});
@@ -326,9 +317,6 @@ app.service('SharedResources', ['rootModel', function(rootModel)
 	// select correct list
 	self.skills = function(level)
 	{
-		if( !rootModel.data.$resolved )
-			return [];
-
 		if( self.shifted )
 			return rootModel.data.skills.shifted_lists[level];
 		else
@@ -350,16 +338,10 @@ app.service('SharedResources', ['rootModel', function(rootModel)
 
 	// calculate skill points available
 	self.skillPointsAvailable = function(){
-		if( !rootModel.data.$resolved )
-			return;
-		else
-			return rootModel.data.totals.skills_total - self.skillPointsSpent();
+		return rootModel.data.totals.skills_total - self.skillPointsSpent();
 	};
 
 	self.refreshSpent = function(){
-		if( !rootModel.data.$resolved )
-			return;
-
 		var total = 0;
 		for( var i=0; i<rootModel.data.powers.length; i++ ){
 			total += rootModel.data.powers[i].cost;
@@ -368,9 +350,6 @@ app.service('SharedResources', ['rootModel', function(rootModel)
 	};
 
 	self.adjustedRefresh = function(){
-		if( !rootModel.data.$resolved )
-			return;
-
 		return rootModel.data.totals.base_refresh + self.refreshSpent();
 	};
 }]);

@@ -74,9 +74,6 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 	// correct ordering of skill groups
 	$scope.presOrder = function(){
 		var arr = [];
-		if( ! $scope.data.$resolved )
-			return arr;
-
 		for(var i=$scope.data.totals.skill_cap; i>=0; i--){
 			arr.push(i);
 		}
@@ -87,9 +84,6 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 	// skill ladder validator
 	$scope.valid = function(){
 		var valid = true;
-		if( !$scope.data.$resolved )
-			return valid;
-
 		for( var i=1; i<$scope.data.totals.skill_cap; i++ ){
 			valid &= SharedResources.skills(i).length >= SharedResources.skills(i+1).length;
 		}
@@ -153,10 +147,7 @@ app.controller('TotalsCtrl', ['$scope','SharedResources','rootModel', function($
 
 	$scope.powerLevel = function()
 	{
-		if( !$scope.data.$resolved ){
-			return '';
-		}
-		else if( $scope.data.totals.base_refresh < 7 ){
+		if( $scope.data.totals.base_refresh < 7 ){
 			return clientStrings.powerLevels.feet;
 		}
 		else if( $scope.data.totals.base_refresh < 8 ){
@@ -270,9 +261,6 @@ app.controller('ConsequenceCtrl', ['$scope','rootModel', function($scope)
 	$scope.stressTypes = function()
 	{
 		var types = [];
-		if( !$scope.data.$resolved )
-			return types;
-
 		for( var i in $scope.data.stress ){
 			if( types.indexOf($scope.data.stress[i].name) == -1 ){
 				types.push( $scope.data.stress[i].name );
@@ -353,11 +341,9 @@ app.controller('NotesCtrl', ['$scope','$sce','$sanitize','rootModel', function($
 {
 	$scope.editing = false;
 
-	$scope.$watch('data.$resolved', function(){
-		if( $scope.data.$resolved && !$scope.data.notes ){
-			$scope.data.notes = {'text':'', 'enabled':false};
-		}
-	});
+	if( !$scope.data.notes ){
+		$scope.data.notes = {'text':'', 'enabled':false};
+	}
 
 	$scope.$on('is_dirty', function(){ $scope.dirty = true; });
 	$scope.$on('is_clean', function(){ $scope.dirty = false; });
