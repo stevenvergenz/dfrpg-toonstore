@@ -1,8 +1,14 @@
-@media not print { .page {
-	width: 7.5in;
-}}
+@import 'polyfill';
 
-body {
+@media not print {
+	.page
+	{
+		width: 7.5in;
+	}
+}
+
+body
+{
 	font-family: "Armata", cursive;
 	font-size: 10pt;
 }
@@ -12,29 +18,31 @@ body {
  * General layout classes
  ***********************************************************/
 
-.page {
-	display: flex;
-	flex-direction: column;
+.page
+{
+	@include display-flex();
+	@include flex-direction(column);
 	max-height: 10in;
 	height: 10in;
 	page-break-after: auto;
 	page-break-inside: avoid;
 }
 
-.page-column {
-	display: flex;
-	flex-direction: column;
+.page-column
+{
+	@include display-flex();
+	@include flex-direction(column);
 	width: 50%;
+
+	& > :last-child {
+		flex-grow: 1;
+	}
 }
 
-.page-column > :last-child {
-	flex-grow: 1;
-}
-
-.page-row {
-	display: flex;
-	flex-direction: row;
-	justify-content: space-between;
+.page-row
+{
+	@include display-flex();
+	@include justify-content(space-between);
 }
 
 
@@ -42,17 +50,18 @@ body {
  * General panel properties
  ***********************************************************/
 
-.sheet-panel {
+.sheet-panel
+{
 	border: solid #777 1px;
 	border-radius: 8px;
 	padding: 5px;
 	margin: 2px;
-}
 
-.sheet-panel > h2 {
-	margin: 0;
-	font-size: 14pt;
-	text-align: center;
+	h2 {
+		margin: 0;
+		font-size: 14pt;
+		text-align: center;
+	}
 }
 
 
@@ -60,18 +69,22 @@ body {
  * Specific panel properties
  ***********************************************************/
 
-#aspects { text-align: center; }
+#aspects
+{
+	text-align: center;
 
-#aspects > h3 {
-	margin: 0;
-	margin-top: 6px;
-	font-size: 7pt;
-	letter-spacing: 3px;
-	text-transform: uppercase;
-}
+	& > h3
+	{
+		margin: 0;
+		margin-top: 6px;
+		font-size: 7pt;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+	}
 
-#aspects span.aspect {
-	display: block;
+	span.aspect {
+		display: block;
+	}
 }
 
 
