@@ -21,7 +21,7 @@ function servePage(req,res,next)
 				{
 					if( /printable$/.test(req.url) ){
 						global.log('Serving printable character page for', req.url);
-						global.renderPage('printable', {toonName: rows[0].name, toonConcept: rows[0].concept})(req,res);
+						global.renderPage('printable', {toonName: rows[0].name, toonConcept: rows[0].concept, charModel: rows[0].info})(req,res);
 					}
 					else {
 						global.log('Serving character page for', req.url);
