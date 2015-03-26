@@ -3,7 +3,7 @@ html
 	head
 		title= toonName + ', ' + toonConcept + ' | ToonStore.net'
 		link(rel='stylesheet', type='text/css', href='/static/css/printable.css')
-		link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Metamorphous&subset=latin,latin-ext')
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous&subset=latin,latin-ext')
 		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Armata&subset=latin,latin-ext')
 		link(rel='icon', type='image/png', href='/static/img/pentacle-simple.png')
 
@@ -12,6 +12,8 @@ html
 		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.js')
 		script(src='/static/js/markdown.js')
 		script(src='/static/js/sortable.js')
+
+		script!= 'var clientStrings = ' + JSON.stringify(__('charsheet.clientStrings')) + ';'
 		script(src='/static/js/char-extras.js')
 		script(src='/static/js/char-controllers.js')
 
