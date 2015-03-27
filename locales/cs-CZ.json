@@ -246,7 +246,7 @@
 		
 		"headers": {
 			"panels": "Panels",
-			"printable": "Printer-friendly",
+			"printable": "Print",
 			"optionals": "Optional Panels",
 			"notes": "Notes",
 			"shapeshifter": "Shapeshifter",

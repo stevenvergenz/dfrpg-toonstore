@@ -29,7 +29,7 @@ block navigation
 			ul
 				li: a(href=url('/site/howto'))= __('charsheet.headers.help')
 			ul
-				li: a(href='printable') Print
+				li: a(href='printable')= __('charsheet.headers.printable')
 				li: input.fakelink(type='button', ng-class='{dirty: dirty}', ng-click='data.$save()', value=__('charsheet.headers.save'))
 	
 block content
