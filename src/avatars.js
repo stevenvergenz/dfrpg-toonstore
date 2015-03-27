@@ -41,7 +41,7 @@ function serveAvatar(req,res,next)
 				res.send(404);
 			}
 			else if(!info[0].avatar){
-				global.log('Avatar not found');
+				//global.log('Avatar not found');
 				res.send(404);
 			}
 			else {
