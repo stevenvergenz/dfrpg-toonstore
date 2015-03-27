@@ -43,6 +43,44 @@ app.service('rootModel', ['$rootScope','$timeout','$http', function($rootScope,$
 	});
 }]);
 
+app.directive('dgyCondense', ['$timeout', function($timeout)
+{
+	var pageElement = document.querySelector('.page');
+
+	return {
+		restrict: 'A',
+		link: function(scope,element,attr)
+		{
+			$timeout(function checkHeight()
+			{
+				console.log('Checking condensation:', pageElement.scrollHeight);
+				if( pageElement.scrollHeight > 960 && !element.hasClass('condensed5') )
+				{
+					if( element.hasClass('condensed0') ){
+						element.removeClass('condensed0').addClass('condensed1');
+					}
+					else if( element.hasClass('condensed1') ){
+						element.removeClass('condensed1').addClass('condensed2');
+					}
+					else if( element.hasClass('condensed2') ){
+						element.removeClass('condensed2').addClass('condensed3');
+					}
+					else if( element.hasClass('condensed3') ){
+						element.removeClass('condensed3').addClass('condensed4');
+					}
+					else if( element.hasClass('condensed4') ){
+						element.removeClass('condensed4').addClass('condensed5');
+					}
+					$timeout(checkHeight);
+				}
+				else {
+					window.print();
+				}
+			});
+		}
+	};
+}]);
+
 app.directive('dgyNotifyCollection', function()
 {
 	return {

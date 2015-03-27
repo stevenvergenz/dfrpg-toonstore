@@ -7,42 +7,5 @@ nav#charnav
 		color: #f44;
 		text-transform: uppercase;
 	}
-	
-	ul.navmenu
-	{
-		//padding-left: 12px;
-		//padding-right: 12px;
-		text-align: left;
-
-		span.subarrow
-		{
-			background-image: url('/static/css/ui-darkness/images/ui-icons_ffffff_256x240.png');
-			background-position: -32px 0px;
-			background-repeat: no-repeat;
-
-			width: 16px;
-			height: 16px;
-
-			overflow: hidden;
-			float: right;
-
-			display: block;
-			top: .2em;
-			left: .2em;
-
-			margin: 4px;
-		}
-
-		.ui-menu
-		{
-			border: solid grey 1px;
-			background-color: #41568a;
-
-			.ui-menu-item:hover {
-				border-radius: 5px;
-				background-color: #022;
-			}
-		}
-	}
 }
 

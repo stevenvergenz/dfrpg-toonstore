@@ -44,7 +44,7 @@ function compileSCSS(dir, callback)
 			sass.render({
 				file: infile,
 				imagePath: '/static/img',
-				outputStyle: 'compressed',
+				outputStyle: 'nested',
 
 				sourceMap: true,
 				outFile: outfile,

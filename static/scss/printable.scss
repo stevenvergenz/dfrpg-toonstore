@@ -24,6 +24,8 @@ body
 	@include flex-direction(column);
 	max-height: 10in;
 	height: 10in;
+	overflow: hidden;
+
 	page-break-after: auto;
 	page-break-inside: avoid;
 }
@@ -329,8 +331,8 @@ div.bubble
 	{
 		display: block;
 		margin-left: 40px;
-		font-size: 8pt;
-		letter-spacing: 1px;
+		font-size: 11px;
+		letter-spacing: 0.1em;
 
 		& > * {
 			margin: 2px 0;
@@ -338,6 +340,20 @@ div.bubble
 
 		ul {
 			padding-left: 20px;
+		}
+	}
+
+	// generate condensed classes for progressive text resizing
+
+	@for $i from 1 through 5
+	{
+		&.condensed#{$i}
+		{
+			.description {
+				text-align: justify;
+				margin-left: 10px;
+				font-size: 11px - $i;
+			}
 		}
 	}
 

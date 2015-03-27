@@ -26,9 +26,10 @@ block navigation
 
 	if logged_user == owner
 		nav#charnav
-			div#placeholder
 			ul
 				li: a(href=url('/site/howto'))= __('charsheet.headers.help')
+			ul
+				li: a(href='printable') Print
 				li: input.fakelink(type='button', ng-class='{dirty: dirty}', ng-click='data.$save()', value=__('charsheet.headers.save'))
 	
 block content

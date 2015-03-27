@@ -18,7 +18,6 @@ html
 
 		script(src='/static/js/jquery-1.10.1.js')
 		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
-		//script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-resource.js')
 		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.js')
 		script(src='/static/js/markdown.js')
 		script(src='/static/js/sortable.js')
@@ -140,7 +139,7 @@ html
 										span(ng-hide='$last') , 
 
 
-					#powers.sheet-panel(ng-controller='PowersCtrl')
+					#powers.sheet-panel.condensed0(ng-controller='PowersCtrl', dgy-condense)
 						h2 Stunts & Powers
 
 						.row.header
