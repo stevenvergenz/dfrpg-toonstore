@@ -51,8 +51,14 @@ app.directive('dgyCondense', ['$timeout', function($timeout)
 		restrict: 'A',
 		link: function(scope,element,attr)
 		{
+			var lastPageSize = 0;
 			$timeout(function checkHeight()
 			{
+				if( pageElement.scrollHeight === lastPageSize )
+					return;
+				else
+					lastPageSize = pageElement.scrollHeight;
+
 				console.log('Checking condensation:', pageElement.scrollHeight);
 				if( pageElement.scrollHeight > 960 && !element.hasClass('condensed5') )
 				{
