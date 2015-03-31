@@ -134,7 +134,7 @@ html
 							.row(ng-repeat='level in presOrder()', ng-hide='$last')
 								.fieldLabel {{label(level)}}
 								.skillList
-									.skill(ng-repeat='skill in skills(level)')
+									.skill(ng-repeat='skill in skills(level) track by $index')
 										span {{skill}}
 										span(ng-hide='$last') , 
 
