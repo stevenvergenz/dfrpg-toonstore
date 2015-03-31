@@ -220,6 +220,7 @@ app.directive('dgyDraggable', function()
 			// initialize
 			element.draggable({
 				'revert': true,
+				'revertDuration': 0,
 				'disabled': !scope.enabled()
 			});
 

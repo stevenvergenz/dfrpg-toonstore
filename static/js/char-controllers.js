@@ -67,6 +67,14 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 	$scope.skills = SharedResources.skills;
 	$scope.label = SharedResources.skillLabel;
 
+	if( $scope.data.skills.is_shifter !== undefined ){
+		if( $scope.data.skills.is_shifter )
+			$scope.data.skills.system = 'shifter';
+		else
+			$scope.data.skills.system = 'core';
+		delete $scope.data.skills.is_shifter;
+	}
+
 	$scope.$watch('shifted', function(newVal){
 		SharedResources.shifted = newVal;
 	});
@@ -119,6 +127,8 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 		var skill = ui.draggable.find('span').first().text();
 		var draggedLevel = angular.element(ui.draggable).parent().scope().level;
 		var droppedLevel = angular.element(evt.target).scope().level;
+		if( droppedLevel === undefined )
+			droppedLevel = -1;
 		
 		if( draggedLevel != droppedLevel )
 		{
@@ -127,7 +137,7 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 			$scope.skills(draggedLevel).splice(pos,1);
 
 			// add to new group (if not removing)
-			if( droppedLevel != 0 ){
+			if( droppedLevel != -1 ){
 				$scope.skills(droppedLevel).push(skill);
 				$scope.skills(droppedLevel).sort();
 			}
