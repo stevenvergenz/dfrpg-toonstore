@@ -47,6 +47,7 @@
 
 		.skill {
 			display: inline;
+			text-transform: capitalize;
 			@include user-select(none);
 		}
 

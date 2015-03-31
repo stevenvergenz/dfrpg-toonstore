@@ -95,9 +95,21 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 	// add new skill
 	$scope.addSkill = function(skillName)
 	{
-		$scope.skills(0).push(skillName);
-		$scope.skills(0).sort();
-		$scope.$emit('is_dirty');
+		var allSkills = [];
+		if( $scope.shifted )
+			allSkills = $scope.data.skills.shifted_lists.reduce(function(sum,cur){ return sum.concat(cur); }, []);
+		else
+			allSkills = $scope.data.skills.lists.reduce(function(sum,cur){ return sum.concat(cur); }, []);
+		allSkills = allSkills.map(function(x){ return x.toUpperCase(); });
+	
+		if( allSkills.indexOf( skillName.toUpperCase() ) === -1 ){
+			$scope.skills(0).push(skillName);
+			$scope.skills(0).sort();
+			$scope.$emit('is_dirty');
+		}
+		else {
+			alert('Duplicate skill');
+		}
 	};
 
 

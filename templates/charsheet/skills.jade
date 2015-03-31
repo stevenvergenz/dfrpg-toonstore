@@ -19,7 +19,7 @@
 		.row(dgy-droppable='editing', dgy-drop='dropHandler', ng-repeat='level in presOrder()', ng-hide='!editing && $last')
 			.fieldLabel {{label(level)}}
 			.skillList
-				.skill.noselect(dgy-draggable='editing', ng-repeat='skill in skills(level)')
+				.skill.noselect(dgy-draggable='editing', ng-repeat='skill in skills(level) track by $index')
 					span {{skill}}
 					img(ng-show='editing', src='/static/img/glyphicons/glyphicons_186_move.png', style='width: 10px; height: 10px;')
 					span(ng-hide='$last') , 
