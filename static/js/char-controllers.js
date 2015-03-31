@@ -67,17 +67,12 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 	$scope.skills = SharedResources.skills;
 	$scope.label = SharedResources.skillLabel;
 
-	if( $scope.data.skills.is_shifter !== undefined ){
-		if( $scope.data.skills.is_shifter )
-			$scope.data.skills.system = 'shifter';
-		else
-			$scope.data.skills.system = 'core';
-		delete $scope.data.skills.is_shifter;
-	}
-
 	$scope.$watch('shifted', function(newVal){
 		SharedResources.shifted = newVal;
 	});
+
+	if( !$scope.data.skills.system )
+		$scope.data.skills.system = 'columns';
 
 	// correct ordering of skill groups
 	$scope.presOrder = function(){
@@ -93,7 +88,10 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 	$scope.valid = function(){
 		var valid = true;
 		for( var i=1; i<$scope.data.totals.skill_cap; i++ ){
-			valid &= SharedResources.skills(i).length >= SharedResources.skills(i+1).length;
+			if( $scope.data.skills.system === 'columns' )
+				valid &= SharedResources.skills(i).length >= SharedResources.skills(i+1).length;
+			else if( $scope.data.skills.system === 'pyramid' )
+				valid &= SharedResources.skills(i).length > SharedResources.skills(i+1).length;
 		}
 		//return (valid ? 'Valid' : 'INVALID') + ', '+SharedResources.skillPointsAvailable()+' available';
 		return (valid ? clientStrings.validSkills : clientStrings.invalidSkills).replace('%s', SharedResources.skillPointsAvailable());
@@ -120,6 +118,25 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 		}
 	};
 
+	$scope.addSkillSet = function(set)
+	{
+		var sets = {
+			'fae': 'Careful Clever Flashy Forceful Quick Sneaky'.split(' '),
+			'dfrpg': 'Alertness Athletics Burglary Contacts Conviction Craftsmanship Deceit Discipline Driving Empathy Endurance Fists Guns Intimidation Investigation Lore Might Performance Presence Rapport Resources Scholarship Stealth Survival Weapons'.split(' '),
+			'core': 'Athletics Burglary Contacts Crafts Deceive Drive Empathy Fight Investigate Lore Notice Physique Provoke Rapport Resources Shoot Stealth Will'.split(' ')
+		};
+
+		if( sets[set] ){
+			$scope.data.skills.lists[0] = sets[set];
+			$scope.data.skills.shifted_lists[0] = sets[set];
+		}
+	};
+
+	$scope.noSkills = function(){
+		return $scope.data.skills.lists.reduce(function(sum,cur){ return sum+cur.length; },0)
+			+ $scope.data.skills.shifted_lists.reduce(function(sum,cur){ return sum+cur.length; },0)
+			=== 0;
+	};
 
 	// drag-drop handler
 	$scope.dropHandler = function(evt, ui)
