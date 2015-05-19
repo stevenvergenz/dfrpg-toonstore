@@ -91,7 +91,7 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 			if( $scope.data.skills.system === 'columns' )
 				valid &= SharedResources.skills(i).length >= SharedResources.skills(i+1).length;
 			else if( $scope.data.skills.system === 'pyramid' )
-				valid &= SharedResources.skills(i).length > SharedResources.skills(i+1).length;
+				valid &= ((SharedResources.skills(i).length > SharedResources.skills(i+1).length) || (SharedResources.skills(i).length === 0));
 		}
 		//return (valid ? 'Valid' : 'INVALID') + ', '+SharedResources.skillPointsAvailable()+' available';
 		return (valid ? clientStrings.validSkills : clientStrings.invalidSkills).replace('%s', SharedResources.skillPointsAvailable());
