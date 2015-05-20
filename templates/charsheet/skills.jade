@@ -2,7 +2,7 @@
 	a#skills
 	h2.panelHeader= __('charsheet.headers.skills')
 		span(ng-show='data.skills.is_shifter')  (
-			input#shifter(type='checkbox', ng-model='shifted')
+			input#shifter(type='checkbox', ng-model='fields.shifted')
 			label(for='shifter')
 			| )
 		input.iconButton(type='image', ng-click='editing=!editing', src='/static/img/glyphicons/glyphicons_150_edit.png')

@@ -77,7 +77,6 @@ app.controller('SkillCtrl', ['$scope','SharedResources','$rootScope','rootModel'
 		}
 		return arr;
 	};
-	console.log($scope);
 
 	// skill ladder validator
 	$scope.valid = function(){
@@ -97,7 +96,7 @@ app.controller('SkillCtrl', ['$scope','SharedResources','$rootScope','rootModel'
 	$scope.addSkill = function(skillName)
 	{
 		var allSkills = [];
-		if( $scope.shifted )
+		if( $scope.fields.shifted )
 			allSkills = $scope.data.skills.shifted_lists.reduce(function(sum,cur){ return sum.concat(cur); }, []);
 		else
 			allSkills = $scope.data.skills.lists.reduce(function(sum,cur){ return sum.concat(cur); }, []);
@@ -230,33 +229,38 @@ app.controller('StressTrackCtrl', ['$scope','SharedResources','rootModel', funct
 	$scope.data = $scope.$parent.track;
 	$scope.index = $scope.$parent.$index;
 
-	/*$scope.$watch('shifted', function(newval, oldval){
-		console.log('shifted:', newval);
-		$scope.effectiveStrength = newval ? $scope.data.shiftedStrength || $scope.data.strength : $scope.data.strength;
+	$scope.$watchGroup(
+		['fields.shifted','data.strength','data.shiftedStrength','data.toughness','data.shiftedToughness'],
+		function(newvals){
+			$scope.effectiveStrength = $scope.fields.shifted ? $scope.data.shiftedStrength || $scope.data.strength : $scope.data.strength;
+			$scope.effectiveToughness = $scope.fields.shifted ? $scope.data.shiftedToughness || $scope.data.toughness : $scope.data.toughness;
+		}
+	);
+
+	$scope.$watch('effectiveStrength', function(newval){
+		if(newval){
+			if( rootModel.data.skills.is_shifter && $scope.fields.shifted )
+				$scope.data.shiftedStrength = newval;
+			else
+				$scope.data.strength = newval;
+		}
 	});
 
-	$scope.$watch('effectiveStrength', function(newval,oldval){
-		console.log('effectiveStrength:', newval);
-		if( rootModel.data.skills.is_shifter && $scope.shifted )
-			$scope.data.shiftedStrength = newval;
-		else
-			$scope.data.strength = newval;
-	});*/
+	$scope.$watch('effectiveToughness', function(newval){
+		if(newval){
+			if( rootModel.data.skills.is_shifter && $scope.fields.shifted )
+				$scope.data.shiftedToughness = newval;
+			else
+				$scope.data.toughness = newval;
+		}
+	});
 
-	/*$scope.effectiveStrength = function()
-	{
-		if( rootModel.data.skills.is_shifter && $scope.shifted )
-			return $scope.data.shiftedStrength || $scope.data.strength;
-		else
-			return $scope.data.strength;
-	};*/
-	
 	$scope.manageParens = function(boxIndex)
 	{
 		var classes = [];
-		if( $scope.data.toughness != 0 && boxIndex == $scope.data.strength-$scope.data.toughness )
+		if( $scope.effectiveToughness != 0 && boxIndex == $scope.effectiveStrength-$scope.effectiveToughness )
 			classes.push('leftParen');
-		if( $scope.data.toughness != 0 && boxIndex == $scope.data.strength-1 )
+		if( $scope.effectiveToughness != 0 && boxIndex == $scope.effectiveStrength-1 )
 			classes.push('rightParen');
 		return classes;
 	};
