@@ -6,6 +6,7 @@ var app = angular.module('charsheet', ['ngSanitize','ui.sortable']);
 app.service('rootModel', ['$rootScope','$timeout','$http', function($rootScope,$timeout,$http)
 {
 	$rootScope.clientStrings = clientStrings;
+	$rootScope.shifted = false;
 
 	this.data = charModel;
 	$rootScope.data = charModel;
@@ -354,15 +355,18 @@ app.filter('formatRefresh', [function(){
 	};
 }]);
 
-app.service('SharedResources', ['rootModel', function(rootModel)
+app.service('SharedResources', ['rootModel','$rootScope', function(rootModel,$rootScope)
 {
 	var self = this;
-	self.shifted = false;
+
+	$rootScope.$watch('shifted', function(val){
+		console.log(val);
+	});
 
 	// select correct list
 	self.skills = function(level)
 	{
-		if( self.shifted )
+		if( $rootScope.shifted )
 			return rootModel.data.skills.shifted_lists[level];
 		else
 			return rootModel.data.skills.lists[level];

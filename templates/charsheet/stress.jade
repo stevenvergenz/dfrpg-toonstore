@@ -17,10 +17,10 @@
 					br
 					span.subtitle ({{data.skill}})
 				.boxes
-					.box(ng-repeat='box in data.boxes track by $index')
-						input.stressBox(type='checkbox', id='{{data.name}}-{{data.skill}}-{{$index}}', dgy-notify, ng-model='data.boxes[$index]',
-							ng-class='manageParens($index)', ng-disabled='box === null')
-						label(for='{{data.name}}-{{data.skill}}-{{$index}}')
+					.box(ng-repeat='box in [0,1,2,3,4,5,6,7] track by $index')
+						input.stressBox(type='checkbox', id='{{data.name}}-{{data.skill}}-{{box}}', dgy-notify, ng-model='data.boxes[box]',
+							ng-class='manageParens(box)', ng-disabled='box >= effectiveStrength')
+						label(for='{{data.name}}-{{data.skill}}-{{box}}')
 
 			.track(ng-repeat='armor in data.armor')= __('charsheet.armor.f1')
 				| {{armor.strength}}
@@ -36,7 +36,7 @@
 					input(type='text', dgy-notify, ng-model='data.skill')
 				.section
 					label= __('charsheet.labels.strength')
-					input(type='number', dgy-notify, ng-model='data.strength')
+					input(type='number', dgy-notify, ng-model='effectiveStrength')
 				.section
 					label= __('charsheet.labels.toughness')
 					input(type='number', dgy-notify, ng-model='data.toughness')

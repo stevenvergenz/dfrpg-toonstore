@@ -59,17 +59,12 @@ app.controller('AspectCtrl', ['$scope','rootModel', function($scope)
 
 // skill block and dependencies
 //
-app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($scope, SharedResources)
+app.controller('SkillCtrl', ['$scope','SharedResources','$rootScope','rootModel', function($scope, SharedResources, $rootScope)
 {
 	$scope.editing = false;
 
-	$scope.shifted = false;
 	$scope.skills = SharedResources.skills;
 	$scope.label = SharedResources.skillLabel;
-
-	$scope.$watch('shifted', function(newVal){
-		SharedResources.shifted = newVal;
-	});
 
 	if( !$scope.data.skills.system )
 		$scope.data.skills.system = 'columns';
@@ -82,7 +77,7 @@ app.controller('SkillCtrl', ['$scope','SharedResources','rootModel', function($s
 		}
 		return arr;
 	};
-
+	console.log($scope);
 
 	// skill ladder validator
 	$scope.valid = function(){
@@ -217,7 +212,7 @@ app.controller('StressCtrl', ['$scope','rootModel', function($scope)
 			'skill': clientStrings.skill,
 			'toughness': 0,
 			'strength': 2,
-			'boxes': [false,false,null,null,null,null,null,null],
+			'boxes': [],
 			'armor': []
 		});
 		$scope.$emit('is_dirty');
@@ -230,29 +225,31 @@ app.controller('StressCtrl', ['$scope','rootModel', function($scope)
 
 // manage a single stress track
 //
-app.controller('StressTrackCtrl', ['$scope','rootModel', function($scope,rootModel)
+app.controller('StressTrackCtrl', ['$scope','SharedResources','rootModel', function($scope,SharedResources,rootModel)
 {
 	$scope.data = $scope.$parent.track;
 	$scope.index = $scope.$parent.$index;
 
-	// manage strength -> boxes mapping
-	$scope.$watch('data.strength', function(newVal, oldVal)
-	{
-		// maintain length
-		while( $scope.data.boxes.length < 8 )
-			$scope.data.boxes.push(null);
-
-		for(var i=0; i<8; i++)
-		{
-			// make legit boxes before strength
-			if( i < $scope.data.strength && $scope.data.boxes[i] === null )
-				$scope.data.boxes[i] = false;
-
-			// strip out boxes after strength
-			else if( i >= $scope.data.strength && $scope.data.boxes[i] !== null )
-				$scope.data.boxes[i] = null;
-		}
+	/*$scope.$watch('shifted', function(newval, oldval){
+		console.log('shifted:', newval);
+		$scope.effectiveStrength = newval ? $scope.data.shiftedStrength || $scope.data.strength : $scope.data.strength;
 	});
+
+	$scope.$watch('effectiveStrength', function(newval,oldval){
+		console.log('effectiveStrength:', newval);
+		if( rootModel.data.skills.is_shifter && $scope.shifted )
+			$scope.data.shiftedStrength = newval;
+		else
+			$scope.data.strength = newval;
+	});*/
+
+	/*$scope.effectiveStrength = function()
+	{
+		if( rootModel.data.skills.is_shifter && $scope.shifted )
+			return $scope.data.shiftedStrength || $scope.data.strength;
+		else
+			return $scope.data.strength;
+	};*/
 	
 	$scope.manageParens = function(boxIndex)
 	{
