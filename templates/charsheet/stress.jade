@@ -1,6 +1,10 @@
 #stress.sheet-panel(ng-controller='StressCtrl', ng-class='{dirty: dirty}')
 	a#stress
 	h2.panelHeader= __('charsheet.headers.stress')
+		span(ng-show='data.skills.is_shifter')  (
+			input#shifter(type='checkbox', ng-model='fields.shifted')
+			label(for='shifter')
+			| )
 		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
 
 	#stressBlock(ng-hide='editing')
@@ -36,10 +40,10 @@
 					input(type='text', dgy-notify, ng-model='data.skill')
 				.section
 					label= __('charsheet.labels.strength')
-					input(type='number', dgy-notify, ng-model='effectiveStrength')
+					input(type='number', ng-model='effectiveStrength')
 				.section
 					label= __('charsheet.labels.toughness')
-					input(type='number', dgy-notify, ng-model='effectiveToughness')
+					input(type='number', ng-model='effectiveToughness')
 				.button-section
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_270_shield.png', ng-click='addArmor()')
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='delete()')

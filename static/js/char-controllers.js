@@ -230,12 +230,18 @@ app.controller('StressTrackCtrl', ['$scope','SharedResources','rootModel', funct
 	$scope.index = $scope.$parent.$index;
 
 	$scope.$watchGroup(
-		['fields.shifted','data.strength','data.shiftedStrength','data.toughness','data.shiftedToughness'],
-		function(newvals){
+		['data.strength','data.shiftedStrength','data.toughness','data.shiftedToughness'],
+		function(newvals,oldvals){
 			$scope.effectiveStrength = $scope.fields.shifted ? $scope.data.shiftedStrength || $scope.data.strength : $scope.data.strength;
 			$scope.effectiveToughness = $scope.fields.shifted ? $scope.data.shiftedToughness || $scope.data.toughness : $scope.data.toughness;
+			$scope.$emit('is_dirty');
 		}
 	);
+
+	$scope.$watch('fields.shifted', function(newval){
+		$scope.effectiveStrength = newval ? $scope.data.shiftedStrength || $scope.data.strength : $scope.data.strength;
+		$scope.effectiveToughness = newval ? $scope.data.shiftedToughness || $scope.data.toughness : $scope.data.toughness;
+	});
 
 	$scope.$watch('effectiveStrength', function(newval){
 		if(newval){
