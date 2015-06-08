@@ -9,7 +9,7 @@
 				input.removeButton(type='image', ng-show='editing', ng-click='removeConsequence($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
 				.vertgroup
 					.header(ng-hide='editing') {{clientStrings.conseqType[con.severity.toLowerCase()]}}
-					.subtitle(ng-hide='editing')= '{{con.mode}} '+__('charsheet.clientStrings.conseqType.type')
+					.subtitle(ng-hide='editing') {{con.mode==="Any" ? clientStrings.genericConseq : con.mode}}
 					select(dgy-notify, ng-show='editing', ng-model='con.severity')
 						option(value='Mild')= __('charsheet.clientStrings.conseqType.mild')
 						option(value='Moderate')= __('charsheet.clientStrings.conseqType.moderate')
@@ -18,6 +18,7 @@
 					select(dgy-notify, ng-show='editing', ng-model='con.mode')
 						option(value='Any')= __('charsheet.clientStrings.genericConseq')
 						option(ng-repeat='type in stressTypes()', ng-value='type') {{type}}
+						option(ng-if='data.skills.is_shifter', ng-repeat='type in stressTypes()', ng-value='type+" (Shifted)"') {{type}} (Shifted)
 
 			resizingtextarea.aspect(dgy-notify, ng-model='con.aspect', placeholder=__('charsheet.unused'))
 

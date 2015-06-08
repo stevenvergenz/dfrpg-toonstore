@@ -310,7 +310,7 @@
 			"stress": "Stress",
 			"skill": "Compétence",
 			"newPower": "Nouveau Pouvoir",
-			"genericConseq": "Toute",
+			"genericConseq": "Toute Type",
 			"conseqType": {
 				"type": "Type",
 				"mild": "Légère (-2)",

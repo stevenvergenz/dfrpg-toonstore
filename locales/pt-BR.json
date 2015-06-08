@@ -307,7 +307,7 @@
 			"stress": "Estresse",
 			"skill": "Perícia",
 			"newPower": "Novo Poder",
-			"genericConseq": "Qualquer",
+			"genericConseq": "Qualquer Tipo",
 			"conseqType": {
 				"type": "Tipo",
 				"mild": "Leve (-2)",
