@@ -1,34 +1,106 @@
-var app = angular.module('charsheet', ['ngResource','ngSanitize']);
+var app = angular.module('charsheet', ['ngSanitize','ui.sortable']);
 
 /*
  * Retrieve the JSON data from server
  */
-app.service('rootModel', ['$rootScope','$timeout','$resource', function($rootScope,$timeout,$resource)
+app.service('rootModel', ['$rootScope','$timeout','$http', function($rootScope,$timeout,$http)
 {
-	this._resource = $resource('json', {}, {
-		'get': {
-			'method': 'GET',
-			'transformResponse': function(data,headers){
-				$timeout(function(){$rootScope.$broadcast('is_clean');}, 100);
-				return angular.fromJson(data);
-			}
-		},
-		'save': {
-			'method': 'POST',
-			'transformResponse': function(data,headers){
-				$timeout(function(){$rootScope.$broadcast('is_clean');}, 100);
-				return angular.fromJson(data);
-			}
-		}
-	});
+	$rootScope.clientStrings = clientStrings;
+	$rootScope.fields = {shifted: false};
 
-	this.data = this._resource.get();
-
-	$rootScope.data = this.data;
+	this.data = charModel;
+	$rootScope.data = charModel;
+	$rootScope.data.$save = function()
+	{
+		$http.post('json', $rootScope.data)
+			.success(function(data,status){
+				console.log('Character data saved');
+				$rootScope.$broadcast('is_clean');
+			})
+			.error(function(data,status){
+				console.log('Save failed!');
+				alert('Character data save failed!: '+data);
+			});
+	};
+	$timeout(function(){$rootScope.$broadcast('is_clean');}, 100);
 
 	$rootScope.$on('is_dirty', function(){ $rootScope.dirty = true; });
 	$rootScope.$on('is_clean', function(){ $rootScope.dirty = false; });
+	$rootScope.$watch('dirty', function(newVal,oldVal)
+	{
+		function confirmUnload(e){
+			e.returnValue = clientStrings.unsavedWarning;
+			return e.returnValue;
+		}
+
+		if( newVal === true ){
+			console.log('Page listener added');
+			window.onbeforeunload = confirmUnload;
+		}
+		else {
+			console.log('Page listener removed');
+			window.onbeforeunload = null;
+		}
+	});
 }]);
+
+app.directive('dgyCondense', ['$timeout', function($timeout)
+{
+	var pageElement = document.querySelector('.page');
+
+	return {
+		restrict: 'A',
+		link: function(scope,element,attr)
+		{
+			var lastPageSize = 0;
+			$timeout(function checkHeight()
+			{
+				if( pageElement.scrollHeight === lastPageSize )
+					return;
+				else
+					lastPageSize = pageElement.scrollHeight;
+
+				console.log('Checking condensation:', pageElement.scrollHeight);
+				if( pageElement.scrollHeight > 960 && !element.hasClass('condensed5') )
+				{
+					if( element.hasClass('condensed0') ){
+						element.removeClass('condensed0').addClass('condensed1');
+					}
+					else if( element.hasClass('condensed1') ){
+						element.removeClass('condensed1').addClass('condensed2');
+					}
+					else if( element.hasClass('condensed2') ){
+						element.removeClass('condensed2').addClass('condensed3');
+					}
+					else if( element.hasClass('condensed3') ){
+						element.removeClass('condensed3').addClass('condensed4');
+					}
+					else if( element.hasClass('condensed4') ){
+						element.removeClass('condensed4').addClass('condensed5');
+					}
+					$timeout(checkHeight);
+				}
+				else {
+					window.print();
+				}
+			});
+		}
+	};
+}]);
+
+app.directive('dgyNotifyCollection', function()
+{
+	return {
+		'restrict': 'A',
+		'link': function(scope,element,attr){
+			if( attr.ngModel ){
+				scope.$watchCollection(attr.ngModel, function(newVal,oldVal){
+					scope.$emit('is_dirty');
+				});
+			}
+		}
+	};
+});
 
 app.directive('dgyNotify', function()
 {
@@ -87,6 +159,51 @@ app.directive('resizingtextarea', function()
 	};
 });
 
+app.directive('diceroller', function()
+{
+	return {
+		'restrict': 'C',
+		'link': function($scope,elem,attrs)
+		{
+			// randomize the dice
+			elem.bind('click', function(evt){
+				if(evt.stopPropagation)
+					evt.stopPropagation();
+
+				// animate shake
+				elem[0].className += ' shakenbake';
+				function animationEnd(evt){
+					elem[0].className = elem[0].className.replace(/\bshakenbake/g, '');
+				}
+				elem[0].addEventListener('webkitAnimationEnd', animationEnd);
+				elem[0].addEventListener('MSAnimationEnd', animationEnd);
+				elem[0].addEventListener('animationend', animationEnd);
+
+				// randomize each die
+				var dice = elem[0].querySelectorAll('.die');
+				var total = 0;
+				for(var i=0; i<dice.length; i++){
+					var value = Math.floor(Math.random()*3)-1;
+					dice[i].firstChild.innerHTML = ['\u2212','\u2022','+'][value+1];
+					total += value;
+				}
+				// update the total field
+				elem[0].querySelector('.total > span').innerHTML = total>=0 ? '+'+total : total;
+
+			});
+
+			// prevent the symbols from being selected
+			var parts = elem[0].querySelectorAll('*');
+			for(var i=0; i<parts.length; i++){
+				parts[i].onmousedown = function(evt){
+					if(evt.preventDefault)
+						evt.preventDefault();
+				};
+			}
+		}
+	};
+});
+
 
 /*
   Custom directive to enable drag/dropping
@@ -104,6 +221,7 @@ app.directive('dgyDraggable', function()
 			// initialize
 			element.draggable({
 				'revert': true,
+				'revertDuration': 0,
 				'disabled': !scope.enabled()
 			});
 
@@ -159,16 +277,26 @@ app.directive('dgyAccordion', function()
 		},
 		'link': function(scope,element,attr)
 		{
-			// initialize
-			element.accordion({collapsible: true, active: false, heightStyle: 'content', icons: false, disabled: !scope.enabled()});
-
-			scope.$watch(scope.enabled, function(){
-				element.accordion('option', 'disabled', !scope.enabled());
+			var initialized = false;
+			scope.$watch(scope.enabled, function(newVal,oldVal)
+			{
+				if(newVal){
+					initialized = true;
+					element.accordion({collapsible: true, active: false, heightStyle: 'content', icons: false});
+				}
+				else if(initialized){
+					element.accordion('destroy');
+					initialized = false;
+				}
 			});
 
 			// cleanup
-			element.bind('$destroy', function(){
-				element.accordion('destroy');
+			element.bind('$destroy', function()
+			{
+				if(initialized){
+					element.accordion('destroy');
+					initialized = false;
+				}
 			});
 		}
 	};
@@ -208,19 +336,33 @@ app.filter('conseqSort', function()
 	};
 });
 
+app.filter('mdToHtml', ['$sce', '$sanitize', function($sce, $sanitize){
+	return function(md){
+		if(md)
+			return $sce.trustAsHtml($sanitize(markdown.toHTML(md)));
+	};
+	
+}]);
 
-app.service('SharedResources', ['rootModel', function(rootModel)
+app.filter('formatRefresh', [function(){
+	return function(x){
+		if(x>0)
+			return '+'+x;
+		else if(x==0)
+			return '-'+x;
+		else
+			return x;
+	};
+}]);
+
+app.service('SharedResources', ['rootModel','$rootScope', function(rootModel,$rootScope)
 {
 	var self = this;
-	self.shifted = false;
 
 	// select correct list
 	self.skills = function(level)
 	{
-		if( !rootModel.data.$resolved )
-			return [];
-
-		if( self.shifted )
+		if( $rootScope.fields.shifted )
 			return rootModel.data.skills.shifted_lists[level];
 		else
 			return rootModel.data.skills.lists[level];
@@ -228,8 +370,7 @@ app.service('SharedResources', ['rootModel', function(rootModel)
 
 	// convenience label function
 	self.skillLabel = function(value){
-		var ladder = ['Mediocre (+0)', 'Average (+1)', 'Fair (+2)', 'Good (+3)', 'Great (+4)', 'Superb (+5)', 'Fantastic (+6)', 'Epic (+7)', 'Legendary (+8)'];
-		return ladder[value];
+		return clientStrings.skillLadder[value];
 	};
 
 	self.skillPointsSpent = function(){
@@ -242,16 +383,10 @@ app.service('SharedResources', ['rootModel', function(rootModel)
 
 	// calculate skill points available
 	self.skillPointsAvailable = function(){
-		if( !rootModel.data.$resolved )
-			return;
-		else
-			return rootModel.data.totals.skills_total - self.skillPointsSpent();
+		return rootModel.data.totals.skills_total - self.skillPointsSpent();
 	};
 
 	self.refreshSpent = function(){
-		if( !rootModel.data.$resolved )
-			return;
-
 		var total = 0;
 		for( var i=0; i<rootModel.data.powers.length; i++ ){
 			total += rootModel.data.powers[i].cost;
@@ -260,12 +395,28 @@ app.service('SharedResources', ['rootModel', function(rootModel)
 	};
 
 	self.adjustedRefresh = function(){
-		if( !rootModel.data.$resolved )
-			return;
-
 		return rootModel.data.totals.base_refresh + self.refreshSpent();
 	};
 }]);
+
+app.directive('dgySrc', function()
+{
+	return {
+		restrict: 'A',
+		link: function(scope,element,attr)
+		{
+			var fallback = '/static/img/no-avatar.png';
+
+			element.bind('error', function(evt){
+				if( attr['src'] !== fallback )
+					element.attr('src', fallback);
+			});
+
+			element.attr('src', attr.dgySrc);
+		}
+	};
+});
+
 
 // special global-scope function to upload avatar
 function uploadAvatar()

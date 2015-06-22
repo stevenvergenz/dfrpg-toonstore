@@ -1,114 +1,67 @@
-extends index
+extends theme
 
 block title
-	title Privacy Policy | ToonStore.net
+	title= __('privacy.pagetitle') + ' | ToonStore.net'
+	meta(name='description', content='#{__("privacy.meta_description")}')
 
-block content
+block article_header
 
-	h1 Privacy Policy
+	h1= __('privacy.pagetitle')
 
-	.content-block: .normalbox
+block article_body
 
-		h3 The gist of it
-		ul
-			li We don't ask for any personal information that we don't absolutely need for the running of this site.
-			li We don't share your personal information with anyone except to comply with the law.
-			li We don't store your personal information unless it is required for identification purposes (e.g. an email address).
-			li.
-				Any content you create through this site is publicly accessible unless marked as private, and all content is immutable to anyone
-				but the owner.
-		p.
-			The above points are detailed further below. If you have any questions about the material on this page, or would like to request
-			that we delete your account and information, email us at the address given on the <a href='/site/contact'>Contact Us</a> page.
+	h3= __('privacy.gist.title')
+	ul
+		li= __('privacy.gist.p1')
+		li= __('privacy.gist.p2')
+		li= __('privacy.gist.p3')
+		li= __('privacy.gist.p4')
 
-		h3 Website Visitors
-		p.
-			Like most websites, ToonStore collects non-personally-identifying information of the sort that web browsers	and servers typically
-			make available, such as the browser type, language preference, referring site, and the date and time of each visitor request.
-			ToonStore's purpose in collecting non-personally identifying information is to better understand how ToonStore's visitors use its
-			website. From time to time, Derogatory Studios may release non-personally-identifying information in the aggregate, e.g., by
-			publishing a report on trends in the usage of its website.
-		p.
-			ToonStore also collects potentially personally-identifying information like Internet Protocol (IP) addresses from site visitors.
-			This is done to prevent abuse of server resources by blocking certain abusive IP addresses. Derogatory Studios only discloses 
-			IP addresses under the same circumstances that it uses and discloses personally-identifying information as described below.
+	p= __('privacy.gist.p5.f1')
+		a(href=url('/site/contact'))= __('privacy.gist.p5.f2')
+		= __('privacy.gist.p5.f3')
+			
+	h3= __('privacy.visitors.title')
+	p= __('privacy.visitors.p1')
+	p= __('privacy.visitors.p2')
 
-		h3 Gathering of Personally-Identifying Information
-		p.
-			Certain visitors to the ToonStore website choose to interact with ToonStore in ways that require ToonStore to gather
-			personally-identifying information. Users that choose to create an account allow ToonStore to store their email address
-			for the duration of the account. Derogatory Studios does not disclose personally-identifying information other than as described
-			below. And visitors can always refuse to supply personally-identifying information, with the caveat that it may prevent them from
-			engaging in certain website-related activities.
+	h3= __('privacy.pii.title')
+	p= __('privacy.pii.p1')
 
-		h3 Aggregated Statistics
-		p.
-			ToonStore may collect statistics about the behavior of visitors to its websites. For instance, ToonStore may monitor the popularity
-			of particular character sheets. ToonStore may display this information publicly or provide it to others. However, ToonStore does
-			not disclose personally-identifying information other than as described below.
+	h3= __('privacy.aggregate.title')
+	p= __('privacy.aggregate.p1')
 
-		h3 Protection of Certain Personally-Identifying Information
-		p.
-			Derogatory Studios discloses potentially personally-identifying and personally-identifying information only to those of its employees
-			that (i) need to know that information in order to properly maintain ToonStore's services, and (ii) that have agreed not to disclose
-			it to others. Derogatory Studios will not rent or sell potentially personally-identifying and personally-identifying information to
-			anyone. Other than to its employees as described above, Derogatory Studios discloses potentially personally-identifying and
-			personally-identifying information only in response to a subpoena, court order or other governmental request, or when Derogatory
-			Studios believes in good faith that disclosure is reasonably necessary to protect the property or rights of Derogatory Studios,
-			third parties or the public at large. If your information is disclosed, you will be notified by email at the address provided.
-		p.
-			If you are a registered user of the ToonStore website and have supplied your email address, Derogatory Studios may occasionally send
-			you an email to tell you about new features, solicit your feedback, or just keep you up to date with what’s going on with ToonStore
-			and related products. We expect to keep this type of email to a minimum. If you send us a request (for example via a support email
-			or via one of our feedback mechanisms), we reserve the right to publish it in order to help us clarify or respond to your request
-			or to help us support other users.
-		p.
-			Derogatory Studios takes all measures reasonably necessary to protect against the unauthorized access, use, alteration or destruction
-			of potentially personally-identifying and personally-identifying information.
+	h3= __('privacy.protection.title')
+	p= __('privacy.protection.p1')
+	p= __('privacy.protection.p2')
+	p= __('privacy.protection.p3')
 
-		h3 Cookies
-		p.
-			A cookie is a string of information that a website stores on a visitor's computer, and that the visitor's browser provides to the
-			website each time the visitor returns. ToonStore uses cookies to help ToonStore identify and track visitors, their usage of the
-			ToonStore website, and their website access preferences. ToonStore visitors who do not wish to have cookies placed on their computers
-			should set their browsers to refuse cookies before using the ToonStore websites, with the drawback that certain features of the ToonStore
-			website may not function properly without the aid of cookies.
+	h3= __('privacy.cookies.title')
+	p= __('privacy.cookies.p1')
 
-		h3 Business Transfers
-		p.
-			If Derogatory Studios, or substantially all of its assets, were acquired, user information would be one of the assets that is transferred
-			or acquired by a third party. You acknowledge that such transfers may occur, and that any acquirer of Derogatory Studios may continue
-			to use your personal information as set forth in this policy.
+	h3= __('privacy.transfers.title')
+	p= __('privacy.transfers.p1')
 
-		h3 Ads
-		p.
-			Ads appearing on any of our webpages may be delivered to users by advertising partners, who may set cookies. These cookies allow the
-			ad server to recognize your computer each time they send you an online advertisement to compile information about you or others who use
-			your computer. This information allows ad networks to, among other things, deliver targeted advertisements that they believe will be of
-			most interest to you. This Privacy Policy covers the use of cookies by ToonStore and does not cover the use of cookies by any advertisers.
+	h3= __('privacy.ads.title')
+	p= __('privacy.ads.p1')
 
-		h3 Site Content
-		p.
-			Because of the nature of the ToonStore website, all character data is publicly available for anyone that knows or can guess the link,
-			including links to other characters by the same author, with the exception of characters marked as Private. No information put into a
-			public character sheet, including the author name, should be considered private. In addition, all public character sheets are added to
-			the ToonStore's sitemap, so they will be discoverable by automated agents such as search engine crawlers, and as a result may appear in
-			search results. By using the ToonStore website, you agree to the above policy.
+	h3= __('privacy.content.title')
+	p= __('privacy.content.p1')
 
-		h3 Privacy Policy Changes
-		p.
-			Although most changes are likely to be minor, Derogatory Studios may change its Privacy Policy from time to time, and in Derogatory
-			Studios' sole discretion. Derogatory Studios encourages visitors to frequently check this page for any changes to its Privacy Policy.
-			In addition, a banner will be placed on the homepage for a minimum of 30 days notifying users of a change to the privacy policy.
-			Your continued use of this site after any change in this Privacy Policy will constitute your acceptance of such change.
+	h3= __('privacy.changes.title')
+	p= __('privacy.changes.p1')
 
-		h3 Change log
-		ul
-			li <b>April 7, 2014</b>: Updated "Site Content" section to account for private character sheets
-			li <b>August 29, 2013</b>: Initial version
+	h3= __('privacy.changelog.title')
+	ul
+		li
+			strong= formatDate('2014-04-07')
+			= ': '+__('privacy.changelog.p2')
+		li
+			strong= formatDate('2013-08-29')
+			= ': '+__('privacy.changelog.p1')
 
-		p.
-			(Note: This privacy policy is based loosely on the privacy policy of <a href='http://www.automattic.com' target='_blank'>Automattic.com</a>,
-			which is under a <a href='http://creativecommons.org/licenses/by-sa/2.5/' target='_blank'>Creative Commons Sharealike</a> license. As
-			such, this policy is under the same license.)
-
+	p= __('privacy.attribution.f1')
+		a(href='http://www.automattic.com', target='_blank') Automattic.com
+		= __('privacy.attribution.f2')
+		a(href='http://creativecommons.org/licenses/by-sa/2.5/', target='_blank')= __('privacy.attribution.f3')
+		= __('privacy.attribution.f4')

@@ -1,0 +1,163 @@
+doctype html
+html
+	head
+		title= toonName + ', ' + toonConcept + ' | ToonStore.net'
+		link(rel='stylesheet', type='text/css', href='/static/scss/printable.css')
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Armata&subset=latin,latin-ext')
+		link(rel='icon', type='image/png', href='/static/img/pentacle-simple.png')
+
+		if ganalytics_key
+			script.
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				ga('create', '#{ganalytics_key}', 'auto');
+				ga('send', 'pageview');
+
+		script(src='/static/js/jquery-1.10.1.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular.min.js')
+		script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.2.14/angular-sanitize.js')
+		script(src='/static/js/markdown.js')
+		script(src='/static/js/sortable.js')
+
+		script!= 'var clientStrings = ' + JSON.stringify(__('charsheet.clientStrings')) + ';'
+		script!= 'var charModel = ' + charModel + ';'
+		script(src='/static/js/char-extras.js')
+		script(src='/static/js/char-controllers.js')
+
+	body
+		.page(ng-app='charsheet')
+			.page-row
+				.page-column: .sheet-panel
+					span(style='font-size: 0.6em;') Character 
+					span {{data.name}}
+				.page-column: .sheet-panel(style='text-align: right;')
+					span {{data.player}}
+					span(style='font-size: 0.6em;')  Player
+
+			.page-row
+				.page-column
+
+					#aspects.sheet-panel(ng-controller='AspectCtrl')
+						h2 Aspects
+
+						h3 High Concept
+						span.aspect {{data.aspects.high_concept.name}}
+
+						h3 Trouble
+						span.aspect {{data.aspects.trouble.name}}
+
+						h3 Other Aspects
+						span.aspect(ng-repeat='a in data.aspects.aspects') {{parseAspect(a.name).name}}
+
+					#stress.sheet-panel(ng-controller='StressCtrl')
+						h2 Stress
+
+						#stressBlock
+							.track
+								.rowHeader
+								.boxes
+									.colHeader(ng-repeat='i in [1,2,3,4,5,6,7,8]')
+										span {{i}}
+
+							div(ng-repeat='track in data.stress', ng-controller='StressTrackCtrl', style='margin-bottom: 5px;')
+								.track
+									.rowHeader
+										span {{data.name}}
+										br
+										span.subtitle ({{data.skill}})
+									.boxes
+										.box(ng-repeat='box in data.boxes track by $index')
+											input.stressBox(type='checkbox', ng-class='manageParens($index)', ng-disabled='box === null')
+											div: img(src='/static/img/checkbox.png')
+
+								.track(ng-repeat='armor in data.armor') Armor: {{armor.strength}} vs. {{armor.vs}}
+
+
+					#conseq.sheet-panel(ng-controller='ConsequenceCtrl')
+						h2 Consequences
+						table
+							tr
+								th Type
+								th P/M/S
+								th Stress
+								th Used?
+								th Aspect
+							tr(ng-repeat='conseq in data.consequences | conseqSort')
+								td {{conseq.severity}}
+								td {{conseq.mode}}
+								td {{magnitude(conseq.severity)}}
+								td: div(style='display:inline-block; width:14px; height:14px; border-radius:50%; border:solid black 1px;')
+								td
+
+					#totals.sheet-panel(ng-controller='TotalsCtrl')
+
+						#top-container.container
+							#powerLevel
+								span.label Power Level
+								br
+								span {{powerLevel()}}
+							#skillCap
+								span.label Skill Cap
+								br
+								span {{skillLabel(data.totals.skill_cap)}}
+
+						#middle-container.container
+							#skillsSpent
+								span.label Skill Points Spent
+								.bubble: span {{skillPointsSpent()}}
+							#available-container
+								span.label Total Available
+								.bubble: span {{skillPointsAvailable()}}
+
+						#bottom-container
+							#star
+								img(src='/static/img/pentacle.svg')
+								.center-container: span Current Fate Points
+							#baseRefreshLevel(style='left: 131px;')
+								.bubble: span {{data.totals.base_refresh}}
+								span Base Refresh Level
+							#adjustedRefresh(style='left: 142px;')
+								.bubble: span {{adjustedRefresh()}}
+								span Adjusted Refresh
+							#fpFromLastSession(style='left: 133px;')
+								.bubble: span {{data.totals.fate_points}}
+								span Last Session's FP
+
+				.page-column
+
+					#skills.sheet-panel(ng-controller='SkillCtrl')
+						h2 Skills
+						#skillBlock
+							.row(ng-repeat='level in presOrder()', ng-hide='$last')
+								.fieldLabel {{label(level)}}
+								.skillList
+									.skill(ng-repeat='skill in skills(level) track by $index')
+										span {{skill}}
+										span(ng-hide='$last') , 
+
+
+					#powers.sheet-panel.condensed0(ng-controller='PowersCtrl', dgy-condense)
+						h2 Stunts & Powers
+
+						.row.header
+							.cost Cost
+							.name Ability
+
+						.row(ng-repeat='power in data.powers')
+							.cost {{power.cost}}
+							.name {{power.name}}
+							.description(ng-bind-html='power.description | mdToHtml')
+						
+						#totalsRow.row
+							.bubble: span {{totalAdjustment()}}
+							.name Total Refresh Adjustment
+
+						//-#ladder
+							p The Ladder
+							table
+								tr(ng-repeat='i in ladder')
+									td {{i.label}}
+									td {{i.value}}

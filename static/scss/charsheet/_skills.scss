@@ -1,0 +1,70 @@
+
+@import 'dice';
+
+#skills.sheet-panel
+{
+
+	input#shifter
+	{
+		display:none;
+
+		& + label
+		{
+			display: inline-block;
+			width: 70px;
+			height: 25px;
+			margin: 0 -1px -3px 0;
+			background-image: url('/static/img/shifter_human.svg');
+			cursor: pointer;
+		}
+
+		&:checked + label {
+			background-image: url('/static/img/shifter_animal.svg');
+		}
+	}
+
+	& > label {
+		display: block;
+		margin-top: 10px;
+		margin-bottom: 10px;
+	}
+
+	#skillBlock
+	{
+		text-align: left;
+
+		.row
+		{
+			@include display-flex();
+			padding-top: 7px;
+			padding-bottom: 7px;
+
+			&.hoverDropTarget
+			{
+				background-color: lightblue;
+			}
+		}
+
+		.fieldLabel
+		{
+			min-width: 140px;
+			width: 140px;
+		}
+
+		.skill {
+			display: inline;
+			text-transform: capitalize;
+			@include user-select(none);
+		}
+
+		.ui-draggable, .ui-sortable-handle {
+			cursor: move;
+		}
+
+		.ui-draggable.ui-draggable-disabled {
+			cursor: default;
+		}
+	}
+
+	@include diceroller();
+}

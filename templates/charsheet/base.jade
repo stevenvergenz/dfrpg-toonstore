@@ -1,0 +1,54 @@
+extends ../theme
+
+block title
+	title= toonName + ', ' + toonConcept + ' | ToonStore.net'
+	meta(name='description', content='#{__("charsheet.meta_description", {name:toonName, hc:toonConcept})}')
+
+block css
+	link(rel='stylesheet', type='text/css', href='/static/scss/charsheet/base.css')
+	link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Metamorphous&subset=latin,latin-ext')
+	link(rel='stylesheet', type='text/css', href='/static/css/jquery-ui.min.css')
+
+block js
+	script(src='/static/js/jquery-ui.min.js')
+	script(src='/static/js/jquery.ui.touch-punch.min.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js')
+	script(src='https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular-sanitize.js')
+	script(src='/static/js/markdown.js')
+	script(src='/static/js/sortable.js')
+	script!= 'var clientStrings = '+JSON.stringify(__('charsheet.clientStrings'))+';'
+	script!= 'var charModel = '+charModel+';'
+	script(src='/static/js/char-extras.js')
+	script(src='/static/js/char-controllers.js')
+
+block navigation
+
+	if logged_user == owner
+		nav#charnav
+			ul
+				li: a(href=url('/site/howto'))= __('charsheet.headers.help')
+			ul
+				li: a(href='printable')= __('charsheet.headers.printable')
+				li: input.fakelink(type='button', ng-class='{dirty: dirty}', ng-click='data.$save()', value=__('charsheet.headers.save'))
+	
+block content
+
+	if logged_user != owner
+		aside.content-block.warning= __('charsheet.backseat')
+
+	.content-block
+		.sheet-panel-group
+			include ./general
+			include ./aspects	
+		
+		.sheet-panel-group
+			include ./skills
+			include ./totals
+		
+		.sheet-panel-group
+			include ./stress
+			include ./consequences
+	
+		.sheet-panel-group
+			include ./powers
+			include ./notes

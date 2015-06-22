@@ -1,0 +1,48 @@
+#totals.sheet-panel(ng-controller='TotalsCtrl', ng-class='{dirty: dirty}')
+	a#totals
+	input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', style='left: 330px',
+			style='position: absolute; right: 8px;', ng-click='editing=!editing')
+
+	img#star(src='/static/img/pentacle.svg')
+
+	#top-container.container
+		#powerLevelContainer
+			#powerLevel(ng-hide='editing')
+				span= __('charsheet.labels.powerlevel')
+				br
+				span {{powerLevel()}}
+			label(ng-show='editing')= __('charsheet.labels.skillpoints')
+				br
+				input(type='number', dgy-notify, ng-model='data.totals.skills_total')
+
+		#skillCapContainer
+			#skillCap
+				span= __('charsheet.labels.skillcap')
+				br
+				span(ng-hide='editing') {{skillLabel(data.totals.skill_cap)}}
+				input(type='number', min=1, max=8, dgy-notify, ng-show='editing', ng-model='data.totals.skill_cap')
+			label(ng-show='editing')
+
+	#mid-container.container
+		#spent-container
+			span#skillsSpent.bubble {{skillPointsSpent()}}
+			span= __('charsheet.labels.skillspent')
+		#available-container
+			span#skillsAvailable.bubble {{skillPointsAvailable()}}
+			span= __('charsheet.labels.skillavailable')
+
+	#bottom-container.container
+		.row
+			span#baseRefresh.bubble.doubleBubble(ng-hide='editing') {{data.totals.base_refresh}}
+			input.bubble.doubleBubble(type='number', min=0, dgy-notify, ng-show='editing', ng-model='data.totals.base_refresh')
+			span= __('charsheet.labels.baserefresh')
+		.row
+			span#adjustedRefresh.bubble.doubleBubble {{adjustedRefresh()}}
+			span= __('charsheet.labels.adjusted')
+		.row
+			span#fatePoints.bubble.doubleBubble(ng-hide='editing') {{data.totals.fate_points}}
+			input.bubble.doubleBubble(type='number', min=0, dgy-notify, ng-show='editing', ng-model='data.totals.fate_points')
+			span= __('charsheet.labels.fp')
+
+
+

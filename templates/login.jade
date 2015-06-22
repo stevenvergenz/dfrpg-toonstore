@@ -1,0 +1,44 @@
+extends theme
+
+block title
+	title= __('nav.login') + ' | ToonStore.net'
+	meta(name='description', content='#{__("login.meta_description")}')
+
+block js
+	script!= 'var clientStrings = ' + JSON.stringify(__('login.clientStrings')) + ';'
+
+block content
+
+	#login-box.content-block.formbox
+		.title: span= __('nav.login')
+		form(method='post')
+
+			.field
+				label(for='email')= __('login.email')
+				input#email(type='email', name='email', required)
+
+			.field
+				label(for='password')= __('login.password')
+					span#reset(style='font-size: 80%;')  (
+						a(href=url('/passreset'))= __('login.forgot')
+						)
+				input#password(type='password', name='password', required)
+
+			.field
+				input(type='submit', value='#{__("login.submit")}') 
+				a(href=url('/register'))= __('login.register')
+
+		hr
+
+		#loginOptions
+			input#persona(type='image', src='/static/img/persona-button.png', onclick='loginPersona()')
+			//input#google(type='image', src='/static/img/google-login/base.png')
+			//a(href='javascript:;') Sign in with Facebook
+
+		//-script.
+			gapi.signin.render('google', {
+				callback: 'googleLogin',
+				clientid: '#{g_client_id}',
+				cookiepolicy: 'single_host_origin',
+				scope: 'email'
+			});

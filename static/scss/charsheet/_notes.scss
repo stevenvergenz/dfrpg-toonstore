@@ -1,0 +1,32 @@
+
+#notes.sheet-panel
+{
+	min-height: 200px;
+
+	#editor {
+		width: 98%;
+		height: 700px;
+	}
+
+	#primer {
+		text-align: left;
+		white-space: pre-wrap;
+	}
+
+	.inner
+	{
+		text-align: left;
+		font-family: inherit;
+		font-size: 10pt;
+
+		@include nonphone {
+			max-height: 750px;
+			overflow-y: auto;
+		}
+
+		img {
+			max-width: 100%;
+		}
+	}
+
+}

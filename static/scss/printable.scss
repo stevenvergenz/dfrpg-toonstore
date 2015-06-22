@@ -1,0 +1,363 @@
+@import 'polyfill';
+
+@media not print {
+	.page
+	{
+		width: 7.5in;
+	}
+}
+
+body
+{
+	font-family: "Armata", cursive;
+	font-size: 10pt;
+}
+
+
+/***********************************************************
+ * General layout classes
+ ***********************************************************/
+
+.page
+{
+	@include display-flex();
+	@include flex-direction(column);
+	max-height: 10in;
+	height: 10in;
+	overflow: hidden;
+
+	page-break-after: auto;
+	page-break-inside: avoid;
+}
+
+.page-column
+{
+	@include display-flex();
+	@include flex-direction(column);
+	width: 50%;
+
+	& > :last-child {
+		flex-grow: 1;
+	}
+}
+
+.page-row
+{
+	@include display-flex();
+	@include justify-content(space-between);
+}
+
+
+/***********************************************************
+ * General panel properties
+ ***********************************************************/
+
+.sheet-panel
+{
+	border: solid #777 1px;
+	border-radius: 8px;
+	padding: 5px;
+	margin: 2px;
+
+	h2 {
+		margin: 0;
+		font-size: 14pt;
+		text-align: center;
+	}
+}
+
+
+/***********************************************************
+ * Specific panel properties
+ ***********************************************************/
+
+#aspects
+{
+	text-align: center;
+
+	& > h3
+	{
+		margin: 0;
+		margin-top: 6px;
+		font-size: 7pt;
+		letter-spacing: 3px;
+		text-transform: uppercase;
+	}
+
+	span.aspect {
+		display: block;
+	}
+}
+
+
+/*
+ * Configure custom checkboxes for stress boxes
+ */
+input[type="checkbox"].stressBox
+{
+	display: none;
+
+	& + div {
+		vertical-align: middle;
+		display: inline-block;
+		width: 20px;
+		height: 20px;
+		/*background-repeat: no-repeat;
+		background-position: 0px 0px;
+		background-image: url(../img/checkbox.png);
+		background-origin: padding-box;*/
+		clip: rect(0px, 0px, 20px, 20px);
+		padding: 0 3px;
+		overflow: hidden;
+	}
+
+	& + div > img {
+		margin: 0 -3px;
+		position: relative;
+		left: 0px; top: 0px;
+	}
+
+	&[disabled="disabled"] + div > img {
+		left: -52px;
+	}
+
+	&.leftParen + div > img {
+		top: -20px;
+	}
+
+	&.rightParen + div > img {
+		top: -40px;
+	}
+
+	&.leftParen.rightParen + div > img {
+		top: -60px;
+	}
+}
+
+div#stressBlock
+{
+	@include display-flex();
+	@include flex-direction(column);
+	width: 100%;
+
+	.track
+	{
+		@include display-flex();
+		@include justify-content(space-between);
+		@include align-items(center);
+		@include flex-wrap(wrap);
+	}
+
+	.rowHeader
+	{
+		width: 100px;
+		font-weight: bold;
+		text-align: left;
+
+		.subtitle {
+			font-weight: normal;
+			font-size: 8pt;
+		}
+	}
+
+	.colHeader
+	{
+		font-weight: bold;
+		text-align: center;
+		width: 22px;
+	}
+
+	.boxes
+	{
+		$adjustment: 2px;
+
+		@include display-flex();
+		@include justify-content(space-around);
+		@include flex-grow(1);
+		padding: 0 $adjustment;
+
+		.box {
+			margin: 0 -$adjustment;
+		}
+	}
+}
+
+div#conseq
+{
+	tr > th, tr > td
+	{
+		text-align: center;
+		white-space: nowrap;
+
+		&:first-child {
+			text-align: left;
+		}
+
+		&:last-child {
+			text-align: right;
+			width: 99%;
+		}
+	}
+}
+
+div.bubble
+{
+	border: solid black 1px;
+	border-radius: 50%;
+	width: 35px;
+	height: 35px;
+	display: inline-flex !important;
+	@include align-items(center);
+	@include justify-content(center);
+}
+
+
+#totals 
+{
+	.container {
+		@include display-flex();
+		@include justify-content(space-around);
+	}
+
+	.label {
+		font-size: 8pt;
+		letter-spacing: 1px;
+	}
+
+	div.doubleBubble {
+		border: double black 3px;
+	}
+
+	#top-container {
+		text-align: center;
+	}
+
+	#middle-container .bubble {
+		margin-left: 5px;
+	}
+
+	#bottom-container
+	{
+		& > *
+		{
+			position: relative;
+			margin-top: 6px;
+			margin-bottom: 6px;
+		}
+
+		#star
+		{
+			width: 140px;
+			height: 140px;
+			position: absolute;
+			margin: -6px 0 0 0;
+
+			.center-container
+			{
+				@include display-flex();
+				@include align-items(center);
+				@include justify-content(center);
+			}
+
+			& > * {
+				width: 140px;
+				height: 140px;
+				position: absolute;
+			}
+
+			& > img {
+				opacity: 0.6;
+			}
+		}
+
+		.bubble {
+			margin-right: 5px;
+		}
+	}
+}
+
+
+
+#skillBlock
+{
+	.row {
+		@include display-flex();
+		padding-top: 7px;
+		padding-bottom: 7px;
+	}
+
+	.fieldLabel {
+		min-width: 120px;
+		width: 120px;
+		text-align: left;
+		font-size: 11pt;
+	}
+
+	.skillList {
+		text-align: left;
+	}
+
+	.skill {
+		display: inline;
+	}
+}
+
+#powers 
+{
+	position: relative;
+
+	.row
+	{
+		margin-top: 6px;
+		margin-bottom: 6px;
+
+		&.header {
+			font-weight: bold;
+		}
+
+		& > * {
+			display: inline-block;
+		}
+	}
+
+	.cost
+	{
+		text-align: right;
+		width: 30px;
+		margin-right: 10px;
+	}
+
+	.description
+	{
+		display: block;
+		margin-left: 40px;
+		font-size: 11px;
+		letter-spacing: 0.1em;
+
+		& > * {
+			margin: 2px 0;
+		}
+
+		ul {
+			padding-left: 20px;
+		}
+	}
+
+	// generate condensed classes for progressive text resizing
+
+	@for $i from 1 through 5
+	{
+		&.condensed#{$i}
+		{
+			.description {
+				text-align: justify;
+				margin-left: 10px;
+				font-size: 11px - $i;
+			}
+		}
+	}
+
+	#totalsRow .name {
+		margin-left: 1em;
+	}
+}

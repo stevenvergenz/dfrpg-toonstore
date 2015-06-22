@@ -1,0 +1,171 @@
+@import 'polyfill';
+
+.normalbox
+{
+	background-color: white;
+	color: black;
+	border-radius: 5px;
+	padding: 10px; 
+
+	.imgcontainer
+	{
+		@include display-flex();
+		@include justify-content(center);
+		@include align-items(center);
+		@include flex-wrap(wrap);
+
+		width: 100%;
+		margin: 10px 0;
+
+		img
+		{
+			border: solid grey 1px;
+			max-width: 100%;
+			height: auto;
+		}
+
+		.iframecontainer
+		{
+			max-width: 100%;
+			position: relative;
+
+			&:before
+			{
+				content: "";
+				display: block;
+				padding-top: 56.25%;
+			}
+
+			iframe
+			{
+				position: absolute;
+				top: 0; left: 0;
+				width: 100%; height: 100%;
+			}
+		}
+	}
+
+	img.icon
+	{
+		height: 1em;
+	}
+
+	.sidebyside
+	{
+		@include display-flex();
+		@include align-items(center);
+		@include flex-wrap(wrap);
+
+		& > *
+		{
+			margin: 10px 20px;
+			padding: 10px 20px;
+			border: solid grey 1px;
+			overflow-x: auto;
+			width: 300px;
+			max-width: 100%;
+		}
+	}
+
+	@include desktop {
+		hr {
+			display: none;
+		}
+	}
+}
+
+.formbox
+{
+	background-color: white;
+	color: black;
+	border: solid grey 1px;
+	border-radius: 5px;
+	margin: 15px auto;
+	overflow: hidden;
+	max-width: 340px;
+	width: 86%;
+	padding: 20px;
+	padding-top: 0;
+
+	@include display-flex();
+	@include flex-direction(column);
+
+	a:link, a:visited {
+		color: blue;
+	}
+
+	hr {
+		width: 100%;
+		margin: 15px 0;
+	}
+
+	.title
+	{
+		background-color: #313150;
+		background-image: linear-gradient(#313150, #000000);
+		color: white;
+		padding: 10px;
+		margin: 0 -20px;
+		font-weight: bold;
+	}
+
+	p {
+		margin-bottom: 0;
+	}
+
+	form
+	{
+		.field
+		{
+			margin: 15px 0;
+
+			label + input, label + select {
+				display: block;
+				width: 98%;
+				height: 20px;
+				margin: 5px 0;
+			}
+
+			input[type=submit] {
+				padding: 5px 10px;
+				margin-right: 10px;
+			}
+
+			.caption {
+				font-size: 0.7em;
+				color: #555;
+				margin: 5px 0;
+			}
+		}
+
+		.field.checkbox
+		{
+			margin: 15px 0;
+
+			@include display-flex();
+			@include flex-direction(row);
+			@include align-items(center);
+
+			input[type=checkbox]
+			{
+				@include flex-shrink(0);
+				margin-right: 10px;
+			}
+		}
+
+		p.error, input.error {
+			color: red;
+		}
+	}
+
+	#loginOptions
+	{
+		width: 100%;
+		& > input
+		{
+			display: block;
+			margin: 5px auto;
+		}
+	}
+}
+

@@ -1,0 +1,89 @@
+
+#consequences.sheet-panel
+{
+	.header {
+		font-weight: bold;
+	}
+
+	#conseqBlock 
+	{
+		@include display-flex();
+		@include flex-direction(column);
+		@include align-items(center);
+		@include justify-content(space-between);
+
+		.row
+		{
+			@include display-flex();
+			@include align-items(center);
+			@include justify-content(space-between);
+			@include flex-direction(row);
+
+			padding-top: 5px;
+			padding-bottom: 5px;
+			width: 95%;
+		}
+
+		.top-divider {
+			border-top: solid lightgrey 1px;
+		}
+
+		.vertgroup {
+			text-align: left;
+		}
+
+		.horizgroup
+		{
+			max-width: 50%;
+			@include display-flex();
+			@include align-items(center);
+		}
+
+		.aspect
+		{
+			text-align: right;
+			max-width: 50%;
+			font-size: 12pt;
+			font-family: inherit;
+			vertical-align: middle;
+			border: none;
+			resize: none;
+			margin: 0;
+			padding: 0;
+			overflow-y: hidden;
+
+			&:focus {
+				border: solid grey 1px;
+			}
+		}
+
+		.removeButton
+		{
+			margin-right: 5px;
+			width: 15px;
+			height: 15px;
+			@include flex-shrink(0);
+		}
+
+		.subtitle {
+			font-size: 80%;
+		}
+
+	}
+
+	#tempAspectBlock
+	{
+		.removeButton, .addButton
+		{
+			height: 1em;
+			margin: 0 5px;
+		}
+
+		p.tempAspect, p.header
+		{
+			margin: 5px;
+		}
+	}
+
+}
+

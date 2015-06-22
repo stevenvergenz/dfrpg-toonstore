@@ -1,0 +1,28 @@
+doctype html
+if username
+	p= __('activate-email.greeting_user', username)
+else
+	p= __('activate-email.greeting_nouser')
+
+if registration
+	p= __('activate-email.intro_reg')
+else
+	p= __('activate-email.intro_noreg')
+
+p
+	a(href='#{url}/activate/#{token}')
+		if registration
+			= __('activate-email.setpassword')
+		else
+			= __('activate-email.resetpassword')
+
+p= __('activate-email.p1')
+p= __('activate-email.p2')
+
+p= __('activate-email.p3.f1')
+	a(href='#{url}/site/contact')= __('activate-email.p3.f2')
+	= __('activate-email.p3.f3')
+
+p= __('activate-email.closing')
+	br
+	= __('activate-email.sig')

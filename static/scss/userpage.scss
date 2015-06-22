@@ -1,0 +1,120 @@
+@import 'polyfill';
+
+a#newtoon
+{
+	background-image: linear-gradient(#fff,#bbb);
+	padding: 6px 10px;
+	color: black;
+	border: solid grey 1px;
+	border-radius: 3px;
+
+	&:hover {
+		text-decoration: none;
+	}
+}
+
+span.sortLink
+{
+	cursor: pointer;
+	@include user-select(none);
+
+	&.sortField
+	{
+		&:after {
+			content: "\25B2";
+			margin-left: 2px;
+			position: relative;
+			bottom: 2px;
+		}
+
+		&.sortReverse:after {
+			content: "\25BC";
+		}
+	}
+}
+
+div.character
+{
+	background-color: white;
+	color: black;
+	border: 1px solid lightgrey;
+	margin: 10px 0;
+	padding: 10px 5px;
+	border-radius: 5px;
+
+	@include display-flex();
+	@include flex-direction(row);
+
+	a {
+		color: black;
+	}
+
+	// Style the avatar window
+
+	$max_height: 100px;
+
+	div.avatar
+	{
+		width: 130px;
+		height: $max_height;
+		overflow: hidden;
+
+		@include display-flex();
+		@include justify-content(center);
+		@include align-items(center);
+
+		img
+		{
+			border-radius: 5px;
+			max-width: 100%;
+			max-height: $max_height;
+		}
+	}
+
+	// style the description fields
+
+	div.char-content
+	{
+		margin-left: 10px;
+
+		p.title
+		{
+			margin: 0;
+			margin-bottom: 5px;
+			font-size: 18pt;
+		}
+
+		p.updated
+		{
+			margin: 0;
+			font-size: 0.7em;
+			color: grey;
+		}
+
+		.controls {
+			margin-top: 10px;
+			a img, input {
+				margin: 5px;
+				height: 18px;
+			}
+		}
+	}
+
+	&.private
+	{
+		background-color: #ccc;
+
+		p.title:after {
+			content: '';
+			background: image-url('glyphicons/glyphicons_203_lock.png') round;
+			margin-left: 10px;
+			position: absolute;
+			width: 18px;
+			height: 23px;
+		}
+
+		input.privacy {
+			height: 13px !important;
+		}
+	}
+}

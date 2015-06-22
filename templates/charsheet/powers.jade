@@ -1,0 +1,35 @@
+#powers.sheet-panel(ng-controller='PowersCtrl', ng-class='{dirty: dirty}')
+	a#powers
+	h2.panelHeader= __('charsheet.headers.powers')
+		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing=!editing')
+
+	#powerBlock
+		.row.block
+			div= __('charsheet.labels.cost')
+			div= __('charsheet.labels.ability')
+		.itemlist(ui-sortable='sortOptions', ng-model='data.powers', dgy-notify-collection)
+			.block(ng-repeat='power in data.powers', dgy-accordion='!editing && power.description.length > 100')
+				.row
+					.cost
+						input(type='number', min='-8', max='8', dgy-notify, ng-model='power.cost', ng-show='editing')
+						span(ng-hide='editing') {{power.cost | formatRefresh}}
+					.name
+						input(type='text', dgy-notify, ng-model='power.name', ng-show='editing')
+						span(ng-hide='editing') {{power.name}}
+				.row
+					.icons
+					.description(ng-bind-html='power.description | mdToHtml', ng-hide='editing')
+				.row(ng-show='editing')
+					.icons
+						img.iconButton.dragHandle(src='/static/img/glyphicons/glyphicons_186_move.png')
+						input.iconButton(type='image', dgy-notify, ng-click='removePower($index)', src='/static/img/glyphicons/glyphicons_192_circle_remove.png')
+					textarea.descriptionEdit(ng-model='power.description', dgy-notify)
+
+		.block
+			input.iconButton(type='image', dgy-notify, ng-show='editing', ng-click='addPower()', src='/static/img/glyphicons/glyphicons_190_circle_plus.png')
+
+		.block.row
+			div.bubble: span {{totalAdjustment()}}
+			div= __('charsheet.labels.refreshadjust')
+
+

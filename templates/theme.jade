@@ -1,0 +1,120 @@
+mixin langmenu
+	li.menuonly
+		= __('nav.language')
+		br
+		select(onchange='window.location.href = this.options[this.selectedIndex].value;')
+			option(value=getNativeURL('x-default'), selected=(i18n.config.locales.indexOf(i18n.pathLocale)==-1)) Default
+			- for( var i=0; i<i18n.config.locales.length; i++ )
+				option(value=getNativeURL(i18n.config.locales[i]), selected=(i18n.pathLocale==i18n.config.locales[i]))= a__({locale:i18n.config.locales[i], phrase:"language"})
+
+
+doctype html
+html
+
+	head
+		block title
+
+		meta(name='viewport', content='width=device-width, initial-scale=1, maximum-scale=1')
+		meta(name='robots', content='INDEX, FOLLOW')
+		
+		link(rel='icon', type='image/png', href='/static/img/pentacle-simple.png')
+
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Pathway+Gothic+One')
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Denk+One&subset=latin,latin-ext')
+		link(rel='stylesheet', type='text/css', href='//fonts.googleapis.com/css?family=Armata&subset=latin,latin-ext')
+		link(rel='stylesheet', type='text/css', href='/static/scss/theme.css')
+		block css
+			link(rel='stylesheet', type='text/css', href='/static/scss/dialog.css')
+
+		if ganalytics_key
+			script.
+				(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+				(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+				m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+				})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+				ga('create', '#{ganalytics_key}', 'auto');
+				ga('send', 'pageview');
+
+		script!= 'var globalClientStrings = ' + JSON.stringify(__('nav.flexbox_unsupported')) + ';'
+		script(src='https://login.persona.org/include.js')
+		script(src='/static/js/modernizr.custom.07098.js')
+		script(src='/static/js/jquery-1.10.1.js')
+		script(src='/static/js/ie-fail.js')
+		script(src='/static/js/login.js')
+		block js
+
+		script!= 'var userInfo = ' + JSON.stringify({username: logged_user, email: logged_user_email, persona_user: persona_user}) + ';'
+		script!= 'var localeInfo = ' + JSON.stringify({pathLocale: i18n.pathLocale}) + ';'
+		script.
+			function setLangCookie(native){
+				if(native){
+					document.cookie = '#{i18n.config.cookie}=#{i18n.nativeLocale}; max-age=31536e3; path=/';
+					return true;
+				}
+				else {
+					document.cookie = '#{i18n.config.cookie}=#{i18n.selectedLocale}; max-age=31536e3; path=/';
+					window.location.reload(true);
+					return false;
+				}
+			}
+
+
+
+	body
+		.wrapper
+			header
+				nav
+					input#hamburger.fakelink(type='button', value='☰ '+__('nav.menu'), onclick='$("header nav ul.menu").toggleClass("activemenu");')
+					ul.menu
+						li: a(href=url('/')) ToonStore
+						li: a(href=url('/site/about'))= __('nav.about')
+						li: a(href=url('/site/contact'))= __('nav.contact')
+						li: a(href=url('/site/donate'))= __('nav.donate')
+						hr.menuonly
+						li.menuonly: a(href=url('/site/terms'))= __('nav.terms')
+						li.menuonly: a(href=url('/site/privacy'))= __('nav.privacy')
+						+langmenu
+
+					ul
+						if logged_user_email
+							li: a(href=url('/'+logged_user))= logged_user
+							li: input.fakelink(type='button', onclick='logout()', value=__('nav.logout'))
+						else
+							li: a(href=url('/register'))= __('nav.register')
+							if template == 'charsheet/base' || template == 'userpage'
+								li: a(href=url('/login?redirect=#{page}'))= __('nav.login')
+							else
+								li: a(href=url('/login'))= __('nav.login')
+
+				block navigation
+
+			.content
+				if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
+					aside#lang-message.content-block.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
+						br
+						a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
+						|  <> 
+						input.fakelink(type='button', onclick='return setLangCookie(false);', value=n__('nav.lang_dialog.reject'))
+
+				if message
+					aside#page-message.content-block(class=message.type)= message.content
+
+				block content
+
+					article
+
+						header.content-block
+							block article_header
+
+						section.content-block.normalbox
+							block article_body
+
+
+			footer: nav
+				ul
+					li: a(href=url('/site/terms'))= __('nav.terms')
+					li: a(href=url('/site/privacy'))= __('nav.privacy')
+					+langmenu
+
+		block github

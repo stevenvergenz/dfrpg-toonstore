@@ -1,0 +1,34 @@
+{
+	"database": {
+		"host": "localhost",
+		"user": "toonstore",
+		"password": "",
+		"database": "toonstore"
+	},
+
+	"smtp": {
+		"host": "localhost",
+		"port": 25,
+		"auth": {
+			"user": "",
+			"pass": ""
+		}
+	},
+	"debugEmail": true,
+
+	"port": 3001,
+	"cookie_secret": "I return from whence I came...",
+	"ganalytics_key": null,
+	"origin": "http://localhost:3001",
+	"donation_address": "1Bj8SBD9bXeRR4Bp68dm6sCtaMZU4vc612",
+
+	"use_sitemap": false,
+	"use_robots": false,
+
+	"use_ssl": false,
+	"ssl_key": "localhost:3001.key",
+	"ssl_cert": "localhost:3001.crt",
+	"ssl_password": null,
+
+	"templates": ["DresdenFilesRPG"]
+}

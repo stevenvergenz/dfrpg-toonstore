@@ -1,0 +1,11 @@
+extends theme
+
+block title
+	title= toonName + ', ' + toonConcept + ' | ToonStore.net'
+	meta(name='description', content=__('private.meta_description', toonName))
+
+block article_header
+	h2= __('private.pagetitle')
+
+block article_body
+	p= __('private.content')

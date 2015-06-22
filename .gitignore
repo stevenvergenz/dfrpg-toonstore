@@ -17,3 +17,6 @@ npm-debug.log
 node_modules/
 .directory
 uploads/
+config.json
+static/scss/**/*.css
+static/scss/**/*.css.map

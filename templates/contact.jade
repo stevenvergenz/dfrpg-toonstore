@@ -1,34 +1,37 @@
-extends index
+extends theme
 
 block title
-	title Contact Us | ToonStore.net
+	title= __('contact.pagetitle') + ' | ToonStore.net'
+	meta(name='description', content='#{__("contact.meta_description")}')
 
-block content
+block article_header
 
-	h1 Contact Us
+	h1= __('contact.pagetitle')
 
-	.content-block: .normalbox
+block article_body
 
-		h3 Questions? Comments? Suggestions?
+	h3= __('contact.h1')
 
-		p We're easy to get a hold of! You have a couple options:
+	p= __('contact.p1')
 
-		h4 Github
+	h4= __('contact.h2')
 
-		p.
-			The <a href='https://github.com/stevenvergenz/dfrpg-toonstore' target='_blank'>source code</a> for this site is all publicly available
-			under the Apache 2.0 License, so you're welcome to start your own Toonstore for your group if you want to.
+	p= __('contact.p2.f1')
+		a(href='https://github.com/stevenvergenz/dfrpg-toonstore', target='_blank')= __('contact.p2.f2')
+		= __('contact.p2.f3')
 		
-		p.
-			We also use Github for bug reporting and feature requests. If you find a flaw in the site, or have an idea for a killer new feature, let us know!
-			Submit an <a href='https://github.com/stevenvergenz/dfrpg-toonstore/issues' target='_blank'>issue report</a> and we'll get right on it!
+	p= __('contact.p3.f1')
+		a(href='https://github.com/stevenvergenz/dfrpg-toonstore/issues', target='_blank')= __('contact.p3.f2')
+		= __('contact.p3.f3')
 
-		h4 Forums
+	h4= __('contact.h3')
 
-		p.
-			Sorry, no forums just yet.
+	p= __('contact.p4.f1')
+		a(href='https://plus.google.com/communities/100638011667854470760')= __('contact.p4.f2')
+		= __('contact.p4.f3')
 
-		h4 Email
+	h4= __('contact.h4')
 
-		p.
-			If you want to contact us directly, you can email us at <a href='mailto:info@toonstore.net'>info@toonstore.net</a>.
+	p= __('contact.p5.f1')
+		a(href='mailto:info@toonstore.net') info@toonstore.net
+		= __('contact.p5.f2')

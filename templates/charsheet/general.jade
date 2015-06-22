@@ -1,0 +1,18 @@
+#general.sheet-panel(ng-controller="GeneralCtrl", ng-class='{dirty: dirty}')
+	h2.panelHeader
+		span(ng-hide='editing') {{data.name}}
+		input(type='text', dgy-notify, ng-show='editing', ng-model="data.name")
+		input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_150_edit.png', ng-click='editing = !editing')
+	div
+		span(ng-hide='editing') (
+			a(href=url('/#{owner}')) {{data.player}}
+			| )
+		input(type='text', dgy-notify, ng-show='editing', ng-model='data.player')
+
+	div#avatar
+		form(enctype='multipart/form-data', ng-show='editing')
+			input(name='avatar', type='file', accept='image/*', onchange='uploadAvatar()')
+		div#imgContainer
+			img(dgy-src='avatar')
+
+
