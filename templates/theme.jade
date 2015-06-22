@@ -62,59 +62,59 @@ html
 
 
 	body
-		.wrapper
-			header
-				nav
-					input#hamburger.fakelink(type='button', value='☰ '+__('nav.menu'), onclick='$("header nav ul.menu").toggleClass("activemenu");')
-					ul.menu
-						li: a(href=url('/')) ToonStore
-						li: a(href=url('/site/about'))= __('nav.about')
-						li: a(href=url('/site/contact'))= __('nav.contact')
-						li: a(href=url('/site/donate'))= __('nav.donate')
-						hr.menuonly
-						li.menuonly: a(href=url('/site/terms'))= __('nav.terms')
-						li.menuonly: a(href=url('/site/privacy'))= __('nav.privacy')
-						+langmenu
-
-					ul
-						if logged_user_email
-							li: a(href=url('/'+logged_user))= logged_user
-							li: input.fakelink(type='button', onclick='logout()', value=__('nav.logout'))
-						else
-							li: a(href=url('/register'))= __('nav.register')
-							if template == 'charsheet/base' || template == 'userpage'
-								li: a(href=url('/login?redirect=#{page}'))= __('nav.login')
-							else
-								li: a(href=url('/login'))= __('nav.login')
-
-				block navigation
-
-			.content
-				if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
-					aside#lang-message.content-block.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
-						br
-						a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
-						|  <> 
-						input.fakelink(type='button', onclick='return setLangCookie(false);', value=n__('nav.lang_dialog.reject'))
-
-				if message
-					aside#page-message.content-block(class=message.type)= message.content
-
-				block content
-
-					article
-
-						header.content-block
-							block article_header
-
-						section.content-block.normalbox
-							block article_body
-
-
-			footer: nav
-				ul
-					li: a(href=url('/site/terms'))= __('nav.terms')
-					li: a(href=url('/site/privacy'))= __('nav.privacy')
+		
+		header.container
+			nav
+				input#hamburger.fakelink(type='button', value='☰ '+__('nav.menu'), onclick='$("header nav ul.menu").toggleClass("activemenu");')
+				ul.menu
+					li: a(href=url('/')) ToonStore
+					li: a(href=url('/site/about'))= __('nav.about')
+					li: a(href=url('/site/contact'))= __('nav.contact')
+					li: a(href=url('/site/donate'))= __('nav.donate')
+					hr.menuonly
+					li.menuonly: a(href=url('/site/terms'))= __('nav.terms')
+					li.menuonly: a(href=url('/site/privacy'))= __('nav.privacy')
 					+langmenu
+
+				ul
+					if logged_user_email
+						li: a(href=url('/'+logged_user))= logged_user
+						li: input.fakelink(type='button', onclick='logout()', value=__('nav.logout'))
+					else
+						li: a(href=url('/register'))= __('nav.register')
+						if template == 'charsheet/base' || template == 'userpage'
+							li: a(href=url('/login?redirect=#{page}'))= __('nav.login')
+						else
+							li: a(href=url('/login'))= __('nav.login')
+
+			block navigation
+
+		.content.container
+			if i18n.nativeLocale && i18n.nativeLocale !== i18n.selectedLocale
+				aside#lang-message.content-block.info= n__('nav.lang_dialog.prompt', i18n.nativeLocale)
+					br
+					a(href=getNativeURL(), hreflang=i18n.nativeLocale, onclick='return setLangCookie(true);')= n__('nav.lang_dialog.accept')
+					|  <> 
+					input.fakelink(type='button', onclick='return setLangCookie(false);', value=n__('nav.lang_dialog.reject'))
+
+			if message
+				aside#page-message.content-block(class=message.type)= message.content
+
+			block content
+
+				article
+
+					header.content-block
+						block article_header
+
+					section.content-block.normalbox
+						block article_body
+
+
+		footer.container: nav
+			ul
+				li: a(href=url('/site/terms'))= __('nav.terms')
+				li: a(href=url('/site/privacy'))= __('nav.privacy')
+				+langmenu
 
 		block github
