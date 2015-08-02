@@ -19,14 +19,14 @@ block content
 
 			.field
 				label(for='password')= __('login.password')
-					span#reset(style='font-size: 80%;')  (
-						a(href=url('/passreset'))= __('login.forgot')
+					//span#reset(style='font-size: 80%;')  (
 						)
 				input#password(type='password', name='password', required)
 
 			.field
 				input(type='submit', value='#{__("login.submit")}') 
-				a(href=url('/register'))= __('login.register')
+				span(style='font-size: .8em;')
+					a(href=url('/passreset'))= __('login.forgot')
 
 		hr
 

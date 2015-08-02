@@ -30,7 +30,7 @@
 		"meta_description": "Log into the ToonStore",
 		"email": "E-mail",
 		"password": "Password",
-		"forgot": "forgot password",
+		"forgot": "Forgot your password?",
 		"register": "Register",
 		"submit": "Log in",
 
