@@ -23,13 +23,18 @@ block js
 
 block navigation
 
-	if logged_user == owner
-		nav#charnav
-			ul
-				li: a(href=url('/site/howto'))= __('charsheet.headers.help')
-			ul
-				li: a(href='printable')= __('charsheet.headers.printable')
-				li: input.fakelink(type='button', ng-class='{dirty: dirty}', ng-click='data.$save()', value=__('charsheet.headers.save'))
+	nav#charnav
+		ul
+			li: a(href=url('/site/howto'))= __('charsheet.headers.help')
+		ul
+			li: a(href='printable')= __('charsheet.headers.printable')
+			li
+				if logged_user == owner
+					input.fakelink(type='button', ng-class='{dirty: dirty}', ng-click='data.$save()', value=__('charsheet.headers.save'))
+				else if logged_user
+					a(href=url('/newtoon?copy='+owner+'/'+toon))= __('user.controls.duplicate')
+				else
+					a(href=url('/login?redirect=/newtoon?copy='+owner+'/'+toon))= __('user.controls.duplicate')
 	
 block content
 
