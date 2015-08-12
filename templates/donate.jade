@@ -12,6 +12,37 @@ block article_body
 
 	p= __('donate.plea')
 
+	h2= __('donate.paypal.header')
+
+	p= __('donate.paypal.p1')
+
+	.imgcontainer
+		form(action="https://www.paypal.com/cgi-bin/webscr", method="post", target="_top")
+			input(type="hidden", name="cmd", value="_s-xclick")
+			table
+				tr: td
+					input(type="hidden", name="on0", value="Choose your amount")
+					| Choose your amount
+				tr: td: select(name="os0")
+					option(value="Feet In The Water") Feet In The Water $1 USD
+					option(value="Up To Your Waist") Up To Your Waist $5 USD
+					option(value="Chest-Deep") Chest-Deep $10 USD
+					option(value="Submerged") Submerged $20 USD
+
+				tr: td
+					input(type="hidden", name="on1", value="Comments")
+					| Comments
+				tr: td: input(type="text", name="os1", maxlength="200")
+
+			input(type="hidden", name="currency_code", value="USD")
+
+			- var payload = "-----BEGIN PKCS7-----MIIIMQYJKoZIhvcNAQcEoIIIIjCCCB4CAQExggEwMIIBLAIBADCBlDCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb20CAQAwDQYJKoZIhvcNAQEBBQAEgYA0hd+mAlmrUJCUMsPU/+g0/BcdVh1GK0tz8v+1nMjKdDvt/cEczG8xct+28YCZU+OpWaKPTbnkpkFr1OyHLx585mZTTImrgOHFYmtgSxLS3RVYIhrVZDk0Y8Op8dNzbirA3ijP7HlOzK4PLVMYltkqE4+3QkYDCozfq1kbfmUbjjELMAkGBSsOAwIaBQAwggGtBgkqhkiG9w0BBwEwFAYIKoZIhvcNAwcECAhNvXLpYqnjgIIBiEr7K6UWC9H5tCSxdMXHMtPxDTOmcdLlsXS6NOpEu6qoO4t/aEs2o48Es8rfo4aUEycn9p1j38sdqFt2pEaCMjGK82CGcXraUp1XFEEKAbKXikh0Cum9lbZ126VAbLTJd7usv8/lTHI7v8K05FK3/8gtZe1e4COzFiDHkkb0Vy0HphPraepm90cZQ/6gWvjwPTTJEaHHj3IrpMvfajlKie8kQv2O6Ur2/YYOOVVuIi8lLOeP/accTDcqOW5Fst4mKw7H2L1Lnha0IpmkKke8l9gxN8hRqmrvl/4TiJgNcNTmUWKMcCl5i0jgUoTM3EG9zx+GlAJHaykStokCpnEThiroqTim8H+DVoMosL/M/jjEy3JE+EFVC+OeUIazW7alA8fmd5Un09o400X6972KgSHJlOT1Qr6NQbX3cqzu9P2xhbn0E7XGree9aZcMN5Xmk85sAFcR28NTNOMACAzyHt4Tu0nUDvALyMbYnLksZy2MSxBT1kgruQh7cUrlzpiYbiyv0Ram26eyoIIDhzCCA4MwggLsoAMCAQICAQAwDQYJKoZIhvcNAQEFBQAwgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMB4XDTA0MDIxMzEwMTMxNVoXDTM1MDIxMzEwMTMxNVowgY4xCzAJBgNVBAYTAlVTMQswCQYDVQQIEwJDQTEWMBQGA1UEBxMNTW91bnRhaW4gVmlldzEUMBIGA1UEChMLUGF5UGFsIEluYy4xEzARBgNVBAsUCmxpdmVfY2VydHMxETAPBgNVBAMUCGxpdmVfYXBpMRwwGgYJKoZIhvcNAQkBFg1yZUBwYXlwYWwuY29tMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDBR07d/ETMS1ycjtkpkvjXZe9k+6CieLuLsPumsJ7QC1odNz3sJiCbs2wC0nLE0uLGaEtXynIgRqIddYCHx88pb5HTXv4SZeuv0Rqq4+axW9PLAAATU8w04qqjaSXgbGLP3NmohqM6bV9kZZwZLR/klDaQGo1u9uDb9lr4Yn+rBQIDAQABo4HuMIHrMB0GA1UdDgQWBBSWn3y7xm8XvVk/UtcKG+wQ1mSUazCBuwYDVR0jBIGzMIGwgBSWn3y7xm8XvVk/UtcKG+wQ1mSUa6GBlKSBkTCBjjELMAkGA1UEBhMCVVMxCzAJBgNVBAgTAkNBMRYwFAYDVQQHEw1Nb3VudGFpbiBWaWV3MRQwEgYDVQQKEwtQYXlQYWwgSW5jLjETMBEGA1UECxQKbGl2ZV9jZXJ0czERMA8GA1UEAxQIbGl2ZV9hcGkxHDAaBgkqhkiG9w0BCQEWDXJlQHBheXBhbC5jb22CAQAwDAYDVR0TBAUwAwEB/zANBgkqhkiG9w0BAQUFAAOBgQCBXzpWmoBa5e9fo6ujionW1hUhPkOBakTr3YCDjbYfvJEiv/2P+IobhOGJr85+XHhN0v4gUkEDI8r2/rNk1m0GA8HKddvTjyGw/XqXa+LSTlDYkqI8OwR8GEYj4efEtcRpRYBxV8KxAW93YDWzFGvruKnnLbDAF6VR5w/cCMn5hzGCAZowggGWAgEBMIGUMIGOMQswCQYDVQQGEwJVUzELMAkGA1UECBMCQ0ExFjAUBgNVBAcTDU1vdW50YWluIFZpZXcxFDASBgNVBAoTC1BheVBhbCBJbmMuMRMwEQYDVQQLFApsaXZlX2NlcnRzMREwDwYDVQQDFAhsaXZlX2FwaTEcMBoGCSqGSIb3DQEJARYNcmVAcGF5cGFsLmNvbQIBADAJBgUrDgMCGgUAoF0wGAYJKoZIhvcNAQkDMQsGCSqGSIb3DQEHATAcBgkqhkiG9w0BCQUxDxcNMTUwODEyMTMyNTE5WjAjBgkqhkiG9w0BCQQxFgQU/kbwZaQ/Sidm6qoJK6+VMwQtQkgwDQYJKoZIhvcNAQEBBQAEgYCSZRgiEtTIlp6Yr/DtNxKYHTdWXZz2EHbCVP4nhgD5TFvjVlnxHMf4dNiX80OdfUvRQ1fZpbszdTSNk7fVMfQ+6RkdJwI5j2ihJ3KNCywFRxrUe17ExJpQmvA3D4OArMP0yPZEAS63ei5IGGrSzZNcQFmv+csov/8tQcG4uAXjjw==-----END PKCS7-----";
+
+			input(type="hidden", name="encrypted", value=payload)
+			input(type="image", src="https://www.paypalobjects.com/en_US/i/btn/btn_paynow_LG.gif", border="0", name="submit", alt="PayPal - The safer, easier way to pay online!")
+			img(alt="", border="0", src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif", width="1", height="1")
+
+
 	h2= __('donate.how.header')
 
 	p= __('donate.how.p1')

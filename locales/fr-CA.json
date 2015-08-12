@@ -425,6 +425,11 @@
 
 		"plea": "Le ToonStore est et restera un service gratuit pour les amateurs de l'art du jeu de rôle. Cela ne signifie pas qu'il soit gratuit pour tous : en fait, ToonStore coûte environ 250$ US par année pour payer son hébergement et enregistrer sonn nom, ce qui n'est pas négligeable. Toute contribution est la bienvenue pour aider à défrayer les coûts de fonctionnement du site.",
 		
+		"paypal": {
+			"header": "Donate with Paypal",
+			"p1": "By popular demand, the ToonStore is now accepting Paypal donations! Select your desired amount in the box below, and help keep the ToonStore online and serving roleplayers the world over."
+		},
+
 		"how": {
 			"header": "Comment faire un don",
 			"p1": "Pour éviter les frais inutiles, la paperasse, la conversion de devises, les transactions internationales, etc. J'ai décidé d'accepté les Bitcoins au lieu d'un système de dons traditionnel. Comment cela fonctionne-t-il ? Je suis content que vous le demandiez !",
