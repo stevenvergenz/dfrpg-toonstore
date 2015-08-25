@@ -24,12 +24,16 @@
 			max-width: 275px;
 		}
 
-		& > :first-child
+		.cost, .icons
 		{
 			width: 40px;
 			margin-right: 10px;
 			@include display-flex();
 			@include justify-content(flex-end);
+
+			input {
+				min-width: 20px;
+			}
 		}
 
 		// totals row
