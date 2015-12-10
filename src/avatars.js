@@ -22,8 +22,8 @@ function spawnChild()
 		logfile.end();
 	});
 }
-spawnChild();
-setInterval(spawnChild, 12*60*60*1000);
+//spawnChild();
+//setInterval(spawnChild, 12*60*60*1000);
 
 function serveAvatar(req,res,next)
 {
