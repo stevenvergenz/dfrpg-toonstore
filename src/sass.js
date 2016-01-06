@@ -45,37 +45,37 @@ function compileSCSS(dir, callback)
 				file: infile,
 				imagePath: '/static/img',
 				outputStyle: 'nested',
-
 				sourceMap: true,
-				outFile: outfile,
-
-				success: function(result)
-				{
-					fs.writeFile(outfile+'.map', JSON.stringify(result.map), function(err)
-					{
-						if(err){
-							global.error('Could not output source map to file', outfile+'.map');
-						}
-					});
-
-					fs.writeFile(outfile, result.css, function(err)
-					{
-						if(err){
-							global.error('Could not output to file', outfile);
-							cb(err);
-						}
-						else {
-							global.log('Compile successful:', infile);
-							cb();
-						}
-					});
+				outFile: outfile
 				},
-				error: function(err){
-					global.error('Compile FAILED:', infile);
-					global.error(err);
-					cb(err);
+				function(err, result)
+				{
+					if(err){
+						global.error('Compile FAILED:', infile);
+						global.error(err);
+						cb(err);
+					}
+					else
+					{
+						fs.writeFile(outfile+'.map', JSON.stringify(result.map), function(err){
+							if(err){
+								global.error('Could not output source map to file', outfile+'.map');
+							}
+						});
+
+						fs.writeFile(outfile, result.css, function(err){
+							if(err){
+								global.error('Could not output to file', outfile);
+								cb(err);
+							}
+							else {
+								global.log('Compile successful:', infile);
+								cb();
+							}
+						});
+					}
 				}
-			});
+			);
 
 			/*}
 			else {
