@@ -28,7 +28,7 @@ app.use(express.bodyParser({
 
 app.use(express.cookieParser());
 app.use(express.session({secret: config.cookie_secret}));
-app.set('views', libpath.resolve(__dirname,'..','templates'));
+app.set('views', libpath.resolve(__dirname,'..','templates','jade'));
 app.set('view engine', 'jade');
 
 // the global logger middleware
@@ -122,7 +122,7 @@ app.use(function(req,res)
 });
 
 
-sass.compile( '../static/scss', startServer );
+sass.compile( '../templates/sass', '../static/css', startServer );
 
 function startServer(err)
 {

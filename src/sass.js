@@ -6,7 +6,7 @@ var fs = require('fs'),
 	global = require('./global.js');
 
 
-function compileSCSS(dir, callback)
+function compileSCSS(dir, outdir, callback)
 {
 	/*
 	 * function to compile each file, used as a callback to the async call
@@ -29,7 +29,7 @@ function compileSCSS(dir, callback)
 		var match = /^([^_][\w]*)\.scss$/.exec(item);
 		if( match )
 		{
-			var outfile = libpath.resolve(__dirname, dir, match[1]+'.css');
+			var outfile = libpath.resolve(__dirname, outdir, match[1]+'.css');
 
 			/*var outstats;
 			try {
@@ -85,7 +85,7 @@ function compileSCSS(dir, callback)
 		}
 		else if( instats.isDirectory() )
 		{
-			compileSCSS(infile, cb);
+			compileSCSS(infile, libpath.join(outdir, item), cb);
 		}
 		else {
 			cb();
