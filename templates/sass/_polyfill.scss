@@ -133,10 +133,16 @@ $mobile-width: 700px;
 
 @mixin keyframes($animation-name)
 {
-	@-webkit-keyframes $animation-name {
+	@-webkit-keyframes #{$animation-name} {
 		@content;
 	}
-	@keyframes $animation-name {
+	@-moz-keyframes #{$animation-name} {
+		@content;
+	}
+	@-o-keyframes #{$animation-name} {
+		@content;
+	}
+	@keyframes #{$animation-name} {
 		@content;
 	}
 }
@@ -144,6 +150,8 @@ $mobile-width: 700px;
 @mixin animation($str)
 {
 	-webkit-animation: #{$str};
+	-moz-animation: #{$str};
+	-o-animation: #{$str};
 	animation: #{$str};
 }
 
