@@ -258,7 +258,7 @@ app.controller('StressTrackCtrl', ['$scope','SharedResources','rootModel', funct
 	});
 
 	$scope.$watch('effectiveStrength', function(newval){
-		if(newval){
+		if(newval !== undefined){
 			if( rootModel.data.skills.is_shifter && $scope.fields.shifted )
 				$scope.data.shiftedStrength = newval;
 			else
@@ -267,7 +267,7 @@ app.controller('StressTrackCtrl', ['$scope','SharedResources','rootModel', funct
 	});
 
 	$scope.$watch('effectiveToughness', function(newval){
-		if(newval){
+		if(newval !== undefined){
 			if( rootModel.data.skills.is_shifter && $scope.fields.shifted )
 				$scope.data.shiftedToughness = newval;
 			else
@@ -278,9 +278,9 @@ app.controller('StressTrackCtrl', ['$scope','SharedResources','rootModel', funct
 	$scope.manageParens = function(boxIndex)
 	{
 		var classes = [];
-		if( $scope.effectiveToughness != 0 && boxIndex == $scope.effectiveStrength-$scope.effectiveToughness )
+		if( $scope.effectiveToughness > 0 && boxIndex == $scope.effectiveStrength-$scope.effectiveToughness )
 			classes.push('leftParen');
-		if( $scope.effectiveToughness != 0 && boxIndex == $scope.effectiveStrength-1 )
+		if( $scope.effectiveToughness > 0 && boxIndex == $scope.effectiveStrength-1 )
 			classes.push('rightParen');
 		return classes;
 	};

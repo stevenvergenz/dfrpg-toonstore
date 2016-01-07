@@ -40,17 +40,17 @@
 					input(type='text', dgy-notify, ng-model='data.skill')
 				.section
 					label= __('charsheet.labels.strength')
-					input(type='number', ng-model='effectiveStrength')
+					input(type='number', dgy-notify, min=0, max=8, ng-model='effectiveStrength')
 				.section
 					label= __('charsheet.labels.toughness')
-					input(type='number', ng-model='effectiveToughness')
+					input(type='number', dgy-notify, min=0, max=8, ng-model='effectiveToughness')
 				.button-section
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_270_shield.png', ng-click='addArmor()')
 					input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='delete()')
 
 			.track(ng-repeat='armor in data.armor')
 				span= __('charsheet.armor.f1')
-				input(type='number', dgy-notify, ng-model='armor.strength')
+				input(type='number', dgy-notify, min=0, max=8, ng-model='armor.strength')
 				span= __('charsheet.armor.f2')
 				input(type='text', dgy-notify, ng-model='armor.vs')
 				input.iconButton(type='image', src='/static/img/glyphicons/glyphicons_192_circle_remove.png', ng-click='data.armor.splice($index,1)')
