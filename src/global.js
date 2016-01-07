@@ -154,7 +154,7 @@ function renderPage(template, options)
 function renderActivationEmail(to, username, token, registering, i18n)
 {
 	// build email message
-	var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, '../templates/activate-email.jade')), {pretty: true} );
+	var template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, '../templates/jade/activate-email.jade')), {pretty: true} );
 	var html = template({
 		registration: registering,
 		url: config.origin + (i18n.pathLocale ? '/'+i18n.pathLocale : ''),

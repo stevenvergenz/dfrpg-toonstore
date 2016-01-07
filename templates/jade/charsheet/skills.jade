@@ -35,12 +35,15 @@
 	form(ng-show='editing', ng-submit='addSkill(newSkill); newSkill=""')
 		input#newSkill(type='text', ng-model='newSkill')
 		input(type='submit', value='Add skill')
+
 	form(ng-show='editing && noSkills()', ng-submit='addSkillSet(skillset)')
 		select(ng-model='skillset')
 			option(value='dfrpg') Dresden Files RPG
 			option(value='core') Fate Core
 			option(value='fae') Fate Accelerated
 		input(type='submit', value='Add Skill Set')
+
+	input(ng-show='editing && fields.shifted', type='button', value='Copy Unshifted Skills', ng-click='copySkillsToShifted()')
 
 	p#validSkillLadder(ng-show='editing') {{valid()}}
 

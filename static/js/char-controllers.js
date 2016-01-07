@@ -123,6 +123,7 @@ app.controller('SkillCtrl', ['$scope','SharedResources','$rootScope','rootModel'
 		if( sets[set] ){
 			$scope.data.skills.lists[0] = sets[set];
 			$scope.data.skills.shifted_lists[0] = sets[set];
+			$scope.$emit('is_dirty');
 		}
 	};
 
@@ -130,6 +131,19 @@ app.controller('SkillCtrl', ['$scope','SharedResources','$rootScope','rootModel'
 		return $scope.data.skills.lists.reduce(function(sum,cur){ return sum+cur.length; },0)
 			+ $scope.data.skills.shifted_lists.reduce(function(sum,cur){ return sum+cur.length; },0)
 			=== 0;
+	};
+
+	$scope.copySkillsToShifted = function()
+	{
+		$scope.data.skills.shifted_lists = [[],[],[],[],[],[],[],[],[]];
+
+		for(var i=0; i<$scope.data.skills.lists.length; i++){
+			var list = $scope.data.skills.lists[i];
+			for(var j=0; j<list.length; j++){
+				$scope.data.skills.shifted_lists[i].push(list[j]);
+			}
+		}
+		$scope.$emit('is_dirty');
 	};
 
 	// drag-drop handler
