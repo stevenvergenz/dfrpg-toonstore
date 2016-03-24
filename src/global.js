@@ -163,6 +163,16 @@ function renderActivationEmail(to, username, token, registering, i18n)
 		__: i18n.__.bind(i18n)
 	});
 
+	template = jade.compile( fs.readFileSync(libpath.resolve(__dirname, '../templates/jade/activate-email-plaintext.jade')) );
+	var plaintext = template({
+		registration: registering,
+		url: config.origin + (i18n.pathLocale ? '/'+i18n.pathLocale : ''),
+		token: token,
+		username: username,
+		__: i18n.__.bind(i18n)
+	});
+	plaintext = plaintext.replace(/<(?:\/?p|br\/)>/g, '\n').replace(/<p>/g, '').replace(/^\s+|\s+$/g, '');
+
 	// send out confirmation email
 	if(!config.debugEmail){
 		var transporter = nodemailer.createTransport(config.smtp);
@@ -170,12 +180,13 @@ function renderActivationEmail(to, username, token, registering, i18n)
 			from: 'no-reply@toonstore.net',
 			to: to,
 			subject: (registering ? i18n.__('activate-email.subject_reg') : i18n.__('activate-email.subject_noreg')) + ' - ToonStore.net',
-			html: html
+			html: html,
+			text: plaintext
 		});
 	}
 	else {
 		log((registering ? i18n.__('activate-email.subject_reg') : i18n.__('activate-email.subject_noreg')) + ' - ToonStore.net');
-		log(html);
+		log('"'+plaintext+'"');
 	}
 }
 
